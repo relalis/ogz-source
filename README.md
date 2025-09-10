@@ -5,8 +5,14 @@ This is the Open GunZ (GunZ The Duel game) source repo. It was forked from the R
 
 ## clang-cl:
 Windows SDK and clang-cl 19 are required to cross-build the client on Debian bookworm.
+
 `sudo apt install clang-19 lld-19`
-Simply run `build-cross-clang.sh` to build under clang/cmake. Run `build-cross-clang.sh --help` for options.
+
+Run `build-cross-clang.sh` to download the Windows SDK/CRT and automatically build.
+
+Run `build-cross-clang.sh --help` for options.
+
+You can specify a preexisting sdk/crt with the environment variable `WINDOWS_TOOLCHAIN_PATH`. It is highly recommended to use [Jake-Shadle/xwin](https://github.com/Jake-Shadle/xwin) to fetch the SDK.
 
 ## Windows:
 Requisites:

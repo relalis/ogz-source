@@ -40,10 +40,20 @@ function fetch_toolchain() {
 
     echo "Checksum OK: ${sha_actual}"
     tar -xzf "xwin.tar.gz"
-    "xwin-0.6.7-x86_64-unknown-linux-musl/xwin" --accept-license --arch x86 --cache-dir ./xwin_cache --manifest-version 17 splat --output .
+    clean_file "xwin.tar.gz" "xwin.sha256"
+}
+
+function install_toolchain() {
+    cd "${CWD}/build/windows_toolchain"
+    "xwin-0.6.7-x86_64-unknown-linux-musl/xwin" --accept-license \
+            --arch x86 \
+            --cache-dir ./xwin_cache \
+            --manifest-version 17 \
+            splat \
+            --output .
     WINDOWS_TOOLCHAIN_PATH="$(pwd)"
     export WINDOWS_TOOLCHAIN_PATH
-    clean_file "xwin.tar.gz" "xwin.sha256" "xwin_cache" "xwin-0.6.7-x86_64-unknown-linux-musl"
+    clean_file "xwin_cache" "xwin-0.6.7-x86_64-unknown-linux-musl"
 }
 
 for arg in "$@"; do
@@ -64,12 +74,21 @@ for arg in "$@"; do
     esac
 done
 
+if ! command -v clang-cl-19 >/dev/null 2>&1; then
+    echo "[ERR] clang-cl-19 not installed or not in PATH"
+    exit 1
+elif ! command -v lld-link-19 >/dev/null 2>&1; then
+    echo "[ERR] lld-link-19 not installed or not in PATH"
+fi
+
 if [[ -z "${WINDOWS_TOOLCHAIN_PATH:-}" ]]; then
-    if [[ ! -f "build/windows_toolchain/xwin.tar.gz"
-            && ! -f "build/windows_toolchain/xwin.sha256" ]];
-    then
-        echo "Toolchain not found, installing."
-        fetch_toolchain
+    if [[ ! -d "build/windows_toolchain/sdk"
+            && ! -d "build/windows_toolchain/crt" ]]; then
+        if [[ ! -f "build/windows_toolchain/xwin.tar.gz"
+                && ! -f "build/windows_toolchain/xwin.sha256" ]]; then
+            echo "Toolchain not found, installing. This will take some time."
+            fetch_toolchain
+        fi
     fi
 else
     echo "[INFO] Using toolchain at ${WINDOWS_TOOLCHAIN_PATH}"
