@@ -1,6 +1,6 @@
 #pragma once
 
-/// Ä³¸¯ÅÍ ¼Ó¼º - ÀÌ °ªÀº º¯ÇÏÁö ¾Ê´Â´Ù.
+/// ìºë¦­í„° ì†ì„± - ì´ ê°’ì€ ë³€í•˜ì§€ ì•ŠëŠ”ë‹¤.
 struct ZCharacterProperty
 {
 	char		szName[MATCHOBJECT_NAME_LENGTH];
@@ -9,7 +9,7 @@ struct ZCharacterProperty
 	int			nHair;
 	int			nFace;
 	int			nLevel;
-	float		fMaxHP;		// *10 µÈ°ªÀÌ´Ù.
+	float		fMaxHP;		// *10 ëœê°’ì´ë‹¤.
 	float		fMaxAP;
 	int			nMoveSpeed;
 	int			nWeight;
@@ -35,13 +35,13 @@ struct ZCharacterProperty
 	const char* GetClanName() { return szClanName; }
 };
 
-/// Ä³¸¯ÅÍ »óÅÂ°ª
+/// ìºë¦­í„° ìƒíƒœê°’
 struct ZCharacterStatus
 {
 	int			nLife;
 	int			nKills;
 	int			nDeaths;
-	int			nLoadingPercent;	// Ã³À½ ¹æ¿¡ µé¾î¿Ã¶§ ·ÎµùÀÌ ´Ù µÇ¾ú´ÂÁöÀÇ ÆÛ¼¾Æ® 100ÀÌ µÇ¸é ·ÎµùÀÌ ´ÙµÈ°Í
+	int			nLoadingPercent;	// ì²˜ìŒ ë°©ì— ë“¤ì–´ì˜¬ë•Œ ë¡œë”©ì´ ë‹¤ ë˜ì—ˆëŠ”ì§€ì˜ í¼ì„¼íŠ¸ 100ì´ ë˜ë©´ ë¡œë”©ì´ ë‹¤ëœê²ƒ
 	int			nCombo;
 	int			nMaxCombo;
 	int			nAllKill;

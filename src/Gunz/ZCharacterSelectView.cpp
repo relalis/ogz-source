@@ -471,12 +471,12 @@ void ZCharacterSelectView::OnChangedCharInfo(int sex,int index)
 	u32 nItemID[MMCIP_END];
 	memset(nItemID, 0, sizeof(nItemID));
 
-	// Çì¾î
+	// í—¤ì–´
 
 //	nItemID[MMCIP_HEAD] = g_InitialHair[nHairIndex][(int)(nSex)];
 	nItemID[MMCIP_HEAD] = 0;
 
-	// ÄÚ½ºÃõ
+	// ì½”ìŠ¤ì¸”
 	nItemID[MMCIP_MELEE] = g_InitialCostume[index][sex].nMeleeItemID;
 	nItemID[MMCIP_PRIMARY] = g_InitialCostume[index][sex].nPrimaryItemID;
 	nItemID[MMCIP_SECONDARY] = g_InitialCostume[index][sex].nSecondaryItemID;
@@ -754,12 +754,12 @@ void ZCharacterSelectView::OnReceivedAccountCharInfo(void* pCharListBlob)
 			pLabel = (MLabel*)ZApplication::GetGameInterface()->GetIDLResource()->FindWidget( szWidgetName);
 			if ( pLabel)
 			{
-				/* Å¬·£Á¤º¸´Â »°½À´Ï´Ù. - bird
+				/* í´ëœì •ë³´ëŠ” ëºìŠµë‹ˆë‹¤. - bird
 				char szString[256];
 				if ( strcmp( pAccountCharInfo->szClanName, "") == 0)
-					strcpy_safe( szString, "Å¬·£ : ---");
+					strcpy_safe( szString, "í´ëœ : ---");
 				else
-					sprintf_safe( szString, "Å¬·£ : %s", pAccountCharInfo->szClanName);
+					sprintf_safe( szString, "í´ëœ : %s", pAccountCharInfo->szClanName);
 				pLabel->SetText( szString);
 				*/
 				pLabel->SetText("");
@@ -810,7 +810,7 @@ void ZCharacterSelectView::OnReceivedAccountCharInfo(void* pCharListBlob)
 		pButton->Enable( (m_nNumOfCharacter == MAX_CHAR_COUNT) ? false : true);
 
 
-	// ³»°¡ Á¤¸» ´ººñÀÎÁö Ã¼Å©
+	// ë‚´ê°€ ì •ë§ ë‰´ë¹„ì¸ì§€ ì²´í¬
 	if (nCharMaxLevel <= 1) ZGetMyInfo()->SetNewbie(true);
 }
 

@@ -16,7 +16,7 @@
 #define MATERIAL_BLAST2_FILE_ID	6666
 #define MATERIAL_BLAST2_FILE_BUILD 1
 
-#define MATERIAL_NAME_LIMIT_LENGTH	64		// °íÁ¤ Å©±â ¹®ÀÚ¿­À» À§ÇÑ Definition(ÀÌÀü¹öÀü°úÀÇ È£È¯)
+#define MATERIAL_NAME_LIMIT_LENGTH	64		// ê³ ì • í¬ê¸° ë¬¸ìžì—´ì„ ìœ„í•œ Definition(ì´ì „ë²„ì „ê³¼ì˜ í˜¸í™˜)
 
 typedef struct _tagRMLHEADER{
 	int		nFileID;
@@ -77,11 +77,11 @@ public:
 
 	BOOL bLocked;
 
-	// ¸ÞÅÍ¸®¾ó¿¡¼­ ¾²°í ÀÖ´Â ÅØ½ºÃÄ °³¼ö ¾ò±â
+	// ë©”í„°ë¦¬ì–¼ì—ì„œ ì“°ê³  ìžˆëŠ” í…ìŠ¤ì³ ê°œìˆ˜ ì–»ê¸°
 	int GetTextureCount(void){
 		return nTexture;
 	}
-	// ¸ÅÅÍ¸®¾óÀÇ ÅØ½ºÃÄ ÀÎµ¦½º·Î ÅØ½ºÃÄ ¸®½ºÆ®¿¡¼­ÀÇ ÀÎµ¦½º ¾ò±â
+	// ë§¤í„°ë¦¬ì–¼ì˜ í…ìŠ¤ì³ ì¸ë±ìŠ¤ë¡œ í…ìŠ¤ì³ ë¦¬ìŠ¤íŠ¸ì—ì„œì˜ ì¸ë±ìŠ¤ ì–»ê¸°
 	int GetTextureIndex(int i){
 		_ASSERT(i>=0 && i<nTexture);
 		return TextureIndices[i];

@@ -49,7 +49,7 @@ void COutputView::AddString(const char* szString, COLORREF color, bool bCarrigeR
 {
 	CRichEditCtrl& c = GetRichEditCtrl();
 
-	// ÃÖ´ëÃâ·Â ¶óÀÎ¼ö À¯Áö //////////////////////////////////
+	// ìµœëŒ€ì¶œë ¥ ë¼ì¸ìˆ˜ ìœ ì§€ //////////////////////////////////
 	#define MAX_OUTPUT_COUNT	1000
 	c.SetReadOnly(FALSE);
 		int nCount;
@@ -64,7 +64,7 @@ void COutputView::AddString(const char* szString, COLORREF color, bool bCarrigeR
 			}
 		}
 	c.SetReadOnly(TRUE);
-	////////////////////////////////// ÃÖ´ëÃâ·Â ¶óÀÎ¼ö À¯Áö //
+	////////////////////////////////// ìµœëŒ€ì¶œë ¥ ë¼ì¸ìˆ˜ ìœ ì§€ //
 
 	// Determine AutoScroll ////////////////////////////
 	bool bScroll = false;

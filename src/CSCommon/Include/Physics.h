@@ -1,18 +1,18 @@
-// ¹°¸®ÇÐ¿¡ °ü·ÃµÈ ÇÔ¼öµé
+// ë¬¼ë¦¬í•™ì— ê´€ë ¨ëœ í•¨ìˆ˜ë“¤
 //
-// ´ÜÀ§°è
-// °Å¸® : ¹ÌÅÍ
-// ½Ã°£ : ÃÊ
+// ë‹¨ìœ„ê³„
+// ê±°ë¦¬ : ë¯¸í„°
+// ì‹œê°„ : ì´ˆ
 //
 #ifndef PHYSICS_H
 #define PHYSICS_H
 
 #include "RTypes.h"
 
-/// Áß·Â °¡¼Óµµ
+/// ì¤‘ë ¥ ê°€ì†ë„
 #define GRAVITY_ACCELERATION 9.8f
 
-/// Æ÷¹°¼± ¿îµ¿
+/// í¬ë¬¼ì„  ìš´ë™
 v3 ParabolicMotion(const v3& InitialVelocity, float fSec);
 
 template <typename T>

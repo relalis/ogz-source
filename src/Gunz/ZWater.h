@@ -11,7 +11,7 @@ using namespace RealSpace2;
 enum WaterType
 {
 	WaterType1 = 0,	// Normal
-	WaterType2,		// ÀÏ··ÀÓÀÌ ¾ø´Â..
+	WaterType2,		// ì¼ë ì„ì´ ì—†ëŠ”..
 };
 
 class ZWaterList;

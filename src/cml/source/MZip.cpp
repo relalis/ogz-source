@@ -785,7 +785,7 @@ bool MZip::RecoveryMrs2(FILE* fp)
 	memset(pDirData, 0, dir_data_size);
 	fread(pDirData, dir_data_size, 1, fp);
 
-	RecoveryChar( (char*)pDirData , dir_data_size );//mrs ¶ó¸é º¯È¯..
+	RecoveryChar( (char*)pDirData , dir_data_size );//mrs ë¼ë©´ ë³€í™˜..
 
 	fseek(fp, dir_data_pos, SEEK_SET);
 	fwrite(pDirData,dir_data_size,1,fp);
@@ -897,13 +897,13 @@ bool MZip::RecoveryZip(char* zip_name)
 		return false;
 	}
 
-	// mrs1 ÀÎÁö ½Äº°..ÀÌ¹Ì ÆÄÀÏµéÀÌ ³ª°£»óÅÂ¿©¼­ ½Äº°¹æ¹ıÀÌ ÀÌ°Í»Ó...
+	// mrs1 ì¸ì§€ ì‹ë³„..ì´ë¯¸ íŒŒì¼ë“¤ì´ ë‚˜ê°„ìƒíƒœì—¬ì„œ ì‹ë³„ë°©ë²•ì´ ì´ê²ƒë¿...
 
-	if( isVersion1Mrs(fp) ) {	// ÃÖÃÊ¸ğµ¨...
+	if( isVersion1Mrs(fp) ) {	// ìµœì´ˆëª¨ë¸...
 		RecoveryMrs( fp );
 	}
 	else {
-		RecoveryMrs2( fp );		// v2 ºÎÅÍ´Â Çì´õÀÇ sig °ªÀ¸·Î ¹öÀü±¸ºĞ....
+		RecoveryMrs2( fp );		// v2 ë¶€í„°ëŠ” í—¤ë”ì˜ sig ê°’ìœ¼ë¡œ ë²„ì „êµ¬ë¶„....
 	}
 
 	fclose(fp);

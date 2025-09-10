@@ -10,20 +10,20 @@ enum MFDTextStyle{
 };
 
 ////////////////////////////////////////////////////
-// FrameÀ» ±×¸®±â À§ÇÑ Å¬·¡½º
-// ÀÌ¸¦ ÅëÇØ ½ºÅ²À» Áö¿øÇÒ ¼ö ÀÖ´Ù.
+// Frameì„ ê·¸ë¦¬ê¸° ìœ„í•œ í´ë˜ìŠ¤
+// ì´ë¥¼ í†µí•´ ìŠ¤í‚¨ì„ ì§€ì›í•  ìˆ˜ ìˆë‹¤.
 // Default Frame Drawer
 class MFrameDrawer{
 public:
-	virtual void DrawOuterBevel(MDrawContext* pDC, MRECT& r);		// ¹Ù±ùÂÊ À±°û ±×¸®±â
-	virtual void DrawInnerBevel(MDrawContext* pDC, MRECT& r);		// ¾ÈÂÊ À±°û ±×¸®±â
-	virtual void DrawFlatBevel(MDrawContext* pDC, MRECT& r);		// Æò¸é À±°û ±×¸®±â ( º¸Åë ´­·ÈÀ»¶§... )
-	virtual void DrawOuterPlane(MDrawContext* pDC, MRECT& r);		// ¹Ù±ùÂÊ ¸é
-	virtual void DrawInnerPlane(MDrawContext* pDC, MRECT& r);		// ¾ÈÂÊ ¸é
-	virtual void DrawFlatPlane(MDrawContext* pDC, MRECT& r);		// Æò¸é ¸é
-	virtual void DrawOuterBorder(MDrawContext* pDC, MRECT& r);		// ¹Ù±ùÂÊ ÆÇ(Bevel+Plane) ±×¸®±â
-	virtual void DrawInnerBorder(MDrawContext* pDC, MRECT& r);		// ¾ÈÂÊ ÆÇ(Bevel+Plane) ±×¸®±â
-	virtual void DrawFlatBorder(MDrawContext* pDC, MRECT& r);		// ÀÏ¹İÀûÀÎ Æò¸é ÆÇ(Bevel+Plane) ±×¸®±â
+	virtual void DrawOuterBevel(MDrawContext* pDC, MRECT& r);		// ë°”ê¹¥ìª½ ìœ¤ê³½ ê·¸ë¦¬ê¸°
+	virtual void DrawInnerBevel(MDrawContext* pDC, MRECT& r);		// ì•ˆìª½ ìœ¤ê³½ ê·¸ë¦¬ê¸°
+	virtual void DrawFlatBevel(MDrawContext* pDC, MRECT& r);		// í‰ë©´ ìœ¤ê³½ ê·¸ë¦¬ê¸° ( ë³´í†µ ëˆŒë ¸ì„ë•Œ... )
+	virtual void DrawOuterPlane(MDrawContext* pDC, MRECT& r);		// ë°”ê¹¥ìª½ ë©´
+	virtual void DrawInnerPlane(MDrawContext* pDC, MRECT& r);		// ì•ˆìª½ ë©´
+	virtual void DrawFlatPlane(MDrawContext* pDC, MRECT& r);		// í‰ë©´ ë©´
+	virtual void DrawOuterBorder(MDrawContext* pDC, MRECT& r);		// ë°”ê¹¥ìª½ íŒ(Bevel+Plane) ê·¸ë¦¬ê¸°
+	virtual void DrawInnerBorder(MDrawContext* pDC, MRECT& r);		// ì•ˆìª½ íŒ(Bevel+Plane) ê·¸ë¦¬ê¸°
+	virtual void DrawFlatBorder(MDrawContext* pDC, MRECT& r);		// ì¼ë°˜ì ì¸ í‰ë©´ íŒ(Bevel+Plane) ê·¸ë¦¬ê¸°
 	virtual void Text(MDrawContext* pDC, MRECT& r, const char* szText, MAlignmentMode am=MAM_NOTALIGN, MFDTextStyle nTextStyle=MFDTS_NORMAL, bool bHighlight=false);
 	virtual void Text(MDrawContext* pDC, MPOINT& p, const char* szText, MFDTextStyle nTextStyle=MFDTS_NORMAL, bool bHighlight=false, MRECT* r=NULL);
 	virtual void TextMC(MDrawContext* pDC, MRECT& r, const char* szText, MAlignmentMode am=MAM_NOTALIGN, MFDTextStyle nTextStyle=MFDTS_NORMAL, bool bHighlight=false);

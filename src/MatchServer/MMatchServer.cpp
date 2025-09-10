@@ -282,7 +282,7 @@ bool MMatchServer::LoadInitFile()
 	}
 
 	if (!InitLocale()) {
-		LOG(LOG_ALL, "Locale ¼³Á¤ ½ÇÆĞ.");
+		LOG(LOG_ALL, "Locale ì„¤ì • ì‹¤íŒ¨.");
 		return false;
 	}
 
@@ -806,7 +806,7 @@ void MMatchServer::UpdateServerStatusDB()
 {
 	if (!IsCreated()) return;
 
-#define SERVER_STATUS_TICK		(30000)	// 30ÃÊ (1000 * 30)
+#define SERVER_STATUS_TICK		(30000)	// 30ì´ˆ (1000 * 30)
 
 	static u64 st_nElapsedTime = 0;
 	static auto nLastTime = GetGlobalTimeMS();
@@ -1533,7 +1533,7 @@ void MMatchServer::RouteToBattle(const MUID& uidStage, MCommand* pCommand)
 		}
 		else {
 			LOG(LOG_ALL, "WARNING(RouteToBattle) : Not Existing Obj(%u:%u)\n", uidObj.High, uidObj.Low);
-			i = pStage->RemoveObject(uidObj);	// RAONHAJE : ¹æ¿¡ ¾²·¹±âUID ³²´Â°Í ¹ß°ß½Ã ·Î±×&Ã»¼Ò
+			i = pStage->RemoveObject(uidObj);	// RAONHAJE : ë°©ì— ì“°ë ˆê¸°UID ë‚¨ëŠ”ê²ƒ ë°œê²¬ì‹œ ë¡œê·¸&ì²­ì†Œ
 		}
 	}
 	delete pCommand;
@@ -1564,7 +1564,7 @@ void MMatchServer::RouteToBattleExcept(const MUID& uidStage, MCommand* pCommand,
 		}
 		else {
 			LOG(LOG_ALL, "WARNING(RouteToBattle) : Not Existing Obj(%u:%u)\n", uidObj.High, uidObj.Low);
-			i = pStage->RemoveObject(uidObj);	// RAONHAJE : ¹æ¿¡ ¾²·¹±âUID ³²´Â°Í ¹ß°ß½Ã ·Î±×&Ã»¼Ò
+			i = pStage->RemoveObject(uidObj);	// RAONHAJE : ë°©ì— ì“°ë ˆê¸°UID ë‚¨ëŠ”ê²ƒ ë°œê²¬ì‹œ ë¡œê·¸&ì²­ì†Œ
 		}
 	}
 	delete pCommand;
@@ -1601,7 +1601,7 @@ void MMatchServer::ResponseRoundState(const MUID& uidStage)
 	pCmd->AddParameter(new MCommandParameterInt(pRule->GetRoundState()));
 	pCmd->AddParameter(new MCommandParameterInt(pRule->GetRoundArg()));
 
-	// °ÔÀÓ ¾È¿¡ ÀÖ´Â ÇÃ·¹ÀÌ¾î¿¡°Ô¸¸ Àü¼Û
+	// ê²Œì„ ì•ˆì— ìˆëŠ” í”Œë ˆì´ì–´ì—ê²Œë§Œ ì „ì†¡
 	RouteToBattle(uidStage, pCmd);
 }
 
@@ -1669,7 +1669,7 @@ int MMatchServer::ObjectRemove(const MUID& uid, MMatchObjectList::iterator* pNex
 		ChannelLeave(pObj->GetUID(), pObj->GetChannelUID());
 	}
 
-	// m_ClanMap¿¡¼­µµ »èÁ¦
+	// m_ClanMapì—ì„œë„ ì‚­ì œ
 	m_ClanMap.RemoveObject(pObj->GetUID(), pObj);
 
 	delete pObj;
@@ -1868,7 +1868,7 @@ void MMatchServer::ParseUDPPacket(char* pData, MPacketHeader* pPacketHeader, u32
 		unsigned short nCheckSum = MBuildCheckSum(pPacketHeader, pPacketHeader->nSize);
 		if (pPacketHeader->nCheckSum != nCheckSum) {
 			static int nLogCount = 0;
-			if (nLogCount++ < 100) {	// Log Flooding ¹æÁö
+			if (nLogCount++ < 100) {	// Log Flooding ë°©ì§€
 				mlog("MMatchServer::ParseUDPPacket() -> CHECKSUM ERROR(R=%u/C=%u)\n",
 					pPacketHeader->nCheckSum, nCheckSum);
 			}
@@ -1911,7 +1911,7 @@ void MMatchServer::ParseUDPPacket(char* pData, MPacketHeader* pPacketHeader, u32
 	case MSGID_COMMAND:
 	{
 		_ASSERT(0);
-		// ¼­¹ö»ó¿¡ ¾ÏÈ£È­µÈ UDP´Â »ç¿ëÇÏÁö ¾ÊÀ½
+		// ì„œë²„ìƒì— ì•”í˜¸í™”ëœ UDPëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
 		Log(LOG_DEBUG, "MMatchServer::ParseUDPPacket: Parse Packet Error");
 	}
 	break;
@@ -1936,7 +1936,7 @@ void MMatchServer::ResponseBridgePeer(const MUID& uidChar, int nCode)
 	RouteToListener(pObj, pNew);
 }
 
-// ³­ÀÔÇÑ À¯Àú°¡ ¹æ¾È¿¡ ÀÖ´Â ´Ù¸¥ »ç¶÷µé Á¤º¸ ´Ş¶ó°í ¿äÃ»ÇßÀ»¶§ ¹æ¾ÈÀÇ À¯ÀúÁ¤º¸¸¦ ¾Ë·ÁÁØ´Ù
+// ë‚œì…í•œ ìœ ì €ê°€ ë°©ì•ˆì— ìˆëŠ” ë‹¤ë¥¸ ì‚¬ëŒë“¤ ì •ë³´ ë‹¬ë¼ê³  ìš”ì²­í–ˆì„ë•Œ ë°©ì•ˆì˜ ìœ ì €ì •ë³´ë¥¼ ì•Œë ¤ì¤€ë‹¤
 void MMatchServer::ResponsePeerList(const MUID& uidChar, const MUID& uidStage)
 {
 	MMatchStage* pStage = FindStage(uidStage);
@@ -1947,7 +1947,7 @@ void MMatchServer::ResponsePeerList(const MUID& uidChar, const MUID& uidStage)
 	MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_PEERLIST, MUID(0, 0));
 	pNew->AddParameter(new MCommandParameterUID(pStage->GetUID()));
 
-	// Battle¿¡ µé¾î°£ »ç¶÷¸¸ List¸¦ ¸¸µç´Ù.
+	// Battleì— ë“¤ì–´ê°„ ì‚¬ëŒë§Œ Listë¥¼ ë§Œë“ ë‹¤.
 	int nPeerCount = pStage->GetObjInBattleCount() + pStage->Bots.size();
 
 	void* pPeerArray = MMakeBlobArray(sizeof(MTD_PeerListNode), nPeerCount);
@@ -2208,7 +2208,7 @@ void MMatchServer::OnChatRoomInvite(const MUID& uidComm, const char* pszTargetNa
 
 }
 
-// RAONHAJE ÀÓ½ÃÄÚµå
+// RAONHAJE ì„ì‹œì½”ë“œ
 #ifdef _DEBUG
 #include "CMLexicalAnalyzer.h"
 bool StageFinish(MMatchServer* pServer, const MUID& uidPlayer, char* pszChat)
@@ -2294,7 +2294,7 @@ void MMatchServer::InsertChatDBLog(const MUID& uidPlayer, const char* szMsg)
 	stChatLog[stnLogTop].nTime = GetGlobalTimeMS();
 	stnLogTop++;
 
-	// ÀÏÁ¤ °³¼ö°¡ µÉ¶§¸¸ DB¿¡ ³Ö´Â´Ù.
+	// ì¼ì • ê°œìˆ˜ê°€ ë ë•Œë§Œ DBì— ë„£ëŠ”ë‹¤.
 	if (stnLogTop >= MAX_CHAT_LOG)
 	{
 		for (int i = 0; i < stnLogTop; i++)
@@ -2424,14 +2424,14 @@ int MMatchServer::ValidateEquipItem(MMatchObject* pObj, MMatchItem* pItem, const
 		return MERR_LOW_LEVEL;
 	}
 
-	// ¹«°Ô Ã¼Å©
+	// ë¬´ê²Œ ì²´í¬
 	int nWeight = 0;
 	int nMaxWeight = 0;
 
 	MMatchEquipedItem* pEquipedItem = &pObj->GetCharInfo()->m_EquipedItem;
 	pObj->GetCharInfo()->GetTotalWeight(&nWeight, &nMaxWeight);
 
-	// ±³Ã¼ÇÒ ¾ÆÀÌÅÛÀÇ ¹«°Ô¸¦ »«´Ù.
+	// êµì²´í•  ì•„ì´í…œì˜ ë¬´ê²Œë¥¼ ëº€ë‹¤.
 	if (!pEquipedItem->IsEmpty(parts))
 	{
 		if (pEquipedItem->GetItem(parts)->GetDesc() != NULL)
@@ -2441,7 +2441,7 @@ int MMatchServer::ValidateEquipItem(MMatchObject* pObj, MMatchItem* pItem, const
 		}
 	}
 
-	// ÀåÂøÇÒ ¾ÆÀÌÅÛÀÇ ¹«°Ô¸¦ ´õÇÑ´Ù.
+	// ì¥ì°©í•  ì•„ì´í…œì˜ ë¬´ê²Œë¥¼ ë”í•œë‹¤.
 	if (pItem->GetDesc() != NULL)
 	{
 		nWeight += pItem->GetDesc()->m_nWeight;
@@ -2519,7 +2519,7 @@ void MMatchServer::UpdateCharDBCachingData(MMatchObject* pObject)
 			nAddedDeathCount);
 		PostAsyncJob(pJob);
 
-		// ½ÇÆĞÇß´ÂÁö´Â ¾Ë ¼ö ¾øÁö¸¸, ¾Ç¿ëÀ» À§ÇØ ResetÇÑ´Ù.
+		// ì‹¤íŒ¨í–ˆëŠ”ì§€ëŠ” ì•Œ ìˆ˜ ì—†ì§€ë§Œ, ì•…ìš©ì„ ìœ„í•´ Resetí•œë‹¤.
 		pObject->GetCharInfo()->GetDBCachingData()->Reset();
 
 		/*
@@ -2549,7 +2549,7 @@ void MMatchServer::UpdateCharDBCachingData(MMatchObject* pObject)
 	}
 }
 
-// item xml Ã¼Å©¿ë - Å×½ºÆ®
+// item xml ì²´í¬ìš© - í…ŒìŠ¤íŠ¸
 bool MMatchServer::CheckItemXML()
 {
 	map<u32, string>	ItemXmlMap;
@@ -2587,9 +2587,9 @@ bool MMatchServer::CheckItemXML()
 
 			if (ItemXmlMap.find(id) != ItemXmlMap.end())
 			{
-				_ASSERT(0);	// ¾ÆÀÌÅÛ ID Áßº¹
+				_ASSERT(0);	// ì•„ì´í…œ ID ì¤‘ë³µ
 				char szTemp[256];
-				sprintf_safe(szTemp, "item xml ¾ÆÀÌµğ Áßº¹: %u\n", id);
+				sprintf_safe(szTemp, "item xml ì•„ì´ë”” ì¤‘ë³µ: %u\n", id);
 				mlog(szTemp);
 				return false;
 			}
@@ -2615,7 +2615,7 @@ bool MMatchServer::CheckItemXML()
 		if (string::npos == pos)
 		{
 			// TODO: Fix
-			//ASSERT( 0 && "±¸ºĞÀÚ¸¦ Ã£Áö ¸øÇÔ. ¹®¹ı¿À·ù." );
+			//ASSERT( 0 && "êµ¬ë¶„ìë¥¼ ì°¾ì§€ ëª»í•¨. ë¬¸ë²•ì˜¤ë¥˜." );
 			continue;
 		}
 
@@ -2688,7 +2688,7 @@ bool MMatchServer::CheckItemXML()
 
 		fprintf(fp, "Description='%s' \n", pItemDesc->m_szDesc);
 
-		// ÀÌ°Å Àı´ë·Î Áö¿ìÁö ¸¶¼¼¿ä. DBÀÛ¾÷ÇÒ¶§ ´ëÇü »ç°í ³¯¼ö ÀÖ½À´Ï´Ù. - by SungE.
+		// ì´ê±° ì ˆëŒ€ë¡œ ì§€ìš°ì§€ ë§ˆì„¸ìš”. DBì‘ì—…í• ë•Œ ëŒ€í˜• ì‚¬ê³  ë‚ ìˆ˜ ìˆìŠµë‹ˆë‹¤. - by SungE.
 		fprintf(fp, "WHERE ItemID = %u\n", pItemDesc->m_nID);
 
 		/*
@@ -2704,7 +2704,7 @@ bool MMatchServer::CheckItemXML()
 
 }
 
-// sqlÆÄÀÏ »ı¼ºÀ» À§ÇØ¼­. °ÔÀÓÀ» À§ÇØ¼­ »ç¿ëµÇÁö´Â ¾ÊÀ½.
+// sqlíŒŒì¼ ìƒì„±ì„ ìœ„í•´ì„œ. ê²Œì„ì„ ìœ„í•´ì„œ ì‚¬ìš©ë˜ì§€ëŠ” ì•ŠìŒ.
 struct ix
 {
 	string id;
@@ -2754,7 +2754,7 @@ bool MMatchServer::CheckUpdateItemXML()
 			{
 				if (imName.end() != imName.find(szID))
 				{
-					ASSERT("Áßº¹");
+					ASSERT("ì¤‘ë³µ");
 					continue;
 				}
 
@@ -2767,7 +2767,7 @@ bool MMatchServer::CheckUpdateItemXML()
 			{
 				if (imDesc.end() != imDesc.find(szID))
 				{
-					ASSERT("Áßº¹");
+					ASSERT("ì¤‘ë³µ");
 					continue;
 				}
 
@@ -2778,7 +2778,7 @@ bool MMatchServer::CheckUpdateItemXML()
 			}
 			else
 			{
-				// ASSERT( 0 && "ÀÌ»óÇÏ´Ù...." );
+				// ASSERT( 0 && "ì´ìƒí•˜ë‹¤...." );
 			}
 		}
 	}
@@ -2904,8 +2904,8 @@ void MMatchServer::BroadCastDuelInterruptVictories(const MUID& chanID, const cha
 
 bool MMatchServer::InitScheduler()
 {
-	// ½ºÄÉÁì ¾÷µ¥ÀÌÆ®½Ã Ä¿¸àµå¸¦ Æ÷½ºÆ®ÇÏ±â À§ÇØ¼­,
-	//  MMatchServerÀÇ ÁÖ¼Ò¸¦ ÀÎÀÚ·Î ¹Ş¾Æ ¸â¹ö·Î ÀúÀåÇØµÒ.
+	// ìŠ¤ì¼€ì¥´ ì—…ë°ì´íŠ¸ì‹œ ì»¤ë©˜ë“œë¥¼ í¬ìŠ¤íŠ¸í•˜ê¸° ìœ„í•´ì„œ,
+	//  MMatchServerì˜ ì£¼ì†Œë¥¼ ì¸ìë¡œ ë°›ì•„ ë©¤ë²„ë¡œ ì €ì¥í•´ë‘ .
 	m_pScheduler = new MMatchScheduleMgr(this);
 	if (0 == m_pScheduler)
 		return false;
@@ -2916,10 +2916,10 @@ bool MMatchServer::InitScheduler()
 		return false;
 	}
 
-	// °Ë»ç ½Ã°£À» 10ÃÊ·Î ¼³Á¤. ÀÓ½Ã.
+	// ê²€ì‚¬ ì‹œê°„ì„ 10ì´ˆë¡œ ì„¤ì •. ì„ì‹œ.
 	m_pScheduler->SetUpdateTerm(10);
 
-	// »ó¼ÓÇÑ Å¬·¡½ºÀÇ ½ºÄÉÁì µî·Ï.
+	// ìƒì†í•œ í´ë˜ìŠ¤ì˜ ìŠ¤ì¼€ì¥´ ë“±ë¡.
 	if (!InitSubTaskSchedule()) {
 		delete m_pScheduler;
 		m_pScheduler = 0;
@@ -2971,8 +2971,8 @@ bool MMatchServer::InitEvent()
 	EventPtrVec EvnPtrVec;
 	if (!MMatchEventFactoryManager::GetInstance().GetEventList(MMATCH_GAMETYPE_ALL, ET_CUSTOM_EVENT, EvnPtrVec))
 	{
-		ASSERT(0 && "ÀÌº¥Æ® ¸®½ºÆ® »ı¼º ½ÇÆĞ.\n");
-		mlog("MMatchServer::InitEvent - ¸®½ºÆ® »ı¼º ½ÇÆĞ.\n");
+		ASSERT(0 && "ì´ë²¤íŠ¸ ë¦¬ìŠ¤íŠ¸ ìƒì„± ì‹¤íŒ¨.\n");
+		mlog("MMatchServer::InitEvent - ë¦¬ìŠ¤íŠ¸ ìƒì„± ì‹¤íŒ¨.\n");
 		MMatchEventManager::ClearEventPtrVec(EvnPtrVec);
 		return false;
 	}

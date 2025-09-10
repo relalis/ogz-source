@@ -4,163 +4,163 @@
 #include "MCommand.h"
 #include "MZFileSystem.h"
 
-#define ZOK										0			///< ¿¡·¯¾øÀ½
-#define ZERR_UNKNOWN							-1			///< ¾ËÁö ¸øÇÏ´Â ¿¡·¯
+#define ZOK										0			///< ì—ëŸ¬ì—†ìŒ
+#define ZERR_UNKNOWN							-1			///< ì•Œì§€ ëª»í•˜ëŠ” ì—ëŸ¬
 
 
-// Å¬¶óÀÌ¾ðÆ® ¿¡·¯¸Þ½ÃÁö °ü
-#define MSG_WARNING								500			///< ÁÖÀÇ
-#define MSG_REROUTE_TO_WEBSITE					501			///< ÁÖÀÇ
+// í´ë¼ì´ì–¸íŠ¸ ì—ëŸ¬ë©”ì‹œì§€ ê´€
+#define MSG_WARNING								500			///< ì£¼ì˜
+#define MSG_REROUTE_TO_WEBSITE					501			///< ì£¼ì˜
 
 
-/// Å¬¶óÀÌ¾ðÆ® ÀÎÅÍÆäÀÌ½º °ü·Ã
-#define MSG_119_REPORT_WAIT_ONEMINUTE			1000		///< 1ºÐÈÄ¿¡ ½Å°í°¡´ÉÇÕ´Ï´Ù.
-#define MSG_119_REPORT_OK						1001		///< 119 ½Å°íÇÏ¿´½À´Ï´Ù.
-#define MSG_CANNOT_CHAT							1002		///< Ã¤ÆÃÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MSG_YOU_MUST_WRITE_MORE					1003		///< $1±ÛÀÚÀÌ»ó ±ÛÀ» Àû¾î¾ß ÇÕ´Ï´Ù.		// $1 - ±ÛÀÚ¼ö
-#define MSG_LESS_ARGUMENT						1004		///< ÀÎÀÚ°¡ ºÎÁ·ÇÕ´Ï´Ù.
-#define MSG_WRONG_ARGUMENT						1005		///< ÀÎÀÚ°¡ Æ²·È½À´Ï´Ù.
-#define MSG_MUST_EXECUTE_LOBBY					1006		///< ·Îºñ¿¡¼­¸¸ ½ÇÇà°¡´ÉÇÕ´Ï´Ù.
-#define MSG_MUST_EXECUTE_STAGE					1007		///< ´ë±â¹æ¿¡¼­¸¸ ½ÇÇà°¡´ÉÇÕ´Ï´Ù.
-#define MSG_MUST_EXECUTE_GAME					1008		///< °ÔÀÓ¿¡¼­¸¸ ½ÇÇà°¡´ÉÇÕ´Ï´Ù.
-#define MSG_CANCELED							1009		///< Ãë¼ÒµÇ¾ú½À´Ï´Ù.
-#define MSG_CANNOT_CHAT_CMD						1010		///< ¸í·É¾î¸¦ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MSG_SCREENSHOT_SAVED					1011		///< ½ºÅ©¸°¼¦ÀÌ $1 ·Î ÀúÀåµÇ¾ú½À´Ï´Ù.
-#define MSG_SCREENSHOT_CANT_SAVE				1012		///< ½ºÅ©¸°¼¦ ÀúÀåÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù.
-#define MSG_RECORD_STARTING						1013		///< ³ìÈ­°¡ ½ÃÀÛµÇ¾ú½À´Ï´Ù.
-#define MSG_RECORD_SAVED						1014		///< ³ìÈ­°¡ $1 ·Î ÀúÀåµÇ¾ú½À´Ï´Ù.
-#define MSG_RECORD_CANT_SAVE					1015		///< ³ìÈ­ ÀúÀåÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù.
-#define MSG_VOTE_KICK							1016		///< '%s' ´ÔÀÇ °­Á¦ÅðÀå¿¡ ´ëÇÑ ÅõÇ¥°¡ ÁøÇàÁßÀÔ´Ï´Ù
-#define MSG_VOTE_YESNO							1017		///< Âù¼ºÀº 'Y' ¹Ý´ë´Â 'N' ¸¦ ´©¸£½Ã¸é µË´Ï´Ù.
-#define MSG_VOTE_SELECT_PLAYER_TO_KICK			1018		///< Ãß¹æÅõÇ¥ÀÇ ´ë»óÀ» ¼±ÅÃÇÏ¼¼¿ä
-#define MSG_VOTE_SELECT_PLAYER_CANCEL			1019		///< [ESC] Ãë¼Ò
-#define MSG_VOTE_PASSED							1020		///< ÅõÇ¥°¡ °¡°áµÇ¾ú½À´Ï´Ù.
-#define MSG_VOTE_REJECTED						1021		///< ÅõÇ¥°¡ ºÎ°áµÇ¾ú½À´Ï´Ù.
-#define MSG_VOTE_ABORT							1022		///< ÅõÇ¥¼³Á¤ÀÌ µÇ¾îÀÖÁö ¾Ê½À´Ï´Ù.
-#define MSG_VOTE_START							1023		///< '%s' ¿¡ ´ëÇÑ ÅõÇ¥°¡ ½ÃÀÛµÇ¾ú½À´Ï´Ù.
-#define MSG_VOTE_VOTE_STOP						1025		///< ÅõÇ¥ ´ë»ó ÇÃ·¹ÀÌ¾î°¡ °ÔÀÓ¿¡¼­ ³ª°¬½À´Ï´Ù.
+/// í´ë¼ì´ì–¸íŠ¸ ì¸í„°íŽ˜ì´ìŠ¤ ê´€ë ¨
+#define MSG_119_REPORT_WAIT_ONEMINUTE			1000		///< 1ë¶„í›„ì— ì‹ ê³ ê°€ëŠ¥í•©ë‹ˆë‹¤.
+#define MSG_119_REPORT_OK						1001		///< 119 ì‹ ê³ í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_CANNOT_CHAT							1002		///< ì±„íŒ…í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MSG_YOU_MUST_WRITE_MORE					1003		///< $1ê¸€ìžì´ìƒ ê¸€ì„ ì ì–´ì•¼ í•©ë‹ˆë‹¤.		// $1 - ê¸€ìžìˆ˜
+#define MSG_LESS_ARGUMENT						1004		///< ì¸ìžê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.
+#define MSG_WRONG_ARGUMENT						1005		///< ì¸ìžê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.
+#define MSG_MUST_EXECUTE_LOBBY					1006		///< ë¡œë¹„ì—ì„œë§Œ ì‹¤í–‰ê°€ëŠ¥í•©ë‹ˆë‹¤.
+#define MSG_MUST_EXECUTE_STAGE					1007		///< ëŒ€ê¸°ë°©ì—ì„œë§Œ ì‹¤í–‰ê°€ëŠ¥í•©ë‹ˆë‹¤.
+#define MSG_MUST_EXECUTE_GAME					1008		///< ê²Œìž„ì—ì„œë§Œ ì‹¤í–‰ê°€ëŠ¥í•©ë‹ˆë‹¤.
+#define MSG_CANCELED							1009		///< ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_CANNOT_CHAT_CMD						1010		///< ëª…ë ¹ì–´ë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MSG_SCREENSHOT_SAVED					1011		///< ìŠ¤í¬ë¦°ìƒ·ì´ $1 ë¡œ ì €ìž¥ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_SCREENSHOT_CANT_SAVE				1012		///< ìŠ¤í¬ë¦°ìƒ· ì €ìž¥ì´ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_RECORD_STARTING						1013		///< ë…¹í™”ê°€ ì‹œìž‘ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_RECORD_SAVED						1014		///< ë…¹í™”ê°€ $1 ë¡œ ì €ìž¥ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_RECORD_CANT_SAVE					1015		///< ë…¹í™” ì €ìž¥ì´ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_VOTE_KICK							1016		///< '%s' ë‹˜ì˜ ê°•ì œí‡´ìž¥ì— ëŒ€í•œ íˆ¬í‘œê°€ ì§„í–‰ì¤‘ìž…ë‹ˆë‹¤
+#define MSG_VOTE_YESNO							1017		///< ì°¬ì„±ì€ 'Y' ë°˜ëŒ€ëŠ” 'N' ë¥¼ ëˆ„ë¥´ì‹œë©´ ë©ë‹ˆë‹¤.
+#define MSG_VOTE_SELECT_PLAYER_TO_KICK			1018		///< ì¶”ë°©íˆ¬í‘œì˜ ëŒ€ìƒì„ ì„ íƒí•˜ì„¸ìš”
+#define MSG_VOTE_SELECT_PLAYER_CANCEL			1019		///< [ESC] ì·¨ì†Œ
+#define MSG_VOTE_PASSED							1020		///< íˆ¬í‘œê°€ ê°€ê²°ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_VOTE_REJECTED						1021		///< íˆ¬í‘œê°€ ë¶€ê²°ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_VOTE_ABORT							1022		///< íˆ¬í‘œì„¤ì •ì´ ë˜ì–´ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+#define MSG_VOTE_START							1023		///< '%s' ì— ëŒ€í•œ íˆ¬í‘œê°€ ì‹œìž‘ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_VOTE_VOTE_STOP						1025		///< íˆ¬í‘œ ëŒ€ìƒ í”Œë ˆì´ì–´ê°€ ê²Œìž„ì—ì„œ ë‚˜ê°”ìŠµë‹ˆë‹¤.
 
-#define MSG_CLAN_SPONSOR_AGREEMENT_LABEL		1105		///< $1´Ô²²¼­ $2´Ô°ú ÇÔ²² '$3'Å¬·£À» °á¼ºÇÏ·Á°í ÇÕ´Ï´Ù. µ¿ÀÇÇÏ½Ê´Ï±î?	
-															// $1 - Å¬·£»ý¼º¸â¹ö, $2 - Å¬·£¸¶½ºÅÍ, $3 - Å¬·£ÀÌ¸§
-#define MSG_CLAN_SPONSOR_AGREEMENT_REJECT		1106		///< $1´Ô²²¼­ Å¬·£ °á¼ºÀ» °ÅÀýÇÏ¿´½À´Ï´Ù.	// $1 - Å¬·£»ý¼º¸â¹ö ´ë»ó
-#define MSG_CLAN_CREATED						1107		///< Å¬·£ÀÌ »ý¼ºµÇ¾ú½À´Ï´Ù.
-#define MSG_CLAN_CLOSE_RESERVED					1108		///< Å¬·£ Æó¼â ¿¹¾àµÇ¾ú½À´Ï´Ù.
-#define MSG_CLAN_ENABLED_TO_MASTER				1109		///< Å¬·£¸¶½ºÅÍ¸¸ ½ÇÇàÇÒ ¼ö ÀÖ½À´Ï´Ù.
-#define MSG_CLAN_ENABLED_TO_MASTER_AND_ADMIN	1110		///< Å¬·£¸¶½ºÅÍ¿Í Å¬·£¿î¿µÀÚ¸¸ ½ÇÇàÇÒ ¼ö ÀÖ½À´Ï´Ù.
-#define MSG_CLAN_JOINED_ALREADY					1111		///< ÀÌ¹Ì Å¬·£¿¡ °¡ÀÔµÇ¾î ÀÖ½À´Ï´Ù.
-#define MSG_CLAN_NOT_JOINED						1112		///< Å¬·£¿¡ °¡ÀÔµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.
-#define MSG_CLAN_JOINER_AGREEMENT_LABEL			1113		///< '$1' Å¬·£ °¡ÀÔÀ» µ¿ÀÇÇÏ½Ê´Ï±î?		// $1 - Å¬·£ÀÌ¸§
-#define MSG_CLAN_JOINER_AGREEMENT_REJECT		1114		///< °¡ÀÔÀÚ°¡ °ÅÀýÇÏ¿´½À´Ï´Ù.
-#define MSG_CLAN_JOINED							1115		///< Å¬·£¿¡ °¡ÀÔµÇ¾ú½À´Ï´Ù.
-#define MSG_CLAN_LEAVED							1116		///< Å¬·£¿¡¼­ Å»ÅðµÇ¾ú½À´Ï´Ù.
-#define MSG_CLAN_MASTER_CANNOT_LEAVED			1117		///< Å¬·£¸¶½ºÅÍ´Â Å¬·£¿¡¼­ Å»ÅðÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MSG_CLAN_PLEASE_LEAVE_FROM_CHAR_DELETE	1118		///< Å¬·£¿¡ °¡ÀÔµÇ¾î ÀÖÀ¸¸é »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù. Å¬·£¿¡¼­ Å»ÅðÇØÁÖ½Ê½Ã¿À.
-#define MSG_CLAN_CHANGED_GRADE					1119		///< ±ÇÇÑÀÌ º¯°æµÇ¾ú½À´Ï´Ù.
-#define MSG_CLAN_EXPEL_MEMBER					1120		///< Å»Åð½ÃÄ×½À´Ï´Ù.
-#define MSG_CLAN_CREATE_NEED_SOME_SPONSOR		1121		///< Å¬·£À» »ý¼ºÇÏ±â À§ÇØ¼­´Â $1¸íÀÇ Ã¢´Ü ¸â¹ö¸¦ ¼±ÅÃÇÏ¼Å¾ß ÇÕ´Ï´Ù.
-#define MSG_CLAN_CONFIRM_CLOSE					1122		///< Á¤¸»·Î Å¬·£À» Æó¼â½ÃÅ°°Ú½À´Ï±î?
-#define MSG_CLAN_CONFIRM_LEAVE					1123		///< Á¤¸»·Î Å¬·£¿¡¼­ Å»ÅðÇÏ½Ã°Ú½À´Ï±î?
-#define MSG_CLAN_WRONG_CLANNAME					1124		///< Å¬·£ÀÌ¸§ÀÌ ´Ù¸¨´Ï´Ù.
-#define MSG_CLAN_MEMBER_CONNECTED				1125		///< Å¬·£¿ø $1´ÔÀÌ Á¢¼ÓÇÏ¿´½À´Ï´Ù.
+#define MSG_CLAN_SPONSOR_AGREEMENT_LABEL		1105		///< $1ë‹˜ê»˜ì„œ $2ë‹˜ê³¼ í•¨ê»˜ '$3'í´ëžœì„ ê²°ì„±í•˜ë ¤ê³  í•©ë‹ˆë‹¤. ë™ì˜í•˜ì‹­ë‹ˆê¹Œ?	
+															// $1 - í´ëžœìƒì„±ë©¤ë²„, $2 - í´ëžœë§ˆìŠ¤í„°, $3 - í´ëžœì´ë¦„
+#define MSG_CLAN_SPONSOR_AGREEMENT_REJECT		1106		///< $1ë‹˜ê»˜ì„œ í´ëžœ ê²°ì„±ì„ ê±°ì ˆí•˜ì˜€ìŠµë‹ˆë‹¤.	// $1 - í´ëžœìƒì„±ë©¤ë²„ ëŒ€ìƒ
+#define MSG_CLAN_CREATED						1107		///< í´ëžœì´ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_CLAN_CLOSE_RESERVED					1108		///< í´ëžœ íì‡„ ì˜ˆì•½ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_CLAN_ENABLED_TO_MASTER				1109		///< í´ëžœë§ˆìŠ¤í„°ë§Œ ì‹¤í–‰í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+#define MSG_CLAN_ENABLED_TO_MASTER_AND_ADMIN	1110		///< í´ëžœë§ˆìŠ¤í„°ì™€ í´ëžœìš´ì˜ìžë§Œ ì‹¤í–‰í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+#define MSG_CLAN_JOINED_ALREADY					1111		///< ì´ë¯¸ í´ëžœì— ê°€ìž…ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+#define MSG_CLAN_NOT_JOINED						1112		///< í´ëžœì— ê°€ìž…ë˜ì–´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+#define MSG_CLAN_JOINER_AGREEMENT_LABEL			1113		///< '$1' í´ëžœ ê°€ìž…ì„ ë™ì˜í•˜ì‹­ë‹ˆê¹Œ?		// $1 - í´ëžœì´ë¦„
+#define MSG_CLAN_JOINER_AGREEMENT_REJECT		1114		///< ê°€ìž…ìžê°€ ê±°ì ˆí•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_CLAN_JOINED							1115		///< í´ëžœì— ê°€ìž…ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_CLAN_LEAVED							1116		///< í´ëžœì—ì„œ íƒˆí‡´ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_CLAN_MASTER_CANNOT_LEAVED			1117		///< í´ëžœë§ˆìŠ¤í„°ëŠ” í´ëžœì—ì„œ íƒˆí‡´í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MSG_CLAN_PLEASE_LEAVE_FROM_CHAR_DELETE	1118		///< í´ëžœì— ê°€ìž…ë˜ì–´ ìžˆìœ¼ë©´ ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. í´ëžœì—ì„œ íƒˆí‡´í•´ì£¼ì‹­ì‹œì˜¤.
+#define MSG_CLAN_CHANGED_GRADE					1119		///< ê¶Œí•œì´ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_CLAN_EXPEL_MEMBER					1120		///< íƒˆí‡´ì‹œì¼°ìŠµë‹ˆë‹¤.
+#define MSG_CLAN_CREATE_NEED_SOME_SPONSOR		1121		///< í´ëžœì„ ìƒì„±í•˜ê¸° ìœ„í•´ì„œëŠ” $1ëª…ì˜ ì°½ë‹¨ ë©¤ë²„ë¥¼ ì„ íƒí•˜ì…”ì•¼ í•©ë‹ˆë‹¤.
+#define MSG_CLAN_CONFIRM_CLOSE					1122		///< ì •ë§ë¡œ í´ëžœì„ íì‡„ì‹œí‚¤ê² ìŠµë‹ˆê¹Œ?
+#define MSG_CLAN_CONFIRM_LEAVE					1123		///< ì •ë§ë¡œ í´ëžœì—ì„œ íƒˆí‡´í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+#define MSG_CLAN_WRONG_CLANNAME					1124		///< í´ëžœì´ë¦„ì´ ë‹¤ë¦…ë‹ˆë‹¤.
+#define MSG_CLAN_MEMBER_CONNECTED				1125		///< í´ëžœì› $1ë‹˜ì´ ì ‘ì†í•˜ì˜€ìŠµë‹ˆë‹¤.
 
-#define MSG_CANNOT_DELETE_CHAR_FOR_CASHITEM		1200		///< Ä³½¬¾ÆÀÌÅÛÀ» ÀåºñÇÏ°íÀÖ¾î »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MSG_HAS_DELETED_CHAR					1201		///< Ä³¸¯ÅÍ°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.
+#define MSG_CANNOT_DELETE_CHAR_FOR_CASHITEM		1200		///< ìºì‰¬ì•„ì´í…œì„ ìž¥ë¹„í•˜ê³ ìžˆì–´ ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MSG_HAS_DELETED_CHAR					1201		///< ìºë¦­í„°ê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.
 
-#define MSG_BACKTOTHEPREV						1202		///< $1ÃÊ µÚ¿¡ ÀÌÀü ÇØ»óµµ·Î º¹±Í µË´Ï´Ù
+#define MSG_BACKTOTHEPREV						1202		///< $1ì´ˆ ë’¤ì— ì´ì „ í•´ìƒë„ë¡œ ë³µê·€ ë©ë‹ˆë‹¤
 
-// ·Îºñ °ü·Ã
-#define MSG_LOBBY_WELCOME1						1300		///< ´ç½ÅÀº Ã¤³Î '%1'¿¡ ÀÔÀåÇÏ¼Ì½À´Ï´Ù.
-#define MSG_LOBBY_CLAN_DETAIL					1301		///< Å¬·£¸¶½ºÅÍ : $1, $2¸í Á¢¼ÓÁß
-#define MSG_LOBBY_WAITING						1302		///< %1 ¸í ´ë±âÁß
-#define MSG_LOBBY_NO_CLAN						1303		///< Å¬·£¿¡ °¡ÀÔµÇ¾îÀÖÁö ¾Ê½À´Ï´Ù
-// Ãß°¡µÈ ºÎºÐ. 11. 13.
-#define MSG_LOBBY_LIMIT_LEVEL					1304		///< ·¹º§Á¦ÇÑÀ» ¿øÄ¡ ¾ÊÀ¸½Ã¸é ÀÚÀ¯Ã¤³ÎÀ» ÀÌ¿ëÇØ ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
-#define MSG_LOBBY_LEAGUE						1305		///< ¸®±×°ÔÀÓÀº Ã¤³Î¿¡ »ó°ü¾øÀÌ ¸ðµç»ç¿ëÀÚµé°ú °Ü·ç°Ô µË´Ï´Ù.
-#define MSG_LOBBY_INVITATION					1306		///< $1´ÔÀ» Ã¤ÆÃ¹æÀ¸·Î ÃÊ´ëÇÕ´Ï´Ù.
-#define MSG_LOBBY_WHO_INVITATION				1307		///< $1´ÔÀÌ Ã¤ÆÃ¹æ $2·Î ÃÊ´ëÇÏ¼Ì½À´Ï´Ù.
-#define MSG_LOBBY_WHO_CHAT_ROMM_JOIN			1308		///< Ã¤ÆÃ¹æ '$1'¿¡ '$2'´ÔÀÌ ÀÔÀåÇÏ¼Ì½À´Ï´Ù.
-#define MSG_LOBBY_WHO_CHAT_ROOM_EXIT			1309		///< Ã¤ÆÃ¹æ '$1'¿¡¼­ '$2'´ÔÀÌ ÅðÀåÇÏ¼Ì½À´Ï´Ù.
-#define MSG_LOBBY_CHAT_ROOM_CHANGE				1310		///< Ã¤ÆÃ¹æ '$1'·Î ÀüÈ¯ÇÕ´Ï´Ù.
-//#define MRESULT_WHO_CHAT_ROOM_INVITATION		1311		///< $1' ´ÔÀÌ Ã¤ÆÃ¹æ '$2'·Î ÃÊ´ëÇÏ¼Ì½À´Ï´Ù.
-#define MRESULT_CHAT_ROOM						1312		///< Ã¤ÆÃ¹æ($1) $2 : $3
-// #define MRESULT_WHISPER							100012	///< ±Ó¼Ó¸»($1) : $2
-// Ãß°¡µÈ ºÎºÐ. 11. 15.
-#define MSG_LOBBY_REQUESTING_CREATE_CHAT_ROOM	1313		///< Ã¤ÆÃ¹æ °³¼³ ¿äÃ»Áß...
-#define MSG_LOBBY_REQUESTING_JOIN_CAHT_ROOM		1314		///< Ã¤ÆÃ¹æ Âü°¡ ¿äÃ»Áß...
-#define MSG_LOBBY_LEAVE_CHAT_ROOM				1315		///< Ã¤ÆÃ¹æ¿¡¼­ Å»ÅðÇÕ´Ï´Ù.
-#define MSG_LOBBY_CHOICE_CHAT_ROOM				1316		///< Ã¤ÆÃ¹æÀ» ¼±ÅÃÇÕ´Ï´Ù.
-#define MSG_LOBBY_JOIN_CHANNEL					1317		///< ´ç½ÅÀº Ã¤³Î '$1'¿¡ ÀÔÀåÇß½À´Ï´Ù.
-
-
-// ·¡´õ °ü·Ã
-#define MSG_LADDER_PROPOSAL_WAIT_TITLE				1400		///< µ¿ÀÇ´ë±â
-#define MSG_LADDER_PROPOSAL_WAIT_DESC				1401		///< °°ÀÌ °ÔÀÓÇÒ ÇÃ·¹ÀÌ¾î°¡ µ¿ÀÇÇÒ µ¿¾È ±â´Ù·ÁÁÖ½Ê½Ã¿À.
-#define MSG_LADDER_REPLIER_AGREEMENT_LABEL			1402		///< $1´Ô²²¼­ ÆÀ°ÔÀÓ¿¡ ÃÊ´ëÇÏ¼Ì½À´Ï´Ù. µ¿ÀÇÇÏ½Ê´Ï±î?
-#define MSG_LADDER_REPLIER_AGREEMENT_REJECT			1403		///< $1´Ô²²¼­ °ÅÀýÇÏ¿´½À´Ï´Ù.	// $1 - ´ë»ó
-#define MSG_LADDER_CANCEL							1404		///< $1´Ô²²¼­ Ãë¼ÒÇÏ¿´½À´Ï´Ù.	// $1 - ´ë»ó
-#define MSG_LADDER_FAILED							1405		///< »ó´ëÆÀÀ» Ã£Áö¸øÇß½À´Ï´Ù.
-#define MSG_LADDER_INVALID_COUNT					1406		///< ÀûÀýÇÑ »ç¶÷¼ö¸¦ ÅÃÇØ¾ßÇÕ´Ï´Ù.
-
-/// ³×Æ®¿öÅ© °ü·Ã ¸Þ¼¼Áö
-#define MSG_CLANBATTLE_REPLIER_AGREEMENT_LABEL		1420		/// $1´Ô²²¼­ Å¬·£Àü¿¡ ÃÊ´ëÇÏ¼Ì½À´Ï´Ù. µ¿ÀÇÇÏ½Ê´Ï±î?
+// ë¡œë¹„ ê´€ë ¨
+#define MSG_LOBBY_WELCOME1						1300		///< ë‹¹ì‹ ì€ ì±„ë„ '%1'ì— ìž…ìž¥í•˜ì…¨ìŠµë‹ˆë‹¤.
+#define MSG_LOBBY_CLAN_DETAIL					1301		///< í´ëžœë§ˆìŠ¤í„° : $1, $2ëª… ì ‘ì†ì¤‘
+#define MSG_LOBBY_WAITING						1302		///< %1 ëª… ëŒ€ê¸°ì¤‘
+#define MSG_LOBBY_NO_CLAN						1303		///< í´ëžœì— ê°€ìž…ë˜ì–´ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤
+// ì¶”ê°€ëœ ë¶€ë¶„. 11. 13.
+#define MSG_LOBBY_LIMIT_LEVEL					1304		///< ë ˆë²¨ì œí•œì„ ì›ì¹˜ ì•Šìœ¼ì‹œë©´ ìžìœ ì±„ë„ì„ ì´ìš©í•´ ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.
+#define MSG_LOBBY_LEAGUE						1305		///< ë¦¬ê·¸ê²Œìž„ì€ ì±„ë„ì— ìƒê´€ì—†ì´ ëª¨ë“ ì‚¬ìš©ìžë“¤ê³¼ ê²¨ë£¨ê²Œ ë©ë‹ˆë‹¤.
+#define MSG_LOBBY_INVITATION					1306		///< $1ë‹˜ì„ ì±„íŒ…ë°©ìœ¼ë¡œ ì´ˆëŒ€í•©ë‹ˆë‹¤.
+#define MSG_LOBBY_WHO_INVITATION				1307		///< $1ë‹˜ì´ ì±„íŒ…ë°© $2ë¡œ ì´ˆëŒ€í•˜ì…¨ìŠµë‹ˆë‹¤.
+#define MSG_LOBBY_WHO_CHAT_ROMM_JOIN			1308		///< ì±„íŒ…ë°© '$1'ì— '$2'ë‹˜ì´ ìž…ìž¥í•˜ì…¨ìŠµë‹ˆë‹¤.
+#define MSG_LOBBY_WHO_CHAT_ROOM_EXIT			1309		///< ì±„íŒ…ë°© '$1'ì—ì„œ '$2'ë‹˜ì´ í‡´ìž¥í•˜ì…¨ìŠµë‹ˆë‹¤.
+#define MSG_LOBBY_CHAT_ROOM_CHANGE				1310		///< ì±„íŒ…ë°© '$1'ë¡œ ì „í™˜í•©ë‹ˆë‹¤.
+//#define MRESULT_WHO_CHAT_ROOM_INVITATION		1311		///< $1' ë‹˜ì´ ì±„íŒ…ë°© '$2'ë¡œ ì´ˆëŒ€í•˜ì…¨ìŠµë‹ˆë‹¤.
+#define MRESULT_CHAT_ROOM						1312		///< ì±„íŒ…ë°©($1) $2 : $3
+// #define MRESULT_WHISPER							100012	///< ê·“ì†ë§($1) : $2
+// ì¶”ê°€ëœ ë¶€ë¶„. 11. 15.
+#define MSG_LOBBY_REQUESTING_CREATE_CHAT_ROOM	1313		///< ì±„íŒ…ë°© ê°œì„¤ ìš”ì²­ì¤‘...
+#define MSG_LOBBY_REQUESTING_JOIN_CAHT_ROOM		1314		///< ì±„íŒ…ë°© ì°¸ê°€ ìš”ì²­ì¤‘...
+#define MSG_LOBBY_LEAVE_CHAT_ROOM				1315		///< ì±„íŒ…ë°©ì—ì„œ íƒˆí‡´í•©ë‹ˆë‹¤.
+#define MSG_LOBBY_CHOICE_CHAT_ROOM				1316		///< ì±„íŒ…ë°©ì„ ì„ íƒí•©ë‹ˆë‹¤.
+#define MSG_LOBBY_JOIN_CHANNEL					1317		///< ë‹¹ì‹ ì€ ì±„ë„ '$1'ì— ìž…ìž¥í–ˆìŠµë‹ˆë‹¤.
 
 
-// Å¬·£Àü °ü·Ã
-#define MSG_CLANBATTLE_BROADCAST_RENEW_VICTORIES_3	1510		///< '$1' Å¬·£ÀÌ '$2' Å¬·£¿¡°Ô ½Â¸®ÇÏ¿© $3¿¬½ÂÀ¸·Î ±â¼¼¸¦ ¿Ã¸®°í ÀÖ½À´Ï´Ù.
-#define MSG_CLANBATTLE_BROADCAST_RENEW_VICTORIES_5	1511		///< '$1' Å¬·£ÀÌ '$2' Å¬·£¿¡°Ô ½Â¸®ÇÏ¿© $3¿¬½ÂÂ° ÇàÁøÁßÀÔ´Ï´Ù.
-#define MSG_CLANBATTLE_BROADCAST_RENEW_VICTORIES_7	1512		///< '$1' Å¬·£ÀÌ '$2' Å¬·£¿¡°Ô ½Â¸®ÇÏ¿© °ÅÄ§¾øÀÌ $3¿¬½ÂÀ» ´Þ¸®°í ÀÖ½À´Ï´Ù.
-#define MSG_CLANBATTLE_BROADCAST_RENEW_VICTORIES_10	1513		///< '$1' Å¬·£ÀÌ '$2' Å¬·£¿¡°Ô ½Â¸®ÇÏ¿© ´ë¸ÁÀÇ $3¿¬½Â¿¡ ¼º°øÇÏ¿´½À´Ï´Ù.
-#define MSG_CLANBATTLE_BROADCAST_RENEW_VICTORIES_11	1514		///< '$1' Å¬·£ÀÌ '$2' Å¬·£¿¡°Ô ½Â¸®ÇÏ¿© $3¿¬½ÂÀ» ÀÌ¾î°¡°í ÀÖ½À´Ï´Ù.
-#define MSG_CLANBATTLE_BROADCAST_INTERRUPT_VICTORIES 1515		///< '$1' Å¬·£ÀÌ '$2' Å¬·£ÀÇ $3¿¬½ÂÀ» ÀúÁöÇÏ¿´½À´Ï´Ù.
+// ëž˜ë” ê´€ë ¨
+#define MSG_LADDER_PROPOSAL_WAIT_TITLE				1400		///< ë™ì˜ëŒ€ê¸°
+#define MSG_LADDER_PROPOSAL_WAIT_DESC				1401		///< ê°™ì´ ê²Œìž„í•  í”Œë ˆì´ì–´ê°€ ë™ì˜í•  ë™ì•ˆ ê¸°ë‹¤ë ¤ì£¼ì‹­ì‹œì˜¤.
+#define MSG_LADDER_REPLIER_AGREEMENT_LABEL			1402		///< $1ë‹˜ê»˜ì„œ íŒ€ê²Œìž„ì— ì´ˆëŒ€í•˜ì…¨ìŠµë‹ˆë‹¤. ë™ì˜í•˜ì‹­ë‹ˆê¹Œ?
+#define MSG_LADDER_REPLIER_AGREEMENT_REJECT			1403		///< $1ë‹˜ê»˜ì„œ ê±°ì ˆí•˜ì˜€ìŠµë‹ˆë‹¤.	// $1 - ëŒ€ìƒ
+#define MSG_LADDER_CANCEL							1404		///< $1ë‹˜ê»˜ì„œ ì·¨ì†Œí•˜ì˜€ìŠµë‹ˆë‹¤.	// $1 - ëŒ€ìƒ
+#define MSG_LADDER_FAILED							1405		///< ìƒëŒ€íŒ€ì„ ì°¾ì§€ëª»í–ˆìŠµë‹ˆë‹¤.
+#define MSG_LADDER_INVALID_COUNT					1406		///< ì ì ˆí•œ ì‚¬ëžŒìˆ˜ë¥¼ íƒí•´ì•¼í•©ë‹ˆë‹¤.
 
-// µà¾ó °ü·Ã
-#define MSG_DUEL_BROADCAST_RENEW_VICTORIES			1520		///< '$1' ´ÔÀÌ '$2'Ã¤³ÎÀÇ $3¹ø ¹æ¿¡¼­ $4¿¬½ÂÀ» ±â·ÏÁßÀÔ´Ï´Ù.
-#define MSG_DUEL_BROADCAST_INTERRUPT_VICTORIES		1521		///< '$2' ´ÔÀÌ '$1'´ÔÀÇ $3¿¬½ÂÀ» ÀúÁöÇÏ¿´½À´Ï´Ù.
+/// ë„¤íŠ¸ì›Œí¬ ê´€ë ¨ ë©”ì„¸ì§€
+#define MSG_CLANBATTLE_REPLIER_AGREEMENT_LABEL		1420		/// $1ë‹˜ê»˜ì„œ í´ëžœì „ì— ì´ˆëŒ€í•˜ì…¨ìŠµë‹ˆë‹¤. ë™ì˜í•˜ì‹­ë‹ˆê¹Œ?
 
 
-// ·Îµù ¸Þ½ÃÁö
-#define MSG_LOADING_MESSAGE11					1600		///< ·Îµù1 ¸Þ½ÃÁö
+// í´ëžœì „ ê´€ë ¨
+#define MSG_CLANBATTLE_BROADCAST_RENEW_VICTORIES_3	1510		///< '$1' í´ëžœì´ '$2' í´ëžœì—ê²Œ ìŠ¹ë¦¬í•˜ì—¬ $3ì—°ìŠ¹ìœ¼ë¡œ ê¸°ì„¸ë¥¼ ì˜¬ë¦¬ê³  ìžˆìŠµë‹ˆë‹¤.
+#define MSG_CLANBATTLE_BROADCAST_RENEW_VICTORIES_5	1511		///< '$1' í´ëžœì´ '$2' í´ëžœì—ê²Œ ìŠ¹ë¦¬í•˜ì—¬ $3ì—°ìŠ¹ì§¸ í–‰ì§„ì¤‘ìž…ë‹ˆë‹¤.
+#define MSG_CLANBATTLE_BROADCAST_RENEW_VICTORIES_7	1512		///< '$1' í´ëžœì´ '$2' í´ëžœì—ê²Œ ìŠ¹ë¦¬í•˜ì—¬ ê±°ì¹¨ì—†ì´ $3ì—°ìŠ¹ì„ ë‹¬ë¦¬ê³  ìžˆìŠµë‹ˆë‹¤.
+#define MSG_CLANBATTLE_BROADCAST_RENEW_VICTORIES_10	1513		///< '$1' í´ëžœì´ '$2' í´ëžœì—ê²Œ ìŠ¹ë¦¬í•˜ì—¬ ëŒ€ë§ì˜ $3ì—°ìŠ¹ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_CLANBATTLE_BROADCAST_RENEW_VICTORIES_11	1514		///< '$1' í´ëžœì´ '$2' í´ëžœì—ê²Œ ìŠ¹ë¦¬í•˜ì—¬ $3ì—°ìŠ¹ì„ ì´ì–´ê°€ê³  ìžˆìŠµë‹ˆë‹¤.
+#define MSG_CLANBATTLE_BROADCAST_INTERRUPT_VICTORIES 1515		///< '$1' í´ëžœì´ '$2' í´ëžœì˜ $3ì—°ìŠ¹ì„ ì €ì§€í•˜ì˜€ìŠµë‹ˆë‹¤.
+
+// ë“€ì–¼ ê´€ë ¨
+#define MSG_DUEL_BROADCAST_RENEW_VICTORIES			1520		///< '$1' ë‹˜ì´ '$2'ì±„ë„ì˜ $3ë²ˆ ë°©ì—ì„œ $4ì—°ìŠ¹ì„ ê¸°ë¡ì¤‘ìž…ë‹ˆë‹¤.
+#define MSG_DUEL_BROADCAST_INTERRUPT_VICTORIES		1521		///< '$2' ë‹˜ì´ '$1'ë‹˜ì˜ $3ì—°ìŠ¹ì„ ì €ì§€í•˜ì˜€ìŠµë‹ˆë‹¤.
+
+
+// ë¡œë”© ë©”ì‹œì§€
+#define MSG_LOADING_MESSAGE11					1600		///< ë¡œë”©1 ë©”ì‹œì§€
 #define MSG_LOADING_MESSAGE12					1601		///< 
 #define MSG_LOADING_MESSAGE13					1602		///< 
-#define MSG_LOADING_MESSAGE21					1603		///< ·Îµù2 ¸Þ½ÃÁö
+#define MSG_LOADING_MESSAGE21					1603		///< ë¡œë”©2 ë©”ì‹œì§€
 #define MSG_LOADING_MESSAGE22					1604		///< 
 #define MSG_LOADING_MESSAGE23					1605		///< 
-#define MSG_LOADING_MESSAGE31					1606		///< ·Îµù3 ¸Þ½ÃÁö
+#define MSG_LOADING_MESSAGE31					1606		///< ë¡œë”©3 ë©”ì‹œì§€
 #define MSG_LOADING_MESSAGE32					1607		///< 
 #define MSG_LOADING_MESSAGE33					1608		///< 
-#define MSG_LOADING_MESSAGE41					1609		///< ·Îµù4 ¸Þ½ÃÁö
+#define MSG_LOADING_MESSAGE41					1609		///< ë¡œë”©4 ë©”ì‹œì§€
 #define MSG_LOADING_MESSAGE42					1610		///< 
 #define MSG_LOADING_MESSAGE43					1611		///< 
-#define MSG_LOADING_MESSAGE51					1612		///< ·Îµù5 ¸Þ½ÃÁö
+#define MSG_LOADING_MESSAGE51					1612		///< ë¡œë”©5 ë©”ì‹œì§€
 #define MSG_LOADING_MESSAGE52					1613		///< 
 #define MSG_LOADING_MESSAGE53					1614		///<
-#define MSG_LOADING_MESSAGE61					1615		///< ·Îµù6 ¸Þ½ÃÁö
+#define MSG_LOADING_MESSAGE61					1615		///< ë¡œë”©6 ë©”ì‹œì§€
 #define MSG_LOADING_MESSAGE62					1616		///< 
 #define MSG_LOADING_MESSAGE63					1617		///< 
-#define MSG_LOADING_MESSAGE71					1618		///< ·Îµù7 ¸Þ½ÃÁö
+#define MSG_LOADING_MESSAGE71					1618		///< ë¡œë”©7 ë©”ì‹œì§€
 #define MSG_LOADING_MESSAGE72					1619		///< 
 #define MSG_LOADING_MESSAGE73					1620		///< 
-#define MSG_LOADING_MESSAGE81					1621		///< ·Îµù8 ¸Þ½ÃÁö
+#define MSG_LOADING_MESSAGE81					1621		///< ë¡œë”©8 ë©”ì‹œì§€
 #define MSG_LOADING_MESSAGE82					1622		///< 
 #define MSG_LOADING_MESSAGE83					1623		///< 
-#define MSG_LOADING_MESSAGE91					1624		///< ·Îµù9 ¸Þ½ÃÁö
+#define MSG_LOADING_MESSAGE91					1624		///< ë¡œë”©9 ë©”ì‹œì§€
 #define MSG_LOADING_MESSAGE92					1625		///< 
 #define MSG_LOADING_MESSAGE93					1626		///< 
 
-// Ä³¸¯ÅÍ Á¤º¸ Ç¥½Ã
-#define MSG_CHARINFO_TITLE						1700		///< [Ä³¸¯ÅÍ Á¤º¸]=======================
-#define MSG_CHARINFO_NAME						1701		///< ÀÌ¸§
-#define MSG_CHARINFO_CLAN						1702		///< Å¬·£
-#define MSG_CHARINFO_LEVEL						1703		///< ·¹º§
-#define MSG_CHARINFO_WINPERCENT					1704		///< ½Â·ü
-#define MSG_CHARINFO_WIN						1705		///< ½Â
-#define MSG_CHARINFO_LOSE						1706		///< ÆÐ
-#define MSG_CHARINFO_CONNTIME					1707		///< Á¢¼Ó½Ã°£
-#define MSG_CHARINFO_DAY						1708		///< ÀÏ
-#define MSG_CHARINFO_HOUR						1709		///< ½Ã°£
-#define MSG_CHARINFO_MINUTE						1710		///< ºÐ
-#define MSG_CHARINFO_SECOND						1711		///< ÃÊ
-// Ãß°¡ ºÎºÐ
+// ìºë¦­í„° ì •ë³´ í‘œì‹œ
+#define MSG_CHARINFO_TITLE						1700		///< [ìºë¦­í„° ì •ë³´]=======================
+#define MSG_CHARINFO_NAME						1701		///< ì´ë¦„
+#define MSG_CHARINFO_CLAN						1702		///< í´ëžœ
+#define MSG_CHARINFO_LEVEL						1703		///< ë ˆë²¨
+#define MSG_CHARINFO_WINPERCENT					1704		///< ìŠ¹ë¥ 
+#define MSG_CHARINFO_WIN						1705		///< ìŠ¹
+#define MSG_CHARINFO_LOSE						1706		///< íŒ¨
+#define MSG_CHARINFO_CONNTIME					1707		///< ì ‘ì†ì‹œê°„
+#define MSG_CHARINFO_DAY						1708		///< ì¼
+#define MSG_CHARINFO_HOUR						1709		///< ì‹œê°„
+#define MSG_CHARINFO_MINUTE						1710		///< ë¶„
+#define MSG_CHARINFO_SECOND						1711		///< ì´ˆ
+// ì¶”ê°€ ë¶€ë¶„
 #define MSG_CHARINFO_XP							1712		///< XP
 #define MSG_CHARINFO_BOUNTY						1713		///< Bounty
 #define MSG_CHARINFO_HP							1714		///< HP
@@ -169,147 +169,147 @@
 #define MSG_CHARINFO_LEVELMARKER				1717		///< Lv.
 
 
-/// °ÔÀÓÁß ¸Þ¼¼Áö
-#define MSG_GAME_JOIN_BATTLE					2000		///< $1´Ô²²¼­ °ÔÀÓ¿¡ Âü°¡ÇÏ¼Ì½À´Ï´Ù.
-#define MSG_GAME_LEAVE_BATTLE					2001		///< $1´Ô²²¼­ °ÔÀÓ¿¡¼­ ÅðÀåÇÏ¼Ì½À´Ï´Ù.
-#define MSG_GAME_LEVEL_UP						2002		///< $1´Ô²²¼­ ·¹º§¾÷ ÇÏ¼Ì½À´Ï´Ù.
-#define MSG_GAME_LEVEL_DOWN						2003		///< $1´Ô²²¼­ ·¹º§´Ù¿î ÇÏ¼Ì½À´Ï´Ù.
-#define MSG_GAME_SCORESCREEN_STAGENAME			2004		///< Å¬·£Àü ( %d vs %d )
-// Ãß°¡µÈ ºÎºÐ.
-#define MSG_GAME_FALL_NARAK						2005		///< ³ª¶ôÀ¸·Î ¶³¾îÁü.
-#define MSG_GAME_LOSE_BY_MY_BOMB				2006		///< ´ç½ÅÀº ÀÚ½ÅÀÇ ÆøÅºÀ¸·Î ÀÎÇÏ¿© ÆÐ¹è ÇÏ¿´½À´Ï´Ù.
-#define MSG_GAME_LOSE_MYSELF					2007		///< ´ç½ÅÀº ½º½º·Î ÆÐ¹èÇÏ¿´½À´Ï´Ù.
-#define MSG_GAME_WHO_LOSE_SELF					2008		///< $1´ÔÀÌ ½º½º·Î ÆÐ¹èÇÏ¿´½À´Ï´Ù.
-#define MSG_GAME_WIN_FROM_WHO					2009		///< ´ç½ÅÀº $1´ÔÀ¸·ÎºÎÅÍ ½Â¸®ÇÏ¿´½À´Ï´Ù.
-#define MSG_GAME_LOSE_FROM_WHO					2010		///< ´ç½ÅÀº $1´ÔÀ¸·ÎºÎÅÍ ÆÐ¹è ÇÏ¿´½À´Ï´Ù.
-#define MSG_GAME_WHO_WIN_FROM_OTHER				2011		///< $1´ÔÀÌ $2s´ÔÀ¸·ÎºÎÅÍ ½Â¸®ÇÏ¿´½À´Ï´Ù.
-#define MSG_GAME_CLICK_FIRE						2012		///< ÇÃ·¹ÀÌÇÏ·Á¸é FireÅ°¸¦ ´­·¯ÁÖ¼¼¿ä!
-#define MSG_GAME_WAIT_N_MIN						2013		///< $1ÃÊµ¿¾È ±â´Ù·Á ÁÖ¼¼¿ä.
-#define MSG_GAME_EXIT_N_MIN_AFTER				2014		///< $1ÃÊÈÄ¿¡ °ÔÀÓ¿¡¼­ ³ª°©´Ï´Ù.
-// Ãß°¡µÈ ºÎºÐ. 11. 15.
-#define MSG_GAME_WHISPER						2015		///< ±Ó¼Ó¸»(%s) : %s
-#define MSG_GAME_BRINGITEM						2016		///< ¾ÆÀÌÅÛÀ» °¡Á®¿Ô½À´Ï´Ù.
-#define MSG_GAME_NOTBRINGITEM					2017		///< ¾ÆÀÌÅÛÀ» °¡Á®¿Ã ¼ö ¾ø½À´Ï´Ù.
-#define MSG_GAME_BUYITEM						2018		///< ±¸ÀÔÇÏ¿´½À´Ï´Ù.
-#define MSG_GAME_NOTBUYITEM						2019		///< ±¸ÀÔÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MSG_GAME_SELLITEM						2020		///< ÆÇ¸ÅÇÏ¿´½À´Ï´Ù.
-#define MSG_GAME_NOCHARACTER					2021		///< ¼±ÅÃÇÒ ¼ö ÀÖ´Â Ä³¸¯ÅÍ°¡ ¾ø½À´Ï´Ù. ¸ÕÀú Ä³¸¯ÅÍ¸¦ »ý¼ºÇØ ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.z
-#define MSG_GAME_NOTSELLITEM					2022		///< ÆÇ¸ÅÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MSG_GAME_NEXT_N_MIN_AFTER				2023		///< $1ÃÊÈÄ¿¡ ´ÙÀ½ ¶ó¿îµå·Î ÀÌµ¿ÇÕ´Ï´Ù.
-#define MSG_GAME_GET_QUEST_ITEM					2024		///< Äù½ºÆ® ÆÀ¿¡¼­ $1¸¦ È¹µæÇÏ¿´½À´Ï´Ù.
-#define MSG_GAME_GET_QUEST_ITEM2				2025		///< $1 $2°³ È¹µæ
-#define MSG_GAME_OPEN_PORTAL					2026		///< Æ÷Å»ÀÌ ¿­·È½À´Ï´Ù.
-#define MSG_GAME_MAKE_AUTO_BALANCED_TEAM		2027		///< ÆÀ ¹ë·±½º°¡ Àû¿ëµÇ¾ú½À´Ï´Ù.
-#define MSG_GANE_NO_QUEST_SCENARIO				2028		///< ¸Â´Â ½Ã³ª¸®¿À°¡ ¾ø½À´Ï´Ù.
+/// ê²Œìž„ì¤‘ ë©”ì„¸ì§€
+#define MSG_GAME_JOIN_BATTLE					2000		///< $1ë‹˜ê»˜ì„œ ê²Œìž„ì— ì°¸ê°€í•˜ì…¨ìŠµë‹ˆë‹¤.
+#define MSG_GAME_LEAVE_BATTLE					2001		///< $1ë‹˜ê»˜ì„œ ê²Œìž„ì—ì„œ í‡´ìž¥í•˜ì…¨ìŠµë‹ˆë‹¤.
+#define MSG_GAME_LEVEL_UP						2002		///< $1ë‹˜ê»˜ì„œ ë ˆë²¨ì—… í•˜ì…¨ìŠµë‹ˆë‹¤.
+#define MSG_GAME_LEVEL_DOWN						2003		///< $1ë‹˜ê»˜ì„œ ë ˆë²¨ë‹¤ìš´ í•˜ì…¨ìŠµë‹ˆë‹¤.
+#define MSG_GAME_SCORESCREEN_STAGENAME			2004		///< í´ëžœì „ ( %d vs %d )
+// ì¶”ê°€ëœ ë¶€ë¶„.
+#define MSG_GAME_FALL_NARAK						2005		///< ë‚˜ë½ìœ¼ë¡œ ë–¨ì–´ì§.
+#define MSG_GAME_LOSE_BY_MY_BOMB				2006		///< ë‹¹ì‹ ì€ ìžì‹ ì˜ í­íƒ„ìœ¼ë¡œ ì¸í•˜ì—¬ íŒ¨ë°° í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_GAME_LOSE_MYSELF					2007		///< ë‹¹ì‹ ì€ ìŠ¤ìŠ¤ë¡œ íŒ¨ë°°í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_GAME_WHO_LOSE_SELF					2008		///< $1ë‹˜ì´ ìŠ¤ìŠ¤ë¡œ íŒ¨ë°°í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_GAME_WIN_FROM_WHO					2009		///< ë‹¹ì‹ ì€ $1ë‹˜ìœ¼ë¡œë¶€í„° ìŠ¹ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_GAME_LOSE_FROM_WHO					2010		///< ë‹¹ì‹ ì€ $1ë‹˜ìœ¼ë¡œë¶€í„° íŒ¨ë°° í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_GAME_WHO_WIN_FROM_OTHER				2011		///< $1ë‹˜ì´ $2së‹˜ìœ¼ë¡œë¶€í„° ìŠ¹ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_GAME_CLICK_FIRE						2012		///< í”Œë ˆì´í•˜ë ¤ë©´ Fireí‚¤ë¥¼ ëˆŒëŸ¬ì£¼ì„¸ìš”!
+#define MSG_GAME_WAIT_N_MIN						2013		///< $1ì´ˆë™ì•ˆ ê¸°ë‹¤ë ¤ ì£¼ì„¸ìš”.
+#define MSG_GAME_EXIT_N_MIN_AFTER				2014		///< $1ì´ˆí›„ì— ê²Œìž„ì—ì„œ ë‚˜ê°‘ë‹ˆë‹¤.
+// ì¶”ê°€ëœ ë¶€ë¶„. 11. 15.
+#define MSG_GAME_WHISPER						2015		///< ê·“ì†ë§(%s) : %s
+#define MSG_GAME_BRINGITEM						2016		///< ì•„ì´í…œì„ ê°€ì ¸ì™”ìŠµë‹ˆë‹¤.
+#define MSG_GAME_NOTBRINGITEM					2017		///< ì•„ì´í…œì„ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MSG_GAME_BUYITEM						2018		///< êµ¬ìž…í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_GAME_NOTBUYITEM						2019		///< êµ¬ìž…í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MSG_GAME_SELLITEM						2020		///< íŒë§¤í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_GAME_NOCHARACTER					2021		///< ì„ íƒí•  ìˆ˜ ìžˆëŠ” ìºë¦­í„°ê°€ ì—†ìŠµë‹ˆë‹¤. ë¨¼ì € ìºë¦­í„°ë¥¼ ìƒì„±í•´ ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.z
+#define MSG_GAME_NOTSELLITEM					2022		///< íŒë§¤í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MSG_GAME_NEXT_N_MIN_AFTER				2023		///< $1ì´ˆí›„ì— ë‹¤ìŒ ë¼ìš´ë“œë¡œ ì´ë™í•©ë‹ˆë‹¤.
+#define MSG_GAME_GET_QUEST_ITEM					2024		///< í€˜ìŠ¤íŠ¸ íŒ€ì—ì„œ $1ë¥¼ íšë“í•˜ì˜€ìŠµë‹ˆë‹¤.
+#define MSG_GAME_GET_QUEST_ITEM2				2025		///< $1 $2ê°œ íšë“
+#define MSG_GAME_OPEN_PORTAL					2026		///< í¬íƒˆì´ ì—´ë ¸ìŠµë‹ˆë‹¤.
+#define MSG_GAME_MAKE_AUTO_BALANCED_TEAM		2027		///< íŒ€ ë°¸ëŸ°ìŠ¤ê°€ ì ìš©ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MSG_GANE_NO_QUEST_SCENARIO				2028		///< ë§žëŠ” ì‹œë‚˜ë¦¬ì˜¤ê°€ ì—†ìŠµë‹ˆë‹¤.
 
-#define MSG_ADMIN_ANNOUNCE						3000		///< °ü¸®ÀÚ ¸Þ½ÃÁö.
-
-
-
-// ¸Þ´º
-#define MSG_MENUITEM_NONE						8000		///< ¸Þ´º¾øÀ½
-
-#define MSG_MENUITEM_FRIENDADD					8001		///< Ä£±¸Ãß°¡
-#define MSG_MENUITEM_FRIENDREMOVE				8002		///< Ä£±¸Á¦°Å
-#define MSG_MENUITEM_FRIENDWHERE				8003		///< À§Ä¡È®ÀÎ
-#define MSG_MENUITEM_FRIENDFOLLOW				8004		///< µû¶ó°¡±â
-#define MSG_MENUITEM_FRIENDWHISPER				8005		///< ±Ó¸»
-#define MSG_MENUITEM_FRIENDKICK					8006		///< Ãß¹æ
-#define MSG_MENUITEM_FRIENDCLANINVITE			8007		///< Å¬·£°¡ÀÔ±ÇÀ¯
-
-#define MSG_MENUITEM_CLANGRADEMASTER			8008		///< Å¬·£¸¶½ºÅÍÀ§ÀÓ
-#define MSG_MENUITEM_CLANGRADEADMIN				8009		///< ¿î¿µÀÚ·Î º¯°æ
-#define MSG_MENUITEM_CLANMEMBER					8010		///< Å¬·£¿øÀ¸·Î º¯°æ
-#define MSG_MENUITEM_CLANKICK					8011		///< Å¬·£¿¡¼­ ¹æÃâ
-#define MSG_MENUITEM_CLANLEAVE					8012		///< Å¬·£Å»Åð
-
-#define MSG_MENUITEM_SENTTOBANK					8013		///< Áß¾ÓÀºÇàÀ¸·Î º¸³»±â
-
-#define MSG_MENUITEM_OK							8014		///< È®ÀÎ
-#define MSG_MENUITEM_CANCEL						8015		///< Ãë¼Ò
-#define MSG_MENUITEM_YES						8016		///< ¿¹
-#define MSG_MENUITEM_NO							8017		///< ¾Æ´Ï¿À
-#define MSG_MENUITEM_MESSAGE					8018		///< ¸Þ¼¼Áö
+#define MSG_ADMIN_ANNOUNCE						3000		///< ê´€ë¦¬ìž ë©”ì‹œì§€.
 
 
-/// ¿ë¾î
-#define MSG_WORD_CLAN_NONE						9000		///< ¾øÀ½
-#define MSG_WORD_CLAN_MASTER					9001		///< Å¬·£¸¶½ºÅÍ
-#define MSG_WORD_CLAN_ADMIN						9002		///< Å¬·£¿î¿µÀÚ
-#define MSG_WORD_CLAN_MEMBER					9003		///< Å¬·£¿ø
 
-#define MSG_WORD_ADMIN							9004		///< ¿î¿µÀÚ
-#define MSG_WORD_DEVELOPER						9005		///< °³¹ßÀÚ
-#define MSG_WORD_COMMANDS						9006		///< ¸í·É¾î
-#define MSG_WORD_HELP							9007		///< µµ¿ò¸»
-#define MSG_WORD_USAGE							9008		///< »ç¿ë¹ý
+// ë©”ë‰´
+#define MSG_MENUITEM_NONE						8000		///< ë©”ë‰´ì—†ìŒ
 
-#define MSG_WORD_MALE							9100		///< ³²¼º
-#define MSG_WORD_FEMALE							9101		///< ¿©¼º
-#define MSG_WORD_MALE_SHORT						9102		///< ³²
-#define MSG_WORD_FEMALE_SHORT					9103		///< ¿©
+#define MSG_MENUITEM_FRIENDADD					8001		///< ì¹œêµ¬ì¶”ê°€
+#define MSG_MENUITEM_FRIENDREMOVE				8002		///< ì¹œêµ¬ì œê±°
+#define MSG_MENUITEM_FRIENDWHERE				8003		///< ìœ„ì¹˜í™•ì¸
+#define MSG_MENUITEM_FRIENDFOLLOW				8004		///< ë”°ë¼ê°€ê¸°
+#define MSG_MENUITEM_FRIENDWHISPER				8005		///< ê·“ë§
+#define MSG_MENUITEM_FRIENDKICK					8006		///< ì¶”ë°©
+#define MSG_MENUITEM_FRIENDCLANINVITE			8007		///< í´ëžœê°€ìž…ê¶Œìœ 
 
-#define MSG_WORD_LOBBY							9200		///< ·Îºñ
-#define MSG_WORD_STAGE							9201		///< ½ºÅ×ÀÌÁö
-#define MSG_WORD_SHOP							9202		///< »óÁ¡
-#define MSG_WORD_EQUIPMENT						9203		///< Àåºñ
+#define MSG_MENUITEM_CLANGRADEMASTER			8008		///< í´ëžœë§ˆìŠ¤í„°ìœ„ìž„
+#define MSG_MENUITEM_CLANGRADEADMIN				8009		///< ìš´ì˜ìžë¡œ ë³€ê²½
+#define MSG_MENUITEM_CLANMEMBER					8010		///< í´ëžœì›ìœ¼ë¡œ ë³€ê²½
+#define MSG_MENUITEM_CLANKICK					8011		///< í´ëžœì—ì„œ ë°©ì¶œ
+#define MSG_MENUITEM_CLANLEAVE					8012		///< í´ëžœíƒˆí‡´
+
+#define MSG_MENUITEM_SENTTOBANK					8013		///< ì¤‘ì•™ì€í–‰ìœ¼ë¡œ ë³´ë‚´ê¸°
+
+#define MSG_MENUITEM_OK							8014		///< í™•ì¸
+#define MSG_MENUITEM_CANCEL						8015		///< ì·¨ì†Œ
+#define MSG_MENUITEM_YES						8016		///< ì˜ˆ
+#define MSG_MENUITEM_NO							8017		///< ì•„ë‹ˆì˜¤
+#define MSG_MENUITEM_MESSAGE					8018		///< ë©”ì„¸ì§€
+
+
+/// ìš©ì–´
+#define MSG_WORD_CLAN_NONE						9000		///< ì—†ìŒ
+#define MSG_WORD_CLAN_MASTER					9001		///< í´ëžœë§ˆìŠ¤í„°
+#define MSG_WORD_CLAN_ADMIN						9002		///< í´ëžœìš´ì˜ìž
+#define MSG_WORD_CLAN_MEMBER					9003		///< í´ëžœì›
+
+#define MSG_WORD_ADMIN							9004		///< ìš´ì˜ìž
+#define MSG_WORD_DEVELOPER						9005		///< ê°œë°œìž
+#define MSG_WORD_COMMANDS						9006		///< ëª…ë ¹ì–´
+#define MSG_WORD_HELP							9007		///< ë„ì›€ë§
+#define MSG_WORD_USAGE							9008		///< ì‚¬ìš©ë²•
+
+#define MSG_WORD_MALE							9100		///< ë‚¨ì„±
+#define MSG_WORD_FEMALE							9101		///< ì—¬ì„±
+#define MSG_WORD_MALE_SHORT						9102		///< ë‚¨
+#define MSG_WORD_FEMALE_SHORT					9103		///< ì—¬
+
+#define MSG_WORD_LOBBY							9200		///< ë¡œë¹„
+#define MSG_WORD_STAGE							9201		///< ìŠ¤í…Œì´ì§€
+#define MSG_WORD_SHOP							9202		///< ìƒì 
+#define MSG_WORD_EQUIPMENT						9203		///< ìž¥ë¹„
 #define MSG_WORD_CASH							9204		///< Cash
 
-#define MSG_WORD_FORMEN							9302		///< Âø¿ë¼ºº° : ³²¼º¿ë
-#define MSG_WORD_FORWOMEN						9349		///< Âø¿ë¼ºº° : ¿©¼º¿ë
-#define MSG_WORD_WEARABLE						9302		///< Âø¿ë¼ºº°
-#define MSG_WORD_LIMITEDLEVEL					9303		///< Á¦ÇÑ·¹º§
-#define MSG_WORD_WEIGHT							9304		///< ¹«°Ô
-#define MSG_WORD_ATTRIBUTE_FIRE					9305		///< ºÒ¼Ó¼º
-#define MSG_WORD_ATTRIBUTE_COLD					9306		///< ¾óÀ½¼Ó¼º
-#define MSG_WORD_ATTRIBUTE_POISON				9307		///< µ¶¼Ó¼º
-#define MSG_WORD_ATTRIBUTE_LIGHTNING			9308		///< ¹ø°³¼Ó¼º
-#define MSG_WORD_RUNTIME						9309		///< Áö¼Ó½Ã°£
-#define MSG_WORD_BULLET							9310		///< Åº¼ö/ÅºÃ¢
-#define MSG_WORD_ATTACK							9311		///< °ø°Ý·Â
-#define MSG_WORD_DELAY							9312		///< µô·¹ÀÌ
-#define MSG_WORD_MAXWEIGHT						9313		///< ÃÖ´ë¹«°Ô
-#define MSG_WORD_RUNSPEED						9314		///< ÀÌµ¿¼Óµµ
-#define MSG_WORD_DONOTJUMP						9315		///< Á¡ÇÁ ºÒ°¡
-#define MSG_WORD_DONOTDASH						9316		///< ´ë½¬ ºÒ°¡
-#define MSG_WORD_DONOTHANGWALL					9317		///< º®Å¸±â ºÒ°¡
-#define MSG_WORD_DAMAGE							9318		///< µ¥¹ÌÁö
-#define MSG_WORD_QUEST							9319		///< Äù½ºÆ®
-#define MSG_WORD_ITEM							9320		///< ¾ÆÀÌÅÛ
-#define MSG_WORD_SACRIFICE						9321		///< Èñ»ý
-#define MSG_WORD_PLAYERS						9322		///< Âü°¡ ÀÎ¿ø
-#define MSG_WORD_BLUETEAM						9323		///< Ã»ÆÀ
-#define MSG_WORD_REDTEAM						9324		///< È«ÆÀ
-#define MSG_WORD_QUANTITY						9325		///< ÇöÀç ¼ö·®
-#define MSG_WORD_FINDTEAM						9326		///< »ó´ëÆÀ Ã£´Â Áß
-#define MSG_WORD_GETITEMQTY						9327		///< È¹µæ ¾ÆÀÌÅÛ ¼ö
-#define MSG_WORD_REMAINNPC						9328		///< ³²Àº NPC ¼ö
-#define MSG_WORD_RPROGRESS						9329		///< ÁøÇàµµ
-#define MSG_WORD_REMAINTIME						9330		///< ³²Àº ½Ã°£
-#define MSG_WORD_QUESTLEVELMARKER				9331		///< ¡Ú
-#define MSG_WORD_ENDKILL						9363		///< ¸ñÇ¥ KILL¼ö
-#define MSG_WORD_ROUND							9364		///< ¶ó¿îµå
+#define MSG_WORD_FORMEN							9302		///< ì°©ìš©ì„±ë³„ : ë‚¨ì„±ìš©
+#define MSG_WORD_FORWOMEN						9349		///< ì°©ìš©ì„±ë³„ : ì—¬ì„±ìš©
+#define MSG_WORD_WEARABLE						9302		///< ì°©ìš©ì„±ë³„
+#define MSG_WORD_LIMITEDLEVEL					9303		///< ì œí•œë ˆë²¨
+#define MSG_WORD_WEIGHT							9304		///< ë¬´ê²Œ
+#define MSG_WORD_ATTRIBUTE_FIRE					9305		///< ë¶ˆì†ì„±
+#define MSG_WORD_ATTRIBUTE_COLD					9306		///< ì–¼ìŒì†ì„±
+#define MSG_WORD_ATTRIBUTE_POISON				9307		///< ë…ì†ì„±
+#define MSG_WORD_ATTRIBUTE_LIGHTNING			9308		///< ë²ˆê°œì†ì„±
+#define MSG_WORD_RUNTIME						9309		///< ì§€ì†ì‹œê°„
+#define MSG_WORD_BULLET							9310		///< íƒ„ìˆ˜/íƒ„ì°½
+#define MSG_WORD_ATTACK							9311		///< ê³µê²©ë ¥
+#define MSG_WORD_DELAY							9312		///< ë”œë ˆì´
+#define MSG_WORD_MAXWEIGHT						9313		///< ìµœëŒ€ë¬´ê²Œ
+#define MSG_WORD_RUNSPEED						9314		///< ì´ë™ì†ë„
+#define MSG_WORD_DONOTJUMP						9315		///< ì í”„ ë¶ˆê°€
+#define MSG_WORD_DONOTDASH						9316		///< ëŒ€ì‰¬ ë¶ˆê°€
+#define MSG_WORD_DONOTHANGWALL					9317		///< ë²½íƒ€ê¸° ë¶ˆê°€
+#define MSG_WORD_DAMAGE							9318		///< ë°ë¯¸ì§€
+#define MSG_WORD_QUEST							9319		///< í€˜ìŠ¤íŠ¸
+#define MSG_WORD_ITEM							9320		///< ì•„ì´í…œ
+#define MSG_WORD_SACRIFICE						9321		///< í¬ìƒ
+#define MSG_WORD_PLAYERS						9322		///< ì°¸ê°€ ì¸ì›
+#define MSG_WORD_BLUETEAM						9323		///< ì²­íŒ€
+#define MSG_WORD_REDTEAM						9324		///< í™íŒ€
+#define MSG_WORD_QUANTITY						9325		///< í˜„ìž¬ ìˆ˜ëŸ‰
+#define MSG_WORD_FINDTEAM						9326		///< ìƒëŒ€íŒ€ ì°¾ëŠ” ì¤‘
+#define MSG_WORD_GETITEMQTY						9327		///< íšë“ ì•„ì´í…œ ìˆ˜
+#define MSG_WORD_REMAINNPC						9328		///< ë‚¨ì€ NPC ìˆ˜
+#define MSG_WORD_RPROGRESS						9329		///< ì§„í–‰ë„
+#define MSG_WORD_REMAINTIME						9330		///< ë‚¨ì€ ì‹œê°„
+#define MSG_WORD_QUESTLEVELMARKER				9331		///< â˜…
+#define MSG_WORD_ENDKILL						9363		///< ëª©í‘œ KILLìˆ˜
+#define MSG_WORD_ROUND							9364		///< ë¼ìš´ë“œ
 
-#define MSG_WORD_RATE							9332		///< ¼öÁý·ü
-#define MSG_WORD_GRADE							9333		///< µî±Þ
+#define MSG_WORD_RATE							9332		///< ìˆ˜ì§‘ë¥ 
+#define MSG_WORD_GRADE							9333		///< ë“±ê¸‰
 #define MSG_WORD_REGULAR						9334		///< Regular
 #define MSG_WORD_LEGENDARY						9335		///< Legendary
 #define MSG_WORD_BOSS							9336		///< Boss
 #define MSG_WORD_ELITE							9337		///< Elite
 #define MSG_WORD_VETERAN						9338		///< Veteran
-#define MSG_WORD_VERYHARD						9339		///< ¸Å¿ì °­ÇÔ
-#define MSG_WORD_HARD							9340		///< °­ÇÔ
-#define MSG_WORD_NORAML							9341		///< º¸Åë
-#define MSG_WORD_WEAK							9342		///< ¾àÇÔ
-#define MSG_WORD_VERYWEAK						9343		///< ¸Å¿ì ¾àÇÔ
+#define MSG_WORD_VERYHARD						9339		///< ë§¤ìš° ê°•í•¨
+#define MSG_WORD_HARD							9340		///< ê°•í•¨
+#define MSG_WORD_NORAML							9341		///< ë³´í†µ
+#define MSG_WORD_WEAK							9342		///< ì•½í•¨
+#define MSG_WORD_VERYWEAK						9343		///< ë§¤ìš° ì•½í•¨
 
-#define MSG_WORD_INFINITE						9344		///< ¹«ÇÑ
-#define MSG_WORD_NONE							9345		///< ¾øÀ½
-#define MSG_WORD_LEVELDIFF						9346		///< ·¹º§Â÷
-#define MSG_WORD_PERMIT							9347		///< Çã¿ë
-#define MSG_WORD_PROHIBIT						9348		///< ±ÝÁö
+#define MSG_WORD_INFINITE						9344		///< ë¬´í•œ
+#define MSG_WORD_NONE							9345		///< ì—†ìŒ
+#define MSG_WORD_LEVELDIFF						9346		///< ë ˆë²¨ì°¨
+#define MSG_WORD_PERMIT							9347		///< í—ˆìš©
+#define MSG_WORD_PROHIBIT						9348		///< ê¸ˆì§€
 
-// 2006³â 5¿ù 3ÀÏ Ãß°¡
+// 2006ë…„ 5ì›” 3ì¼ ì¶”ê°€
 #define MSG_WORD_TYPE							9365		///< Type
 #define MSG_WORD_EXP							9366		///< Exp
 #define MSG_WORD_KILL							9367		///< Kill

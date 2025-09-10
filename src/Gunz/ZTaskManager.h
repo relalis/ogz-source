@@ -4,7 +4,7 @@
 
 typedef void (*ZTM_ONFINISHED)(ZActor* pActor, ZTASK_ID nLastID);
 
-/// ÅÂ½ºÅ© °ü¸®ÀÚ
+/// íƒœìŠ¤í¬ ê´€ë¦¬ì
 class ZTaskManager
 {
 protected:
@@ -21,7 +21,7 @@ public:
 	void Clear();
 	void Push(ZTask* pTask);
 	void PushFront(ZTask* pTask);
-	bool Cancel();						///< ÇöÀç ÅÂ½ºÅ©¸¦ Ãë¼ÒÇÑ´Ù.
+	bool Cancel();						///< í˜„ì¬ íƒœìŠ¤í¬ë¥¼ ì·¨ì†Œí•œë‹¤.
 	void Run(float fDelta);
 
 	// interface functions

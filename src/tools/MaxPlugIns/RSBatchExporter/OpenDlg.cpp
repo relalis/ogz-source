@@ -106,8 +106,8 @@ const char *GetFileName(const char *pFileNames, int idx)
 }
 
 /*
-char *g_pFileNames = NULL;	// PathÀÇ ´ÙÀ½ ÀĞÇôÁú À§Ä¡ÀÇ ½ºÆ®¸µ
-int g_nNextCount = 0;		// ´ÙÀ½¿¡ ´õÇØÁú Count
+char *g_pFileNames = NULL;	// Pathì˜ ë‹¤ìŒ ì½í˜€ì§ˆ ìœ„ì¹˜ì˜ ìŠ¤íŠ¸ë§
+int g_nNextCount = 0;		// ë‹¤ìŒì— ë”í•´ì§ˆ Count
 
 char *GetDirFirst(char *pFileNames)
 {

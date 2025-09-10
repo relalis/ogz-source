@@ -105,7 +105,7 @@ bool ROcclusionList::Save(MXmlElement *pElement)
 	return true;
 }
 
-// bb °¡ º¸ÀÌ´ÂÁö¸¦ ÆÇÁ¤ÇÑ´Ù
+// bb ê°€ ë³´ì´ëŠ”ì§€ë¥¼ íŒì •í•œë‹¤
 bool ROcclusionList::IsVisible(rboundingbox &bb)
 {
 	for(ROcclusionList::iterator i=begin();i!=end();i++)
@@ -123,23 +123,23 @@ bool ROcclusionList::IsVisible(rboundingbox &bb)
 			}
 		}
 
-		// ÇÏ³ªÀÇ occlusion ¿¡¶óµµ °¡·ÁÁ®ÀÖÀ¸¸é ´õÀÌ»ó º¼ÇÊ¿ä¾ø´Ù.
+		// í•˜ë‚˜ì˜ occlusion ì—ë¼ë„ ê°€ë ¤ì ¸ìžˆìœ¼ë©´ ë”ì´ìƒ ë³¼í•„ìš”ì—†ë‹¤.
 		if(!bVisible) 
 			return false;
 	}
 	return true;
 }
 
-// Ä«¸Þ¶ó¿¡ µû¶ó occlusionÀÇ Æò¸éÀ» °»½ÅÇÑ´Ù.		
+// ì¹´ë©”ë¼ì— ë”°ë¼ occlusionì˜ í‰ë©´ì„ ê°±ì‹ í•œë‹¤.		
 void ROcclusionList::UpdateCamera(rmatrix &matWorld,rvector &cameraPos)
 {
-	// TODO : matWorld °¡ identity °¡ ¾Æ´Ñ°æ¿ì °ËÁõÀÌ ¾ÈµÇ¾îÀÖÀ½
+	// TODO : matWorld ê°€ identity ê°€ ì•„ë‹Œê²½ìš° ê²€ì¦ì´ ì•ˆë˜ì–´ìžˆìŒ
 
 	float	fDet;
 	rmatrix invWorld;
 	D3DXMatrixInverse(&invWorld,&fDet,&matWorld);
 
-	// camera ÀÇ ÁÂÇ¥¸¦ local·Î °¡Á®¿Â´Ù
+	// camera ì˜ ì¢Œí‘œë¥¼ localë¡œ ê°€ì ¸ì˜¨ë‹¤
 	rvector localCameraPos;
 	D3DXVec3TransformCoord(&localCameraPos,&cameraPos,&invWorld);
 
@@ -152,9 +152,9 @@ void ROcclusionList::UpdateCamera(rmatrix &matWorld,rvector &cameraPos)
 
 		bool bm_pPositive=D3DXPlaneDotCoord(&poc->plane,&localCameraPos)>0;
 
-		// ·ÎÄÃÀÇ Æò¸éÀÇ ¹æÁ¤½ÄÀ» ¿ùµå·Î °¡Á®°¡°í ½Í´Ù. matWorld ·Î º¯È¯ÇÏ¸éµÇ´Âµ¥,
-		// D3DXPlaneTransform ÀÇ »ç¿ë¹ýÀÌ º¯È¯Çà·ÄÀÇ inverse transpose ¸ÅÆ®¸¯½º¸¦ ³Ñ°ÜÁà¾ßÇÏ¹Ç·Î
-		// tr(inv(matWorld)) °¡ µÇ¹Ç·Î °á±¹ tr(mat) °¡ µÈ´Ù
+		// ë¡œì»¬ì˜ í‰ë©´ì˜ ë°©ì •ì‹ì„ ì›”ë“œë¡œ ê°€ì ¸ê°€ê³  ì‹¶ë‹¤. matWorld ë¡œ ë³€í™˜í•˜ë©´ë˜ëŠ”ë°,
+		// D3DXPlaneTransform ì˜ ì‚¬ìš©ë²•ì´ ë³€í™˜í–‰ë ¬ì˜ inverse transpose ë§¤íŠ¸ë¦­ìŠ¤ë¥¼ ë„˜ê²¨ì¤˜ì•¼í•˜ë¯€ë¡œ
+		// tr(inv(matWorld)) ê°€ ë˜ë¯€ë¡œ ê²°êµ­ tr(mat) ê°€ ëœë‹¤
 		D3DXPlaneTransform(poc->pPlanes,poc->pPlanes,&trInvMat);
 
 		poc->pPlanes[0] = bm_pPositive ? poc->plane : -poc->plane;
@@ -165,7 +165,7 @@ void ROcclusionList::UpdateCamera(rmatrix &matWorld,rvector &cameraPos)
 			else
 				D3DXPlaneFromPoints(poc->pPlanes+j+1,&poc->pVertices[(j+1)%poc->nCount],&poc->pVertices[j],&localCameraPos);
 
-			// ·ÎÄÃÀÇ Æò¸éÀÇ ¹æÁ¤½ÄÀ» ¿ùµå·Î °¡Á®°¡°í ½Í´Ù. À§¿Í °°´Ù
+			// ë¡œì»¬ì˜ í‰ë©´ì˜ ë°©ì •ì‹ì„ ì›”ë“œë¡œ ê°€ì ¸ê°€ê³  ì‹¶ë‹¤. ìœ„ì™€ ê°™ë‹¤
 			D3DXPlaneTransform(poc->pPlanes+j+1,poc->pPlanes+j+1,&trInvMat);
 		}
 	}

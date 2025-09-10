@@ -17,8 +17,8 @@ using WAVEFORMATEX = struct tWAVEFORMATEX;
 
 class RSMemWaveFile {
 private:
-	u8 *m_pImageData;	// ½ÇÁ¦ Waveform Data
-	u32 m_dwImageLen;	// ½ÇÁ¦ Waveform Data Length
+	u8 *m_pImageData;	// ì‹¤ì œ Waveform Data
+	u32 m_dwImageLen;	// ì‹¤ì œ Waveform Data Length
 
 	bool m_bResource;	
 public:
@@ -46,7 +46,7 @@ public:
 };
 
 /**
-	StreamingÀ» À§ÇÑ Wave File Class
+	Streamingì„ ìœ„í•œ Wave File Class
 	--------------------------------
 */
 class RSMWaveFile

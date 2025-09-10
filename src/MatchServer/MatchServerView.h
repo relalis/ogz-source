@@ -1,4 +1,4 @@
-// MatchServerView.h : iCMatchServerView Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// MatchServerView.h : iCMatchServerView í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 
@@ -10,27 +10,27 @@ class CMatchServerDoc;
 
 class CMatchServerView : public CView
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CMatchServerView();
 	DECLARE_DYNCREATE(CMatchServerView)
 
-// Æ¯¼º
+// íŠ¹ì„±
 public:
 	CMatchServerDoc* GetDocument() const;
 
-// ÀÛ¾÷
+// ì‘ì—…
 public:
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 	public:
-	virtual void OnDraw(CDC* pDC);  // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);  // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
 	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CMatchServerView();
 #ifdef _DEBUG
@@ -40,14 +40,14 @@ public:
 
 protected:
 
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnSetFocus(CWnd* pOldWnd);
 };
 
-#ifndef _DEBUG  // MatchServerView.cppÀÇ µğ¹ö±× ¹öÀü
+#ifndef _DEBUG  // MatchServerView.cppì˜ ë””ë²„ê·¸ ë²„ì „
 inline CMatchServerDoc* CMatchServerView::GetDocument() const
    { return reinterpret_cast<CMatchServerDoc*>(m_pDocument); }
 #endif

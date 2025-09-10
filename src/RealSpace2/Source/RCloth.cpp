@@ -4,7 +4,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-//	»ı¼ºÀÚ
+//	ìƒì„±ì
 //////////////////////////////////////////////////////////////////////////
 RCloth::RCloth(void) : 
 m_pX(0), 
@@ -19,7 +19,7 @@ m_pNormal(0)
 
 
 //////////////////////////////////////////////////////////////////////////
-//	¼Ò¸êÀÚ
+//	ì†Œë©¸ì
 //////////////////////////////////////////////////////////////////////////
 RCloth::~RCloth(void)
 {
@@ -33,7 +33,7 @@ RCloth::~RCloth(void)
 }
 
 //////////////////////////////////////////////////////////////////////////
-// Update - ¸Å ÇÁ·¹ÀÓ È¤Àº ÀÏÁ¤°£°İÀ¸·Î È£Ãâ
+// Update - ë§¤ í”„ë ˆì„ í˜¹ì€ ì¼ì •ê°„ê²©ìœ¼ë¡œ í˜¸ì¶œ
 //////////////////////////////////////////////////////////////////////////
 void RCloth::update()	
 {
@@ -44,7 +44,7 @@ void RCloth::update()
 
 //////////////////////////////////////////////////////////////////////////
 // AccumulateForces
-//	¹Ù¶÷.. µî
+//	ë°”ëŒ.. ë“±
 //////////////////////////////////////////////////////////////////////////
 void RCloth::accumulateForces()
 {
@@ -69,7 +69,7 @@ void RCloth::varlet()
 	m_pX = m_pOldX;
 	m_pOldX = swapTemp;
 
-	// ÃÊ±âÈ­
+	// ì´ˆê¸°í™”
 	memset( m_pForce, 0, sizeof(rvector) * m_nCntP );
 }
 
@@ -142,7 +142,7 @@ void RWindGenerator::Update( DWORD time )
 	DWORD	ElapsedTime = m_Time	- time;
 	int factor = 0;
 
-	//ÇÏµåÄÚµğµå ¹Ù¶÷µé..
+	//í•˜ë“œì½”ë””ë“œ ë°”ëŒë“¤..
 	switch( m_WindType )
 	{
 	case RANDOM_WIND:		
@@ -152,9 +152,9 @@ void RWindGenerator::Update( DWORD time )
 		m_ResultWind.y = m_WindDirection.y * factor;
 		m_ResultWind.z = 0;
 		break;
-	case GENTLE_BREEZE_WIND:		// ³ª¹µÀÙ°ú °¡´Â °¡Áö°¡ ½¯»õ¾øÀÌ Èçµé¸®°í ±ê¹ßÀÌ °¡º±°Ô ÈÖ³¯¸°´Ù
+	case GENTLE_BREEZE_WIND:		// ë‚˜ë­‡ìê³¼ ê°€ëŠ” ê°€ì§€ê°€ ì‰´ìƒˆì—†ì´ í”ë“¤ë¦¬ê³  ê¹ƒë°œì´ ê°€ë³ê²Œ íœ˜ë‚ ë¦°ë‹¤
 		{
-#define PEACE_TIME	1000		//1ÃÊ
+#define PEACE_TIME	1000		//1ì´ˆ
 #define POWER_INC		1.0f
 			if( m_bFlag )
 			{
@@ -172,7 +172,7 @@ void RWindGenerator::Update( DWORD time )
 			else if( ElapsedTime > m_DelayTime )
 			{
 				m_Time	= time;
-				m_bFlag	= true;			// ¿©±â¼­ m_bFlag´Â '¹Ù¶÷ÀÌ ºĞ´Ù'¶ó´Â °ÍÀ» ÀÇ¹ÌÇÑ´Ù
+				m_bFlag	= true;			// ì—¬ê¸°ì„œ m_bFlagëŠ” 'ë°”ëŒì´ ë¶„ë‹¤'ë¼ëŠ” ê²ƒì„ ì˜ë¯¸í•œë‹¤
 			}
 		}
 		m_ResultWind = m_WindDirection * m_fTemp1;

@@ -8,22 +8,22 @@ void MBFrameLook::OnDraw(MFrame* pFrame, MDrawContext* pDC)
 {
 	MRECT r = pFrame->GetInitialClientRect();
 
-	// ¶«.. ÀåºñÃ¢ÀÇ tooltip frame -
-	// DrawBitmapFrame2 ·Î 2ÀåÀÇ ÀÌ¹ÌÁö¸¦ »ç¿ëÇØ¼­ ±×¸²..
+	// ë•œ.. ì¥ë¹„ì°½ì˜ tooltip frame -
+	// DrawBitmapFrame2 ë¡œ 2ì¥ì˜ ì´ë¯¸ì§€ë¥¼ ì‚¬ìš©í•´ì„œ ê·¸ë¦¼..
 
 	if(GetCustomLook()==3) { 
 
 		if(pFrame->GetVisible()==false)
 			return;
 
-		MRECT rr = r; // ÅøÆÁÀÌ¶ó¼­ ±×¸®´Â ¿µ¿ªÀ» Á¶±İ º¸Á¤..
+		MRECT rr = r; // íˆ´íŒì´ë¼ì„œ ê·¸ë¦¬ëŠ” ì˜ì—­ì„ ì¡°ê¸ˆ ë³´ì •..
 
 		rr.x -= 10;
 		rr.y -= 10;
 		rr.w += 20;
 		rr.h += 20;
 
-		// Áö±İÀº ÅøÆÁ ´ë¿ëÀ¸·Î ¾²±â¶§¹®¿¡ cliprect ¸¦ ¹«½Ã..
+		// ì§€ê¸ˆì€ íˆ´íŒ ëŒ€ìš©ìœ¼ë¡œ ì“°ê¸°ë•Œë¬¸ì— cliprect ë¥¼ ë¬´ì‹œ..
 
 		MRECT cliprect = MRECT(0,0,MGetWorkspaceWidth(),MGetWorkspaceHeight());
 
@@ -109,7 +109,7 @@ void MBFrameLook::OnDraw(MFrame* pFrame, MDrawContext* pDC)
 
 		pDC->SetColor(m_FontColor);
 
-		// ³ªÁß¿¡ align°í·ÁÇØ¼­ ´Ù½Ã ¼öÁ¤ÇØ¾ß ÇÔ
+		// ë‚˜ì¤‘ì— alignê³ ë ¤í•´ì„œ ë‹¤ì‹œ ìˆ˜ì •í•´ì•¼ í•¨
 		
 		int y = int(m_TitlePosition.y*GetScale());
 

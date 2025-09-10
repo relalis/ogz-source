@@ -87,7 +87,7 @@ void RbsExp::ExportShapeObject(INode* node)
 		return;
 	}
 
-	// ÀÌ¸§±ÔÄ¢
+	// ì´ë¦„ê·œì¹™
 	char *part=strstr(node->GetName(),RTOK_MAX_PARTITION);
 	if(part)
 	{
@@ -228,7 +228,7 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 
 	DWORD dwFlags=0;
 
-	// ÀÌ¸§±ÔÄ¢µé
+	// ì´ë¦„ê·œì¹™ë“¤
 	if(strstr(node->GetName(),RTOK_MAX_NOPATH)!=NULL)
 		dwFlags|=RM_FLAG_NOTWALKABLE;
 	if(strstr(node->GetName(),RTOK_MAX_PASSTHROUGH)!=NULL) 
@@ -271,7 +271,7 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 
 		rpolygon *rf=new rpolygon;
 
-		// ÇÃ·¡±× ¼³Á¤
+		// í”Œë˜ê·¸ ì„¤ì •
 		rf->dwFlags=dwFlags;
 
 		// coordinate..
@@ -373,7 +373,7 @@ Point3 RbsExp::GetVertexNormal(Mesh* mesh, int faceNo, RVertex* rv)
 			vertexNormal = mesh->getFaceNormal(faceNo);
 			for (int i = 0; i < numNormals; i++) {
 				
-				// ÀÌºÎºĞÀÌ Ã³¸®°¡ ¾ÈµÇÀÖ´Âµí. Ãß°¡ÇÑ ÄÚµå.
+				// ì´ë¶€ë¶„ì´ ì²˜ë¦¬ê°€ ì•ˆë˜ìˆëŠ”ë“¯. ì¶”ê°€í•œ ì½”ë“œ.
 				if(rv->ern[i].getSmGroup()==smGroup)
 					vertexNormal = rv->ern[i].getNormal();
 			}
@@ -601,13 +601,13 @@ void RbsExp::ExportHelperObject(INode* node)
 	float fPropValue = 0.f;
 	TSTR cstrBuffer;
 
-	// ´õ¹Ì¸¸ ÀÍ½ºÆ÷Æ®ÇÑ´Ù.
+	// ë”ë¯¸ë§Œ ìµìŠ¤í¬íŠ¸í•œë‹¤.
 	if (!strnicmp(className, "dummy", 5))
 	{
 		RDUMMY *pdm=new RDUMMY;
 		pdm->name=node->GetName();
 
-		// ÇÊ¿äÇÑ °ªÀÌ ÀÖÀ»¶§¸¶´Ù Ãß°¡ÇØÁÖµµ·Ï ÇÏÀÚ.
+		// í•„ìš”í•œ ê°’ì´ ìˆì„ë•Œë§ˆë‹¤ ì¶”ê°€í•´ì£¼ë„ë¡ í•˜ì.
 		int nPropValue=0;
 		if (node->GetUserPropInt("time", nPropValue))
 		{
@@ -650,7 +650,7 @@ void RbsExp::ExportHelperObject(INode* node)
 		pdm->direction= rvector(-dir.x, dir.y, dir.z);
 		Normalize(pdm->direction);
 
-		// Smoke ÀÏ°æ¿ì
+		// Smoke ì¼ê²½ìš°
 		const char* cstrSmoke = "smk_";
 
 		if ( strnicmp( pdm->name.c_str(), cstrSmoke, sizeof(cstrSmoke) ) == 0 )
@@ -695,7 +695,7 @@ float GetAngle(rvector &a)
 		return (float)-acos(a.x);
 }
 
-// Ãæµ¹Ã¼Å©¸¦ À§ÇÑ ¸ÊÀ» »ı¼ºÇÑ´Ù
+// ì¶©ëŒì²´í¬ë¥¼ ìœ„í•œ ë§µì„ ìƒì„±í•œë‹¤
 void RbsExp::ExportMesh_Extrude(INode* node, TimeValue t)
 {
 	int i,j,k,l;
@@ -715,7 +715,7 @@ void RbsExp::ExportMesh_Extrude(INode* node, TimeValue t)
 		return; // Safety net. This shouldn't happen.
 	}
 
-	// ÀÌ¸§±ÔÄ¢µé Åë°úÇÏ´Â Æú¸®°ïÀº ¸¸µéÇÊ¿äµµ ¾ø´Ù
+	// ì´ë¦„ê·œì¹™ë“¤ í†µê³¼í•˜ëŠ” í´ë¦¬ê³¤ì€ ë§Œë“¤í•„ìš”ë„ ì—†ë‹¤
 	if(strstr(node->GetName(),RTOK_MAX_PASSTHROUGH)!=NULL) 
 		return;
 
@@ -764,10 +764,10 @@ void RbsExp::ExportMesh_Extrude(INode* node, TimeValue t)
 		fnormal=pivot*fnormal;
 		fnormal=fnormal.Normalize();
 
-		// fnormalÀ» ¹ı¼±À¸·Î ÇÏ°í vertex 0À» Áö³ª´Â Æò¸éÀÇ ¹æÁ¤½ÄÀ» ¸¸µç´Ù
+		// fnormalì„ ë²•ì„ ìœ¼ë¡œ í•˜ê³  vertex 0ì„ ì§€ë‚˜ëŠ” í‰ë©´ì˜ ë°©ì •ì‹ì„ ë§Œë“ ë‹¤
 		float d= - DotProd(fnormal ,vertices[f->vtx[0]]);
 
-		// Æú¸®°ïµéÀÌ ¸ğµÎ ÇÑ Æò¸é À§¿¡ ÀÖ°í, º¼·Ï ´Ù°¢ÇüÀÌ¸é ÂÉ°¶ ÇÊ¿ä°¡¾ø´Ù
+		// í´ë¦¬ê³¤ë“¤ì´ ëª¨ë‘ í•œ í‰ë©´ ìœ„ì— ìˆê³ , ë³¼ë¡ ë‹¤ê°í˜•ì´ë©´ ìª¼ê°¤ í•„ìš”ê°€ì—†ë‹¤
 		bool bCoplanar=true;
 		bool bConvex=true;
 
@@ -784,7 +784,7 @@ void RbsExp::ExportMesh_Extrude(INode* node, TimeValue t)
 
 #define COPLA_TOLER		1.f
 			float fCop=DotProd(vertices[f->vtx[j]],fnormal) + d;
-			if(fCop<-COPLA_TOLER || fCop>COPLA_TOLER)		// µ¿ÀÏ Æò¸éÀ§¿¡ ÀÖ´ÂÁö È®ÀÎ
+			if(fCop<-COPLA_TOLER || fCop>COPLA_TOLER)		// ë™ì¼ í‰ë©´ìœ„ì— ìˆëŠ”ì§€ í™•ì¸
 			{
 				bCoplanar=false;
 				break;
@@ -796,7 +796,7 @@ void RbsExp::ExportMesh_Extrude(INode* node, TimeValue t)
 			D3DXPlaneFromPointNormal(&testplane,&edgea,&normal);
 			D3DXPlaneNormalize(&testplane,&testplane);
 
-			// °¢°¢ÀÇ edge ¿¡ ´ëÇØ¼­ Æò¸éÀ» ¼¼¿ì°í ±× Æò¸éÀÇ + ÂÊ¿¡ ´ÙÀ½ ¹öÅØ½º°¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù
+			// ê°ê°ì˜ edge ì— ëŒ€í•´ì„œ í‰ë©´ì„ ì„¸ìš°ê³  ê·¸ í‰ë©´ì˜ + ìª½ì— ë‹¤ìŒ ë²„í…ìŠ¤ê°€ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤
 #define CONVEX_TOLER	1.f
 
 			p=vertices[f->vtx[(j+2)%f->deg]];
@@ -846,7 +846,7 @@ void RbsExp::ExportMesh_Extrude(INode* node, TimeValue t)
 
 			rsm->faceCol.Add(rf);
 		}
-		else // ±×·¸Áö ¾ÊÀ¸¸é ÂÉ°³¾ßÇÑ´Ù
+		else // ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ìª¼ê°œì•¼í•œë‹¤
 		{
 			Tab<int> tris;
 			f->GetTriangles(tris);
@@ -883,7 +883,7 @@ void RbsExp::ExportMesh_Extrude(INode* node, TimeValue t)
 		}
 	}
 
-	// °øÀ¯ÇÏ´Â edge ¸¦ °¡Áø³ÑµéÀº 
+	// ê³µìœ í•˜ëŠ” edge ë¥¼ ê°€ì§„ë„˜ë“¤ì€ 
 	for (i=0; i<poly->mm.FNum(); i++) {
 		MNFace *f=poly->mm.F(i);
 
@@ -908,8 +908,8 @@ void RbsExp::ExportMesh_Extrude(INode* node, TimeValue t)
 						(f->vtx[(k+1)%f->deg]==f2->vtx[(l+1)%f2->deg] && f->vtx[k]==f2->vtx[l] ) )
 
 					{
-						// edge °¡ Æ¢¾î³ª¿ÍÀÖ´ÂÇüÅÂÀÎÁö, µé¾î°¡ ÀÖ´ÂÇüÅÂÀÎÁö.. ÆÇ´ÜÇØ¼­
-						// µé¾î°¡ ÀÖ´Â ÇüÅÂÀÏ¶§´Â edge °¡ ¹ú¾îÁö´Â°Ô ¾Æ´Ï¹Ç·Î ¸Ş²ÜÇÊ¿ä°¡ ¾ø´Ù
+						// edge ê°€ íŠ€ì–´ë‚˜ì™€ìˆëŠ”í˜•íƒœì¸ì§€, ë“¤ì–´ê°€ ìˆëŠ”í˜•íƒœì¸ì§€.. íŒë‹¨í•´ì„œ
+						// ë“¤ì–´ê°€ ìˆëŠ” í˜•íƒœì¼ë•ŒëŠ” edge ê°€ ë²Œì–´ì§€ëŠ”ê²Œ ì•„ë‹ˆë¯€ë¡œ ë©”ê¿€í•„ìš”ê°€ ì—†ë‹¤
 						{
 							Point3 p;
 							rplane testplane;
@@ -1105,7 +1105,7 @@ void RbsExp::ExportMesh_CSG(INode* node, TimeValue t)
 		return; // Safety net. This shouldn't happen.
 	}
 
-	// ÀÌ¸§±ÔÄ¢µé Åë°úÇÏ´Â Æú¸®°ïÀº ¸¸µéÇÊ¿äµµ ¾ø´Ù
+	// ì´ë¦„ê·œì¹™ë“¤ í†µê³¼í•˜ëŠ” í´ë¦¬ê³¤ì€ ë§Œë“¤í•„ìš”ë„ ì—†ë‹¤
 	if(strstr(node->GetName(),RTOK_MAX_PASSTHROUGH)!=NULL) 
 		return;
 
@@ -1159,10 +1159,10 @@ void RbsExp::ExportMesh_CSG(INode* node, TimeValue t)
 		fnormal=pivot*fnormal;
 		fnormal=fnormal.Normalize();
 
-		// fnormalÀ» ¹ı¼±À¸·Î ÇÏ°í vertex 0À» Áö³ª´Â Æò¸éÀÇ ¹æÁ¤½ÄÀ» ¸¸µç´Ù
+		// fnormalì„ ë²•ì„ ìœ¼ë¡œ í•˜ê³  vertex 0ì„ ì§€ë‚˜ëŠ” í‰ë©´ì˜ ë°©ì •ì‹ì„ ë§Œë“ ë‹¤
 		float d= - DotProd(fnormal ,vertices[f->vtx[0]]);
 
-		// Æú¸®°ïµéÀÌ ¸ğµÎ ÇÑ Æò¸é À§¿¡ ÀÖ°í, º¼·Ï ´Ù°¢ÇüÀÌ¸é ÂÉ°¶ ÇÊ¿ä°¡¾ø´Ù
+		// í´ë¦¬ê³¤ë“¤ì´ ëª¨ë‘ í•œ í‰ë©´ ìœ„ì— ìˆê³ , ë³¼ë¡ ë‹¤ê°í˜•ì´ë©´ ìª¼ê°¤ í•„ìš”ê°€ì—†ë‹¤
 		bool bCoplanar=true;
 		bool bConvex=true;
 
@@ -1179,7 +1179,7 @@ void RbsExp::ExportMesh_CSG(INode* node, TimeValue t)
 
 #define COPLA_TOLER		1.f
 			float fCop=DotProd(vertices[f->vtx[j]],fnormal) + d;
-			if(fCop<-COPLA_TOLER || fCop>COPLA_TOLER)		// µ¿ÀÏ Æò¸éÀ§¿¡ ÀÖ´ÂÁö È®ÀÎ
+			if(fCop<-COPLA_TOLER || fCop>COPLA_TOLER)		// ë™ì¼ í‰ë©´ìœ„ì— ìˆëŠ”ì§€ í™•ì¸
 			{
 				bCoplanar=false;
 				break;
@@ -1191,7 +1191,7 @@ void RbsExp::ExportMesh_CSG(INode* node, TimeValue t)
 			D3DXPlaneFromPointNormal(&testplane,&edgea,&normal);
 			D3DXPlaneNormalize(&testplane,&testplane);
 
-			// °¢°¢ÀÇ edge ¿¡ ´ëÇØ¼­ Æò¸éÀ» ¼¼¿ì°í ±× Æò¸éÀÇ + ÂÊ¿¡ ´ÙÀ½ ¹öÅØ½º°¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù
+			// ê°ê°ì˜ edge ì— ëŒ€í•´ì„œ í‰ë©´ì„ ì„¸ìš°ê³  ê·¸ í‰ë©´ì˜ + ìª½ì— ë‹¤ìŒ ë²„í…ìŠ¤ê°€ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤
 #define CONVEX_TOLER	1.f
 
 			p=vertices[f->vtx[(j+2)%f->deg]];
@@ -1240,7 +1240,7 @@ void RbsExp::ExportMesh_CSG(INode* node, TimeValue t)
 
 			pCObj->m_pPolygons->Add(rf);
 		}
-		else // ±×·¸Áö ¾ÊÀ¸¸é ÂÉ°³¾ßÇÑ´Ù
+		else // ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ìª¼ê°œì•¼í•œë‹¤
 		{
 			Tab<int> tris;
 			f->GetTriangles(tris);
@@ -1326,7 +1326,7 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 	DWORD dwFlags=0;
 
 	
-	// ÀÌ¸§±ÔÄ¢µé
+	// ì´ë¦„ê·œì¹™ë“¤
 	if(strstr(node->GetName(),RTOK_MAX_NOPATH)!=NULL)
 		dwFlags|=RM_FLAG_NOTWALKABLE;
 	if(strstr(node->GetName(),RTOK_MAX_PASSTHROUGH)!=NULL) 
@@ -1337,7 +1337,7 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 		dwFlags|=RM_FLAG_PASSBULLET;
 	if(strstr(node->GetName(),RTOK_MAX_PASSROCKET)!=NULL) 
 		dwFlags|=RM_FLAG_PASSROCKET;
-	if(strstr(node->GetName(),RTOK_MAX_NAVIGATION)!=NULL)			// Äù½ºÆ® AI¿ë
+	if(strstr(node->GetName(),RTOK_MAX_NAVIGATION)!=NULL)			// í€˜ìŠ¤íŠ¸ AIìš©
 	{
 		dwFlags|=RM_FLAG_HIDE;
 		dwFlags|=RM_FLAG_AI_NAVIGATION;
@@ -1350,7 +1350,7 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 		dwFlags|=RM_FLAG_RECEIVESHADOW;
 
 
-	// Navigation MeshÀÌ¸é µû·Î ÀÍ½ºÆ÷Æ®.. - bird
+	// Navigation Meshì´ë©´ ë”°ë¡œ ìµìŠ¤í¬íŠ¸.. - bird
 	if (dwFlags & RM_FLAG_AI_NAVIGATION)
 	{
 		ExportNavigationMesh(node, t);
@@ -1412,14 +1412,14 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 			MaxSubMaterial *pmat=rsm->MaxSubMaterialList.Get(nMaterial);
 			if((pmat->dwFlags & RM_FLAG_ADDITIVE) != 0)
 			{
-				// additive ´Â Ãæµ¹Ã¼Å© ÇÏÁö ¾Ê´Â´Ù
+				// additive ëŠ” ì¶©ëŒì²´í¬ í•˜ì§€ ì•ŠëŠ”ë‹¤
 				//				g_nElimFace++;
 				dwFlags|=RM_FLAG_PASSTHROUGH;
 //				continue;
 			}
 		}
 
-		// fnormalÀ» ¹ı¼±À¸·Î ÇÏ°í vertex 0À» Áö³ª´Â Æò¸éÀÇ ¹æÁ¤½ÄÀ» ¸¸µç´Ù
+		// fnormalì„ ë²•ì„ ìœ¼ë¡œ í•˜ê³  vertex 0ì„ ì§€ë‚˜ëŠ” í‰ë©´ì˜ ë°©ì •ì‹ì„ ë§Œë“ ë‹¤
 		Point3 center;
 		Point3 fnormal;
 		poly->mm.ComputeNormal(i,fnormal,&center);
@@ -1432,7 +1432,7 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 		dpoint apoint=P32DP(vertices[f->vtx[0]]);
 		DPlaneFromPointNormal(&plane,apoint,nor);
 
-		// Æú¸®°ïµéÀÌ ¸ğµÎ ÇÑ Æò¸é À§¿¡ ÀÖ°í, º¼·Ï ´Ù°¢ÇüÀÌ¸é ÂÉ°¶ ÇÊ¿ä°¡¾ø´Ù
+		// í´ë¦¬ê³¤ë“¤ì´ ëª¨ë‘ í•œ í‰ë©´ ìœ„ì— ìˆê³ , ë³¼ë¡ ë‹¤ê°í˜•ì´ë©´ ìª¼ê°¤ í•„ìš”ê°€ì—†ë‹¤
 		bool bCoplanar=true;
 		bool bConvex=true;
 
@@ -1449,7 +1449,7 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 
 			dpoint testpoint=P32DP(vertices[f->vtx[j]]);
 			double fCop=DPlaneDotCoord(plane,testpoint);
-			if(fCop<-BSPTOLER || fCop>BSPTOLER)		// µ¿ÀÏ Æò¸éÀ§¿¡ ÀÖ´ÂÁö È®ÀÎ
+			if(fCop<-BSPTOLER || fCop>BSPTOLER)		// ë™ì¼ í‰ë©´ìœ„ì— ìˆëŠ”ì§€ í™•ì¸
 			{
 				bCoplanar=false;
 				break;
@@ -1461,7 +1461,7 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 			normal.Normalize();
 			DPlaneFromPointNormal(&testplane,edgea,normal);
 
-			// °¢°¢ÀÇ edge ¿¡ ´ëÇØ¼­ Æò¸éÀ» ¼¼¿ì°í ±× Æò¸éÀÇ + ÂÊ¿¡ ´ÙÀ½ ¹öÅØ½º°¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù
+			// ê°ê°ì˜ edge ì— ëŒ€í•´ì„œ í‰ë©´ì„ ì„¸ìš°ê³  ê·¸ í‰ë©´ì˜ + ìª½ì— ë‹¤ìŒ ë²„í…ìŠ¤ê°€ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤
 #define CONVEX_TOLER	1.f
 
 			p=vertices[f->vtx[(j+2)%f->deg]];
@@ -1550,7 +1550,7 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 			double fDot=rf->normal.Length();
 			_ASSERT(fDot>0.999);
 		}
-		else // ±×·¸Áö ¾ÊÀ¸¸é ÂÉ°³¾ßÇÑ´Ù
+		else // ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ìª¼ê°œì•¼í•œë‹¤
 		{
 			Tab<int> tris;
 			f->GetTriangles(tris);
@@ -1598,7 +1598,7 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 					rf->v[2].coord==rf->v[1].coord || 
 					rf->v[2].coord==rf->v[0].coord)
 				{
-					// °°ÀºÁ¡ÀÌ ÀÖÀ¸¸é Áö¿î´Ù. ÀÇ¹Ì¾ø´Â Æú¸®°ï
+					// ê°™ì€ì ì´ ìˆìœ¼ë©´ ì§€ìš´ë‹¤. ì˜ë¯¸ì—†ëŠ” í´ë¦¬ê³¤
 					bDelete=true;
 				}
 
@@ -1640,7 +1640,7 @@ void RbsExp::ExportMesh(INode* node, TimeValue t)
 	}
 
 	if (deleteIt) {
-		// ÀÌ·¸°Ô Áö¿ì¸é »¸´Â´Ù -_- why?
+		// ì´ë ‡ê²Œ ì§€ìš°ë©´ ë»—ëŠ”ë‹¤ -_- why?
 		delete poly;
 	}
 
@@ -1716,7 +1716,7 @@ void RbsExp::ExportNavigationMesh(INode* node, TimeValue t)
 	}
 
 /*
-	// ·Î±×¸¦ ³²°Üº»´Ù
+	// ë¡œê·¸ë¥¼ ë‚¨ê²¨ë³¸ë‹¤
 	for (int i = 0; i < pNav->nVertCount; i++)
 	{
 		log("Nav Vert(%d) - %.5f %.5f %.5f\n", i, pNav->vertices[i].x, pNav->vertices[i].y, pNav->vertices[i].z);

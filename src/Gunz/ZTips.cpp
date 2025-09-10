@@ -53,7 +53,7 @@ bool ZTips::Initialize(MZFileSystem* pfs, const MLanguage LangID )
 void ZTips::ParseTips(MXmlElement* pElement)
 {
 	int nCategory=0;
-	pElement->GetAttribute(&nCategory, ZTOK_TIPS_ATTR_CATEGORY, 0);	// default´Â 0
+	pElement->GetAttribute(&nCategory, ZTOK_TIPS_ATTR_CATEGORY, 0);	// defaultëŠ” 0
 
 	MXmlElement childElement;
 	char szTagName[256]=""; char szAttr[256]="";
@@ -73,7 +73,7 @@ void ZTips::ParseTips(MXmlElement* pElement)
 			childElement.GetAttribute(&nMsgID, ZTOK_TIPS_MSG_ATTR_ID, -1);
 			childElement.GetContents(szContents);
 
-			// data ÀÔ·Â
+			// data ìž…ë ¥
 			m_StringVector.push_back(string(szContents));
 
 			ZTIPS_MSG msg;
@@ -115,7 +115,7 @@ const char* ZTips::GetTips(ZTIPS_CATEGORY nCategory, int nID)
 	int nStrIndex = 0;
 	if (nIndices.empty())
 	{
-		_ASSERT(0);	// º¸¿©ÁÙ ¸Þ¼¼Áö°¡ ¾ø´Ù.
+		_ASSERT(0);	// ë³´ì—¬ì¤„ ë©”ì„¸ì§€ê°€ ì—†ë‹¤.
 		return "";
 	}
 	else

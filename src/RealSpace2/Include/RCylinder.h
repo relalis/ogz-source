@@ -50,10 +50,10 @@ void RCylinder::setTransform( rmatrix& world_ ) { mWorld = world_; }
 // Helper Function
 // Shortest Distance Between a Line and a Point
 // return : true - shortest point is exist in a line , false - does not
-// intersection : Á¡°ú line ÀÇ °¡Àå °¡±î¿î ¶óÀÎÀ§ÀÇ ±³Á¡ - ÇöÀç ¾µ¸ğ¾øÀ½
-// direction : lineÀÇ ¹æÇâ - ÇöÀç ¾µ¸ğ¾øÀ½
-// distacne : ¶óÀÎ°ú Á¡°úÀÇ °Å¸®
-// TODO (OPTI)  : ¾µ¸ğ¾ø´Â inputÀ» ¾ø¾Ö°í ¿¬»êÀ» ÁÙÀÎ´Ù 
+// intersection : ì ê³¼ line ì˜ ê°€ì¥ ê°€ê¹Œìš´ ë¼ì¸ìœ„ì˜ êµì  - í˜„ì¬ ì“¸ëª¨ì—†ìŒ
+// direction : lineì˜ ë°©í–¥ - í˜„ì¬ ì“¸ëª¨ì—†ìŒ
+// distacne : ë¼ì¸ê³¼ ì ê³¼ì˜ ê±°ë¦¬
+// TODO (OPTI)  : ì“¸ëª¨ì—†ëŠ” inputì„ ì—†ì• ê³  ì—°ì‚°ì„ ì¤„ì¸ë‹¤ 
 //////////////////////////////////////////////////////////////////////////
 bool getDistanceBetLineSegmentAndPoint( const rvector& lineStart_, 
 									   const rvector& lineEnd_, 

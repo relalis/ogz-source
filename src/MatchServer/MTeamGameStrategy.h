@@ -19,29 +19,29 @@ protected:
 	MBaseTeamGameStrategy() { }
 	virtual ~MBaseTeamGameStrategy() { }
 public:
-	/// µµÀü °¡´ÉÇÑÁö Ã¼Å©ÇÑ´Ù.
+	/// ë„ì „ ê°€ëŠ¥í•œì§€ ì²´í¬í•œë‹¤.
 	virtual int ValidateChallenge(MMatchObject** ppMemberObject, int nMemberCount) = 0;
 
-	/// µµÀüÇÏÀÚ°í ´Ù¸¥»ç¶÷µéÇÑÅ× Á¦¾ÈÇÒ ¼ö ÀÖ´ÂÁö Ã¼Å©ÇÑ´Ù.
+	/// ë„ì „í•˜ìê³  ë‹¤ë¥¸ì‚¬ëŒë“¤í•œí…Œ ì œì•ˆí•  ìˆ˜ ìˆëŠ”ì§€ ì²´í¬í•œë‹¤.
 	virtual int ValidateRequestInviteProposal(MMatchObject* pProposerObject, MMatchObject** ppReplierObjects,
 					const int nReplierCount) = 0;
-	/// »õ·Î¿î LadderGroup ID¸¦ »ı¼ºÇØ¼­ ¹İÈ¯ÇÑ´Ù.
+	/// ìƒˆë¡œìš´ LadderGroup IDë¥¼ ìƒì„±í•´ì„œ ë°˜í™˜í•œë‹¤.
 	virtual int GetNewGroupID(MMatchObject* pLeaderObject, MMatchObject** ppMemberObjects, int nMemberCount) = 0;
 
-	/// LadderGroupÀÇ ÇÊ¿äÇÑ Á¤º¸¸¦ ¼¼ÆÃÇÑ´Ù. ID»©°í..
+	/// LadderGroupì˜ í•„ìš”í•œ ì •ë³´ë¥¼ ì„¸íŒ…í•œë‹¤. IDë¹¼ê³ ..
 	virtual void SetLadderGroup(MLadderGroup* pGroup, MMatchObject** ppMemberObjects, int nMemberCount) = 0;
 
-	/// Stage¿¡¼­ ÇÊ¿äÇÑ LadderInfo¸¦ ¼¼ÆÃÇÑ´Ù.
+	/// Stageì—ì„œ í•„ìš”í•œ LadderInfoë¥¼ ì„¸íŒ…í•œë‹¤.
 	virtual void SetStageLadderInfo(MMatchLadderTeamInfo* poutRedLadderInfo, MMatchLadderTeamInfo* poutBlueLadderInfo,
 									MLadderGroup* pRedGroup, MLadderGroup* pBlueGroup) = 0;
 
-	/// °ÔÀÓÀÌ ³¡³µÀ»¶§ °á°ú¸¦ DB ÀúÀåÇÑ´Ù.
+	/// ê²Œì„ì´ ëë‚¬ì„ë•Œ ê²°ê³¼ë¥¼ DB ì €ì¥í•œë‹¤.
 	virtual void SavePointOnFinishGame(MMatchStage* pStage, MMatchTeam nWinnerTeam, bool bIsDrawGame,
 		                               MMatchLadderTeamInfo* pRedLadderInfo, MMatchLadderTeamInfo* pBlueLadderInfo) = 0;
 
 	virtual int GetRandomMap(int nTeamMember) = 0;
 
-	/// ¼­¹ö¸ğµå¿¡ µû¶ó Àû´çÇÑ ÀÚ½Ä Å¬·¡½º¸¦ ¹İÈ¯ÇÑ´Ù. MSM_LADDER, MSM_CLAN¸¸ °¡´É
+	/// ì„œë²„ëª¨ë“œì— ë”°ë¼ ì ë‹¹í•œ ìì‹ í´ë˜ìŠ¤ë¥¼ ë°˜í™˜í•œë‹¤. MSM_LADDER, MSM_CLANë§Œ ê°€ëŠ¥
 	static MBaseTeamGameStrategy* GetInstance(MMatchServerMode nServerMode);
 };
 

@@ -1,13 +1,13 @@
 /* 
 	MDebugNew.h
 
-	ÀÌ ÆÄÀÏÀ» include ÇÏ¸é MNewMemories::Init() ºÎÅÍ 
-	MNewMemories::Shutdown() »çÀÌ¿¡ ÀÖ´Â new / delete ¸¦ ÃßÀûÇÕ´Ï´Ù
+	ì´ íŒŒì¼ì„ include í•˜ë©´ MNewMemories::Init() ë¶€í„° 
+	MNewMemories::Shutdown() ì‚¬ì´ì— ìˆëŠ” new / delete ë¥¼ ì¶”ì í•©ë‹ˆë‹¤
 
-	MNewMemories::Dump() ¸¦ È£ÃâÇÏ¸é ÇöÀç ÇöÀç±îÁö ÇÒ´çµÈ ¸Ş¸ğ¸® ¸ñ·ÏÀ»
-	debugÃâ·ÂÃ¢°ú memorydump.txt ¶ó´Â ÆÄÀÏ·Î ÀúÀåÇÕ´Ï´Ù
+	MNewMemories::Dump() ë¥¼ í˜¸ì¶œí•˜ë©´ í˜„ì¬ í˜„ì¬ê¹Œì§€ í• ë‹¹ëœ ë©”ëª¨ë¦¬ ëª©ë¡ì„
+	debugì¶œë ¥ì°½ê³¼ memorydump.txt ë¼ëŠ” íŒŒì¼ë¡œ ì €ì¥í•©ë‹ˆë‹¤
 
-	¶ÇÇÑ shutdown ÇÒ¶§µµ dump¸¦ ÇÏ¹Ç·Î deleteµÇÁö ¾ÊÀº ¸ñ·ÏÀ» Ãâ·ÂÇÕ´Ï´Ù
+	ë˜í•œ shutdown í• ë•Œë„ dumpë¥¼ í•˜ë¯€ë¡œ deleteë˜ì§€ ì•Šì€ ëª©ë¡ì„ ì¶œë ¥í•©ë‹ˆë‹¤
 */
 
 
@@ -35,7 +35,7 @@ typedef list<MNEWINFO*>					MNEWLIST;
 typedef map<void*,MNEWLIST::iterator>	MNEWPOINTERMAP;
 
 class MNewMemories {
-	static int				m_nID;		// ÇÒ´çµÇ´Â ¹øÈ£
+	static int				m_nID;		// í• ë‹¹ë˜ëŠ” ë²ˆí˜¸
 	static MNEWLIST			m_List;
 	static MNEWPOINTERMAP	m_Pointers;
 	static HINSTANCE		m_hModule;
@@ -57,7 +57,7 @@ void* operator new[]( size_t _size );
 void operator delete(void* addr);
 void operator delete[](void* addr);
 
-#else	// ºñÈ°¼ºÈ­
+#else	// ë¹„í™œì„±í™”
 class MNewMemories {
 public:
 	static bool Init();

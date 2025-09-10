@@ -20,31 +20,31 @@ public:
 	CImage24();
 	virtual ~CImage24();
 
-	// ÁöÁ¤ÇÑ Å©±â·Î ¹öÆÛ¸¸ ÇÒ´ç
+	// ì§€ì •í•œ í¬ê¸°ë¡œ ë²„í¼ë§Œ í• ë‹¹
 	BOOL Open(int nWidth,int nHeight);
-	// ·ÎµåµÈ ÀÌ¹ÌÁö¸¦ ÀÌ ¿ÀºêÁ§Æ®¿¡ º¹»çÇÔ
+	// ë¡œë“œëœ ì´ë¯¸ì§€ë¥¼ ì´ ì˜¤ë¸Œì íŠ¸ì— ë³µì‚¬í•¨
 	BOOL Open(CDib *pDib);
-	// ÇØÁ¦
+	// í•´ì œ
 	void Close();
 
-	// Open µÇ¾ú´Â°¡?
+	// Open ë˜ì—ˆëŠ”ê°€?
 	BOOL IsOpen(void);
 
-	// ³»ºÎ ¹öÆÛÀÇ Æ÷ÀÎÅÍ ¾ò±â
+	// ë‚´ë¶€ ë²„í¼ì˜ í¬ì¸í„° ì–»ê¸°
 	LPBYTE GetData(void);
-	// µ¥ÀÌÅ¸ ºí·° Å©±â ¾ò±â
+	// ë°ì´íƒ€ ë¸”ëŸ­ í¬ê¸° ì–»ê¸°
 	int GetDataSize(void);
 	// BitBlt
 	void BitBlt(LPBYTE pDst,WORD nDstX,WORD nDstY,WORD nDstPitch,WORD nSrcX,WORD nSrcY,WORD nSrcWidth,WORD nSrcHeight);
 	// BitBlt with Pitch width(byte value)
 	void CImage24::BitBltwp(LPBYTE pDst,WORD nDstX,WORD nDstY,WORD nPitchByte,WORD nSrcX,WORD nSrcY,WORD nSrcWidth,WORD nSrcHeight);
 
-	// °¡·Î Æø ¾ò±â
+	// ê°€ë¡œ í­ ì–»ê¸°
 	WORD GetWidth(void);
-	// ¼¿·Î Æø ¾ò±â
+	// ì…€ë¡œ í­ ì–»ê¸°
 	WORD GetHeight(void);
 
-	// °¡·Î ÇÇÄ¡ ¾ò±â(Byte)
+	// ê°€ë¡œ í”¼ì¹˜ ì–»ê¸°(Byte)
 	WORD GetPitch(void);
 };
 

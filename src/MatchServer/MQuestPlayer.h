@@ -18,51 +18,51 @@ class MQuestRewardZItemList : public std::list<RewardZItemInfo>
 {
 };
 
-/// Äù½ºÆ® ·ê¿¡¼­ ¾²ÀÌ´Â ÇÃ·¹ÀÌ Á¤º¸
+/// í€˜ìŠ¤íŠ¸ ë£°ì—ì„œ ì“°ì´ëŠ” í”Œë ˆì´ ì •ë³´
 struct MQuestPlayerInfo
 {
-	// NPC Control °ü·Ã /////////
-	MMatchObject*		pObject;					///< Object Á¤º¸
-	u32	nNPCControlCheckSum;		///< NPC Á¶Á¾ Ã¼Å©¼¶
-	MMatchNPCObjectMap	NPCObjects;					///< Á¶Á¾ÁßÀÎ NPC
-	bool				bEnableNPCControl;			///< NPC ControlÀÌ °¡´ÉÇÑÁö ¿©ºÎ
+	// NPC Control ê´€ë ¨ /////////
+	MMatchObject*		pObject;					///< Object ì •ë³´
+	u32	nNPCControlCheckSum;		///< NPC ì¡°ì¢… ì²´í¬ì„¬
+	MMatchNPCObjectMap	NPCObjects;					///< ì¡°ì¢…ì¤‘ì¸ NPC
+	bool				bEnableNPCControl;			///< NPC Controlì´ ê°€ëŠ¥í•œì§€ ì—¬ë¶€
 
-	/// NPC °ü¸® Á¡¼ö
-	/// - ½ºÄÚ¾î°¡ ³·À»¼ö·Ï ¿ì¼±¼øÀ§°¡ ³ô¾ÆÁü
+	/// NPC ê´€ë¦¬ ì ìˆ˜
+	/// - ìŠ¤ì½”ì–´ê°€ ë‚®ì„ìˆ˜ë¡ ìš°ì„ ìˆœìœ„ê°€ ë†’ì•„ì§
 	int GetNPCControlScore()						
 	{
-		// Áö±İÀº ±×³É Á¶Á¾ÇÏ´Â NPC °³¼ö
+		// ì§€ê¸ˆì€ ê·¸ëƒ¥ ì¡°ì¢…í•˜ëŠ” NPC ê°œìˆ˜
 		return (int)(NPCObjects.size());
 	}
 
 
-	// Äù½ºÆ® ·ê °ü·Ã ///////////
-	bool				bMovedtoNewSector;			///< ´ÙÀ½ ¼½ÅÍ·Î ÀÌµ¿Çß´ÂÁö ¿©ºÎ
+	// í€˜ìŠ¤íŠ¸ ë£° ê´€ë ¨ ///////////
+	bool				bMovedtoNewSector;			///< ë‹¤ìŒ ì„¹í„°ë¡œ ì´ë™í–ˆëŠ”ì§€ ì—¬ë¶€
 
 
-	// ¼­¹ÙÀÌ¹ú ·ê °ü·Ã /////////
+	// ì„œë°”ì´ë²Œ ë£° ê´€ë ¨ /////////
 
 
 
-	// º¸»ó °ü·Ã ////////////////
+	// ë³´ìƒ ê´€ë ¨ ////////////////
 	int						nQL;						///< QL
-	int						nDeathCount;				///< Á×Àº È¸¼ö
-	int						nUsedPageSacriItemCount;	///< ±âº» Èñ»ı ¾ÆÀÌÅÛ »ç¿ë °³¼ö(ÆäÀÌÁö)
-	int						nUsedExtraSacriItemCount;	///< Ãß°¡ Èñ»ı ¾ÆÀÌÅÛ »ç¿ë °³¼ö
-	int						nXP;						///< ¾òÀº XP
-	int						nBP;						///< ¾òÀº BP
+	int						nDeathCount;				///< ì£½ì€ íšŒìˆ˜
+	int						nUsedPageSacriItemCount;	///< ê¸°ë³¸ í¬ìƒ ì•„ì´í…œ ì‚¬ìš© ê°œìˆ˜(í˜ì´ì§€)
+	int						nUsedExtraSacriItemCount;	///< ì¶”ê°€ í¬ìƒ ì•„ì´í…œ ì‚¬ìš© ê°œìˆ˜
+	int						nXP;						///< ì–»ì€ XP
+	int						nBP;						///< ì–»ì€ BP
 
-	MQuestItemMap			RewardQuestItemMap;			///< ¾òÀº Äù½ºÆ® ¾ÆÀÌÅÛ
+	MQuestItemMap			RewardQuestItemMap;			///< ì–»ì€ í€˜ìŠ¤íŠ¸ ì•„ì´í…œ
 	MQuestRewardZItemList	RewardZItemList;
 
 
-	// Log°ü·Ã ////////////////// - by Ãß±³¼º.
+	// Logê´€ë ¨ ////////////////// - by ì¶”êµì„±.
 	// char				szName[ 24 ];
 
 
-	/// ÃÊ±âÈ­
-	/// @param pObj		ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ® Á¤º¸
-	/// @param a_nQL	ÇÃ·¹ÀÌ¾î Äù½ºÆ® ·¹º§
+	/// ì´ˆê¸°í™”
+	/// @param pObj		í”Œë ˆì´ì–´ ì˜¤ë¸Œì íŠ¸ ì •ë³´
+	/// @param a_nQL	í”Œë ˆì´ì–´ í€˜ìŠ¤íŠ¸ ë ˆë²¨
 	void Init(MMatchObject* pObj, int a_nQL)
 	{
 		pObject = pObj;
@@ -82,27 +82,27 @@ struct MQuestPlayerInfo
 		RewardZItemList.clear();
 	}
 
-	/// »ı¼ºÀÚ
+	/// ìƒì„±ì
 	MQuestPlayerInfo() : nXP(0), nBP(0)
 	{
 		
 	}
 };
 
-/// Äù½ºÆ®·êÀÇ ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ® °ü¸®ÀÚ
+/// í€˜ìŠ¤íŠ¸ë£°ì˜ í”Œë ˆì´ì–´ ì˜¤ë¸Œì íŠ¸ ê´€ë¦¬ì
 class MQuestPlayerManager : public map<MUID, MQuestPlayerInfo*>
 {
 private:
 	MMatchStage* m_pStage;
 	void AddPlayer(MUID& uidPlayer);
 public:
-	MQuestPlayerManager();										///< »ı¼ºÀÚ
-	~MQuestPlayerManager();										///< ¼Ò¸êÀÚ
-	void Create(MMatchStage* pStage);							///< ÃÊ±âÈ­
-	void Destroy();												///< ÇØÁ¦
-	void DelPlayer(MUID& uidPlayer);							///< ÇÃ·¹ÀÌ¾î »èÁ¦
-	void Clear();												///< ÃÊ±âÈ­
-	MQuestPlayerInfo* GetPlayerInfo(const MUID& uidPlayer);		///< ÇÃ·¹ÀÌ¾î Á¤º¸ ¹İÈ¯
+	MQuestPlayerManager();										///< ìƒì„±ì
+	~MQuestPlayerManager();										///< ì†Œë©¸ì
+	void Create(MMatchStage* pStage);							///< ì´ˆê¸°í™”
+	void Destroy();												///< í•´ì œ
+	void DelPlayer(MUID& uidPlayer);							///< í”Œë ˆì´ì–´ ì‚­ì œ
+	void Clear();												///< ì´ˆê¸°í™”
+	MQuestPlayerInfo* GetPlayerInfo(const MUID& uidPlayer);		///< í”Œë ˆì´ì–´ ì •ë³´ ë°˜í™˜
 };
 
 #endif

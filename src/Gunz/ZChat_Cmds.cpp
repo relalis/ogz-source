@@ -28,27 +28,27 @@
 
 void ChatCmd_Test(const char* line, const int argc, char **const argv);				// Testing
 
-void ChatCmd_Help(const char* line, const int argc, char **const argv);				// µµ¿ò¸»
-void ChatCmd_Go(const char* line, const int argc, char **const argv);					// °ÔÀÓ¹æ ÀÌµ¿
-void ChatCmd_Whisper(const char* line, const int argc, char **const argv);			// ±Ó¼Ó¸»
-void ChatCmd_CreateChatRoom(const char* line, const int argc, char **const argv);		// Ã¤ÆÃ¹æ °³¼³
-void ChatCmd_JoinChatRoom(const char* line, const int argc, char **const argv);		// Ã¤ÆÃ¹æ Âü¿©
-void ChatCmd_LeaveChatRoom(const char* line, const int argc, char **const argv);		// Ã¤ÆÃ¹æ Å»Åğ
-void ChatCmd_SelectChatRoom(const char* line, const int argc, char **const argv);		// Ã¤ÆÃ¹æ ¼±ÅÃ
-void ChatCmd_InviteChatRoom(const char* line, const int argc, char **const argv);		// Ã¤ÆÃ¹æ ÃÊ´ë
-void ChatCmd_VisitChatRoom(const char* line, const int argc, char **const argv);		// Ã¤ÆÃ¹æ ÃÊ´ë Âü¼®
-void ChatCmd_ChatRoomChat(const char* line, const int argc, char **const argv);		// Ã¤ÆÃ
-void ChatCmd_CopyToTestServer(const char* line, const int argc, char **const argv);	// Ä³¸¯ÅÍÀü¼Û - Å×½ºÆ® ¼­¹ö·Î Ä³¸¯ÅÍ Àü¼Û
-void ChatCmd_StageFollow(const char* line, const int argc, char **const argv);		// ÇÃ·¹ÀÌ¾î ÃßÀûÇØ¼­ °ÔÀÓÂü°¡
-void ChatCmd_Friend(const char* line, const int argc, char **const argv);				// Ä£±¸ °ü·Ã
-void ChatCmd_Clan(const char* line, const int argc, char **const argv);				// Å¬¶õ °ü·Ã
+void ChatCmd_Help(const char* line, const int argc, char **const argv);				// ë„ì›€ë§
+void ChatCmd_Go(const char* line, const int argc, char **const argv);					// ê²Œì„ë°© ì´ë™
+void ChatCmd_Whisper(const char* line, const int argc, char **const argv);			// ê·“ì†ë§
+void ChatCmd_CreateChatRoom(const char* line, const int argc, char **const argv);		// ì±„íŒ…ë°© ê°œì„¤
+void ChatCmd_JoinChatRoom(const char* line, const int argc, char **const argv);		// ì±„íŒ…ë°© ì°¸ì—¬
+void ChatCmd_LeaveChatRoom(const char* line, const int argc, char **const argv);		// ì±„íŒ…ë°© íƒˆí‡´
+void ChatCmd_SelectChatRoom(const char* line, const int argc, char **const argv);		// ì±„íŒ…ë°© ì„ íƒ
+void ChatCmd_InviteChatRoom(const char* line, const int argc, char **const argv);		// ì±„íŒ…ë°© ì´ˆëŒ€
+void ChatCmd_VisitChatRoom(const char* line, const int argc, char **const argv);		// ì±„íŒ…ë°© ì´ˆëŒ€ ì°¸ì„
+void ChatCmd_ChatRoomChat(const char* line, const int argc, char **const argv);		// ì±„íŒ…
+void ChatCmd_CopyToTestServer(const char* line, const int argc, char **const argv);	// ìºë¦­í„°ì „ì†¡ - í…ŒìŠ¤íŠ¸ ì„œë²„ë¡œ ìºë¦­í„° ì „ì†¡
+void ChatCmd_StageFollow(const char* line, const int argc, char **const argv);		// í”Œë ˆì´ì–´ ì¶”ì í•´ì„œ ê²Œì„ì°¸ê°€
+void ChatCmd_Friend(const char* line, const int argc, char **const argv);				// ì¹œêµ¬ ê´€ë ¨
+void ChatCmd_Clan(const char* line, const int argc, char **const argv);				// í´ë€ ê´€ë ¨
 
-void ChatCmd_RequestQuickJoin(const char* line, const int argc, char **const argv);		// ÄüÁ¶ÀÎ
-void ChatCmd_Report119(const char* line, const int argc, char **const argv);				// ½Å°í
-void ChatCmd_RequestPlayerInfo(const char* line, const int argc, char **const argv);		// »ç¿ëÀÚ Á¤º¸º¸±â
+void ChatCmd_RequestQuickJoin(const char* line, const int argc, char **const argv);		// í€µì¡°ì¸
+void ChatCmd_Report119(const char* line, const int argc, char **const argv);				// ì‹ ê³ 
+void ChatCmd_RequestPlayerInfo(const char* line, const int argc, char **const argv);		// ì‚¬ìš©ì ì •ë³´ë³´ê¸°
 void ChatCmd_Macro(const char* line,const int argc, char **const argv);
 
-// °ÔÀÓ¾È¿¡¼­¸¸ °¡´ÉÇÑ ¸í·É¾î
+// ê²Œì„ì•ˆì—ì„œë§Œ ê°€ëŠ¥í•œ ëª…ë ¹ì–´
 void ChatCmd_EmotionTaunt(const char* line,const int argc, char **const argv);
 void ChatCmd_EmotionBow(const char* line,const int argc, char **const argv);
 void ChatCmd_EmotionWave(const char* line,const int argc, char **const argv);
@@ -66,30 +66,30 @@ void ChatCmd_LadderInvite(const char* line,const int argc, char **const argv);
 void ChatCmd_LadderTest(const char* line,const int argc, char **const argv);
 void ChatCmd_LaunchTest(const char* line,const int argc, char **const argv);
 
-// Äù½ºÆ® Å×½ºÆ®¿ë ¸í·É¾î
-void ChatCmd_QUESTTEST_God(const char* line,const int argc, char **const argv);				// ¹«Àû¸ğµå
-void ChatCmd_QUESTTEST_SpawnNPC(const char* line,const int argc, char **const argv);		// NPC ½ºÆù
-void ChatCmd_QUESTTEST_NPCClear(const char* line,const int argc, char **const argv);		// NPC Å¬¸®¾î
-void ChatCmd_QUESTTEST_Reload(const char* line,const int argc, char **const argv);			// ¸®¼Ò½º ¸®·Îµå
-void ChatCmd_QUESTTEST_SectorClear(const char* line,const int argc, char **const argv);		// ¼½ÅÍ Å¬¸®¾î
-void ChatCmd_QUESTTEST_Finish(const char* line,const int argc, char **const argv);			// Äù½ºÆ® Å¬¸®¾î
-void ChatCmd_QUESTTEST_LocalSpawnNPC(const char* line,const int argc, char **const argv);	// npc ½ºÆù (local)
-void ChatCmd_QUESTTEST_WeakNPCs(const char* line,const int argc, char **const argv);		// NPC ¿¡³ÊÁö¸¦ 1·Î
+// í€˜ìŠ¤íŠ¸ í…ŒìŠ¤íŠ¸ìš© ëª…ë ¹ì–´
+void ChatCmd_QUESTTEST_God(const char* line,const int argc, char **const argv);				// ë¬´ì ëª¨ë“œ
+void ChatCmd_QUESTTEST_SpawnNPC(const char* line,const int argc, char **const argv);		// NPC ìŠ¤í°
+void ChatCmd_QUESTTEST_NPCClear(const char* line,const int argc, char **const argv);		// NPC í´ë¦¬ì–´
+void ChatCmd_QUESTTEST_Reload(const char* line,const int argc, char **const argv);			// ë¦¬ì†ŒìŠ¤ ë¦¬ë¡œë“œ
+void ChatCmd_QUESTTEST_SectorClear(const char* line,const int argc, char **const argv);		// ì„¹í„° í´ë¦¬ì–´
+void ChatCmd_QUESTTEST_Finish(const char* line,const int argc, char **const argv);			// í€˜ìŠ¤íŠ¸ í´ë¦¬ì–´
+void ChatCmd_QUESTTEST_LocalSpawnNPC(const char* line,const int argc, char **const argv);	// npc ìŠ¤í° (local)
+void ChatCmd_QUESTTEST_WeakNPCs(const char* line,const int argc, char **const argv);		// NPC ì—ë„ˆì§€ë¥¼ 1ë¡œ
 
-// admin ¸í·É
-void ChatCmd_AdminBanPlayer(const char* line, const int argc, char **const argv);		// µğ½ºÄ¿³ØÆ® ½ÃÅ´
-void ChatCmd_AdminPingToAll(const char* line, const int argc, char **const argv);		// Garbage Connection Ã»¼Ò È®ÀÎ
-void ChatCmd_AdminAnnounce(const char* line, const int argc, char **const argv);		// ÀüÃ¼ °øÁö
-void ChatCmd_AdminServerHalt(const char* line, const int argc, char **const argv);		// ¼­¹ö Á¾·á
-void ChatCmd_AdminSwitchCreateLadderGame(const char* line, const int argc, char **const argv);		// Å¬·£Àü ¿©ºÎ ¼³Á¤
-void ChatCmd_AdminReloadClientHash(const char* line, const int argc, char **const argv);		// XTrap Å¬¶óÀÌ¾ğÆ® Hash ¸®·Îµå
+// admin ëª…ë ¹
+void ChatCmd_AdminBanPlayer(const char* line, const int argc, char **const argv);		// ë””ìŠ¤ì»¤ë„¥íŠ¸ ì‹œí‚´
+void ChatCmd_AdminPingToAll(const char* line, const int argc, char **const argv);		// Garbage Connection ì²­ì†Œ í™•ì¸
+void ChatCmd_AdminAnnounce(const char* line, const int argc, char **const argv);		// ì „ì²´ ê³µì§€
+void ChatCmd_AdminServerHalt(const char* line, const int argc, char **const argv);		// ì„œë²„ ì¢…ë£Œ
+void ChatCmd_AdminSwitchCreateLadderGame(const char* line, const int argc, char **const argv);		// í´ëœì „ ì—¬ë¶€ ì„¤ì •
+void ChatCmd_AdminReloadClientHash(const char* line, const int argc, char **const argv);		// XTrap í´ë¼ì´ì–¸íŠ¸ Hash ë¦¬ë¡œë“œ
 void ChatCmd_AdminResetAllHackingBlock( const char* line, const int argc, char **const argv );
 void ChatCmd_AdminTeleport2(const char* line, const int argc, char **const argv);		//Added Teleport command from RageZone http://forum.ragezone.com/f245/chat-command-teleportplayer-1072791/
 
-// event ÁøÇà¿î¿µÀÚ ¸í·É
-void ChatCmd_ChangeMaster(const char* line, const int argc, char **const argv);			// ¹æÀå±ÇÇÑ »©¾Ñ¾î¿È
-void ChatCmd_ChangePassword(const char* line, const int argc, char **const argv);		// ¹æ ÆĞ½º¿öµå ¹Ù²Ş
-void ChatCmd_AdminHide(const char* line, const int argc, char **const argv);			// Åõ¸íÀÎ°£
+// event ì§„í–‰ìš´ì˜ì ëª…ë ¹
+void ChatCmd_ChangeMaster(const char* line, const int argc, char **const argv);			// ë°©ì¥ê¶Œí•œ ë¹¼ì•—ì–´ì˜´
+void ChatCmd_ChangePassword(const char* line, const int argc, char **const argv);		// ë°© íŒ¨ìŠ¤ì›Œë“œ ë°”ê¿ˆ
+void ChatCmd_AdminHide(const char* line, const int argc, char **const argv);			// íˆ¬ëª…ì¸ê°„
 void ChatCmd_RequestJjang(const char* line, const int argc, char **const argv);
 void ChatCmd_RemoveJjang(const char* line, const int argc, char **const argv);
 
@@ -119,7 +119,7 @@ void _AddCmdFromXml(ZChatCmdManager* pCmdManager, ZCmdXmlParser* pParser,
 #define _CC_ALIAS(NEW,TAR)					m_CmdManager.AddAlias(NEW,TAR)
 #define _CC_ACX(X1,X2,X3,X4,X5,X6)			_AddCmdFromXml(&m_CmdManager,&parser,X1,X2,X3,X4,X5,X6)
 
-// Ã¤ÆÃ¸í·É¾î »ç¿ë¹ıÀº http://iworks.maietgames.com/mdn/wiki.php/°ÇÁî;Ã¤ÆÃ¸í·É¾î ¿¡ Àû¾îÁÖ¼¼¿ä.. by bird
+// ì±„íŒ…ëª…ë ¹ì–´ ì‚¬ìš©ë²•ì€ http://iworks.maietgames.com/mdn/wiki.php/ê±´ì¦ˆ;ì±„íŒ…ëª…ë ¹ì–´ ì— ì ì–´ì£¼ì„¸ìš”.. by bird
 
 void ZChat::InitCmds()
 {
@@ -166,7 +166,7 @@ void ZChat::InitCmds()
 	// admin
 	_CC_AC("admin_ban", &ChatCmd_AdminBanPlayer, CCF_ADMIN, ARGVNoMin, 1, true,"/admin_ban <charname>", "");
 	_CC_AC("admin_pingtoall", &ChatCmd_AdminPingToAll,	CCF_ADMIN, ARGVNoMin, ARGVNoMax, true,"/admin_pingtoall", "");
-	_CC_AC("admin_wall", &ChatCmd_AdminAnnounce,		CCF_ADMIN, ARGVNoMin, 1 , true,"/admin_wall <¸Ş½ÃÁö>", "");
+	_CC_AC("admin_wall", &ChatCmd_AdminAnnounce,		CCF_ADMIN, ARGVNoMin, 1 , true,"/admin_wall <ë©”ì‹œì§€>", "");
 	_CC_AC("admin_halt", &ChatCmd_AdminServerHalt, CCF_ADMIN, ARGVNoMin, ARGVNoMax, true,"/admin_halt", "");
 	_CC_AC("admin_switch_laddergame", &ChatCmd_AdminSwitchCreateLadderGame,	CCF_ADMIN, ARGVNoMin, ARGVNoMax, true,"/admin_switch_laddergame 1", "");
 	_CC_AC("changemaster", &ChatCmd_ChangeMaster, CCF_ADMIN|CCF_STAGE|CCF_GAME, ARGVNoMin, ARGVNoMax, true,"/changemaster", "");
@@ -179,37 +179,37 @@ void ZChat::InitCmds()
 	_CC_AC("admin_reset_all_hacking_block", &ChatCmd_AdminResetAllHackingBlock, CCF_ADMIN, ARGVNoMin, ARGVNoMax, true, "/admin_reset_all_hacking_block", "");
 	_CC_AC("teleportplayer", &ChatCmd_AdminTeleport2, CCF_ADMIN, ARGVNoMin, 1, true, "/teleportplayer <name>", "");
 	
-	_CC_ALIAS("°øÁö", "admin_wall");
-	_CC_ALIAS("Á¾·á", "admin_halt");
+	_CC_ALIAS("ê³µì§€", "admin_wall");
+	_CC_ALIAS("ì¢…ë£Œ", "admin_halt");
 
 
 #ifdef _DEBUG
-	//_CC_AC("Ä³¸¯ÅÍÀü¼Û", &ChatCmd_CopyToTestServer, CCF_LOBBY, ARGVNoMin, 0, "/Ä³¸¯ÅÍÀü¼Û", "Ä³¸¯ÅÍ Á¤º¸¸¦ Å×½ºÆ®¼­¹ö¿¡ º¹»çÇÕ´Ï´Ù.");
+	//_CC_AC("ìºë¦­í„°ì „ì†¡", &ChatCmd_CopyToTestServer, CCF_LOBBY, ARGVNoMin, 0, "/ìºë¦­í„°ì „ì†¡", "ìºë¦­í„° ì •ë³´ë¥¼ í…ŒìŠ¤íŠ¸ì„œë²„ì— ë³µì‚¬í•©ë‹ˆë‹¤.");
 	_CC_AC("team", &ChatCmd_LadderInvite, CCF_LOBBY, ARGVNoMin, ARGVNoMax, true, "", "");
-	_CC_AC("test", &ChatCmd_Test, CCF_ALL, ARGVNoMin, 1, true ,"/test <name>", "Å×½ºÆ®¸¦ ¼öÇàÇÕ´Ï´Ù.");
-	_CC_AC("laddertest", &ChatCmd_LadderTest, CCF_ADMIN|CCF_ALL, ARGVNoMin, ARGVNoMax, true ,"/laddertest", "·¡´õÅ×½ºÆ®¸¦ ¿äÃ»ÇÕ´Ï´Ù.");
-	_CC_AC("launchtest", &ChatCmd_LaunchTest, CCF_ADMIN|CCF_ALL, ARGVNoMin, ARGVNoMax, true ,"/laddertest", "·¡´õÅ×½ºÆ®¸¦ ¿äÃ»ÇÕ´Ï´Ù.");
+	_CC_AC("test", &ChatCmd_Test, CCF_ALL, ARGVNoMin, 1, true ,"/test <name>", "í…ŒìŠ¤íŠ¸ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.");
+	_CC_AC("laddertest", &ChatCmd_LadderTest, CCF_ADMIN|CCF_ALL, ARGVNoMin, ARGVNoMax, true ,"/laddertest", "ë˜ë”í…ŒìŠ¤íŠ¸ë¥¼ ìš”ì²­í•©ë‹ˆë‹¤.");
+	_CC_AC("launchtest", &ChatCmd_LaunchTest, CCF_ADMIN|CCF_ALL, ARGVNoMin, ARGVNoMax, true ,"/laddertest", "ë˜ë”í…ŒìŠ¤íŠ¸ë¥¼ ìš”ì²­í•©ë‹ˆë‹¤.");
 #endif
 
-	_CC_AC("go",		&ChatCmd_Go, CCF_LOBBY, ARGVNoMin, 1, true, "/go ¹æ¹øÈ£", "°ÔÀÓ¹æÀ¸·Î ¹Ù·Î ÀÌµ¿ÇÕ´Ï´Ù.");
+	_CC_AC("go",		&ChatCmd_Go, CCF_LOBBY, ARGVNoMin, 1, true, "/go ë°©ë²ˆí˜¸", "ê²Œì„ë°©ìœ¼ë¡œ ë°”ë¡œ ì´ë™í•©ë‹ˆë‹¤.");
 
 #ifndef _PUBLISH
 {
 
-	// ¾ÆÁ÷ ´Ù ±¸ÇöµÇÁö ¾Ê¾ÒÀ½
-	_CC_AC("pf",		&ChatCmd_RequestPlayerInfo, CCF_LOBBY|CCF_STAGE, ARGVNoMin, 2, true ,"/pf <Ä³¸¯ÅÍÀÌ¸§>", "´Ù¸¥ »ç¿ëÀÚÀÇ Á¤º¸¸¦ º¾´Ï´Ù.");
-	_CC_ALIAS("¤Ä¤©", "pf");
+	// ì•„ì§ ë‹¤ êµ¬í˜„ë˜ì§€ ì•Šì•˜ìŒ
+	_CC_AC("pf",		&ChatCmd_RequestPlayerInfo, CCF_LOBBY|CCF_STAGE, ARGVNoMin, 2, true ,"/pf <ìºë¦­í„°ì´ë¦„>", "ë‹¤ë¥¸ ì‚¬ìš©ìì˜ ì •ë³´ë¥¼ ë´…ë‹ˆë‹¤.");
+	_CC_ALIAS("ã…”ã„¹", "pf");
 }
 #endif
 
-	// Å×½ºÆ® Àü¿ë
+	// í…ŒìŠ¤íŠ¸ ì „ìš©
 	_CC_AC("gtgod",			&ChatCmd_QUESTTEST_God,				CCF_TEST, ARGVNoMin, 1    , true,"/gtgod", "");
-	_CC_AC("gtspn",			&ChatCmd_QUESTTEST_SpawnNPC,		CCF_TEST, ARGVNoMin, 2    , true,"/gtspn <NPCÅ¸ÀÔ> <NPC¼ö>", "");
+	_CC_AC("gtspn",			&ChatCmd_QUESTTEST_SpawnNPC,		CCF_TEST, ARGVNoMin, 2    , true,"/gtspn <NPCíƒ€ì…> <NPCìˆ˜>", "");
 	_CC_AC("gtclear",		&ChatCmd_QUESTTEST_NPCClear,		CCF_TEST, ARGVNoMin, 1    , true,"/gtclear", "");
 	_CC_AC("gtreload",		&ChatCmd_QUESTTEST_Reload,			CCF_TEST, ARGVNoMin, 1    , true,"/gtreload", "");
 	_CC_AC("gtsc",			&ChatCmd_QUESTTEST_SectorClear,		CCF_TEST, ARGVNoMin, 1    , true,"/gtsc", "");
 	_CC_AC("gtfin",			&ChatCmd_QUESTTEST_Finish,			CCF_TEST, ARGVNoMin, 1    , true,"/gtfin", "");
-	_CC_AC("gtlspn",		&ChatCmd_QUESTTEST_LocalSpawnNPC,	CCF_TEST, ARGVNoMin, 2    , true,"/gtlspn <NPCÅ¸ÀÔ> <NPC¼ö>", "");
+	_CC_AC("gtlspn",		&ChatCmd_QUESTTEST_LocalSpawnNPC,	CCF_TEST, ARGVNoMin, 2    , true,"/gtlspn <NPCíƒ€ì…> <NPCìˆ˜>", "");
 	_CC_AC("gtweaknpcs",	&ChatCmd_QUESTTEST_WeakNPCs,		CCF_TEST, ARGVNoMin, 1    , true,"/gtweaknpcs", "");
 }
 
@@ -349,14 +349,14 @@ void ChatCmd_Whisper(const char* line, const int argc, char **const argv)
 	}
 
 
-	char* pszSenderName = "Me";	// ¾Æ¹«°Å³ª º¸³»µµ ¼­¹ö¿¡¼­ Ã¤¿ö³ÖÀ½
+	char* pszSenderName = "Me";	// ì•„ë¬´ê±°ë‚˜ ë³´ë‚´ë„ ì„œë²„ì—ì„œ ì±„ì›Œë„£ìŒ
 
 	char szName[512] = "";
 
 	MLex lex;
 	char* pszMsg = lex.GetOneArg(argv[1], szName);
 
-	// ¿åÇÊÅÍ¸µ
+	// ìš•í•„í„°ë§
 	if (!ZGetGameInterface()->GetChat()->CheckChatFilter(pszMsg)) return;
 
 	ZPostWhisper(pszSenderName, szName, pszMsg);
@@ -475,7 +475,7 @@ void ChatCmd_ChatRoomChat(const char* line, const int argc, char **const argv)
 	}
 	char* pszMsg = argv[1];
 
-	// ¿åÇÊÅÍ¸µ
+	// ìš•í•„í„°ë§
 	if (!ZGetGameInterface()->GetChat()->CheckChatFilter(pszMsg)) return;
 
 	ZPostChatRoomChat(pszMsg);
@@ -484,7 +484,7 @@ void ChatCmd_ChatRoomChat(const char* line, const int argc, char **const argv)
 
 void ChatCmd_CopyToTestServer(const char* line, const int argc, char **const argv)
 {
-	// »ç¿ëÇÏÁö ¾Ê´Â´Ù. - Å×½ºÆ® ¼­¹ö·Î Á¤º¸ º¹»ç
+	// ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤. - í…ŒìŠ¤íŠ¸ ì„œë²„ë¡œ ì •ë³´ ë³µì‚¬
 	return;
 
 
@@ -493,7 +493,7 @@ void ChatCmd_CopyToTestServer(const char* line, const int argc, char **const arg
 	static u32 st_nLastTime = 0;
 	u32 nNowTime = GetGlobalTimeMS();
 
-#define DELAY_POST_COPY_TO_TESTSERVER		(1000 * 60)		// 5ºĞ µô·¹ÀÌ
+#define DELAY_POST_COPY_TO_TESTSERVER		(1000 * 60)		// 5ë¶„ ë”œë ˆì´
 
 	if ((nNowTime - st_nLastTime) > DELAY_POST_COPY_TO_TESTSERVER)
 	{
@@ -531,19 +531,19 @@ void ChatCmd_Friend(const char* line, const int argc, char **const argv)
 		ZFRIENDCMD GetSubCommand(const char* pszCmd) {
 			if (_stricmp(pszCmd, "Add") == 0)
 				return ZFRIENDCMD_ADD;
-			else if (_stricmp(pszCmd, "Ãß°¡") == 0)
+			else if (_stricmp(pszCmd, "ì¶”ê°€") == 0)
 				return ZFRIENDCMD_ADD;
 			else if (_stricmp(pszCmd, "Remove") == 0)
 				return ZFRIENDCMD_REMOVE;
-			else if (_stricmp(pszCmd, "»èÁ¦") == 0)
+			else if (_stricmp(pszCmd, "ì‚­ì œ") == 0)
 				return ZFRIENDCMD_REMOVE;
 			else if (_stricmp(pszCmd, "list") == 0)
 				return ZFRIENDCMD_LIST;
-			else if (_stricmp(pszCmd, "¸ñ·Ï") == 0)
+			else if (_stricmp(pszCmd, "ëª©ë¡") == 0)
 				return ZFRIENDCMD_LIST;
 			else if (_stricmp(pszCmd, "msg") == 0)
 				return ZFRIENDCMD_MSG;
-			else if (_stricmp(pszCmd, "Ã¤ÆÃ") == 0)
+			else if (_stricmp(pszCmd, "ì±„íŒ…") == 0)
 				return ZFRIENDCMD_MSG;
 			else return ZFRIENDCMD_UNKNOWN;
 		}
@@ -599,50 +599,50 @@ void ChatCmd_Clan(const char* line, const int argc, char **const argv)
 	class ZClanCommandHelper {
 	public:
 		enum ZCLANCMD {
-			ZCLANCMD_CREATE,		// Å¬·£ »ı¼º
-			ZCLANCMD_CLOSE,			// Å¬·£ Æó¼â
+			ZCLANCMD_CREATE,		// í´ëœ ìƒì„±
+			ZCLANCMD_CLOSE,			// í´ëœ íì‡„
 			ZCLANCMD_JOIN,
 			ZCLANCMD_LEAVE,
-			ZCLANCMD_EXPEL_MEMBER,	// °­Á¦Å»Åğ
+			ZCLANCMD_EXPEL_MEMBER,	// ê°•ì œíƒˆí‡´
 			ZCLANCMD_LIST,
 			ZCLANCMD_MSG,
 			
-			ZCLANCMD_CHANGE_GRADE,	// ¸â¹ö ±ÇÇÑ º¯°æ
+			ZCLANCMD_CHANGE_GRADE,	// ë©¤ë²„ ê¶Œí•œ ë³€ê²½
 
 			ZCLANCMD_UNKNOWN
 		};
 		ZCLANCMD GetSubCommand(const char* pszCmd) {
 			GunzState nGameState = ZApplication::GetGameInterface()->GetState();
 
-			if ((_stricmp(pszCmd, "»ı¼º") == 0) || (_stricmp(pszCmd, "open") == 0))
+			if ((_stricmp(pszCmd, "ìƒì„±") == 0) || (_stricmp(pszCmd, "open") == 0))
 			{
 				if (nGameState == GUNZ_LOBBY) return ZCLANCMD_CREATE;
 			}
-			else if ((_stricmp(pszCmd, "Æó¼â") == 0) || (_stricmp(pszCmd, "ÇØÃ¼") == 0) || (_stricmp(pszCmd, "close") == 0))
+			else if ((_stricmp(pszCmd, "íì‡„") == 0) || (_stricmp(pszCmd, "í•´ì²´") == 0) || (_stricmp(pszCmd, "close") == 0))
 			{
 				if (nGameState == GUNZ_LOBBY) return ZCLANCMD_CLOSE;
 			}
-			else if ( (_stricmp(pszCmd, "ÃÊ´ë") == 0) || (_stricmp(pszCmd, "invite") == 0) )
+			else if ( (_stricmp(pszCmd, "ì´ˆëŒ€") == 0) || (_stricmp(pszCmd, "invite") == 0) )
 			{
 				if (nGameState == GUNZ_LOBBY) return ZCLANCMD_JOIN;
 			}
-			else if ( (_stricmp(pszCmd, "Å»Åğ") == 0) || (_stricmp(pszCmd, "leave") == 0) )
+			else if ( (_stricmp(pszCmd, "íƒˆí‡´") == 0) || (_stricmp(pszCmd, "leave") == 0) )
 			{
 				if (nGameState == GUNZ_LOBBY) return ZCLANCMD_LEAVE;
 			}
-			else if ( (_stricmp(pszCmd, "±ÇÇÑº¯°æ") == 0) || (_stricmp(pszCmd, "promote") == 0) )
+			else if ( (_stricmp(pszCmd, "ê¶Œí•œë³€ê²½") == 0) || (_stricmp(pszCmd, "promote") == 0) )
 			{
 				if (nGameState == GUNZ_LOBBY) return ZCLANCMD_CHANGE_GRADE;
 			}
-			else if ((_stricmp(pszCmd, "°­Á¦Å»Åğ") == 0) || (_stricmp(pszCmd, "¹æÃâ") == 0) || (_stricmp(pszCmd, "dismiss") == 0))
+			else if ((_stricmp(pszCmd, "ê°•ì œíƒˆí‡´") == 0) || (_stricmp(pszCmd, "ë°©ì¶œ") == 0) || (_stricmp(pszCmd, "dismiss") == 0))
 			{
 				if (nGameState == GUNZ_LOBBY) return ZCLANCMD_EXPEL_MEMBER;
 			}
-			else if ((_stricmp(pszCmd, "list") == 0) || (_stricmp(pszCmd, "¸ñ·Ï") == 0))
+			else if ((_stricmp(pszCmd, "list") == 0) || (_stricmp(pszCmd, "ëª©ë¡") == 0))
 			{
 				if (nGameState == GUNZ_LOBBY) return ZCLANCMD_LIST;
 			}
-			else if ((_stricmp(pszCmd, "msg") == 0) || (_stricmp(pszCmd, "Ã¤ÆÃ") == 0))
+			else if ((_stricmp(pszCmd, "msg") == 0) || (_stricmp(pszCmd, "ì±„íŒ…") == 0))
 			{
 				return ZCLANCMD_MSG;
 			}
@@ -665,7 +665,7 @@ void ChatCmd_Clan(const char* line, const int argc, char **const argv)
 	switch(clanHelper.GetSubCommand(szSubCmd)) {
 	case ZClanCommandHelper::ZCLANCMD_CREATE:
 		{
-			// clan »ı¼º Å¬·£ÀÌ¸§ ¹ß±âÀÎ1 ¹ß±âÀÎ2 ¹ß±âÀÎ3 ¹ß±âÀÎ4
+			// clan ìƒì„± í´ëœì´ë¦„ ë°œê¸°ì¸1 ë°œê¸°ì¸2 ë°œê¸°ì¸3 ë°œê¸°ì¸4
 			if (argc < 7)
 			{
 				OutputCmdWrongArgument(argv[0]);
@@ -677,7 +677,7 @@ void ChatCmd_Clan(const char* line, const int argc, char **const argv)
 		break;
 	case ZClanCommandHelper::ZCLANCMD_CLOSE:
 		{
-			// clan Æó¼â Å¬·£ÀÌ¸§
+			// clan íì‡„ í´ëœì´ë¦„
 			if (argc < 3)
 			{
 				OutputCmdWrongArgument(argv[0]);
@@ -692,7 +692,7 @@ void ChatCmd_Clan(const char* line, const int argc, char **const argv)
 				break;
 			}
 
-			// Å¬·£ÀÌ¸§ È®ÀÎ
+			// í´ëœì´ë¦„ í™•ì¸
 			if (_stricmp(ZGetMyInfo()->GetClanName(), argv[2]))
 			{
 				ZChatOutput(
@@ -708,7 +708,7 @@ void ChatCmd_Clan(const char* line, const int argc, char **const argv)
 		break;
 	case ZClanCommandHelper::ZCLANCMD_JOIN:
 		{
-			// clan ÃÊ´ë °¡ÀÔÀÚÀÌ¸§
+			// clan ì´ˆëŒ€ ê°€ì…ìì´ë¦„
 			if (argc < 3)
 			{
 				OutputCmdWrongArgument(argv[0]);
@@ -738,7 +738,7 @@ void ChatCmd_Clan(const char* line, const int argc, char **const argv)
 		break;
 	case ZClanCommandHelper::ZCLANCMD_LEAVE:
 		{
-			// clan Å»Åğ
+			// clan íƒˆí‡´
 			if (argc < 2)
 			{
 				OutputCmdWrongArgument(argv[0]);
@@ -753,7 +753,7 @@ void ChatCmd_Clan(const char* line, const int argc, char **const argv)
 				break;
 			}
 
-			// ¸¶½ºÅÍ´Â Å»Åğ°¡ ¾ÈµÈ´Ù.
+			// ë§ˆìŠ¤í„°ëŠ” íƒˆí‡´ê°€ ì•ˆëœë‹¤.
 			if (IsUpperClanGrade(ZGetMyInfo()->GetClanGrade(), MCG_MASTER))
 			{
 				ZChatOutput(
@@ -769,7 +769,7 @@ void ChatCmd_Clan(const char* line, const int argc, char **const argv)
 		break;
 	case ZClanCommandHelper::ZCLANCMD_CHANGE_GRADE:
 		{
-			// clan ±ÇÇÑº¯°æ ¸â¹öÀÌ¸§ ±ÇÇÑÀÌ¸§
+			// clan ê¶Œí•œë³€ê²½ ë©¤ë²„ì´ë¦„ ê¶Œí•œì´ë¦„
 			if (argc < 4)
 			{
 				OutputCmdWrongArgument(argv[0]);
@@ -802,11 +802,11 @@ void ChatCmd_Clan(const char* line, const int argc, char **const argv)
 				break;
 			}
 
-			if ((!_stricmp(argv[3], "Å¬·£¿î¿µÀÚ")) || (!_stricmp(argv[3], "¿î¿µÀÚ")) || (!_stricmp(argv[3], "¿µÀÚ")) || (!_stricmp(argv[3], "admin")))
+			if ((!_stricmp(argv[3], "í´ëœìš´ì˜ì")) || (!_stricmp(argv[3], "ìš´ì˜ì")) || (!_stricmp(argv[3], "ì˜ì")) || (!_stricmp(argv[3], "admin")))
 			{
 				nClanGrade = (int)MCG_ADMIN;
 			}
-			else if ((!_stricmp(argv[3], "Å¬·£¸â¹ö")) || (!_stricmp(argv[3], "¸â¹ö")) || (!_stricmp(argv[3], "Å¬·£¿ø")) || (!_stricmp(argv[3], "member")))
+			else if ((!_stricmp(argv[3], "í´ëœë©¤ë²„")) || (!_stricmp(argv[3], "ë©¤ë²„")) || (!_stricmp(argv[3], "í´ëœì›")) || (!_stricmp(argv[3], "member")))
 			{
 				nClanGrade = (int)MCG_MEMBER;
 			}
@@ -822,7 +822,7 @@ void ChatCmd_Clan(const char* line, const int argc, char **const argv)
 		break;
 	case ZClanCommandHelper::ZCLANCMD_EXPEL_MEMBER:
 		{
-			// clan °­Á¦Å»Åğ Å¬·£¸â¹ö
+			// clan ê°•ì œíƒˆí‡´ í´ëœë©¤ë²„
 			if (argc < 3)
 			{
 				OutputCmdWrongArgument(argv[0]);
@@ -871,7 +871,7 @@ void ChatCmd_Clan(const char* line, const int argc, char **const argv)
 				break;
 			}
 
-			// clan msg ÇÏ°í½ÍÀº¸»
+			// clan msg í•˜ê³ ì‹¶ì€ë§
 			MLex lex;
 			
 			char szLine[512], szTemp1[256] = "", szTemp2[256] = "";
@@ -1221,7 +1221,7 @@ void ChatCmd_Kick(const char* line,const int argc, char **const argv)
 }
 
 
-// Äù½ºÆ® Å×½ºÆ®¿ë ¸í·É¾î /////////////////////////////////////////////////////
+// í€˜ìŠ¤íŠ¸ í…ŒìŠ¤íŠ¸ìš© ëª…ë ¹ì–´ /////////////////////////////////////////////////////
 void ChatCmd_QUESTTEST_God(const char* line,const int argc, char **const argv)
 {
 #ifdef _PUBLISH
@@ -1314,7 +1314,7 @@ void ChatCmd_QUESTTEST_Reload(const char* line,const int argc, char **const argv
 
 	if (!ZIsLaunchDevelop() && !ZGetMyInfo()->IsAdminGrade()) return;
 
-	ZGetObjectManager()->ClearNPC();	// ¸ÕÀú NPC°¡ Å¬¸®¾îµÇ¾î¾ß µÚÅ»ÀÌ ¾ø´Ù.
+	ZGetObjectManager()->ClearNPC();	// ë¨¼ì € NPCê°€ í´ë¦¬ì–´ë˜ì–´ì•¼ ë’¤íƒˆì´ ì—†ë‹¤.
 	ZGetQuest()->Reload();
 
 	ZChatOutput( "Reloaded" );
@@ -1362,7 +1362,7 @@ void ChatCmd_QUESTTEST_WeakNPCs(const char* line,const int argc, char **const ar
 	{
 		ZChatOutput( "WeakNPC mode enabled" );
 
-		// Áö±İ ÀÖ´Â NPCµéÀÇ HP¸¦ 1·Î ¼¼ÆÃ
+		// ì§€ê¸ˆ ìˆëŠ” NPCë“¤ì˜ HPë¥¼ 1ë¡œ ì„¸íŒ…
 		for (ZObjectManager::iterator itor = ZGetObjectManager()->begin();
 			itor != ZGetObjectManager()->end(); ++itor)
 		{

@@ -8,11 +8,11 @@ using namespace std;
 #include "RVisualMeshMgr.h"
 #include "ZWeapon.h"
 
-// ¼ö·ùÅº
-// ½ÃÀÛÀ§Ä¡ÁÖ°í
-// ¹æÇâÁÖ°í (°¡¼Óµµ)
-// define ¼Ò¸ê½Ã°£ ( ¸Ê°úÀÇ À§Ä¡¿¬µ¿ , Åº¼º )
-// ´©±¸ ¼ö·ùÅºÀÎÁö ¾Ë¾Æ¾ß ÇÏ´Â°¡? ( ³ªÁß¿¡ Á¡¼ö ÁÖ±â À§ÇØ,Å³¼ö¸¦ ¿Ã¸®°Å³ª.. ) ( ½ğ³ğ Ç¥±â )
+// ìˆ˜ë¥˜íƒ„
+// ì‹œì‘ìœ„ì¹˜ì£¼ê³ 
+// ë°©í–¥ì£¼ê³  (ê°€ì†ë„)
+// define ì†Œë©¸ì‹œê°„ ( ë§µê³¼ì˜ ìœ„ì¹˜ì—°ë™ , íƒ„ì„± )
+// ëˆ„êµ¬ ìˆ˜ë¥˜íƒ„ì¸ì§€ ì•Œì•„ì•¼ í•˜ëŠ”ê°€? ( ë‚˜ì¤‘ì— ì ìˆ˜ ì£¼ê¸° ìœ„í•´,í‚¬ìˆ˜ë¥¼ ì˜¬ë¦¬ê±°ë‚˜.. ) ( ìœë†ˆ í‘œê¸° )
 // Effect
 enum eCrashType{
 	et_crash_none = 0,
@@ -48,7 +48,7 @@ public:
 	void Update();
 	void Render();
 
-	ZMovingWeapon*	UpdateWorldItem(int nItemID, const rvector& pos);//¿ùµå ¾ÆÀÌÅÛ°ú º¸¿©Áö´Â µ¿±â ¸ÂÃâ°Íµé...
+	ZMovingWeapon*	UpdateWorldItem(int nItemID, const rvector& pos);//ì›”ë“œ ì•„ì´í…œê³¼ ë³´ì—¬ì§€ëŠ” ë™ê¸° ë§ì¶œê²ƒë“¤...
 	ZWeapon*		GetWorldItem(int nItemID);
 
 	z_weapon_list m_list;

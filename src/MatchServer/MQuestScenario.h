@@ -13,17 +13,17 @@ struct MQuestScenarioInfoMapJaco
 
 struct MQuestScenarioInfoMaps
 {
-	int										nKeySectorID;			///< ÃÖÁ¾ ¼½ÅÍ ID
-	int										nKeyNPCID;				///< Å° NPC ID
-	bool									bKeyNPCIsBoss;			///< Å° NPC°¡ º¸½ºÀÎÁö ¿©ºÎ
+	int										nKeySectorID;			///< ìµœì¢… ì„¹í„° ID
+	int										nKeyNPCID;				///< í‚¤ NPC ID
+	bool									bKeyNPCIsBoss;			///< í‚¤ NPCê°€ ë³´ìŠ¤ì¸ì§€ ì—¬ë¶€
 	vector<int>								vecNPCSetArray;			///< NPC Set Array
 
-	// º¸½º¹æ¿¡¼­ ¾µ Á¤º¸
-	int										nJacoCount;				///< 1È¸ ½ºÆù½Ã ½ºÆùµÉ Á¹º´¼ö
-	unsigned int							nJacoSpawnTickTime;		///< Á¹º´ ½ºÆù Æ½ Å¸ÀÓ
-	int										nJacoMinNPCCount;		///< ÀÌ°ªÀÌÇÏÀÏ¶§´Â Á¹º´ÀÌ ½ºÆùÇÏÁö ¾Ê´Â´Ù.
-	int										nJacoMaxNPCCount;		///< ÀÌ°ªÀÌÇÏÀÏ¶§´Â Á¹º´ÀÌ ½ºÆùÇÏÁö ¾Ê´Â´Ù.
-	vector<MQuestScenarioInfoMapJaco>		vecJacoArray;			///< º¸½º¹æ¿¡¼­ ³ª¿Ã Á¹º´µé
+	// ë³´ìŠ¤ë°©ì—ì„œ ì“¸ ì •ë³´
+	int										nJacoCount;				///< 1íšŒ ìŠ¤í°ì‹œ ìŠ¤í°ë  ì¡¸ë³‘ìˆ˜
+	unsigned int							nJacoSpawnTickTime;		///< ì¡¸ë³‘ ìŠ¤í° í‹± íƒ€ìž„
+	int										nJacoMinNPCCount;		///< ì´ê°’ì´í•˜ì¼ë•ŒëŠ” ì¡¸ë³‘ì´ ìŠ¤í°í•˜ì§€ ì•ŠëŠ”ë‹¤.
+	int										nJacoMaxNPCCount;		///< ì´ê°’ì´í•˜ì¼ë•ŒëŠ” ì¡¸ë³‘ì´ ìŠ¤í°í•˜ì§€ ì•ŠëŠ”ë‹¤.
+	vector<MQuestScenarioInfoMapJaco>		vecJacoArray;			///< ë³´ìŠ¤ë°©ì—ì„œ ë‚˜ì˜¬ ì¡¸ë³‘ë“¤
 
 	MQuestScenarioInfoMaps()
 	{
@@ -37,29 +37,29 @@ struct MQuestScenarioInfoMaps
 	}
 };
 
-/// Äù½ºÆ® ½Ã³ª¸®¿À Á¤º¸
+/// í€˜ìŠ¤íŠ¸ ì‹œë‚˜ë¦¬ì˜¤ ì •ë³´
 struct MQuestScenarioInfo
 {
-	int				nID;										///< ½Ã³ª¸®¿À ID
-	char			szTitle[64];								///< ½Ã³ª¸®¿À ÀÌ¸§
-	int				nQL;										///< ¿ä±¸ Äù½ºÆ® ·¹º§
-	float			fDC;										///< ³­ÀÌµµ °è¼ö(DC)
-	int				nResSacriItemCount;							///< ½Ã³ª¸®¿À¸¦ À§ÇÑ Èñ»ý ¾ÆÀÌÅÛ °³¼ö
-	unsigned int	nResSacriItemID[MAX_SCENARIO_SACRI_ITEM];	///< ½Ã³ª¸®¿À¸¦ À§ÇÑ Èñ»ý ¾ÆÀÌÅÛ
-	int				nMapSet;									///< ¸Ê¼Â
-	bool			bSpecialScenario;							///< Æ¯º°½Ã³ª¸®¿ÀÀÎÁö ¿©ºÎ
+	int				nID;										///< ì‹œë‚˜ë¦¬ì˜¤ ID
+	char			szTitle[64];								///< ì‹œë‚˜ë¦¬ì˜¤ ì´ë¦„
+	int				nQL;										///< ìš”êµ¬ í€˜ìŠ¤íŠ¸ ë ˆë²¨
+	float			fDC;										///< ë‚œì´ë„ ê³„ìˆ˜(DC)
+	int				nResSacriItemCount;							///< ì‹œë‚˜ë¦¬ì˜¤ë¥¼ ìœ„í•œ í¬ìƒ ì•„ì´í…œ ê°œìˆ˜
+	unsigned int	nResSacriItemID[MAX_SCENARIO_SACRI_ITEM];	///< ì‹œë‚˜ë¦¬ì˜¤ë¥¼ ìœ„í•œ í¬ìƒ ì•„ì´í…œ
+	int				nMapSet;									///< ë§µì…‹
+	bool			bSpecialScenario;							///< íŠ¹ë³„ì‹œë‚˜ë¦¬ì˜¤ì¸ì§€ ì—¬ë¶€
 
-	int				nXPReward;									///< XP º¸»óÄ¡
-	int				nBPReward;									///< BP º¸»óÄ¡
-	int				nRewardItemCount;							///< Æ¯º° ¾ÆÀÌÅÛ °³¼ö
-	int				nRewardItemID[MAX_SCENARIO_REWARD_ITEM];	///< Æ¯º° ¾ÆÀÌÅÛ º¸»ó
-	float			fRewardItemRate[MAX_SCENARIO_REWARD_ITEM];	///< Æ¯º° ¾ÆÀÌÅÛ º¸»ó È®·ü
-	int				nSectorXP;									///< ¼½ÅÍº° º¸³Ê½º XP º¸»óÄ¡
-	int				nSectorBP;									///< ¼½ÅÍº° º¸³Ê½º BP º¸»óÄ¡
+	int				nXPReward;									///< XP ë³´ìƒì¹˜
+	int				nBPReward;									///< BP ë³´ìƒì¹˜
+	int				nRewardItemCount;							///< íŠ¹ë³„ ì•„ì´í…œ ê°œìˆ˜
+	int				nRewardItemID[MAX_SCENARIO_REWARD_ITEM];	///< íŠ¹ë³„ ì•„ì´í…œ ë³´ìƒ
+	float			fRewardItemRate[MAX_SCENARIO_REWARD_ITEM];	///< íŠ¹ë³„ ì•„ì´í…œ ë³´ìƒ í™•ë¥ 
+	int				nSectorXP;									///< ì„¹í„°ë³„ ë³´ë„ˆìŠ¤ XP ë³´ìƒì¹˜
+	int				nSectorBP;									///< ì„¹í„°ë³„ ë³´ë„ˆìŠ¤ BP ë³´ìƒì¹˜
 
 	MQuestScenarioInfoMaps		Maps[SCENARIO_STANDARD_DICE_SIDES];
 
-	/// »ý¼ºÀÚ
+	/// ìƒì„±ìž
 	MQuestScenarioInfo()
 	{
 		nID = -1;
@@ -85,20 +85,20 @@ struct MQuestScenarioInfo
 		nSectorBP = -1;
 	}
 
-	/// ¼½ÅÍ ¼ö ¹ÝÈ¯
+	/// ì„¹í„° ìˆ˜ ë°˜í™˜
 	int GetSectorCount(int nDice)
 	{
 		return (int)Maps[nDice].vecNPCSetArray.size();
 	}
 };
 
-/// ½Ã³ª¸®¿À Á¤º¸ °ü¸®ÀÚ
+/// ì‹œë‚˜ë¦¬ì˜¤ ì •ë³´ ê´€ë¦¬ìž
 class MQuestScenarioCatalogue : public map<int, MQuestScenarioInfo*>
 {
 private:
-	// ¸â¹ö º¯¼ö
+	// ë©¤ë²„ ë³€ìˆ˜
 	int		m_nDefaultStandardScenarioID;
-	// ÇÔ¼ö
+	// í•¨ìˆ˜
 	void Clear();
 	void Insert(MQuestScenarioInfo* pScenarioInfo);
 	void ParseSpecialScenario(MXmlElement& element);
@@ -110,22 +110,22 @@ private:
 	void ParseMap(MXmlElement& element, MQuestScenarioInfo* pScenarioInfo);
 	int CalcStandardScenarioID(int nMapsetID, int nQL);
 public:
-	MQuestScenarioCatalogue();											///< »ý¼ºÀÚ
-	~MQuestScenarioCatalogue();											///< ¼Ò¸êÀÚ
+	MQuestScenarioCatalogue();											///< ìƒì„±ìž
+	~MQuestScenarioCatalogue();											///< ì†Œë©¸ìž
 
-	bool ReadXml(const char* szFileName);								///< xml·ÎºÎÅÍ npcÁ¤º¸¸¦ ÀÐ´Â´Ù.
-	bool ReadXml(MZFileSystem* pFileSystem,const char* szFileName);		///< xml·ÎºÎÅÍ npcÁ¤º¸¸¦ ÀÐ´Â´Ù.
+	bool ReadXml(const char* szFileName);								///< xmlë¡œë¶€í„° npcì •ë³´ë¥¼ ì½ëŠ”ë‹¤.
+	bool ReadXml(MZFileSystem* pFileSystem,const char* szFileName);		///< xmlë¡œë¶€í„° npcì •ë³´ë¥¼ ì½ëŠ”ë‹¤.
 	
 
-	MQuestScenarioInfo* GetInfo(int nScenarioID);						///< ½Ã³ª¸®¿À Á¤º¸ ¹ÝÈ¯
-	/// Á¤±Ô ½Ã³ª¸®¿À ¹ÝÈ¯
-	/// @param nQL				Äù½ºÆ® ·¹º§
-	/// @param nDice			ÁÖ»çÀ§ ±¼¸²
+	MQuestScenarioInfo* GetInfo(int nScenarioID);						///< ì‹œë‚˜ë¦¬ì˜¤ ì •ë³´ ë°˜í™˜
+	/// ì •ê·œ ì‹œë‚˜ë¦¬ì˜¤ ë°˜í™˜
+	/// @param nQL				í€˜ìŠ¤íŠ¸ ë ˆë²¨
+	/// @param nDice			ì£¼ì‚¬ìœ„ êµ´ë¦¼
 	int GetStandardScenarioID(int nMapsetID, int nQL);
 
-	/// Æ¯º° ½Ã³ª¸®¿À °Ë»ö
-	/// @param nMapsetID		¸Ê¼Â
-	/// @param nQL				Äù½ºÆ® ·¹º§
+	/// íŠ¹ë³„ ì‹œë‚˜ë¦¬ì˜¤ ê²€ìƒ‰
+	/// @param nMapsetID		ë§µì…‹
+	/// @param nQL				í€˜ìŠ¤íŠ¸ ë ˆë²¨
 	bool FindSpecialScenarioID(int nMapsetID, int nPlayerQL, unsigned int* SacriQItemIDs, unsigned int* outScenarioID);
 
 	unsigned int MakeScenarioID(int nMapsetID, int nPlayerQL, unsigned int* SacriQItemIDs);

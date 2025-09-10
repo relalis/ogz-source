@@ -2,26 +2,26 @@
 #define _ZAI_BASE_H
 
 
-/// AI «‡µø ºº∆Æ
+/// AI ÌñâÎèô ÏÑ∏Ìä∏
 enum AI_BEHAVIOR_STATE {
 	AI_BEHAVIOR_NONE = 0,		///< N/A
-	AI_BEHAVIOR_IDLE,			///< ∞°∏∏»˜ ¿÷¿Ω
-	AI_BEHAVIOR_PATROL,			///< º¯¬˚
-	AI_BEHAVIOR_ATTACK,			///< ∞¯∞›
-	AI_BEHAVIOR_RETREAT,		///< µµ∏¡
-	AI_BEHAVIOR_SCRIPT,			///< Ω∫≈©∏≥∆Æ
-	AI_BEHAVIOR_DEAD,			///< ¡◊¿Ω
+	AI_BEHAVIOR_IDLE,			///< Í∞ÄÎßåÌûà ÏûàÏùå
+	AI_BEHAVIOR_PATROL,			///< ÏàúÏ∞∞
+	AI_BEHAVIOR_ATTACK,			///< Í≥µÍ≤©
+	AI_BEHAVIOR_RETREAT,		///< ÎèÑÎßù
+	AI_BEHAVIOR_SCRIPT,			///< Ïä§ÌÅ¨Î¶ΩÌä∏
+	AI_BEHAVIOR_DEAD,			///< Ï£ΩÏùå
 
 	AI_BEHAVIOR_END
 };
 
 
-/// AI æ◊º« ºº∆Æ
+/// AI Ïï°ÏÖò ÏÑ∏Ìä∏
 enum AI_ACTIVITY_SET {
 	AI_ACTIVITY_NONE = 0,
 	AI_ACTIVITY_IDLE,
-	AI_ACTIVITY_MOVE_DIR,		// «—πÊ«‚¿∏∑Œ ¡˜º±¿Ãµø
-	AI_ACTIVITY_MOVE_POS,		// ±Ê√£±‚∑Œ ¿Ãµø
+	AI_ACTIVITY_MOVE_DIR,		// ÌïúÎ∞©Ìñ•ÏúºÎ°ú ÏßÅÏÑ†Ïù¥Îèô
+	AI_ACTIVITY_MOVE_POS,		// Í∏∏Ï∞æÍ∏∞Î°ú Ïù¥Îèô
 	AI_ACTIVITY_ATTACK,
 	AI_ACTIVITY_DAMAGED,
 //		AI_ACTIVITY_DEAD,
@@ -31,7 +31,7 @@ enum AI_ACTIVITY_SET {
 };
 
 
-/// AI ªÛ≈¬
+/// AI ÏÉÅÌÉú
 enum COND_SET
 {
 	AI_COND_NONE = 0,
@@ -43,7 +43,7 @@ enum COND_SET
 };
 
 
-/// FSMø° « ø‰«— ¿‘∑¬
+/// FSMÏóê ÌïÑÏöîÌïú ÏûÖÎ†•
 enum AI_INPUT_SET 
 {
 	AI_INPUT_NONE		= 0,

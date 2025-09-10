@@ -98,7 +98,7 @@ void MCommand::SetID(const MCommandDesc* pCommandDesc)
 {
 	m_pCommandDesc = pCommandDesc;
 	_ASSERT(m_pCommandDesc!=NULL);
-	m_Params.reserve(pCommandDesc->GetParameterDescCount());	// °ø°£ È®º¸
+	m_Params.reserve(pCommandDesc->GetParameterDescCount());	// ê³µê°„ í™•ë³´
 }
 
 
@@ -106,22 +106,22 @@ void MCommand::SetID(int nID, MCommandManager* pCommandManager)
 {
 	m_pCommandDesc = pCommandManager->GetCommandDescByID(nID);
 	_ASSERT(m_pCommandDesc!=NULL);
-	m_Params.reserve(m_pCommandDesc->GetParameterDescCount());	// °ø°£ È®º¸
+	m_Params.reserve(m_pCommandDesc->GetParameterDescCount());	// ê³µê°„ í™•ë³´
 }
 
 
 bool MCommand::AddParameter(MCommandParameter* pParam)
 {
-	_ASSERT(m_Params.capacity()==m_pCommandDesc->GetParameterDescCount());	// ¹Ì¸® °ø°£ÀÌ È®º¸µÇ¾î ÀÖ¾î¾ß ÇÑ´Ù.
+	_ASSERT(m_Params.capacity()==m_pCommandDesc->GetParameterDescCount());	// ë¯¸ë¦¬ ê³µê°„ì´ í™•ë³´ë˜ì–´ ìˆì–´ì•¼ í•œë‹¤.
 
 	int nCount = (int)m_Params.size();
 	int nParamDescCount = m_pCommandDesc->GetParameterDescCount();
 
-	_ASSERT(nCount<nParamDescCount);				// Debug Mode ¿¡¼­´Â Assert·Î ¾ö°İÇÏ°Ô Ã¼Å©ÇÑ´Ù.
+	_ASSERT(nCount<nParamDescCount);				// Debug Mode ì—ì„œëŠ” Assertë¡œ ì—„ê²©í•˜ê²Œ ì²´í¬í•œë‹¤.
 	if(nCount>=nParamDescCount) return false;
 
 	MCommandParameterDesc* pParamDesc = m_pCommandDesc->GetParameterDesc(nCount);
-	_ASSERT(pParam->GetType()==pParamDesc->GetType());	// ¸í½ÃµÈ ÆÄ¶ó¹ÌÅÍ¿©¾ß ÇÑ´Ù.
+	_ASSERT(pParam->GetType()==pParamDesc->GetType());	// ëª…ì‹œëœ íŒŒë¼ë¯¸í„°ì—¬ì•¼ í•œë‹¤.
 	if(pParam->GetType()!=pParamDesc->GetType()) return false;
 
 	m_Params.push_back(pParam);
@@ -151,9 +151,9 @@ bool MCommand::GetParameter(void* pValue, int i, MCommandParameterType t, int nB
 	if (pParam->GetType() != t) return false;
 
 #ifdef _DEBUG
-	// ½ºÆ®¸µ°ú blob Àº ¹öÆÛ¿À¹öÇÃ·Î¿ì Ã¼Å©¸¦ ÇÒ ÇÊ¿ä°¡ ÀÖ´Ù.
+	// ìŠ¤íŠ¸ë§ê³¼ blob ì€ ë²„í¼ì˜¤ë²„í”Œë¡œìš° ì²´í¬ë¥¼ í•  í•„ìš”ê°€ ìˆë‹¤.
 	if(pParam->GetType()==MPT_STR && nBufferSize < 0 ) {
-		// string ÆÄ¶ó¹ÌÅÍ´Â ²À buffer size¸¦ Àû¾îÁÖ¼¼¿ä
+		// string íŒŒë¼ë¯¸í„°ëŠ” ê¼­ buffer sizeë¥¼ ì ì–´ì£¼ì„¸ìš”
 		_ASSERT(FALSE);
 	}
 #endif
@@ -162,7 +162,7 @@ bool MCommand::GetParameter(void* pValue, int i, MCommandParameterType t, int nB
 		char *szParamString = *(char**)pParam->GetPointer();
 		if( 0 == szParamString )
 		{
-			ASSERT( 0 && "NULL Æ÷ÀÎÅÍ ½ºÆ®¸µ" );
+			ASSERT( 0 && "NULL pointer string" );
 			strcpy_safe( (char*)pValue, nBufferSize, "\0" );
 			return true;
 		}
@@ -212,7 +212,7 @@ bool MCommand::CheckRule(void)
 		MCommandParameterDesc* pParamDesc = m_pCommandDesc->GetParameterDesc(i);
 		if(pParam->GetType()!=pParamDesc->GetType()) return false;
 
-		// Á¦¾àÁ¶°Ç Ã¼Å©
+		// ì œì•½ì¡°ê±´ ì²´í¬
 		if (pParamDesc->HasConditions())
 		{
 			for (int j = 0; j < pParamDesc->GetConditionCount(); j++)
@@ -313,7 +313,7 @@ bool MCommandSNChecker::CheckValidate(int nSerialNumber)
 	auto itorSet = m_SNSet.find(nSerialNumber);
 	if (itorSet != m_SNSet.end())
 	{
-		// Áßº¹µÈ Ä¿¸ÇµåÀÌ´Ù.
+		// ì¤‘ë³µëœ ì»¤ë§¨ë“œì´ë‹¤.
 		return false;
 	}
 

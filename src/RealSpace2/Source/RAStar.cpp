@@ -86,9 +86,9 @@ bool RAStar::Search(RAStarNode* pStartNode, RAStarNode* pGoalNode)
 	m_OpenList.clear();
 	m_nPathSession++;
 
-	// ½ÃÀÛ ³ëµå¸¦ ÃÊ±âÈ­ÇÑ´Ù.
-	// ½ÃÀÛÁöÁ¡À» ³ëµå P·Î µĞ´Ù.
-	// P¿¡ f, g, h°ªµéÀ» ¹èÁ¤ÇÑ´Ù.
+	// ì‹œì‘ ë…¸ë“œë¥¼ ì´ˆê¸°í™”í•œë‹¤.
+	// ì‹œì‘ì§€ì ì„ ë…¸ë“œ Pë¡œ ë‘”ë‹¤.
+	// Pì— f, g, hê°’ë“¤ì„ ë°°ì •í•œë‹¤.
 	pStartNode->m_fCostFromStart = 0.0f;
 	pStartNode->m_fCostToGoal = pStartNode->GetHeuristicCost(pGoalNode);
 	pStartNode->m_pParent = NULL;
@@ -96,13 +96,13 @@ bool RAStar::Search(RAStarNode* pStartNode, RAStarNode* pGoalNode)
 	// push StartNode on Open
 	PushOnOpenList(pStartNode);
 
-	// ¼º°ø ¶Ç´Â ½ÇÆĞ¿¡ ÀÌ¸¦ ¶§±îÁö ¸ñ·ÏÀ» Ã³¸®ÇÑ´Ù.
-	while (!IsOpenListEmpty())		// ¿­¸° ¸ñ·ÏÀÌ ºñ¾ú´Ù¸é °æ·Î¸¦ Ã£À» ¼ö ¾øÀ½
+	// ì„±ê³µ ë˜ëŠ” ì‹¤íŒ¨ì— ì´ë¥¼ ë•Œê¹Œì§€ ëª©ë¡ì„ ì²˜ë¦¬í•œë‹¤.
+	while (!IsOpenListEmpty())		// ì—´ë¦° ëª©ë¡ì´ ë¹„ì—ˆë‹¤ë©´ ê²½ë¡œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŒ
 	{
 		// pop Node from Open
 		RAStarNode* pNode = PopLowestCostFromOpenList();
 
-		// ¸ñÇ¥¿¡ µµ´ŞÇßÀ¸¸é ¼º°øÀ¸·Î ³¡³½´Ù.
+		// ëª©í‘œì— ë„ë‹¬í–ˆìœ¼ë©´ ì„±ê³µìœ¼ë¡œ ëë‚¸ë‹¤.
 		if (pNode == pGoalNode)
 		{
 			// construct a path backward from Node to StartLoc
@@ -114,7 +114,7 @@ bool RAStar::Search(RAStarNode* pStartNode, RAStarNode* pGoalNode)
 				pShortestNode = pShortestNode->m_pParent;
 			}
 
-			// ¸¶Áö¸·¿¡ ½ÃÀÛ ³ëµå¸¦ ³Ö¾îÁØ´Ù.
+			// ë§ˆì§€ë§‰ì— ì‹œì‘ ë…¸ë“œë¥¼ ë„£ì–´ì¤€ë‹¤.
 //			PushToShortestPath(pStartNode);
 			return true;
 		}
@@ -123,20 +123,20 @@ bool RAStar::Search(RAStarNode* pStartNode, RAStarNode* pGoalNode)
 		for(int i=0; i < pNode->GetSuccessorCount(); i++)
 		{
 			RAStarNode* pSuccessor = pNode->GetSuccessor(i);
-			if(pSuccessor==NULL) continue;	// NULLÀÌ¸é ¾ø´Â ³ëµå·Î °£ÁÖÇÑ´Ù.
-			if(pSuccessor==pStartNode) continue;					// ½ÃÀÛ ³ëµå·Î ´Ù½Ã µ¹¾Æ¿Ã ÇÊ¿ä°¡ ¾øÀ¸¹Ç·Î Á¦¿ÜÇÑ´Ù.
+			if(pSuccessor==NULL) continue;	// NULLì´ë©´ ì—†ëŠ” ë…¸ë“œë¡œ ê°„ì£¼í•œë‹¤.
+			if(pSuccessor==pStartNode) continue;					// ì‹œì‘ ë…¸ë“œë¡œ ë‹¤ì‹œ ëŒì•„ì˜¬ í•„ìš”ê°€ ì—†ìœ¼ë¯€ë¡œ ì œì™¸í•œë‹¤.
 			if(pNode->m_pParent==pSuccessor) continue;
 
 			float fNewCostFromStart = pNode->GetSuccessorCostFromStart(pSuccessor);
 
-			// ÀÌ ³ëµå°¡ Á¸ÀçÇÏ¸ç ´õ ³ªÀº °á°ú°¡ ¾Æ´Ï¶ó¸é ¹«½ÃÇÑ´Ù.
-			// ÀÌ ³ëµå°¡ ¿­¸° ¸ñ·ÏÀÌ³ª ´İÈù ¸ñ·Ï¿¡ µé¾îÀÖ´ÂÁö Á¡°ËÇÑ´Ù.
+			// ì´ ë…¸ë“œê°€ ì¡´ì¬í•˜ë©° ë” ë‚˜ì€ ê²°ê³¼ê°€ ì•„ë‹ˆë¼ë©´ ë¬´ì‹œí•œë‹¤.
+			// ì´ ë…¸ë“œê°€ ì—´ë¦° ëª©ë¡ì´ë‚˜ ë‹«íŒ ëª©ë¡ì— ë“¤ì–´ìˆëŠ”ì§€ ì ê²€í•œë‹¤.
 			if(pSuccessor->GetSessionID() == m_nPathSession)
 			{
 				if( pSuccessor->m_fCostFromStart <= fNewCostFromStart ) continue;	// Skip
 			}
 
-			// »õ·Î¿î, Áï ´õ ³ªÀº Á¤º¸¸¦ ÀúÀåÇÑ´Ù.
+			// ìƒˆë¡œìš´, ì¦‰ ë” ë‚˜ì€ ì •ë³´ë¥¼ ì €ì¥í•œë‹¤.
 			pSuccessor->m_pParent = pNode;
 			pSuccessor->m_fCostFromStart = fNewCostFromStart;
 			pSuccessor->m_fCostToGoal = pSuccessor->GetHeuristicCost(pGoalNode);
@@ -165,29 +165,29 @@ Closed: list of searchnode
 AStarSearch(location StartLoc, location GoalLoc, agenttype Agent) {
 	clear Open and Closed
 
-	// ½ÃÀÛ ³ëµå¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+	// ì‹œì‘ ë…¸ë“œë¥¼ ì´ˆê¸°í™”í•œë‹¤.
 	StartNode.Loc = StartLoc
 	StartNode.CostFromStart = 0
 	StartNode.CostToGoal = PathCostEstimate(StartLoc, GoalLoc, Agent)
 	StartNode.Parent = null
 	push StartNode on Open
 
-	// ¼º°ø ¶Ç´Â ½ÇÆĞ¿¡ ÀÌ¸¦ ¶§±îÁö ¸ñ·ÏÀ» Ã³¸®ÇÑ´Ù.
+	// ì„±ê³µ ë˜ëŠ” ì‹¤íŒ¨ì— ì´ë¥¼ ë•Œê¹Œì§€ ëª©ë¡ì„ ì²˜ë¦¬í•œë‹¤.
 	while Open is not empty {
-		pop Node from Open // ³ëµå°¡ ÃÖÀúÀÇ TotalCost¸¦ °¡Áö´Â °æ¿ì
+		pop Node from Open // ë…¸ë“œê°€ ìµœì €ì˜ TotalCostë¥¼ ê°€ì§€ëŠ” ê²½ìš°
 
-		// ¸ñÇ¥¿¡ µµ´ŞÇßÀ¸¸é ¼º°øÀ¸·Î ³¡³½´Ù.
+		// ëª©í‘œì— ë„ë‹¬í–ˆìœ¼ë©´ ì„±ê³µìœ¼ë¡œ ëë‚¸ë‹¤.
 		if (Node is a goal node) {
 			construct a path backward from Node to StartLoc
 			return success
 		} else {
 			for each successor NewNode of Node {
 				NewCost = Node.CostFromStart + TraverseCost(Node, NewNode, Agent)
-				// ÀÌ ³ëµå°¡ Á¸ÀçÇÏ¸ç ´õ ³ªÀº °á°ú°¡ ¾Æ´Ï¶ó¸é ¹«½ÃÇÑ´Ù.
+				// ì´ ë…¸ë“œê°€ ì¡´ì¬í•˜ë©° ë” ë‚˜ì€ ê²°ê³¼ê°€ ì•„ë‹ˆë¼ë©´ ë¬´ì‹œí•œë‹¤.
 				if (NewNode is in Open or Closed) and
 				(NewNode.CostFromStart <= NewCost) {
 					continue
-				} else {	// »õ·Î¿î, Áï ´õ ³ªÀº Á¤º¸¸¦ ÀúÀåÇÑ´Ù.
+				} else {	// ìƒˆë¡œìš´, ì¦‰ ë” ë‚˜ì€ ì •ë³´ë¥¼ ì €ì¥í•œë‹¤.
 					NewNode.Parent = Node
 					NewNode.CostFromStart = NewCost
 					NewNode.CostToGoal = PathCostEstimate(NewNode.Loc, GoalLoc, Agent)
@@ -200,7 +200,7 @@ AStarSearch(location StartLoc, location GoalLoc, agenttype Agent) {
 					} else {
 						push NewNode onto Open
 					}
-				} // if (NewNode is ... <= NewNode)¿¡ ´ëÇÑ else ºí·ÏÀÇ ³¡
+				} // if (NewNode is ... <= NewNode)ì— ëŒ€í•œ else ë¸”ë¡ì˜ ë
 			} // for
 		} // if (Node is a gole node)
 		push Node onto Closed

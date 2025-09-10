@@ -157,10 +157,10 @@ float g_scale[3];
 bool	g_bDrawGrid = true;
 bool	g_bDrawBBox = false;
 bool	g_effect_model = false;
-bool	g_character_view = true;//or map model view Ä«¸Ş¶ó È¸Àü¹æÇâÀÌ ¹İ´ë~
+bool	g_character_view = true;//or map model view ì¹´ë©”ë¼ íšŒì „ë°©í–¥ì´ ë°˜ëŒ€~
 
 ////////////////////////////////////////////////////////////////////
-// toon Texture °ü·Ã..
+// toon Texture ê´€ë ¨..
 
 LPDIRECT3DTEXTURE9 g_toon_tex = NULL;
 
@@ -210,7 +210,7 @@ CMcvDoc* CMcvView::GetDocument() // non-debug version is inline
 #endif //_DEBUG
 
 //////////////////////////////////////////////////////////////////////////////////////////
-// Toon Texture »ı¼º...
+// Toon Texture ìƒì„±...
 
 HRESULT	CreateToonTextures(char* filename)
 {
@@ -227,12 +227,12 @@ HRESULT	CreateToonTextures(char* filename)
 #endif
 
 	///////////////////////////////////////////////////////////////////////////////////////
-	// ÀÓ½Ã ÅØ½ºÃÄ »ı¼º...
+	// ì„ì‹œ í…ìŠ¤ì³ ìƒì„±...
 
 	HRESULT	rc;
 
 #define MaxTexUSize 128
-#define MaxTexUGap  5		// texture ´Ü°è..
+#define MaxTexUGap  5		// texture ë‹¨ê³„..
 
 //	rc = D3DXCreateTexture( RGetDevice() , 256 , 8 , D3DX_DEFAULT , 0 ,	D3DFMT_L8 , D3DPOOL_MANAGED , &g_toon_tex );
 //	rc = D3DXCreateTexture( RGetDevice() , 256 , 8 , D3DX_DEFAULT , 0 ,	D3DFMT_X8R8G8B8 , D3DPOOL_MANAGED , &g_toon_tex );
@@ -254,15 +254,15 @@ HRESULT	CreateToonTextures(char* filename)
 //	int				begin_color = 64;
 //	int				end_color   = 255;
 	
-//	int				color_gap = (end_color-begin_color) / MaxTexUGap;//´Ü°è´ç °£°İ..
+//	int				color_gap = (end_color-begin_color) / MaxTexUGap;//ë‹¨ê³„ë‹¹ ê°„ê²©..
 //	int				pixel_gap = MaxTexUSize / MaxTexUGap;
  
 	unsigned char * dataPtr=(unsigned char *)dataRect.pBits;
 	
 //	int cnt = 0;
 
-//	for(int i=0; i< MaxTexUSize ; ++i) {//ÇÈ¼¿¼ö¸¸Å­...
-	for(int i=0; i< 16 ; ++i) {//ÇÈ¼¿¼ö¸¸Å­...
+//	for(int i=0; i< MaxTexUSize ; ++i) {//í”½ì…€ìˆ˜ë§Œí¼...
+	for(int i=0; i< 16 ; ++i) {//í”½ì…€ìˆ˜ë§Œí¼...
 
 //		if(i) cnt = i / (pixel_gap+1);
 //		else  cnt = i;
@@ -470,7 +470,7 @@ void draw_grid(LPDIRECT3DDEVICE9 dev,D3DXVECTOR3 pos,float w,float h,int cnt_x,i
 	dev->SetTexture(0, NULL);
 	dev->SetFVF( RLVertexType );
 
-	// ¼¼·Î ¶óÀÎ
+	// ì„¸ë¡œ ë¼ì¸
 
 	RLVertex* t_vert = &t_grid_vert[0];
 
@@ -496,7 +496,7 @@ void draw_grid(LPDIRECT3DDEVICE9 dev,D3DXVECTOR3 pos,float w,float h,int cnt_x,i
 	
 	dev->DrawPrimitiveUP(D3DPT_LINELIST, size, (LPVOID) t_grid_vert, sizeof(RLVertex));
 
-	// °¡·Î¶óÀÎ
+	// ê°€ë¡œë¼ì¸
 
 	t_vert = &t_grid_vert[0];
 	size	= 0;
@@ -534,7 +534,7 @@ void draw_center(LPDIRECT3DDEVICE9 dev,float size_w,float size_h,DWORD color)
 	dev->SetTexture(0, NULL);
 	dev->SetFVF( RLVertexType );
 
-	// ¼¼·Î ¶óÀÎ
+	// ì„¸ë¡œ ë¼ì¸
 	RLVertex t_vert[4];
 	
 	RLVertex* vert = &t_vert[0];
@@ -599,7 +599,7 @@ D3DXVECTOR3	g_map_obj_pos;
 static float g_rot_y = 0.f;
 static float g_pos_h = 0.f;
 
-// ÀÓ½Ã·Î »ç¿ëÇÒ Ä«¸Ş¶ó
+// ì„ì‹œë¡œ ì‚¬ìš©í•  ì¹´ë©”ë¼
 
 class CTCamera {
 public:
@@ -620,7 +620,7 @@ public:
 
 		m_dist = 300.f;
 
-		m_at = rvector(0.f,0.f,0.f);//¹Ù¶óº¸´Â À§Ä¡
+		m_at = rvector(0.f,0.f,0.f);//ë°”ë¼ë³´ëŠ” ìœ„ì¹˜
 
 		RSetCamera(rvector(0.f, 80.f,-m_dist ),m_at ,rvector(0.f,1.f,0.f));
 
@@ -637,8 +637,8 @@ public:
 
 	void Update() {
 
-		// È¸Àü°ªÀ¸·Î ¹æÇâ º¤ÅÍ¸¦ ¸¸µé°í~
-		// dist ·Î °Å¸®Á¶Àı
+		// íšŒì „ê°’ìœ¼ë¡œ ë°©í–¥ ë²¡í„°ë¥¼ ë§Œë“¤ê³ ~
+		// dist ë¡œ ê±°ë¦¬ì¡°ì ˆ
 
 		rvector pos = RCameraPosition;
 		rvector dir = RCameraDirection;	
@@ -814,7 +814,7 @@ bool CMcvView::Init()
 
 	RInitDisplay(_hWnd->m_hWnd,&mparams);
 
-	_hWnd->GetWindowRect(&rect);//À©µµ¿ìÀ§Ä¡
+	_hWnd->GetWindowRect(&rect);//ìœˆë„ìš°ìœ„ì¹˜
 
 	GetWindowRect(&rect2);
 
@@ -824,14 +824,14 @@ bool CMcvView::Init()
 	g_dev = RGetDevice();
 
 	//////////////////////////////////////////////////////////
-	// Ä³¸¯ÅÍ ·Îµù½Ã Å©±â¿¡ ¸Â°Ô À§Ä¡Á¶Á¤
+	// ìºë¦­í„° ë¡œë”©ì‹œ í¬ê¸°ì— ë§ê²Œ ìœ„ì¹˜ì¡°ì •
 
 	g_camera.Create(w,h);
 
 	//////////////////////////////////////////////////////////
-	// Ä³¸¯ÅÍ ·Îµù½Ã Å©±â¿¡ ¸Â°Ô À§Ä¡Á¶Á¤
+	// ìºë¦­í„° ë¡œë”©ì‹œ í¬ê¸°ì— ë§ê²Œ ìœ„ì¹˜ì¡°ì •
 
-	g_light_pos = D3DXVECTOR3(0.f,150.f,-480.f);//Ä³¸¯ÅÍ ¹Ù¿îµù ¹Ú½ºÀÇ Áß°£ ¾ÕÂÊ..
+	g_light_pos = D3DXVECTOR3(0.f,150.f,-480.f);//ìºë¦­í„° ë°”ìš´ë”© ë°•ìŠ¤ì˜ ì¤‘ê°„ ì•ìª½..
 
 
 	g_dev->SetRenderState( D3DRS_AMBIENT, D3DCOLOR_COLORVALUE( 0.8f, 0.8f, 0.8f, 1.0f ) );
@@ -864,7 +864,7 @@ bool CMcvView::Init()
 	///////////////////////////////////////
 	// Weapon Type 
 
-	// ¹«±â¸ñ·ÏÀº ÇÑ¼Õ ¾ç¼Õ + Á¾·ù
+	// ë¬´ê¸°ëª©ë¡ì€ í•œì† ì–‘ì† + ì¢…ë¥˜
 
 	m_WeaponTypeCombo.AddString("eq_single_sword");
 	m_WeaponTypeCombo.AddString("eq_single_gun");
@@ -874,7 +874,7 @@ bool CMcvView::Init()
 
 	m_WeaponTypeCombo.SetCurSel(0);
 
-	// Àåºñ À§Ä¡´Â ¿Ş¼Õ ¿À¸¥¼Õ + Á¾·ù 
+	// ì¥ë¹„ ìœ„ì¹˜ëŠ” ì™¼ì† ì˜¤ë¥¸ì† + ì¢…ë¥˜ 
 
 	m_WeaponType2Combo.AddString("eq_left_sword");
 	m_WeaponType2Combo.AddString("eq_left_gun");
@@ -898,7 +898,7 @@ bool CMcvView::Init()
 
 	OnCameraReset();
 
-	RMesh::SetToolMesh(true);//Åø¿¡¼­ »ç¿ëµÉ ¸ğµ¨ÀÌ¶ó´Â°É ¾Ë¸°´Ù~
+	RMesh::SetToolMesh(true);//íˆ´ì—ì„œ ì‚¬ìš©ë  ëª¨ë¸ì´ë¼ëŠ”ê±¸ ì•Œë¦°ë‹¤~
 
 	m_SelMeshNodeName = "";
 
@@ -915,7 +915,7 @@ void CMcvView::Finish()
 
 //void AddPartsRot(float x,float y);//temp
 
-// Ä«¸Ş¶ó°¡ Å¸°Ù À§Ä¡ ±îÁö °¡Áö°í ¿òÁ÷ÀÌ±â..
+// ì¹´ë©”ë¼ê°€ íƒ€ê²Ÿ ìœ„ì¹˜ ê¹Œì§€ ê°€ì§€ê³  ì›€ì§ì´ê¸°..
 // 
 
 
@@ -936,22 +936,22 @@ void CMcvView::UpdateLightKey(float time)
 
 void CMcvView::UpdateCameraKey(float time)
 {
-	// ¸ğµå¿¡ µû¶ó¼­ ÀÛµ¿ÀÌ ´Ş¶óÁ®¾ßÇÔ
-	// Ä«¸Ş¶ó¸¦ Áß½ÉÄ³¸¯ÅÍ¸¦ ºñÃß´Â ¸ğµå
-	// Ä«¸Ş¶ó°¡ ¸¶À½´ë·Î µ¹¾Æ´Ù´Ï´Â ¸ğµå
+	// ëª¨ë“œì— ë”°ë¼ì„œ ì‘ë™ì´ ë‹¬ë¼ì ¸ì•¼í•¨
+	// ì¹´ë©”ë¼ë¥¼ ì¤‘ì‹¬ìºë¦­í„°ë¥¼ ë¹„ì¶”ëŠ” ëª¨ë“œ
+	// ì¹´ë©”ë¼ê°€ ë§ˆìŒëŒ€ë¡œ ëŒì•„ë‹¤ë‹ˆëŠ” ëª¨ë“œ
 
 	//////////////////////////////////
-	// °¢µµ Á¶Á¤
+	// ê°ë„ ì¡°ì •
 
 	if( g_character_view) {
 
-		// Ä«¸Ş¶ó ÀÌµ¿
+		// ì¹´ë©”ë¼ ì´ë™
 
-		if(IsKeyDown('Q'))		g_camera.Up(time);		// ³ôÀÌÁ¶Á¤
+		if(IsKeyDown('Q'))		g_camera.Up(time);		// ë†’ì´ì¡°ì •
 		if(IsKeyDown('E'))		g_camera.Down(time);
-		if(IsKeyDown('W'))		g_camera.m_dist -= (time*4);	// ÁÜÀÎ ¾Æ¿ô
+		if(IsKeyDown('W'))		g_camera.m_dist -= (time*4);	// ì¤Œì¸ ì•„ì›ƒ
 		if(IsKeyDown('S'))		g_camera.m_dist += (time*4);
-		if(IsKeyDown('A'))		g_camera.CenterRotationRight(time);	// ±×³É È¸Àü
+		if(IsKeyDown('A'))		g_camera.CenterRotationRight(time);	// ê·¸ëƒ¥ íšŒì „
 		if(IsKeyDown('D'))		g_camera.CenterRotationLeft(time);
 
 		if(IsKeyDown(VK_LEFT))	g_camera.CenterRotationRight(time);
@@ -978,9 +978,9 @@ void CMcvView::UpdateCameraKey(float time)
 void CMcvView::UpdateKey(float time)
 {
 	//////////////////////////////////
-	// °Å¸® Á¶Á¤
+	// ê±°ë¦¬ ì¡°ì •
 
-	// Áö±İÀ©µµ¿ì°¡ ÃÖ»óÀ§ÀÎ°æ¿ì
+	// ì§€ê¸ˆìœˆë„ìš°ê°€ ìµœìƒìœ„ì¸ê²½ìš°
 
 	bool bWindowTop = true;
 	
@@ -1093,8 +1093,8 @@ bool SetPosMat(RMesh* pMesh) {
 
 	if(!pMesh) return false;
 
-//	pMesh->CalcBox();//world mat È¸Àü°ª »ı·«
-//	2¹ø¤Š ÇÁ·¹ÀÓ ºÎÅÍ´Â °è»ê ¾ø¾îµµ µÇ´Ï±î.. ±×³É»ç¿ë
+//	pMesh->CalcBox();//world mat íšŒì „ê°’ ìƒëµ
+//	2ë²ˆì¨° í”„ë ˆì„ ë¶€í„°ëŠ” ê³„ì‚° ì—†ì–´ë„ ë˜ë‹ˆê¹Œ.. ê·¸ëƒ¥ì‚¬ìš©
 
 	rvector max = pMesh->m_vBBMax;
 	rvector	min = pMesh->m_vBBMin;
@@ -1205,7 +1205,7 @@ rmatrix _makealignmatrix(int mode,rmatrix& m)
 	Normalize(ca_dir);
 	Normalize(ca_up);
 
-//	scale °í·Á~
+//	scale ê³ ë ¤~
 
 	if( mode==0 ) {
 
@@ -1307,7 +1307,7 @@ rmatrix _makematrix(rvector dir,rvector up,rvector pos) {
 
 rmatrix _blendmatrixlimit(rmatrix& m,rvector& vdir,float f)
 {
-	//dir ,vdir »çÀÌÀÇ dot ÀÇ °¢µµ¿¡ µû¶ó f ºñÀ²À» Á¶Á¤~ (È¸Àü ºÒ°¡´ÉÇÏ°Ô ¸Ö´Ù¸é)
+	//dir ,vdir ì‚¬ì´ì˜ dot ì˜ ê°ë„ì— ë”°ë¼ f ë¹„ìœ¨ì„ ì¡°ì •~ (íšŒì „ ë¶ˆê°€ëŠ¥í•˜ê²Œ ë©€ë‹¤ë©´)
 	rmatrix rm;
 	D3DXMatrixIdentity(&rm);
 	return rm;
@@ -1316,7 +1316,7 @@ rmatrix _blendmatrixlimit(rmatrix& m,rvector& vdir,float f)
 
 rmatrix _blendmatrix(rmatrix& m,rvector& vdir,float f)
 {
-	// scale °í·Á ¾ÈÇÔ~
+	// scale ê³ ë ¤ ì•ˆí•¨~
 	rmatrix rm;
 	D3DXMatrixIdentity(&rm);
 
@@ -1427,7 +1427,7 @@ void CMcvView::Idle()
 /////////////////////////////////////////////////////////////////////
 
 /*	
-	face 8°³
+	face 8ê°œ
 
 	0,1,2 ,	0,2,3 ,	
 	3,2,6 ,	3,6,7 ,	
@@ -1437,7 +1437,7 @@ void CMcvView::Idle()
 	4,0,3 , 4,3,7
 */	
 	
-//	pick µÇ´Â°¡ º¸±â..
+//	pick ë˜ëŠ”ê°€ ë³´ê¸°..
 
 //	string str;
 //	GetCrashInfo(0,str);
@@ -1512,14 +1512,14 @@ void CMcvView::Idle()
 
 //	draw_matrix(RGetDevice(),_mat,30.f);
 
-	// µÎº¤ÅÍ»çÀÌÀÇ  Ãà°ú °¢À¸·Î ³ªÅ¸³»±â	-> ºñÁßµµ µÑ ¼ö ÀÖ´Ù~
-		//	-> ÀÌ°Ç ÄõÅÍ´Ï¾ğÀ¸·Î ¹Ù²Ü¼öÀÖ°í 
-		//	-> ¸ŞÆ®¸¯½º·Î ¹Ù²Ü¼öÀÖ´Ù..  -> ¹Ù·Î ´õÇØÁÙ ¸ŞÆ®¸¯½º ³ª¿È
-		//	-> ÀÌ°É x,y,z Ãà¿¡ ´ëÇÑÈ¸ÀüÀ¸·Îµµ ¹Ù²Ü¼ö ÀÖ´Â°¡?
+	// ë‘ë²¡í„°ì‚¬ì´ì˜  ì¶•ê³¼ ê°ìœ¼ë¡œ ë‚˜íƒ€ë‚´ê¸°	-> ë¹„ì¤‘ë„ ë‘˜ ìˆ˜ ìˆë‹¤~
+		//	-> ì´ê±´ ì¿¼í„°ë‹ˆì–¸ìœ¼ë¡œ ë°”ê¿€ìˆ˜ìˆê³  
+		//	-> ë©”íŠ¸ë¦­ìŠ¤ë¡œ ë°”ê¿€ìˆ˜ìˆë‹¤..  -> ë°”ë¡œ ë”í•´ì¤„ ë©”íŠ¸ë¦­ìŠ¤ ë‚˜ì˜´
+		//	-> ì´ê±¸ x,y,z ì¶•ì— ëŒ€í•œíšŒì „ìœ¼ë¡œë„ ë°”ê¿€ìˆ˜ ìˆëŠ”ê°€?
 
-	// µÎº¤ÅÍÀÇ cross º¤ÅÍ°¡ ÃàÀÌ°í~~
-	// µÎº¤ÅÍÀÇ dot °¡ °¢°ª~
-	// Ä³¸¯ÅÍ ¹æÇâÀ» Ä«¸Ş¶ó ¹æÇâ¿¡ ¸ÂÃß·Á¸é?
+	// ë‘ë²¡í„°ì˜ cross ë²¡í„°ê°€ ì¶•ì´ê³ ~~
+	// ë‘ë²¡í„°ì˜ dot ê°€ ê°ê°’~
+	// ìºë¦­í„° ë°©í–¥ì„ ì¹´ë©”ë¼ ë°©í–¥ì— ë§ì¶”ë ¤ë©´?
 
 /*
 
@@ -1571,18 +1571,18 @@ void CMcvView::Idle()
 			g_matWorld = g_mt * g_matWorld;
 		}
 */
-		//Ä«¸Ş¶ó °ø°£ inverse ±¸ÇÏ±â
+		//ì¹´ë©”ë¼ ê³µê°„ inverse êµ¬í•˜ê¸°
 
 		rmatrix matInvView = RView;
 
 		matInvView._41 = 0; 
 		matInvView._42 = 0; 
-		matInvView._43 = 0; // position ¹«½Ã 
+		matInvView._43 = 0; // position ë¬´ì‹œ 
 
 		
-		D3DXMatrixTranspose( &matInvView, &matInvView ); // scale ¾øÀ¸¹Ç·Î ±×³É transpose ÇØÁàµµ µÊ.
+		D3DXMatrixTranspose( &matInvView, &matInvView ); // scale ì—†ìœ¼ë¯€ë¡œ ê·¸ëƒ¥ transpose í•´ì¤˜ë„ ë¨.
 //		float f;
-//		D3DXMatrixInverse( &matInvView,&f, &matInvView ); // scale ¾øÀ¸¹Ç·Î ±×³É transpose ÇØÁàµµ µÊ.
+//		D3DXMatrixInverse( &matInvView,&f, &matInvView ); // scale ì—†ìœ¼ë¯€ë¡œ ê·¸ëƒ¥ transpose í•´ì¤˜ë„ ë¨.
 
 		rmatrix matLightDir;
 		rvector lightvec;
@@ -1600,8 +1600,8 @@ void CMcvView::Idle()
 		matLightDir._22 = -0.5 * lightvec.y;
 		matLightDir._32 = -0.5 * lightvec.z;
 
-		matLightDir._41 = 0.5f;				// -0.5 °öÇÏ°í 0.5 ´õÇÏ±â. 
-		matLightDir._42 = 0.5f;				// -0.5 °öÇÏ°í 0.5 ´õÇÏ±â. 
+		matLightDir._41 = 0.5f;				// -0.5 ê³±í•˜ê³  0.5 ë”í•˜ê¸°. 
+		matLightDir._42 = 0.5f;				// -0.5 ê³±í•˜ê³  0.5 ë”í•˜ê¸°. 
 		matLightDir._44 = 1.00f;
 
 		D3DXMatrixMultiply( &matLightDir, &matInvView, &matLightDir );
@@ -1620,11 +1620,11 @@ void CMcvView::Idle()
 				pVMesh->m_pMesh->m_LitVertexModel = true;
 		}
 		else {
-			if(!pVMesh->m_pMesh->m_bEffectSort)//ÀÌÆåÆ®¸ğµ¨Àº ±×³É ³öµĞ´Ù.
+			if(!pVMesh->m_pMesh->m_bEffectSort)//ì´í™íŠ¸ëª¨ë¸ì€ ê·¸ëƒ¥ ë†”ë‘”ë‹¤.
 				pVMesh->m_pMesh->m_LitVertexModel = false;
 		}
 /*
-		rvector cn = rvector( g_map_obj_pos.x , g_map_obj_pos.y + 160.f , g_map_obj_pos.z );//Ä³¸¯ÅÍ ´«³ôÀÌ À§Ä¡
+		rvector cn = rvector( g_map_obj_pos.x , g_map_obj_pos.y + 160.f , g_map_obj_pos.z );//ìºë¦­í„° ëˆˆë†’ì´ ìœ„ì¹˜
 		rvector vn = g_light_pos-cn;
 		Normalize( vn );
 
@@ -1648,7 +1648,7 @@ void CMcvView::Idle()
 //		RDrawLine(pos,rvector(0,0,0),0xffff0000);
 
 /*
-		// tool ¿¡¼­ upper blend ´Â ¾ø´Ù..
+		// tool ì—ì„œ upper blend ëŠ” ì—†ë‹¤..
 		if( pVMesh->GetFrameInfo( ani_mode_upper )->m_pAniSet ) {
 
 		}
@@ -1726,7 +1726,7 @@ BOOL CMcvView::PreTranslateMessage(MSG* pMsg)
 {
 	g_ArcBall[g_ArcMode].HandleMouseMessages( pMsg->hwnd, pMsg->message, pMsg->wParam, pMsg->lParam );
 
-	if( pMsg->message == WM_KEYDOWN ) {//Å°ÀÔ·Â ¹«½Ã
+	if( pMsg->message == WM_KEYDOWN ) {//í‚¤ì…ë ¥ ë¬´ì‹œ
 		return TRUE;
 //		SetFocus();
 
@@ -1769,12 +1769,12 @@ BOOL CMcvView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwSty
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// + ¿¡´Ï¸ŞÀÌ¼Ç »óÅÂº° ÇÁ·¹ÀÓ ±â¼úÆÄÀÏ ·Îµù°ú °ü¸®
-// + ÀåÂøÇÒ ¸ğµ¨ ·Îµù + °ü¸®
+// + ì—ë‹ˆë©”ì´ì…˜ ìƒíƒœë³„ í”„ë ˆì„ ê¸°ìˆ íŒŒì¼ ë¡œë”©ê³¼ ê´€ë¦¬
+// + ì¥ì°©í•  ëª¨ë¸ ë¡œë”© + ê´€ë¦¬
 
 /*
-	¿¡´Ï»óÅÂÆÄÀÏÀº
-	¶óÀÎÀĞ±â : Ã¹¶óÀÎÀº 
+	ì—ë‹ˆìƒíƒœíŒŒì¼ì€
+	ë¼ì¸ì½ê¸° : ì²«ë¼ì¸ì€ 
 
 	ani_filename = ;
 	{
@@ -1822,7 +1822,7 @@ void CMcvView::ChangePartsListBox()
 
 					if(pMNode) {
 
-						if( pMNode->m_point_color_num ) {//°Ë»ö
+						if( pMNode->m_point_color_num ) {//ê²€ìƒ‰
 							int point_color = pMNode->m_point_color_num;
 							int debug = 0;
 						}
@@ -1842,7 +1842,7 @@ void CMcvView::ChangePartsListBox()
 
 void CMcvView::ChangeWeaponListBox()
 {
-	// ÇÑ¼Õ ¹«±â¿Í ¾ç¼Õ¹«±âÀÇ Á¾·ù·Î ³ª´«´Ù.
+	// í•œì† ë¬´ê¸°ì™€ ì–‘ì†ë¬´ê¸°ì˜ ì¢…ë¥˜ë¡œ ë‚˜ëˆˆë‹¤.
 /*
 	RWeaponType eq_weapon = (RWeaponType)(m_nSelectWeaponType + 1);
 
@@ -1923,17 +1923,17 @@ void CheckEffectFile(RMesh* pMesh)
 
 void CMcvView::LoadXmlFile(char* FileName)
 {
-	//¸ğµ¨ Å©±â¿¡ µû¶ó Ä«¸Ş¶ó À§Ä¡¿Í ¶óÀÌÆ® À§Ä¡¸¦ Àâ¾ÆÁØ´Ù..
+	//ëª¨ë¸ í¬ê¸°ì— ë”°ë¼ ì¹´ë©”ë¼ ìœ„ì¹˜ì™€ ë¼ì´íŠ¸ ìœ„ì¹˜ë¥¼ ì¡ì•„ì¤€ë‹¤..
 	g_mesh_mgr.DelAll();
 	g_vmesh_mgr.DelAll();
 
-	g_id = g_mesh_mgr.AddXml(FileName);//load Æú´õ´Â? xml ÀÌ ÀÖ´ÂÆú´õ??
+	g_id = g_mesh_mgr.AddXml(FileName);//load í´ë”ëŠ”? xml ì´ ìˆëŠ”í´ë”??
 
 	if(g_id == -1) return;
 
 	RMesh* pMesh = g_mesh_mgr.GetFast(g_id);
 
-	// ÀÌÆåÆ® ¸ğµ¨ÀÌ¶ó¸é ±×¸®µå ²¨ÁØ´Ù.+ ¹è°æÄÃ·¯¹Ù²ãÁØ´Ù.
+	// ì´í™íŠ¸ ëª¨ë¸ì´ë¼ë©´ ê·¸ë¦¬ë“œ êº¼ì¤€ë‹¤.+ ë°°ê²½ì»¬ëŸ¬ë°”ê¿”ì¤€ë‹¤.
 
 	CheckEffectFile(pMesh);
 
@@ -1945,9 +1945,9 @@ void CMcvView::LoadXmlFile(char* FileName)
 
 	pVMesh = g_vmesh_mgr.GetFast(vid);
 
-	pVMesh->SetCheckViewFrustum(false);//ºäÃ¼Å©¸¦ ¾ÈÇÑ´Ù.
+	pVMesh->SetCheckViewFrustum(false);//ë·°ì²´í¬ë¥¼ ì•ˆí•œë‹¤.
 
-	// µî·Ï Á¤º¸¿¡ µû¶ó list box Ã¤¿ì±â
+	// ë“±ë¡ ì •ë³´ì— ë”°ë¼ list box ì±„ìš°ê¸°
 
 	ChangePartsListBox();
 	ChangeWeaponListBox();
@@ -1966,14 +1966,14 @@ void CMcvView::LoadAniFile(char* FileName)
 	RVisualMesh* pVMesh = g_vmesh_mgr.GetFast(0);
 
 	if( pAni && pVMesh ) {
-		pVMesh->m_pMesh->SetAnimation(pAni_);//ÀÌÀü°Í¼Ò°Å..
+		pVMesh->m_pMesh->SetAnimation(pAni_);//ì´ì „ê²ƒì†Œê±°..
 		pVMesh->SetAnimation(pAni);
 	}
 }
 
 void CMcvView::LoadFile(char* FileName)
 {
-	//¸ğµ¨ Å©±â¿¡ µû¶ó Ä«¸Ş¶ó À§Ä¡¿Í ¶óÀÌÆ® À§Ä¡¸¦ Àâ¾ÆÁØ´Ù..
+	//ëª¨ë¸ í¬ê¸°ì— ë”°ë¼ ì¹´ë©”ë¼ ìœ„ì¹˜ì™€ ë¼ì´íŠ¸ ìœ„ì¹˜ë¥¼ ì¡ì•„ì¤€ë‹¤..
 
 	g_vmesh_mgr.DelAll();
 	g_mesh_mgr.DelAll();
@@ -1987,10 +1987,10 @@ void CMcvView::LoadFile(char* FileName)
 
 	if( pMesh )  {
 		if( pMesh->m_isPhysiqueMesh )
-			pMesh->m_isCharacterMesh = true;// visualmesh ‹š¹®¿¡~ xml Àº Ä³¸¯ÅÍ ½Äº°µÈ´Ù..
+			pMesh->m_isCharacterMesh = true;// visualmesh ë–„ë¬¸ì—~ xml ì€ ìºë¦­í„° ì‹ë³„ëœë‹¤..
 	}
 
-	// ÀÌÆåÆ® ¸ğµ¨ÀÌ¶ó¸é ±×¸®µå ²¨ÁØ´Ù.+ ¹è°æÄÃ·¯¹Ù²ãÁØ´Ù.
+	// ì´í™íŠ¸ ëª¨ë¸ì´ë¼ë©´ ê·¸ë¦¬ë“œ êº¼ì¤€ë‹¤.+ ë°°ê²½ì»¬ëŸ¬ë°”ê¿”ì¤€ë‹¤.
 
 	CheckEffectFile(pMesh);
 	
@@ -2002,7 +2002,7 @@ void CMcvView::LoadFile(char* FileName)
 
 	pVMesh = g_vmesh_mgr.GetFast(vid);
 
-	pVMesh->SetCheckViewFrustum(false);//ºäÃ¼Å©¸¦ ¾ÈÇÑ´Ù.
+	pVMesh->SetCheckViewFrustum(false);//ë·°ì²´í¬ë¥¼ ì•ˆí•œë‹¤.
 }
 
 void CMcvView::FileOpen(char* filename)
@@ -2026,7 +2026,7 @@ void CMcvView::FileOpen(char* filename)
 
 		LoadFile(filename);
 
-		if(g_bmtrl_dlg) {// º¸ÀÌ°í ÀÖ´Â »óÅÂ¶ó¸é °»½ÅÀÌ ÇÊ¿ä
+		if(g_bmtrl_dlg) {// ë³´ì´ê³  ìˆëŠ” ìƒíƒœë¼ë©´ ê°±ì‹ ì´ í•„ìš”
 			g_bmtrl_dlg = false;
 			OnMtrleditdlg();
 		}
@@ -2037,7 +2037,7 @@ void CMcvView::FileOpen(char* filename)
 
 		LoadXmlFile(filename);
 
-		if(g_bmtrl_dlg) {// º¸ÀÌ°í ÀÖ´Â »óÅÂ¶ó¸é °»½ÅÀÌ ÇÊ¿ä
+		if(g_bmtrl_dlg) {// ë³´ì´ê³  ìˆëŠ” ìƒíƒœë¼ë©´ ê°±ì‹ ì´ í•„ìš”
 			g_bmtrl_dlg = false;
 			OnMtrleditdlg();
 		}
@@ -2054,7 +2054,7 @@ void CMcvView::FileOpen(char* filename)
 
 	}
 	else {
-		::MessageBox(NULL,"¾Ë¼ö¾ø´Â È®ÀåÀÚ¸¦ °¡Áø ÆÄÀÏÀÔ´Ï´Ù~","info",MB_OK);
+		::MessageBox(NULL,"ì•Œìˆ˜ì—†ëŠ” í™•ì¥ìë¥¼ ê°€ì§„ íŒŒì¼ì…ë‹ˆë‹¤~","info",MB_OK);
 		return;
 	}
 
@@ -2079,7 +2079,7 @@ void CMcvView::OnFileOpen()
 	}
 }
 
-// ¹«±âÆÄÀÏ ¿­±â elu ³ª xml -> weapon mesh list ¿Í ¿¬°á
+// ë¬´ê¸°íŒŒì¼ ì—´ê¸° elu ë‚˜ xml -> weapon mesh list ì™€ ì—°ê²°
 // weapon file open
 
 void CMcvView::LoadWeaponFile(char* filename)
@@ -2108,7 +2108,7 @@ void CMcvView::WFileOpen(char* filename)
 		LoadWeaponXmlFile(filename);
 	}
 	else
-		::MessageBox(NULL,"¾Ë¼ö¾ø´Â È®ÀåÀÚ¸¦ °¡Áø ÆÄÀÏÀÔ´Ï´Ù~","info",MB_OK);
+		::MessageBox(NULL,"ì•Œìˆ˜ì—†ëŠ” í™•ì¥ìë¥¼ ê°€ì§„ íŒŒì¼ì…ë‹ˆë‹¤~","info",MB_OK);
 }
 
 void CMcvView::OnFileWopen()
@@ -2135,7 +2135,7 @@ void CMcvView::OnDropFiles(HDROP hDropInfo)
 	int cnt = DragQueryFile(hDropInfo, 0xFFFFFFFF, NULL, 0);
 
 	if(cnt > 1)
-		::MessageBox(NULL,"ÇÑ¹ø¿¡ ÇÏ³ª¾¿~","info",MB_OK);
+		::MessageBox(NULL,"í•œë²ˆì— í•˜ë‚˜ì”©~","info",MB_OK);
 
 //	for(int i=0;i<cnt;i++) {
 	for(int i=0;i<1;i++) {
@@ -2205,7 +2205,7 @@ void CMcvView::OnCbnSelchangeWeaponType()
 
 	ChangeWeaponListBox();
 }
-// ÀåºñµÉ À§Ä¡ ¼±ÅÃ
+// ì¥ë¹„ë  ìœ„ì¹˜ ì„ íƒ
 void CMcvView::OnCbnSelchangeWeaponType2()
 {
 	m_nSelectWeaponType2 = m_WeaponType2Combo.GetCurSel();
@@ -2241,7 +2241,7 @@ void CMcvView::OnLbnSelchangeWeaponList()
 
 	RVisualMesh* pVMesh = g_vmesh_mgr.GetFast(0);
 
-	// ÀåºñÀ§Ä¡
+	// ì¥ë¹„ìœ„ì¹˜
 
 //	RMeshPartsType _weapon = (RMeshPartsType)((int)eq_parts_left_blade + m_nSelectWeaponType2);
 	RWeaponMotionType type = eq_ws_pistol;
@@ -2255,14 +2255,14 @@ void CMcvView::OnLbnSelchangeWeaponList()
 		//	base weapon
 
 		if(sel==0) {
-//			pVMesh->SetBaseParts(_weapon);//weapon Àº µû·Î °ü¸® µÉ¼öµµ..
+//			pVMesh->SetBaseParts(_weapon);//weapon ì€ ë”°ë¡œ ê´€ë¦¬ ë ìˆ˜ë„..
 		}
 		else {
 
 			RMesh* pMesh = g_weapon_mesh_mgr.GetFast(0);
 
 //			RMeshNode* pPartsNode = g_weapon_mesh_mgr.GetPartsNode((char*)str.operator const char*());
-//			pVMesh->SetParts(_weapon,pPartsNode);//NULL ÀÌ¶óµµ °ü°è ¾øÀ½..
+//			pVMesh->SetParts(_weapon,pPartsNode);//NULL ì´ë¼ë„ ê´€ê³„ ì—†ìŒ..
 			pVMesh->AddWeapon(type,pMesh);
 		}
 	}
@@ -2315,13 +2315,13 @@ void CMcvView::OnBnClickedPause()
 		pVMesh->Pause();
 }
 
-// Ä«¸Ş¶ó¿Í ¶óÀÌÆ® À§Ä¡°ª ÃÊ±âÈ­ 
+// ì¹´ë©”ë¼ì™€ ë¼ì´íŠ¸ ìœ„ì¹˜ê°’ ì´ˆê¸°í™” 
 
 void CMcvView::OnCameraReset()
 {
 	g_camera.Reset();
 
-	g_light_pos = D3DXVECTOR3(0.f,150.f,-380.f);//Ä³¸¯ÅÍ ¹Ù¿îµù ¹Ú½ºÀÇ Áß°£ ¾ÕÂÊ..
+	g_light_pos = D3DXVECTOR3(0.f,150.f,-380.f);//ìºë¦­í„° ë°”ìš´ë”© ë°•ìŠ¤ì˜ ì¤‘ê°„ ì•ìª½..
 	g_map_obj_pos = D3DXVECTOR3(0,0,0);
 }
 
@@ -2339,7 +2339,7 @@ void CMcvView::OnNMReleasedcaptureSlider1(NMHDR *pNMHDR, LRESULT *pResult)
 	float s = pos * 0.1f;
 
 	if(pVMesh)
-		pVMesh->SetSpeed(s);//4.8 ÀÌ 1¹è¼Ó..
+		pVMesh->SetSpeed(s);//4.8 ì´ 1ë°°ì†..
 
 	*pResult = 0;
 }
@@ -2360,7 +2360,7 @@ void CMcvView::OnModelinfo()
 {
 	if(!g_bModelInfo_dlg) {
 
-		// ³ëµå Á¤º¸¿Í ¸ŞÅÍ¸®¾ó Á¤º¸¸¦ ´ã¾ÆÁØ´Ù..
+		// ë…¸ë“œ ì •ë³´ì™€ ë©”í„°ë¦¬ì–¼ ì •ë³´ë¥¼ ë‹´ì•„ì¤€ë‹¤..
 		g_model_info_dlg.Begin();		
 		g_model_info_dlg.ShowWindow(SW_SHOW);
 	}
@@ -2374,8 +2374,8 @@ void CMcvView::OnModelinfo()
 void CMcvView::OnMtrleditdlg()
 {
 	if(!g_bmtrl_dlg) {
-		// Áö±İ ÀĞÀº ¸ğµ¨ÀÌ ÀÖ´Ù¸é..
-		// ÀÌÀü°ªÀº clear..
+		// ì§€ê¸ˆ ì½ì€ ëª¨ë¸ì´ ìˆë‹¤ë©´..
+		// ì´ì „ê°’ì€ clear..
 
 		g_mtrl_dlg.Begin();
 
@@ -2407,7 +2407,7 @@ void CMcvView::OnAnimationinfo()
 //////////////////////////////////////////////////////////////
 // mouse event
 
-float GetTimer()//¿øÇÒ¶§
+float GetTimer()//ì›í• ë•Œ
 {
 	static DWORD time_back = timeGetTime();
 
@@ -2463,7 +2463,7 @@ void CMcvView::OnMouseMove(UINT nFlags, CPoint point)
 	CFormView::OnMouseMove(nFlags, point);
 }
 
-// ¸¶¿ì½ºÄ¸Ãç ½á¾ßÇÏ³ª?
+// ë§ˆìš°ìŠ¤ìº¡ì¶° ì¨ì•¼í•˜ë‚˜?
 
 void CMcvView::OnLButtonDown(UINT nFlags, CPoint point)
 {
@@ -2617,7 +2617,7 @@ void CMcvView::OnPartscolor()
 
 		col = D3DCOLOR_ARGB(255,r,g,b);
 
-		// Áö±İ ¼±ÅÃµÇ¾îÀÖ´Â ÆÄÃ÷ ³ëµå¸¦ ±¸ÇÑ´Ù..xml ÀÌ ÀÖÀ» °æ¿ì¿Í ¾Æ´Ñ°æ¿ì? visual mesh ¿¡¼­ ±¸ÇÏ±â..
+		// ì§€ê¸ˆ ì„ íƒë˜ì–´ìˆëŠ” íŒŒì¸  ë…¸ë“œë¥¼ êµ¬í•œë‹¤..xml ì´ ìˆì„ ê²½ìš°ì™€ ì•„ë‹Œê²½ìš°? visual mesh ì—ì„œ êµ¬í•˜ê¸°..
 
 		RVisualMesh* pVMesh = g_vmesh_mgr.GetFast(0);
 
@@ -2638,7 +2638,7 @@ void CMcvView::OnPartscolor()
 			
 			RealSpace2::RMeshNode* pMNode = pVMesh->m_pTMesh[type];
 
-			if(pMNode==NULL)//xml ÀÌ ¾Æ´Ñ°æ¿ì...
+			if(pMNode==NULL)//xml ì´ ì•„ë‹Œê²½ìš°...
 				pMNode = pVMesh->m_pMesh->GetMeshData(type);
 
 			if(pMNode) {
@@ -2648,7 +2648,7 @@ void CMcvView::OnPartscolor()
 			}
 			
 		}
-		// ÀåºñÀ§Ä¡
+		// ì¥ë¹„ìœ„ì¹˜
 	}
 }
 
@@ -2670,7 +2670,7 @@ void CMcvView::OnPartscolorall()
 
 		col = D3DCOLOR_ARGB(255,r,g,b);
 
-		// Áö±İ ¼±ÅÃµÇ¾îÀÖ´Â ÆÄÃ÷ ³ëµå¸¦ ±¸ÇÑ´Ù..xml ÀÌ ÀÖÀ» °æ¿ì¿Í ¾Æ´Ñ°æ¿ì? visual mesh ¿¡¼­ ±¸ÇÏ±â..
+		// ì§€ê¸ˆ ì„ íƒë˜ì–´ìˆëŠ” íŒŒì¸  ë…¸ë“œë¥¼ êµ¬í•œë‹¤..xml ì´ ìˆì„ ê²½ìš°ì™€ ì•„ë‹Œê²½ìš°? visual mesh ì—ì„œ êµ¬í•˜ê¸°..
 
 		RVisualMesh* pVMesh = g_vmesh_mgr.GetFast(0);
 
@@ -2711,7 +2711,7 @@ void CMcvView::OnPartscolorall()
 			}
 
 		}
-		// ÀåºñÀ§Ä¡
+		// ì¥ë¹„ìœ„ì¹˜
 	}
 }
 
@@ -2792,18 +2792,18 @@ void CMcvView::ChangeAnimationInfoString()
 
 void CMcvView::OnStnClickedCurrentFrame()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
 
 void CMcvView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	CSliderCtrl* pSlider = (CSliderCtrl*)GetDlgItem(IDC_SLIDER_ANIMATION);
 	if((void*)pScrollBar==(void*)pSlider)
 	{
-			// ¾Ö´Ï¸ŞÀÌ¼Ç ÇÁ·¹ÀÓ ¾÷µ¥ÀÌÆ®
+			// ì• ë‹ˆë©”ì´ì…˜ í”„ë ˆì„ ì—…ë°ì´íŠ¸
 		RVisualMesh* pVMesh = g_vmesh_mgr.GetFast(0);
 		if(pVMesh)
 		{

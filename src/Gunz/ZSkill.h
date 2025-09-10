@@ -15,15 +15,15 @@ enum ZSKILLRESISTTYPE {
 	ZSR_POISON		= 4
 };
 
-enum ZSKILLEFFECTTYPE {		// ¾î¶² ´ë»ó¿¡°Ô »ç¿ëµÇ´ÂÁö °áÁ¤
-	ZSE_ENEMY		= 0,		// ÀÏ¹İÀûÀÎ Àû
-	ZSE_ENEMY_AREA	= 1,		// Àû ¿µ¿ª
-	ZSE_OWNER_AREA	= 2,		// Ä³½ºÅÍ ÁÖº¯ ¿µ¿ª
-	ZSE_WHOLE_AREA	= 3,		// ÀüÃ¼
-	ZSE_SLASH_AREA	= 4,		// Ä® ÈÖµÎ¸£´Â ¹üÀ§
+enum ZSKILLEFFECTTYPE {		// ì–´ë–¤ ëŒ€ìƒì—ê²Œ ì‚¬ìš©ë˜ëŠ”ì§€ ê²°ì •
+	ZSE_ENEMY		= 0,		// ì¼ë°˜ì ì¸ ì 
+	ZSE_ENEMY_AREA	= 1,		// ì  ì˜ì—­
+	ZSE_OWNER_AREA	= 2,		// ìºìŠ¤í„° ì£¼ë³€ ì˜ì—­
+	ZSE_WHOLE_AREA	= 3,		// ì „ì²´
+	ZSE_SLASH_AREA	= 4,		// ì¹¼ íœ˜ë‘ë¥´ëŠ” ë²”ìœ„
 
-	ZSE_ALLIED		= 5,		// ¾Æ±º
-	ZSE_ALLIED_AREA	= 6,		// ¾Æ±º ¿µ¿ª
+	ZSE_ALLIED		= 5,		// ì•„êµ°
+	ZSE_ALLIED_AREA	= 6,		// ì•„êµ° ì˜ì—­
 };
 
 enum ZSKILLEFFECTTRAILTYPE {
@@ -63,8 +63,8 @@ struct ZSkillRepeat
 	rvector	vAngle;
 };
 
-// ±âÈ¹¼­¿¡ ÀÖ´Â°ÍÀÌ¿Ü¿¡ È¿°ú½ÃÀÛ½Ã°£, ´ë»óÀÌ ÀÖ´Â ½ºÅ³ÀÎ°æ¿ì Ä³½ºÆÃ°¡´ÉÇÑ °Å¸®µµ ÇÊ¿äÇÒµí.
-// ¶Ç ÀÌÆåÆ®¿¡ ´ëÇÑ ±â¼úµµ ÇÊ¿äÇÒµí.
+// ê¸°íšì„œì— ìˆëŠ”ê²ƒì´ì™¸ì— íš¨ê³¼ì‹œì‘ì‹œê°„, ëŒ€ìƒì´ ìˆëŠ” ìŠ¤í‚¬ì¸ê²½ìš° ìºìŠ¤íŒ…ê°€ëŠ¥í•œ ê±°ë¦¬ë„ í•„ìš”í• ë“¯.
+// ë˜ ì´í™íŠ¸ì— ëŒ€í•œ ê¸°ìˆ ë„ í•„ìš”í• ë“¯.
 class ZSkillDesc {
 public:
 	ZSkillDesc();
@@ -76,14 +76,14 @@ public:
 	ZSKILLEFFECTTYPE	nEffectType;
 	bool				bHitCheck;
 	bool				bGuidable;
-	float				fVelocity;			// ¹ß»çµÇ´Â ¹«±âÀÇ ¼Óµµ
+	float				fVelocity;			// ë°œì‚¬ë˜ëŠ” ë¬´ê¸°ì˜ ì†ë„
 	int					nDelay;
 	int					nLifeTime;
-	int					nEffectStartTime;	// Ãß°¡ : È¿°ú ½ÃÀÛ½Ã°£
-	int					nEffectTime;		// È¿°ú Áö¼Ó½Ã°£
+	int					nEffectStartTime;	// ì¶”ê°€ : íš¨ê³¼ ì‹œì‘ì‹œê°„
+	int					nEffectTime;		// íš¨ê³¼ ì§€ì†ì‹œê°„
 	float				fEffectArea;
-	float				fEffectAreaMin;		// È¿°ú ÃÖ¼Ò°Å¸® - Áö±İÀº MeleeÇü Skill¿¡¸¸ »ç¿ëÇÑ´Ù.
-	float				fEffectAngle;		// È¿°ú ÆÇÁ¤ °¢µµ - Áö±İÀº MeleeÇü Skill¿¡¸¸ »ç¿ëÇÑ´Ù. ±âº»Àº 90µµ
+	float				fEffectAreaMin;		// íš¨ê³¼ ìµœì†Œê±°ë¦¬ - ì§€ê¸ˆì€ Meleeí˜• Skillì—ë§Œ ì‚¬ìš©í•œë‹¤.
+	float				fEffectAngle;		// íš¨ê³¼ íŒì • ê°ë„ - ì§€ê¸ˆì€ Meleeí˜• Skillì—ë§Œ ì‚¬ìš©í•œë‹¤. ê¸°ë³¸ì€ 90ë„
 	ZSKILLRESISTTYPE	ResistType;
 	int					nDifficulty;
 	bool				bCameraShock;
@@ -94,7 +94,7 @@ public:
 	int					nModDamage;
 	int					nModLastDamage;
 	int					nModDoT;
-	int					nModCriticalRate;	// °üÅë·ü(%) ÀüÃ¼ µ¥¹ÌÁöÁß HPµ¥¹ÌÁöÀÇ ºñÀ²
+	int					nModCriticalRate;	// ê´€í†µë¥ (%) ì „ì²´ ë°ë¯¸ì§€ì¤‘ HPë°ë¯¸ì§€ì˜ ë¹„ìœ¨
 	int					nModSpeed;
 	bool				bModAntiMotion;
 	bool				bModRoot;
@@ -103,11 +103,11 @@ public:
 	float				fModKnockback;
 	char				szMessage[256];
 
-	int					nCastingAnimation;	// Ãß°¡ : Ä³½ºÆÃ ¾Ö´Ï¸ŞÀÌ¼Ç
+	int					nCastingAnimation;	// ì¶”ê°€ : ìºìŠ¤íŒ… ì• ë‹ˆë©”ì´ì…˜
 	int					nTargetAnimation;
 
-	char				szEffectSound[64];		// È¿°ú ½ÃÀÛµÉ¶§ ³ª¿À´Â »ç¿îµå
-	char				szExplosionSound[64];	// Æø¹ßÇÒ¶§ ³ª¿À´Â »ç¿îµå
+	char				szEffectSound[64];		// íš¨ê³¼ ì‹œì‘ë ë•Œ ë‚˜ì˜¤ëŠ” ì‚¬ìš´ë“œ
+	char				szExplosionSound[64];	// í­ë°œí• ë•Œ ë‚˜ì˜¤ëŠ” ì‚¬ìš´ë“œ
 
 	ZSKILLEFFECTTARGETPOSTYPE	nCastingEffectType;
 	ZSKILLEFFECTTARGETPOSTYPE	nCastingPreEffectType;
@@ -115,8 +115,8 @@ public:
 
 	rvector				vCastingEffectAddPos;
 	char				szCastingEffect[64];
-	char				szCastingEffectSp[64];//Æ¯¼öÇÑ ÀÌÆåÆ®µé..ÀÌ¸§À¸·Î Æ¯Á¤ÇÑ ÇÔ¼ö¿Í ¿¬°áÇÏ°í ½ÍÀº°æ¿ì...
-	char				szCastingPreEffect[64];// ½ºÅ³ ¹ßµ¿°ú µ¿½Ã¿¡ º¸¿©Áú°Í...
+	char				szCastingEffectSp[64];//íŠ¹ìˆ˜í•œ ì´í™íŠ¸ë“¤..ì´ë¦„ìœ¼ë¡œ íŠ¹ì •í•œ í•¨ìˆ˜ì™€ ì—°ê²°í•˜ê³  ì‹¶ì€ê²½ìš°...
+	char				szCastingPreEffect[64];// ìŠ¤í‚¬ ë°œë™ê³¼ ë™ì‹œì— ë³´ì—¬ì§ˆê²ƒ...
 	int					nCastingEffectSpCount;
 	
 	char				szTrailEffect[64];
@@ -124,9 +124,9 @@ public:
 
 	ZSKILLEFFECTTRAILTYPE nTrailEffectType;
 	float				fTrailEffectScale;
-	bool				bDrawTrack;				// ¹Ì»çÀÏ·ù Track ±×¸±Áö ¿©ºÎ
-	float				fColRadius;				// ¹Ì»çÀÏ·ù Ãæµ¹ ¹üÀ§ ¹İÁö¸§
-	vector<ZSkillRepeat>		RepeatList;		// ÇÑ½ºÅ³¿¡ ¿©·¯°³ ¹ß»çÇÏ·Á°í ÇÒ ¶§ »ç¿ë
+	bool				bDrawTrack;				// ë¯¸ì‚¬ì¼ë¥˜ Track ê·¸ë¦´ì§€ ì—¬ë¶€
+	float				fColRadius;				// ë¯¸ì‚¬ì¼ë¥˜ ì¶©ëŒ ë²”ìœ„ ë°˜ì§€ë¦„
+	vector<ZSkillRepeat>		RepeatList;		// í•œìŠ¤í‚¬ì— ì—¬ëŸ¬ê°œ ë°œì‚¬í•˜ë ¤ê³  í•  ë•Œ ì‚¬ìš©
 
 	bool IsAlliedTarget() {
 		if(nEffectType==ZSE_ALLIED || nEffectType==ZSE_ALLIED_AREA) return true;

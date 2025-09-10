@@ -61,12 +61,12 @@ bool ZInitialLoading::Initialize( int numScene_,
 		SetRandomTipsText();
 	}
 
-	// Ã»¼Ò³â ÀÚÀ² ±ÔÁ¦ Àû¿ë¾È(¾²¹ú¾²¹ú¾²¹ú...)...
+	// ì²­ì†Œë…„ ììœ¨ ê·œì œ ì ìš©ì•ˆ(ì“°ë²Œì“°ë²Œì“°ë²Œ...)...
 #ifdef LOCALE_KOREA
 	if ( (rand() % 2) == 0)
-		sprintf_safe( m_szNotice, "Àå½Ã°£ÀÇ °ÔÀÓ ÀÌ¿ëÀº °Ç°­À» ÇØÄ¥ ¼ö ÀÖ½À´Ï´Ù.");
+		sprintf_safe( m_szNotice, "ì¥ì‹œê°„ì˜ ê²Œì„ ì´ìš©ì€ ê±´ê°•ì„ í•´ì¹  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
 	else
-		sprintf_safe( m_szNotice, "°øºÎ¿Í ÀÏ¿¡ ÈŞ½ÄÀÌ ÇÊ¿äÇÏµíÀÌ, °ÔÀÓ ÀÌ¿ë¿¡µµ ÀûÀıÇÑ ÈŞ½ÄÀÌ ÇÊ¿ä ÇÕ´Ï´Ù.");
+		sprintf_safe( m_szNotice, "ê³µë¶€ì™€ ì¼ì— íœ´ì‹ì´ í•„ìš”í•˜ë“¯ì´, ê²Œì„ ì´ìš©ì—ë„ ì ì ˆí•œ íœ´ì‹ì´ í•„ìš” í•©ë‹ˆë‹¤.");
 #endif
 
 	m_pLoadingStr = NULL;
@@ -212,7 +212,7 @@ void ZInitialLoading::Draw(LOADING_SCENE_MODE mode_, int destIndex_, bool bFlip_
 				(float)(RGetScreenWidth() * 0.4482), (float)(RGetScreenHeight() * 0.018f),  mPercentage* 0.01f ); 
 		}
 
-		// ·Îµù ÀÌ¸§
+		// ë¡œë”© ì´ë¦„
 		if(m_pLoadingStr && mpDC ) {
 			char buffer[256];
 			sprintf_safe(buffer,"Loading %s ...",m_pLoadingStr);
@@ -222,7 +222,7 @@ void ZInitialLoading::Draw(LOADING_SCENE_MODE mode_, int destIndex_, bool bFlip_
 			mpDC->m_Font.DrawText( x, y, buffer, 0xFFCCCCCC );
 		}
 
-	// Ã»¼Ò³â ÀÚÀ² ±ÔÁ¦ Àû¿ë¾È(¾²¹ú¾²¹ú¾²¹ú...)...
+	// ì²­ì†Œë…„ ììœ¨ ê·œì œ ì ìš©ì•ˆ(ì“°ë²Œì“°ë²Œì“°ë²Œ...)...
 #ifdef LOCALE_KOREA
 		if (mpDC)
 		{
@@ -271,7 +271,7 @@ void ZInitialLoading::DrawBar( float x_, float y_, float w_, float h_, float per
 }
 
 //////////////////////////////////////////////////////////////////////////
-//	»ı¼ºÀÚ
+//	ìƒì„±ì
 //////////////////////////////////////////////////////////////////////////
 ZInitialLoading::ZInitialLoading()
 {
@@ -279,7 +279,7 @@ ZInitialLoading::ZInitialLoading()
 }
 
 //////////////////////////////////////////////////////////////////////////
-//	¼Ò¸êÀÚ
+//	ì†Œë©¸ì
 //////////////////////////////////////////////////////////////////////////
 ZInitialLoading::~ZInitialLoading()
 {
@@ -291,14 +291,14 @@ ZInitialLoading::~ZInitialLoading()
 //////////////////////////////////////////////////////////////////////////
 void	ZInitialLoading::Release()
 {
-    if( !mbUseEnable ) return;	// È°¼ºÈ­ µÇ¾î ÀÖÁö ¾ÊÀ¸¸é skip
+    if( !mbUseEnable ) return;	// í™œì„±í™” ë˜ì–´ ìˆì§€ ì•Šìœ¼ë©´ skip
 
-	// Boolean°ª OFF
+	// Booleanê°’ OFF
 	mbUseEnable	= false;			
 	mbBitmapBar	= false;
 	mbBitmap			= false;
 
-	// Bitmap ÇØÁ¦
+	// Bitmap í•´ì œ
 	SAFE_DELETE_ARRAY( mBitmaps );
 	SAFE_DELETE_ARRAY( mBitmap_Bar );
 	
@@ -331,7 +331,7 @@ extern MFontR2*		g_pDefFont;
 extern MDrawContextR2* g_pDC;
 void	ZInitialLoading::DrawTips()
 {
-//	return;			// ÇöÀç Àû¿ë¾ÈµÊ
+//	return;			// í˜„ì¬ ì ìš©ì•ˆë¨
 
 	const float fTipYRatio = 0.83f;
 
@@ -354,7 +354,7 @@ void	ZInitialLoading::DrawTips()
 			char temp[512] = "";
 			while ((RGetScreenWidth()-70) > (pFont->GetWidth(temp)))
 			{
-				strcat_safe(temp, "³²");
+				strcat_safe(temp, "ë‚¨");
 			}
 
 			nStripIndex = (int)strlen(temp);
@@ -526,7 +526,7 @@ void ZLoadingProgress::Update(float fProgress)
 void ZLoadingProgress::Draw() 
 {
     float fTotalProgress = m_fTotalProgressStart + m_fThisAmount * m_fCurrentProgress;
-#ifdef _DEBUG // È¤½Ã µÇµ¹¾Æ°¡´Â°æ¿ìÀÎÁö Ã¼Å©
+#ifdef _DEBUG // í˜¹ì‹œ ë˜ëŒì•„ê°€ëŠ”ê²½ìš°ì¸ì§€ ì²´í¬
 	_ASSERT(m_fLastProgress<=fTotalProgress);
 	m_fLastProgress=fTotalProgress;
 #endif

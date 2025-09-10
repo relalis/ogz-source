@@ -579,7 +579,7 @@ DWORD GetCrashInfo(LPEXCEPTION_POINTERS exceptionInfo,string& str)
 		pSymbol->Address = stk.AddrPC.Offset;
 		dwDisplacement = 0;
 
-		// ÁÖ¼Ò -100 ºÎÅÍ Ã£¾ÆÁÖ±â ³Ö±â ?? Ãß°¡ - ¹öÁ¯ ±¸ºĞÇØ¼­ win98 ÀÌ¶ó¸é
+		// ì£¼ì†Œ -100 ë¶€í„° ì°¾ì•„ì£¼ê¸° ë„£ê¸° ?? ì¶”ê°€ - ë²„ì ¼ êµ¬ë¶„í•´ì„œ win98 ì´ë¼ë©´
 
 		if (g_pfnSymGetSymFromAddr(hProcess, stk.AddrPC.Offset, &dwDisplacement, pSymbol))
 		{

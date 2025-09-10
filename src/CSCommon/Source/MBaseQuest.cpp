@@ -32,7 +32,7 @@ void MBaseQuest::Destroy()
 
 bool MBaseQuest::OnCreate()
 {
-	// °¢°¢ÀÇ xml ·ÎµùÀº Client, Server °¢°¢ÀÇ »ó¼Ó¹ŞÀº Å¬·¡½º°¡ ´ã´çÇÏµµ·Ï ÇÑ´Ù.
+	// ê°ê°ì˜ xml ë¡œë”©ì€ Client, Server ê°ê°ì˜ ìƒì†ë°›ì€ í´ë˜ìŠ¤ê°€ ë‹´ë‹¹í•˜ë„ë¡ í•œë‹¤.
 
 #ifdef _QUEST_ITEM
 	return true;

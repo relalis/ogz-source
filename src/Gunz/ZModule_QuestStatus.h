@@ -6,10 +6,10 @@
 #include "ZModuleID.h"
 
 
-// Äù½ºÆ®¿¡¼­ »ç¿ëÇÏ´Â ÇÃ·¹ÀÌ¾î Á¤º¸
+// í€˜ìŠ¤íŠ¸ì—ì„œ ì‚¬ìš©í•˜ëŠ” í”Œë ˆì´ì–´ ì •ë³´
 class ZModule_QuestStatus : public ZModule {
 private:
-	int				m_nKills;		// NPC Å³¼ö
+	int				m_nKills;		// NPC í‚¬ìˆ˜
 public:
 	DECLARE_ID(ZMID_QUESTSTATUS)
 	ZModule_QuestStatus();

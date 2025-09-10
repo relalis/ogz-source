@@ -98,7 +98,7 @@ void ZStageInterface::OnCreate()
 	if ( pDesc)
 	{
 		pDesc->SetTextColor( MCOLOR(0xFF808080));
-		pDesc->SetText( "¾ÆÀÌÅÛÀ» È­¸é Áß¾Ó¿¡ ÀÖ´Â µÎ°³ÀÇ Á¦´Ü¿¡ ²ø¾î³õÀ½À¸·Î½á °ÔÀÓ ·¹º§À» Á¶Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+		pDesc->SetText( "ì•„ì´í…œì„ í™”ë©´ ì¤‘ì•™ì— ìžˆëŠ” ë‘ê°œì˜ ì œë‹¨ì— ëŒì–´ë†“ìŒìœ¼ë¡œì¨ ê²Œìž„ ë ˆë²¨ì„ ì¡°ì •í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.");
 	}
 
 	ZApplication::GetGameInterface()->ShowWidget( "Stage_Flame0", false);

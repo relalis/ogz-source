@@ -94,102 +94,102 @@ private:
 	void InitJacoSpawnTrigger();
 	void MakeNPCnSpawn(MQUEST_NPC nNPCID, bool bAddQuestDropItem);
 protected:
-	MQuestLevel*			m_pQuestLevel;			///< Äù½ºÆ® ¿ùµå ·¹º§
-	MQuestNPCSpawnTrigger	m_JacoSpawnTrigger;		///< º¸½º¹æÀÏ °æ¿ì ÀÚÄÚ ¸Å´ÏÁ®
-	MQuestCombatState		m_nCombatState;			///< ¼½ÅÍ³» ÀüÅõ »óÅÂ
+	MQuestLevel*			m_pQuestLevel;			///< í€˜ìŠ¤íŠ¸ ì›”ë“œ ë ˆë²¨
+	MQuestNPCSpawnTrigger	m_JacoSpawnTrigger;		///< ë³´ìŠ¤ë°©ì¼ ê²½ìš° ìžì½” ë§¤ë‹ˆì ¸
+	MQuestCombatState		m_nCombatState;			///< ì„¹í„°ë‚´ ì „íˆ¬ ìƒíƒœ
 
-	virtual void ProcessNPCSpawn();				///< NPC ½ºÆùÀÛ¾÷
-	virtual bool CheckNPCSpawnEnable();			///< NPC°¡ ½ºÆù °¡´ÉÇÑÁö ¿©ºÎ
-	virtual void RouteGameInfo();				///< Å¬¶óÀÌ¾ðÆ®¿¡ °ÔÀÓ Á¤º¸ º¸³»ÁØ´Ù.
-	virtual void RouteStageGameInfo();			///< ´ë±âÁß ½ºÅ×ÀÌÁö¿¡¼­ ¹Ù²ï °ÔÀÓ Á¤º¸¸¦ º¸³»ÁØ´Ù.
-	virtual void RouteCompleted();				///< Äù½ºÆ® ¼º°ø ¸Þ½ÃÁö¸¦ º¸³½´Ù. - ¸®¿öµå±îÁö ÇÔ²² º¸³½´Ù.
-	virtual void RouteFailed();					///< Äù½ºÆ® ½ÇÆÐ ¸Þ½ÃÁö º¸³½´Ù.
-	virtual void OnCompleted();					///< Äù½ºÆ® ¼º°ø½Ã È£ÃâµÈ´Ù.
-	virtual void OnFailed();					///< Äù½ºÆ® ½ÇÆÐ½Ã È£ÃâµÈ´Ù.
-	virtual void DistributeReward();			///< Äù½ºÆ® ¼º°ø½Ã ¸®¿öµå ¹èºÐ
+	virtual void ProcessNPCSpawn();				///< NPC ìŠ¤í°ìž‘ì—…
+	virtual bool CheckNPCSpawnEnable();			///< NPCê°€ ìŠ¤í° ê°€ëŠ¥í•œì§€ ì—¬ë¶€
+	virtual void RouteGameInfo();				///< í´ë¼ì´ì–¸íŠ¸ì— ê²Œìž„ ì •ë³´ ë³´ë‚´ì¤€ë‹¤.
+	virtual void RouteStageGameInfo();			///< ëŒ€ê¸°ì¤‘ ìŠ¤í…Œì´ì§€ì—ì„œ ë°”ë€ ê²Œìž„ ì •ë³´ë¥¼ ë³´ë‚´ì¤€ë‹¤.
+	virtual void RouteCompleted();				///< í€˜ìŠ¤íŠ¸ ì„±ê³µ ë©”ì‹œì§€ë¥¼ ë³´ë‚¸ë‹¤. - ë¦¬ì›Œë“œê¹Œì§€ í•¨ê»˜ ë³´ë‚¸ë‹¤.
+	virtual void RouteFailed();					///< í€˜ìŠ¤íŠ¸ ì‹¤íŒ¨ ë©”ì‹œì§€ ë³´ë‚¸ë‹¤.
+	virtual void OnCompleted();					///< í€˜ìŠ¤íŠ¸ ì„±ê³µì‹œ í˜¸ì¶œëœë‹¤.
+	virtual void OnFailed();					///< í€˜ìŠ¤íŠ¸ ì‹¤íŒ¨ì‹œ í˜¸ì¶œëœë‹¤.
+	virtual void DistributeReward();			///< í€˜ìŠ¤íŠ¸ ì„±ê³µì‹œ ë¦¬ì›Œë“œ ë°°ë¶„
 	
-	/// ¼½ÅÍ ¶ó¿îµå ½ÃÀÛµÇ¾ú´Ù°í ¸Þ¼¼Áö º¸³½´Ù.
+	/// ì„¹í„° ë¼ìš´ë“œ ì‹œìž‘ë˜ì—ˆë‹¤ê³  ë©”ì„¸ì§€ ë³´ë‚¸ë‹¤.
 	void RouteMapSectorStart();
-	/// ÇØ´ç ÇÃ·¹ÀÌ¾î°¡ Æ÷Å»·Î ÀÌµ¿Çß´Ù°í ¸Þ¼¼Áö º¸³½´Ù.
-	/// @param uidPlayer ÀÌµ¿ÇÑ ÇÃ·¹ÀÌ¾î UID
+	/// í•´ë‹¹ í”Œë ˆì´ì–´ê°€ í¬íƒˆë¡œ ì´ë™í–ˆë‹¤ê³  ë©”ì„¸ì§€ ë³´ë‚¸ë‹¤.
+	/// @param uidPlayer ì´ë™í•œ í”Œë ˆì´ì–´ UID
 	void RouteMovetoPortal(const MUID& uidPlayer);
-	/// ÇØ´ç ÇÃ·¹ÀÌ¾î°¡ Æ÷Å»·Î ÀÌµ¿ÀÌ ¿Ï·áµÇ¾ú´Ù°í ¸Þ¼¼Áö º¸³½´Ù.
-	/// @param uidPlayer ÀÌµ¿ÇÑ ÇÃ·¹ÀÌ¾î UID
+	/// í•´ë‹¹ í”Œë ˆì´ì–´ê°€ í¬íƒˆë¡œ ì´ë™ì´ ì™„ë£Œë˜ì—ˆë‹¤ê³  ë©”ì„¸ì§€ ë³´ë‚¸ë‹¤.
+	/// @param uidPlayer ì´ë™í•œ í”Œë ˆì´ì–´ UID
 	void RouteReadyToNewSector(const MUID& uidPlayer);
-	/// ÇØ´ç Äù½ºÆ® ¾ÆÀÌÅÛÀ» ¸Ô¾ú´Ù°í ¸Þ¼¼Áö º¸³½´Ù.
-	/// @param nQuestItemID  Äù½ºÆ® ¾ÆÀÌÅÛ ID
+	/// í•´ë‹¹ í€˜ìŠ¤íŠ¸ ì•„ì´í…œì„ ë¨¹ì—ˆë‹¤ê³  ë©”ì„¸ì§€ ë³´ë‚¸ë‹¤.
+	/// @param nQuestItemID  í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ID
 	void RouteObtainQuestItem(u32 nQuestItemID);
-	/// ÇØ´ç ÀÏ¹Ý ¾ÆÀÌÅÛÀ» ¸Ô¾ú´Ù°í ¸Þ¼¼Áö º¸³½´Ù.
-	/// @param nItemID  ÀÏ¹Ý ¾ÆÀÌÅÛ ID
+	/// í•´ë‹¹ ì¼ë°˜ ì•„ì´í…œì„ ë¨¹ì—ˆë‹¤ê³  ë©”ì„¸ì§€ ë³´ë‚¸ë‹¤.
+	/// @param nItemID  ì¼ë°˜ ì•„ì´í…œ ID
 	void RouteObtainZItem(u32 nItemID);
-	/// ¼½ÅÍ °æÇèÄ¡ ¶ó¿ìÆ®
+	/// ì„¹í„° ê²½í—˜ì¹˜ ë¼ìš°íŠ¸
 	void RouteSectorBonus(const MUID& uidPlayer, u32 nEXPValue);
-	/// ¼½ÅÍ ÀüÅõ »óÅÂ º¯È­½Ã ¸Þ¼¼Áö º¸³½´Ù.
+	/// ì„¹í„° ì „íˆ¬ ìƒíƒœ ë³€í™”ì‹œ ë©”ì„¸ì§€ ë³´ë‚¸ë‹¤.
 	void RouteCombatState();
-	/// Äù½ºÆ® ·¹º§ »ý¼º
+	/// í€˜ìŠ¤íŠ¸ ë ˆë²¨ ìƒì„±
 	bool MakeQuestLevel();
-	/// ¼½ÅÍ ÀüÅõ Ã³¸® ÀÛ¾÷
-	/// - ³ªÁß¿¡ ÀÏ·ÃÀÇ Combat »óÅÂ °ü¸®´Â Survival¸¸µé¶§ MMatchRuleBaseQuest·Î ¿Å°ÜÁ®¾ß ÇÑ´Ù.
+	/// ì„¹í„° ì „íˆ¬ ì²˜ë¦¬ ìž‘ì—…
+	/// - ë‚˜ì¤‘ì— ì¼ë ¨ì˜ Combat ìƒíƒœ ê´€ë¦¬ëŠ” Survivalë§Œë“¤ë•Œ MMatchRuleBaseQuestë¡œ ì˜®ê²¨ì ¸ì•¼ í•œë‹¤.
 	void CombatProcess();
-	/// ´ÙÀ½ ¼½ÅÍ·Î ÀÌµ¿
+	/// ë‹¤ìŒ ì„¹í„°ë¡œ ì´ë™
 	void MoveToNextSector();			
-	/// ¼½ÅÍ ÀüÅõ »óÅÂ º¯È¯
+	/// ì„¹í„° ì „íˆ¬ ìƒíƒœ ë³€í™˜
 	void SetCombatState(MQuestCombatState nState);
-	/// ´ÙÀ½ ¼½ÅÍ·Î ÀÌµ¿¿Ï·áµÇ¾ú´ÂÁö Ã¼Å©
+	/// ë‹¤ìŒ ì„¹í„°ë¡œ ì´ë™ì™„ë£Œë˜ì—ˆëŠ”ì§€ ì²´í¬
 	bool CheckReadytoNewSector();
-	/// ¼½ÅÍ ¶ó¿îµå°¡ ³¡³µ´ÂÁö Ã¼Å©ÇÑ´Ù.
+	/// ì„¹í„° ë¼ìš´ë“œê°€ ëë‚¬ëŠ”ì§€ ì²´í¬í•œë‹¤.
 	COMBAT_PLAY_RESULT CheckCombatPlay();
-	/// Äù½ºÆ®°¡ ¸ðµÎ ³¡³µ´ÂÁö Ã¼Å©ÇÑ´Ù.
+	/// í€˜ìŠ¤íŠ¸ê°€ ëª¨ë‘ ëë‚¬ëŠ”ì§€ ì²´í¬í•œë‹¤.
 	bool CheckQuestCompleted();
-	/// Äù½ºÆ® CompleteÇÏ°í ³ª¼­ ¾ÆÀÌÅÛ ¸ÔÀ» ¼ö ÀÖ´Â Áö¿¬½Ã°£ °è»ê
+	/// í€˜ìŠ¤íŠ¸ Completeí•˜ê³  ë‚˜ì„œ ì•„ì´í…œ ë¨¹ì„ ìˆ˜ ìžˆëŠ” ì§€ì—°ì‹œê°„ ê³„ì‚°
 	bool CheckQuestCompleteDelayTime();
-	/// ¼½ÅÍ Å¬¸®¾î½Ã È£ÃâµÈ´Ù.
+	/// ì„¹í„° í´ë¦¬ì–´ì‹œ í˜¸ì¶œëœë‹¤.
 	void OnSectorCompleted();
-	/// ¼½ÅÍ ÀüÅõ Ã³¸® ÀÛ¾÷
+	/// ì„¹í„° ì „íˆ¬ ì²˜ë¦¬ ìž‘ì—…
 	void ProcessCombatPlay();
 
-	/// ÇØ´ç ÀüÅõ »óÅÂ Ã³À½ ½ÃÀÛÇÒ¶§
+	/// í•´ë‹¹ ì „íˆ¬ ìƒíƒœ ì²˜ìŒ ì‹œìž‘í• ë•Œ
 	void OnBeginCombatState(MQuestCombatState nState);
-	/// ÇØ´ç ÀüÅõ »óÅÂ ³¡³µÀ»¶§
+	/// í•´ë‹¹ ì „íˆ¬ ìƒíƒœ ëë‚¬ì„ë•Œ
 	void OnEndCombatState(MQuestCombatState nState);
 
-	///< °ÔÀÓÁ¾·áÈÄ º¸»ó ºÐ¹è
+	///< ê²Œìž„ì¢…ë£Œí›„ ë³´ìƒ ë¶„ë°°
 	void MakeRewardList();
-	///< °æÇèÄ¡¿Í ¹Ù¿îÆ¼¸¦ ¹èºÐ.
+	///< ê²½í—˜ì¹˜ì™€ ë°”ìš´í‹°ë¥¼ ë°°ë¶„.
 	void DistributeXPnBP( MQuestPlayerInfo* pPlayerInfo, const int nRewardXP, const int nRewardBP, const int nScenarioQL );	
-	///< Äù½ºÆ®¿¡¼­ ¾òÀº Äù½ºÆ® ¾ÆÀÌÅÛ ºÐ¹è.		
+	///< í€˜ìŠ¤íŠ¸ì—ì„œ ì–»ì€ í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ë¶„ë°°.		
 	bool DistributeQItem( MQuestPlayerInfo* pPlayerInfo, void** ppoutSimpleQuestItemBlob);
-	///< Äù½ºÆ®¿¡¼­ ¾òÀº ÀÏ¹Ý ¾ÆÀÌÅÛ ºÐ¹è.		
+	///< í€˜ìŠ¤íŠ¸ì—ì„œ ì–»ì€ ì¼ë°˜ ì•„ì´í…œ ë¶„ë°°.		
 	bool DistributeZItem( MQuestPlayerInfo* pPlayerInfo, void** ppoutQuestRewardZItemBlob);
 protected:
-	virtual void OnBegin();								///< ÀüÃ¼ °ÔÀÓ ½ÃÀÛ½Ã È£Ãâ
-	virtual void OnEnd();								///< ÀüÃ¼ °ÔÀÓ Á¾·á½Ã È£Ãâ
-	virtual bool OnRun();								///< °ÔÀÓÆ½½Ã È£Ãâ
-	virtual void OnCommand(MCommand* pCommand);			///< Äù½ºÆ®¿¡¼­¸¸ »ç¿ëÇÏ´Â Ä¿¸Çµå Ã³¸®
-	virtual bool OnCheckRoundFinish();					///< ¶ó¿îµå°¡ ³¡³µ´ÂÁö Ã¼Å©
+	virtual void OnBegin();								///< ì „ì²´ ê²Œìž„ ì‹œìž‘ì‹œ í˜¸ì¶œ
+	virtual void OnEnd();								///< ì „ì²´ ê²Œìž„ ì¢…ë£Œì‹œ í˜¸ì¶œ
+	virtual bool OnRun();								///< ê²Œìž„í‹±ì‹œ í˜¸ì¶œ
+	virtual void OnCommand(MCommand* pCommand);			///< í€˜ìŠ¤íŠ¸ì—ì„œë§Œ ì‚¬ìš©í•˜ëŠ” ì»¤ë§¨ë“œ ì²˜ë¦¬
+	virtual bool OnCheckRoundFinish();					///< ë¼ìš´ë“œê°€ ëë‚¬ëŠ”ì§€ ì²´í¬
 public:
-	MMatchRuleQuest(MMatchStage* pStage);				///< »ý¼ºÀÚ
-	virtual ~MMatchRuleQuest();							///< ¼Ò¸êÀÚ
+	MMatchRuleQuest(MMatchStage* pStage);				///< ìƒì„±ìž
+	virtual ~MMatchRuleQuest();							///< ì†Œë©¸ìž
 
 	void RefreshStageGameInfo();
 
-	/// ÇÃ·¹ÀÌ¾î Á×¾úÀ» ¶§ È£Ãâ
-	/// @param uidVictim		Á×Àº ÇÃ·¹ÀÌ¾î UID
+	/// í”Œë ˆì´ì–´ ì£½ì—ˆì„ ë•Œ í˜¸ì¶œ
+	/// @param uidVictim		ì£½ì€ í”Œë ˆì´ì–´ UID
 	virtual void OnRequestPlayerDead(const MUID& uidVictim);
-	/// ¿ùµå ¾ÆÀÌÅÛÀ» ¸Ô¾úÀ» °æ¿ì È£ÃâµÈ´Ù.
-	/// @param pObj				ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ®
-	/// @param nItemID			¿ùµå ¾ÆÀÌÅÛ ID
-	/// @param nQuestItemID		Äù½ºÆ® ¾ÆÀÌÅÛ ID
+	/// ì›”ë“œ ì•„ì´í…œì„ ë¨¹ì—ˆì„ ê²½ìš° í˜¸ì¶œëœë‹¤.
+	/// @param pObj				í”Œë ˆì´ì–´ ì˜¤ë¸Œì íŠ¸
+	/// @param nItemID			ì›”ë“œ ì•„ì´í…œ ID
+	/// @param nQuestItemID		í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ID
 	virtual void OnObtainWorldItem(MMatchObject* pObj, int nItemID, int* pnExtraValues);
 
 	void OnRequestTestSectorClear();
 	void OnRequestTestFinish();
 
-	/// ÇÃ·¹ÀÌ¾î°¡ Æ÷Å»·Î ÀÌµ¿ÇßÀ» °æ¿ì È£ÃâµÈ´Ù.
-	/// @param uidPlayer			ÀÌµ¿ÇÑ ÇÃ·¹ÀÌ¾î UID
+	/// í”Œë ˆì´ì–´ê°€ í¬íƒˆë¡œ ì´ë™í–ˆì„ ê²½ìš° í˜¸ì¶œëœë‹¤.
+	/// @param uidPlayer			ì´ë™í•œ í”Œë ˆì´ì–´ UID
 	void OnRequestMovetoPortal(const MUID& uidPlayer);
-	/// Æ÷Å»·Î ÀÌµ¿ÇÏ°í ³ª¼­ ÀÌµ¿ÀÌ ¿Ï·áµÇ¾úÀ» °æ¿ì È£ÃâµÈ´Ù.
-	/// @param uidPlayer			ÇÃ·¹ÀÌ¾î UID
+	/// í¬íƒˆë¡œ ì´ë™í•˜ê³  ë‚˜ì„œ ì´ë™ì´ ì™„ë£Œë˜ì—ˆì„ ê²½ìš° í˜¸ì¶œëœë‹¤.
+	/// @param uidPlayer			í”Œë ˆì´ì–´ UID
 	void OnReadyToNewSector(const MUID& uidPlayer);
 
 	virtual void OnRequestDropSacrificeItemOnSlot( const MUID& uidSender, const int nSlotIndex, const u32 nItemID );
@@ -214,9 +214,9 @@ public:
 	
 	void PostInsertQuestGameLogAsyncJob();
 
-	// °ÔÀÓÀÌ ½ÃÀÛÇÒ¶§ ÇÊ¿äÇÑ Á¤º¸ ¼öÁý.
+	// ê²Œìž„ì´ ì‹œìž‘í• ë•Œ í•„ìš”í•œ ì •ë³´ ìˆ˜ì§‘.
 	void CollectStartingQuestGameLogInfo();
-	// °ÔÀÓÀÌ ³¡³ª°í ÇÊ¿äÇÑ Á¤º¸ ¼öÁý.
+	// ê²Œìž„ì´ ëë‚˜ê³  í•„ìš”í•œ ì •ë³´ ìˆ˜ì§‘.
 	void CollectEndQuestGameLogInfo();
 
 	void RouteRewardCommandToStage( MMatchObject* pPlayer, const int nRewardXP, const int nRewardBP, void* pSimpleQuestItemBlob, void* pSimpleZItemBlob );

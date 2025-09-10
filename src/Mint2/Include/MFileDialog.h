@@ -8,13 +8,13 @@
 #include "MFrame.h"
 #include "MMsgBox.h"
 
-/// ÆÄÀÏ ´ÙÀÌ¾ó·Î±× Å¸ÀÔ
+/// íŒŒì¼ ë‹¤ì´ì–¼ë¡œê·¸ íƒ€ì…
 enum MFileDialogType{
-	MFDT_OPEN = 0,	///< ¿ÀÇÂ ´ÙÀÌ¾ó·Î±×
-	MFDT_SAVE,		///< ¼¼ÀÌºê ´ÙÀÌ¾ó·Î±×
+	MFDT_OPEN = 0,	///< ì˜¤í”ˆ ë‹¤ì´ì–¼ë¡œê·¸
+	MFDT_SAVE,		///< ì„¸ì´ë¸Œ ë‹¤ì´ì–¼ë¡œê·¸
 };
 
-/// ÆÄÀÏ ´ÙÀÌ¾ó·Î±× ¹Ú½º
+/// íŒŒì¼ ë‹¤ì´ì–¼ë¡œê·¸ ë°•ìŠ¤
 class MFileDialog : public MFrame{
 	MButton*		m_pOK;
 	MButton*		m_pCancel;
@@ -44,7 +44,7 @@ public:
 	virtual const char* GetClassName(void){ return MINT_FILEDIALOG; }
 };
 
-// Listener¿¡°Ô Àü´ŞµÇ´Â ¸Ş¼¼Áö
+// Listenerì—ê²Œ ì „ë‹¬ë˜ëŠ” ë©”ì„¸ì§€
 #define MFILEDIALOG_OK		"OK"
 #define MFILEDIALOG_CANCEL	"Cancel"
 

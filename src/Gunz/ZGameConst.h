@@ -2,13 +2,13 @@
 #define _ZGAME_CONST_H
 
 
-// °ÔÀÓ¿¡¼­ ¾²ÀÌ´Â »ó¼ö°ª ¸ðÀ½
-#define GRAVITY_CONSTANT			2500.f			// Áß·ÂÀÇ ¿µÇâ
-#define MAX_FALL_SPEED				3000.f			// ÃÖ´ë ³«ÇÏ¼Óµµ
+// ê²Œìž„ì—ì„œ ì“°ì´ëŠ” ìƒìˆ˜ê°’ ëª¨ìŒ
+#define GRAVITY_CONSTANT			2500.f			// ì¤‘ë ¥ì˜ ì˜í–¥
+#define MAX_FALL_SPEED				3000.f			// ìµœëŒ€ ë‚™í•˜ì†ë„
 #define POS_TOLER					50.0f
 
-#define PEER_HP_TICK				1000	// 1.0 ÃÊ¸¶´Ù HP ÅõÇ¥¿¡ °üÇÑ ¸Þ½ÃÁö¸¦ º¸³½´Ù
-#define PEER_PING_TICK				3000	// 1.0 ÃÊ¸¶´Ù Ping Ã¼Å©¿¡ °üÇÑ ¸Þ½ÃÁö¸¦ º¸³½´Ù
+#define PEER_HP_TICK				1000	// 1.0 ì´ˆë§ˆë‹¤ HP íˆ¬í‘œì— ê´€í•œ ë©”ì‹œì§€ë¥¼ ë³´ë‚¸ë‹¤
+#define PEER_PING_TICK				3000	// 1.0 ì´ˆë§ˆë‹¤ Ping ì²´í¬ì— ê´€í•œ ë©”ì‹œì§€ë¥¼ ë³´ë‚¸ë‹¤
 #define MAX_WATER_DEEP				150
 
 //#define DIE_CRITICAL_LINE			(-2500.0f)

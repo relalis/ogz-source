@@ -10,14 +10,14 @@ public:
         assert( !m_pSingleton );
 
 		/* 
-		´ÙÁß»ó¼ÓÀ» ¹Ş¾ÒÀ»¶§ Æ÷ÀÎÅÍ°¡ ¹Ù¸£Áö ¾ÊÀº ¹®Á¦¸¦ ÇØ°áÇÑ ½ÌÅ¬Åæ ÅÛÇÃ¸´
+		ë‹¤ì¤‘ìƒì†ì„ ë°›ì•˜ì„ë•Œ í¬ì¸í„°ê°€ ë°”ë¥´ì§€ ì•Šì€ ë¬¸ì œë¥¼ í•´ê²°í•œ ì‹±í´í†¤ í…œí”Œë¦¿
 
-		gpg ¿¡ ³ª¿Â ¹æ¹ı
+		gpg ì— ë‚˜ì˜¨ ë°©ë²•
         int offset = (int)((T*)1) - (int)(MSingleton <T>*)((T*)1);
         m_pSingleton = (T*)((int)this + offset);
 		*/
         
-		// ÀÌ°ÍÀÌ Ç¥ÁØ¿¡ °¡±î¿î ¹æ¹ıÀÎµí.
+		// ì´ê²ƒì´ í‘œì¤€ì— ê°€ê¹Œìš´ ë°©ë²•ì¸ë“¯.
         m_pSingleton = static_cast<T *>(this); 
 
 	}
@@ -33,7 +33,7 @@ template <typename T> T* MSingleton <T>::m_pSingleton = 0;
 
 
 /*
-// ¿¹Á¦
+// ì˜ˆì œ
 
 class TextureMgr : public MSingleton <TextureMgr>
 {

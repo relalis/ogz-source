@@ -78,7 +78,7 @@ bool MLadderPicker::EvaluateTicket(MLadderTicket* pTicketA, MLadderTicket* pTick
 	int nClanPointDiff = abs(pTicketA->GetClanPoint() - pTicketB->GetClanPoint());
 	int nContPointDiff = abs(pTicketA->GetContPoint() - pTicketB->GetContPoint());
 
-	// TickCount´Â 0ºÎÅÍ ½ÃÀÛ
+	// TickCountëŠ” 0ë¶€í„° ì‹œì‘
 	int nTickCount = min(pTicketA->GetTickCount(), pTicketB->GetTickCount()) - 1;
 	
 	MLadderStatistics* pLS = MMatchServer::GetInstance()->GetLadderMgr()->GetStatistics();
@@ -89,7 +89,7 @@ bool MLadderPicker::EvaluateTicket(MLadderTicket* pTicketA, MLadderTicket* pTick
 	float fTotalRate = fLevelRate * 0.6f + fClanPointRate * 0.3f + fContPointRate * 0.1f;
 	*poutTotalRate = fTotalRate;
 
-// µÎ±×·ìÀÌ ¸ğµÎ 5Æ½ÀÌ ³Ñ¾úÀ¸¸é ¹Ù·Î ¸ÅÄª
+// ë‘ê·¸ë£¹ì´ ëª¨ë‘ 5í‹±ì´ ë„˜ì—ˆìœ¼ë©´ ë°”ë¡œ ë§¤ì¹­
 #define MAX_LADDER_EVALUATION_TICK		5			
 
 	if (nTickCount >= MAX_LADDER_EVALUATION_TICK) return true;
@@ -109,19 +109,19 @@ bool MLadderPicker::EvaluateTicket(MLadderTicket* pTicketA, MLadderTicket* pTick
 
 	nTickCount = min(0, nTickCount);
 
-	// Ä³¸¯ÅÍ ·¹º§ÀÌ Àû´çÇÏ¸é ¹Ù·Î ¸ÅÄª
+	// ìºë¦­í„° ë ˆë²¨ì´ ì ë‹¹í•˜ë©´ ë°”ë¡œ ë§¤ì¹­
 	if (nLevelDiff <= LADDER_EVALUATION_LEVEL_DIFF[nTickCount]) 
 		return true;
 
-	// ÅäÅ»ºñÀ²ÀÌ Àû´çÇÏ¸é ¸ÅÄª
+	// í† íƒˆë¹„ìœ¨ì´ ì ë‹¹í•˜ë©´ ë§¤ì¹­
 	if (fTotalRate <= LADDER_EVALUATION_TOTALPOINT_RATE[nTickCount]) 
 		return true;
 
-	// 3Æ½ºÎÅÍ´Â Å¬·£ Æ÷ÀÎÆ®°¡ ºñ½ÁÇØµµ ¹Ù·Î ¸ÅÄª
+	// 3í‹±ë¶€í„°ëŠ” í´ëœ í¬ì¸íŠ¸ê°€ ë¹„ìŠ·í•´ë„ ë°”ë¡œ ë§¤ì¹­
 	if ((nTickCount >= 2) && (nClanPointDiff <= LADDER_EVALUATION_CLANPOINT_DIFF[nTickCount]))
 		return true;
 
-	// 4Æ½ºÎÅÍ´Â Å¬·£ ±â¿©µµ°¡ ºñ½ÁÇØµµ ¹Ù·Î ¸ÅÄª
+	// 4í‹±ë¶€í„°ëŠ” í´ëœ ê¸°ì—¬ë„ê°€ ë¹„ìŠ·í•´ë„ ë°”ë¡œ ë§¤ì¹­
 	if ((nTickCount >= 3) && (nContPointDiff <= LADDER_EVALUATION_CONTPOINT_DIFF[nTickCount]))
 		return true;
 
@@ -160,7 +160,7 @@ bool MLadderPicker::Evaluate(MLadderTicket* pTicket, list<MLadderTicket*>::itera
 /*
 	if ((bExist) && (pRealTarTicket))
 	{
-		// ·Î±×¸¦ ½×¾Æ¼­ È®ÀÎÇØº¸Àå
+		// ë¡œê·¸ë¥¼ ìŒ“ì•„ì„œ í™•ì¸í•´ë³´ì¥
 		{
 			int nLevelDiff = abs(pTicket->GetCharLevel() - pRealTarTicket->GetCharLevel());
 			int nClanPointDiff = abs(pTicket->GetClanPoint() - pRealTarTicket->GetClanPoint());

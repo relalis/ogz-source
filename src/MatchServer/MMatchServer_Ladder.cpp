@@ -80,38 +80,38 @@ void MMatchServer::LadderGameLaunch(MLadderGroup* pGroupA, MLadderGroup* pGroupB
 
 	MUID uidStage = MUID(0,0);
 	if (StageAdd(NULL, "LADDER_GAME", true, "", &uidStage) == false) {
-		// Group ÇØÃ¼
+		// Group í•´ì²´
 		GetLadderMgr()->CancelChallenge(pGroupA->GetID(), "");
 		GetLadderMgr()->CancelChallenge(pGroupB->GetID(), "");
 		return;
 	}
 	MMatchStage* pStage = FindStage(uidStage);
 	if (pStage == NULL) {
-		// Group ÇØÃ¼
+		// Group í•´ì²´
 		GetLadderMgr()->CancelChallenge(pGroupA->GetID(), "");
 		GetLadderMgr()->CancelChallenge(pGroupB->GetID(), "");
 		return;
 	}
 
-	// A ±×·ì ÀÔÀå
+	// A ê·¸ë£¹ ì…ì¥
 	for (list<MUID>::iterator i=pGroupA->GetPlayerListBegin(); i!= pGroupA->GetPlayerListEnd(); i++)
 	{
 		MUID uidPlayer = (*i);
 		LadderJoin(uidPlayer, uidStage, MMT_RED);
 	}
-	// B ±×·ì ÀÔÀå
+	// B ê·¸ë£¹ ì…ì¥
 	for (list<MUID>::iterator i=pGroupB->GetPlayerListBegin(); i!= pGroupB->GetPlayerListEnd(); i++)
 	{
 		MUID uidPlayer = (*i);
 		LadderJoin(uidPlayer, uidStage, MMT_BLUE);
 	}
 
-	// Agent ÁØºñ
+	// Agent ì¤€ë¹„
 //	ReserveAgent(pStage);
 
 	//////////////////////////////////////////////////////////////////////////////
 	int nRandomMap = 0;
-	// Å¬·£ÀüÀº StageÀÇ ÆÀÁ¤º¸¿¡ CLID±îÁö ¼³Á¤ÇØ¾ßÇÑ´Ù.
+	// í´ëœì „ì€ Stageì˜ íŒ€ì •ë³´ì— CLIDê¹Œì§€ ì„¤ì •í•´ì•¼í•œë‹¤.
 	MBaseTeamGameStrategy* pTeamGameStrategy = MBaseTeamGameStrategy::GetInstance(MGetServerConfig()->GetServerMode());
 	if (pTeamGameStrategy)
 	{
@@ -121,11 +121,11 @@ void MMatchServer::LadderGameLaunch(MLadderGroup* pGroupA, MLadderGroup* pGroupB
 
 	MMATCH_GAMETYPE nGameType = MMATCH_GAMETYPE_DEATHMATCH_TEAM;
 
-	// Game ¼³Á¤
+	// Game ì„¤ì •
 	pStage->SetStageType(MST_LADDER);
 	pStage->ChangeRule(nGameType);
 
-	// Å¬·£ÀüÀº StageÀÇ ÆÀÁ¤º¸¿¡ CLID±îÁö ¼³Á¤ÇØ¾ßÇÑ´Ù.
+	// í´ëœì „ì€ Stageì˜ íŒ€ì •ë³´ì— CLIDê¹Œì§€ ì„¤ì •í•´ì•¼í•œë‹¤.
 	if (pTeamGameStrategy)
 	{
 		MMatchLadderTeamInfo a_RedLadderTeamInfo, a_BlueLadderTeamInfo;
@@ -140,18 +140,18 @@ void MMatchServer::LadderGameLaunch(MLadderGroup* pGroupA, MLadderGroup* pGroupB
 	pSetting->SetGameType(nGameType);
 
 	pSetting->SetLimitTime(3);	
-	pSetting->SetRoundMax(99);		// ÃÖ´ë 99¶ó¿îµå±îÁö ÁøÇàÇÒ ¼ö ÀÖ´Ù.
+	pSetting->SetRoundMax(99);		// ìµœëŒ€ 99ë¼ìš´ë“œê¹Œì§€ ì§„í–‰í•  ìˆ˜ ìˆë‹¤.
 	
 
 	MCommand* pCmd = CreateCmdResponseStageSetting(uidStage);
-	RouteToStage(uidStage, pCmd);	// Stage Setting Àü¼Û
+	RouteToStage(uidStage, pCmd);	// Stage Setting ì „ì†¡
 
 
-	// µğºñ¿¡ ·Î±×¸¦ ³²±ä´Ù.
-	// test ¸ÊµîÀº ·Î±× ³²±âÁö ¾Ê´Â´Ù.
+	// ë””ë¹„ì— ë¡œê·¸ë¥¼ ë‚¨ê¸´ë‹¤.
+	// test ë§µë“±ì€ ë¡œê·¸ ë‚¨ê¸°ì§€ ì•ŠëŠ”ë‹¤.
 	if ( (MIsCorrectMap(nRandomMap)) && (MGetGameTypeMgr()->IsCorrectGameType(nGameType)) )
 	{
-		if (pStage->StartGame() == true) {		// °ÔÀÓ½ÃÀÛ
+		if (pStage->StartGame() == true) {		// ê²Œì„ì‹œì‘
 			// Send Launch Command
 			ReserveAgent(pStage);
 
@@ -160,9 +160,9 @@ void MMatchServer::LadderGameLaunch(MLadderGroup* pGroupA, MLadderGroup* pGroupB
 			pCmd->AddParameter(new MCmdParamStr( const_cast<char*>(pStage->GetMapName()) ));
 			RouteToStage(uidStage, pCmd);
 
-			// Ladder Log ³²±ä´Ù.
+			// Ladder Log ë‚¨ê¸´ë‹¤.
 		} else {
-			// Group ÇØÃ¼
+			// Group í•´ì²´
 			GetLadderMgr()->CancelChallenge(pGroupA->GetID(), "");
 			GetLadderMgr()->CancelChallenge(pGroupB->GetID(), "");
 		}
@@ -198,10 +198,10 @@ void MMatchServer::OnLadderRequestChallenge(const MUID& uidPlayer, void* pMember
 
 		pMemberObjects[i] = GetPlayerByName(pNode->szName);
 
-		// ÇÑ¸íÀÌ¶óµµ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é ¾ÈµÈ´Ù
+		// í•œëª…ì´ë¼ë„ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ì•ˆëœë‹¤
 		if (! IsEnabledObject(pMemberObjects[i]))
 		{
-			// ¸Ş¼¼Áö º¸³»ÁÖ°í ³¡.
+			// ë©”ì„¸ì§€ ë³´ë‚´ì£¼ê³  ë.
 			RouteResponseToListener(pLeaderObject, MC_MATCH_LADDER_RESPONSE_CHALLENGE, MERR_LADDER_CANNOT_CHALLENGE);
 			return;
 		}
@@ -226,12 +226,12 @@ void MMatchServer::OnLadderRequestChallenge(const MUID& uidPlayer, void* pMember
 	}
 	if (nTeamID == 0) return;
 
-	// ½ÇÁ¦·Î ChallengeÇÑ´Ù.
+	// ì‹¤ì œë¡œ Challengeí•œë‹¤.
 	// Ensure All Player Not in LadderGroup
 	MLadderGroup* pGroup = GetLadderMgr()->CreateLadderGroup();
 	pGroup->SetID(nTeamID);
 
-	// balancedMatching ¼³Á¤
+	// balancedMatching ì„¤ì •
 	if (nOptions == 1)
 	{
 		pGroup->SetBalancedMatching(true);
@@ -271,14 +271,14 @@ void MMatchServer::OnRequestProposal(const MUID& uidProposer, const int nProposa
 
 	if ((nReplierCount > MAX_REPLIER) || (nReplierCount < 0))
 	{
-		_ASSERT(0);	// 16¸íÀÌ»ó µ¿ÀÇÇÒ ¼ö ¾øÀ½
+		_ASSERT(0);	// 16ëª…ì´ìƒ ë™ì˜í•  ìˆ˜ ì—†ìŒ
 		return;
 	}
 
 
 	if (!MGetServerConfig()->IsEnabledCreateLadderGame())
 	{
-		// ¸Ş¼¼Áö º¸³»ÁÖ°í ³¡.
+		// ë©”ì„¸ì§€ ë³´ë‚´ì£¼ê³  ë.
 		MCommand* pNewCmd = CreateCommand(MC_MATCH_RESPONSE_PROPOSAL, MUID(0,0));
 		pNewCmd->AddParameter(new MCommandParameterInt(MERR_LADDER_CANNOT_CHALLENGE));
 		pNewCmd->AddParameter(new MCommandParameterInt(nProposalMode));
@@ -301,10 +301,10 @@ void MMatchServer::OnRequestProposal(const MUID& uidProposer, const int nProposa
 
 		ppReplierObjects[i] = GetPlayerByName(pNode->szName);
 
-		// ´äº¯ÀÚ°¡ ÇÑ¸íÀÌ¶óµµ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é ¾ÈµÈ´Ù
+		// ë‹µë³€ìê°€ í•œëª…ì´ë¼ë„ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ì•ˆëœë‹¤
 		if (!IsEnabledObject(ppReplierObjects[i]))
 		{
-			// ¸Ş¼¼Áö º¸³»ÁÖ°í ³¡.
+			// ë©”ì„¸ì§€ ë³´ë‚´ì£¼ê³  ë.
 			MCommand* pNewCmd = CreateCommand(MC_MATCH_RESPONSE_PROPOSAL, MUID(0,0));
 			pNewCmd->AddParameter(new MCommandParameterInt(MERR_NO_TARGET));
 			pNewCmd->AddParameter(new MCommandParameterInt(nProposalMode));
@@ -316,7 +316,7 @@ void MMatchServer::OnRequestProposal(const MUID& uidProposer, const int nProposa
 	}
 
 	int nRet = MERR_UNKNOWN;
-	// »óÈ²¿¡ ¸Â°Ô validate ÇÑ´Ù.
+	// ìƒí™©ì— ë§ê²Œ validate í•œë‹¤.
 
 	switch (nProposalMode)
 	{
@@ -345,7 +345,7 @@ void MMatchServer::OnRequestProposal(const MUID& uidProposer, const int nProposa
 	}
 
 
-	int nMemberCount = nReplierCount+1;		// Á¦¾ÈÀÚ±îÁö 
+	int nMemberCount = nReplierCount+1;		// ì œì•ˆìê¹Œì§€ 
 	void* pBlobMembersNameArray = MMakeBlobArray(sizeof(MTD_ReplierNode), nMemberCount);
 
 	MTD_ReplierNode* pProposerNode = (MTD_ReplierNode*)MGetBlobArrayElement(pBlobMembersNameArray, 0);
@@ -357,7 +357,7 @@ void MMatchServer::OnRequestProposal(const MUID& uidProposer, const int nProposa
 		strcpy_safe(pMemberNode->szName, ppReplierObjects[k]->GetCharInfo()->m_szName);
 	}
 
-	// ´äº¯ÀÚ¿¡°Ô µ¿ÀÇ¸¦ ¹°¾îº»´Ù.
+	// ë‹µë³€ìì—ê²Œ ë™ì˜ë¥¼ ë¬¼ì–´ë³¸ë‹¤.
 	for (int i = 0; i < nReplierCount; i++)
 	{
 		MCommand* pNewCmd = CreateCommand(MC_MATCH_ASK_AGREEMENT, MUID(0,0));
@@ -374,7 +374,7 @@ void MMatchServer::OnRequestProposal(const MUID& uidProposer, const int nProposa
 	MEraseBlobArray(pBlobMembersNameArray);
 
 
-	// Á¦¾ÈÀÚ¿¡°Ô ÀÀ´ä º¸³»ÁÜ
+	// ì œì•ˆìì—ê²Œ ì‘ë‹µ ë³´ë‚´ì¤Œ
 	MCommand* pNewCmd = CreateCommand(MC_MATCH_RESPONSE_PROPOSAL, MUID(0,0));
 	pNewCmd->AddParameter(new MCommandParameterInt(nRet));
 	pNewCmd->AddParameter(new MCommandParameterInt(nProposalMode));

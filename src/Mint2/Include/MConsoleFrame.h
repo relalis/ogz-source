@@ -24,7 +24,7 @@ class MConsoleFrame;
 typedef void(MCONSOLE_KEYDOWN_CALLBACK)(int nKey);
 typedef void(MCONSOLE_INPUT_CALLBACK)(const char* szInputStr);
 
-/// ÄÜ¼Ö¿¡¼­ »ç¿ëÇÏ´Â Edit
+/// ì½˜ì†”ì—ì„œ ì‚¬ìš©í•˜ëŠ” Edit
 class MConsoleEdit: public MEdit
 {
 private:
@@ -45,7 +45,7 @@ public:
 	void SetInputCallback(MCONSOLE_INPUT_CALLBACK* pfnInput) { m_pfnInput = pfnInput; }
 };
 
-/// ½ÇÁ¦ ÄÜ¼Ö Å¬·¡½º
+/// ì‹¤ì œ ì½˜ì†” í´ë˜ìŠ¤
 class MConsoleFrame : public MFrame
 {
 private:

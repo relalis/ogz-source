@@ -32,14 +32,14 @@ bool MMatchServer::InsertCharItem(const MUID& uidPlayer, const u32 nItemID, bool
 	if (pItemDesc == NULL) return false;
 
 
-	// µğºñ¿¡ ¾ÆÀÌÅÛ Ãß°¡
+	// ë””ë¹„ì— ì•„ì´í…œ ì¶”ê°€
 	u32 nNewCIID = 0;
 	if (!GetDBMgr()->InsertCharItem(pObject->GetCharInfo()->m_nCID, nItemID, bRentItem, nRentPeriodHour, &nNewCIID))
 	{
 		return false;
 	}
 
-	// ¿ÀºêÁ§Æ®¿¡ ¾ÆÀÌÅÛ Ãß°¡
+	// ì˜¤ë¸Œì íŠ¸ì— ì•„ì´í…œ ì¶”ê°€
 	int nRentMinutePeriodRemainder = nRentPeriodHour * 60;
 	MUID uidNew = MMatchItemMap::UseUID();
 	pObject->GetCharInfo()->m_ItemList.CreateItem(uidNew, nNewCIID, nItemID, bRentItem, nRentMinutePeriodRemainder);
@@ -57,7 +57,7 @@ bool MMatchServer::BuyItem(MMatchObject* pObject, unsigned int nItemID, bool bRe
 
 	if (pObject->GetCharInfo() == NULL) return false;
 
-	// °®°í ÀÖ´Â ¾ÆÀÌÅÛ °³¼ö°¡ ÇÑµµ¸¦ ³Ñ¾ú´ÂÁö ÆÇÁ¤
+	// ê°–ê³  ìˆëŠ” ì•„ì´í…œ ê°œìˆ˜ê°€ í•œë„ë¥¼ ë„˜ì—ˆëŠ”ì§€ íŒì •
 	if (pObject->GetCharInfo()->m_ItemList.GetCount() >= MAX_ITEM_COUNT)
 	{
 		MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_BUY_ITEM, MUID(0,0));
@@ -68,7 +68,7 @@ bool MMatchServer::BuyItem(MMatchObject* pObject, unsigned int nItemID, bool bRe
 	}
 
 
-	// ¾ÆÀÌÅÛÀ» »ì ¼ö ÀÖ´Â ÀÚ°İÀÌ µÇ´ÂÁö ÆÇÁ¤
+	// ì•„ì´í…œì„ ì‚´ ìˆ˜ ìˆëŠ” ìê²©ì´ ë˜ëŠ”ì§€ íŒì •
 	if (pObject->GetCharInfo()->m_nBP < nPrice)
 	{
 		MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_BUY_ITEM, MUID(0,0));
@@ -78,7 +78,7 @@ bool MMatchServer::BuyItem(MMatchObject* pObject, unsigned int nItemID, bool bRe
 		return false;
 	}
 
-	// Ä³¸¯ÅÍ Á¤º¸ Ä³½³ ¾÷µ¥ÀÌÆ®¸¦ ¸ÕÀú ÇØÁØ´Ù.
+	// ìºë¦­í„° ì •ë³´ ìºìŠ ì—…ë°ì´íŠ¸ë¥¼ ë¨¼ì € í•´ì¤€ë‹¤.
 	UpdateCharDBCachingData(pObject);	
 
 
@@ -93,10 +93,10 @@ bool MMatchServer::BuyItem(MMatchObject* pObject, unsigned int nItemID, bool bRe
 	}
 
 
-	// ¿ÀºêÁ§Æ®¿¡ ¹Ù¿îÆ¼ ±ğ´Â´Ù.
+	// ì˜¤ë¸Œì íŠ¸ì— ë°”ìš´í‹° ê¹ëŠ”ë‹¤.
 	pObject->GetCharInfo()->m_nBP -= nPrice;
 
-	// ¿ÀºêÁ§Æ®¿¡ ¾ÆÀÌÅÛ Ãß°¡
+	// ì˜¤ë¸Œì íŠ¸ì— ì•„ì´í…œ ì¶”ê°€
 	MUID uidNew = MMatchItemMap::UseUID();
 	pObject->GetCharInfo()->m_ItemList.CreateItem(uidNew, nNewCIID, pItemDesc->m_nID);
 
@@ -118,7 +118,7 @@ bool MMatchServer::ResponseBuyItem(const MUID& uidPlayer, const u32 nItemID)
 	MMatchObject* pObj = GetObject(uidPlayer);
 	if (pObj == NULL) return false;
 
-	// ¼¥¿¡¼­ ÆÈ°í ÀÖ´Â ¹°Ç°ÀÎÁö È®ÀÎÇÑ´Ù.
+	// ìƒµì—ì„œ íŒ”ê³  ìˆëŠ” ë¬¼í’ˆì¸ì§€ í™•ì¸í•œë‹¤.
 	if (MGetMatchShop()->IsSellItem(nItemID) == false) return false;
 
 	BuyItem(pObj, nItemID);
@@ -142,7 +142,7 @@ bool MMatchServer::ResponseSellItem(const MUID& uidPlayer, const MUID& uidItem)
 	MMatchItem* pItem = pObj->GetCharInfo()->m_ItemList.GetItem(uidCharItem);
 	if ((pItem == NULL) || (pItem->GetDesc() == NULL))
 	{
-		// ¾ÆÀÌÅÛÀÌ Á¸ÀçÇÏÁö ¾ÊÀ»¶§
+		// ì•„ì´í…œì´ ì¡´ì¬í•˜ì§€ ì•Šì„ë•Œ
 		MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_SELL_ITEM, MUID(0,0));
 		pNew->AddParameter(new MCmdParamInt(MERR_CANNOT_SELL_NONE_ITEM));
 		RouteToListener(pObj, pNew);
@@ -150,7 +150,7 @@ bool MMatchServer::ResponseSellItem(const MUID& uidPlayer, const MUID& uidItem)
 		return false;
 	}
 
-	// ÀåºñÇÏ°í ÀÖÀ¸¸é ÆÈ ¼ö ¾ø´Ù.
+	// ì¥ë¹„í•˜ê³  ìˆìœ¼ë©´ íŒ” ìˆ˜ ì—†ë‹¤.
 	if (pItem->IsEquiped())
 	{
 		MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_SELL_ITEM, MUID(0,0));
@@ -160,7 +160,7 @@ bool MMatchServer::ResponseSellItem(const MUID& uidPlayer, const MUID& uidItem)
 		return false;
 	}
 
-	// Ä³½¬¾ÆÀÌÅÛÀÌ¸é ÆÈ ¼ö ¾ø´Ù.
+	// ìºì‰¬ì•„ì´í…œì´ë©´ íŒ” ìˆ˜ ì—†ë‹¤.
 	if(pItem->GetDesc()->IsCashItem())
 	{
 		MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_SELL_ITEM, MUID(0,0));
@@ -171,7 +171,7 @@ bool MMatchServer::ResponseSellItem(const MUID& uidPlayer, const MUID& uidItem)
 	}
 
 
-	// Ä³¸¯ÅÍ Á¤º¸ Ä³½³ ¾÷µ¥ÀÌÆ®¸¦ ¸ÕÀú ÇØÁØ´Ù.
+	// ìºë¦­í„° ì •ë³´ ìºìŠ ì—…ë°ì´íŠ¸ë¥¼ ë¨¼ì € í•´ì¤€ë‹¤.
 	UpdateCharDBCachingData(pObj);	
 	
 	nPrice = pItem->GetDesc()->GetBountyValue();	
@@ -190,15 +190,15 @@ bool MMatchServer::ResponseSellItem(const MUID& uidPlayer, const MUID& uidItem)
 		return false;
 	}
 
-	// ¿ÀºêÁ§Æ®¿¡ ¹Ù¿îÆ¼ ´õÇØÁØ´Ù.
+	// ì˜¤ë¸Œì íŠ¸ì— ë°”ìš´í‹° ë”í•´ì¤€ë‹¤.
 	pObj->GetCharInfo()->m_nBP += nPrice;
 
-	// ¿ÀºêÁ§Æ®¿¡¼­ ¾ÆÀÌÅÛ »èÁ¦
+	// ì˜¤ë¸Œì íŠ¸ì—ì„œ ì•„ì´í…œ ì‚­ì œ
 	pObj->GetCharInfo()->m_ItemList.RemoveItem(uidCharItem);
 
 
 /*
-	// µğºñ¿¡ ¹Ù¿îÆ¼ ´õÇØÁØ´Ù
+	// ë””ë¹„ì— ë°”ìš´í‹° ë”í•´ì¤€ë‹¤
 	if (!GetDBMgr()->UpdateCharBP(pObj->GetCharInfo()->m_nCID, nPrice))
 	{
 		MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_SELL_ITEM, MUID(0,0));
@@ -207,13 +207,13 @@ bool MMatchServer::ResponseSellItem(const MUID& uidPlayer, const MUID& uidItem)
 
 		return false;
 	}
-	// ¿ÀºêÁ§Æ®¿¡ ¹Ù¿îÆ¼ ´õÇØÁØ´Ù.
+	// ì˜¤ë¸Œì íŠ¸ì— ë°”ìš´í‹° ë”í•´ì¤€ë‹¤.
 	pObj->GetCharInfo()->m_nBP += nPrice;
 
 	u32 nSelItemID = pItem->GetDesc()->m_nID;
 	if (RemoveCharItem(pObj, uidCharItem) == true)
 	{
-		// RemoveCharItem ÇÔ¼ö ÀÌÈÄ¿¡ pItemÀ» »ç¿ëÇÏ¸é ¾ÈµÈ´Ù.
+		// RemoveCharItem í•¨ìˆ˜ ì´í›„ì— pItemì„ ì‚¬ìš©í•˜ë©´ ì•ˆëœë‹¤.
 		pItem = NULL;
 		GetDBMgr()->InsertItemPurchaseLogByBounty(nSelItemID, pObj->GetCharInfo()->m_nCID,
 			nPrice, pObj->GetCharInfo()->m_nBP, MMatchDBMgr::IPT_SELL);
@@ -233,31 +233,31 @@ bool MMatchServer::ResponseSellItem(const MUID& uidPlayer, const MUID& uidItem)
 	RouteToListener(pObj, pNew);
 
 
-	ResponseCharacterItemList(uidPlayer);	// »õ·Î ¹Ù²ï ¾ÆÀÌÅÛ ¸®½ºÆ®µµ ´Ù½Ã »Ñ·ÁÁØ´Ù.
+	ResponseCharacterItemList(uidPlayer);	// ìƒˆë¡œ ë°”ë€ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë„ ë‹¤ì‹œ ë¿Œë ¤ì¤€ë‹¤.
 
 	return true;
 }
 
-// ½ÇÁ¦ µğºñ¿Í ¿ÀºêÁ§Æ®¿¡¼­ ¾ÆÀÌÅÛÀ» »èÁ¦
+// ì‹¤ì œ ë””ë¹„ì™€ ì˜¤ë¸Œì íŠ¸ì—ì„œ ì•„ì´í…œì„ ì‚­ì œ
 bool MMatchServer::RemoveCharItem(MMatchObject* pObject, MUID& uidItem)
 {
 	MMatchItem* pItem = pObject->GetCharInfo()->m_ItemList.GetItem(uidItem);
 	if (!pItem) return false;
 
-	// µğºñ¿¡¼­ ¾ÆÀÌÅÛ »èÁ¦
+	// ë””ë¹„ì—ì„œ ì•„ì´í…œ ì‚­ì œ
 	if (!GetDBMgr()->DeleteCharItem(pObject->GetCharInfo()->m_nCID, pItem->GetCIID()))
 	{
 		return false;
 	}
 
-	// ¸¸¾à ÀåºñÁßÀÌ¸é ÇØÃ¼
+	// ë§Œì•½ ì¥ë¹„ì¤‘ì´ë©´ í•´ì²´
 	MMatchCharItemParts nCheckParts = MMCIP_END;
 	if (pObject->GetCharInfo()->m_EquipedItem.IsEquipedItem(pItem, nCheckParts))
 	{
 		pObject->GetCharInfo()->m_EquipedItem.Remove(nCheckParts);
 	}
 
-	// ¿ÀºêÁ§Æ®¿¡¼­ ¾ÆÀÌÅÛ »èÁ¦
+	// ì˜¤ë¸Œì íŠ¸ì—ì„œ ì•„ì´í…œ ì‚­ì œ
 	pObject->GetCharInfo()->m_ItemList.RemoveItem(uidItem);
 
 	return true;
@@ -319,7 +319,7 @@ void MMatchServer::ResponseCharacterItemList(const MUID& uidPlayer)
 		return;
 	}
 
-	// ÀÌÀü¿¡ µğºñ ¾ï¼¼½º¸¦ ¾ÈÇß¾úÀ¸¸é µğºñ¿¡¼­ ¾ÆÀÌÅÛ Á¤º¸¸¦ °¡Á®¿Â´Ù
+	// ì´ì „ì— ë””ë¹„ ì–µì„¸ìŠ¤ë¥¼ ì•ˆí–ˆì—ˆìœ¼ë©´ ë””ë¹„ì—ì„œ ì•„ì´í…œ ì •ë³´ë¥¼ ê°€ì ¸ì˜¨ë‹¤
 	if (!pObj->GetCharInfo()->m_ItemList.IsDoneDbAccess())
 	{
 		if (!GetDBMgr()->GetCharItemInfo(*pObj->GetCharInfo()))
@@ -335,7 +335,7 @@ void MMatchServer::ResponseCharacterItemList(const MUID& uidPlayer)
 		{
 			if( !GetDBMgr()->GetCharQuestItemInfo(pObj->GetCharInfo()) )
 			{
-				mlog( "MMatchServer::ResponseCharacterItemList - µğºñ Á¢±Ù ½ÇÆĞÈÄ Á¦Á¢±Ù ½ÇÆĞ. °ÔÀÓ ÁøÇà ºÒ°¡.\n" );
+				mlog( "MMatchServer::ResponseCharacterItemList - ë””ë¹„ ì ‘ê·¼ ì‹¤íŒ¨í›„ ì œì ‘ê·¼ ì‹¤íŒ¨. ê²Œì„ ì§„í–‰ ë¶ˆê°€.\n" );
 				return;
 			}
 		}
@@ -343,10 +343,10 @@ void MMatchServer::ResponseCharacterItemList(const MUID& uidPlayer)
 
 	MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_CHARACTER_ITEMLIST, MUID(0,0));
 
-	// ¹Ù¿îÆ¼ Àü¼Û
+	// ë°”ìš´í‹° ì „ì†¡
 	pNew->AddParameter(new MCommandParameterInt(pObj->GetCharInfo()->m_nBP));
 
-	// ÀåºñÇÑ ¾ÆÀÌÅÛ Àü¼Û
+	// ì¥ë¹„í•œ ì•„ì´í…œ ì „ì†¡
 	int nRealEquipedItemCount = 0;
 	int nIndex = 0;
 	void* pEquipItemArray = MMakeBlobArray(sizeof(MUID), MMCIP_END);
@@ -369,7 +369,7 @@ void MMatchServer::ResponseCharacterItemList(const MUID& uidPlayer)
 	MEraseBlobArray(pEquipItemArray);
 
 
-	// °®°í ÀÖ´Â ¾ÆÀÌÅÛ ¸®½ºÆ® Àü¼Û
+	// ê°–ê³  ìˆëŠ” ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ì „ì†¡
 	int nItemCount = pObj->GetCharInfo()->m_ItemList.GetCount();
 
 	void* pItemArray = MMakeBlobArray(sizeof(MTD_ItemNode), nItemCount);
@@ -414,7 +414,7 @@ void MMatchServer::ResponseAccountItemList(const MUID& uidPlayer)
 		return;
 	}
 
-#define MAX_ACCOUNT_ITEM		1000		// ÃÖ°í 1000°³·Î Á¦ÇÑÇÑ´Ù.
+#define MAX_ACCOUNT_ITEM		1000		// ìµœê³  1000ê°œë¡œ ì œí•œí•œë‹¤.
 	MAccountItemNode accountItems[MAX_ACCOUNT_ITEM];
 	int nItemCount = 0;
 
@@ -422,7 +422,7 @@ void MMatchServer::ResponseAccountItemList(const MUID& uidPlayer)
 	MAccountItemNode ExpiredItemList[100];
 	int nExpiredItemCount = 0;
 
-	// µğºñ¿¡¼­ AccountItemÀ» °¡Á®¿Â´Ù
+	// ë””ë¹„ì—ì„œ AccountItemì„ ê°€ì ¸ì˜¨ë‹¤
 	if (!GetDBMgr()->GetAccountItemInfo(pObj->GetAccountInfo()->m_nAID, accountItems, &nItemCount, MAX_ACCOUNT_ITEM,
 										 ExpiredItemList, &nExpiredItemCount, MAX_EXPIRED_ACCOUNT_ITEM))
 	{
@@ -430,14 +430,14 @@ void MMatchServer::ResponseAccountItemList(const MUID& uidPlayer)
 		return;
 	}
 
-	// ¿©±â¼­ Áß¾ÓÀºÇàÀÇ ±â°£¸¸·á ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö Ã¼Å©ÇÑ´Ù.
+	// ì—¬ê¸°ì„œ ì¤‘ì•™ì€í–‰ì˜ ê¸°ê°„ë§Œë£Œ ì•„ì´í…œì´ ìˆëŠ”ì§€ ì²´í¬í•œë‹¤.
 	if (nExpiredItemCount > 0)
 	{
 		vector<u32> vecExpiredItemIDList;
 
 		for (int i = 0; i < nExpiredItemCount; i++)
 		{
-			// µğºñ¿¡¼­ ±â°£¸¸·áµÈ AccountItemÀ» Áö¿î´Ù.
+			// ë””ë¹„ì—ì„œ ê¸°ê°„ë§Œë£Œëœ AccountItemì„ ì§€ìš´ë‹¤.
 			if (GetDBMgr()->DeleteExpiredAccountItem(ExpiredItemList[i].nAIID))
 			{
 				vecExpiredItemIDList.push_back(ExpiredItemList[i].nItemID);
@@ -460,7 +460,7 @@ void MMatchServer::ResponseAccountItemList(const MUID& uidPlayer)
 	{
 		MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_ACCOUNT_ITEMLIST, MUID(0,0));
 
-		// °®°í ÀÖ´Â ¾ÆÀÌÅÛ ¸®½ºÆ® Àü¼Û
+		// ê°–ê³  ìˆëŠ” ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ì „ì†¡
 		void* pItemArray = MMakeBlobArray(sizeof(MTD_AccountItemNode), nItemCount);
 		
 
@@ -658,7 +658,7 @@ void MMatchServer::ResponseBringBackAccountItem(const MUID& uidPlayer, const MUI
 	MMatchItem* pItem = pObj->GetCharInfo()->m_ItemList.GetItem(uidCharItem);
 	if ((pItem == NULL) || (pItem->GetDesc() == NULL))
 	{
-		// ¾ÆÀÌÅÛÀÌ Á¸ÀçÇÏÁö ¾ÊÀ»¶§
+		// ì•„ì´í…œì´ ì¡´ì¬í•˜ì§€ ì•Šì„ë•Œ
 		MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_BRING_BACK_ACCOUNTITEM, MUID(0,0));
 		pNew->AddParameter(new MCmdParamInt(MERR_BRING_BACK_ACCOUNTITEM));
 		RouteToListener(pObj, pNew);
@@ -666,7 +666,7 @@ void MMatchServer::ResponseBringBackAccountItem(const MUID& uidPlayer, const MUI
 		return;
 	}
 
-	// ÀåºñÇÏ°í ÀÖÀ¸¸é ¿Å±æ ¼ö ¾ø´Ù
+	// ì¥ë¹„í•˜ê³  ìˆìœ¼ë©´ ì˜®ê¸¸ ìˆ˜ ì—†ë‹¤
 	if (pItem->IsEquiped())
 	{
 		MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_BRING_BACK_ACCOUNTITEM, MUID(0,0));
@@ -676,7 +676,7 @@ void MMatchServer::ResponseBringBackAccountItem(const MUID& uidPlayer, const MUI
 		return;
 	}
 
-	// Ä³½¬¾ÆÀÌÅÛÀÌ ¾Æ´Ï¸é ¿Å±æ ¼ö ¾ø´Ù
+	// ìºì‰¬ì•„ì´í…œì´ ì•„ë‹ˆë©´ ì˜®ê¸¸ ìˆ˜ ì—†ë‹¤
 	if(!pItem->GetDesc()->IsCashItem())
 	{
 		MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_BRING_BACK_ACCOUNTITEM, MUID(0,0));
@@ -686,7 +686,7 @@ void MMatchServer::ResponseBringBackAccountItem(const MUID& uidPlayer, const MUI
 		return;
 	}
 
-	// µğºñ¿¡¼­ Áß¾ÓÀºÇàÀ¸·Î ¿Å°ÜÁØ´Ù.
+	// ë””ë¹„ì—ì„œ ì¤‘ì•™ì€í–‰ìœ¼ë¡œ ì˜®ê²¨ì¤€ë‹¤.
 	if (!GetDBMgr()->BringBackAccountItem(pObj->GetAccountInfo()->m_nAID, 
 										  pObj->GetCharInfo()->m_nCID, 
 										  pItem->GetCIID()))
@@ -701,7 +701,7 @@ void MMatchServer::ResponseBringBackAccountItem(const MUID& uidPlayer, const MUI
 	}
 
 
-	// ¿ÀºêÁ§Æ®¿¡¼­ ¾ÆÀÌÅÛ »èÁ¦
+	// ì˜¤ë¸Œì íŠ¸ì—ì„œ ì•„ì´í…œ ì‚­ì œ
 	pObj->GetCharInfo()->m_ItemList.RemoveItem(uidCharItem);
 
 	MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_BRING_BACK_ACCOUNTITEM, MUID(0,0));
@@ -709,5 +709,5 @@ void MMatchServer::ResponseBringBackAccountItem(const MUID& uidPlayer, const MUI
 	RouteToListener(pObj, pNew);
 
 
-	ResponseCharacterItemList(uidPlayer);	// »õ·Î ¹Ù²ï ¾ÆÀÌÅÛ ¸®½ºÆ®µµ ´Ù½Ã »Ñ·ÁÁØ´Ù.
+	ResponseCharacterItemList(uidPlayer);	// ìƒˆë¡œ ë°”ë€ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë„ ë‹¤ì‹œ ë¿Œë ¤ì¤€ë‹¤.
 }

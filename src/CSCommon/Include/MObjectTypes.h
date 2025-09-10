@@ -1,7 +1,7 @@
 #ifndef MOBJECTTYPES_H
 #define MOBJECTTYPES_H
 
-/// ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔ
+/// ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…
 enum MObjectType 
 {
 	MOT_NONE		= 0,
@@ -11,7 +11,7 @@ enum MObjectType
 	MOT_CHARACTER
 };
 
-/// Ä³¸¯ÅÍ Á¾Á·
+/// ìºë¦­í„° ì¢…ì¡±
 enum MCharacterRace
 {
 	MCR_NONE		= 0,
@@ -23,7 +23,7 @@ enum MCharacterRace
 };
 typedef u32 MCharacterRaces;
 
-/// Ä³¸¯ÅÍ Å¬·¡½º
+/// ìºë¦­í„° í´ë˜ìŠ¤
 enum MCharacterClass
 {
 	MCC_NONE			= 0,
@@ -32,7 +32,7 @@ enum MCharacterClass
 	MCC_ACOLYTE,
 	MCC_MAGE,
 
-	// 2Â÷Á÷¾÷
+	// 2ì°¨ì§ì—…
 	MCC_KNIGHT,
 	MCC_PALADIN,
 	MCC_BESERKER,
@@ -56,11 +56,11 @@ enum MCharacterClass
 };
 typedef u32 MCharacterClasses;
 
-/// Ä³¸¯ÅÍÀÇ Å¸ÀÔ
+/// ìºë¦­í„°ì˜ íƒ€ì…
 enum MCharacterType
 {
 	MCT_NONE		= 0,
-	MCT_HUMANOID	= 1,	// ÇÃ·¹ÀÌ¾î
+	MCT_HUMANOID	= 1,	// í”Œë ˆì´ì–´
 };
 
 enum MCharacterMoveMode
@@ -82,7 +82,7 @@ enum MCharacterState
 	MCS_DEAD		= 2
 };
 
-/// Ä³¸¯ÅÍ »óÅÂ
+/// ìºë¦­í„° ìƒíƒœ
 enum MCharacterAbility
 {
 	MCAB_LEVITATE			= 0,
@@ -101,7 +101,7 @@ typedef u32 MCharacterStates;
 
 
 /*
-/// Ä³¸¯ÅÍ »óÅÂ°ª
+/// ìºë¦­í„° ìƒíƒœê°’
 enum MCharacterStatus
 {
 	MCS_NONE			= 0,
@@ -129,7 +129,7 @@ enum MCharacterStatus
 
 
 
-/// Ä³¸¯ÅÍ ±âº» Æ¯¼ºÄ¡
+/// ìºë¦­í„° ê¸°ë³¸ íŠ¹ì„±ì¹˜
 struct MCharacterBasicAttr
 {
 	int			nSTR;
@@ -152,7 +152,7 @@ struct MCharacterRepeatInfo
 
 struct MCHARACTERDATA
 {
-	// ½Äº°
+	// ì‹ë³„
 	char		szName[24];
 	char		szSurname[24];
 	int			iClass;				// enum
@@ -162,27 +162,27 @@ struct MCHARACTERDATA
 	int			iSpecialization;	// enum
 	int			iBindingSpot;		// pos
 
-	// °æÇèÄ¡
+	// ê²½í—˜ì¹˜
 	int			iCurrentXP;
 	int			iNextXP;
 
-	// ¼ºÇâ
+	// ì„±í–¥
 	int			iRelationships;		// list
 	int			iRshipRaise;		// list
 	int			iRshipLower;		// list
 
-	// ÀúÇ×·Â
+	// ì €í•­ë ¥
 	int			iMR;
 	int			iFR;
 	int			iCR;
 	int			iPR;
 	int			iLR;
 
-	// ¸¶¹ı
+	// ë§ˆë²•
 	int			iBUFFS;		// list
 	int			iSkillList;	// list
 
-	// ¹æ¾î·Â
+	// ë°©ì–´ë ¥
 	int			iAC;
 	int			iMFlee;
 	int			iRFlee;
@@ -190,7 +190,7 @@ struct MCHARACTERDATA
 	int			iHPRegen;
 	int			iENRegen;
 
-	// °ø°İ·Â
+	// ê³µê²©ë ¥
 	int			iMATK;
 	int			iRATK;
 	int			iMCritical;
@@ -200,12 +200,12 @@ struct MCHARACTERDATA
 	int			iMAccu;
 	int			iRAccu;
 
-	// ÀÌµ¿
+	// ì´ë™
 	int			iDSight;
 	int			iNSight;
 	int			iSpd;
 
-	// »óÅÂ
+	// ìƒíƒœ
 	int			iLevitate;			// flag
 	int			iInvisibility;		// flag
 	int			iInvincibility;		// flag
@@ -213,7 +213,7 @@ struct MCHARACTERDATA
 	int			iStealth;			// flag
 	int			iPoisoned;			// flag
 
-	// ÀÌ¹Ã
+	// ì´ë®¨
 	int			iIVMelee;			// flag
 	int			iIVRange;			// flag
 	int			iIVMagic;			// flag
@@ -226,7 +226,7 @@ struct MCHARACTERDATA
 	int			iIVCrit;			// flag
 	int			iIVParalysis;		// flag
 
-	// Àü¹®È­
+	// ì „ë¬¸í™”
 	int			iOCS;
 	int			iDCS;
 	int			iRCS;

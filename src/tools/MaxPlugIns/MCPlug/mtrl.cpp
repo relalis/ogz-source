@@ -55,7 +55,7 @@ void MCplug2::export_mtrl_list()
 }
 
 /////////////////////////////////////////////
-// object ÀÇ ¸ÓÅÍ¸®¾ó id Ç¥½Ã
+// object ì˜ ë¨¸í„°ë¦¬ì–¼ id í‘œì‹œ
 
 void MCplug2::DumpMaterial(Mtl* mtl, int mtlID, int subNo)
 {
@@ -95,10 +95,10 @@ void MCplug2::DumpMaterial(Mtl* mtl, int mtlID, int subNo)
 		
 		mtrl_node->m_additive	= (std->GetTransparencyType()==TRANSP_ADDITIVE) ? 1 : 0;
 
-		if(strnicmp(mtl->GetName(),"at_",3)==0)//alpha_test ½Äº°..
+		if(strnicmp(mtl->GetName(),"at_",3)==0)//alpha_test ì‹ë³„..
 			mtrl_node->m_alphatest_ref = 100;
 /*
-//		Ãß°¡½Ã
+//		ì¶”ê°€ì‹œ
 
 //		fprintf(m_p_txt,"%s\t%s %s\n",indent.data(), ID_SHINE			, Format(std->GetShininess(t)));
 //		fprintf(m_p_txt,"%s\t%s %s\n",indent.data(), ID_SHINE_STRENGTH	, Format(std->GetShinStr(t)));
@@ -228,10 +228,10 @@ void MCplug2::DumpTexture(Texmap* tex, Class_ID cid, int subNo, float amt,mtrl_d
 	TSTR className;
 	tex->GetClassName(className);
 
-//	¸ÊÁ¾·ù MAP_DIFFUSE : MAP_OPACITY µÎÁ¾·ù »ç¿ë ++
+//	ë§µì¢…ë¥˜ MAP_DIFFUSE : MAP_OPACITY ë‘ì¢…ë¥˜ ì‚¬ìš© ++
 
 	if (tex->ClassID() == Class_ID(BMTEX_CLASS_ID, 0x00)) {
-//		°æ·Î´Â Àß¶ó¹ö¸®°í ÀÌ¸§¸¸ ÀúÀå
+//		ê²½ë¡œëŠ” ìž˜ë¼ë²„ë¦¬ê³  ì´ë¦„ë§Œ ì €ìž¥
 		TSTR mapName = ((BitmapTex *)tex)->GetMapName();
 		TSTR str = FixupName(mapName);
 

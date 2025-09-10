@@ -8,17 +8,17 @@ using namespace std;
 
 class ZDirectInput;
 
-const int Z_DIRECTINPUTKEY_MESSAGE = 0x0f01;	// ÂüÁ¶ÇÏÁö ¾Ê´Â´Ù. º°·Î Áß¿äÇÏÁø ¾Ê´Ù.
+const int Z_DIRECTINPUTKEY_MESSAGE = 0x0f01;	// ì°¸ì¡°í•˜ì§€ ì•ŠëŠ”ë‹¤. ë³„ë¡œ ì¤‘ìš”í•˜ì§„ ì•Šë‹¤.
 
 
 typedef int ZVIRTUALKEY;
 
 /*
-ZVIRTUALKEY À¸·Î ´ÙÀ½À» ÅëÇÕÇÑ´Ù
+ZVIRTUALKEY ìœ¼ë¡œ ë‹¤ìŒì„ í†µí•©í•œë‹¤
 
-Å°º¸µå ½ºÄµÄÚµå  0 ~ 255
-¸¶¿ì½º ¹öÆ°		 256 ~ 511
-Á¶ÀÌ½ºÆ½ ¹öÆ°	 512 ~
+í‚¤ë³´ë“œ ìŠ¤ìº”ì½”ë“œ  0 ~ 255
+ë§ˆìš°ìŠ¤ ë²„íŠ¼		 256 ~ 511
+ì¡°ì´ìŠ¤í‹± ë²„íŠ¼	 512 ~
 */
 
 
@@ -47,7 +47,7 @@ class ZInput
 
 	void Event(ZVIRTUALKEY key, bool bPressed);
 
-	float			m_fRotationDeltaX;	// ´©ÀûµÈ È¸Àü°ª ¿òÁ÷ÀÓ
+	float			m_fRotationDeltaX;	// ëˆ„ì ëœ íšŒì „ê°’ ì›€ì§ì„
 	float			m_fRotationDeltaY;
 
 public:
@@ -66,24 +66,24 @@ public:
 
 	void OnActionKey(int nActionID,bool bPressed);
 
-	/// ¾×¼ÇÅ° Ãß°¡
+	/// ì•¡ì…˜í‚¤ ì¶”ê°€
 	bool RegisterActionKey(int nActionID, ZVIRTUALKEY nKey);
-	/// ¾×¼ÇÅ° Á¦°Å
+	/// ì•¡ì…˜í‚¤ ì œê±°
 //	bool UnregisterActionKey(int nActionID);
 
-	/// ¾×¼ÇÅ° Å¬¸®¾î
+	/// ì•¡ì…˜í‚¤ í´ë¦¬ì–´
 	void ClearActionKey();
 
-	// ÀÌº¥Æ® ¸®½º³Ê ¼³Á¤
+	// ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆ ì„¤ì •
 	void SetEventListener(MGLOBALEVENTCALLBACK pEventCallback);
 
-	// ¸ğµç ÀÔ·ÂÀ» ¹ŞÀ»¼ö ÀÖ´Â µ¶Á¡ ¸®½º³Ê ¼³Á¤
+	// ëª¨ë“  ì…ë ¥ì„ ë°›ì„ìˆ˜ ìˆëŠ” ë…ì  ë¦¬ìŠ¤ë„ˆ ì„¤ì •
 	void SetExclusiveListener(MGLOBALEVENTCALLBACK pEventCallback);
 
 	bool IsActionKeyDown(int nActionID)
 	{
 		if(nActionID<0 || nActionID>=ZACTION_COUNT){
-			_ASSERT(FALSE);	// 0 ~ ACTIONKEYMAP_IDCOUNT-1 »çÀÌ°ªÀÌ¿©¾ß ÇÑ´Ù.
+			_ASSERT(FALSE);	// 0 ~ ACTIONKEYMAP_IDCOUNT-1 ì‚¬ì´ê°’ì´ì—¬ì•¼ í•œë‹¤.
 			return false;
 		}
 		return m_ActionKeyPressedTable[nActionID];
@@ -92,13 +92,13 @@ public:
 	bool WasActionKeyDownLast(int nActionID)
 	{
 		if (nActionID<0 || nActionID >= ZACTION_COUNT) {
-			_ASSERT(FALSE);	// 0 ~ ACTIONKEYMAP_IDCOUNT-1 »çÀÌ°ªÀÌ¿©¾ß ÇÑ´Ù.
+			_ASSERT(FALSE);	// 0 ~ ACTIONKEYMAP_IDCOUNT-1 ì‚¬ì´ê°’ì´ì—¬ì•¼ í•œë‹¤.
 			return false;
 		}
 		return m_ActionKeyPressedLastTable[nActionID];
 	}
 
-	// ÀÔ·ÂÀº 0~1 »çÀÌ, 0 = Áøµ¿¾øÀ½. 1 = Áøµ¿ ÃÖ´ë
+	// ì…ë ¥ì€ 0~1 ì‚¬ì´, 0 = ì§„ë™ì—†ìŒ. 1 = ì§„ë™ ìµœëŒ€
 	bool SetDeviceForcesXY(float fXForce, float fYForce);
 
 	void ResetRotation()

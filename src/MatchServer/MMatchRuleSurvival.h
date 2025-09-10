@@ -16,20 +16,20 @@ protected:
 	virtual void OnBegin();
 	virtual void OnEnd();
 	virtual bool OnRun();
-//	virtual void OnRoundBegin();						// ¶ó¿îµå ½ÃÀÛÇÒ ¶§
-//	virtual void OnRoundEnd();							// ¶ó¿îµå ³¡³¯ ¶§
-//	virtual bool OnCheckRoundFinish();					// ¶ó¿îµå°¡ ³¡³µ´ÂÁö Ã¼Å©
-//	virtual void OnRoundTimeOut();						// ¶ó¿îµå°¡ Å¸ÀÓ¾Æ¿ôÀ¸·Î Á¾·áµÉ ‹š OnRoundEnd() ÀüÀÌ´Ù.
-//	virtual bool RoundCount();							// ¶ó¿îµå Ä«¿îÆ®. ¸ğµç ¶ó¿îµå°¡ ³¡³ª¸é false¸¦ ¹İÈ¯ÇÑ´Ù.
-//	virtual bool OnCheckEnableBattleCondition();		// °ÔÀÓ °¡´ÉÇÑÁö Ã¼Å©
+//	virtual void OnRoundBegin();						// ë¼ìš´ë“œ ì‹œì‘í•  ë•Œ
+//	virtual void OnRoundEnd();							// ë¼ìš´ë“œ ëë‚  ë•Œ
+//	virtual bool OnCheckRoundFinish();					// ë¼ìš´ë“œê°€ ëë‚¬ëŠ”ì§€ ì²´í¬
+//	virtual void OnRoundTimeOut();						// ë¼ìš´ë“œê°€ íƒ€ì„ì•„ì›ƒìœ¼ë¡œ ì¢…ë£Œë  ë–„ OnRoundEnd() ì „ì´ë‹¤.
+//	virtual bool RoundCount();							// ë¼ìš´ë“œ ì¹´ìš´íŠ¸. ëª¨ë“  ë¼ìš´ë“œê°€ ëë‚˜ë©´ falseë¥¼ ë°˜í™˜í•œë‹¤.
+//	virtual bool OnCheckEnableBattleCondition();		// ê²Œì„ ê°€ëŠ¥í•œì§€ ì²´í¬
 
-	virtual void OnCommand(MCommand* pCommand);			// Äù½ºÆ®¿¡¼­¸¸ »ç¿ëÇÏ´Â Ä¿¸Çµå Ã³¸®
+	virtual void OnCommand(MCommand* pCommand);			// í€˜ìŠ¤íŠ¸ì—ì„œë§Œ ì‚¬ìš©í•˜ëŠ” ì»¤ë§¨ë“œ ì²˜ë¦¬
 
 
 	virtual void ProcessNPCSpawn();
-	virtual bool CheckNPCSpawnEnable();					// NPC°¡ ½ºÆù °¡´ÉÇÑÁö ¿©ºÎ
+	virtual bool CheckNPCSpawnEnable();					// NPCê°€ ìŠ¤í° ê°€ëŠ¥í•œì§€ ì—¬ë¶€
 	virtual void RouteGameInfo();
-	virtual void RouteStageGameInfo();			///< ´ë±âÁß ½ºÅ×ÀÌÁö¿¡¼­ ¹Ù²ï °ÔÀÓ Á¤º¸¸¦ º¸³»ÁØ´Ù.
+	virtual void RouteStageGameInfo();			///< ëŒ€ê¸°ì¤‘ ìŠ¤í…Œì´ì§€ì—ì„œ ë°”ë€ ê²Œì„ ì •ë³´ë¥¼ ë³´ë‚´ì¤€ë‹¤.
 	virtual void RouteCompleted() {}
 	virtual void RouteFailed() {}
 	virtual void DistributeReward();

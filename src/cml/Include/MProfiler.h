@@ -75,7 +75,7 @@ public:
 // Global Profiler
 extern MProfiler	g_DefaultProfiler;
 
-// Instance ÇüÅÂÀÇ Profile
+// Instance í˜•íƒœì˜ Profile
 class MProfileInstance{
 	char	m_szProfileName[MPROFILE_ITEM_NAME_LENGTH];
 public:

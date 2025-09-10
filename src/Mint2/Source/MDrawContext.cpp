@@ -115,7 +115,7 @@ MBitmap* MDrawContext::SetBitmap(MBitmap* pBitmap)
 {
 	/*
 #ifdef _DEBUG
-	// °°Àº ·¹º§ÀÇ ¿ÀºêÁ§Æ®ÀÌ¿©¾ß ÇÑ´Ù.
+	// ê°™ì€ ë ˆë²¨ì˜ ì˜¤ë¸Œì íŠ¸ì´ì—¬ì•¼ í•œë‹¤.
 	if(pBitmap!=NULL) _ASSERT(m_nTypeID==pBitmap->m_nTypeID);
 #endif
 	*/
@@ -128,7 +128,7 @@ MBitmap* MDrawContext::SetBitmap(MBitmap* pBitmap)
 MFont* MDrawContext::SetFont(MFont* pFont)
 {
 #ifdef _DEBUG
-	// °°Àº ·¹º§ÀÇ ¿ÀºêÁ§Æ®ÀÌ¿©¾ß ÇÑ´Ù.
+	// ê°™ì€ ë ˆë²¨ì˜ ì˜¤ë¸Œì íŠ¸ì´ì—¬ì•¼ í•œë‹¤.
 	if(pFont!=NULL) _ASSERT(m_nTypeID==pFont->m_nTypeID);
 #endif
 
@@ -142,7 +142,8 @@ MFont* MDrawContext::SetFont(MFont* pFont)
 
 void MDrawContext::SetClipRect(int x, int y, int w, int h)
 {
-	SetClipRect(MRECT(x, y, w, h));
+	MRECT curRect = MRECT(x, y, w, h);
+	SetClipRect(curRect);
 }
 
 void MDrawContext::SetClipRect(MRECT &r)

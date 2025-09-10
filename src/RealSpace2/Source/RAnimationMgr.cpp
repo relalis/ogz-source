@@ -92,7 +92,7 @@ RAnimation* RAnimationMgr::AddAnimationFile(const char* name, const char* filena
 	m_id_last++;
 
 	if(m_id_last > MAX_ANIMATION_NODE)
-		mlog("¿¡´Ï¸ÞÀÌ¼Ç ³ëµå ¿¹¾à »çÀÌÁî¸¦ ´Ã¸®´Â°ÍÀÌ ÁÁ°ÚÀ½..\n",filename);
+		mlog("ì—ë‹ˆë©”ì´ì…˜ ë…¸ë“œ ì˜ˆì•½ ì‚¬ì´ì¦ˆë¥¼ ëŠ˜ë¦¬ëŠ”ê²ƒì´ ì¢‹ê² ìŒ..\n",filename);
 
 	m_list.PushBack(node);
 
@@ -159,7 +159,7 @@ void RAnimationMgr::MakeListMap(int size)
 		return;
 
 	if( size > 100 ) {
-		mlog("RAnimationMgr::MakeListMap %d ´Â ³Ê¹«°úÇÑ°Å ¾Æ´Ñ°¡?\n",size);
+		mlog("RAnimationMgr::MakeListMap %d ëŠ” ë„ˆë¬´ê³¼í•œê±° ì•„ë‹Œê°€?\n",size);
 	}
 
 	m_list_map = new RAnimationHashList[size];

@@ -1020,7 +1020,7 @@ MBThumbLook* MIDLResource::GetThumbLook(MXmlElement& element)
 	// Default Look
 	if(bDefaultLook==true) MThumb::ChangeLook(pThumbLook);
 
-	// ThumbLook µÓ∑œ
+	// ThumbLook Îì±Î°ù
 	char szItem[256];
 	element.GetAttribute(szItem, IDL_ATTR_ITEM, "");
 	if(!m_ThumbLookMap.insert(map<string, MBThumbLook*>::value_type(string(szItem), pThumbLook)).second)
@@ -1065,7 +1065,7 @@ MBScrollBarLook* MIDLResource::GetScrollBarLook(MXmlElement& element)
 	// Default Look
 	if(bDefaultLook==true) MScrollBar::ChangeLook(pScrollBarLook);
 
-	// ScrollBarLook µÓ∑œ
+	// ScrollBarLook Îì±Î°ù
 	char szItem[256];
 	element.GetAttribute(szItem, IDL_ATTR_ITEM, "");
 	if(!m_ScrollBarLookMap.insert(map<string, MBScrollBarLook*>::value_type(string(szItem), pScrollBarLook)).second)
@@ -1111,7 +1111,7 @@ MBSliderThumbLook* MIDLResource::GetSliderThumbLook(MXmlElement& element)
 	// Default Look
 	if(bDefaultLook==true) MSliderThumb::ChangeLook((MSliderThumbLook*)pSliderThumbLook);
 
-	// ThumbLook µÓ∑œ
+	// ThumbLook Îì±Î°ù
 	char szItem[256];
 	element.GetAttribute(szItem, IDL_ATTR_ITEM, "");
 	if(!m_ThumbLookMap.insert(map<string, MBThumbLook*>::value_type(string(szItem), (MBThumbLook*)pSliderThumbLook)).second)
@@ -1152,7 +1152,7 @@ MBTabCtrlLook* MIDLResource::GetTabCtrlLook(MXmlElement& element)
 	// Default Look
 	if(bDefaultLook==true) MTabCtrl::ChangeLook(pTabCtrlLook);
 
-	// MTabCtrlLook µÓ∑œ
+	// MTabCtrlLook Îì±Î°ù
 	char szItem[256];
 	element.GetAttribute(szItem, IDL_ATTR_ITEM, "");
 	if(!m_TabCtrlLookMap.insert(map<string, MBTabCtrlLook*>::value_type(string(szItem), pTabCtrlLook)).second)
@@ -2239,7 +2239,8 @@ MBmLabel* MIDLResource::GetBmLabel(MXmlElement& element)
 		if (GetCommonWidgetProperty(pBmLabel, childElement, szBuf)) continue;
 		else if (!strcmp(szBuf, "FONTSIZE"))
 		{
-			pBmLabel->SetCharSize(GetSize(childElement));
+			MSIZE t = GetSize(childElement);
+			pBmLabel->SetCharSize(t);
 		}
 		else if (!strcmp(szBuf, "BITMAP"))
 		{

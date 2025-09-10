@@ -111,7 +111,7 @@ bool ZItem::isReloadable()
 		return false;
 	}
 
-	if( GetItemType() == MMIT_CUSTOM ) { // ±âÅ¸ ¹«±âµéÀº ÀçÀåÀüÀÌ ¾ø´Ù~
+	if( GetItemType() == MMIT_CUSTOM ) { // ê¸°íƒ€ ë¬´ê¸°ë“¤ì€ ì¬ì¥ì „ì´ ì—†ë‹¤~
 		return false;
 	}
 
@@ -129,20 +129,20 @@ float ZItem::GetPiercingRatio(MMatchWeaponType wtype,RMeshPartsType partstype)
 
 	bool bHead = false;
 
-	if(partstype == eq_parts_head) { // Çìµå¼¦ ±¸ºĞ~ 
+	if(partstype == eq_parts_head) { // í—¤ë“œìƒ· êµ¬ë¶„~ 
 		bHead = true;
 	}
 
 	switch(wtype) {
 
-		case MWT_DAGGER:		// ´Ü°Ë
-		case MWT_DUAL_DAGGER:	// ¾ç¼Õ´Ü°Ë
+		case MWT_DAGGER:		// ë‹¨ê²€
+		case MWT_DUAL_DAGGER:	// ì–‘ì†ë‹¨ê²€
 			{
 				if(bHead)	fRatio = 0.75f;
 				else		fRatio = 0.7f;
 			}
 			break;
-		case MWT_KATANA:		// Ä«Å¸³ª
+		case MWT_KATANA:		// ì¹´íƒ€ë‚˜
 			{
 				if(bHead)	fRatio = 0.65f;
 				else		fRatio = 0.6f;
@@ -178,7 +178,7 @@ float ZItem::GetPiercingRatio(MMatchWeaponType wtype,RMeshPartsType partstype)
 			break;
 
 		case MWT_SMG:
-		case MWT_SMGx2:			// ¼­ºê¸Ó½Å°Ç
+		case MWT_SMGx2:			// ì„œë¸Œë¨¸ì‹ ê±´
 			{
 				if(bHead)	fRatio = 0.5f;
 				else		fRatio = 0.3f;
@@ -191,19 +191,19 @@ float ZItem::GetPiercingRatio(MMatchWeaponType wtype,RMeshPartsType partstype)
 				else		fRatio = 0.2f;
 			}
 			break;
-		case MWT_MACHINEGUN:	// ¸Ó½Å°Ç
+		case MWT_MACHINEGUN:	// ë¨¸ì‹ ê±´
 			{
 				if(bHead)	fRatio = 0.8f;
 				else		fRatio = 0.4f;
 			}
 			break;
-		case MWT_RIFLE:			// µ¹°İ¼ÒÃÑ
+		case MWT_RIFLE:			// ëŒê²©ì†Œì´
 			{
 				if(bHead)	fRatio = 0.8f;
 				else		fRatio = 0.4f;
 			}
 			break;
-		case MWT_SNIFER:		//¿ì¼±Àº ¶óÀÌÇÃÃ³·³...
+		case MWT_SNIFER:		//ìš°ì„ ì€ ë¼ì´í”Œì²˜ëŸ¼...
 			{
 				if(bHead)	fRatio = 0.8f;
 				else		fRatio = 0.4f;
@@ -212,7 +212,7 @@ float ZItem::GetPiercingRatio(MMatchWeaponType wtype,RMeshPartsType partstype)
 		case MWT_FRAGMENTATION:
 		case MWT_FLASH_BANG:
 		case MWT_SMOKE_GRENADE:
-		case MWT_ROCKET:		// ·ÎÄÏ·±ÃÄ
+		case MWT_ROCKET:		// ë¡œì¼“ëŸ°ì³
 			{
 				if(bHead)	fRatio = 0.4f;
 				else		fRatio = 0.4f;

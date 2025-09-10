@@ -16,14 +16,14 @@ private:
 	int		m_nScore;
 	int		m_nRandomArg;
 
-	// Ãß°¡
-	int		m_nCharLevel;		// Ä³¸¯ÅÍ ·¹º§ Æò±Õ
-	int		m_nClanPoint;		// Å¬·£ Æ÷ÀÎÆ®
-	int		m_nContPoint;		// Å¬·£ ±â¿©µµ Æò±Õ
+	// ì¶”ê°€
+	int		m_nCharLevel;		// ìºë¦­í„° ë ˆë²¨ í‰ê· 
+	int		m_nClanPoint;		// í´ëœ í¬ì¸íŠ¸
+	int		m_nContPoint;		// í´ëœ ê¸°ì—¬ë„ í‰ê· 
 
 	int		m_nTickCount;
 public:
-	// ¿¹Àü ¾×¼Ç¸®±× ½ÃÀıÀÇ À¯¹°
+	// ì˜ˆì „ ì•¡ì…˜ë¦¬ê·¸ ì‹œì ˆì˜ ìœ ë¬¼
 	MLadderTicket(int nGroupID, int nScore, int nRandomArg) 
 	{
 		m_nGroupID = nGroupID;
@@ -64,7 +64,7 @@ protected:
 	bool Evaluate(MLadderTicket* pTicket, list<MLadderTicket*>::iterator* poutItorMatchedTicket);
 	bool EvaluateTicket(MLadderTicket* pTicketA, MLadderTicket* pTicketB, float* poutTotalRate);
 public:
-	void AddTicket(MLadderGroup* pGroup, int nRandomArg);	// ¿¹Àü ¾×¼Ç¸®±× ½ÃÀıÀÇ À¯¹°
+	void AddTicket(MLadderGroup* pGroup, int nRandomArg);	// ì˜ˆì „ ì•¡ì…˜ë¦¬ê·¸ ì‹œì ˆì˜ ìœ ë¬¼
 	void AddTicket(MLadderGroup* pGroup, int nClanPoint, int nTickCount, int nRandomArg);
 
 	bool PickMatch(int* pGroupA, int* pGroupB);

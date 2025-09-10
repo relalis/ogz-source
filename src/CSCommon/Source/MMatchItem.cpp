@@ -263,7 +263,7 @@ void MMatchItemDescMgr::ParseItem(MXmlElement& element)
 {
 	MMatchItemDesc* pNewDesc = new MMatchItemDesc;
 
-	// default °ª ÀÔ·Â
+	// default ê°’ ì…ë ¥
 	pNewDesc->m_bIsCashItem = false;
 	pNewDesc->m_nLimitSpeed = 100;
 	pNewDesc->m_nRange = DEFAULT_MELEE_WEAPON_RANGE;
@@ -307,7 +307,7 @@ void MMatchItemDescMgr::ParseItem(MXmlElement& element)
 		}
 		else if (!_stricmp(szAttrName, MICTOK_SLOT))
 		{
-			// ½½·Ô Å¸ÀÔ
+			// ìŠ¬ë¡¯ íƒ€ì…
 			if (!_stricmp(szAttrValue, "none"))			pNewDesc->m_nSlot = MMIST_NONE;
 			else if (!_stricmp(szAttrValue, "melee"))	pNewDesc->m_nSlot = MMIST_MELEE;
 			else if (!_stricmp(szAttrValue, "range"))	pNewDesc->m_nSlot = MMIST_RANGE;
@@ -324,7 +324,7 @@ void MMatchItemDescMgr::ParseItem(MXmlElement& element)
 		}
 		else if (!_stricmp(szAttrName, MICTOK_WEAPON))
 		{
-			// ¹«±â Å¸ÀÔ
+			// ë¬´ê¸° íƒ€ì…
 			if (strlen(szAttrValue) <= 0)					pNewDesc->m_nWeaponType = MWT_NONE;
 			else if (!_stricmp(szAttrValue, "dagger"))		pNewDesc->m_nWeaponType = MWT_DAGGER;
 			else if (!_stricmp(szAttrValue, "dualdagger"))	pNewDesc->m_nWeaponType = MWT_DUAL_DAGGER;
@@ -364,7 +364,7 @@ void MMatchItemDescMgr::ParseItem(MXmlElement& element)
 		}
 		else if (!_stricmp(szAttrName, MICTOK_EFFECT_LEVEL))
 		{
-			// ÀÌÆåÆ®·¹º§
+			// ì´í™íŠ¸ë ˆë²¨
 			pNewDesc->m_nEffectLevel = atoi(szAttrValue);
 		}
 		else if (!_stricmp(szAttrName, MICTOK_WEIGHT))
@@ -393,7 +393,7 @@ void MMatchItemDescMgr::ParseItem(MXmlElement& element)
 		else if (!_stricmp(szAttrName, MICTOK_EFFECT_ID))
 		{
 			//n = atoi(szAttrValue);
-			// ÀÌÆåÆ® Ã³¸® ÇØ¾ß ÇÔ
+			// ì´í™íŠ¸ ì²˜ë¦¬ í•´ì•¼ í•¨
 		}
 		else if (!_stricmp(szAttrName, MICTOK_DELAY))
 		{
@@ -480,7 +480,7 @@ void MMatchItemDescMgr::ParseItem(MXmlElement& element)
 		}
 		else if (!_stricmp(szAttrName, MICTOK_COLOR))
 		{
-			// color Ã³¸®ÇØ¾ß ÇÔ..-_-z
+			// color ì²˜ë¦¬í•´ì•¼ í•¨..-_-z
 		}
 		else if (!_stricmp(szAttrName, MICTOK_DESC))
 		{
@@ -911,35 +911,35 @@ bool IsWeaponCharItemParts(MMatchCharItemParts nParts)
 
 char* GetItemSlotTypeStr(MMatchItemSlotType nSlotType)
 {
-	static char st_SlotTypeStr[MMIST_END][32] = { "¾øÀ½",		// MMIST_NONE
-												"±ÙÁ¢¹«±â",		// MMIST_MELEE
-												"¿ø°Å¸®¹«±â",	// MMIST_RANGE
-												"¾ÆÀÌÅÛ",		// MMIST_CUSTOM
-												"¸Ó¸®",			// MMIST_HEAD
-												"°¡½¿",			// MMIST_CHEST
-												"¼Õ",			// MMIST_HANDS
-												"´Ù¸®",			// MMIST_LEGS
-												"¹ß",			// MMIST_FEET
-												"¼Õ°¡¶ô",		// MMIST_FINGER
-												"Æ¯º°"};		// MMIST_EXTRA
+	static char st_SlotTypeStr[MMIST_END][32] = { "ì—†ìŒ",		// MMIST_NONE
+												"ê·¼ì ‘ë¬´ê¸°",		// MMIST_MELEE
+												"ì›ê±°ë¦¬ë¬´ê¸°",	// MMIST_RANGE
+												"ì•„ì´í…œ",		// MMIST_CUSTOM
+												"ë¨¸ë¦¬",			// MMIST_HEAD
+												"ê°€ìŠ´",			// MMIST_CHEST
+												"ì†",			// MMIST_HANDS
+												"ë‹¤ë¦¬",			// MMIST_LEGS
+												"ë°œ",			// MMIST_FEET
+												"ì†ê°€ë½",		// MMIST_FINGER
+												"íŠ¹ë³„"};		// MMIST_EXTRA
 
 	return st_SlotTypeStr[nSlotType];
 }
 
 char* GetCharItemPartsStr(MMatchCharItemParts nParts)
 {
-	static char st_CharItemPartsStr[MMCIP_END][32] = { "¸Ó¸®",	// MMCIP_HEAD
-														"°¡½¿",		// MMCIP_CHEST
-														"¼Õ",		// MMCIP_HANDS
-														"´Ù¸®",		// MMCIP_LEGS
-														"¹ß",		// MMCIP_FEET
-														"¿ŞÂÊ¼Õ°¡¶ô",	// MMCIP_FINGERL
-														"¿À¸¥ÂÊ¼Õ°¡¶ô", // MMCIP_FINGERR
-														"±ÙÁ¢¹«±â",		// MMCIP_MELEE
-														"ÁÖ¹«±â",		// MMCIP_PRIMARY
-														"º¸Á¶¹«±â",		// MMCIP_SECONDARY
-														"¾ÆÀÌÅÛ1",		// MMCIP_CUSTOM1
-														"¾ÆÀÌÅÛ2"		// MMCIP_CUSTOM2
+	static char st_CharItemPartsStr[MMCIP_END][32] = { "ë¨¸ë¦¬",	// MMCIP_HEAD
+														"ê°€ìŠ´",		// MMCIP_CHEST
+														"ì†",		// MMCIP_HANDS
+														"ë‹¤ë¦¬",		// MMCIP_LEGS
+														"ë°œ",		// MMCIP_FEET
+														"ì™¼ìª½ì†ê°€ë½",	// MMCIP_FINGERL
+														"ì˜¤ë¥¸ìª½ì†ê°€ë½", // MMCIP_FINGERR
+														"ê·¼ì ‘ë¬´ê¸°",		// MMCIP_MELEE
+														"ì£¼ë¬´ê¸°",		// MMCIP_PRIMARY
+														"ë³´ì¡°ë¬´ê¸°",		// MMCIP_SECONDARY
+														"ì•„ì´í…œ1",		// MMCIP_CUSTOM1
+														"ì•„ì´í…œ2"		// MMCIP_CUSTOM2
 														};
 
 	return st_CharItemPartsStr[nParts];
@@ -956,7 +956,7 @@ MMatchWeaponType GetWeaponType(MMatchMeleeItemType nMeleeItemType)
 	case MIT_GREAT_SWORD:	return MWT_GREAT_SWORD;
 	case MIT_DOUBLE_KATANA:	return MWT_DOUBLE_KATANA;
 	default:
-			// ¾ø´Â Å¸ÀÔ
+			// ì—†ëŠ” íƒ€ì…
 			_ASSERT(0);
 	}
 
@@ -985,7 +985,7 @@ MMatchWeaponType GetWeaponType(MMatchRangeItemType nRangeItemType)
 	case RIT_ROCKET:		return MWT_ROCKET;
 	case RIT_SNIFER:		return MWT_SNIFER;
 	default:
-			// ¾ø´Â Å¸ÀÔ
+			// ì—†ëŠ” íƒ€ì…
 			_ASSERT(0);
 	}
 
@@ -1010,7 +1010,7 @@ MMatchWeaponType GetWeaponType(MMatchCustomItemType nCustomItemType)
 
 	default:
 		{
-			// ¾ø´Â Å¸ÀÔ
+			// ì—†ëŠ” íƒ€ì…
 			_ASSERT(0);
 		}
 	}

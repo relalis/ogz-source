@@ -38,13 +38,13 @@ public:
 private:
 
 public:
-	// ¾î¶² vertexµéÀ» ÀÌ¿ëÇØ¼­ ½Ç¸°´õ¸¦ ±¸¼ºÇÒ °ÍÀÎÁö¸¦ °áÁ¤
+	// ì–´ë–¤ vertexë“¤ì„ ì´ìš©í•´ì„œ ì‹¤ë¦°ë”ë¥¼ êµ¬ì„±í•  ê²ƒì¸ì§€ë¥¼ ê²°ì •
 	bool setBCylinder( RealSpace2::RMeshNode * pMeshNode_, DWORD flag_ ); 
 	// update
 	void update( rvector* point_list_ );
 	// check collistion
-	// ¸¸¾à Ãæµ¹ ¾Æ´Ï¸é ¸®ÅÏ false
-	// ´ë·« Ãæµ¹ÀÌ¸é ¸®ÅÏ true ÇÏ°í Á¶Á¤µÇ¾ßÇÒ À§Ä¡ pos_ ¹İÈ¯
+	// ë§Œì•½ ì¶©ëŒ ì•„ë‹ˆë©´ ë¦¬í„´ false
+	// ëŒ€ëµ ì¶©ëŒì´ë©´ ë¦¬í„´ true í•˜ê³  ì¡°ì •ë˜ì•¼í•  ìœ„ì¹˜ pos_ ë°˜í™˜
 	bool isCollide( rvector& v_, rvector& n_, rvector& pos_ );
 
 	void vertex_setup();

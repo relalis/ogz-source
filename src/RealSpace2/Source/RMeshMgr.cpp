@@ -60,7 +60,7 @@ int RMeshMgr::Add(const char* name, const char* modelname, bool namesort)
 	node->m_id = m_id_last;
 
 	if(m_id_last > MAX_NODE_TABLE)
-		mlog("MeshNode ¿¹¾à »çÀÌÁî¸¦ ´Ã¸®´Â°ÍÀÌ ÁÁ°ÚÀ½...\n");
+		mlog("MeshNode ì˜ˆì•½ ì‚¬ì´ì¦ˆë¥¼ ëŠ˜ë¦¬ëŠ”ê²ƒì´ ì¢‹ê² ìŒ...\n");
 
 	m_list.push_back(node);
 	m_id_last++;
@@ -249,7 +249,7 @@ int RMeshMgr::AddXml(MXmlElement* pNode, const char* Path, const char* modelname
 	node->m_id = m_id_last;
 
 	if(m_id_last > MAX_NODE_TABLE)
-		mlog("MeshNode ¿¹¾à »çÀÌÁî¸¦ ´Ã¸®´Â°ÍÀÌ ÁÁ°ÚÀ½...\n");
+		mlog("MeshNode ì˜ˆì•½ ì‚¬ì´ì¦ˆë¥¼ ëŠ˜ë¦¬ëŠ”ê²ƒì´ ì¢‹ê² ìŒ...\n");
 
 	m_list.push_back(node);
 	m_id_last++;

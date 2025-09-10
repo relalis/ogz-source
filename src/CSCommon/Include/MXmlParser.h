@@ -12,8 +12,8 @@ protected:
 public:
 	MXmlParser() {}
 	virtual ~MXmlParser() {}
-	bool ReadXml(const char* szFileName);								///< xml·ÎºÎÅÍ Á¤º¸¸¦ ÀÐ´Â´Ù.
-	bool ReadXml(MZFileSystem* pFileSystem,const char* szFileName);		///< xml·ÎºÎÅÍ Á¤º¸¸¦ ÀÐ´Â´Ù.
+	bool ReadXml(const char* szFileName);								///< xmlë¡œë¶€í„° ì •ë³´ë¥¼ ì½ëŠ”ë‹¤.
+	bool ReadXml(MZFileSystem* pFileSystem,const char* szFileName);		///< xmlë¡œë¶€í„° ì •ë³´ë¥¼ ì½ëŠ”ë‹¤.
 };
 
 

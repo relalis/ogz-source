@@ -46,7 +46,7 @@ void MBMatchServer::OnPrepareCommand(MCommand* pCommand)
 {
 #if defined(_DEBUG) && defined(MFC)
 #ifndef _DEBUG_PUBLISH
-	// Ä¿¸Çµå ·Î±× ³²±â±â
+	// ì»¤ë§¨ë“œ ë¡œê·¸ ë‚¨ê¸°ê¸°
 	if(m_pCmdLogView==NULL) return;
 
 	CMatchServerApp* pApp = (CMatchServerApp*)AfxGetApp();
@@ -164,7 +164,7 @@ bool MBMatchServer::AddClanServerSwitchDownSchedule()
 		return false;
 	}
 
-	mlog( "MBMatchServer::AddClanServerSwitchDownSchedule - Å¬·£¼­¹ö´Ù¿î Ä¿¸Çµå »ı¼º ¼º°ø. ´ÙÀ½½ÇÇà½Ã°£:%d³â%d¿ù%dÀÏ %d½Ã%dºĞ\n",
+	mlog( "MBMatchServer::AddClanServerSwitchDownSchedule - í´ëœì„œë²„ë‹¤ìš´ ì»¤ë§¨ë“œ ìƒì„± ì„±ê³µ. ë‹¤ìŒì‹¤í–‰ì‹œê°„:%dë…„%dì›”%dì¼ %dì‹œ%dë¶„\n",
 		pScheduleData->GetYear(), pScheduleData->GetMonth(), pScheduleData->GetDay(),
 		pScheduleData->GetHour(), pScheduleData->GetMin() );
 
@@ -177,7 +177,7 @@ bool MBMatchServer::AddClanServerSwitchUpSchedule()
 	MCommand* pCmd = CreateCommand( MC_MATCH_SCHEDULE_CLAN_SERVER_SWITCH_ON, MUID(0, 0) );
 	if( 0 == pCmd )
 	{
-		mlog( "MBMatchServer::AddClanServerSwitchUpSchedule - Å¬·£¼· È°¼ºÈ­ Ä¿¸Çµå »ı¼º ½ÇÆĞ.\n" );
+		mlog( "MBMatchServer::AddClanServerSwitchUpSchedule - í´ëœì„­ í™œì„±í™” ì»¤ë§¨ë“œ ìƒì„± ì‹¤íŒ¨.\n" );
 		return false;
 	}
 
@@ -212,7 +212,7 @@ bool MBMatchServer::AddClanServerSwitchUpSchedule()
 		return false;
 	}
 
-	mlog( "MBMatchServer::AddClanServerSwitchUpSchedule - Å¬·£¼­¹ö¾÷ Ä¿¸Çµå »ı¼º ¼º°ø. ´ÙÀ½½ÇÇà½Ã°£:%d³â%d¿ù%dÀÏ %d½Ã%dºĞ\n",
+	mlog( "MBMatchServer::AddClanServerSwitchUpSchedule - í´ëœì„œë²„ì—… ì»¤ë§¨ë“œ ìƒì„± ì„±ê³µ. ë‹¤ìŒì‹¤í–‰ì‹œê°„:%dë…„%dì›”%dì¼ %dì‹œ%dë¶„\n",
 		pScheduleData->GetYear(), pScheduleData->GetMonth(), pScheduleData->GetDay(),
 		pScheduleData->GetHour(), pScheduleData->GetMin() );
 
@@ -221,7 +221,7 @@ bool MBMatchServer::AddClanServerSwitchUpSchedule()
 
 bool MBMatchServer::AddClanServerAnnounceSchedule()
 {
-	char szTest[] = "Å¬·£Àü °ÔÀÓÀ» 11½Ã 50ºĞ¿¡ ´İµµ·Ï ÇÏ°Ú½À´Ï´Ù.";
+	char szTest[] = "í´ëœì „ ê²Œì„ì„ 11ì‹œ 50ë¶„ì— ë‹«ë„ë¡ í•˜ê² ìŠµë‹ˆë‹¤.";
 
 	MCommand* pCmd = CreateCommand( MC_MATCH_SCHEDULE_ANNOUNCE_MAKE, MUID(0, 0) );
 	if( 0 == pCmd )
@@ -338,7 +338,7 @@ void MBMatchServer::WriteServerInfoLog()
 		LOG( LOG_ALL, "Server Country : INDIA" );
 	else
 	{
-		ASSERT( 0 && "±¹°¡ ¼³Á¤À» ÇØÁÖ¼¼¿ä." );
+		ASSERT( 0 && "êµ­ê°€ ì„¤ì •ì„ í•´ì£¼ì„¸ìš”." );
 		LOG( LOG_ALL, "!!!!!!!!!Not setted country code!!!!!!!!!!!!!" );
 	}
 	

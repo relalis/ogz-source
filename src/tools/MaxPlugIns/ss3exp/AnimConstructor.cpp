@@ -322,8 +322,8 @@ void RSVisList::Get(float fTime,RSVisibilityKey *ret)
 	ret->value=(*m_Current)->value*(1-t)+(*Next)->value*t;
 }
 
-// ºÎ¸ğ°¡ visibility Å°¸¦ °®°í ÀÖÀ¸¸é recursive ÇÏ°Ô ¾ò¾î³»¼­ Áßº¹ÀÇ ¼ÒÁö°¡ ÀÖÀ½.
-// ºñÈ¿À²ÀûÀÌ±ä ÇÏ³ª ÄÚµå°¡ °£´ÜÇØ¼­ °Á ÀÌ·¸°Ô ÇØ³ù½¿.
+// ë¶€ëª¨ê°€ visibility í‚¤ë¥¼ ê°–ê³  ìˆìœ¼ë©´ recursive í•˜ê²Œ ì–»ì–´ë‚´ì„œ ì¤‘ë³µì˜ ì†Œì§€ê°€ ìˆìŒ.
+// ë¹„íš¨ìœ¨ì ì´ê¸´ í•˜ë‚˜ ì½”ë“œê°€ ê°„ë‹¨í•´ì„œ ê± ì´ë ‡ê²Œ í•´ë†¨ìŠ´.
 
 // Output float keys if this is a known float controller that
 // supports key operations. Otherwise we will sample the controller 

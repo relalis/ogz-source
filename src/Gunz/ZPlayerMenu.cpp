@@ -46,14 +46,14 @@ void ZPlayerMenu::SetupMenu(ZPLAYERMENU_SET nMenuSet)
 		*/
 
 		AddMenuItem(new ZPlayerMenuItem(ZCMD_PLAYERMENU_WHISPER, ZMsg( MSG_MENUITEM_FRIENDWHISPER)));
-		//if ( (pListItem->m_nLobbyPlayerState == PS_WAIT) || (pListItem->m_nLobbyPlayerState == PS_FIGHT) )	// Lobby PlayerList °»½Å ºÒÀÏÄ¡ ¹®Á¦·Î ÀÏ´Ü µû¶ó°¡±â¸Þ´º Ç×»ó º¸ÀÌ°ÔÇÔ..
+		//if ( (pListItem->m_nLobbyPlayerState == PS_WAIT) || (pListItem->m_nLobbyPlayerState == PS_FIGHT) )	// Lobby PlayerList ê°±ì‹  ë¶ˆì¼ì¹˜ ë¬¸ì œë¡œ ì¼ë‹¨ ë”°ë¼ê°€ê¸°ë©”ë‰´ í•­ìƒ ë³´ì´ê²Œí•¨..
 			AddMenuItem(new ZPlayerMenuItem(ZCMD_PLAYERMENU_FOLLOW, ZMsg( MSG_MENUITEM_FRIENDFOLLOW)));
 		
 		AddMenuItem(new ZPlayerMenuItem(ZCMD_PLAYERMENU_FRIEND_ADD, ZMsg( MSG_MENUITEM_FRIENDADD)));
 
 
 		MMatchClanGrade myGrade = ZGetMyInfo()->GetClanGrade();
-		if(myGrade == MCG_MASTER || myGrade == MCG_ADMIN) {	// Å¬·£ ¸Þ´º Ãß°¡
+		if(myGrade == MCG_MASTER || myGrade == MCG_ADMIN) {	// í´ëžœ ë©”ë‰´ ì¶”ê°€
 			MPopupMenu::AddMenuItem("--------");
 			AddMenuItem(new ZPlayerMenuItem(ZCMD_PLAYERMENU_CLAN_INVITE, ZMsg( MSG_MENUITEM_FRIENDCLANINVITE)));
 		}
@@ -82,9 +82,9 @@ void ZPlayerMenu::SetupMenu(ZPLAYERMENU_SET nMenuSet)
 		if(myGrade == MCG_MASTER || myGrade == MCG_ADMIN)
 			MPopupMenu::AddMenuItem("--------");
 	
-		if(myGrade == MCG_MASTER) // Å¬·£ ¸Þ´º Ãß°¡
+		if(myGrade == MCG_MASTER) // í´ëžœ ë©”ë‰´ ì¶”ê°€
 		{
-//			AddMenuItem(new ZPlayerMenuItem(ZCMD_PLAYERMENU_CLAN_GRADE_MASTER, ZMsg( MSG_MENUITEM_CLANGRADEMASTER)));		// Àá½Ã ºÀÀÎ
+//			AddMenuItem(new ZPlayerMenuItem(ZCMD_PLAYERMENU_CLAN_GRADE_MASTER, ZMsg( MSG_MENUITEM_CLANGRADEMASTER)));		// ìž ì‹œ ë´‰ì¸
 			AddMenuItem(new ZPlayerMenuItem(ZCMD_PLAYERMENU_CLAN_GRADE_ADMIN, ZMsg( MSG_MENUITEM_CLANGRADEADMIN)));
 			AddMenuItem(new ZPlayerMenuItem(ZCMD_PLAYERMENU_CLAN_GRADE_MEMBER, ZMsg( MSG_MENUITEM_CLANMEMBER)));
 		}
@@ -115,7 +115,7 @@ bool ZPlayerMenuListener::OnCommand(MWidget* pWidget, const char* szMessage)
 	((MPopupMenu*)pMenu)->Show(false);
 	ZPlayerMenuItem* pItem = (ZPlayerMenuItem*)pWidget;
 
-	switch(pItem->GetCmdID()) {	// ¸í·ÉÀ» String Command·Î ³¯¸®·Á´Ï »ó´çÈ÷ ¾ÈÀÌ»ÛÄÚµå°¡;;
+	switch(pItem->GetCmdID()) {	// ëª…ë ¹ì„ String Commandë¡œ ë‚ ë¦¬ë ¤ë‹ˆ ìƒë‹¹ížˆ ì•ˆì´ìœì½”ë“œê°€;;
 	case ZCMD_PLAYERMENU_WHISPER:
 		{
 			char szMsg[128] = "";

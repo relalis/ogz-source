@@ -29,7 +29,7 @@ BEGIN_MESSAGE_MAP(CScaleDlg, CDialog)
 	ON_NOTIFY(NM_RELEASEDCAPTURE, IDC_SZ, OnNMReleasedcaptureSz)
 END_MESSAGE_MAP()
 
-// ╢КцФгоюз...
+// К▄─Л╤╘М∙≤Л·░...
 extern float g_scale[3];
 extern bool g_bScale;
 

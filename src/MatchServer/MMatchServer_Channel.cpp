@@ -71,7 +71,7 @@ bool MMatchServer::ChannelJoin(const MUID& uidPlayer, const MCHANNEL_TYPE nChann
 	
 	if (pChannel == NULL)
 	{
-		// ÇÁ¸®¼Â Ã¤³ÎÀÌ¸é Ã¤³ÎÀ» ¸¸µé ¼ö ¾ø´Ù.
+		// í”„ë¦¬ì…‹ ì±„ë„ì´ë©´ ì±„ë„ì„ ë§Œë“¤ ìˆ˜ ì—†ë‹¤.
 		if (nChannelType == MCHANNEL_TYPE_PRESET) return false;
 		if (!ChannelAdd(pszChannelName, GetDefaultChannelRuleName(), &uidChannel, nChannelType)) return false;
 	}
@@ -118,11 +118,11 @@ bool MMatchServer::ChannelJoin(const MUID& uidPlayer, const MUID& uidChannel)
 	RouteToListener(pObj, pNew);
 
 
-	ResponseChannelRule(uidPlayer, uidChannel);	// Channel ±ÔÄ¢À» º¸³»ÁØ´Ù.
+	ResponseChannelRule(uidPlayer, uidChannel);	// Channel ê·œì¹™ì„ ë³´ë‚´ì¤€ë‹¤.
 
 	pObj->SetStageListTransfer(true);	// turn on Auto refresh stage list
 	pObj->SetStageCursor(0);
-	// Ã¤³ÎÁ¶ÀÎÇÏ¸é ¼­¹ö°¡ ÀÚµ¿ÀûÀ¸·Î ½ºÅ×ÀÌÁö ¸®½ºÆ®¿Í ÇÃ·¹ÀÌ¾î ¸®½ºÆ®¸¦ º¸³»ÁØ´Ù.
+	// ì±„ë„ì¡°ì¸í•˜ë©´ ì„œë²„ê°€ ìë™ì ìœ¼ë¡œ ìŠ¤í…Œì´ì§€ ë¦¬ìŠ¤íŠ¸ì™€ í”Œë ˆì´ì–´ ë¦¬ìŠ¤íŠ¸ë¥¼ ë³´ë‚´ì¤€ë‹¤.
 	StageList(uidPlayer, 0, false);
 	ChannelResponsePlayerList(uidPlayer, uidChannel, 0);
 
@@ -154,7 +154,7 @@ bool MMatchServer::ChannelLeave(const MUID& uidPlayer, const MUID& uidChannel)
 }
 
 /*
-// RAONHAJE ÀÓ½ÃÄÚµå
+// RAONHAJE ì„ì‹œì½”ë“œ
 #include "CMLexicalAnalyzer.h"
 bool StageGo(MMatchServer* pServer, const MUID& uidPlayer, char* pszChat)
 {
@@ -208,7 +208,7 @@ bool MMatchServer::ChannelChat(const MUID& uidPlayer, const MUID& uidChannel, ch
 	int nGrade = (int) pObj->GetAccountInfo()->m_nUGrade;
 
 /*
-	// RAONHAJE : GO ÀÓ½ÃÄÚµå
+	// RAONHAJE : GO ì„ì‹œì½”ë“œ
 	if (pszChat[0] == '/')
 		if (StageGo(this, uidPlayer, pszChat))
 			return true;
@@ -243,7 +243,7 @@ void MMatchServer::OnRequestRecommendedChannel(const MUID& uidComm)
 		}
 	}
 
-	// µğ¹ö±× ¹öÀüÀº ¹«Á¶°Ç ÀÚÀ¯Ã¤³Î·Î ÀÔÀåÇÏ°Ô ¸¸µé¾ú´Ù.
+	// ë””ë²„ê·¸ ë²„ì „ì€ ë¬´ì¡°ê±´ ììœ ì±„ë„ë¡œ ì…ì¥í•˜ê²Œ ë§Œë“¤ì—ˆë‹¤.
 #ifdef _DEBUG
 	for(map<MUID, MMatchChannel*>::iterator itor=m_ChannelMap.GetTypesChannelMapBegin(MCHANNEL_TYPE_PRESET); 
 		itor!=m_ChannelMap.GetTypesChannelMapEnd(MCHANNEL_TYPE_PRESET); itor++) {
@@ -257,7 +257,7 @@ void MMatchServer::OnRequestRecommendedChannel(const MUID& uidComm)
 	}
 #endif
 
-	// ·¹º§Á¦ÇÑÀ¸·Î ¸øµé¾î°¡¸é °ø°³Ã¤³Î·Î µé¾î°£´Ù.
+	// ë ˆë²¨ì œí•œìœ¼ë¡œ ëª»ë“¤ì–´ê°€ë©´ ê³µê°œì±„ë„ë¡œ ë“¤ì–´ê°„ë‹¤.
 	if (uidChannel == MUID(0,0))
 	{
 		for(map<MUID, MMatchChannel*>::iterator itor=m_ChannelMap.GetTypesChannelMapBegin(MCHANNEL_TYPE_PRESET); 
@@ -275,7 +275,7 @@ void MMatchServer::OnRequestRecommendedChannel(const MUID& uidComm)
 		}
 	}
 
-	// ¸¸¾à µé¾î°¥µ¥°¡ ¾øÀ¸¸é »ç¼³Ã¤³Î·Î µé¾î°£´Ù.
+	// ë§Œì•½ ë“¤ì–´ê°ˆë°ê°€ ì—†ìœ¼ë©´ ì‚¬ì„¤ì±„ë„ë¡œ ë“¤ì–´ê°„ë‹¤.
 	if (uidChannel == MUID(0,0))
 	{
 		for(map<MUID, MMatchChannel*>::iterator itor=m_ChannelMap.GetTypesChannelMapBegin(MCHANNEL_TYPE_USER); 
@@ -291,7 +291,7 @@ void MMatchServer::OnRequestRecommendedChannel(const MUID& uidComm)
 		}
 	}
 
-	if (uidChannel == MUID(0,0)) return;	// ±×·¡µµ ¾øÀ¸¸é ³¶ÆĞ
+	if (uidChannel == MUID(0,0)) return;	// ê·¸ë˜ë„ ì—†ìœ¼ë©´ ë‚­íŒ¨
 
 	MCommand* pNew = new MCommand(m_CommandManager.GetCommandDescByID(MC_MATCH_RESPONSE_RECOMMANDED_CHANNEL),
 									uidComm, m_This);
@@ -338,14 +338,14 @@ void MMatchServer::ChannelList(const MUID& uidPlayer, MCHANNEL_TYPE nChannelType
 	MMatchObject* pChar = GetObject(uidPlayer);
 	if (! IsEnabledObject(pChar)) return;
 
-	if (pChar->GetPlace() != MMP_LOBBY) return;		// ·Îºñ°¡ ¾Æ´Ï¸é ¹«½Ã
+	if (pChar->GetPlace() != MMP_LOBBY) return;		// ë¡œë¹„ê°€ ì•„ë‹ˆë©´ ë¬´ì‹œ
 	if ((nChannelType < 0) || (nChannelType >= MCHANNEL_TYPE_MAX)) return;
 
 	// Count Active Channels
 	int nChannelCount = (int)m_ChannelMap.GetChannelCount(nChannelType);
 	if (nChannelCount <= 0) return;
 
-// Ã¤³Î¸®½ºÆ®´Â ÃÖ´ë 100°³±îÁö¸¸ ¸®½ºÆ®¸¦ º¸³½´Ù.
+// ì±„ë„ë¦¬ìŠ¤íŠ¸ëŠ” ìµœëŒ€ 100ê°œê¹Œì§€ë§Œ ë¦¬ìŠ¤íŠ¸ë¥¼ ë³´ë‚¸ë‹¤.
 #define MAX_CHANNEL_LIST_NODE		100
 
 	nChannelCount = min(nChannelCount, MAX_CHANNEL_LIST_NODE);
@@ -481,7 +481,7 @@ void MMatchServer::ChannelResponseAllPlayerList(const MUID& uidPlayer, const MUI
 	MMatchObject* ppTransObjectArray[DEFAULT_CHANNEL_MAXPLAYERS];
 	memset(ppTransObjectArray, 0, sizeof(MMatchObject*) * DEFAULT_CHANNEL_MAXPLAYERS);
 
-	// TransObjectArray¿¡ Àü¼ÛÇÒ ObjectÀÇ Æ÷ÀÎÅÍ¸¸ ÀúÀåÇØ³õ´Â´Ù.
+	// TransObjectArrayì— ì „ì†¡í•  Objectì˜ í¬ì¸í„°ë§Œ ì €ì¥í•´ë†“ëŠ”ë‹¤.
 	for (auto i=pChannel->GetObjBegin(); i != pChannel->GetObjEnd(); i++)
 	{
 		MMatchObject* pScanObj = i->second;

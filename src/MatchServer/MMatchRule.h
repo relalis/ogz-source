@@ -12,38 +12,38 @@ class MMatchObject;
 class MMatchStage;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-/// °ÔÀÓ ·ê ±âº» º£ÀÌ½º Å¬·¡½º
+/// ê²Œì„ ë£° ê¸°ë³¸ ë² ì´ìŠ¤ í´ë˜ìŠ¤
 class MMatchRule {
 protected:
-	MMatchGameTypeInfo*	m_pGameTypeInfo;							///< °ÔÀÓ Å¸ÀÔ Á¤º¸
+	MMatchGameTypeInfo*	m_pGameTypeInfo;							///< ê²Œì„ íƒ€ì… ì •ë³´
 
-	MMatchStage*		m_pStage;									///< ½ºÅ×ÀÌÁö Å¬·¡½º
-	MMATCH_ROUNDSTATE	m_nRoundState;								///< ÇöÀç ¶ó¿îµå »óÅÂ
-	int					m_nRoundCount;								///< ¶ó¿îµå ¼ö
-	int					m_nRoundArg;								///< ¶ó¿îµåÀÇ Ãß°¡ ÀÎÀÚ
+	MMatchStage*		m_pStage;									///< ìŠ¤í…Œì´ì§€ í´ë˜ìŠ¤
+	MMATCH_ROUNDSTATE	m_nRoundState;								///< í˜„ì¬ ë¼ìš´ë“œ ìƒíƒœ
+	int					m_nRoundCount;								///< ë¼ìš´ë“œ ìˆ˜
+	int					m_nRoundArg;								///< ë¼ìš´ë“œì˜ ì¶”ê°€ ì¸ì
 	u64					m_tmRoundStateTimer;
-	int					m_nLastTimeLimitAnnounce;					// 60, 30, 10 Áß ÇÏ³ª
+	int					m_nLastTimeLimitAnnounce;					// 60, 30, 10 ì¤‘ í•˜ë‚˜
 
-	MMatchEventManager m_OnBeginEventManager;						/// °ÔÀÓÀ» ½ÃÀÛÇÒ¶§ ÀÌº¥Æ®.
-	MMatchEventManager m_OnGameEventManager;						/// º£Æ²Áß ÀÌº¥Æ®.
-	MMatchEventManager m_OnEndEventManager;							/// °ÔÀÓÀÌ ³¡³¯¶§ ÀÌº¥Æ®.
+	MMatchEventManager m_OnBeginEventManager;						/// ê²Œì„ì„ ì‹œì‘í• ë•Œ ì´ë²¤íŠ¸.
+	MMatchEventManager m_OnGameEventManager;						/// ë² í‹€ì¤‘ ì´ë²¤íŠ¸.
+	MMatchEventManager m_OnEndEventManager;							/// ê²Œì„ì´ ëë‚ ë•Œ ì´ë²¤íŠ¸.
 
 protected:
-	virtual bool RoundCount() { return false; }						///< ¶ó¿îµå Ä«¿îÆ®. ¸ğµç ¶ó¿îµå°¡ ³¡³ª¸é false¸¦ ¹İÈ¯ÇÑ´Ù.
-	virtual bool OnRun();											///< °ÔÀÓÆ½½Ã È£Ãâ
-	virtual void OnBegin();											///< ÀüÃ¼ °ÔÀÓ ½ÃÀÛ½Ã È£Ãâ
-	virtual void OnEnd();											///< ÀüÃ¼ °ÔÀÓ Á¾·á½Ã È£Ãâ
-	virtual void OnRoundBegin();									///< ¶ó¿îµå ½ÃÀÛÇÒ ¶§ È£Ãâ
-	virtual void OnRoundEnd();										/// ¶ó¿îµå ³¡³¯ ¶§ È£Ãâ
-	virtual void OnRoundTimeOut();									///< ¶ó¿îµå°¡ Å¸ÀÓ¾Æ¿ôÀ¸·Î Á¾·áµÉ ‹š OnRoundEnd() ÀüÀÌ´Ù.
+	virtual bool RoundCount() { return false; }						///< ë¼ìš´ë“œ ì¹´ìš´íŠ¸. ëª¨ë“  ë¼ìš´ë“œê°€ ëë‚˜ë©´ falseë¥¼ ë°˜í™˜í•œë‹¤.
+	virtual bool OnRun();											///< ê²Œì„í‹±ì‹œ í˜¸ì¶œ
+	virtual void OnBegin();											///< ì „ì²´ ê²Œì„ ì‹œì‘ì‹œ í˜¸ì¶œ
+	virtual void OnEnd();											///< ì „ì²´ ê²Œì„ ì¢…ë£Œì‹œ í˜¸ì¶œ
+	virtual void OnRoundBegin();									///< ë¼ìš´ë“œ ì‹œì‘í•  ë•Œ í˜¸ì¶œ
+	virtual void OnRoundEnd();										/// ë¼ìš´ë“œ ëë‚  ë•Œ í˜¸ì¶œ
+	virtual void OnRoundTimeOut();									///< ë¼ìš´ë“œê°€ íƒ€ì„ì•„ì›ƒìœ¼ë¡œ ì¢…ë£Œë  ë–„ OnRoundEnd() ì „ì´ë‹¤.
 
-	virtual bool OnCheckRoundFinish() = 0;							///< ¶ó¿îµå°¡ ³¡³µ´ÂÁö Ã¼Å©
-	virtual bool OnCheckEnableBattleCondition() { return true; }	///< °ÔÀÓ °¡´ÉÇÑÁö Ã¼Å©
-	virtual bool OnCheckBattleTimeOut(unsigned int tmTimeSpend);	///< ¶ó¿îµå Å¸ÀÓ¾Æ¿ôÀÎÁö Ã¼Å©
+	virtual bool OnCheckRoundFinish() = 0;							///< ë¼ìš´ë“œê°€ ëë‚¬ëŠ”ì§€ ì²´í¬
+	virtual bool OnCheckEnableBattleCondition() { return true; }	///< ê²Œì„ ê°€ëŠ¥í•œì§€ ì²´í¬
+	virtual bool OnCheckBattleTimeOut(unsigned int tmTimeSpend);	///< ë¼ìš´ë“œ íƒ€ì„ì•„ì›ƒì¸ì§€ ì²´í¬
 
 	void SetRoundStateTimer(u64 tmTime)	{ m_tmRoundStateTimer = tmTime; }
-	void InitRound();												///< »õ·Î¿î ¶ó¿îµå ÃÊ±âÈ­
-	void SetRoundState(MMATCH_ROUNDSTATE nState);					///< ¶ó¿îµå »óÅÂ º¯°æ
+	void InitRound();												///< ìƒˆë¡œìš´ ë¼ìš´ë“œ ì´ˆê¸°í™”
+	void SetRoundState(MMATCH_ROUNDSTATE nState);					///< ë¼ìš´ë“œ ìƒíƒœ ë³€ê²½
 
 	void InitOnBeginEventManager();
 	void InitOnGameEventManager();
@@ -57,57 +57,57 @@ protected:
 	void RunOnGameEvent();
 	void RunOnEndEvent();
 public:
-	MMatchRule()					{ _ASSERT(false); }				///< ÀÌ »ı¼ºÀÚ´Â Àı´ë »ç¿ëÇÏÁö ¾Ê´Â´Ù.
-	MMatchRule(MMatchStage* pStage);								///< »ı¼ºÀÚ
-	virtual ~MMatchRule()			{}								///< ¼Ò¸êÀÚ
-	MMatchStage* GetStage()			{ return m_pStage; }			///< ½ºÅ×ÀÌÁö ¹İÈ¯
+	MMatchRule()					{ _ASSERT(false); }				///< ì´ ìƒì„±ìëŠ” ì ˆëŒ€ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
+	MMatchRule(MMatchStage* pStage);								///< ìƒì„±ì
+	virtual ~MMatchRule()			{}								///< ì†Œë©¸ì
+	MMatchStage* GetStage()			{ return m_pStage; }			///< ìŠ¤í…Œì´ì§€ ë°˜í™˜
 
-	int GetRoundCount() const		{ return m_nRoundCount; }		///< ÃÑ ¶ó¿îµå ¼ö ¹İÈ¯
-	void SetRoundCount(int nRound)	{ m_nRoundCount = nRound; }		///< ÃÑ ¶ó¿îµå ¼ö ¼³Á¤
-	int GetRoundArg() const			{ return m_nRoundArg; }			///< ¶ó¿îµå ÀÎÀÚ ¹İÈ¯
-	void SetRoundArg(int nArg)		{ m_nRoundArg = nArg; }			///< ¶ó¿îµå ÀÎÀÚ ¼³Á¤
+	int GetRoundCount() const		{ return m_nRoundCount; }		///< ì´ ë¼ìš´ë“œ ìˆ˜ ë°˜í™˜
+	void SetRoundCount(int nRound)	{ m_nRoundCount = nRound; }		///< ì´ ë¼ìš´ë“œ ìˆ˜ ì„¤ì •
+	int GetRoundArg() const			{ return m_nRoundArg; }			///< ë¼ìš´ë“œ ì¸ì ë°˜í™˜
+	void SetRoundArg(int nArg)		{ m_nRoundArg = nArg; }			///< ë¼ìš´ë“œ ì¸ì ì„¤ì •
 
 	MMatchEventManager& GetOnBeginEventManager()	{ return m_OnBeginEventManager; }
 	MMatchEventManager& GetOnGameEventManager()		{ return m_OnGameEventManager; }
 	MMatchEventManager& GetOnEndEventManager()		{ return m_OnEndEventManager; }
 
-	MMATCH_ROUNDSTATE GetRoundState()	{ return m_nRoundState; }				///< ¶ó¿îµå »óÅÂ ¹İÈ¯
+	MMATCH_ROUNDSTATE GetRoundState()	{ return m_nRoundState; }				///< ë¼ìš´ë“œ ìƒíƒœ ë°˜í™˜
 	auto GetRoundStateTimer() const	{ return m_tmRoundStateTimer; }
 	auto GetLastTimeLimitAnnounce() const	{ return m_nLastTimeLimitAnnounce; }
 	void SetLastTimeLimitAnnounce(int nSeconds)	{ m_nLastTimeLimitAnnounce = nSeconds; }
 
 	virtual void* CreateRuleInfoBlob()		{ return NULL; }
 
-	/// ÆÀ º¸³Ê½º °è»ê
-	/// @param pAttacker		°ø°İÀÚ
-	/// @param pVictim			ÇÇÇØÀÚ
-	/// @param nSrcExp			¿ø·¡ °æÇèÄ¡
-	/// @param poutAttackerExp	°ø°İÀÚ°¡ ¹ŞÀ» °æÇèÄ¡
-	/// @param poutTeamExp		ÆÀÀÌ ¹ŞÀ» °æÇèÄ¡
+	/// íŒ€ ë³´ë„ˆìŠ¤ ê³„ì‚°
+	/// @param pAttacker		ê³µê²©ì
+	/// @param pVictim			í”¼í•´ì
+	/// @param nSrcExp			ì›ë˜ ê²½í—˜ì¹˜
+	/// @param poutAttackerExp	ê³µê²©ìê°€ ë°›ì„ ê²½í—˜ì¹˜
+	/// @param poutTeamExp		íŒ€ì´ ë°›ì„ ê²½í—˜ì¹˜
 	virtual void CalcTeamBonus(MMatchObject* pAttacker,
 		                       MMatchObject* pVictim,
 							   int nSrcExp,
 							   int* poutAttackerExp,
 							   int* poutTeamExp);
-	/// °ÔÀÓÁß ³­ÀÔÇÒ¶§ È£ÃâµÈ´Ù.
+	/// ê²Œì„ì¤‘ ë‚œì…í• ë•Œ í˜¸ì¶œëœë‹¤.
 	virtual void OnEnterBattle(MUID& uidChar) { }		
-	// °ÔÀÓÁß ³ª°¬À»¶§ È£ÃâµÈ´Ù.
+	// ê²Œì„ì¤‘ ë‚˜ê°”ì„ë•Œ í˜¸ì¶œëœë‹¤.
 	virtual void OnLeaveBattle(MUID& uidChar) { }		
-	/// ÇØ´ç·ê¿¡¼­¸¸ »ç¿ëÇÏ´Â Ä¿¸Çµå´Â Á÷Á¢ Ã³¸®ÇÑ´Ù.
+	/// í•´ë‹¹ë£°ì—ì„œë§Œ ì‚¬ìš©í•˜ëŠ” ì»¤ë§¨ë“œëŠ” ì§ì ‘ ì²˜ë¦¬í•œë‹¤.
 	virtual void OnCommand(class MCommand* pCommand) { }		
-	/// ¿ùµå¾ÆÀÌÅÛ ¸Ô¾úÀ» °æ¿ì È£ÃâµÈ´Ù.
+	/// ì›”ë“œì•„ì´í…œ ë¨¹ì—ˆì„ ê²½ìš° í˜¸ì¶œëœë‹¤.
 	virtual void OnObtainWorldItem(MMatchObject* pObj, int nItemID, int* pnExtraValues) { }
-	/// Kill½Ã È£Ãâ
+	/// Killì‹œ í˜¸ì¶œ
 	virtual void OnGameKill(const MUID& uidAttacker, const MUID& uidVictim) { }
 	
 	virtual void OnTeam(const MUID &uidPlayer, enum MMatchTeam nTeam) { }
 
 	
-	bool Run();														///< °ÔÀÓÆ½
-	void Begin();													///< ½ÃÀÛ
-	void End();														///< ³¡
+	bool Run();														///< ê²Œì„í‹±
+	void Begin();													///< ì‹œì‘
+	void End();														///< ë
 
-	void DebugTest();												///< µğ¹ö±× Å×½ºÆ®
+	void DebugTest();												///< ë””ë²„ê·¸ í…ŒìŠ¤íŠ¸
 
 	virtual bool CheckPlayersAlive() { return true; }
 	virtual void OnFailed() {}

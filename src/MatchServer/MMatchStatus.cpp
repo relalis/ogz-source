@@ -49,25 +49,25 @@ void MMatchStatus::SaveToLogFile()
 	char szBuf[65535];
 	char szTemp[1024];
 
-	// °æ°ú½Ã°£
-	sprintf_safe(szBuf, "============================\n°æ°ú½Ã°£ = %dÃÊ\n", (GetGlobalTimeMS() - m_nStartTime) / 1000);
+	// ê²½ê³¼ì‹œê°„
+	sprintf_safe(szBuf, "============================\nê²½ê³¼ì‹œê°„ = %dì´ˆ\n", (GetGlobalTimeMS() - m_nStartTime) / 1000);
 	mlog(szBuf);
 
-	// Á¢¼ÓÀÚ¼ö
-	sprintf_safe(szBuf, "Á¢¼ÓÀÚ¼ö = %d\n", (int)MMatchServer::GetInstance()->GetObjects()->size());
+	// ì ‘ì†ìžìˆ˜
+	sprintf_safe(szBuf, "ì ‘ì†ìžìˆ˜ = %d\n", (int)MMatchServer::GetInstance()->GetObjects()->size());
 	mlog(szBuf);
 
-	// ¹æ°³¼ö
-	sprintf_safe(szBuf, "¹æ°³¼ö = %d\n", (int)MMatchServer::GetInstance()->GetStageMap()->size());
+	// ë°©ê°œìˆ˜
+	sprintf_safe(szBuf, "ë°©ê°œìˆ˜ = %d\n", (int)MMatchServer::GetInstance()->GetStageMap()->size());
 	mlog(szBuf);
 
-	// ÃÑ Ã³¸® Å¥ °³¼ö, ÇöÀçÆ½ÀÇ Å¥ °³¼ö
-	sprintf_safe(szBuf, "ÃÑÃ³¸®µÈ Ä¿¸Çµå = %u , ÇöÀçÆ½ Ä¿¸Çµå = %u\n", 
+	// ì´ ì²˜ë¦¬ í ê°œìˆ˜, í˜„ìž¬í‹±ì˜ í ê°œìˆ˜
+	sprintf_safe(szBuf, "ì´ì²˜ë¦¬ëœ ì»¤ë§¨ë“œ = %u , í˜„ìž¬í‹± ì»¤ë§¨ë“œ = %u\n", 
 		m_nTotalCommandQueueCount, m_nTickCommandQueueCount);
 	mlog(szBuf);
 
-	mlog("Å¥ Ã³¸® °³¼ö\n");
-	// °¢ Å¥´ç Ã³¸® °³¼ö
+	mlog("í ì²˜ë¦¬ ê°œìˆ˜\n");
+	// ê° íë‹¹ ì²˜ë¦¬ ê°œìˆ˜
 	szBuf[0] = 0;
 	
 	for (int i = 0; i < MSTATUS_MAX_CMD_COUNT; i++)
@@ -76,14 +76,14 @@ void MMatchStatus::SaveToLogFile()
 		{
 			int nAvg = m_nCmdCount[i][1] / m_nCmdCount[i][0];
 
-			sprintf_safe(szTemp, "%5d : %4u, Æò±ÕÃ³¸®½Ã°£: %u(ms), ¸¶Áö¸·Ã³¸®½Ã°£: %u(ms)\n", i, m_nCmdCount[i][0], nAvg,
+			sprintf_safe(szTemp, "%5d : %4u, í‰ê· ì²˜ë¦¬ì‹œê°„: %u(ms), ë§ˆì§€ë§‰ì²˜ë¦¬ì‹œê°„: %u(ms)\n", i, m_nCmdCount[i][0], nAvg,
 				m_nCmdCount[i][2]);
 			strcat_safe(szBuf, szTemp);
 		}
 	}
 	mlog(szBuf);
-	// °¢ µðºñ Äõ¸®´ç Ã³¸® °³¼ö
-	mlog("µðºñÄõ¸® Ã³¸® °³¼ö\n");
+	// ê° ë””ë¹„ ì¿¼ë¦¬ë‹¹ ì²˜ë¦¬ ê°œìˆ˜
+	mlog("ë””ë¹„ì¿¼ë¦¬ ì²˜ë¦¬ ê°œìˆ˜\n");
 	szBuf[0] = 0;
 
 	for (int i = 0; i < MSTATUS_MAX_DBQUERY_COUNT; i++)
@@ -92,7 +92,7 @@ void MMatchStatus::SaveToLogFile()
 		{
 			int nAvg = m_nDBQueryCount[i][1] / m_nDBQueryCount[i][0];
 
-			sprintf_safe(szTemp, "%5d : %4u, Æò±ÕÃ³¸®½Ã°£: %u(ms), ¸¶Áö¸·Ã³¸®½Ã°£: %u(ms)\n", i, m_nDBQueryCount[i][0], nAvg,
+			sprintf_safe(szTemp, "%5d : %4u, í‰ê· ì²˜ë¦¬ì‹œê°„: %u(ms), ë§ˆì§€ë§‰ì²˜ë¦¬ì‹œê°„: %u(ms)\n", i, m_nDBQueryCount[i][0], nAvg,
 				m_nDBQueryCount[i][2]);
 			strcat_safe(szBuf, szTemp);
 		}

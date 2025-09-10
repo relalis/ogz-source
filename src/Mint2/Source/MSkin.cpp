@@ -24,7 +24,7 @@ void MSkin::Draw(MDrawContext *pDC, MRECT rt)
 	0 1 2
 	*/
 
-	// TODO : ÀÏ´Ü strect ¸¸ ±¸Çö, ³ªÁß¿¡ tile ±¸ÇöÇÏÀÚ
+	// TODO : ì¼ë‹¨ strect ë§Œ êµ¬í˜„, ë‚˜ì¤‘ì— tile êµ¬í˜„í•˜ì
 
 	//         dest												source
 

@@ -17,7 +17,7 @@
 #include "stdio.h"
 #include ".\modelinfodlg.h"
 
-// ´ëÃæÇÏÀÚ..
+// ëŒ€ì¶©í•˜ì..
 
 extern bool g_bmtrl_dlg;
 
@@ -56,7 +56,7 @@ BEGIN_MESSAGE_MAP(CModelInfoDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CModelInfoDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CModelInfoDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void  CModelInfoDlg::ClearListBox()
 {

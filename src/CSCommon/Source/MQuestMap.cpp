@@ -82,7 +82,7 @@ void MQuestMapCatalogue::InsertMapset(MQuestMapsetInfo* pMapset)
 	MQuestMapsetMap::iterator itor = m_MapsetInfo.find(nID);
 	if (itor != m_MapsetInfo.end())
 	{
-		// ÀÌ¹Ì Á¸ÀçÇÑ´Ù.
+		// ì´ë¯¸ ì¡´ìž¬í•œë‹¤.
 		_ASSERT(0);
 		return;
 	}
@@ -97,7 +97,7 @@ void MQuestMapCatalogue::InsertSector(MQuestMapSectorInfo* pSector)
 	MQuestMapSectorMap::iterator itor = m_SectorInfo.find(nID);
 	if (itor != m_SectorInfo.end())
 	{
-		// ÀÌ¹Ì Á¸ÀçÇÑ´Ù.
+		// ì´ë¯¸ ì¡´ìž¬í•œë‹¤.
 		_ASSERT(0);
 		return;
 	}
@@ -145,7 +145,7 @@ void MQuestMapCatalogue::ParseMapset(MXmlElement& element)
 		}
 	}
 
-	// sector ¸ñ·ÏÀ» ¹Ì¸® ÀÐ´Â´Ù.
+	// sector ëª©ë¡ì„ ë¯¸ë¦¬ ì½ëŠ”ë‹¤.
 	ParseMapsetSector1Pass(element, pMapsetInfo);
 
 
@@ -239,7 +239,7 @@ void MQuestMapCatalogue::ParseSector(MXmlElement& element, MQuestMapSectorInfo* 
 
 			pSector->nLinkCount++;
 
-			// ¸µÅ©¼ö°¡ 10°³°¡ ³ÑÀ¸¸é ¾ÈµÈ´Ù.
+			// ë§í¬ìˆ˜ê°€ 10ê°œê°€ ë„˜ìœ¼ë©´ ì•ˆëœë‹¤.
 			_ASSERT(pSector->nLinkCount <= MAX_SECTOR_LINK);
 		}
 	}	

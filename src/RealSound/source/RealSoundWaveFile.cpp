@@ -62,7 +62,7 @@ bool RSMWaveFile::Open (char* pszFilename)
     bool fRtn = true;
     
     /////////////////////////////////////////////////
-	// pszFilenameÀ¸·Î ÁöÁ¤µÈ waveÈ­ÀÏÀ» ¿¬´Ù.
+	// pszFilenameìœ¼ë¡œ ì§€ì •ëœ waveí™”ì¼ì„ ì—°ë‹¤.
 
     if ((m_hmmio = mmioOpen (pszFilename, NULL, MMIO_ALLOCBUF | MMIO_READ)) == NULL)
     {

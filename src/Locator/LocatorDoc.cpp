@@ -1,4 +1,4 @@
-// LocatorDoc.cpp : CLocatorDoc Å¬·¡½ºÀÇ ±¸Çö
+// LocatorDoc.cpp : CLocatorDoc í´ëž˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -23,11 +23,11 @@ BEGIN_MESSAGE_MAP(CLocatorDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CLocatorDoc »ý¼º/¼Ò¸ê
+// CLocatorDoc ìƒì„±/ì†Œë©¸
 
 CLocatorDoc::CLocatorDoc() : m_pLocator( 0 ) 
 {
-	// TODO: ¿©±â¿¡ ÀÏÈ¸¼º »ý¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì¼íšŒì„± ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 }
 
@@ -41,8 +41,8 @@ BOOL CLocatorDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	// TODO: ¿©±â¿¡ ´Ù½Ã ÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// SDI ¹®¼­´Â ÀÌ ¹®¼­¸¦ ´Ù½Ã »ç¿ëÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë‹¤ì‹œ ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// SDI ë¬¸ì„œëŠ” ì´ ë¬¸ì„œë¥¼ ë‹¤ì‹œ ì‚¬ìš©í•©ë‹ˆë‹¤.
 
 	if( !CreateLocator() )
 		return FALSE;
@@ -91,16 +91,16 @@ void CLocatorDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: ¿©±â¿¡ ÀúÀå ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ì €ìž¥ ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 	else
 	{
-		// TODO: ¿©±â¿¡ ·Îµù ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ë¡œë”© ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 }
 
 
-// CLocatorDoc Áø´Ü
+// CLocatorDoc ì§„ë‹¨
 
 #ifdef _DEBUG
 void CLocatorDoc::AssertValid() const
@@ -115,11 +115,11 @@ void CLocatorDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CLocatorDoc ¸í·É
+// CLocatorDoc ëª…ë ¹
 
 void CLocatorDoc::OnOutputlocatorstatusinfo()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( 0 != m_pLocator )
 		m_pLocator->DumpLocatorStatusInfo();
 }

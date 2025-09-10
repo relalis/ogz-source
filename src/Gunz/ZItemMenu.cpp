@@ -40,7 +40,7 @@ void ZItemMenu::SetupMenu()
 
 	ZItemMenuItem* pMenuItem = new ZItemMenuItem(ZCMD_ITEMMENU_BRINGBACK_ACCOUNTITEM, ZMsg( MSG_MENUITEM_SENTTOBANK));
 	pMenuItem->SetSize(GetFont()->GetWidth(pMenuItem->GetText())+5, GetFont()->GetHeight());
-	AddMenuItem(pMenuItem);	// Add�ϸ鼭 MenuItem Resize��
+	AddMenuItem(pMenuItem);	// Add하면서 MenuItem Resize됨
 }
 
 void ZItemMenu::Show(int x, int y, bool bVisible)

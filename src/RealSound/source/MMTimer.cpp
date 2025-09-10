@@ -25,7 +25,7 @@ MMTimer::MMTimer()
 
 MMTimer::~MMTimer()
 {
-	Destroy();	// »ý¼ºµÈ Å¸ÀÌ¸Ó°¡ ÀÖ´Ù¸é »èÁ¦ ÇÑ´Ù.
+	Destroy();	// ìƒì„±ëœ íƒ€ì´ë¨¸ê°€ ìžˆë‹¤ë©´ ì‚­ì œ í•œë‹¤.
 }
 
 ////////////////////////////////////////
@@ -38,7 +38,7 @@ void MMTimer::Destroy()
     }
 }
 
-// ÄÝ¹éÇÔ¼ö¸¦ À§ÇØ Æ÷ÀÎÅÍ¸¦ µÎ¾ú´Ù.
+// ì½œë°±í•¨ìˆ˜ë¥¼ ìœ„í•´ í¬ì¸í„°ë¥¼ ë‘ì—ˆë‹¤.
 bool MMTimer::Create (u32 nPeriod, u32 nRes, u32 dwUser, MMTIMERCALLBACK pfnCallback)
 {
     bool bRtn = true;
@@ -59,16 +59,16 @@ bool MMTimer::Create (u32 nPeriod, u32 nRes, u32 dwUser, MMTIMERCALLBACK pfnCall
     return (bRtn);
 }
 
-// Multimedia Å¸ÀÌ¸Ó ¸Þ½ÃÁö°¡ È£ÃâµÉ¶§¸¶´Ù ÀÌ ÄÝ¹é ÇÔ¼ö°¡ ºÒ¸®¿î´Ù.
+// Multimedia íƒ€ì´ë¨¸ ë©”ì‹œì§€ê°€ í˜¸ì¶œë ë•Œë§ˆë‹¤ ì´ ì½œë°± í•¨ìˆ˜ê°€ ë¶ˆë¦¬ìš´ë‹¤.
 void STDCALL MMTimer::TimeProc(unsigned int uID, unsigned int uMsg,
 	WIN_DWORD_PTR dwUser, WIN_DWORD_PTR dw1, WIN_DWORD_PTR dw2)
 {	    
-	// ÄÝ¹éÇÔ¼ö¸¦ À§ÇØ Æ÷ÀÎÅÍ¸¦ µÎ¾ú´Ù.
-	// CallbackÇÔ¼ö°¡ staticÀÌ¹Ç·Î ÇöÀç ¿ÀºêÁ§Æ®ÀÇ pointer¸¦ ¾ò´Â ¹æ½ÄÀ¸·Î Ã³¸®µÈ´Ù.
+	// ì½œë°±í•¨ìˆ˜ë¥¼ ìœ„í•´ í¬ì¸í„°ë¥¼ ë‘ì—ˆë‹¤.
+	// Callbackí•¨ìˆ˜ê°€ staticì´ë¯€ë¡œ í˜„ìž¬ ì˜¤ë¸Œì íŠ¸ì˜ pointerë¥¼ ì–»ëŠ” ë°©ì‹ìœ¼ë¡œ ì²˜ë¦¬ëœë‹¤.
     MMTimer * ptimer = (MMTimer *) dwUser;
 	
-	// ÁøÂ¥ CallbackÇÔ¼ö°¡ È£ÃâµÈ´Ù.
-	// ÇÔ¼ö´Â MMTIMERCALLBACKÀÇ ÇüÀ» °¡Á³´Ù.
+	// ì§„ì§œ Callbackí•¨ìˆ˜ê°€ í˜¸ì¶œëœë‹¤.
+	// í•¨ìˆ˜ëŠ” MMTIMERCALLBACKì˜ í˜•ì„ ê°€ì¡Œë‹¤.
     (ptimer->m_pfnCallback) (ptimer->m_dwUser);
 }
 

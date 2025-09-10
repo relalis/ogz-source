@@ -180,7 +180,7 @@ void MMatchConfig::TrimStr(const char* szSrcStr, char* outStr, int maxlen)
 {
 	char szInputMapName[256] = "";
 
-	// ¿ÞÂÊ °ø¹éÁ¦°Å
+	// ì™¼ìª½ ê³µë°±ì œê±°
 	int nSrcStrLen = (int)strlen(szSrcStr);
 	for (int i = 0; i < nSrcStrLen; i++)
 	{
@@ -190,7 +190,7 @@ void MMatchConfig::TrimStr(const char* szSrcStr, char* outStr, int maxlen)
 			break;
 		}
 	}
-	// ¿À¸¥ÂÊ °ø¹éÁ¦°Å
+	// ì˜¤ë¥¸ìª½ ê³µë°±ì œê±°
 	int nLen = (int)strlen(szInputMapName);
 	for (int i = nLen-1; i >= 0; i--)
 	{
@@ -213,25 +213,25 @@ void MMatchConfig::Clear()
 	memset(m_szDB_UserName, 0, 64 );
 	memset(m_szDB_Password, 0, 64 );		///< DB Password
 
-	m_nMaxUser = 0;					///< ÃÖ´ë Á¢¼ÓÀÚ
+	m_nMaxUser = 0;					///< ìµœëŒ€ ì ‘ì†ìž
 	m_nServerID = 0;
-	memset(m_szServerName, 0, 256 );		///< ¼­¹öÀÌ¸§
+	memset(m_szServerName, 0, 256 );		///< ì„œë²„ì´ë¦„
 
-	// m_nServerMode;				///< ¼­¹ö¸ðµå
-	m_bRestrictionMap = false;			///< ¸ÊÁ¦ÇÑÀÌ ÀÖ´ÂÁö ¿©ºÎ - default : false
-	m_EnableMaps.clear();				///< ¸ÊÁ¦ÇÑÀÌ ÀÖÀ»°æ¿ì °¡´ÉÇÑ ¸Ê
-	m_FreeLoginIPList.clear();			///< Á¢¼ÓÀÎ¿ø ¹«½Ã IP
-	m_bCheckPremiumIP = true;			///< ÇÁ¸®¹Ì¾ö IP Ã¼Å©
+	// m_nServerMode;				///< ì„œë²„ëª¨ë“œ
+	m_bRestrictionMap = false;			///< ë§µì œí•œì´ ìžˆëŠ”ì§€ ì—¬ë¶€ - default : false
+	m_EnableMaps.clear();				///< ë§µì œí•œì´ ìžˆì„ê²½ìš° ê°€ëŠ¥í•œ ë§µ
+	m_FreeLoginIPList.clear();			///< ì ‘ì†ì¸ì› ë¬´ì‹œ IP
+	m_bCheckPremiumIP = true;			///< í”„ë¦¬ë¯¸ì—„ IP ì²´í¬
 
-	// enabled ¾¾¸®Áî - ini¿¡¼­ °ü¸®ÇÏÁö ¾Ê´Â´Ù.
-	m_bEnabledCreateLadderGame = false;	///< Å¬·£Àü »ý¼º°¡´ÉÇÑÁö ¿©ºÎ
+	// enabled ì”¨ë¦¬ì¦ˆ - iniì—ì„œ ê´€ë¦¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
+	m_bEnabledCreateLadderGame = false;	///< í´ëžœì „ ìƒì„±ê°€ëŠ¥í•œì§€ ì—¬ë¶€
 
-	// -- ÀÏº» ³Ý¸¶ºí Àü¿ë
+	// -- ì¼ë³¸ ë„·ë§ˆë¸” ì „ìš©
 	memset( m_NJ_szDBAgentIP, 0, 64 );
 	m_NJ_nDBAgentPort = 0;
 	m_NJ_nGameCode = 0;
 
-	// filter »ç¿ë ¼³Á¤.
-	m_bUseFilter = false;				/// ÇÊÅÍ »ç¿ëÀ» ¼³Á¤ÇÔ(0:»ç¿ë¾ÊÇÔ. 1:»ç¿ë.)
-	m_bAcceptInvalidIP = true;			/// ¸®½ºÆ®¿¡ ¾ø´Â IPÇã¿ë ¿©ºÎ.(0:Çã¿ëÇÏÁö ¾ÊÀ½. 1:Çã¿ë.)
+	// filter ì‚¬ìš© ì„¤ì •.
+	m_bUseFilter = false;				/// í•„í„° ì‚¬ìš©ì„ ì„¤ì •í•¨(0:ì‚¬ìš©ì•Ší•¨. 1:ì‚¬ìš©.)
+	m_bAcceptInvalidIP = true;			/// ë¦¬ìŠ¤íŠ¸ì— ì—†ëŠ” IPí—ˆìš© ì—¬ë¶€.(0:í—ˆìš©í•˜ì§€ ì•ŠìŒ. 1:í—ˆìš©.)
 }

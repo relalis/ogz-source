@@ -212,31 +212,31 @@ int MSacrificeQItemTable::FindSacriQItemInfo( const int nQL, MQuestSacrificeSlot
 			if( ((iter->second.GetDefQItemID() == pSacrificeSlot[0].GetItemID()) && (0 == pSacrificeSlot[1].GetItemID()))  ||
 				((iter->second.GetDefQItemID() == pSacrificeSlot[1].GetItemID()) && (0 == pSacrificeSlot[0].GetItemID())) )
 			{
-				// ÀÏ¹Ý ½Ã³ª¸®¿À.
+				// ì¼ë°˜ ì‹œë‚˜ë¦¬ì˜¤.
 				return MSQITRES_NOR;
 			}
 			else if( ((iter->second.GetSpeQItemID1() == pSacrificeSlot[0].GetItemID()) && (iter->second.GetSpeQItemID2() == pSacrificeSlot[1].GetItemID())) ||
 				((iter->second.GetSpeQItemID1() == pSacrificeSlot[1].GetItemID()) && (iter->second.GetSpeQItemID2() == pSacrificeSlot[0].GetItemID())) )
 			{
-				// Æ¯º° ½Ã³ª¸®¿À.
+				// íŠ¹ë³„ ì‹œë‚˜ë¦¬ì˜¤.
 				return MSQITRES_SPC;
 			}
 			else if( (0 == pSacrificeSlot[0].GetItemID()) && (0 == pSacrificeSlot[1].GetItemID()) )
 			{
-				// ¾çÂÊÀÌ ´Ù ºó ½½·Ô. 
-				// ¾çÂÊÀÌ ´Ù ºñ¾îÀÖÀ»°æ¿ì QL : 1¿¡¼­ °Ë»öÀÌ ³¡³ª±â ¶§¹®¿¡ outResultQLÀº 1·Î ¼³Á¤ÀÌ µÊ.
+				// ì–‘ìª½ì´ ë‹¤ ë¹ˆ ìŠ¬ë¡¯. 
+				// ì–‘ìª½ì´ ë‹¤ ë¹„ì–´ìžˆì„ê²½ìš° QL : 1ì—ì„œ ê²€ìƒ‰ì´ ëë‚˜ê¸° ë•Œë¬¸ì— outResultQLì€ 1ë¡œ ì„¤ì •ì´ ë¨.
 				return MSQITRES_EMP;
 			}
 			else if( pSacrificeSlot[0].GetItemID() == pSacrificeSlot[1].GetItemID() )
 			{
-				// °°Àº ¾ÆÀÌÅÛ Áßº¹.
+				// ê°™ì€ ì•„ì´í…œ ì¤‘ë³µ.
 				outResultQL = 1;
 				return MSQITRES_DUP;
 			}
 		}
 	}
 
-	// ¿©±â±îÁö ³»·Á¿À¸é Å×ÀÌºí¿¡ µî·ÏµÇÁö ¾ÊÀº ¾ÆÀÌÅÛ.
+	// ì—¬ê¸°ê¹Œì§€ ë‚´ë ¤ì˜¤ë©´ í…Œì´ë¸”ì— ë“±ë¡ë˜ì§€ ì•Šì€ ì•„ì´í…œ.
 	outResultQL = 1;
 	return MSQITRES_INV;
 }

@@ -65,34 +65,34 @@ bool MLocator::Create()
 #ifdef LOCATOR_FREESTANDING
 	if( !InitDBMgr() )
 	{
-		mlog( "MLocator::Create - DBÃÊ±âÈ­ ½ÇÆĞ.\n" );
+		mlog( "MLocator::Create - DBì´ˆê¸°í™” ì‹¤íŒ¨.\n" );
 		return false;
 	}
 #endif
 
 	if( !InitServerStatusMgr() )
 	{
-		mlog( "MLocator::Create - ServerStatusMgr ¸â¹ö ÃÊ±âÈ­ ½ÇÆĞ.\n" );
+		mlog( "MLocator::Create - ServerStatusMgr ë©¤ë²„ ì´ˆê¸°í™” ì‹¤íŒ¨.\n" );
 		return false;
 	}
 
 	if( !InitUDPManager() )
 	{
-		mlog( "MLocator::Create - UDP Manager ¸â¹ö ÃÊ±âÈ­ ½ÇÆĞ.\n" );
+		mlog( "MLocator::Create - UDP Manager ë©¤ë²„ ì´ˆê¸°í™” ì‹¤íŒ¨.\n" );
 		return false;
 	}
 
 #ifdef LOCATOR_FREESTANDING
 	if( !InitCountryCodeFilter() )
 	{
-		mlog( "MLocator::Create - Á¢¼Ó Çã¿ë ±¹°¡ ÄÚµå ¸®½ºÆ® ÃÊ±âÈ­ ½ÇÆĞ.\n" );
+		mlog( "MLocator::Create - ì ‘ì† í—ˆìš© êµ­ê°€ ì½”ë“œ ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™” ì‹¤íŒ¨.\n" );
 		return false;
 	}
 #endif
 
 	if( !InitSafeUDP() )
 	{
-		mlog( "MLocator::Create - SafeUDPÃÊ±âÈ­ ½ÇÆĞ.\n" );
+		mlog( "MLocator::Create - SafeUDPì´ˆê¸°í™” ì‹¤íŒ¨.\n" );
 		return false;
 	}
 
@@ -166,7 +166,7 @@ bool MLocator::InitServerStatusMgr()
 			GetDBServerStatus( 0, true );
 #ifdef LOCATOR_FREESTANDING
 		else
-			ASSERT( 0 && "½ÃÀÛ½Ã¿¡ DBÀÇ Á¤º¸¸¦ °¡Á®¿À´Â°ÍÀÌ ÁÁÀ½." );
+			ASSERT( 0 && "ì‹œì‘ì‹œì— DBì˜ ì •ë³´ë¥¼ ê°€ì ¸ì˜¤ëŠ”ê²ƒì´ ì¢‹ìŒ." );
 #endif
 		
 		return true;
@@ -380,7 +380,7 @@ void MLocator::GetDBServerStatus(u64 dwEventTime, const bool bIsWithoutDelayUpda
 	else
 	{
 		mlog("Fail to GetServerStatus\n");
-		ASSERT(0 && "GetServerStatus½ÇÆĞ.");
+		ASSERT(0 && "GetServerStatusì‹¤íŒ¨.");
 	}
 }
 
@@ -537,7 +537,7 @@ void MLocator::ParseUDPPacket( char* pData, MPacketHeader* pPacketHeader, u32 dw
 				}
 				else
 				{
-					ASSERT( 0 && "ÇöÁ¦ Ãß°¡Á¤ÀÇµÈ Ã³¸®Ä¿¸Çµå°¡ ¾øÀ½." );
+					ASSERT( 0 && "í˜„ì œ ì¶”ê°€ì •ì˜ëœ ì²˜ë¦¬ì»¤ë§¨ë“œê°€ ì—†ìŒ." );
 
 					char szLog[ 1024 ] = {0,};
 					sprintf_safe(szLog, "invalide command(%u) Time:%s, dwIP:%u\n",
@@ -554,7 +554,7 @@ void MLocator::ParseUDPPacket( char* pData, MPacketHeader* pPacketHeader, u32 dw
 		break;
 	case MSGID_COMMAND:
 		{
-			ASSERT( 0 && "¾ÏÈ£È­ ÆĞÅ¶ Ã³¸®µµ ÇÊ¿äÇÔ." );
+			ASSERT( 0 && "ì•”í˜¸í™” íŒ¨í‚· ì²˜ë¦¬ë„ í•„ìš”í•¨." );
 			char szLog[ 1024 ] = {0,};
 			sprintf_safe(szLog, "encpypted command. Time:%s, dwIP:%u\n", 
 				MGetStrLocalTime().c_str(), dwIP );
@@ -674,7 +674,7 @@ const int MLocator::MakeCmdPacket( char* pOutPacket, const int nMaxSize, MComman
 	}
 	else
 	{
-		ASSERT( 0 && "¾ÏÈ£È­µÈ Ä¿¸Çµå Ã³¸®´Â ¾øÀ½.\n" );
+		ASSERT( 0 && "ì•”í˜¸í™”ëœ ì»¤ë§¨ë“œ ì²˜ë¦¬ëŠ” ì—†ìŒ.\n" );
 		return -1;
 	}
 
@@ -700,7 +700,7 @@ void MLocator::SendCommandByUDP( u32 dwIP, int nPort, MCommand* pCmd )
 		else
 		{
 			delete [] pszPacketBuf;
-			ASSERT( 0 && "PacketÀ» ¸¸µå´Âµ¥ ¹®Á¦°¡ ÀÖÀ½." );
+			ASSERT( 0 && "Packetì„ ë§Œë“œëŠ”ë° ë¬¸ì œê°€ ìˆìŒ." );
 		}
 	}
 }

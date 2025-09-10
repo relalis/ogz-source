@@ -3,9 +3,9 @@
 
 #include "MMatchGlobal.h"
 
-#define LADDER_STATISTICS_LEVEL_UNIT			5		// ·ΉΊ§ΐΊ 5·ΉΊ§ΐ» ΗΡ΄άΐ§·Ξ Ελ°θ °θ»κ
-#define LADDER_STATISTICS_CLANPOINT_UNIT		20		// Ε¬·£ΖχΐΞΖ®΄Β 20ΐ» ΗΡ΄άΐ§·Ξ Ελ°θ °θ»κ
-#define LADDER_STATISTICS_CONTPOINT_UNIT		50		// Ε¬·£±βΏ©µµ΄Β 50ΐ» ΗΡ΄άΐ§·Ξ Ελ°θ °θ»κ
+#define LADDER_STATISTICS_LEVEL_UNIT			5		// λ λ²¨μ€ 5λ λ²¨μ„ ν•λ‹¨μ„λ΅ ν†µκ³„ κ³„μ‚°
+#define LADDER_STATISTICS_CLANPOINT_UNIT		20		// ν΄λν¬μΈνΈλ” 20μ„ ν•λ‹¨μ„λ΅ ν†µκ³„ κ³„μ‚°
+#define LADDER_STATISTICS_CONTPOINT_UNIT		50		// ν΄λκΈ°μ—¬λ„λ” 50μ„ ν•λ‹¨μ„λ΅ ν†µκ³„ κ³„μ‚°
 
 
 #define MAX_LADDER_STATISTICS_LEVEL				20		// (99 / 5)

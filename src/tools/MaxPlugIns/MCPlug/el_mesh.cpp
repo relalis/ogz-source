@@ -106,12 +106,12 @@ el_mesh::el_mesh()
 //	memset(m_data,0,MAX_NODE*4);
 //	memset(m_mtrl_data,0,MAX_NODE*4);
 
-	m_data.reserve(MAX_NODE);//±‚∫ª
+	m_data.reserve(MAX_NODE);//Í∏∞Î≥∏
 
 	for(int i=0;i<MAX_NODE;i++)
 		m_data[i] = NULL;
 
-	m_mtrl_data.reserve(MAX_NODE);//±‚∫ª
+	m_mtrl_data.reserve(MAX_NODE);//Í∏∞Î≥∏
 
 	for(int i=0;i<MAX_NODE;i++)
 		m_mtrl_data[i] = NULL;
@@ -257,7 +257,7 @@ void el_mesh::ClearVoidMtrl()
 
 int el_mesh::add_mesh(mesh_data* data)
 {
-//  ¿œ¡§æÁ ¿ÃªÛ øπæ‡«œ¥¬∞Õµµ º”µµ¡ı∞°
+//  ÏùºÏ†ïÏñë Ïù¥ÏÉÅ ÏòàÏïΩÌïòÎäîÍ≤ÉÎèÑ ÏÜçÎèÑÏ¶ùÍ∞Ä
 //	if(m_data_num > MAX_NODE-1) return -1;
 
 	m_list.push_back(data);
@@ -391,7 +391,7 @@ bool el_mesh::export_text(char* filename)
 		if( t_mesh->m_Name[0]=='B' && t_mesh->m_Name[1]=='i' && t_mesh->m_Name[2]=='p')
 			t_is_bip = true;
 
-		if(!g_bip_mesh_out && t_is_bip) continue; //bip ¡¶∞≈ø° bip ∂Û∏È
+		if(!g_bip_mesh_out && t_is_bip) continue; //bip Ï†úÍ±∞Ïóê bip ÎùºÎ©¥
 */
 		/////////////////////////////////////////////////////////////////////
 
@@ -495,7 +495,7 @@ bool el_mesh::export_bin(char* filename)
 
 		if(t_mtrl == NULL) continue;
 
-		// ±∏¡∂ ¡§«ÿ¡˙∂ß ±Ó¡ˆ «œ≥™æø √‚∑¬
+		// Íµ¨Ï°∞ Ï†ïÌï¥ÏßàÎïå ÍπåÏßÄ ÌïòÎÇòÏî© Ï∂úÎ†•
 
 		fwrite(&t_mtrl->m_mtrl_id    ,4,1,fp);
 		fwrite(&t_mtrl->m_sub_mtrl_id,4,1,fp);
@@ -559,7 +559,7 @@ bool el_mesh::export_bin(char* filename)
 		if( t_mesh->m_Name[0]=='B' && t_mesh->m_Name[1]=='i' && t_mesh->m_Name[2]=='p')
 			t_is_bip = true;
 
-		if(!g_bip_mesh_out && t_is_bip)//bip ¡¶∞≈ø° bip ∂Û∏È
+		if(!g_bip_mesh_out && t_is_bip)//bip Ï†úÍ±∞Ïóê bip ÎùºÎ©¥
 		{
 			DWORD v = 0;
 			fwrite(&v,4,1,fp);
@@ -730,7 +730,7 @@ bool el_mesh::export_ani(char* filename,int mode)
 
 		int i=0,j=0;
 
-		for(i=0;i<m_data_num;i++) {//node ºˆ∏∏≈≠
+		for(i=0;i<m_data_num;i++) {//node ÏàòÎßåÌÅº
 
 			t_mesh = m_data[i];
 

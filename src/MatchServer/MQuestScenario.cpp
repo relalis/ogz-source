@@ -44,7 +44,7 @@ void MQuestScenarioCatalogue::Insert(MQuestScenarioInfo* pScenarioInfo)
 	if ((nID <= 0) || (GetInfo(nID)))
 	{
 		// TODO: Fix
-		//_ASSERT(0);		// ½Ã³ª¸®¿À ID°¡ Àß¸ø‰ç´Ù.
+		//_ASSERT(0);		// ì‹œë‚˜ë¦¬ì˜¤ IDê°€ ì˜ëª»ë¬ë‹¤.
 		delete pScenarioInfo;
 		return;
 	}
@@ -67,7 +67,7 @@ int MQuestScenarioCatalogue::GetStandardScenarioID(int nMapsetID, int nQL)
 
 bool MQuestScenarioCatalogue::FindSpecialScenarioID(int nMapsetID, int nPlayerQL, unsigned int* SacriQItemIDs, unsigned int* outScenarioID)
 {
-	// Áö±İÀº ±×³É ¼øÂ÷ °Ë»ö
+	// ì§€ê¸ˆì€ ê·¸ëƒ¥ ìˆœì°¨ ê²€ìƒ‰
 	for (iterator itor = begin(); itor != end(); ++itor)
 	{
 		if ((*itor).first >= 10000) return false;
@@ -111,13 +111,13 @@ unsigned int MQuestScenarioCatalogue::MakeScenarioID(int nMapsetID, int nPlayerQ
 
 	unsigned int nOutScenarioID = 0;
 
-	// Æ¯º° ½Ã³ª¸®¿À °Ë»ö
+	// íŠ¹ë³„ ì‹œë‚˜ë¦¬ì˜¤ ê²€ìƒ‰
 	if (FindSpecialScenarioID(nMapsetID, nPlayerQL, nSQItems, &nOutScenarioID))
 	{
 		return nOutScenarioID;
 	}
 
-	// ÆäÀÌÁö·Î QL °áÁ¤ - Áö±İÀº ¹Ù»Û °ü°è·Î ÇÏµåÄÚµù..-_- by bird
+	// í˜ì´ì§€ë¡œ QL ê²°ì • - ì§€ê¸ˆì€ ë°”ìœ ê´€ê³„ë¡œ í•˜ë“œì½”ë”©..-_- by bird
 	int nQL = 0;
 	if( (nSQItems[0] == 0) && (nSQItems[1] == 0) )
 	{
@@ -144,14 +144,14 @@ unsigned int MQuestScenarioCatalogue::MakeScenarioID(int nMapsetID, int nPlayerQ
 	}
 	else if ((nSQItems[0] != 0) || (nSQItems[1] != 0))
 	{
-		// ¸¸¾à ÆäÀÌÁö°¡ ¾øÀ¸¸é ÇØ´ç ½Ã³ª¸®¿À°¡ ¾ø´Â°Í
+		// ë§Œì•½ í˜ì´ì§€ê°€ ì—†ìœ¼ë©´ í•´ë‹¹ ì‹œë‚˜ë¦¬ì˜¤ê°€ ì—†ëŠ”ê²ƒ
 		return 0;
 	}
 
-	// ¿Ã¸° ÆäÀÌÁö°¡ QLÀÌ ¸Â´ÂÁö °Ë»ç
+	// ì˜¬ë¦° í˜ì´ì§€ê°€ QLì´ ë§ëŠ”ì§€ ê²€ì‚¬
 	if (nQL > nPlayerQL) return 0;
 
-	// Á¤±Ô ½Ã³ª¸®¿À °Ë»ö
+	// ì •ê·œ ì‹œë‚˜ë¦¬ì˜¤ ê²€ìƒ‰
 	nOutScenarioID= GetStandardScenarioID(nMapsetID, nQL);
 
 	return nOutScenarioID;
@@ -373,7 +373,7 @@ void MQuestScenarioCatalogue::ParseNPCSetArray(MXmlElement& element, vector<int>
 			szNPCSet[j] = szMaps[i+j];
 		}
 
-		// NPCSetCatalogue¿¡¼­ ÇØ´ç NPCSet¸¦ Ã£´Â´Ù.
+		// NPCSetCatalogueì—ì„œ í•´ë‹¹ NPCSetë¥¼ ì°¾ëŠ”ë‹¤.
 		MQuestNPCSetInfo* pNPCSetInfo = pQuest->GetNPCSetInfo(szNPCSet);
 		if (pNPCSetInfo)
 		{
@@ -381,7 +381,7 @@ void MQuestScenarioCatalogue::ParseNPCSetArray(MXmlElement& element, vector<int>
 		}
 		else
 		{
-			// ¸Â´Â NPCSet°¡ ¾ø´Ù.
+			// ë§ëŠ” NPCSetê°€ ì—†ë‹¤.
 			_ASSERT(0);
 		}
 
@@ -529,7 +529,7 @@ void MQuestScenarioCatalogue::ParseMap(MXmlElement& element, MQuestScenarioInfo*
 				if (!pQuest->GetNPCInfo(MQUEST_NPC(pScenarioInfo->Maps[nDiceNum-1].nKeyNPCID)))
 				{
 					pScenarioInfo->Maps[nDiceNum-1].nKeyNPCID = 0;
-					_ASSERT(0);	// ÇØ´ç npc°¡ ¾ø´Ù.
+					_ASSERT(0);	// í•´ë‹¹ npcê°€ ì—†ë‹¤.
 				}
 			}
 		}
@@ -546,7 +546,7 @@ void MQuestScenarioCatalogue::ParseMap(MXmlElement& element, MQuestScenarioInfo*
 	if ((nDiceNum <= 0) || (nDiceNum > SCENARIO_STANDARD_DICE_SIDES))
 	{
 		nDiceNum = 1;
-		// ÁÖ»çÀ§ ´«ÀÌ Àß¸øÀÔ·ÂµÇ¾î ÀÖ´Ù.
+		// ì£¼ì‚¬ìœ„ ëˆˆì´ ì˜ëª»ì…ë ¥ë˜ì–´ ìˆë‹¤.
 		_ASSERT(0);
 	}
 	MXmlElement chrElement;

@@ -15,7 +15,7 @@ _USING_NAMESPACE_REALSPACE2
 
 class ZActor;
 
-/// NPC °ü¸®ÀÚ
+/// NPC ê´€ë¦¬ì
 class ZNPCObjectMap : public map<MUID, ZObject*>
 {
 private:
@@ -48,7 +48,7 @@ private:
 	int									m_nOnDrawCnt;
 	int									m_nRenderedCnt;
 	u32					m_nGenerate;
-	ZNPCObjectMap						m_NPCObjectMap;			// NPC idµµ ¿©±â¼­ °ü¸®ÇÑ´Ù.
+	ZNPCObjectMap						m_NPCObjectMap;			// NPC idë„ ì—¬ê¸°ì„œ ê´€ë¦¬í•œë‹¤.
 
 //	u32 UseID()	{	m_nGenerate++;	return m_nGenerate;	}
 	void Insert(ZObject* pObject);

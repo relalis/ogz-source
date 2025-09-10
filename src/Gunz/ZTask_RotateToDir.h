@@ -7,7 +7,7 @@ class ZTask_RotateToDir : public ZTask
 {
 private:
 	// data
-	rvector		m_TargetDir;		// ¸ñÀûÁö
+	rvector		m_TargetDir;		// ëª©ì ì§€
 	bool		m_bRotated;
 protected:
 	virtual void OnStart();

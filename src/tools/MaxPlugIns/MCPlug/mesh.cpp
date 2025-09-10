@@ -408,7 +408,7 @@ void MCplug2::export_mesh(INode* node, TimeValue t, mesh_data* mesh_node)
 
 		D3DXVECTOR3* pCVec = new D3DXVECTOR3 [ numCVx ];
 		 
-		mesh_node->m_point_color_list = new D3DXVECTOR3 [ point_num ];// Á¤Á¡°ú ¼ø¼­ º¸Àå
+		mesh_node->m_point_color_list = new D3DXVECTOR3 [ point_num ];// ì •ì ê³¼ ìˆœì„œ ë³´ì¥
 
 		Point3 vc;
 

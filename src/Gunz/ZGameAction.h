@@ -3,13 +3,13 @@
 
 #include "MCommand.h"
 
-// ÀÌ enum Àº °ÔÀÓ ÇÁ·ÎÅäÄÝ°ú °ü·ÃÀÌ ÀÖÀ¸¹Ç·Î º¯°æÀº ºÒ°¡. Ãß°¡¸¸ ÇÏÀÚ
-enum ZREACTIONID{	// ³» ¹ÝÀÀÀ» ´Ù¸¥»ç¶÷¿¡°Ô ¾Ë¸°´Ù
-	ZR_CHARGING = 0,		// ±â ¸ðÀ¸±â¸¦ ½ÃÀÛ
-	ZR_CHARGED,				// ±â°¡ ¸ð¿³´Ù
-	ZR_BE_UPPERCUT,			// ¶ç¿öÁ³´Ù
-	ZR_BE_DASH_UPPERCUT,	// ´Ü°Ë´ë½¬±â¼ú ¸Â¾ÒÀ»¶§
-	ZR_DISCHARGED,			// ±â ¸ðÀÎ°Ô Ç®·È´Ù
+// ì´ enum ì€ ê²Œìž„ í”„ë¡œí† ì½œê³¼ ê´€ë ¨ì´ ìžˆìœ¼ë¯€ë¡œ ë³€ê²½ì€ ë¶ˆê°€. ì¶”ê°€ë§Œ í•˜ìž
+enum ZREACTIONID{	// ë‚´ ë°˜ì‘ì„ ë‹¤ë¥¸ì‚¬ëžŒì—ê²Œ ì•Œë¦°ë‹¤
+	ZR_CHARGING = 0,		// ê¸° ëª¨ìœ¼ê¸°ë¥¼ ì‹œìž‘
+	ZR_CHARGED,				// ê¸°ê°€ ëª¨ì—¿ë‹¤
+	ZR_BE_UPPERCUT,			// ë„ì›Œì¡Œë‹¤
+	ZR_BE_DASH_UPPERCUT,	// ë‹¨ê²€ëŒ€ì‰¬ê¸°ìˆ  ë§žì•˜ì„ë•Œ
+	ZR_DISCHARGED,			// ê¸° ëª¨ì¸ê²Œ í’€ë ¸ë‹¤
 
 	ZR_END
 };
@@ -17,7 +17,7 @@ enum ZREACTIONID{	// ³» ¹ÝÀÀÀ» ´Ù¸¥»ç¶÷¿¡°Ô ¾Ë¸°´Ù
 class ZCharacter;
 class ZMyCharacter;
 
-/// ZGame¿¡¼­ Ä³¸¯ÅÍµé°£ÀÇ ¾×¼Ç¿¡ °üÇÑ °Íµé(ZGameÀÇ OnPeer¾¾¸®Áîµé)Àº ÀÌ°÷À¸·Î »©³À½Ã´Ù.
+/// ZGameì—ì„œ ìºë¦­í„°ë“¤ê°„ì˜ ì•¡ì…˜ì— ê´€í•œ ê²ƒë“¤(ZGameì˜ OnPeerì”¨ë¦¬ì¦ˆë“¤)ì€ ì´ê³³ìœ¼ë¡œ ë¹¼ëƒ…ì‹œë‹¤.
 class ZGameAction
 {
 	bool OnReaction(MCommand* pCommand);
@@ -26,7 +26,7 @@ class ZGameAction
 
 private:
 	void OnPeerSkill_Uppercut(ZCharacter *pOwnerCharacter);
-	void OnPeerSkill_LastShot(float fShotTime,ZCharacter *pOwnerCharacter);	// °­º£±â ½ºÇÃ·¡½Ã
+	void OnPeerSkill_LastShot(float fShotTime,ZCharacter *pOwnerCharacter);	// ê°•ë² ê¸° ìŠ¤í”Œëž˜ì‹œ
 	void OnPeerSkill_Dash(ZCharacter *pOwnerCharacter);
 
 public:
@@ -34,8 +34,8 @@ public:
 };
 
 
-#define CHARGED_TIME			15.f		// °­º£±â Áö¼Ó½Ã°£ (´ÜÀ§:ÃÊ)
-#define COUNTER_CHARGED_TIME	1.f			// ¹Ý°Ý±â °­º£±â Áö¼Ó½Ã°£
+#define CHARGED_TIME			15.f		// ê°•ë² ê¸° ì§€ì†ì‹œê°„ (ë‹¨ìœ„:ì´ˆ)
+#define COUNTER_CHARGED_TIME	1.f			// ë°˜ê²©ê¸° ê°•ë² ê¸° ì§€ì†ì‹œê°„
 
 
 #endif

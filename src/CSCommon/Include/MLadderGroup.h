@@ -65,7 +65,7 @@ public:
 	}
 	void UpdateTick() { 
 		if (!m_bWantBalancedMatching) m_nTickCount++; 
-	}	// ºñ½ÁÇÑ ½Ç·ÂÀÇ Å¬·£°ú¸¸ ´ëÀüÀ» ¿øÇÏ¸é Æ½À» ¿Ã¸®Áö ¾Ê´Â´Ù.
+	}	// ë¹„ìŠ·í•œ ì‹¤ë ¥ì˜ í´ëœê³¼ë§Œ ëŒ€ì „ì„ ì›í•˜ë©´ í‹±ì„ ì˜¬ë¦¬ì§€ ì•ŠëŠ”ë‹¤.
 	bool IsSameGroup(MLadderGroup* pTarGroup)
 	{
 		if (m_nID == pTarGroup->GetID()) return true;

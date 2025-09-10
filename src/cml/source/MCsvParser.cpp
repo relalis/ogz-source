@@ -40,11 +40,11 @@ char* MCSVReader::ReadFile(const char* fname)
 
 bool MCSVReader::Load(const char* fname)
 {
-//	ÆÄÀÏ ÀüÃ¼¸¦ ÀĞ´Â´Ù
+//	íŒŒì¼ ì „ì²´ë¥¼ ì½ëŠ”ë‹¤
 //
 	m_pBuffer = ReadFile(fname);
 
-//	¶óÀÎ¼ö¸¦ ¼¾ ÈÄ °¢ ¿ÀÇÁ¼ÂÀ» ±¸ÇÑ´Ù
+//	ë¼ì¸ìˆ˜ë¥¼ ì„¼ í›„ ê° ì˜¤í”„ì…‹ì„ êµ¬í•œë‹¤
 //
 	m_nLine = CountLine(m_pBuffer, NULL);
 	m_pOffset = new int[m_nLine];

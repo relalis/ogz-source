@@ -455,7 +455,7 @@ void MServer::RCPCallback(void* pCallbackContext, NetIO::IOOperation Op, NetIO::
 			{
 				if (!pCmdBuilder->Read((char*)pPacket, dwPacketLen))
 				{
-					// ÆÐÅ¶ÀÌ Á¦´ë·Î ¾È¿À¸é ²÷¾î¹ö¸°´Ù.
+					// íŒ¨í‚·ì´ ì œëŒ€ë¡œ ì•ˆì˜¤ë©´ ëŠì–´ë²„ë¦°ë‹¤.
 					pCommObj->SetAllowed(false);
 					pServer->Net.Disconnect(pCommObj->GetUserContext());
 					return;

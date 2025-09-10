@@ -9,10 +9,10 @@ using namespace std;
 //////////////////////////////////////////////////////////////////////////
 //	Enum
 //////////////////////////////////////////////////////////////////////////
-enum MAP_LIGHT_TYPE				// PRE DEFINED ¶óÀÌÆ® ¼Ó¼º
+enum MAP_LIGHT_TYPE				// PRE DEFINED ë¼ì´íŠ¸ ì†ì„±
 {
-	GUNFIRE,			// ÃÑ ¶óÀÌÆ®
-	EXPLOSION,		// Æø¹ß ¶óÀÌÆ®
+	GUNFIRE,			// ì´ ë¼ì´íŠ¸
+	EXPLOSION,		// í­ë°œ ë¼ì´íŠ¸
 	MAP_LIGHT_NUM,
 };
 
@@ -40,14 +40,14 @@ typedef struct
 	int			iType;
 	rvector		vLightColor;
 	float		fRange;
-	float		fLife;				// ¼ö¸í
+	float		fLife;				// ìˆ˜ëª…
 } sMapLight;
 
 
 //////////////////////////////////////////////////////////////////////////
 //	RDynamicLightManager			
-//	´ÙÀÌ³ª¹Í ¶óÀÌÆ® °ü¸®ÀÚ - ½Ì±ÛÅæ
-//	½Ç½Ã°£À¸·Î »ı±â´Â ¶óÀÌÆ®¿¡ ´ëÇÑ °ü¸®
+//	ë‹¤ì´ë‚˜ë¯¹ ë¼ì´íŠ¸ ê´€ë¦¬ì - ì‹±ê¸€í†¤
+//	ì‹¤ì‹œê°„ìœ¼ë¡œ ìƒê¸°ëŠ” ë¼ì´íŠ¸ì— ëŒ€í•œ ê´€ë¦¬
 //////////////////////////////////////////////////////////////////////////
 class RDynamicLightManager			
 {
@@ -56,22 +56,22 @@ protected:
 	static	sMapLight 				msMapLightList[MAP_LIGHT_NUM];
 
 	bool										mbGunLight;							
-	sMapLightObj						mGunLight;			// ÃÑÀÇ ¶óÀÌÆ®´Â ³» Ä³¸¯ÅÍÀÇ °Í¸¸ ¿µÇâÀ» ¹ŞÀ½
+	sMapLightObj						mGunLight;			// ì´ì˜ ë¼ì´íŠ¸ëŠ” ë‚´ ìºë¦­í„°ì˜ ê²ƒë§Œ ì˜í–¥ì„ ë°›ìŒ
 	vector<sMapLightObj>			mExplosionLightList;	
     
 	float								mTime;
 	rvector							mvPosition;
 
-	// ¿É¼Ç
-	int									miNumEnableLight;	//	°¡´ÉÇÑ ¶óÀÌÆ®ÀÇ °³¼ö
+	// ì˜µì…˜
+	int									miNumEnableLight;	//	ê°€ëŠ¥í•œ ë¼ì´íŠ¸ì˜ ê°œìˆ˜
 	
 public:
 	bool	AddLight( MAP_LIGHT_TYPE light_type_, const rvector& pos_ );
-	void	Update();									// ¼ö¸íÀÌ ´ÙÇÑ ³ğ °ñ·Î º¸³»±â
-	void	Initialize();									// ÃÊ±âÈ­
-	int		SetLight(const rvector& pos_ );					// pos_ : Ä³¸¯ÅÍÀÇ ÇöÀç À§Ä¡, return ¼ÂÆÃµÈ ¶óÀÌÆ® °³¼ö
+	void	Update();									// ìˆ˜ëª…ì´ ë‹¤í•œ ë†ˆ ê³¨ë¡œ ë³´ë‚´ê¸°
+	void	Initialize();									// ì´ˆê¸°í™”
+	int		SetLight(const rvector& pos_ );					// pos_ : ìºë¦­í„°ì˜ í˜„ì¬ ìœ„ì¹˜, return ì…‹íŒ…ëœ ë¼ì´íŠ¸ ê°œìˆ˜
 	void	ReleaseLight();
-	void	SetPosition(const rvector& pos_ );				// Ä³¸¯ÅÍ À§Ä¡ /// ¸Ê¿¡¼­¸¸ »ç¿ë
+	void	SetPosition(const rvector& pos_ );				// ìºë¦­í„° ìœ„ì¹˜ /// ë§µì—ì„œë§Œ ì‚¬ìš©
 
 	bool	SetLight(const rvector& pos_, int lightIndex_, float maxDistance_ );	//
 	
@@ -97,6 +97,6 @@ public:
 	~RDynamicLightManager();
 };
 
-// singleTon ¾ò¾î¿À±â
+// singleTon ì–»ì–´ì˜¤ê¸°
 RDynamicLightManager*	RGetDynamicLightManager();
 sMapLight*				RGetMapLightList();

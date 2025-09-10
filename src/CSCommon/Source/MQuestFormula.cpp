@@ -28,8 +28,8 @@ int MQuestFormula::CalcQLD(int nQuestLevel)
 
 int MQuestFormula::CalcLMT(int nQuestLevel)
 {
-	// return (8 + nQuestLevel * 3); ¿¹Àü²¨¿¡¼­ º¯°æ
-	return (9 + nQuestLevel * 2);	// 20051215¿¡ ¼öÁ¤µÊ - bird
+	// return (8 + nQuestLevel * 3); ì˜ˆì „êº¼ì—ì„œ ë³€ê²½
+	return (9 + nQuestLevel * 2);	// 20051215ì— ìˆ˜ì •ë¨ - bird
 }
 
 float MQuestFormula::CalcTC(int nQuestLevel)
@@ -44,7 +44,7 @@ void MQuestFormula::CalcRewardRate(float& foutXPRate, float& foutBPRate,
 	float fRate = 1.0f;
 
 /*
-	// QL¿¡ µû¸¥ ÆÐ³ÎÆ¼
+	// QLì— ë”°ë¥¸ íŒ¨ë„í‹°
 	if ((nPlayerQL >= 2) && (nPlayerQL > nScenarioQL))
 	{
 		fRate = fRate - (0.1f * (nPlayerQL - nScenarioQL));
@@ -52,15 +52,15 @@ void MQuestFormula::CalcRewardRate(float& foutXPRate, float& foutBPRate,
 */
 
 /*
-	// Á×Àº È¸¼ö¿¡ µû¸¥ ÆÐ³ÎÆ¼
+	// ì£½ì€ íšŒìˆ˜ì— ë”°ë¥¸ íŒ¨ë„í‹°
 	fRate = fRate - (0.2f * nDeathCount);
 */
 
-	// Èñ»ý¾ÆÀÌÅÛ Á¦°ø º¸³Ê½º
+	// í¬ìƒì•„ì´í…œ ì œê³µ ë³´ë„ˆìŠ¤
 	float fBonusRate = (nUsedExtraSacriItemCount + nUsedPageSacriItemCount) * 0.1f;
 
 	foutXPRate = fRate + fBonusRate;
-	foutBPRate = fRate;		// Èñ»ý¾ÆÀÌÅÛ¿¡ µû¸¥ ¹Ù¿îÆ¼ º¸³Ê½º´Â Á¸ÀçÇÏÁö ¾Ê´Â´Ù.
+	foutBPRate = fRate;		// í¬ìƒì•„ì´í…œì— ë”°ë¥¸ ë°”ìš´í‹° ë³´ë„ˆìŠ¤ëŠ” ì¡´ìž¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	
 
 	if (foutXPRate > 1.2f) foutXPRate = 1.2f;

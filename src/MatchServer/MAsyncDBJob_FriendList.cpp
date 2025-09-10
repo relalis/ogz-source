@@ -7,7 +7,7 @@ void MAsyncDBJob_FriendList::Run(void* pContext)
 
 	auto* pDBMgr = static_cast<IDatabase*>(pContext);
 
-	// ÇØ´çÄ³¸¯ÅÍÀÇ Ä£±¸¸ñ·Ï °¡Á®¿À±â
+	// í•´ë‹¹ìºë¦­í„°ì˜ ì¹œêµ¬ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
 	if (!pDBMgr->FriendGetList(m_nCID, m_pFriendInfo)) 
 	{
 		SetResult(MASYNC_RESULT_FAILED);

@@ -201,7 +201,7 @@ bool LagCompManager::LoadAnimations(const char* filename, int Index)
 
 			int nGameMotion = atoi(GameMotion);
 
-			//if (GetToolMesh()) // Åø¿¡¼­ »ç¿ëµÇ´Â°Å¶ó¸é ¹«Á¶°Ç ¹Ù·Î ·Îµù~
+			//if (GetToolMesh()) // íˆ´ì—ì„œ ì‚¬ìš©ë˜ëŠ”ê±°ë¼ë©´ ë¬´ì¡°ê±´ ë°”ë¡œ ë¡œë”©~
 			//	nGameMotion = 0;
 
 			nMTypeID = atoi(MotionTypeID);
@@ -217,7 +217,7 @@ bool LagCompManager::LoadAnimations(const char* filename, int Index)
 
 			//MLog("AddAnimation %s, %s\n", IDName, PathFileName);
 
-			//if (nGameMotion == 1) { // °ÔÀÓ ¸ğ¼ÇÀº ³ªÁß¿¡ ·Îµù
+			//if (nGameMotion == 1) { // ê²Œì„ ëª¨ì…˜ì€ ë‚˜ì¤‘ì— ë¡œë”©
 			//	pAni = AniMgr.AddGameLoad(IDName, PathFileName, -1, nMTypeID);
 			//}
 			//else

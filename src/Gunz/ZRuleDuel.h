@@ -14,7 +14,7 @@ public:
 
 	virtual bool OnCommand(MCommand* pCommand);
 
-	int	GetQueueIdx(const MUID& uidChar);			// 0 : Ã¨ÇÇ¾ğ   1 : µµÀüÀÚ  2~ : °üÀüÀÚ
+	int	GetQueueIdx(const MUID& uidChar);			// 0 : ì±”í”¼ì–¸   1 : ë„ì „ì  2~ : ê´€ì „ì
 };
 
 #endif

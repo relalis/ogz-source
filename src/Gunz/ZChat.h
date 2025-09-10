@@ -23,7 +23,7 @@ private:
 	char				m_nLastInputMsg[512];
 	u32	m_nLastAbuseTime;
 	int					m_nAbuseCounter;
-	char				m_szWhisperLastSender[64];		// ¸¶Áö¸·¿¡ ³ªÇÑÅ× ±Ó¸» º¸³Â´ø »ç¶÷
+	char				m_szWhisperLastSender[64];		// ë§ˆì§€ë§‰ì— ë‚˜í•œí…Œ ê·“ë§ ë³´ëƒˆë˜ ì‚¬ëŒ
 
 	ZReportAbuse		m_ReportAbuse;
 
@@ -43,10 +43,10 @@ public:
 	};
 	enum ZCHAT_LOC
 	{
-		CL_CURRENT = 0,		// Áö±İ º¸°í ÀÖ´Â Ã¤ÆÃÃ¢
-		CL_LOBBY = 1,		// ·Îºñ Ã¤ÆÃÃ¢
-		CL_STAGE = 2,		// ½ºÅ×ÀÌÁö Ã¤ÆÃÃ¢
-		CL_GAME = 3,		// °ÔÀÓ¾È Ã¤ÆÃÃ¢
+		CL_CURRENT = 0,		// ì§€ê¸ˆ ë³´ê³  ìˆëŠ” ì±„íŒ…ì°½
+		CL_LOBBY = 1,		// ë¡œë¹„ ì±„íŒ…ì°½
+		CL_STAGE = 2,		// ìŠ¤í…Œì´ì§€ ì±„íŒ…ì°½
+		CL_GAME = 3,		// ê²Œì„ì•ˆ ì±„íŒ…ì°½
 		CL_END
 	};
 
@@ -59,14 +59,14 @@ public:
 
 	void Clear(ZCHAT_LOC loc=CL_CURRENT);
 	void Report112(const char* szReason);
-	bool CheckChatFilter(const char* szMsg);	///< ¿åÇÊÅÍ¸µ °Ë»ç. ±Ó¸»µîÀÇ Ä¿¸Çµå¸í·É¾î¿¡¼­´Â µû·Î Ã³¸®¸¦ ÇØÁà¾ßÇÑ´Ù.
+	bool CheckChatFilter(const char* szMsg);	///< ìš•í•„í„°ë§ ê²€ì‚¬. ê·“ë§ë“±ì˜ ì»¤ë§¨ë“œëª…ë ¹ì–´ì—ì„œëŠ” ë”°ë¡œ ì²˜ë¦¬ë¥¼ í•´ì¤˜ì•¼í•œë‹¤.
 	void FilterWhisperKey(MWidget* pWidget);
 	void SetWhisperLastSender(char* szSenderName) { strcpy_safe(m_szWhisperLastSender, szSenderName); }
 
 	ZChatCmdManager* GetCmdManager() { return &m_CmdManager; }
 };
 
-// ÆíÀÇ¸¦ À§ÇØ¼­ ¸¸µç ÇÔ¼ö ---
+// í¸ì˜ë¥¼ ìœ„í•´ì„œ ë§Œë“  í•¨ìˆ˜ ---
 void ZChatOutput(const char* szMsg, ZChat::ZCHAT_MSG_TYPE msgtype=ZChat::CMT_NORMAL, ZChat::ZCHAT_LOC loc=ZChat::CL_CURRENT,MCOLOR _color=MCOLOR(ZCOLOR_CHAT_SYSTEM));
 void ZChatOutput(MCOLOR color, const char* szMsg, ZChat::ZCHAT_LOC loc = ZChat::CL_CURRENT);
 void ZChatOutputF(const char *szFormat, ...);

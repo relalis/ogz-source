@@ -6,7 +6,7 @@
 #include "RBaseTexture.h"
 #include <D3dx9.h>
 
-#define MINT_R2_CLASS_TYPE	0x1130		// RTTI¿Í °°Àº ±â´ÉÀ» _DEBUG¸ğµå¿¡¼­ ±¸ÇöÇÏ±â À§ÇÑ ID
+#define MINT_R2_CLASS_TYPE	0x1130		// RTTIì™€ ê°™ì€ ê¸°ëŠ¥ì„ _DEBUGëª¨ë“œì—ì„œ êµ¬í˜„í•˜ê¸° ìœ„í•œ ID
 
 class MDrawContextR2 : public MDrawContext{
 protected:

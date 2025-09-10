@@ -1,5 +1,5 @@
 // MAIET String Extension
-// ½ºÆ®¸µ °ü·Ã ÇïÆÛ Æã¼Ç
+// ìŠ¤íŠ¸ë§ ê´€ë ¨ í—¬í¼ í‘ì…˜
 
 #ifndef MSTREX_H
 #define MSTREX_H
@@ -7,13 +7,13 @@
 #include <ctype.h>
 
 
-/// Å¸°Ù ½ºÆ®¸µÀÇ ¸Æ½º¸Ø ±æÀÌ¸¸Å­±îÁö¸¸ ½ºÆ®¸µÀ» Ä«ÇÇÇÑ´Ù. ( NULL¹®ÀÚ±îÁö ±âÀÔ )
-/// @param szDest	Å¸°Ù ¹®ÀÚ ¹öÆÛ
-/// @param nDestLen	Å¸°Ù ¹®ÀÚ ¹öÆÛ Å©±â
-/// @param szSource	¼Ò½º ¹®ÀÚ¿­
+/// íƒ€ê²Ÿ ìŠ¤íŠ¸ë§ì˜ ë§¥ìŠ¤ë©ˆ ê¸¸ì´ë§Œí¼ê¹Œì§€ë§Œ ìŠ¤íŠ¸ë§ì„ ì¹´í”¼í•œë‹¤. ( NULLë¬¸ìê¹Œì§€ ê¸°ì… )
+/// @param szDest	íƒ€ê²Ÿ ë¬¸ì ë²„í¼
+/// @param nDestLen	íƒ€ê²Ÿ ë¬¸ì ë²„í¼ í¬ê¸°
+/// @param szSource	ì†ŒìŠ¤ ë¬¸ìì—´
 void MStrNCpy(char* szDest, int nDestLen, const char* szSource);
 
-/// ½ºÆ®¸µ¿¡¼­ ´Ü¾î´ÜÀ§·Î ÀĞ¾î¿Â´Ù
+/// ìŠ¤íŠ¸ë§ì—ì„œ ë‹¨ì–´ë‹¨ìœ„ë¡œ ì½ì–´ì˜¨ë‹¤
 class MStringCutter {
 protected:
 	static void SkipSpaces(char **szString) {

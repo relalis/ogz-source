@@ -116,7 +116,7 @@ void LoadModuleSymbols(DWORD dwProcessId, HANDLE hProcess)
 
 		while (fFlag)
 		{
-			// windows98 ¿¡¼­ d3d9.dll ½Éº¼À» ·ÎµåÇÏ¸é exeÆÄÀÏ ½Éº¼À» ·Îµå ¸øÇÏ´Â °æ¿ì°¡ »ı°Ü¼­ ¸·¾Æ³õ¾Ò´Ù.
+			// windows98 ì—ì„œ d3d9.dll ì‹¬ë³¼ì„ ë¡œë“œí•˜ë©´ exeíŒŒì¼ ì‹¬ë³¼ì„ ë¡œë“œ ëª»í•˜ëŠ” ê²½ìš°ê°€ ìƒê²¨ì„œ ë§‰ì•„ë†“ì•˜ë‹¤.
 			if(_strnicmp(module.szModule,"d3d9",4)!=0) {
 				if (!g_pfnSymLoadModule(hProcess, 0, module.szExePath, 0, 0, 0))
 				{
@@ -284,7 +284,7 @@ DWORD GetCrashInfo(LPEXCEPTION_POINTERS exceptionInfo, std::string& str)
 		pSymbol->Address = stk.AddrPC.Offset;
 		dwDisplacement = 0;
 
-		// ÁÖ¼Ò -100 ºÎÅÍ Ã£¾ÆÁÖ±â ³Ö±â ?? Ãß°¡ - ¹öÁ¯ ±¸ºĞÇØ¼­ win98 ÀÌ¶ó¸é
+		// ì£¼ì†Œ -100 ë¶€í„° ì°¾ì•„ì£¼ê¸° ë„£ê¸° ?? ì¶”ê°€ - ë²„ì ¼ êµ¬ë¶„í•´ì„œ win98 ì´ë¼ë©´
 
 		if (g_pfnSymGetSymFromAddr(hProcess, stk.AddrPC.Offset, &dwDisplacement, pSymbol))
 		{

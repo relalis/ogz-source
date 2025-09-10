@@ -8,7 +8,7 @@ void MQuestPlayerLogInfo::AddUniqueItem( const u32 nItemID, int nCount )
 {
 	if (IsQuestItemID(nItemID))
 	{
-		// À¯´ÏÅ© ¾ÆÀÌÅÛµéÀº ´Ù¸¥ Å×ÀÌºí¿¡ Ãß°¡ÀûÀÎ Á¤º¸¸¦ ÀúÀåÇÏ±âÀ§ÇØ¼­ µû·Î ÀúÀåÇØ ³õ¾Æ¾ß ÇÔ.
+		// ìœ ë‹ˆí¬ ì•„ì´í…œë“¤ì€ ë‹¤ë¥¸ í…Œì´ë¸”ì— ì¶”ê°€ì ì¸ ì •ë³´ë¥¼ ì €ì¥í•˜ê¸°ìœ„í•´ì„œ ë”°ë¡œ ì €ì¥í•´ ë†“ì•„ì•¼ í•¨.
 		MQuestItemDesc* pQItemDesc = GetQuestItemDescMgr().FindQItemDesc( nItemID );
 		if( 0 == pQItemDesc )
 			return;
@@ -50,8 +50,8 @@ void MMatchQuestGameLogInfoManager::AddQuestPlayer( const MUID& uidPlayer, MMatc
 }
 
 ///
-// Äù½ºÆ®¸¦ Å¬¸®¾îÇÏ°í¼­ º¸»ó¹ŞÀº ¾ÆÀÌÅÛÀ» µî·ÏÇÔ.
-// ³¡³ª°í ·Î±×¿¡ ÀúÀåµÊ.
+// í€˜ìŠ¤íŠ¸ë¥¼ í´ë¦¬ì–´í•˜ê³ ì„œ ë³´ìƒë°›ì€ ì•„ì´í…œì„ ë“±ë¡í•¨.
+// ëë‚˜ê³  ë¡œê·¸ì— ì €ì¥ë¨.
 ///
 bool MMatchQuestGameLogInfoManager::AddRewardQuestItemInfo( const MUID& uidPlayer, MQuestItemMap* pObtainQuestItemList )
 {
@@ -62,7 +62,7 @@ bool MMatchQuestGameLogInfoManager::AddRewardQuestItemInfo( const MUID& uidPlaye
 	if( 0 == pObtainQuestItemList )
 		return false;
 
-	// ¸¸¾àÀ» À§ÇØ¼­ Äù½ºÆ® ¾ÆÀÌÅÛ¿¡ °ü·ÃµÈ ¸ğµç Á¤º¸¸¦ Áö¿î´Ù.
+	// ë§Œì•½ì„ ìœ„í•´ì„œ í€˜ìŠ¤íŠ¸ ì•„ì´í…œì— ê´€ë ¨ëœ ëª¨ë“  ì •ë³´ë¥¼ ì§€ìš´ë‹¤.
 	pQuestPlayerLogInfo->ClearQItemInfo();
 
 	MQuestItemMap::iterator itQItem, endQItem;
@@ -89,7 +89,7 @@ bool MMatchQuestGameLogInfoManager::AddRewardZItemInfo( const MUID& uidPlayer, M
 		MMatchItemDesc* pItemDesc = MGetMatchItemDescMgr()->GetItemDesc(iteminfo.nItemID);
 		if (pItemDesc == NULL) continue;
 
-		// À¯´ÏÅ© ·Î±× »ı¼º
+		// ìœ ë‹ˆí¬ ë¡œê·¸ ìƒì„±
 		pQuestPlayerLogInfo->AddUniqueItem( iteminfo.nItemID, 1);
 	}
 
@@ -101,7 +101,7 @@ void MMatchQuestGameLogInfoManager::Clear()
 	if( empty() )
 		return;
 
-	// PlayerÁ¦°Å.
+	// Playerì œê±°.
 	MMatchQuestGameLogInfoManager::iterator It, End;
 	for( It = begin(), End = end(); It != End; ++It )
 		delete It->second;
@@ -126,10 +126,10 @@ MQuestPlayerLogInfo* MMatchQuestGameLogInfoManager::Find( const MUID& uidPlayer 
 
 
 ///
-// First : 2005.04.18 Ãß±³¼º.
-// Last  : 2005.04.18 Ãß±³¼º.
+// First : 2005.04.18 ì¶”êµì„±.
+// Last  : 2005.04.18 ì¶”êµì„±.
 //
-// Äù½ºÆ®°¡ ¿Ï·áµÇ¸é ÀúÀåµÇÀÖ´ø Á¤º¸¸¦ °¡Áö°í µğºñ¿¡ ·Î±×¸¦ ³²±â´Â ÀÛ¾÷À» ÇÔ.
+// í€˜ìŠ¤íŠ¸ê°€ ì™„ë£Œë˜ë©´ ì €ì¥ë˜ìˆë˜ ì •ë³´ë¥¼ ê°€ì§€ê³  ë””ë¹„ì— ë¡œê·¸ë¥¼ ë‚¨ê¸°ëŠ” ì‘ì—…ì„ í•¨.
 ///
 bool MMatchQuestGameLogInfoManager::PostInsertQuestGameLog()
 {

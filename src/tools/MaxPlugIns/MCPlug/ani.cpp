@@ -57,7 +57,7 @@ void MCplug2::export_anikey(INode* node, mesh_data* mesh_node)
 
 	}
 
-	//¸ðµç°æ¿ì¿¡ 
+	//ëª¨ë“ ê²½ìš°ì— 
 
 	DumpTMSample(node, mesh_node);
 
@@ -70,7 +70,7 @@ void MCplug2::export_anikey(INode* node, mesh_data* mesh_node)
 
 void MCplug2::DumpVertexAni(INode* node, mesh_data* mesh_node)
 {
-	if( mesh_node->m_point_num==0 )//°¡ÁøÁ¡ÀÌ ¾ø´Ù¸é...
+	if( mesh_node->m_point_num==0 )//ê°€ì§„ì ì´ ì—†ë‹¤ë©´...
 		return;
 
 	TimeValue start = ip->GetAnimRange().Start();
@@ -302,8 +302,8 @@ void MCplug2::DumpPosSample(INode* node,mesh_data* mesh_node)
 	//////////////////////////////////////////////////////
 	//
 
-	Matrix3 pivot = node->GetNodeTM(GetStaticFrame());							//pivot mirror º¯Çü matrix
-	Matrix3 satm = node->GetNodeTM(start) * Inverse(node->GetParentTM(start));	//¿¡´ÏÀÇ ½ÃÀÛ ÇÁ·¹ÀÓ
+	Matrix3 pivot = node->GetNodeTM(GetStaticFrame());							//pivot mirror ë³€í˜• matrix
+	Matrix3 satm = node->GetNodeTM(start) * Inverse(node->GetParentTM(start));	//ì—ë‹ˆì˜ ì‹œìž‘ í”„ë ˆìž„
 
 	Matrix3 stm = pivot * Inverse(satm);
 
@@ -352,8 +352,8 @@ void MCplug2::DumpRotSample(INode* node,mesh_data* mesh_node)
 	mesh_node->m_quat_key = new t_quat_key_s[rot_key_cnt];
 	memset(mesh_node->m_quat_key,0,sizeof(t_quat_key_s)*rot_key_cnt);
 
-	Matrix3 pivot = node->GetNodeTM(GetStaticFrame());							//pivot mirror º¯Çü matrix
-	Matrix3 satm = node->GetNodeTM(start) * Inverse(node->GetParentTM(start));	//¿¡´ÏÀÇ ½ÃÀÛ ÇÁ·¹ÀÓ
+	Matrix3 pivot = node->GetNodeTM(GetStaticFrame());							//pivot mirror ë³€í˜• matrix
+	Matrix3 satm = node->GetNodeTM(start) * Inverse(node->GetParentTM(start));	//ì—ë‹ˆì˜ ì‹œìž‘ í”„ë ˆìž„
 
 	Matrix3 stm = pivot * Inverse(satm);
 
@@ -399,7 +399,7 @@ void MCplug2::DumpVisSample(INode* node, mesh_data* mesh_node)
 	t_vis_key_s* pVis = NULL;
 
 //	float fVis = node->GetVisibility();
-	//½ÃÀÛ°ú ³¡¿¡ ÇÏ³ª¾¿ ²À ³Ö¾îÁØ´Ù
+	//ì‹œìž‘ê³¼ ëì— í•˜ë‚˜ì”© ê¼­ ë„£ì–´ì¤€ë‹¤
 	TimeValue start = ip->GetAnimRange().Start();
 	TimeValue end	= ip->GetAnimRange().End();
 
@@ -413,7 +413,7 @@ void MCplug2::DumpVisSample(INode* node, mesh_data* mesh_node)
 
 			mesh_node->m_vis_key = new t_vis_key_s[ikc->GetNumKeys() + 2];
 			mesh_node->m_vis_key_num = ikc->GetNumKeys() + 2;
-			//½ÃÀÛ
+			//ì‹œìž‘
 			pVis = &mesh_node->m_vis_key[0];
 			pVis->frame = start;
 			pVis->v = node->GetVisibility(start);
@@ -442,7 +442,7 @@ void MCplug2::DumpVisSample(INode* node, mesh_data* mesh_node)
 					pVis->v		= key.val;
 				}
 			}
-			//³¡
+			//ë
 			pVis = &mesh_node->m_vis_key[mesh_node->m_vis_key_num-1];
 			pVis->frame = end;
 			pVis->v = node->GetVisibility(end);
@@ -450,7 +450,7 @@ void MCplug2::DumpVisSample(INode* node, mesh_data* mesh_node)
 	}
 }
 
-// ¾È¾´´Ù~
+// ì•ˆì“´ë‹¤~
 void MCplug2::DumpScaleSample(INode* node,mesh_data* mesh_node) 
 {
 /*

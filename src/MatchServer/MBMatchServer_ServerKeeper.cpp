@@ -71,7 +71,7 @@ void MBMatchServer::OnRequestConnectMatchServer( const MUID& uidSender )
 	}
 	else
 	{
-		mlog( "MMatchServer::OnRequestConnectMatchServer - Keeper connect ½ÇÆÐ.\n" );
+		mlog( "MMatchServer::OnRequestConnectMatchServer - Keeper connect ì‹¤íŒ¨.\n" );
 		return;
 	}
 }

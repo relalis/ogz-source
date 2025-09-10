@@ -32,7 +32,7 @@ const MUID MMatchRuleAssassinate::ChooseCommander(int nTeam)
 	int nCount = 0;
 	for(auto itor=pStage->GetObjBegin(); itor!=pStage->GetObjEnd(); itor++) {
 		MMatchObject* pObj = itor->second;
-		if (pObj->GetEnterBattle() == false) continue;	// ¹èÆ²Âü°¡ÇÏ°í ÀÖ´Â ÇÃ·¹ÀÌ¾î¸¸ Ã¼Å©
+		if (pObj->GetEnterBattle() == false) continue;	// ë°°í‹€ì°¸ê°€í•˜ê³  ìˆëŠ” í”Œë ˆì´ì–´ë§Œ ì²´í¬
 		if (pObj->GetTeam() == nTeam) {
 			nCount++;
 			if (nCount == nChoose) {
@@ -147,7 +147,7 @@ void MMatchRuleAssassinate::CalcTeamBonus(MMatchObject* pAttacker, MMatchObject*
 	if (bVictimIsCommander)
 	{
 		*poutTeamExp = 0;
-		*poutAttackerExp = nSrcExp * 2;		// ÀûÀåÀ» ¾²·¯¶ß¸®¸é °æÇèÄ¡ÀÇ 200%¸¦ ¹Ş´Â´Ù.
+		*poutAttackerExp = nSrcExp * 2;		// ì ì¥ì„ ì“°ëŸ¬ëœ¨ë¦¬ë©´ ê²½í—˜ì¹˜ì˜ 200%ë¥¼ ë°›ëŠ”ë‹¤.
 	}
 	else
 	{

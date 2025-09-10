@@ -1,6 +1,6 @@
 #ifndef _ZINTERFACEITEM_H
 #define _ZINTERFACEITEM_H
-// ÀÎÅÍÆäÀÌ½º¿¡¼­ »ç¿ëÇÏ´Â À§Á¬ÀÇ item
+// ì¸í„°íŽ˜ì´ìŠ¤ì—ì„œ ì‚¬ìš©í•˜ëŠ” ìœ„ì ¯ì˜ item
 
 
 #define ZIITEM_CHATFRAME	"ChatFrame"

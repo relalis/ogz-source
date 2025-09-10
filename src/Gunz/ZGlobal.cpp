@@ -86,7 +86,7 @@ ZGameTypeManager* ZGetGameTypeManager(void)
 		ZApplication::GetGameInterface()->GetGameTypeManager() : NULL;
 }
 
-extern ZInput* g_pInput;	// TODO: Á¤¸®
+extern ZInput* g_pInput;	// TODO: ì •ë¦¬
 ZInput*	ZGetInput(void)
 {
 	return g_pInput;

@@ -1,9 +1,9 @@
 /***********************************************************************
   ZMonsterBookInterface.cpp
   
-  ¿ë  µµ : ¸ó½ºÅÍ µµ°¨ ÀÎÅÍÆäÀÌ½º
-  ÀÛ¼ºÀÏ : 29, MAR, 2004
-  ÀÛ¼ºÀÚ : ÀÓµ¿È¯
+  ìš©  ë„ : ëª¬ìŠ¤í„° ë„ê° ì¸í„°í˜ì´ìŠ¤
+  ì‘ì„±ì¼ : 29, MAR, 2004
+  ì‘ì„±ì : ì„ë™í™˜
 ************************************************************************/
 
 
@@ -17,7 +17,7 @@
 /***********************************************************************
   ZMonsterBookInterface : public
   
-  desc : »ı¼ºÀÚ
+  desc : ìƒì„±ì
 ************************************************************************/
 ZMonsterBookInterface::ZMonsterBookInterface( void)
 {
@@ -29,7 +29,7 @@ ZMonsterBookInterface::ZMonsterBookInterface( void)
 /***********************************************************************
   ~ZMonsterBookInterface : public
   
-  desc : ¼Ò¸êÀÚ
+  desc : ì†Œë©¸ì
 ************************************************************************/
 ZMonsterBookInterface::~ZMonsterBookInterface( void)
 {
@@ -39,7 +39,7 @@ ZMonsterBookInterface::~ZMonsterBookInterface( void)
 /***********************************************************************
   OnCreate : public
   
-  desc : ¸ó½ºÅÍ µµ°¨ º¸ÀÌ±â
+  desc : ëª¬ìŠ¤í„° ë„ê° ë³´ì´ê¸°
   arg  : none
   ret  : none
 ************************************************************************/
@@ -49,32 +49,32 @@ void ZMonsterBookInterface::OnCreate( void)
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 
 
-	// º¯¼ö ÃÊ±âÈ­
-	m_nCurrentPage = 0;			// 0 ÆäÀÌÁö·Î ÃÊ±âÈ­
+	// ë³€ìˆ˜ ì´ˆê¸°í™”
+	m_nCurrentPage = 0;			// 0 í˜ì´ì§€ë¡œ ì´ˆê¸°í™”
 	m_bIsFirstPage = true;
 
 
-	// Äù½ºÆ®¿¡ ÇÊ¿äÇÑ Á¤º¸ ·Îµù
+	// í€˜ìŠ¤íŠ¸ì— í•„ìš”í•œ ì •ë³´ ë¡œë”©
 	ZGetQuest()->Load();
 	ReadQuestItemXML();
 
 
-	// ·Îºñ UI °¨Ãß±â
+	// ë¡œë¹„ UI ê°ì¶”ê¸°
 	MWidget* pWidget = pResource->FindWidget( "Lobby");
 	if ( pWidget)
 		pWidget->Show( false);
 
 
-	// ÆäÀÌÁö¸¦ ±×¸°´Ù
+	// í˜ì´ì§€ë¥¼ ê·¸ë¦°ë‹¤
 	DrawPage();
 
-	// ¸ó½ºÅÍ µµ°¨ º¸ÀÌ±â
+	// ëª¬ìŠ¤í„° ë„ê° ë³´ì´ê¸°
 	pWidget = pResource->FindWidget( "MonsterBook");
 	if ( pWidget)
 		pWidget->Show( true);
 
 	
-	// ½ºÆ®¸³ ÀÌ¹ÌÁö ¾Ö´Ï¸ŞÀÌ¼Ç
+	// ìŠ¤íŠ¸ë¦½ ì´ë¯¸ì§€ ì• ë‹ˆë©”ì´ì…˜
 	MPicture* pPicture = (MPicture*)pResource->FindWidget( "MonsterBook_StripBottom");
  	if( pPicture)
 		pPicture->SetAnimation( 0, 1000.0f);
@@ -87,7 +87,7 @@ void ZMonsterBookInterface::OnCreate( void)
 /***********************************************************************
   OnDestroy : public
   
-  desc : ¸ó½ºÅÍ µµ°¨ °¨Ãß±â
+  desc : ëª¬ìŠ¤í„° ë„ê° ê°ì¶”ê¸°
   arg  : none
   ret  : none
 ************************************************************************/
@@ -97,16 +97,16 @@ void ZMonsterBookInterface::OnDestroy( void)
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 
 
-	// ¸ó½ºÅÍ µµ°¨ °¨Ãß±â
+	// ëª¬ìŠ¤í„° ë„ê° ê°ì¶”ê¸°
 	MWidget* pWidget = pResource->FindWidget( "MonsterBook");
 	if ( pWidget)
 		pWidget->Show( false);
 
 
-	// ¹è°æ Ã¥ ÀÌ¹ÌÁö¸¦ ¸Ş¸ğ¸®·ÎºÎÅÍ »èÁ¦ÇÑ´Ù
+	// ë°°ê²½ ì±… ì´ë¯¸ì§€ë¥¼ ë©”ëª¨ë¦¬ë¡œë¶€í„° ì‚­ì œí•œë‹¤
 	if ( m_pBookBgImg != NULL)
 	{
-		// ¹è°æ Ã¥ ÀÌ¹ÌÁö¸¦ º¸¿©ÁÖ´Â À§Á¬ÀÇ ºñÆ®¸Ê ÀÌ¹ÌÁö Æ÷ÀÎÅÍ¸¦ ¸®¼ÂÇÑ´Ù
+		// ë°°ê²½ ì±… ì´ë¯¸ì§€ë¥¼ ë³´ì—¬ì£¼ëŠ” ìœ„ì ¯ì˜ ë¹„íŠ¸ë§µ ì´ë¯¸ì§€ í¬ì¸í„°ë¥¼ ë¦¬ì…‹í•œë‹¤
 		MPicture* pPicture = (MPicture*)pResource->FindWidget( "MonsterBook_BookBG");
 		if ( pPicture)
 			pPicture->SetBitmap( NULL);
@@ -116,15 +116,15 @@ void ZMonsterBookInterface::OnDestroy( void)
 	}
 
 
-	// Äù½ºÆ® ¾ÆÀÌÅÛ ¸®½ºÆ® »èÁ¦
+	// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ì‚­ì œ
 	m_QuestItemDesc.clear();
 
 
-	// ÀÏ·¯½ºÆ® ÀÌ¹ÌÁö »èÁ¦
+	// ì¼ëŸ¬ìŠ¤íŠ¸ ì´ë¯¸ì§€ ì‚­ì œ
 	DeleteIllustImage();
 
 
-	// ·Îºñ UI º¸ÀÌ±â
+	// ë¡œë¹„ UI ë³´ì´ê¸°
 	pWidget = pResource->FindWidget( "Lobby");
 	if ( pWidget)
 		pWidget->Show( true);
@@ -134,20 +134,20 @@ void ZMonsterBookInterface::OnDestroy( void)
 /***********************************************************************
   OnPrevPage : public
   
-  desc : ÀÌÀü ÆäÀÌÁö ³Ñ±â±â ¹öÆ°À» ´­·¶À» ¶§
+  desc : ì´ì „ í˜ì´ì§€ ë„˜ê¸°ê¸° ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ
   arg  : none
   ret  : none
 ************************************************************************/
 void ZMonsterBookInterface::OnPrevPage( void)
 {
-	// º¸¿©ÁÙ ÆäÀÌÁö ¹øÈ£¸¦ ±¸ÇÑ´Ù
+	// ë³´ì—¬ì¤„ í˜ì´ì§€ ë²ˆí˜¸ë¥¼ êµ¬í•œë‹¤
 	if ( m_nCurrentPage == 0)
 		m_nCurrentPage = ZGetQuest()->GetNumOfPage();
 	else
 		m_nCurrentPage--;
 
 
-	// ÆäÀÌÁö¸¦ ±×¸°´Ù
+	// í˜ì´ì§€ë¥¼ ê·¸ë¦°ë‹¤
 	DrawPage();
 }
 
@@ -155,20 +155,20 @@ void ZMonsterBookInterface::OnPrevPage( void)
 /***********************************************************************
   OnNextPage : public
   
-  desc : ´ÙÀ½ ÆäÀÌÁö ³Ñ±â±â ¹öÆ°À» ´­·¶À» ¶§
+  desc : ë‹¤ìŒ í˜ì´ì§€ ë„˜ê¸°ê¸° ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ
   arg  : none
   ret  : none
 ************************************************************************/
 void ZMonsterBookInterface::OnNextPage( void)
 {
-	// º¸¿©ÁÙ ÆäÀÌÁö ¹øÈ£¸¦ ±¸ÇÑ´Ù
+	// ë³´ì—¬ì¤„ í˜ì´ì§€ ë²ˆí˜¸ë¥¼ êµ¬í•œë‹¤
 	if ( m_nCurrentPage == ZGetQuest()->GetNumOfPage())
 		m_nCurrentPage = 0;
 	else
 		m_nCurrentPage++;
 
 
-	// ÆäÀÌÁö¸¦ ±×¸°´Ù
+	// í˜ì´ì§€ë¥¼ ê·¸ë¦°ë‹¤
 	DrawPage();
 }
 
@@ -176,13 +176,13 @@ void ZMonsterBookInterface::OnNextPage( void)
 /***********************************************************************
   DrawPage : protected
   
-  desc : ÆäÀÌÁö¸¦ ±×¸°´Ù
+  desc : í˜ì´ì§€ë¥¼ ê·¸ë¦°ë‹¤
   arg  : none
   ret  : none
 ************************************************************************/
 void ZMonsterBookInterface::DrawPage( void)
 {
-	// ¸¸¾à Ç¥ÁöÀÌ¸é(0ÆäÀÌÁö) ÆäÀÌÁö¸¦ ±×¸°´Ù.
+	// ë§Œì•½ í‘œì§€ì´ë©´(0í˜ì´ì§€) í˜ì´ì§€ë¥¼ ê·¸ë¦°ë‹¤.
 	if ( m_nCurrentPage == 0)
 	{
 		DrawFirstPage();
@@ -194,7 +194,7 @@ void ZMonsterBookInterface::DrawPage( void)
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 
 
-	// ¹è°æ Ã¥ ÀÌ¹ÌÁö¸¦ ·ÎµùÇÑ´Ù
+	// ë°°ê²½ ì±… ì´ë¯¸ì§€ë¥¼ ë¡œë”©í•œë‹¤
 	if ( m_bIsFirstPage == true)
 	{
 		if ( m_pBookBgImg != NULL)
@@ -207,14 +207,14 @@ void ZMonsterBookInterface::DrawPage( void)
 		((MBitmapR2*)m_pBookBgImg)->Create( "monsterIllust.png", RGetDevice(), "interface/MonsterIllust/book_bg.jpg");
 		if ( m_pBookBgImg)
 		{
-			// ÀĞ¾î¿Â ºñÆ®¸Ê ÀÌ¹ÌÁö Æ÷ÀÎÅÍ¸¦ ÇØ´ç À§Á¬¿¡ ³Ñ°ÜÁà¼­ Ç¥½ÃÇÑ´Ù
+			// ì½ì–´ì˜¨ ë¹„íŠ¸ë§µ ì´ë¯¸ì§€ í¬ì¸í„°ë¥¼ í•´ë‹¹ ìœ„ì ¯ì— ë„˜ê²¨ì¤˜ì„œ í‘œì‹œí•œë‹¤
 			MPicture* pPicture = (MPicture*)pResource->FindWidget( "MonsterBook_BookBG");
 			if ( pPicture)
 				pPicture->SetBitmap( m_pBookBgImg->GetSourceBitmap());
 		}
 	}
 
-	// ÆäÀÌÁö ¹øÈ£¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù
+	// í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤
 	MLabel* pLabel = (MLabel*)pResource->FindWidget( "MonsterBook_PageNumber");
 	if ( pLabel)
 	{
@@ -224,17 +224,17 @@ void ZMonsterBookInterface::DrawPage( void)
 	}
 
 
-	// ´Ş¼º·ü
+	// ë‹¬ì„±ë¥ 
 	pLabel = (MLabel*)pResource->FindWidget( "MonsterBook_Complete");
 	if ( pLabel)
 		pLabel->SetText( "");
 
 
-	// ÇöÀç ÆäÀÌÁö¿¡ ´ëÇÑ ¸ó½ºÅÍ Á¤º¸¸¦ ¾ò¾î¿Â´Ù
+	// í˜„ì¬ í˜ì´ì§€ì— ëŒ€í•œ ëª¬ìŠ¤í„° ì •ë³´ë¥¼ ì–»ì–´ì˜¨ë‹¤
 	MQuestNPCInfo* pMonsterInfo = ZGetQuest()->GetNPCPageInfo( m_nCurrentPage - 1);
 
 
-	// ¸ó½ºÅÍÀÇ µå·Ó ¾ÆÀÌÅÛ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù
+	// ëª¬ìŠ¤í„°ì˜ ë“œë¡­ ì•„ì´í…œì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤
 	int nCount = 0;
 	int nMatchedItem = 0;
 	if ( pMonsterInfo)
@@ -287,13 +287,13 @@ void ZMonsterBookInterface::DrawPage( void)
 	}
 
 
-	// ÇØ´ç ¸ó½ºÅÍÀÇ ÀÌ¸§À» ¾÷µ¥ÀÌÆ® ÇÑ´Ù
+	// í•´ë‹¹ ëª¬ìŠ¤í„°ì˜ ì´ë¦„ì„ ì—…ë°ì´íŠ¸ í•œë‹¤
 	pLabel = (MLabel*)pResource->FindWidget( "MonsterBook_MonsterName");
 	if (pLabel)
 		pLabel->SetText( (pMonsterInfo) ? pMonsterInfo->szName : "");
 
 
-	// ÇØ´ç ¸ó½ºÅÍÀÇ µî±ŞÀ» ¾÷µ¥ÀÌÆ® ÇÑ´Ù
+	// í•´ë‹¹ ëª¬ìŠ¤í„°ì˜ ë“±ê¸‰ì„ ì—…ë°ì´íŠ¸ í•œë‹¤
 	pLabel = (MLabel*)pResource->FindWidget( "MonsterBook_MonsterGrade");
 	if ( pLabel)
 	{
@@ -525,7 +525,7 @@ bool ZMonsterBookInterface::SetIllustImage( const char* szFileName)
 /***********************************************************************
   DeleteIllustImage : public
   
-  desc : ÀĞ¾î¿Ô´ø ¸ó½ºÅÍ ÀÏ·¯½ºÆ® ÀÌ¹ÌÁö¸¦ ¸Ş¸ğ¸®¿¡¼­ »èÁ¦ÇÑ´Ù
+  desc : ì½ì–´ì™”ë˜ ëª¬ìŠ¤í„° ì¼ëŸ¬ìŠ¤íŠ¸ ì´ë¯¸ì§€ë¥¼ ë©”ëª¨ë¦¬ì—ì„œ ì‚­ì œí•œë‹¤
   arg  : none
   ret  : true(=success) or false(=fail)
 ************************************************************************/
@@ -535,13 +535,13 @@ bool ZMonsterBookInterface::DeleteIllustImage( void)
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 
 
-	// ÀÏ·¯½ºÆ®¸¦ º¸¿©ÁÖ´Â À§Á¬ÀÇ ºñÆ®¸Ê ÀÌ¹ÌÁö Æ÷ÀÎÅÍ¸¦ ¸®¼ÂÇÑ´Ù
+	// ì¼ëŸ¬ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì£¼ëŠ” ìœ„ì ¯ì˜ ë¹„íŠ¸ë§µ ì´ë¯¸ì§€ í¬ì¸í„°ë¥¼ ë¦¬ì…‹í•œë‹¤
 	MPicture* pPicture = (MPicture*)pResource->FindWidget( "MonsterBook_MonsterIllust");
 	if ( pPicture)
 		pPicture->SetBitmap( NULL);
 
 
-	// ÀÏ·¯½ºÆ® ÀÌ¹ÌÁö¸¦ ¸Ş¸ğ¸®·ÎºÎÅÍ »èÁ¦ÇÑ´Ù
+	// ì¼ëŸ¬ìŠ¤íŠ¸ ì´ë¯¸ì§€ë¥¼ ë©”ëª¨ë¦¬ë¡œë¶€í„° ì‚­ì œí•œë‹¤
 	if ( m_pIllustImg)
 	{
 		delete m_pIllustImg;
@@ -555,7 +555,7 @@ bool ZMonsterBookInterface::DeleteIllustImage( void)
 /***********************************************************************
   ReadQuestItemXML : protected
   
-  desc : Äù½ºÆ® Èñ»ı ¾ÆÀÌÅÛ XMLÀ» ÀĞ´Â´Ù
+  desc : í€˜ìŠ¤íŠ¸ í¬ìƒ ì•„ì´í…œ XMLì„ ì½ëŠ”ë‹¤
   arg  : none
   ret  : true(=success) or false(=fail)
 ************************************************************************/
@@ -613,9 +613,9 @@ bool ZMonsterBookInterface::ReadQuestItemXML()
 /***********************************************************************
   ReadSimpleQuestItemDesc : protected
   
-  desc : Èñ»ı ¾ÆÀÌÅÛ ¸®½ºÆ®·ÎºÎÅÍ ¾ÆÀÌÅÛ Á¤º¸¸¦ ¾ò´Â´Ù
-  arg  : nItemID = ¾ÆÀÌÅÛ ID
-         pIterator* = ¸®ÅÏ¹ŞÀ» Iterrator
+  desc : í¬ìƒ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë¡œë¶€í„° ì•„ì´í…œ ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤
+  arg  : nItemID = ì•„ì´í…œ ID
+         pIterator* = ë¦¬í„´ë°›ì„ Iterrator
   ret  : true(=success) or false(=fail)
 ************************************************************************/
 bool ZMonsterBookInterface::ReadSimpleQuestItemDesc( int nItemID,
@@ -636,9 +636,9 @@ bool ZMonsterBookInterface::ReadSimpleQuestItemDesc( int nItemID,
 /***********************************************************************
   DrawComplete : protected
   
-  desc : Èñ»ı ¾ÆÀÌÅÛ ¸®½ºÆ®·ÎºÎÅÍ ¾ÆÀÌÅÛ Á¤º¸¸¦ ¾ò´Â´Ù
-  arg  : nItemID = ¾ÆÀÌÅÛ ID
-         pIterator* = ¸®ÅÏ¹ŞÀ» Iterrator
+  desc : í¬ìƒ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë¡œë¶€í„° ì•„ì´í…œ ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤
+  arg  : nItemID = ì•„ì´í…œ ID
+         pIterator* = ë¦¬í„´ë°›ì„ Iterrator
   ret  : true(=success) or false(=fail)
 ************************************************************************/
 void ZMonsterBookInterface::DrawComplete( void)
@@ -647,7 +647,7 @@ void ZMonsterBookInterface::DrawComplete( void)
 	int nTotalItemNum = 0;
 	for ( int i = 0;  i < ZGetQuest()->GetNumOfPage(); i++)
 	{
-		// ÇöÀç ÆäÀÌÁö¿¡ ´ëÇÑ ¸ó½ºÅÍ Á¤º¸¸¦ ¾ò¾î¿Â´Ù
+		// í˜„ì¬ í˜ì´ì§€ì— ëŒ€í•œ ëª¬ìŠ¤í„° ì •ë³´ë¥¼ ì–»ì–´ì˜¨ë‹¤
 		MQuestNPCInfo* pMonsterInfo = ZGetQuest()->GetNPCPageInfo( i);
 		if ( pMonsterInfo)
 		{

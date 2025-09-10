@@ -1,6 +1,6 @@
 /*
-last modify : Á¤µ¿¼· @ 2006/3/16
-desc : ¹«±â »ç¿ë Å° Ä¿½ºÅÍ¸¶ÀÌÁî °ü·Ã
+last modify : ì •ë™ì„­ @ 2006/3/16
+desc : ë¬´ê¸° ì‚¬ìš© í‚¤ ì»¤ìŠ¤í„°ë§ˆì´ì¦ˆ ê´€ë ¨
 */
 
 #include "stdafx.h"
@@ -146,7 +146,7 @@ void ZMyCharacter::ProcessInput(float fDelta)
 			!m_bBlast && !m_bBlastFall && !m_bBlastAirmove && !m_bCharging &&
 			!m_bSlash && !m_bJumpSlash && !m_bJumpSlashLanding)
 		{
-			auto AddAccel = [&](auto& vec)
+			auto AddAccel = [&](auto vec)
 			{
 				m_Accel += vec;
 				ButtonPressed = true;
@@ -2430,7 +2430,7 @@ void ZMyCharacter::UpdateCAFactor(float fDelta)
 ////////////////////////////////////////////////////////////
 ZDummyCharacter::ZDummyCharacter() : ZMyCharacter()
 {
-	// ·£´ıÀ¸·Î ¾Æ¹«°Å³ª ÀÔµµ·Ï ¸¸µç´Ù
+	// ëœë¤ìœ¼ë¡œ ì•„ë¬´ê±°ë‚˜ ì…ë„ë¡ ë§Œë“ ë‹¤
 #define _DUMMY_CHARACTER_PRESET		5
 	u32 nMeleePreset[_DUMMY_CHARACTER_PRESET] = { 1, 11, 3, 14, 15 };
 	u32 nPrimaryPreset[_DUMMY_CHARACTER_PRESET] = { 4010, 4013, 5004, 6004, 9001 };

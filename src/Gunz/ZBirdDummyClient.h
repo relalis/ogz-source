@@ -1,7 +1,7 @@
 #ifndef _ZBIRDDUMMYCLIENT_H
 #define _ZBIRDDUMMYCLIENT_H
 
-// ¿©±â¼­ºÎÅÍ Å×½ºÆ®¸¦ À§ÇÑ ÄÚµå - Bird ////////////////////////////////////////////////
+// ì—¬ê¸°ì„œë¶€í„° í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•œ ì½”ë“œ - Bird ////////////////////////////////////////////////
 //#ifdef _BIRDTEST
 
 #include "MCommandCommunicator.h"

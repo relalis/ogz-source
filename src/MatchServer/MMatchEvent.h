@@ -54,11 +54,11 @@ class MMatchObject;
 
 enum EVENT_TYPE
 {
-	ET_BEGIN	= 0,		// : °ÔÀÓÀ» ½ÃÀÛÇÒ¶§.
-	ET_ONGAME	= 1,		//  : ¹æÀ» ¸¸µé¾î °ÔÀÓÀ» ½ÃÀÛÀ» ÇØ¾ß È°¼ºÈ­µÇ´Â ÀÌº¥Æ®.
-	ET_END		= 2,		// : °ÔÀÓÀÌ ³¡³ªÈÄ¿¡.
+	ET_BEGIN	= 0,		// : ê²Œìž„ì„ ì‹œìž‘í• ë•Œ.
+	ET_ONGAME	= 1,		//  : ë°©ì„ ë§Œë“¤ì–´ ê²Œìž„ì„ ì‹œìž‘ì„ í•´ì•¼ í™œì„±í™”ë˜ëŠ” ì´ë²¤íŠ¸.
+	ET_END		= 2,		// : ê²Œìž„ì´ ëë‚˜í›„ì—.
 
-	ET_CUSTOM_EVENT	= 100,	// : Á÷Á¢ È£Ãâ.
+	ET_CUSTOM_EVENT	= 100,	// : ì§ì ‘ í˜¸ì¶œ.
 
 	ET_MAX,
 };
@@ -89,7 +89,7 @@ public :
 	const u32 GetEventID() const		{ return m_dwEventID; }
 	const u32 GetEventListID() const	{ return m_dwEventListID; }
 	const string& GetName()				{ return m_strName; }
-	// Á¤ÇØÁø ÀÌº¥Æ® Ã³¸®·çÆ¾¿Ü µî·ÏÀ» À§ÇØ¼­. 
+	// ì •í•´ì§„ ì´ë²¤íŠ¸ ì²˜ë¦¬ë£¨í‹´ì™¸ ë“±ë¡ì„ ìœ„í•´ì„œ. 
 	
 	bool DoItNow( const u32 dwCurTime );
 
@@ -105,11 +105,11 @@ public :
 
 	void SetLastCheckTime( u64 dwCurTime );
 
-	// À¯Àú°¡ µû·Î ÃÊ±âÈ­¸¦ ÇÊ¿äÇÒ¶§´Â ÀÌ°ÍÀ» ÀçÁ¤ÀÇ ÇÏ¸é µÈ´Ù.
-	// MMatchEventÅ¬·¡½º¸¦ »ý¼º½Ã¿¡ ÀÌ ÇÔ¼ö°¡ È£ÃâµÇ¾î °°ÀÌ °Ë»çµÈ´Ù.
+	// ìœ ì €ê°€ ë”°ë¡œ ì´ˆê¸°í™”ë¥¼ í•„ìš”í• ë•ŒëŠ” ì´ê²ƒì„ ìž¬ì •ì˜ í•˜ë©´ ëœë‹¤.
+	// MMatchEventí´ëž˜ìŠ¤ë¥¼ ìƒì„±ì‹œì— ì´ í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ì–´ ê°™ì´ ê²€ì‚¬ëœë‹¤.
 	virtual bool InitEvent() { return true; }
-	// Á¤ÇØÁø ·çÆ¾ÀÌ ¾Æ´Ñ µû·Î Ã³¸®ÇØ Áà¾ßÇÏ´Â ÀÌº¥Æ®´Â ÀÌ ÇÔ¼ö¸¦ Á¦Á¤ÀÇÇØ¼­ »ç¿ëÇÔ.
-	// Ã³¸®½Ã ÇÊ¿äÇÑ À¯ÀúÅ¸ÀÔµ¥ÀÌÅÍ´Â pContext·Î ³Ñ°Ü¼­ Ã³¸®.
+	// ì •í•´ì§„ ë£¨í‹´ì´ ì•„ë‹Œ ë”°ë¡œ ì²˜ë¦¬í•´ ì¤˜ì•¼í•˜ëŠ” ì´ë²¤íŠ¸ëŠ” ì´ í•¨ìˆ˜ë¥¼ ì œì •ì˜í•´ì„œ ì‚¬ìš©í•¨.
+	// ì²˜ë¦¬ì‹œ í•„ìš”í•œ ìœ ì €íƒ€ìž…ë°ì´í„°ëŠ” pContextë¡œ ë„˜ê²¨ì„œ ì²˜ë¦¬.
 	virtual bool CustomCheckEventObj( MMatchObject* pObj, void* pContext ) { return true; }
 
 protected :
@@ -189,7 +189,7 @@ private :
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// ÀÌ ¾Æ·¡ÂÊÀ¸·Î ÀÌº¥Æ®¸¦ Ãß°¡ ÇÑ´Ù. ÃßÈÄ¿¡ ÀÌº¥Æ®°¡ ¸¹¾ÆÁö¸é º°µµÀÇ ÆÄÀÏ·Î ºÐ¸®µÇ¾î¾ß ÇÔ.
+/// ì´ ì•„ëž˜ìª½ìœ¼ë¡œ ì´ë²¤íŠ¸ë¥¼ ì¶”ê°€ í•œë‹¤. ì¶”í›„ì— ì´ë²¤íŠ¸ê°€ ë§Žì•„ì§€ë©´ ë³„ë„ì˜ íŒŒì¼ë¡œ ë¶„ë¦¬ë˜ì–´ì•¼ í•¨.
 
 class MMatchProbabiltyEventPerTime : public MMatchEvent
 {

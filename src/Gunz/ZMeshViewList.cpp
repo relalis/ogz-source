@@ -142,7 +142,7 @@ ZMeshViewList::~ZMeshViewList(void)
 
 int ZMeshViewList::GetItemCount(void)
 {
-	return GetChildCount()-2;	// ÁÂ/¿ì ¹öÆ° 2°³ »©°í
+	return GetChildCount()-2;	// ì¢Œ/ìš° ë²„íŠ¼ 2ê°œ ë¹¼ê³ 
 }
 
 ZMeshView* ZMeshViewList::GetItem(int i)

@@ -55,7 +55,7 @@ void ZFrame::OnDraw(MDrawContext* pDC)
 		pDC->SetOrigin(0, 0);
 		pDC->FillRectangle(Full);
 
-		// º¹±¸
+		// ë³µêµ¬
 		pDC->SetClipRect(PrevClip);
 		pDC->SetOrigin(PrevOrigin);
 		pDC->SetOpacity(oldopacity);

@@ -34,7 +34,7 @@ ZLoading::~ZLoading()
 
 bool ZLoading::OnCreate()
 {
-	m_pBackGround=new MPicture("background",this,this);	// Á÷Á¢±×¸°´Ù.
+	m_pBackGround=new MPicture("background",this,this);	// ì§ì ‘ê·¸ë¦°ë‹¤.
 
 	m_pBitmap = new MBitmapR2;
 	m_pBitmap->Create("loading", RGetDevice(), "Interface/Default/Loading/loading_screen.tga");

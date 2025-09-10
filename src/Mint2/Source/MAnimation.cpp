@@ -30,7 +30,7 @@ void MAnimation::OnDraw(MDrawContext* pDC)
 	{
 		int nIterCount = nCurFrame / nFrameCount;
 		m_nCurrFrame = nCurFrame % nFrameCount;
-		if ( (nIterCount % 2) == 1)			// È¦¼ö¹øÂ° PlayÀÌ¸é Backward
+		if ( (nIterCount % 2) == 1)			// í™€ìˆ˜ë²ˆì§¸ Playì´ë©´ Backward
 			m_nCurrFrame = nFrameCount - m_nCurrFrame - 1;
 	}
 
@@ -59,7 +59,7 @@ MBitmap* MAnimation::GetBitmap()
 	else if(m_nPlayMode==MAPM_FORWARDNBACKWARD){
 		int nIterCount = nCurFrame/nFrameCount;
 		nCurFrame = (nCurFrame%nFrameCount);
-		if(nIterCount%2==1){	// È¦¼ö¹øÂ° PlayÀÌ¸é Backward
+		if(nIterCount%2==1){	// í™€ìˆ˜ë²ˆì§¸ Playì´ë©´ Backward
 			nCurFrame = nFrameCount - nCurFrame - 1;
 		}
 	}

@@ -191,14 +191,14 @@ void MDrawContextR2::Draw(int x, int y, bool bSprite, unsigned char nOpacity)
 
 	_ASSERT(pBitmap->m_nTypeID==MINT_R2_CLASS_TYPE);
 
-	// Sprite´Â ÇöÀç ºäÆ÷Æ®ÀÇ ½ÃÀÛÁ¡À» 0, 0À¸·Î ÀÎ½Ä
+	// SpriteëŠ” í˜„ì¬ ë·°í¬íŠ¸ì˜ ì‹œì‘ì ì„ 0, 0ìœ¼ë¡œ ì¸ì‹
 	/*
 	x += m_Origin.x;
 	y += m_Origin.y;
 	*/
 
 	MCOLOR color(0xFF, 0xFF, 0xFF, nOpacity);
-	// ÅØ½ºÃÄ°¡ 2^nÇüÅÂ·Î ¸¸µé¾îÁö¹Ç·Î, ÀÌ¿¡ ¸Â°Ô ½ºÄÉÀÏ Á¶Á¤À» ÇØÁà¾ß ÇÑ´Ù.
+	// í…ìŠ¤ì³ê°€ 2^ní˜•íƒœë¡œ ë§Œë“¤ì–´ì§€ë¯€ë¡œ, ì´ì— ë§ê²Œ ìŠ¤ì¼€ì¼ ì¡°ì •ì„ í•´ì¤˜ì•¼ í•œë‹¤.
 	float fws = pBitmap->GetWidth()/(float)Floorer2PowerSize(pBitmap->GetWidth());
 	float fhs = pBitmap->GetHeight()/(float)Floorer2PowerSize(pBitmap->GetHeight());
 	D3DXVECTOR2 Trans((float)x, (float)y);
@@ -216,14 +216,14 @@ void MDrawContextR2::Draw(int x, int y, int w, int h, unsigned char nOpacity)
 
 	_ASSERT(pBitmap->m_nTypeID==MINT_R2_CLASS_TYPE);
 
-	// Sprite´Â ÇöÀç ºäÆ÷Æ®ÀÇ ½ÃÀÛÁ¡À» 0, 0À¸·Î ÀÎ½Ä
+	// SpriteëŠ” í˜„ì¬ ë·°í¬íŠ¸ì˜ ì‹œì‘ì ì„ 0, 0ìœ¼ë¡œ ì¸ì‹
 	/*
 	x += m_Origin.x;
 	y += m_Origin.y;
 	*/
 
 	MCOLOR color(0xFF, 0xFF, 0xFF, nOpacity);
-	// ÅØ½ºÃÄ°¡ 2^nÇüÅÂ·Î ¸¸µé¾îÁö¹Ç·Î, ÀÌ¿¡ ¸Â°Ô ½ºÄÉÀÏ Á¶Á¤À» ÇØÁà¾ß ÇÑ´Ù.
+	// í…ìŠ¤ì³ê°€ 2^ní˜•íƒœë¡œ ë§Œë“¤ì–´ì§€ë¯€ë¡œ, ì´ì— ë§ê²Œ ìŠ¤ì¼€ì¼ ì¡°ì •ì„ í•´ì¤˜ì•¼ í•œë‹¤.
 	float fws = pBitmap->GetWidth()/(float)Floorer2PowerSize(pBitmap->GetWidth());
 	float fhs = pBitmap->GetHeight()/(float)Floorer2PowerSize(pBitmap->GetHeight());
 	D3DXVECTOR2 Trans((float)x, (float)y);
@@ -252,7 +252,7 @@ void MDrawContextR2::SetClipRect(MRECT& r)
 {
 	MDrawContext::SetClipRect(r);
 
-	// DX ClippingÀÌ ÇÑÇÈ¼¿ »à»ç¸®°¡ ³ª¼­ º¸Á¤
+	// DX Clippingì´ í•œí”½ì…€ ì‚‘ì‚¬ë¦¬ê°€ ë‚˜ì„œ ë³´ì •
 	r.w+=1;
 	r.h+=1;
 

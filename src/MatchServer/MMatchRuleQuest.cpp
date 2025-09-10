@@ -34,7 +34,7 @@ MMatchRuleQuest::~MMatchRuleQuest()
 	ClearQuestLevel();
 }
 
-// Route ¾¾¸®Áî ½ÃÀÛ /////////////////////////////////////////////////////////////////
+// Route ì”¨ë¦¬ì¦ˆ ì‹œì‘ /////////////////////////////////////////////////////////////////
 void MMatchRuleQuest::RouteMapSectorStart()
 {
 	MCommand* pCmd = MMatchServer::GetInstance()->CreateCommand(MC_QUEST_SECTOR_START, MUID(0,0));
@@ -134,7 +134,7 @@ void MMatchRuleQuest::RouteFailed()
 	MMatchServer::GetInstance()->RouteToStage(GetStage()->GetUID(), pCmd);
 
 #ifdef _DEBUG
-	mlog( "MMatchRuleQuest::RouteFailed - %s Äù½ºÆ® °ÔÀÓ ½ÇÆĞ.\n\n", GetStage()->GetName() );
+	mlog( "MMatchRuleQuest::RouteFailed - %s í€˜ìŠ¤íŠ¸ ê²Œì„ ì‹¤íŒ¨.\n\n", GetStage()->GetName() );
 #endif
 
 }
@@ -159,7 +159,7 @@ void MMatchRuleQuest::RouteSectorBonus(const MUID& uidPlayer, u32 nEXPValue)
 	MMatchServer::GetInstance()->RouteToListener( pPlayer, pNewCmd );
 }
 
-// Route ¾¾¸®Áî ³¡ ///////////////////////////////////////////////////////////////////
+// Route ì”¨ë¦¬ì¦ˆ ë ///////////////////////////////////////////////////////////////////
 
 void MMatchRuleQuest::OnBegin()
 {
@@ -167,16 +167,16 @@ void MMatchRuleQuest::OnBegin()
 
 	MakeQuestLevel();
 
-	MMatchRuleBaseQuest::OnBegin();		// ¿©±â¼­ °ÔÀÓÁ¤º¸µµ º¸³¿ - ¼ø¼­¿¡ ÁÖÀÇ
+	MMatchRuleBaseQuest::OnBegin();		// ì—¬ê¸°ì„œ ê²Œì„ì •ë³´ë„ ë³´ëƒ„ - ìˆœì„œì— ì£¼ì˜
 
-	// °ÔÀÓÀ» ¿Ï·á ÇÏ¿´À»½Ã ½ÃÀÛÇÒ¶§ÀÇ ÀÎ¿ø¼ö¿¡ µû¶ó¼­ º¸»óÀ» À§ÇØ¼­ ÇöÀç À¯Àú ¼ö¸¦ ÀúÀåÇÑ´Ù.
+	// ê²Œì„ì„ ì™„ë£Œ í•˜ì˜€ì„ì‹œ ì‹œì‘í• ë•Œì˜ ì¸ì›ìˆ˜ì— ë”°ë¼ì„œ ë³´ìƒì„ ìœ„í•´ì„œ í˜„ì¬ ìœ ì € ìˆ˜ë¥¼ ì €ì¥í•œë‹¤.
 	m_nPlayerCount = static_cast< int >( m_PlayerManager.size() );
 
-	// °ÔÀÓ½ÃÀÛÇÏ¸é ½½·ÔÀ» ¸ğµÎ ºñ¿öÁà¾ß ÇÔ.
-	// Èñ»ı¾ÆÀÌÅÛ ·Î±× Á¤º¸´Â DestroyAllSlot()¿¡¼­ m_QuestGameLogInfoMgr·Î ÀúÀå.
+	// ê²Œì„ì‹œì‘í•˜ë©´ ìŠ¬ë¡¯ì„ ëª¨ë‘ ë¹„ì›Œì¤˜ì•¼ í•¨.
+	// í¬ìƒì•„ì´í…œ ë¡œê·¸ ì •ë³´ëŠ” DestroyAllSlot()ì—ì„œ m_QuestGameLogInfoMgrë¡œ ì €ì¥.
 	DestroyAllSlot();
 
-	// °ÔÀÓ ½ÃÀÛÀü¿¡ Log¿¡ ÇÊ¿äÇÑ Á¤º¸¸¦ ¼öÁıÇÔ.
+	// ê²Œì„ ì‹œì‘ì „ì— Logì— í•„ìš”í•œ ì •ë³´ë¥¼ ìˆ˜ì§‘í•¨.
 	CollectStartingQuestGameLogInfo();
 
 	SetCombatState(MQUEST_COMBAT_PREPARE);
@@ -203,20 +203,20 @@ bool MMatchRuleQuest::OnRun()
 }
 
 
-// Áö±İÀº Á» ²¿¿©ÀÖÀ½.
+// ì§€ê¸ˆì€ ì¢€ ê¼¬ì—¬ìˆìŒ.
 void MMatchRuleQuest::CombatProcess()
 {
 	switch (m_nCombatState)
 	{
-	case MQUEST_COMBAT_PREPARE:			// ¸ğµÎµé ¼½ÅÍ·Î µé¾î¿À±â¸¦ ±â´Ù¸®´Â ½Ã±â
+	case MQUEST_COMBAT_PREPARE:			// ëª¨ë‘ë“¤ ì„¹í„°ë¡œ ë“¤ì–´ì˜¤ê¸°ë¥¼ ê¸°ë‹¤ë¦¬ëŠ” ì‹œê¸°
 		{
-			if (CheckReadytoNewSector())		// ¸ğµÎ ´Ù ¼½ÅÍ¿¡ µé¾î¿Ã¶§±îÁö PREPARE
+			if (CheckReadytoNewSector())		// ëª¨ë‘ ë‹¤ ì„¹í„°ì— ë“¤ì–´ì˜¬ë•Œê¹Œì§€ PREPARE
 			{
 				SetCombatState(MQUEST_COMBAT_PLAY);				
 			};
 		}
 		break;
-	case MQUEST_COMBAT_PLAY:			// ½ÇÁ¦ °ÔÀÓ ÇÃ·¹ÀÌ ½Ã±â
+	case MQUEST_COMBAT_PLAY:			// ì‹¤ì œ ê²Œì„ í”Œë ˆì´ ì‹œê¸°
 		{
 			COMBAT_PLAY_RESULT nResult = CheckCombatPlay();
 			switch(nResult)
@@ -236,8 +236,8 @@ void MMatchRuleQuest::CombatProcess()
 				break;
 			case CPR_FAILED:
 				{
-					// ¿©±â±îÁö ¿À±âÀü¿¡ ÀÌ »óÀ§ Å¬·¡½º¿¡¼­ À¯ÀúÀÇ »ıÁ¸¿©ºÎ¸¦ °Ë»çÇØ¼­ °ÔÀÓÀ» ³¡³»¹ö¸²... - by Ãß±³¼º.
-					// OnFailÀ» OnCheckRoundFinish¿¡¼­ Ã³¸®ÇÏ´Â ¹æÇâÀ¸·Î ¼öÁ¤ÇßÀ½.
+					// ì—¬ê¸°ê¹Œì§€ ì˜¤ê¸°ì „ì— ì´ ìƒìœ„ í´ë˜ìŠ¤ì—ì„œ ìœ ì €ì˜ ìƒì¡´ì—¬ë¶€ë¥¼ ê²€ì‚¬í•´ì„œ ê²Œì„ì„ ëë‚´ë²„ë¦¼... - by ì¶”êµì„±.
+					// OnFailì„ OnCheckRoundFinishì—ì„œ ì²˜ë¦¬í•˜ëŠ” ë°©í–¥ìœ¼ë¡œ ìˆ˜ì •í–ˆìŒ.
 					// SetCombatState(MQUEST_COMBAT_NONE);
 					// m_bQuestCompleted = false;
 					// OnFailed();
@@ -246,9 +246,9 @@ void MMatchRuleQuest::CombatProcess()
 			};
 		}
 		break;
-	case MQUEST_COMBAT_COMPLETED:			// °ÔÀÓÀÌ ³¡³ª°í ´ÙÀ½ ¸µÅ©·Î °Ç³Ê°¡´Â ½Ã±â
+	case MQUEST_COMBAT_COMPLETED:			// ê²Œì„ì´ ëë‚˜ê³  ë‹¤ìŒ ë§í¬ë¡œ ê±´ë„ˆê°€ëŠ” ì‹œê¸°
 		{
-			// Äù½ºÆ® Å¬¸®¾î°¡ ¾Æ´Ï°í ´ÙÀ½ ¼½ÅÍ°¡ ³²¾Æ ÀÖÀ¸¸é ¹Ù·Î PREPARE»óÅÂ°¡ µÈ´Ù.
+			// í€˜ìŠ¤íŠ¸ í´ë¦¬ì–´ê°€ ì•„ë‹ˆê³  ë‹¤ìŒ ì„¹í„°ê°€ ë‚¨ì•„ ìˆìœ¼ë©´ ë°”ë¡œ PREPAREìƒíƒœê°€ ëœë‹¤.
 			if (!m_bQuestCompleted)
 			{
                 SetCombatState(MQUEST_COMBAT_PREPARE);
@@ -271,12 +271,12 @@ void MMatchRuleQuest::OnBeginCombatState(MQuestCombatState nState)
 	case MQUEST_COMBAT_PLAY:
 		{
 			m_nCombatStartTime = MMatchServer::GetInstance()->GetTickTime();
-			// ¿ùµå¾ÆÀÌÅÛ ÃÊ±âÈ­
+			// ì›”ë“œì•„ì´í…œ ì´ˆê¸°í™”
 			m_pStage->m_WorldItemManager.OnRoundBegin();
 
 			RouteMapSectorStart();
 
-			// ¸ğµÎ ºÎÈ°
+			// ëª¨ë‘ ë¶€í™œ
 			if (m_pQuestLevel->GetCurrSectorIndex() != 0)
 				RefreshPlayerStatus();
 		}
@@ -289,7 +289,7 @@ void MMatchRuleQuest::OnBeginCombatState(MQuestCombatState nState)
 			}
 			else if( !CheckPlayersAlive() )
 			{
-				// °ÔÀÓÀÌ Áß°£¿¡ ³¡³².
+				// ê²Œì„ì´ ì¤‘ê°„ì— ëë‚¨.
 				OnFailed();
 			}
 			else
@@ -326,7 +326,7 @@ MMatchRuleQuest::COMBAT_PLAY_RESULT MMatchRuleQuest::CheckCombatPlay()
 		return CPR_COMPLETE;
 	}
 
-	// ¸ğµç À¯Àú°¡ Á×¾úÀ¸¸é °ÔÀÓ ½ÇÆĞ·Î ¼³Á¤ÇÔ.
+	// ëª¨ë“  ìœ ì €ê°€ ì£½ì—ˆìœ¼ë©´ ê²Œì„ ì‹¤íŒ¨ë¡œ ì„¤ì •í•¨.
 	if( !CheckPlayersAlive() )
 	{
 		return CPR_FAILED;
@@ -343,15 +343,15 @@ void MMatchRuleQuest::OnCommand(MCommand* pCommand)
 
 ///
 // First : 
-// Last  : 2005.04.27 Ãß±³¼º.
+// Last  : 2005.04.27 ì¶”êµì„±.
 //
-// Èñ»ı¾ÆÀÌÅÛÀ» ½½·Ô¿¡ ¿Ã·Á³õÀ¸¸é, QL°è»ê°ú Èñ»ı¾ÆÀÌÅÛ Å×ÀÌºí¿¡¼­ ¾ÆÀÌÅÛ¿¡ ÇØ´çÇÏ´Â Å×ÀÌºíÀÌ ÀÖ´ÂÁö °Ë»çÇÏ±â À§ÇØ È£ÃâµÊ.
-//  ¾ÆÀÌÅÛÀ» ½½·Ô¿¡ ¿Ã·Á³õÀ»¶§´Â QL¸¸À» °è»êÀ» ÇÔ. Èñ»ı¾ÆÀÌÅÛ Å×ÀÌºí °Ë»ö °á°ú´Â »ç¿ëµÇÁö ¾ÊÀ½.
-//  °ÔÀÓÀ» ½ÃÀÛÇÒ½Ã¿¡´Â Èñ»ı¾ÆÀÌÅÛ Å×ÀÌºí °Ë»ö °á°ú°¡ Á¤»óÀÏ¶§¸¸ °ÔÀÓÀ» ½ÃÀÛÇÔ.
+// í¬ìƒì•„ì´í…œì„ ìŠ¬ë¡¯ì— ì˜¬ë ¤ë†“ìœ¼ë©´, QLê³„ì‚°ê³¼ í¬ìƒì•„ì´í…œ í…Œì´ë¸”ì—ì„œ ì•„ì´í…œì— í•´ë‹¹í•˜ëŠ” í…Œì´ë¸”ì´ ìˆëŠ”ì§€ ê²€ì‚¬í•˜ê¸° ìœ„í•´ í˜¸ì¶œë¨.
+//  ì•„ì´í…œì„ ìŠ¬ë¡¯ì— ì˜¬ë ¤ë†“ì„ë•ŒëŠ” QLë§Œì„ ê³„ì‚°ì„ í•¨. í¬ìƒì•„ì´í…œ í…Œì´ë¸” ê²€ìƒ‰ ê²°ê³¼ëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠìŒ.
+//  ê²Œì„ì„ ì‹œì‘í• ì‹œì—ëŠ” í¬ìƒì•„ì´í…œ í…Œì´ë¸” ê²€ìƒ‰ ê²°ê³¼ê°€ ì •ìƒì¼ë•Œë§Œ ê²Œì„ì„ ì‹œì‘í•¨.
 ///
 bool MMatchRuleQuest::MakeQuestLevel()
 {
-	// ÀÌÀüÀÇ Äù½ºÆ® ·¹º§ Á¤º¸´Â Á¦°ÅÇÔ.
+	// ì´ì „ì˜ í€˜ìŠ¤íŠ¸ ë ˆë²¨ ì •ë³´ëŠ” ì œê±°í•¨.
 	if( 0 != m_pQuestLevel )
 	{
 		delete m_pQuestLevel;
@@ -371,7 +371,7 @@ bool MMatchRuleQuest::MakeQuestLevel()
 	m_pQuestLevel = LG.MakeLevel();
 
 
-	// Ã¹¼½ÅÍºÎÅÍ º¸½º¹æÀÏ ¼ö ÀÖÀ¸¹Ç·Î..
+	// ì²«ì„¹í„°ë¶€í„° ë³´ìŠ¤ë°©ì¼ ìˆ˜ ìˆìœ¼ë¯€ë¡œ..
 	InitJacoSpawnTrigger();
 
 	return true;
@@ -391,7 +391,7 @@ void MMatchRuleQuest::ClearQuestLevel()
 
 void MMatchRuleQuest::MoveToNextSector()
 {
-	// m_pQuestLevelµµ ´ÙÀ½¸ÊÀ¸·Î ÀÌµ¿ÇØÁØ´Ù.
+	// m_pQuestLevelë„ ë‹¤ìŒë§µìœ¼ë¡œ ì´ë™í•´ì¤€ë‹¤.
 	m_pQuestLevel->MoveToNextSector();
 
 	for (MQuestPlayerManager::iterator itor = m_PlayerManager.begin(); itor != m_PlayerManager.end(); ++itor)
@@ -405,7 +405,7 @@ void MMatchRuleQuest::MoveToNextSector()
 
 void MMatchRuleQuest::InitJacoSpawnTrigger()
 {
-	// ¸¸¾à ´ÙÀ½ ¼½ÅÍ°¡ º¸½º¼½ÅÍÀÌ¸é JacoTrigger ¹ßµ¿
+	// ë§Œì•½ ë‹¤ìŒ ì„¹í„°ê°€ ë³´ìŠ¤ì„¹í„°ì´ë©´ JacoTrigger ë°œë™
 	if (m_pQuestLevel->GetDynamicInfo()->bCurrBossSector)
 	{
 		int nDice = m_pQuestLevel->GetStaticInfo()->nDice;
@@ -462,23 +462,23 @@ bool MMatchRuleQuest::CheckReadytoNewSector()
 	return true;
 }
 
-// ¼½ÅÍ Å¬¸®¾î
+// ì„¹í„° í´ë¦¬ì–´
 void MMatchRuleQuest::OnSectorCompleted()
 {
-	// ¼½ÅÍ º¸³Ê½º
+	// ì„¹í„° ë³´ë„ˆìŠ¤
 	MQuestScenarioInfo* pScenario = m_pQuestLevel->GetStaticInfo()->pScenario;
 	if (pScenario)
 	{
 		int nSectorXP = pScenario->nSectorXP;
 		int nSectorBP = pScenario->nSectorBP;
 
-		// ¼½ÅÍ º¸³Ê½º°ª °è»ê
+		// ì„¹í„° ë³´ë„ˆìŠ¤ê°’ ê³„ì‚°
 		if (nSectorXP < 0)
 		{
 			int nSectorCount = (int)m_pQuestLevel->GetStaticInfo()->SectorList.size();
 			nSectorXP = MQuestFormula::CalcSectorXP(pScenario->nXPReward, nSectorCount);
 		}
-		// ¼½ÅÍ º¸³Ê½º°ª °è»ê
+		// ì„¹í„° ë³´ë„ˆìŠ¤ê°’ ê³„ì‚°
 		if (nSectorBP < 0)
 		{
 			int nSectorCount = (int)m_pQuestLevel->GetStaticInfo()->SectorList.size();
@@ -495,16 +495,16 @@ void MMatchRuleQuest::OnSectorCompleted()
 				MMatchObject* pPlayer = (*itor).second->pObject;
 				if ((!IsEnabledObject(pPlayer)) || (!pPlayer->CheckAlive())) continue;
 
-				// °æÇèÄ¡, ¹Ù¿îÆ¼ º¸³Ê½º °è»ê
+				// ê²½í—˜ì¹˜, ë°”ìš´í‹° ë³´ë„ˆìŠ¤ ê³„ì‚°
 				const float fXPBonusRatio = MMatchFormula::CalcXPBonusRatio(pPlayer, MIBT_QUEST);
 				const float fBPBonusRatio = MMatchFormula::CalcBPBounsRatio(pPlayer, MIBT_QUEST);
 				nAddedSectorXP += (int)(nAddedSectorXP * fXPBonusRatio);
 				nAddedSectorBP += (int)(nAddedSectorBP * fBPBonusRatio);
 
-				// ½ÇÁ¦ Àû¿ë
+				// ì‹¤ì œ ì ìš©
 				MGetMatchServer()->ProcessPlayerXPBP(m_pStage, pPlayer, nAddedSectorXP, nAddedSectorBP);
 
-				// ¶ó¿ìÆÃ
+				// ë¼ìš°íŒ…
 				int nExpPercent = MMatchFormula::GetLevelPercent(pPlayer->GetCharInfo()->m_nXP, 
 																pPlayer->GetCharInfo()->m_nLevel);
 				u32 nExpValue = MakeExpTransData(nAddedSectorXP, nExpPercent);
@@ -513,26 +513,26 @@ void MMatchRuleQuest::OnSectorCompleted()
 		}
 	}
 
-	// Á×Àº »ç¶÷ ºÎÈ°½ÃÅ²´Ù.
+	// ì£½ì€ ì‚¬ëŒ ë¶€í™œì‹œí‚¨ë‹¤.
 //	RefreshPlayerStatus();
 
 	MoveToNextSector();
 }
 
-// Äù½ºÆ® ¼º°ø½Ã
+// í€˜ìŠ¤íŠ¸ ì„±ê³µì‹œ
 void MMatchRuleQuest::OnCompleted()
 {
 	MMatchRuleBaseQuest::OnCompleted();
 
 #ifdef _QUEST_ITEM
-	// ¿©±â¼­ DB·Î QuestGameLog»ı¼º.
+	// ì—¬ê¸°ì„œ DBë¡œ QuestGameLogìƒì„±.
 	PostInsertQuestGameLogAsyncJob();	
 	SetCombatState(MQUEST_COMBAT_NONE);
 #endif
 	
 }
 
-// Äù½ºÆ® ½ÇÆĞ½Ã
+// í€˜ìŠ¤íŠ¸ ì‹¤íŒ¨ì‹œ
 void MMatchRuleQuest::OnFailed()
 {
 	SetCombatState(MQUEST_COMBAT_NONE);
@@ -543,7 +543,7 @@ void MMatchRuleQuest::OnFailed()
 	PostInsertQuestGameLogAsyncJob();
 }
 
-// Äù½ºÆ®°¡ ¸ğµÎ ³¡³µ´ÂÁö Ã¼Å©
+// í€˜ìŠ¤íŠ¸ê°€ ëª¨ë‘ ëë‚¬ëŠ”ì§€ ì²´í¬
 bool MMatchRuleQuest::CheckQuestCompleted()
 {
 	if (m_pQuestLevel)
@@ -565,7 +565,7 @@ bool MMatchRuleQuest::CheckQuestCompleted()
 	return false;
 }
 
-// ¸¶Áö¸· ¼½ÅÍ´Â ¾ÆÀÌÅÛÀ» ¸ÔÀ» ¼ö ÀÖµµ·Ï µô·¹ÀÌ ½Ã°£À» µĞ´Ù.
+// ë§ˆì§€ë§‰ ì„¹í„°ëŠ” ì•„ì´í…œì„ ë¨¹ì„ ìˆ˜ ìˆë„ë¡ ë”œë ˆì´ ì‹œê°„ì„ ë‘”ë‹¤.
 bool MMatchRuleQuest::CheckQuestCompleteDelayTime()
 {
 	if ((m_pQuestLevel) && (m_pQuestLevel->GetMapSectorCount() == (m_pQuestLevel->GetCurrSectorIndex()+1)))
@@ -600,18 +600,18 @@ void MMatchRuleQuest::MakeNPCnSpawn(MQUEST_NPC nNPCID, bool bAddQuestDropItem)
 
 		if (pNPCObject)
 		{
-			// drop item °áÁ¤
+			// drop item ê²°ì •
 			MQuestDropItem item;
 			int nDropTableID = pNPCInfo->nDropTableID;
 			int nQL = m_pQuestLevel->GetStaticInfo()->nQL;
 			MMatchServer::GetInstance()->GetQuest()->GetDropTable()->Roll(item, nDropTableID, nQL);
 
-			// AddQuestDropItem=falseÀÌ¸é ¿ùµå¾ÆÀÌÅÛ¸¸ µå·ÓÇÑ´Ù.
+			// AddQuestDropItem=falseì´ë©´ ì›”ë“œì•„ì´í…œë§Œ ë“œë¡­í•œë‹¤.
 			if ((bAddQuestDropItem==true) || (item.nDropItemType == QDIT_WORLDITEM))
 			{
 				pNPCObject->SetDropItem(&item);
 
-				// ¸¸µé¾îÁø ¾ÆÀÌÅÛÀº level¿¡ ³Ö¾î³õ´Â´Ù.
+				// ë§Œë“¤ì–´ì§„ ì•„ì´í…œì€ levelì— ë„£ì–´ë†“ëŠ”ë‹¤.
 				if ((item.nDropItemType == QDIT_QUESTITEM) || (item.nDropItemType == QDIT_ZITEM))
 				{
 					m_pQuestLevel->OnItemCreated((u32)(item.nID), item.nRentPeriodHour);
@@ -633,10 +633,10 @@ void MMatchRuleQuest::ProcessNPCSpawn()
 	}
 	else
 	{
-		// º¸½º¹æÀÏ °æ¿ì Queue¿¡ ÀÖ´Â NPCµéÀ» ¸ğµÎ ½ºÆù½ÃÄ×À¸¸é JacoµéÀ» ½ºÆù½ÃÅ²´Ù.
+		// ë³´ìŠ¤ë°©ì¼ ê²½ìš° Queueì— ìˆëŠ” NPCë“¤ì„ ëª¨ë‘ ìŠ¤í°ì‹œì¼°ìœ¼ë©´ Jacoë“¤ì„ ìŠ¤í°ì‹œí‚¨ë‹¤.
 		if (m_pQuestLevel->GetDynamicInfo()->bCurrBossSector)
 		{
-			// º¸½º°¡ »ì¾ÆÀÖ°í ±âº»ÀûÀ¸·Î ³ª¿Ã NPC°¡ ´Ù ³ª¿Â´ÙÀ½¿¡ Á¹º´µé ½ºÆù
+			// ë³´ìŠ¤ê°€ ì‚´ì•„ìˆê³  ê¸°ë³¸ì ìœ¼ë¡œ ë‚˜ì˜¬ NPCê°€ ë‹¤ ë‚˜ì˜¨ë‹¤ìŒì— ì¡¸ë³‘ë“¤ ìŠ¤í°
 			if ((m_NPCManager.GetBossCount() > 0) && (m_pQuestLevel->GetNPCQueue()->IsEmpty()))
 			{
 				int nAliveNPCCount = m_NPCManager.GetNPCObjectCount();
@@ -721,7 +721,7 @@ void MMatchRuleQuest::DistributeReward()
 {
 	if (!m_pQuestLevel) return;
 
-	// ÇöÀç ¼­¹ö°¡ Äù½ºÆ® ¼­¹öÀÏ °æ¿ì¿¡¸¸ °¡´ÉÇÏ°Ô ÇÔ.
+	// í˜„ì¬ ì„œë²„ê°€ í€˜ìŠ¤íŠ¸ ì„œë²„ì¼ ê²½ìš°ì—ë§Œ ê°€ëŠ¥í•˜ê²Œ í•¨.
 	if( MSM_TEST != MGetServerConfig()->GetServerMode() )  return;
 
 	MQuestScenarioInfo* pScenario = m_pQuestLevel->GetStaticInfo()->pScenario;
@@ -735,30 +735,30 @@ void MMatchRuleQuest::DistributeReward()
 	const int nRewardBP		= pScenario->nBPReward;
 	const int nScenarioQL	= pScenario->nQL;
 
-	MakeRewardList();		// ¾ÆÀÌÅÛ ¹èºĞ
+	MakeRewardList();		// ì•„ì´í…œ ë°°ë¶„
 
 	for (MQuestPlayerManager::iterator itor = m_PlayerManager.begin(); itor != m_PlayerManager.end(); ++itor)
 	{
 		MQuestPlayerInfo* pPlayerInfo = (*itor).second;
 
-		// °æÇèÄ¡, ¹Ù¿îÆ¼ ¹èºĞ
+		// ê²½í—˜ì¹˜, ë°”ìš´í‹° ë°°ë¶„
 		DistributeXPnBP( pPlayerInfo, nRewardXP, nRewardBP, nScenarioQL );
 
 		pPlayer = MMatchServer::GetInstance()->GetObject((*itor).first);
 		if( !IsEnabledObject(pPlayer) ) continue;
 
-		// Äù½ºÆ® ¾ÆÀÌÅÛ ¹èºĞ
+		// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ë°°ë¶„
 		void* pSimpleQuestItemBlob = NULL;
 		if (!DistributeQItem( pPlayerInfo, &pSimpleQuestItemBlob )) continue;
 
-		// ÀÏ¹İ ¾ÆÀÌÅÛ ¹èºĞ
+		// ì¼ë°˜ ì•„ì´í…œ ë°°ë¶„
 		void* pSimpleZItemBlob = NULL;
 		if (!DistributeZItem( pPlayerInfo, &pSimpleZItemBlob )) continue;
 
-		// DBµ¿±âÈ­ ¿©ºÎ °Ë»ç.
+		// DBë™ê¸°í™” ì—¬ë¶€ ê²€ì‚¬.
 		pPlayer->GetCharInfo()->GetDBQuestCachingData().IncreasePlayCount();
 
-		// Ä¿¸Çµå »ı¼º.
+		// ì»¤ë§¨ë“œ ìƒì„±.
 		RouteRewardCommandToStage( pPlayer, (*itor).second->nXP, (*itor).second->nBP, pSimpleQuestItemBlob, pSimpleZItemBlob );
 
 		MEraseBlobArray( pSimpleQuestItemBlob );
@@ -775,16 +775,16 @@ void MMatchRuleQuest::InsertNoParamQItemToPlayer( MMatchObject* pPlayer, MQuestI
 
 	if( pPlayer->GetCharInfo()->m_QuestItemList.end() != itMyQItem )
 	{
-		// ±âÁ¸¿¡ °¡Áö°í ÀÖ´ø Äù½ºÆ® ¾ÆÀÌÅÛ. ¼ö·®¸¸ Áõ°¡ ½ÃÄÑÁÖ¸é µÊ.
+		// ê¸°ì¡´ì— ê°€ì§€ê³  ìˆë˜ í€˜ìŠ¤íŠ¸ ì•„ì´í…œ. ìˆ˜ëŸ‰ë§Œ ì¦ê°€ ì‹œì¼œì£¼ë©´ ë¨.
 		const int nOver = itMyQItem->second->Increase( pQItem->GetCount() );
 		if( 0 < nOver )
 			pQItem->Decrease( nOver );
 	}
 	else
 	{
-		// Ã³À½ È¹µæÇÑ Äù½ºÆ® ¾ÆÀÌÅÛ. »õ·Î Ãß°¡½ÃÄÑ Áà¾ß ÇÔ.
+		// ì²˜ìŒ íšë“í•œ í€˜ìŠ¤íŠ¸ ì•„ì´í…œ. ìƒˆë¡œ ì¶”ê°€ì‹œì¼œ ì¤˜ì•¼ í•¨.
 		if( !pPlayer->GetCharInfo()->m_QuestItemList.CreateQuestItem(pQItem->GetItemID(), pQItem->GetCount(), pQItem->IsKnown()) )
-			mlog( "MMatchRuleQuest::DistributeReward - %d¹øÈ£ ¾ÆÀÌÅÛÀÇ Create( ... )ÇÔ¼ö È£Ãâ ½ÇÆĞ.\n", pQItem->GetItemID() );
+			mlog( "MMatchRuleQuest::DistributeReward - %dë²ˆí˜¸ ì•„ì´í…œì˜ Create( ... )í•¨ìˆ˜ í˜¸ì¶œ ì‹¤íŒ¨.\n", pQItem->GetItemID() );
 	}
 }
 
@@ -807,7 +807,7 @@ void MMatchRuleQuest::MakeRewardList()
 	{
 		MQuestPlayerInfo* pPlayerInfo = (*itor).second;
 
-		// È¤½Ã ¿¹Àü °ÔÀÓÀÇ ¸®¿öµå ¾ÆÀÌÅÛÀÌ ³²¾ÆÀÖÀ»Áö ¸ğ¸£´Ï ÃÊ±âÈ­.
+		// í˜¹ì‹œ ì˜ˆì „ ê²Œì„ì˜ ë¦¬ì›Œë“œ ì•„ì´í…œì´ ë‚¨ì•„ìˆì„ì§€ ëª¨ë¥´ë‹ˆ ì´ˆê¸°í™”.
 		pPlayerInfo->RewardQuestItemMap.Clear();
 		pPlayerInfo->RewardZItemList.clear();
 
@@ -818,31 +818,31 @@ void MMatchRuleQuest::MakeRewardList()
 	{
 		pObtainQItem = itObtainQItem->second;
 
-		// È¹µæÇÏÁö ¸øÇßÀ¸¸é ¹«½Ã.
+		// íšë“í•˜ì§€ ëª»í–ˆìœ¼ë©´ ë¬´ì‹œ.
 		if (!pObtainQItem->bObtained) continue;	
 
 		if (pObtainQItem->IsQuestItem())
 		{
-			// Äù½ºÆ® ¾ÆÀÌÅÛ -----------------------------------------------------
+			// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ -----------------------------------------------------
 
-			// ½ÃÀÛÇÒ¶§ÀÇ ÀÎ¿øÀ»°¡Áö°í rollÀ» ÇÔ.
+			// ì‹œì‘í• ë•Œì˜ ì¸ì›ì„ê°€ì§€ê³  rollì„ í•¨.
 			nPos = RandomNumber( 0, nLimitRandNum );
 
-			// ÇöÀç ³²¾ÆÀÖ´Â ÀÎ¿øº¸´Ù Å¬°æ¿ì ±×³É ¹ö¸².
+			// í˜„ì¬ ë‚¨ì•„ìˆëŠ” ì¸ì›ë³´ë‹¤ í´ê²½ìš° ê·¸ëƒ¥ ë²„ë¦¼.
 			if (( nPos < nPlayerCount ) && (nPos < (int)a_vecPlayerInfos.size()))
 			{
-				// Äù½ºÆ® ¾ÆÀÌÅÛÀÏ °æ¿ì Ã³¸®
+				// í€˜ìŠ¤íŠ¸ ì•„ì´í…œì¼ ê²½ìš° ì²˜ë¦¬
 				MQuestItemMap* pRewardQuestItemMap = &a_vecPlayerInfos[ nPos ]->RewardQuestItemMap;
 
 				pRewardQItem = pRewardQuestItemMap->Find( pObtainQItem->nItemID );
 				if( 0!= pRewardQItem )
-					pRewardQItem->Increase(); // ÀÌÀü¿¡ È¹µæÇÑ ¾ÆÀÌÅÛ.
+					pRewardQItem->Increase(); // ì´ì „ì— íšë“í•œ ì•„ì´í…œ.
 				else
 				{
-					// Ã³À½ È¹µæ.
+					// ì²˜ìŒ íšë“.
 					if( !pRewardQuestItemMap->CreateQuestItem(pObtainQItem->nItemID, 1) )
 					{
-						mlog( "MMatchRuleQuest::MakeRewardList - ItemID:%d Ã³À½ È¹µæÇÑ ¾ÆÀÌÅÛ »ı¼º ½ÇÆĞ.\n", pObtainQItem->nItemID );
+						mlog( "MMatchRuleQuest::MakeRewardList - ItemID:%d ì²˜ìŒ íšë“í•œ ì•„ì´í…œ ìƒì„± ì‹¤íŒ¨.\n", pObtainQItem->nItemID );
 						continue;
 					}
 				}
@@ -850,7 +850,7 @@ void MMatchRuleQuest::MakeRewardList()
 		}
 		else
 		{
-			// ÀÏ¹İ ¾ÆÀÌÅÛÀÏ °æ¿ì Ã³¸® -------------------------------------------
+			// ì¼ë°˜ ì•„ì´í…œì¼ ê²½ìš° ì²˜ë¦¬ -------------------------------------------
 
 			
 			
@@ -861,21 +861,21 @@ void MMatchRuleQuest::MakeRewardList()
 			int nLoopCounter = 0;
 			const int MAX_LOOP_COUNT = 5;
 
-			// ÃÖ´ë 5¹ø±îÁö ·£´ıÀ¸·Î ¾ÆÀÌÅÛÀÇ ¼ºº°ÀÌ °°Àº »ç¶÷À» Ã£´Â´Ù.
+			// ìµœëŒ€ 5ë²ˆê¹Œì§€ ëœë¤ìœ¼ë¡œ ì•„ì´í…œì˜ ì„±ë³„ì´ ê°™ì€ ì‚¬ëŒì„ ì°¾ëŠ”ë‹¤.
 			while (nLoopCounter < MAX_LOOP_COUNT)
 			{
 				nLoopCounter++;
 
-				// ½ÃÀÛÇÒ¶§ÀÇ ÀÎ¿øÀ»°¡Áö°í rollÀ» ÇÔ.
+				// ì‹œì‘í• ë•Œì˜ ì¸ì›ì„ê°€ì§€ê³  rollì„ í•¨.
 				nPos = RandomNumber( 0, nLimitRandNum );
 
-				// ÇöÀç ³²¾ÆÀÖ´Â ÀÎ¿øº¸´Ù Å¬°æ¿ì ±×³É ¹ö¸².
+				// í˜„ì¬ ë‚¨ì•„ìˆëŠ” ì¸ì›ë³´ë‹¤ í´ê²½ìš° ê·¸ëƒ¥ ë²„ë¦¼.
 				if (( nPos < nPlayerCount ) && (nPos < (int)a_vecPlayerInfos.size()))
 				{
 					MQuestPlayerInfo* pPlayerInfo = a_vecPlayerInfos[ nPos ];
 					MQuestRewardZItemList* pRewardZItemList = &pPlayerInfo->RewardZItemList;
 
-					// ¼ºº°ÀÌ °°¾Æ¾ß¸¸ °¡Áú ¼ö ÀÖ´Ù.
+					// ì„±ë³„ì´ ê°™ì•„ì•¼ë§Œ ê°€ì§ˆ ìˆ˜ ìˆë‹¤.
 					if (IsEnabledObject(pPlayerInfo->pObject))
 					{
 						if (IsEquipableItem(iteminfo.nItemID, MAX_LEVEL, pPlayerInfo->pObject->GetCharInfo()->m_nSex))
@@ -892,7 +892,7 @@ void MMatchRuleQuest::MakeRewardList()
 }
 
 
-///< °æÇèÄ¡¿Í ¹Ù¿îÆ¼ ¹èºĞ ¿Å±è. -by Ãß±³¼º.
+///< ê²½í—˜ì¹˜ì™€ ë°”ìš´í‹° ë°°ë¶„ ì˜®ê¹€. -by ì¶”êµì„±.
 void MMatchRuleQuest::DistributeXPnBP( MQuestPlayerInfo* pPlayerInfo, const int nRewardXP, const int nRewardBP, const int nScenarioQL )
 {
 	float fXPRate, fBPRate;
@@ -909,10 +909,10 @@ void MMatchRuleQuest::DistributeXPnBP( MQuestPlayerInfo* pPlayerInfo, const int 
 	pPlayerInfo->nBP = int(nRewardBP * fBPRate);
 
 
-	// ½ÇÁ¦·Î °æÇèÄ¡, ¹Ù¿îÆ¼ Áö±Ş
+	// ì‹¤ì œë¡œ ê²½í—˜ì¹˜, ë°”ìš´í‹° ì§€ê¸‰
 	if (IsEnabledObject(pPlayerInfo->pObject))
 	{
-		// °æÇèÄ¡ º¸³Ê½º °è»ê
+		// ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ê³„ì‚°
 		const float fXPBonusRatio = MMatchFormula::CalcXPBonusRatio(pPlayerInfo->pObject, MIBT_QUEST);
 		const float fBPBonusRatio = MMatchFormula::CalcBPBounsRatio(pPlayerInfo->pObject, MIBT_QUEST);
 
@@ -926,7 +926,7 @@ void MMatchRuleQuest::DistributeXPnBP( MQuestPlayerInfo* pPlayerInfo, const int 
 	}
 }
 
-// Äù½ºÆ® ¾ÆÀÌÅÛ ¹èºĞ
+// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ë°°ë¶„
 bool MMatchRuleQuest::DistributeQItem( MQuestPlayerInfo* pPlayerInfo, void** ppoutSimpleQuestItemBlob)
 {
 	MMatchObject* pPlayer = pPlayerInfo->pObject;
@@ -934,18 +934,18 @@ bool MMatchRuleQuest::DistributeQItem( MQuestPlayerInfo* pPlayerInfo, void** ppo
 
 	MQuestItemMap* pObtainQuestItemMap = &pPlayerInfo->RewardQuestItemMap;
 
-	// Client·Î Àü¼ÛÇÒ¼ö ÀÖ´Â ÇüÅÂ·Î Quest itemÁ¤º¸¸¦ ÀúÀåÇÒ Blob»ı¼º.
+	// Clientë¡œ ì „ì†¡í• ìˆ˜ ìˆëŠ” í˜•íƒœë¡œ Quest itemì •ë³´ë¥¼ ì €ì¥í•  Blobìƒì„±.
 	void* pSimpleQuestItemBlob = MMakeBlobArray( sizeof(MTD_QuestItemNode), static_cast<int>(pObtainQuestItemMap->size()) );
 	if( 0 == pSimpleQuestItemBlob )
 	{
-		mlog( "MMatchRuleQuest::DistributeReward - Quest item Á¤º¸¸¦ º¸³¾ Blob»ı¼º¿¡ ½ÇÆĞ.\n" );
+		mlog( "MMatchRuleQuest::DistributeReward - Quest item ì •ë³´ë¥¼ ë³´ë‚¼ Blobìƒì„±ì— ì‹¤íŒ¨.\n" );
 		return false;
 	}
 
-	// ·Î±×¸¦ À§ÇØ¼­ ÇØ´ç À¯Àú°¡ ¹ŞÀ» ¾ÆÀÌÅÛÀÇ Á¤º¸¸¦ ÀúÀåÇØ ³õÀ½.
+	// ë¡œê·¸ë¥¼ ìœ„í•´ì„œ í•´ë‹¹ ìœ ì €ê°€ ë°›ì„ ì•„ì´í…œì˜ ì •ë³´ë¥¼ ì €ì¥í•´ ë†“ìŒ.
 	if( !m_QuestGameLogInfoMgr.AddRewardQuestItemInfo(pPlayer->GetUID(), pObtainQuestItemMap) )
 	{
-		mlog( "m_QuestGameLogInfoMgr -ÇØ´ç À¯ÀúÀÇ ·Î±×°´Ã¼¸¦ Ã£´Âµ¥ ½ÇÆĞ." );
+		mlog( "m_QuestGameLogInfoMgr -í•´ë‹¹ ìœ ì €ì˜ ë¡œê·¸ê°ì²´ë¥¼ ì°¾ëŠ”ë° ì‹¤íŒ¨." );
 	}
 
 	int nBlobIndex = 0;
@@ -955,28 +955,28 @@ bool MMatchRuleQuest::DistributeQItem( MQuestPlayerInfo* pPlayerInfo, void** ppo
 		MQuestItemDesc* pQItemDesc = pQItem->GetDesc();
 		if( 0 == pQItemDesc )
 		{
-			mlog( "MMatchRuleQuest::DistributeReward - %d ¾ÆÀÌÅÛÀÇ µğ½ºÅ©¸³¼Ç ¼ÂÆÃÀÌ µÇ¾îÀÖÁö ¾ÊÀ½.\n", pQItem->GetItemID() );
+			mlog( "MMatchRuleQuest::DistributeReward - %d ì•„ì´í…œì˜ ë””ìŠ¤í¬ë¦½ì…˜ ì…‹íŒ…ì´ ë˜ì–´ìˆì§€ ì•ŠìŒ.\n", pQItem->GetItemID() );
 			continue;
 		}
 
-		// À¯´ÏÅ© ¾ÆÀÌÅÛÀÎÁö °Ë»ç¸¦ ÇÔ.
+		// ìœ ë‹ˆí¬ ì•„ì´í…œì¸ì§€ ê²€ì‚¬ë¥¼ í•¨.
 		pPlayer->GetCharInfo()->m_DBQuestCachingData.CheckUniqueItem( pQItem );
-		// º¸»ó¹ŞÀº È½¼ö¸¦ °Ë»ç¸¦ ÇÔ.
+		// ë³´ìƒë°›ì€ íšŸìˆ˜ë¥¼ ê²€ì‚¬ë¥¼ í•¨.
 		pPlayer->GetCharInfo()->m_DBQuestCachingData.IncreaseRewardCount();
 
 		if( MMQIT_MONBIBLE == pQItemDesc->m_nType )
 		{
-			// ¸ó½ºÅÍ µµ°¨ Ã³¸®.
+			// ëª¬ìŠ¤í„° ë„ê° ì²˜ë¦¬.
 			if( !pPlayer->GetCharInfo()->m_QMonsterBible.IsKnownMonster(pQItemDesc->m_nParam) )
 				pPlayer->GetCharInfo()->m_QMonsterBible.WriteMonsterInfo( pQItemDesc->m_nParam );
 		}
 		else if( 0 != pQItemDesc->m_nParam )
 		{
-			// Param°ªÀÌ ¼³Á¤µÇ¾î ÀÖ´Â ¾ÆÀÌÅÛÀº µû·Î Ã³¸®¸¦ ÇØÁà¾ß ÇÔ.				
+			// Paramê°’ì´ ì„¤ì •ë˜ì–´ ìˆëŠ” ì•„ì´í…œì€ ë”°ë¡œ ì²˜ë¦¬ë¥¼ í•´ì¤˜ì•¼ í•¨.				
 		}
 		else
 		{
-			// DB¿¡ ÀúÀåÀÌ µÇ´Â Äù½ºÆ® ¾ÆÀÌÅÛ¸¸ À¯ÀúÇÑÅ× ÀúÀåÇÔ.
+			// DBì— ì €ì¥ì´ ë˜ëŠ” í€˜ìŠ¤íŠ¸ ì•„ì´í…œë§Œ ìœ ì €í•œí…Œ ì €ì¥í•¨.
 			InsertNoParamQItemToPlayer( pPlayer, pQItem );
 		}
 
@@ -996,18 +996,18 @@ bool MMatchRuleQuest::DistributeZItem( MQuestPlayerInfo* pPlayerInfo, void** ppo
 
 	MQuestRewardZItemList* pObtainZItemList = &pPlayerInfo->RewardZItemList;
 
-	// Client·Î Àü¼ÛÇÒ¼ö ÀÖ´Â ÇüÅÂ·Î Quest itemÁ¤º¸¸¦ ÀúÀåÇÒ Blob»ı¼º.
+	// Clientë¡œ ì „ì†¡í• ìˆ˜ ìˆëŠ” í˜•íƒœë¡œ Quest itemì •ë³´ë¥¼ ì €ì¥í•  Blobìƒì„±.
 	void* pSimpleZItemBlob = MMakeBlobArray( sizeof(MTD_QuestZItemNode), (int)(pObtainZItemList->size()) );
 	if( 0 == pSimpleZItemBlob )
 	{
-		mlog( "MMatchRuleQuest::DistributeZItem - Ztem Á¤º¸¸¦ º¸³¾ Blob»ı¼º¿¡ ½ÇÆĞ.\n" );
+		mlog( "MMatchRuleQuest::DistributeZItem - Ztem ì •ë³´ë¥¼ ë³´ë‚¼ Blobìƒì„±ì— ì‹¤íŒ¨.\n" );
 		return false;
 	}
 
-	// Ä³½Ã ¾ÆÀÌÅÛ È¹µæ ·Î±×¸¦ ³²±â±â À§ÇÔ.
+	// ìºì‹œ ì•„ì´í…œ íšë“ ë¡œê·¸ë¥¼ ë‚¨ê¸°ê¸° ìœ„í•¨.
 	if( !m_QuestGameLogInfoMgr.AddRewardZItemInfo(pPlayer->GetUID(), pObtainZItemList) )
 	{
-		mlog( "m_QuestGameLogInfoMgr -ÇØ´ç À¯ÀúÀÇ ·Î±×°´Ã¼¸¦ Ã£´Âµ¥ ½ÇÆĞ." );
+		mlog( "m_QuestGameLogInfoMgr -í•´ë‹¹ ìœ ì €ì˜ ë¡œê·¸ê°ì²´ë¥¼ ì°¾ëŠ”ë° ì‹¤íŒ¨." );
 	}
 
 	int nBlobIndex = 0;
@@ -1020,10 +1020,10 @@ bool MMatchRuleQuest::DistributeZItem( MQuestPlayerInfo* pPlayerInfo, void** ppo
 		if (!IsEquipableItem(iteminfo.nItemID, MAX_LEVEL, pPlayer->GetCharInfo()->m_nSex)) 
 			continue;
 
-		// ½ÇÁ¦·Î ¾ÆÀÌÅÛ µî·Ï
+		// ì‹¤ì œë¡œ ì•„ì´í…œ ë“±ë¡
 		MMatchServer::GetInstance()->InsertCharItem(pPlayer->GetUID(), iteminfo.nItemID, true, iteminfo.nRentPeriodHour);
 
-		// ºí·Ó»ı¼º
+		// ë¸”ë¡­ìƒì„±
 		MTD_QuestZItemNode* pZItemNode = (MTD_QuestZItemNode*)(MGetBlobArrayElement(pSimpleZItemBlob, nBlobIndex++));
 		pZItemNode->m_nItemID = iteminfo.nItemID;
 		pZItemNode->m_nRentPeriodHour = iteminfo.nRentPeriodHour;
@@ -1076,7 +1076,7 @@ void MMatchRuleQuest::OnObtainWorldItem(MMatchObject* pObj, int nItemID, int* pn
 
 	if (m_pQuestLevel->OnItemObtained(pObj, (u32)nQuestItemID))
 	{
-		// true°ªÀÌ¸é ½ÇÁ¦·Î ¸ÔÀº°ÍÀÓ.
+		// trueê°’ì´ë©´ ì‹¤ì œë¡œ ë¨¹ì€ê²ƒì„.
 
 		if (IsQuestItemID(nQuestItemID))
             RouteObtainQuestItem((u32)nQuestItemID);
@@ -1099,28 +1099,28 @@ void MMatchRuleQuest::OnResponseDropSacrificeItemOnSlot( const MUID& uidSender, 
 {
 	if( (MAX_SACRIFICE_SLOT_COUNT > nSlotIndex) && (0 <= nSlotIndex) ) 
 	{
-		// Áßº¹ °Ë»ç.
+		// ì¤‘ë³µ ê²€ì‚¬.
 		// if( IsSacrificeItemDuplicated(uidSender, nSlotIndex, nItemID) )
 		//	return;
 		
 		MQuestItemDesc* pQItemDesc = GetQuestItemDescMgr().FindQItemDesc( nItemID );
 		if( 0 == pQItemDesc )
 		{
-			// ItemID°¡ ºñ Á¤»óÀûÀÌ°Å³ª ItemID¿¡ ÇØ´çÇÏ´Â DescriptionÀÌ ¾øÀ½.
-			// ¿©ÇÏÆ° error...
+			// ItemIDê°€ ë¹„ ì •ìƒì ì´ê±°ë‚˜ ItemIDì— í•´ë‹¹í•˜ëŠ” Descriptionì´ ì—†ìŒ.
+			// ì—¬í•˜íŠ¼ error...
 
-			mlog( "MMatchRuleBaseQuest::SetSacrificeItemOnSlot - ItemID°¡ ºñ Á¤»óÀûÀÌ°Å³ª %d¿¡ ÇØ´çÇÏ´Â DescriptionÀÌ ¾øÀ½.\n", nItemID );
+			mlog( "MMatchRuleBaseQuest::SetSacrificeItemOnSlot - ItemIDê°€ ë¹„ ì •ìƒì ì´ê±°ë‚˜ %dì— í•´ë‹¹í•˜ëŠ” Descriptionì´ ì—†ìŒ.\n", nItemID );
 			ASSERT( 0 );
 			return;
 		}
 
-		// ¾ÆÀÌÅÛÀÇ Å¸ÀÔÀÌ Èñ»ı¾ÆÀÌÅÛÀÎ °æ¿ì¸¸ ½ÇÇà.
+		// ì•„ì´í…œì˜ íƒ€ì…ì´ í¬ìƒì•„ì´í…œì¸ ê²½ìš°ë§Œ ì‹¤í–‰.
 		if( pQItemDesc->m_bSecrifice )
 		{
 			MMatchObject* pPlayer = MMatchServer::GetInstance()->GetObject( uidSender );
 			if( !IsEnabledObject(pPlayer) )
 			{
-				mlog( "MMatchRuleBaseQuest::SetSacrificeItemOnSlot - ºñÁ¤»ó À¯Àú.\n" );
+				mlog( "MMatchRuleBaseQuest::SetSacrificeItemOnSlot - ë¹„ì •ìƒ ìœ ì €.\n" );
 				return;
 			}
 
@@ -1128,19 +1128,19 @@ void MMatchRuleQuest::OnResponseDropSacrificeItemOnSlot( const MUID& uidSender, 
 			if( 0 == pStage )
 				return;
 
-			// ¾Æ¹«³ª ½½·Ô¿¡ Á¢±ÙÇÒ¼ö ÀÖÀ½.
+			// ì•„ë¬´ë‚˜ ìŠ¬ë¡¯ì— ì ‘ê·¼í• ìˆ˜ ìˆìŒ.
 
 			MQuestItem* pQuestItem = pPlayer->GetCharInfo()->m_QuestItemList.Find( nItemID );
 			if( 0 == pQuestItem )
 				return;
 			
-			// ¼ö·®ÀÌ ÃæºĞÇÑÁö °Ë»ç.
+			// ìˆ˜ëŸ‰ì´ ì¶©ë¶„í•œì§€ ê²€ì‚¬.
 			int nMySacriQItemCount = CalcuOwnerQItemCount( uidSender, nItemID );
 			if( -1 == nMySacriQItemCount )
 				return;
 			if( nMySacriQItemCount >= pQuestItem->GetCount() )
 			{
-				// ¼ö·®ÀÌ ºÎÁ·ÇØ¼­ ¿Ã¸®Áö ¸øÇß´Ù°í Åëº¸ÇÔ.
+				// ìˆ˜ëŸ‰ì´ ë¶€ì¡±í•´ì„œ ì˜¬ë¦¬ì§€ ëª»í–ˆë‹¤ê³  í†µë³´í•¨.
 				MCommand* pCmdMore = MMatchServer::GetInstance()->CreateCommand( MC_MATCH_RESPONSE_DROP_SACRIFICE_ITEM, MUID(0, 0) );
 				if( 0 == pCmdMore )
 					return;
@@ -1167,23 +1167,23 @@ void MMatchRuleQuest::OnResponseDropSacrificeItemOnSlot( const MUID& uidSender, 
 			
 			MMatchServer::GetInstance()->RouteToStage( pStage->GetUID(), pCmdOk );
 			
-			// ÀÏ¹İÀûÀÎ Ã³¸®.
+			// ì¼ë°˜ì ì¸ ì²˜ë¦¬.
 			m_SacrificeSlot[ nSlotIndex ].SetAll( uidSender, nItemID );
 
-			// ½½·ÔÀÇ Á¤º¸°¡ ¾÷µ¥ÀÌÆ®µÇ¸é ¾÷µ¥ÀÌÆ®µÈ Á¤º¸¸¦ ´Ù½Ã º¸³»ÁÜ.
+			// ìŠ¬ë¡¯ì˜ ì •ë³´ê°€ ì—…ë°ì´íŠ¸ë˜ë©´ ì—…ë°ì´íŠ¸ëœ ì •ë³´ë¥¼ ë‹¤ì‹œ ë³´ë‚´ì¤Œ.
 			RefreshStageGameInfo();
 		}
 		else
 		{
-			// Èñ»õ¾ÆÀÌÅÛÀÌ ¾Æ´Ô.
+			// í¬ìƒˆì•„ì´í…œì´ ì•„ë‹˜.
 			ASSERT( 0 );
 			return;
 		}// if( pQItemDesc->m_bSecrifice )
 	}
 	else
 	{
-		// ½½·ÔÀÇ ÀÎµ¦½º°¡ ºñ Á¤»óÀûÀÓ.
-		mlog( "MMatchRuleBaseQuest::OnResponseDropSacrificeItemOnSlot - %d¹ø ½½·Ô ÀÎµ¦½º´Â À¯È¿ÇÏÁö ¾Ê´Â ÀÎµ¦½ºÀÓ.\n", nSlotIndex );
+		// ìŠ¬ë¡¯ì˜ ì¸ë±ìŠ¤ê°€ ë¹„ ì •ìƒì ì„.
+		mlog( "MMatchRuleBaseQuest::OnResponseDropSacrificeItemOnSlot - %dë²ˆ ìŠ¬ë¡¯ ì¸ë±ìŠ¤ëŠ” ìœ íš¨í•˜ì§€ ì•ŠëŠ” ì¸ë±ìŠ¤ì„.\n", nSlotIndex );
 		ASSERT( 0 );
 		return;
 	}
@@ -1201,7 +1201,7 @@ void MMatchRuleQuest::OnRequestCallbackSacrificeItem( const MUID& uidSender, con
 
 void MMatchRuleQuest::OnResponseCallBackSacrificeItem( const MUID& uidSender, const int nSlotIndex, const u32 nItemID )
 {
-	// ¾Æ¹«³ª Á¢±ÙÇÒ¼ö ÀÖÀ½.
+	// ì•„ë¬´ë‚˜ ì ‘ê·¼í• ìˆ˜ ìˆìŒ.
 
 	if( (0 == nItemID) || (0 == m_SacrificeSlot[nSlotIndex].GetItemID()) )
 		return;
@@ -1212,7 +1212,7 @@ void MMatchRuleQuest::OnResponseCallBackSacrificeItem( const MUID& uidSender, co
 	MMatchObject* pPlayer = MMatchServer::GetInstance()->GetObject( uidSender );
 	if( !IsEnabledObject(pPlayer) )
 	{
-		mlog( "MMatchRuleBaseQuest::OnResponseCallBackSacrificeItem - ºñÁ¤»óÀûÀÎ À¯Àú.\n" );
+		mlog( "MMatchRuleBaseQuest::OnResponseCallBackSacrificeItem - ë¹„ì •ìƒì ì¸ ìœ ì €.\n" );
 		return;
 	}
 
@@ -1227,7 +1227,7 @@ void MMatchRuleQuest::OnResponseCallBackSacrificeItem( const MUID& uidSender, co
 	}
 
 	pCmdOk->AddParameter( new MCmdParamInt(MOK) );
-	pCmdOk->AddParameter( new MCmdParamUID(uidSender) );									// ¾ÆÀÌÅÛ È¸¼ö¸¦ ¿äÃ»ÇÑ ¾ÆÀÌµğ.
+	pCmdOk->AddParameter( new MCmdParamUID(uidSender) );									// ì•„ì´í…œ íšŒìˆ˜ë¥¼ ìš”ì²­í•œ ì•„ì´ë””.
 	pCmdOk->AddParameter( new MCmdParamInt(nSlotIndex) );
 	pCmdOk->AddParameter( new MCmdParamInt(nItemID) );
 
@@ -1235,7 +1235,7 @@ void MMatchRuleQuest::OnResponseCallBackSacrificeItem( const MUID& uidSender, co
 	
 	m_SacrificeSlot[ nSlotIndex ].Release();	
 
-	// ½½·ÔÀÇ Á¤º¸°¡ ¾÷µ¥ÀÌÆ®µÇ¸é QLÀ» ´Ù½Ã º¸³»ÁÜ.
+	// ìŠ¬ë¡¯ì˜ ì •ë³´ê°€ ì—…ë°ì´íŠ¸ë˜ë©´ QLì„ ë‹¤ì‹œ ë³´ë‚´ì¤Œ.
 	RefreshStageGameInfo();
 }
 
@@ -1244,7 +1244,7 @@ bool MMatchRuleQuest::IsSacrificeItemDuplicated( const MUID& uidSender, const in
 {
 	if( (uidSender == m_SacrificeSlot[nSlotIndex].GetOwnerUID()) && (nItemID == m_SacrificeSlot[nSlotIndex].GetItemID()) )
 	{
-		// °°Àº ¾ÆÀÌÅÛÀ» ¿Ã·Á³õÀ¸·Á°í Çß±â¿¡ ±×³É ¹«½ÃÇØ ¹ö¸².
+		// ê°™ì€ ì•„ì´í…œì„ ì˜¬ë ¤ë†“ìœ¼ë ¤ê³  í–ˆê¸°ì— ê·¸ëƒ¥ ë¬´ì‹œí•´ ë²„ë¦¼.
 
 		return true;
 	}
@@ -1254,7 +1254,7 @@ bool MMatchRuleQuest::IsSacrificeItemDuplicated( const MUID& uidSender, const in
 
 
 /*
- * ½ºÅ×ÀÌÁö¸¦ ³ª°¡±âÀü¿¡ Ã³¸®ÇØ¾ß ÇÒ ÀÏÀÌ ÀÖÀ»°æ¿ì ¿©±â¿¡ Á¤¸®ÇÔ.
+ * ìŠ¤í…Œì´ì§€ë¥¼ ë‚˜ê°€ê¸°ì „ì— ì²˜ë¦¬í•´ì•¼ í•  ì¼ì´ ìˆì„ê²½ìš° ì—¬ê¸°ì— ì •ë¦¬í•¨.
  */
 void MMatchRuleQuest::PreProcessLeaveStage( const MUID& uidLeaverUID )
 {
@@ -1266,11 +1266,11 @@ void MMatchRuleQuest::PreProcessLeaveStage( const MUID& uidLeaverUID )
 	
 	if( MSM_TEST == MGetServerConfig()->GetServerMode() ) 
 	{
-		// ½ºÅ×ÀÌÁö¸¦ ³ª°¡·Á´Â À¯Àú°¡ ÀÌÀü¿¡ Èå»ı ¾ÆÀÌÅÛÀ» ½º·Ô¿¡ ¿Ã·Á ³õ¾Ò´ÂÁö °Ë»ç¸¦ ÇÔ.
-		// ¸¸¾à ¿Ã·Á³õÀº ¾ÆÀÌÅÛÀÌ ÀÖ´Ù¸é ÀÚµ¿À¸·Î È¸¼ö¸¦ ÇÔ. - ´ë±â»óÅÂÀÏ¶§¸¸ Àû¿ë
+		// ìŠ¤í…Œì´ì§€ë¥¼ ë‚˜ê°€ë ¤ëŠ” ìœ ì €ê°€ ì´ì „ì— íìƒ ì•„ì´í…œì„ ìŠ¤ë¡¯ì— ì˜¬ë ¤ ë†“ì•˜ëŠ”ì§€ ê²€ì‚¬ë¥¼ í•¨.
+		// ë§Œì•½ ì˜¬ë ¤ë†“ì€ ì•„ì´í…œì´ ìˆë‹¤ë©´ ìë™ìœ¼ë¡œ íšŒìˆ˜ë¥¼ í•¨. - ëŒ€ê¸°ìƒíƒœì¼ë•Œë§Œ ì ìš©
 		if (GetStage()->GetState() == STAGE_STATE_STANDBY) 
 		{
-			// ½½·ÔÀÌ ºñ¾îÀÖÀ¸¸é ¹«½Ã.
+			// ìŠ¬ë¡¯ì´ ë¹„ì–´ìˆìœ¼ë©´ ë¬´ì‹œ.
 			if( (!m_SacrificeSlot[0].IsEmpty()) || (!m_SacrificeSlot[1].IsEmpty()) )
 			{	
 				for( int i = 0; i < MAX_SACRIFICE_SLOT_COUNT; ++i )
@@ -1283,7 +1283,7 @@ void MMatchRuleQuest::PreProcessLeaveStage( const MUID& uidLeaverUID )
 				if( 0 == pStage )
 					return;
 
-				// º¯°æµÈ ½½·Ô Á¤º¸¸¦ º¸³»ÁÜ.
+				// ë³€ê²½ëœ ìŠ¬ë¡¯ ì •ë³´ë¥¼ ë³´ë‚´ì¤Œ.
 				OnResponseSacrificeSlotInfoToStage( pStage->GetUID() );
 			}
 		}
@@ -1293,7 +1293,7 @@ void MMatchRuleQuest::PreProcessLeaveStage( const MUID& uidLeaverUID )
 
 void MMatchRuleQuest::DestroyAllSlot()
 {
-	// ¿©±â¼­ ½½·Ô¿¡ ¿Ã·ÁÁ®ÀÖ´Â ¾ÆÀÌÅÛÀ» ¼Ò¸ê½ÃÅ´.
+	// ì—¬ê¸°ì„œ ìŠ¬ë¡¯ì— ì˜¬ë ¤ì ¸ìˆëŠ” ì•„ì´í…œì„ ì†Œë©¸ì‹œí‚´.
 
 	MMatchObject*	pOwner;
 	MQuestItem*		pQItem;
@@ -1307,7 +1307,7 @@ void MMatchRuleQuest::DestroyAllSlot()
 
 		uidOwner = m_SacrificeSlot[ i ].GetOwnerUID();
 		
-		// Á¤»óÀûÀÎ ¾ÆÀÌÅÛ ¼ÒÀ¯ÀÚÀÎÁö °Ë»ç.
+		// ì •ìƒì ì¸ ì•„ì´í…œ ì†Œìœ ìì¸ì§€ ê²€ì‚¬.
 		pOwner = MMatchServer::GetInstance()->GetObject( uidOwner );
 		if( !IsEnabledObject(pOwner) )
 		{
@@ -1316,7 +1316,7 @@ void MMatchRuleQuest::DestroyAllSlot()
 
 		nItemID = m_SacrificeSlot[ i ].GetItemID();
 
-		// ¼ÒÀ¯ÀÚÀÇ Á¤»óÀûÀÎ ¾ÆÀÌÅÛÀÎÁö °Ë»ç.
+		// ì†Œìœ ìì˜ ì •ìƒì ì¸ ì•„ì´í…œì¸ì§€ ê²€ì‚¬.
 		pQItem = pOwner->GetCharInfo()->m_QuestItemList.Find( nItemID );
 		if( 0 == pQItem )
 		{
@@ -1331,10 +1331,10 @@ void MMatchRuleQuest::DestroyAllSlot()
 
 
 ///
-// First	: Ãß±³¼º.
-// Last		: Ãß±³¼º.
+// First	: ì¶”êµì„±.
+// Last		: ì¶”êµì„±.
 //
-// QLÁ¤º¸ÀÇ ¿äÃ»À» Ã³¸®ÇÔ. ±âº»ÀûÀ¸·Î ¿äÃ»ÀÚÀÇ ½ºÅ×ÀÌÁö¿¡ Åëº¸ÇÔ.
+// QLì •ë³´ì˜ ìš”ì²­ì„ ì²˜ë¦¬í•¨. ê¸°ë³¸ì ìœ¼ë¡œ ìš”ì²­ìì˜ ìŠ¤í…Œì´ì§€ì— í†µë³´í•¨.
 ///
 
 void MMatchRuleQuest::OnRequestQL( const MUID& uidSender )
@@ -1344,7 +1344,7 @@ void MMatchRuleQuest::OnRequestQL( const MUID& uidSender )
 		MMatchObject* pPlayer = MMatchServer::GetInstance()->GetObject( uidSender );
 		if( 0 == pPlayer )
 		{
-			mlog( "MMatchRuleQuest::OnRequestQL - ºñÁ¤»ó À¯Àú.\n" );
+			mlog( "MMatchRuleQuest::OnRequestQL - ë¹„ì •ìƒ ìœ ì €.\n" );
 			return;
 		}
 
@@ -1354,17 +1354,17 @@ void MMatchRuleQuest::OnRequestQL( const MUID& uidSender )
 
 
 ///
-// First : Ãß±³¼º.
-// Last  : Ãß±³¼º.
+// First : ì¶”êµì„±.
+// Last  : ì¶”êµì„±.
 //
-// ¿äÃ»ÀÚÀÇ ½ºÅ×ÀÌÁö¿¡ QLÁ¤º¸¸¦ Åëº¸.
+// ìš”ì²­ìì˜ ìŠ¤í…Œì´ì§€ì— QLì •ë³´ë¥¼ í†µë³´.
 ///
 void MMatchRuleQuest::OnResponseQL_ToStage( const MUID& uidStage )
 {
 	MMatchStage* pStage = MMatchServer::GetInstance()->FindStage( uidStage );
 	if( 0 == pStage )
 	{
-		mlog( "MMatchRuleQuest::OnRequestQL - ½ºÅ×ÀÌÁö °Ë»ç ½ÇÆĞ.\n" );
+		mlog( "MMatchRuleQuest::OnRequestQL - ìŠ¤í…Œì´ì§€ ê²€ì‚¬ ì‹¤íŒ¨.\n" );
 		return;
 	}
 
@@ -1372,10 +1372,10 @@ void MMatchRuleQuest::OnResponseQL_ToStage( const MUID& uidStage )
 }
 
 ///
-// First : Ãß±³¼º.
-// Last  : Ãß±³¼º.
+// First : ì¶”êµì„±.
+// Last  : ì¶”êµì„±.
 //
-// ÇöÀç ½º·ÔÀÇ Á¤º¸¸¦ ¿äÃ». ±âº»ÀûÀ¸·Î ½ºÅ×ÀÌÁö¿¡ ¾Ë¸².
+// í˜„ì¬ ìŠ¤ë¡¯ì˜ ì •ë³´ë¥¼ ìš”ì²­. ê¸°ë³¸ì ìœ¼ë¡œ ìŠ¤í…Œì´ì§€ì— ì•Œë¦¼.
 ///
 void MMatchRuleQuest::OnRequestSacrificeSlotInfo( const MUID& uidSender )
 {
@@ -1395,10 +1395,10 @@ void MMatchRuleQuest::OnRequestSacrificeSlotInfo( const MUID& uidSender )
 
 
 ///
-// First : Ãß±³¼º.
-// Last  : Ãß±³¼º.
+// First : ì¶”êµì„±.
+// Last  : ì¶”êµì„±.
 //
-// ÇöÀç ½º·ÔÀÇ Á¤º¸¸¦ ¿äÃ»ÀÚ¿¡ ¾Ë¸².
+// í˜„ì¬ ìŠ¤ë¡¯ì˜ ì •ë³´ë¥¼ ìš”ì²­ìì— ì•Œë¦¼.
 ///
 void MMatchRuleQuest::OnResponseSacrificeSlotInfoToListener( const MUID& uidSender )
 {
@@ -1426,10 +1426,10 @@ void MMatchRuleQuest::OnResponseSacrificeSlotInfoToListener( const MUID& uidSend
 
 
 ///
-// First : Ãß±³¼º.
-// Last  : Ãß±³¼º.
+// First : ì¶”êµì„±.
+// Last  : ì¶”êµì„±.
 //
-// ÇöÀç ½º·ÔÀÇ Á¤º¸¸¦ ½ºÅ×ÀÌÁö¿¡ ¾Ë¸².
+// í˜„ì¬ ìŠ¤ë¡¯ì˜ ì •ë³´ë¥¼ ìŠ¤í…Œì´ì§€ì— ì•Œë¦¼.
 ///
 void MMatchRuleQuest::OnResponseSacrificeSlotInfoToStage( const MUID& uidStage )
 {
@@ -1482,11 +1482,11 @@ int MMatchRuleQuest::CalcuOwnerQItemCount( const MUID& uidPlayer, const u32 nIte
 
 
 ///
-// First : 2005.04.18 Ãß±³¼º.
-// Last  : 2005.04.18 Ãß±³¼º.
+// First : 2005.04.18 ì¶”êµì„±.
+// Last  : 2005.04.18 ì¶”êµì„±.
 //
-// °ÔÀÓÀ» ½ÃÀÛÇÏ±âÀü¿¡ ÁØ¹èÇâ ÇÏ´Â ÀÛ¾÷À» ¼öÇàÇÔ.
-// ÁØºñ ÀÛ¾÷Áß ½ÇÆĞ°¡ ÀÖÀ»½Ã´Â °ÔÀÓÀ» ½ÃÀÛÇÏÁö ¸øÇÏ°Ô ÇØ¾ß ÇÔ.
+// ê²Œì„ì„ ì‹œì‘í•˜ê¸°ì „ì— ì¤€ë°°í–¥ í•˜ëŠ” ì‘ì—…ì„ ìˆ˜í–‰í•¨.
+// ì¤€ë¹„ ì‘ì—…ì¤‘ ì‹¤íŒ¨ê°€ ìˆì„ì‹œëŠ” ê²Œì„ì„ ì‹œì‘í•˜ì§€ ëª»í•˜ê²Œ í•´ì•¼ í•¨.
 ///
 bool MMatchRuleQuest::PrepareStart()
 {
@@ -1510,13 +1510,13 @@ void MMatchRuleQuest::MakeStageGameInfo()
 		if( (GetStage()->GetState() != STAGE_STATE_STANDBY) && (STAGE_STATE_COUNTDOWN != GetStage()->GetState()) )
 		{
 #ifdef _DEBUG
-			mlog( "MMatchRuleQuest::MakeStageGameInfo - %d STAGE_STATE_STANDBY°¡ ¾Æ´Ô.\n", GetStage()->GetState() );
+			mlog( "MMatchRuleQuest::MakeStageGameInfo - %d STAGE_STATE_STANDBYê°€ ì•„ë‹˜.\n", GetStage()->GetState() );
 #endif
 			return;
 		}
 
-		// ½½·Ô¿¡ Level¿¡ ¸Â´Â Á¤»óÀûÀÎ ¾ÆÀÌÅÛÀÌ ¿Ã·ÁÁ® ÀÖ´ÂÁö °Ë»ç°¡ ÇÊ¿äÇÔ.
-		// ºñÁ¤»ó ¾ÆÀÌÅÛÀÌ ¿Ã·ÁÁ® ÀÖÀ»°æ¿ì ¾ÆÀÌÅÛ È¸¼ö ¿äÃ»À» ÇØÁà¾ß ÇÔ.
+		// ìŠ¬ë¡¯ì— Levelì— ë§ëŠ” ì •ìƒì ì¸ ì•„ì´í…œì´ ì˜¬ë ¤ì ¸ ìˆëŠ”ì§€ ê²€ì‚¬ê°€ í•„ìš”í•¨.
+		// ë¹„ì •ìƒ ì•„ì´í…œì´ ì˜¬ë ¤ì ¸ ìˆì„ê²½ìš° ì•„ì´í…œ íšŒìˆ˜ ìš”ì²­ì„ í•´ì¤˜ì•¼ í•¨.
 		int nOutResultQL = -1;
 
 		int nMinPlayerLevel = 1;
@@ -1525,7 +1525,7 @@ void MMatchRuleQuest::MakeStageGameInfo()
 		{
 			nMinPlayerLevel = pStage->GetMinPlayerLevel();
 
-			// ¹æÀåÀÌ ¿î¿µÀÚÀÌ¸é ÃÖ¼Ò·¹º§Àº ¿î¿µÀÚ ·¹º§·Î ÀÓÀÇÁöÁ¤ÇÑ´Ù.
+			// ë°©ì¥ì´ ìš´ì˜ìì´ë©´ ìµœì†Œë ˆë²¨ì€ ìš´ì˜ì ë ˆë²¨ë¡œ ì„ì˜ì§€ì •í•œë‹¤.
 			MMatchObject* pMaster = MMatchServer::GetInstance()->GetObject(pStage->GetMasterUID());
 			if (IsAdminGrade(pMaster))
 			{
@@ -1574,7 +1574,7 @@ void MMatchRuleQuest::OnChangeCondition()
 
 void MMatchRuleQuest::CollectStartingQuestGameLogInfo()
 {
-	// ¼öÁıÇÏ±âÀü¿¡ ÀÌÀüÀÇ Á¤º¸¸¦ ¹İµå½Ã Áö¿ö¾ß ÇÔ.
+	// ìˆ˜ì§‘í•˜ê¸°ì „ì— ì´ì „ì˜ ì •ë³´ë¥¼ ë°˜ë“œì‹œ ì§€ì›Œì•¼ í•¨.
 	m_QuestGameLogInfoMgr.Clear();
 
 	if( QuestTestServer() ) 
@@ -1586,10 +1586,10 @@ void MMatchRuleQuest::CollectStartingQuestGameLogInfo()
 
 		m_QuestGameLogInfoMgr.SetScenarioID( m_pQuestLevel->GetStaticInfo()->pScenario->nID );
 
-		// Stage name ÀúÀå.
+		// Stage name ì €ì¥.
 		m_QuestGameLogInfoMgr.SetStageName( GetStage()->GetName() );
 
-		// ½ÃÀÛÇÒ¶§ÀÇ À¯Àú Á¤º¸¸¦ ÀúÀåÇÔ.
+		// ì‹œì‘í• ë•Œì˜ ìœ ì € ì •ë³´ë¥¼ ì €ì¥í•¨.
 		for(MQuestPlayerManager::iterator it = m_PlayerManager.begin() ; 
 				it != m_PlayerManager.end(); ++it )
 		{

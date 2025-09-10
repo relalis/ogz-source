@@ -12,7 +12,7 @@
 
 _NAMESPACE_REALSPACE2_BEGIN
 
-// ÇÑÁ¡¿¡¼­ ¹Ù¿îµù¹Ú½ºÀÇ ÃÖ´Ü°Å¸®
+// í•œì ì—ì„œ ë°”ìš´ë”©ë°•ìŠ¤ì˜ ìµœë‹¨ê±°ë¦¬
 float GetDistance(const rboundingbox &bb,const rvector &point)
 {
 	rvector closest;
@@ -29,13 +29,13 @@ float GetDistance(const rboundingbox &bb,const rvector &point)
 	return Magnitude(closest-point);
 }
 
-// ÇÑÁ¡¿¡¼­ Æò¸é±îÁöÀÇ °Å¸® .. normalized plane ÀÓÀ» °¡Á¤.
+// í•œì ì—ì„œ í‰ë©´ê¹Œì§€ì˜ ê±°ë¦¬ .. normalized plane ì„ì„ ê°€ì •.
 float GetDistance(const rvector &position,const rplane &plane)		
 {
 	return fabsf(D3DXPlaneDotCoord(&plane,&position));
 }
 
-// ¼±ºĞ(a,aa) ¿¡¼­ Æò¸é±îÁöÀÇ °¡Àå °¡±î¿î ¼±ºĞÀ§ÀÇ Á¡.
+// ì„ ë¶„(a,aa) ì—ì„œ í‰ë©´ê¹Œì§€ì˜ ê°€ì¥ ê°€ê¹Œìš´ ì„ ë¶„ìœ„ì˜ ì .
 rvector GetNearestPoint(const rvector &a,const rvector &aa,const rplane &plane)
 {
 	rvector b=aa-a;
@@ -51,13 +51,13 @@ rvector GetNearestPoint(const rvector &a,const rvector &aa,const rplane &plane)
 	return a+t*b;
 }
 
-// ¼±ºĞ(a,aa) ¿¡¼­ Æò¸é±îÁöÀÇ °Å¸®
+// ì„ ë¶„(a,aa) ì—ì„œ í‰ë©´ê¹Œì§€ì˜ ê±°ë¦¬
 float GetDistance(const rvector &a,const rvector &aa,const rplane &plane) 
 {
 	return GetDistance(GetNearestPoint(a,aa,plane),plane);
 }
 
-// Á¡¿¡¼­ Á÷¼±ÀÇ °Å¸®
+// ì ì—ì„œ ì§ì„ ì˜ ê±°ë¦¬
 float GetDistance(const rvector &position,const rvector &line1,const rvector &line2)
 {
 	rvector a=position-line1;
@@ -67,15 +67,15 @@ float GetDistance(const rvector &position,const rvector &line1,const rvector &li
 	return sqrtf(asq-powf(DotProduct(a,b),2)/bsq);
 }
 
-// ÇÑÁ¡¿¡¼­ °¡Àå °¡±î¿î ¼±ºĞÀ§ÀÇ Á¡
+// í•œì ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ ì„ ë¶„ìœ„ì˜ ì 
 rvector GetNearestPoint(const rvector &position,const rvector &a,const rvector &b)
 {
 	rvector dir=b-a;
 
 	float d=-DotProduct(position,dir); 
-	// positionÀ»Áö³ª´Â dir À» ¹ı¼±À¸·Î °¡Áö´Â Æò¸éÀÇ ¹æÁ¤½ÄÀº, x*dir.x+y*dir.y+z*dir.z+d=0 ÀÌ´Ù.
+	// positionì„ì§€ë‚˜ëŠ” dir ì„ ë²•ì„ ìœ¼ë¡œ ê°€ì§€ëŠ” í‰ë©´ì˜ ë°©ì •ì‹ì€, x*dir.x+y*dir.y+z*dir.z+d=0 ì´ë‹¤.
 
-	// Á÷¼±¿¡¼­ position °¡Àå °¡±î¿î Á¡À» a+t*dir ·Î ³ªÅ¸³»¸é,
+	// ì§ì„ ì—ì„œ position ê°€ì¥ ê°€ê¹Œìš´ ì ì„ a+t*dir ë¡œ ë‚˜íƒ€ë‚´ë©´,
 	float mdir = D3DXVec3LengthSq(&dir);
 	if(mdir<0.001f) return a;
 
@@ -87,28 +87,28 @@ rvector GetNearestPoint(const rvector &position,const rvector &a,const rvector &
 	return a+t*dir;
 }
 
-// ÇÑÁ¡¿¡¼­ ¼±ºĞ±îÁöÀÇ °Å¸®
+// í•œì ì—ì„œ ì„ ë¶„ê¹Œì§€ì˜ ê±°ë¦¬
 float GetDistanceLineSegment(const rvector &position,const rvector &a,const rvector &b)
 {
 	return Magnitude(GetNearestPoint(position,a,b)-position);
 }
 
-// ¼±ºĞ°ú ¼±ºĞ »çÀÌÀÇ °Å¸®.. ¼±ºĞ (a,aa) °ú ¼±ºĞ (c,cc)ÀÇ °Å¸®.
+// ì„ ë¶„ê³¼ ì„ ë¶„ ì‚¬ì´ì˜ ê±°ë¦¬.. ì„ ë¶„ (a,aa) ê³¼ ì„ ë¶„ (c,cc)ì˜ ê±°ë¦¬.
 float GetDistanceBetweenLineSegment(const rvector &a,const rvector &aa,const rvector &c,const rvector &cc,rvector *ap,rvector *cp)
 {
 	rvector b=aa-a;
 	rvector d=cc-c;
 
-	// µÎ ¼±ºĞ¿¡ °øÅë ¼ö¼±ÀÇ ¹æÇâÀº b x d
+	// ë‘ ì„ ë¶„ì— ê³µí†µ ìˆ˜ì„ ì˜ ë°©í–¥ì€ b x d
 	rvector cm;
 	CrossProduct(&cm,b,d);
 
 	float fMagnitude=Magnitude(cm);
 
-	if(fMagnitude<1)	// µÎ ¼±ºĞÀÌ ÆòÇàÇÏ´Ù¸é...
+	if(fMagnitude<1)	// ë‘ ì„ ë¶„ì´ í‰í–‰í•˜ë‹¤ë©´...
 	{
 
-		rvector x;	// µÎ ¼±ºĞÀ» Æ÷ÇÔÇÏ´Â µÎ Á÷¼±ÀÇ Â÷.. ÀÌ°É ±¸ÇÏ´Â ¹æ¹ıÀº Á¡°ú Á÷¼±ÀÇ °Å¸®±¸ÇÏ´Â¹ıÀ» ÂüÁ¶.
+		rvector x;	// ë‘ ì„ ë¶„ì„ í¬í•¨í•˜ëŠ” ë‘ ì§ì„ ì˜ ì°¨.. ì´ê±¸ êµ¬í•˜ëŠ” ë°©ë²•ì€ ì ê³¼ ì§ì„ ì˜ ê±°ë¦¬êµ¬í•˜ëŠ”ë²•ì„ ì°¸ì¡°.
 
 		rvector edge=a-c;
 		float temp=DotProduct(edge,d)/Magnitude(d);
@@ -116,7 +116,7 @@ float GetDistanceBetweenLineSegment(const rvector &a,const rvector &aa,const rve
 		Normalize(dir);
 		x=c+temp*dir-a;
 
-		float st0,st1;		// t=0 ÀÏ¶§ÀÇ s ÀÇ °ª, t=1 ÀÏ¶§ÀÇ s ÀÇ °ª
+		float st0,st1;		// t=0 ì¼ë•Œì˜ s ì˜ ê°’, t=1 ì¼ë•Œì˜ s ì˜ ê°’
 
 		st0=DotProduct(a+x-c,d)/DotProduct(d,d);
 		st1=DotProduct(aa+x-c,d)/DotProduct(d,d);
@@ -160,8 +160,8 @@ float GetDistanceBetweenLineSegment(const rvector &a,const rvector &aa,const rve
 //	Normalize(cm);
 	cm/=fMagnitude;
 
-	// c, c+d, c+cm ¼¼ Á¡À» Áö³ª´Â Æò¸éÀÇ ¹æÁ¤½ÄÀº rp-rc=0 ( r = d x cm , ¹æÇâÀº ¼±ºĞÀÇ ¹æÇâ°ú °øÅë¼ö¼ö¼± ¹æÇâÀÇ crossproduct ÀÌ¸ç Á¡c¸¦ Áö³­´Ù.)
-	// ÀÌ Æò¸é°ú a+tb Á÷¼±ÀÇ ±³Á¡¿¡¼­ r(a+tb)-rc=0   ->  t=(rc-ra)/(rb)
+	// c, c+d, c+cm ì„¸ ì ì„ ì§€ë‚˜ëŠ” í‰ë©´ì˜ ë°©ì •ì‹ì€ rp-rc=0 ( r = d x cm , ë°©í–¥ì€ ì„ ë¶„ì˜ ë°©í–¥ê³¼ ê³µí†µìˆ˜ìˆ˜ì„  ë°©í–¥ì˜ crossproduct ì´ë©° ì cë¥¼ ì§€ë‚œë‹¤.)
+	// ì´ í‰ë©´ê³¼ a+tb ì§ì„ ì˜ êµì ì—ì„œ r(a+tb)-rc=0   ->  t=(rc-ra)/(rb)
 	
 	rvector r;
 	CrossProduct(&r,d,cm);
@@ -169,8 +169,8 @@ float GetDistanceBetweenLineSegment(const rvector &a,const rvector &aa,const rve
 
 	float t=(DotProduct(r,c)-DotProduct(r,a))/DotProduct(r,b);
 
-	// a, a+b, a+cm ¼¼ Á¡À» Áö³ª´Â Æò¸éÀÇ ¹æÁ¤½ÄÀº rp-ra=0 ( r = b x cm , ¹æÇâÀº ¼±ºĞÀÇ ¹æÇâ°ú °øÅë¼ö¼ö¼± ¹æÇâÀÇ crossproduct ÀÌ¸ç Á¡a¸¦ Áö³­´Ù.)
-	// ÀÌ Æò¸é°ú c+sd Á÷¼±ÀÇ ±³Á¡¿¡¼­ r(c+sd)-ra=0    ->  s=(ra-rc)/(rd)
+	// a, a+b, a+cm ì„¸ ì ì„ ì§€ë‚˜ëŠ” í‰ë©´ì˜ ë°©ì •ì‹ì€ rp-ra=0 ( r = b x cm , ë°©í–¥ì€ ì„ ë¶„ì˜ ë°©í–¥ê³¼ ê³µí†µìˆ˜ìˆ˜ì„  ë°©í–¥ì˜ crossproduct ì´ë©° ì aë¥¼ ì§€ë‚œë‹¤.)
+	// ì´ í‰ë©´ê³¼ c+sd ì§ì„ ì˜ êµì ì—ì„œ r(c+sd)-ra=0    ->  s=(ra-rc)/(rd)
 
 	CrossProduct(&r,b,cm);
 	Normalize(r);
@@ -187,10 +187,10 @@ float GetDistanceBetweenLineSegment(const rvector &a,const rvector &aa,const rve
 	*cp=c+s*d;
 	return Magnitude(*ap - *cp);
 }
-// µÎ Á÷¼±ÀÇ °Å¸®´Â Á»´õ °£´ÜÇÔ.. a+tb+k(cm)=c+sd ¶ó°í ³õ°í.. ¾çº¯¿¡ cm À» DotProduct ÇØÁÖ¸é ok.. (cm ÀÌ b,d ¿Í ¼öÁ÷ÀÌ±â ¶§¹®¿¡) k=(a-c)cm
+// ë‘ ì§ì„ ì˜ ê±°ë¦¬ëŠ” ì¢€ë” ê°„ë‹¨í•¨.. a+tb+k(cm)=c+sd ë¼ê³  ë†“ê³ .. ì–‘ë³€ì— cm ì„ DotProduct í•´ì£¼ë©´ ok.. (cm ì´ b,d ì™€ ìˆ˜ì§ì´ê¸° ë•Œë¬¸ì—) k=(a-c)cm
 
 
-float GetDistance(rboundingbox *bb,rplane *plane)		// Æò¸é¿¡¼­ boundingbox¿ÍÀÇ ÃÖ´ë°Å¸®
+float GetDistance(rboundingbox *bb,rplane *plane)		// í‰ë©´ì—ì„œ boundingboxì™€ì˜ ìµœëŒ€ê±°ë¦¬
 {
 	float a,b,c;
 	a=(plane->a>0)?bb->m[1][0]:bb->m[0][0];
@@ -199,7 +199,7 @@ float GetDistance(rboundingbox *bb,rplane *plane)		// Æò¸é¿¡¼­ boundingbox¿ÍÀÇ Ã
 	return plane->a*a+plane->b*b+plane->c*c+plane->d;
 }
 
-// Æò¸é¿¡¼­ boundingbox¿ÍÀÇ ÃÖ¼Ò,ÃÖ´ë°Å¸®
+// í‰ë©´ì—ì„œ boundingboxì™€ì˜ ìµœì†Œ,ìµœëŒ€ê±°ë¦¬
 void GetDistanceMinMax(rboundingbox &bb,rplane &plane,float *MinDist,float *MaxDist)
 {
 	float a,b,c,a2,b2,c2;
@@ -210,10 +210,10 @@ void GetDistanceMinMax(rboundingbox &bb,rplane &plane,float *MinDist,float *MaxD
 	*MinDist=plane.a*a2+plane.b*b2+plane.c*c2+plane.d;
 }
 
-// »ï°¢ÇüÀÇ ¸éÀû
+// ì‚¼ê°í˜•ì˜ ë©´ì 
 float GetArea(rvector &v1,rvector &v2,rvector &v3)
 {
-	float a,b,c;	// »ï°¢ÇüÀÇ ¼¼º¯ÀÇ ±æÀÌ.
+	float a,b,c;	// ì‚¼ê°í˜•ì˜ ì„¸ë³€ì˜ ê¸¸ì´.
 	a=Magnitude(v1-v2);
 	b=Magnitude(v2-v3);
 	c=Magnitude(v3-v1);
@@ -227,12 +227,12 @@ rvector InterpolatedVector(rvector &a,rvector &b,float x)
 	float ab,theta,theta1,theta2,costheta1,costheta2,u,v;
 	
 	ab=(float)min(max(DotProduct(a,b),-1.),1.);
-	if(ab==1.0f) return b;	// °¢µµ°¡ 0ÀÌ¸é ±×³É ¸®ÅÏ
+	if(ab==1.0f) return b;	// ê°ë„ê°€ 0ì´ë©´ ê·¸ëƒ¥ ë¦¬í„´
 
-//	else if(ab==-1.0f) return TransformVector(a, RotateZMatrix(pi*x));		// °¢µµ°¡ 180ÀÌ¸é ZÃàÀ¸·Î È¸ÀüÇÑ´Ù.
+//	else if(ab==-1.0f) return TransformVector(a, RotateZMatrix(pi*x));		// ê°ë„ê°€ 180ì´ë©´ Zì¶•ìœ¼ë¡œ íšŒì „í•œë‹¤.
 
 	theta=(float)acos(ab);
-	//if(theta==0.0f) return a;	// 0µµÀÌ¸é a ¸®ÅÏ
+	//if(theta==0.0f) return a;	// 0ë„ì´ë©´ a ë¦¬í„´
 
 	theta1=theta*x;
 	theta2=theta*(1.0f-x);
@@ -241,7 +241,7 @@ rvector InterpolatedVector(rvector &a,rvector &b,float x)
 	u=costheta1-ab*costheta2;
 	v=costheta2-ab*costheta1;
 	float D = (1.0f-ab*ab);
-//	_ASSERT(D!=0.0f);	// ¾Õ¿¡¼­ ab¸¦ °Ë»çÇÏ¹Ç·Î 0ÀÌ ³ª¿Ã ¼ö ¾ø´Ù.
+//	_ASSERT(D!=0.0f);	// ì•ì—ì„œ abë¥¼ ê²€ì‚¬í•˜ë¯€ë¡œ 0ì´ ë‚˜ì˜¬ ìˆ˜ ì—†ë‹¤.
 	if(D==0) return a;
 
 	rvector vReturn=(1.0f/D*(u*a+v*b));
@@ -271,26 +271,26 @@ bool IsIntersect(rboundingbox *bb1,rboundingbox *bb2)
 bool IsInSphere(const rboundingbox &bb,const rvector &point,float radius)
 {
 
-	for(int i=0;i<3;i++)				// ¹Ù¿îµù¹Ú½ºÀÇ 6¸éÁß ÆòÇàÇÑ ÇÑ½ÖÀÇ Æò¸éµé¿¡ ´ëÇØ
+	for(int i=0;i<3;i++)				// ë°”ìš´ë”©ë°•ìŠ¤ì˜ 6ë©´ì¤‘ í‰í–‰í•œ í•œìŒì˜ í‰ë©´ë“¤ì— ëŒ€í•´
 	{
-		rvector nearest;				// ±× ÇÑ½ÖÀÇ Æò¸éÀ§¿¡¼­½ºÇÇ¾îÀÇ ÁßÁ¡¿¡ °¡Àå °¡±î¿î Á¡À» Àâ°í,
+		rvector nearest;				// ê·¸ í•œìŒì˜ í‰ë©´ìœ„ì—ì„œìŠ¤í”¼ì–´ì˜ ì¤‘ì ì— ê°€ì¥ ê°€ê¹Œìš´ ì ì„ ì¡ê³ ,
 
 		if(fabs(bb.m[0][i]-point[i])<fabs(bb.m[1][i]-point[i]))
 			nearest[i]=bb.m[0][i];
 		else
 			nearest[i]=bb.m[1][i];
 
-		int au=(i+1)%3,av=(i+2)%3;		// (°ñ¶óÁø Æò¸éÀÇ ¹ı¼±ÀÌ µÇ´Â ÃàÀ» »« ³ª¸ÓÁö µÎ ÃàÀ» Àâ´Â´Ù)
+		int au=(i+1)%3,av=(i+2)%3;		// (ê³¨ë¼ì§„ í‰ë©´ì˜ ë²•ì„ ì´ ë˜ëŠ” ì¶•ì„ ëº€ ë‚˜ë¨¸ì§€ ë‘ ì¶•ì„ ì¡ëŠ”ë‹¤)
 		
 		nearest[au]=min(max(point[au],bb.m[0][au]),bb.m[1][au]);
 		nearest[av]=min(max(point[av],bb.m[0][av]),bb.m[1][av]);
 
-		if(Magnitude(nearest-point)<radius)		// ±× °Å¸®°¡ radius ÀÌÇÏÀÌ¸é true..
+		if(Magnitude(nearest-point)<radius)		// ê·¸ ê±°ë¦¬ê°€ radius ì´í•˜ì´ë©´ true..
 			return true;
 	}
 
 	
-	// ¶Ç´Â ÁßÁ¡ÀÌ ÀÌ¹Ì ¹Ù¿îµù¹Ú½º ¾È¿¡ Æ÷ÇÔµÇ¾î ÀÖ¾îµµ true !
+	// ë˜ëŠ” ì¤‘ì ì´ ì´ë¯¸ ë°”ìš´ë”©ë°•ìŠ¤ ì•ˆì— í¬í•¨ë˜ì–´ ìˆì–´ë„ true !
 	return (bb.minx<=point.x && bb.miny<=point.y && bb.minz<=point.z && 
 			bb.maxx>=point.x && bb.maxy>=point.y && bb.maxz>=point.z);
 }
@@ -492,9 +492,9 @@ bool IsIntersect(const rvector& orig, const rvector& dir, const rvector& center,
 	float r2 = radius*radius;
 	float tmp1 = D3DXVec3Dot(&center2orig,&dir);
 	float tmp2 = D3DXVec3Dot(&center2orig,&center2orig);
-	if(tmp1 < 0 && tmp2 > r2 ) return false; // dir¹æÇâÀ¸·Î Åõ¿µµÈ °Å¸®°¡ À½¼öÀÌ°í ½ÃÀÛÁ¡ÀÌ ¹Û¿¡ ÀÖÀ¸¸é ±³Â÷ ½ÇÆĞ
+	if(tmp1 < 0 && tmp2 > r2 ) return false; // dirë°©í–¥ìœ¼ë¡œ íˆ¬ì˜ëœ ê±°ë¦¬ê°€ ìŒìˆ˜ì´ê³  ì‹œì‘ì ì´ ë°–ì— ìˆìœ¼ë©´ êµì°¨ ì‹¤íŒ¨
 	float tmp3 = tmp2 - tmp1;
-	if( tmp3 > r2 ) return false; // ±¸¿¡¼­ ¼±ºĞ±îÁöÀÇ °Å¸®°¡ ±¸ÀÇ ¹İÁö¸§ º¸´Ù Å©¸é ±³Â÷ ½ÇÆĞ
+	if( tmp3 > r2 ) return false; // êµ¬ì—ì„œ ì„ ë¶„ê¹Œì§€ì˜ ê±°ë¦¬ê°€ êµ¬ì˜ ë°˜ì§€ë¦„ ë³´ë‹¤ í¬ë©´ êµì°¨ ì‹¤íŒ¨
 	
 	if(p==NULL) return true;
 
@@ -508,8 +508,8 @@ bool IsIntersect(const rvector& orig, const rvector& dir, const rvector& center,
 }
 
 /*
-µÎ Æò¸éÀ» Áö³ª´Â Á÷¼±ÀÇ ¹æÁ¤½ÄÀ» ±¸ÇÑ´Ù 
-ÂüÁ¶ http://astronomy.swin.edu.au/~pbourke/geometry/planeplane/
+ë‘ í‰ë©´ì„ ì§€ë‚˜ëŠ” ì§ì„ ì˜ ë°©ì •ì‹ì„ êµ¬í•œë‹¤ 
+ì°¸ì¡° http://astronomy.swin.edu.au/~pbourke/geometry/planeplane/
 */
 
 bool GetIntersectionOfTwoPlanes(rvector *pOutDir,rvector *pOutAPoint,rplane &plane1,rplane &plane2)
@@ -520,7 +520,7 @@ bool GetIntersectionOfTwoPlanes(rvector *pOutDir,rvector *pOutAPoint,rplane &pla
 	rvector dir;
 	CrossProduct(&dir,n1,n2);
 
-	if(IS_ZERO(DotProduct(dir,dir))) return false;	// ÆòÇàÇÏ¸é ³¶ÆĞ
+	if(IS_ZERO(DotProduct(dir,dir))) return false;	// í‰í–‰í•˜ë©´ ë‚­íŒ¨
 
 	float determinant=DotProduct(n1,n1)*DotProduct(n2,n2)-DotProduct(n1,n2)*DotProduct(n1,n2);
 	float c1=(-plane1.d*DotProduct(n2,n2)+plane2.d*DotProduct(n1,n2))/determinant;

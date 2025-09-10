@@ -14,10 +14,10 @@ public:
 	virtual ~ZNetRepository();
 	static ZNetRepository* GetInstance();
 public:
-	// Serialize ¾¾¸®Áî
+	// Serialize ì”¨ë¦¬ì¦ˆ
 
 public:
-	// Get ¾¾¸®Áî
+	// Get ì”¨ë¦¬ì¦ˆ
 //	ZMyInfo* GetMyInfo()	{ return &m_MyInfo; }
 
 	MTD_ClanInfo *GetClanInfo() { return &m_ClanInfo; }

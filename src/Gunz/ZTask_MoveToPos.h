@@ -7,9 +7,9 @@ class ZTask_MoveToPos : public ZTask
 {
 private:
 	// data
-	rvector		m_TargetPos;		// ¸ñÀûÁö
+	rvector		m_TargetPos;		// ëª©ì ì§€
 	bool		m_bRotated;
-	bool				m_bChained;			///< ´ÙÀ½ Task¿Í ¿¬°áµÇ¾î ÀÖ´ÂÁö ¿©ºÎ.
+	bool				m_bChained;			///< ë‹¤ìŒ Taskì™€ ì—°ê²°ë˜ì–´ ìˆëŠ”ì§€ ì—¬ë¶€.
 protected:
 	virtual void OnStart();
 	virtual ZTaskResult OnRun(float fDelta);

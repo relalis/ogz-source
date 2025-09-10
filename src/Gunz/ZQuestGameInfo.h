@@ -5,27 +5,27 @@
 #include <vector>
 using namespace std;
 
-// Äù½ºÆ®ÀÇ °ÔÀÓ Á¤º¸
+// í€˜ìŠ¤íŠ¸ì˜ ê²Œì„ ì •ë³´
 class ZQuestGameInfo
 {
 private:
 	bool							m_bInitialized;
 	vector<MQUEST_NPC>				m_NPCInfoVector;
 	vector<MQuestLevelSectorNode>	m_MapSectorVector;
-	int								m_nQL;						// ÇöÀç ½Ã³ª¸®¿ÀÀÇ Äù½ºÆ® ·¹º§
+	int								m_nQL;						// í˜„ì¬ ì‹œë‚˜ë¦¬ì˜¤ì˜ í€˜ìŠ¤íŠ¸ ë ˆë²¨
 	float							m_fNPC_TC;
-	int								m_nNPCCount;				// ÇÑ ¼½ÅÍ´ç µîÀåÇÒ ÃÑ NPC¼ö
-	int								m_nNPCKilled;				// ÇÑ ¼½ÅÍ´ç Á×Àº NPC ¼ö
-	int								m_nCurrSectorIndex;			// ÇöÀç °ÔÀÓÁßÀÎ ¼½ÅÍ ÀÎµ¦½º
-	int								m_nNumOfObtainQuestItem;	// Äù½ºÆ® ÆÀÀÌ È¹µæÇÑ ¾ÆÀÌÅÛ °¹¼ö
-	vector<MUID>					m_Bosses;					// º¸½º UID
-	rvector							m_vPortalPos;				// Æ÷Å»ÀÇ À§Ä¡
+	int								m_nNPCCount;				// í•œ ì„¹í„°ë‹¹ ë“±ì¥í•  ì´ NPCìˆ˜
+	int								m_nNPCKilled;				// í•œ ì„¹í„°ë‹¹ ì£½ì€ NPC ìˆ˜
+	int								m_nCurrSectorIndex;			// í˜„ì¬ ê²Œì„ì¤‘ì¸ ì„¹í„° ì¸ë±ìŠ¤
+	int								m_nNumOfObtainQuestItem;	// í€˜ìŠ¤íŠ¸ íŒ€ì´ íšë“í•œ ì•„ì´í…œ ê°¯ìˆ˜
+	vector<MUID>					m_Bosses;					// ë³´ìŠ¤ UID
+	rvector							m_vPortalPos;				// í¬íƒˆì˜ ìœ„ì¹˜
 public:
 	ZQuestGameInfo();
 	~ZQuestGameInfo();
 	void Init(MTD_QuestGameInfo* pMTDQuestGameInfo);
 	void Final();
-	void OnMovetoNewSector(int nSectorIndex);				// »õ·Î¿î ¼½ÅÍ·Î ÀÌµ¿
+	void OnMovetoNewSector(int nSectorIndex);				// ìƒˆë¡œìš´ ì„¹í„°ë¡œ ì´ë™
 
 	// interface func
 	int GetNPCInfoCount();
@@ -35,7 +35,7 @@ public:
 	int GetMapSectorLink(int index);
 	bool IsInited();
 	inline float GetNPC_TC();
-	inline bool IsCurrSectorLastSector();			// ÇöÀç ¼½ÅÍ°¡ ¸¶Áö¸· ¼½ÅÍÀÎÁö ¿©ºÎ
+	inline bool IsCurrSectorLastSector();			// í˜„ì¬ ì„¹í„°ê°€ ë§ˆì§€ë§‰ ì„¹í„°ì¸ì§€ ì—¬ë¶€
 	int GetCurrSectorIndex()				{ return m_nCurrSectorIndex; }
 	int GetNPCCount( void)					{ return m_nNPCCount; }
 	int GetNPCKilled( void)					{ return m_nNPCKilled; }

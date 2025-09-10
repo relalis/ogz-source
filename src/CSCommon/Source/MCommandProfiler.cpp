@@ -77,9 +77,9 @@ static char* AddCommaToNum(int num, char *buf, int buflen)
 
 void MCommandProfiler::PrintSummary(FILE* fp)
 {
-	// ÃøÁ¤ ½Ã°£
-	// ÃÑ Send Ä¿¸Çµå °³¼ö, ÃÊ´ç °³¼ö, bytes, ºñÀ², ÃÊ´ç bytes
-	// ÃÑ Recv Ä¿¸Çµå °³¼ö, ÃÊ´ç °³¼ö, bytes, ºñÀ², ÃÊ´ç bytes
+	// ì¸¡ì • ì‹œê°„
+	// ì´ Send ì»¤ë§¨ë“œ ê°œìˆ˜, ì´ˆë‹¹ ê°œìˆ˜, bytes, ë¹„ìœ¨, ì´ˆë‹¹ bytes
+	// ì´ Recv ì»¤ë§¨ë“œ ê°œìˆ˜, ì´ˆë‹¹ ê°œìˆ˜, bytes, ë¹„ìœ¨, ì´ˆë‹¹ bytes
 
 	unsigned int nTotalTimeSec = (unsigned int)(floor((m_nLastTime - m_nFirstTime) / 1000.0f));
 	if (nTotalTimeSec == 0) nTotalTimeSec=1;
@@ -114,7 +114,7 @@ void MCommandProfiler::PrintSummary(FILE* fp)
 	AddCommaToNum(m_nTotalRecvCmdCount, szTotalRecvCmdCount, 256);
 	AddCommaToNum(m_nTotalRecvBytes, szTotalRecvBytes, 256);
 
-	fprintf(fp, "  ÃøÁ¤ ½Ã°£ = %uÃÊ\n", nTotalTimeSec);
+	fprintf(fp, "  ì¸¡ì • ì‹œê°„ = %uì´ˆ\n", nTotalTimeSec);
 	fprintf(fp, "  Send> Count=%s(%4.1f%%) , Count/Sec = %d \t, Bytes = %s(%4.1f%%) , Bytes/Sec = %d\n", 
 				szTotalSendCmdCount,
 				fSendCmdCountRate, 
@@ -134,13 +134,13 @@ void MCommandProfiler::PrintSummary(FILE* fp)
 
 void MCommandProfiler::PrintCmdItems(FILE* fp)
 {
-	// send: °³¼ö(ºñÀ²), byte(ºñÀ²), byte/sec
+	// send: ê°œìˆ˜(ë¹„ìœ¨), byte(ë¹„ìœ¨), byte/sec
 
 	fputs("----------------------------------------------------------------------------------------------------------------------------------------\n", fp);
-	fputs("  ID     |  Size ||  ±¸ºÐ  ||   Count(Rate)  |  Count/Sec  |  Bytes/Sec(Rate)  |  AvgTime(Rate)  |  MinTime  |  MaxTime  |  ¼³¸í\n", fp);
+	fputs("  ID     |  Size ||  êµ¬ë¶„  ||   Count(Rate)  |  Count/Sec  |  Bytes/Sec(Rate)  |  AvgTime(Rate)  |  MinTime  |  MaxTime  |  ì„¤ëª…\n", fp);
 	fputs("----------------------------------------------------------------------------------------------------------------------------------------\n", fp);
 
-	// ÃøÁ¤½Ã°£(ÃÊ)
+	// ì¸¡ì •ì‹œê°„(ì´ˆ)
 	unsigned int nTotalTimeSec = (unsigned int)(floor((m_nLastTime - m_nFirstTime) / 1000.0f));
 	if (nTotalTimeSec == 0) nTotalTimeSec=1;
 

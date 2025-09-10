@@ -12,13 +12,13 @@ void MChunkWriter::Start(FILE* fp)
 	m_fp = fp;
 	m_pCurrChunkHeader = NULL;
 	m_nInitialPos = ftell(fp);
-	fseek(fp, sizeof(MCHUNKLISTINFO), SEEK_CUR);	// Chunk Header ListÀÇ À§Ä¡¸¦ ÀúÀåÇÒ °ø°£ È®º¸
+	fseek(fp, sizeof(MCHUNKLISTINFO), SEEK_CUR);	// Chunk Header Listì˜ ìœ„ì¹˜ë¥¼ ì €ìž¥í•  ê³µê°„ í™•ë³´
 }
 
 void MChunkWriter::Begin(int nChunkID)
 {
 	_ASSERT(m_fp!=NULL);
-	_ASSERT(m_pCurrChunkHeader==NULL);	// BeginÀº ÃÊ±â¿¡ ºÒ¸®°Å³ª, End()ÈÄ¿¡ ºÒ·Á¾ß ÇÑ´Ù.
+	_ASSERT(m_pCurrChunkHeader==NULL);	// Beginì€ ì´ˆê¸°ì— ë¶ˆë¦¬ê±°ë‚˜, End()í›„ì— ë¶ˆë ¤ì•¼ í•œë‹¤.
 	m_pCurrChunkHeader = new MCHUNKHEADER;
 	m_pCurrChunkHeader->nChunkID = nChunkID;
 	m_nCurrChunkPos = ftell(m_fp);
@@ -27,7 +27,7 @@ void MChunkWriter::Begin(int nChunkID)
 void MChunkWriter::End(void)
 {
 	_ASSERT(m_fp!=NULL);
-	_ASSERT(m_pCurrChunkHeader!=NULL);	// End´Â BeginÈÄ¿¡ ºÒ·Á¾ß ÇÑ´Ù.
+	_ASSERT(m_pCurrChunkHeader!=NULL);	// EndëŠ” Beginí›„ì— ë¶ˆë ¤ì•¼ í•œë‹¤.
 	long int nPos = ftell(m_fp);
 	m_pCurrChunkHeader->nChunkPos = m_nCurrChunkPos;
 	m_pCurrChunkHeader->nChunkSize = nPos - m_nCurrChunkPos;

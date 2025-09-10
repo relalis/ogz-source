@@ -4,7 +4,7 @@
 //#include "RMesh.h"
 #include "ZApplication.h"
 
-// Àü¿ªÀûÀ¸·Î »ç¿ëÇÏ´Â °ÍÀº ÀÌ°÷¿¡´Ù ³Öµµ·Ï ÇÏÀÚ
+// ì „ì—­ì ìœ¼ë¡œ ì‚¬ìš©í•˜ëŠ” ê²ƒì€ ì´ê³³ì—ë‹¤ ë„£ë„ë¡ í•˜ìž
 //#ifdef LOCALE_BRAZIL
 //#define APPLICATION_NAME		"The Duel"
 //#else
@@ -13,7 +13,7 @@
 
 #define APPLICATION_NAME "Open GunZ"
 
-// ÀúÀåµÇ´Â Æú´õ
+// ì €ìž¥ë˜ëŠ” í´ë”
 //#ifdef LOCALE_BRAZIL
 //#define GUNZ_FOLDER			"/The Duel"
 //#else

@@ -22,6 +22,6 @@ public:
 	MUID GetBerserkerUID() const { return m_uidBerserker; }
 };
 
-#define BERSERKER_DAMAGE_RATIO			2.0f		// ¹ö¼­Ä¿°¡ µÇ¸é ÆÄ¿ö°¡ 2¹è·Î µÈ´Ù.
+#define BERSERKER_DAMAGE_RATIO			2.0f		// ë²„ì„œì»¤ê°€ ë˜ë©´ íŒŒì›Œê°€ 2ë°°ë¡œ ëœë‹¤.
 
 #endif

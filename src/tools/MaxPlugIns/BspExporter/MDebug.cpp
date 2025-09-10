@@ -32,7 +32,7 @@ void InitLog(int logmethodflags, const char* pszLogFileName)
 	}
 }
 
-// history ºÀÀÎ !
+// history ë´‰ì¸ !
 
 void __cdecl MLog(const char *pFormat,...)
 {
@@ -168,7 +168,7 @@ void MSEHTranslator(UINT nSeCode, _EXCEPTION_POINTERS* pExcPointers)
 	_exit(3);
 }
 
-void MInstallSEH()	// Compile Option¿¡ /EHa ÀÖ¾î¾ßÇÔ
+void MInstallSEH()	// Compile Optionì— /EHa ìˆì–´ì•¼í•¨
 {
 	#ifndef _DEBUG
 		_set_se_translator(MSEHTranslator);

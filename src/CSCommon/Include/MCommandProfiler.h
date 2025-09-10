@@ -6,10 +6,10 @@
 
 struct MCommandProfileItem
 {
-	// ÃøÁ¤¿¡ ÇÊ¿äÇÑ °ª
+	// ì¸¡ì •ì— í•„ìš”í•œ ê°’
 	unsigned int		nStartTime;
 
-	// ÃøÁ¤°ª
+	// ì¸¡ì •ê°’
 	unsigned int		nTotalTime;
 	unsigned int		nMinTime;
 	unsigned int		nMaxTime;
@@ -33,7 +33,7 @@ struct MCommandProfileItem
 
 };
 
-#define MAX_COMMANDPROFILER_CMD_COUNT		65536		// 16ºñÆ®
+#define MAX_COMMANDPROFILER_CMD_COUNT		65536		// 16ë¹„íŠ¸
 
 class MCommand;
 

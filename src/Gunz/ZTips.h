@@ -9,14 +9,14 @@ using namespace std;
 
 enum ZTIPS_CATEGORY
 {
-	ZTIPS_CATEGORY_NORMAL		=0,		// ÀÏ¹Ý
-	ZTIPS_CATEGORY_SOLO			=1,		// °³ÀÎÀü
-	ZTIPS_CATEGORY_TEAM			=2,		// ÆÀÀü
-	ZTIPS_CATEGORY_CLANSERVER	=3,		// Å¬·£Àü
-	ZTIPS_CATEGORY_NEWBIE		=4,		// ¿ÕÃÊº¸
-	ZTIPS_CATEGORY_BEGINNER		=5,		// ÃÊº¸
-	ZTIPS_CATEGORY_ROOKIE		=6,		// Áß¼ö
-	ZTIPS_CATEGORY_MASTERY		=7,		// °í¼ö
+	ZTIPS_CATEGORY_NORMAL		=0,		// ì¼ë°˜
+	ZTIPS_CATEGORY_SOLO			=1,		// ê°œì¸ì „
+	ZTIPS_CATEGORY_TEAM			=2,		// íŒ€ì „
+	ZTIPS_CATEGORY_CLANSERVER	=3,		// í´ëžœì „
+	ZTIPS_CATEGORY_NEWBIE		=4,		// ì™•ì´ˆë³´
+	ZTIPS_CATEGORY_BEGINNER		=5,		// ì´ˆë³´
+	ZTIPS_CATEGORY_ROOKIE		=6,		// ì¤‘ìˆ˜
+	ZTIPS_CATEGORY_MASTERY		=7,		// ê³ ìˆ˜
 
 	ZTIPS_CATEGORY_END
 };
@@ -35,7 +35,7 @@ private:
 	vector<string>		m_StringVector;
 	vector<ZTIPS_MSG>	m_MsgsVectors[ZTIPS_CATEGORY_END];
 
-	bool		m_bIsShowedNewbieTips;	// ¿ÕÃÊº¸¿ë ¸Þ¼¼Áö¸¦ ÀÌ¹Ì º¸¿©Áá´ÂÁö ¿©ºÎ. ÀÌ°Ô ¿©±âÀÖ´Â°Ô Àû´çÇÑ°ÇÁö Àß ¸ð¸£°ÚÀ½. -_-¤»
+	bool		m_bIsShowedNewbieTips;	// ì™•ì´ˆë³´ìš© ë©”ì„¸ì§€ë¥¼ ì´ë¯¸ ë³´ì—¬ì¤¬ëŠ”ì§€ ì—¬ë¶€. ì´ê²Œ ì—¬ê¸°ìžˆëŠ”ê²Œ ì ë‹¹í•œê±´ì§€ ìž˜ ëª¨ë¥´ê² ìŒ. -_-ã…‹
 
 	// func
 	void ParseTips(MXmlElement* pElement);

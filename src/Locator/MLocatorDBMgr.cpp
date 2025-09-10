@@ -58,11 +58,11 @@ bool MLocatorDBMgr::GetServerStatus( MServerStatusMgr* pServerStatusMgr )
 		try
 		{
 			if (GetLocatorConfig()->IsTestServerOnly() == true) {
-				// TEST SERVER ¸ñ·Ï¸¸ °¡Á®¿È.
+				// TEST SERVER ëª©ë¡ë§Œ ê°€ì ¸ì˜´.
 				rs.Open("SELECT ServerID, Type, CurrPlayer, MaxPlayer, CONVERT(varchar(20), Time, 20) AS Time, IP, Port, ServerName, Opened FROM ServerStatus(NOLOCK) WHERE (Opened <> 0) AND (Opened IS NOT NULL) AND Type=6", 
 					CRecordset::forwardOnly, CRecordset::readOnly);
 			} else {
-				// DB¿¡¼­ °¡Á®¿Ã¶§ ÇÊÅÍ¸µÇØ¼­ °¡Á®¿È.
+				// DBì—ì„œ ê°€ì ¸ì˜¬ë•Œ í•„í„°ë§í•´ì„œ ê°€ì ¸ì˜´.
 				rs.Open("SELECT ServerID, Type, CurrPlayer, MaxPlayer, CONVERT(varchar(20), Time, 20) AS Time, IP, Port, ServerName, Opened FROM ServerStatus(NOLOCK) WHERE (Opened <> 0) AND (Opened IS NOT NULL) AND Type <> 6", 
 					CRecordset::forwardOnly, CRecordset::readOnly);
 			}

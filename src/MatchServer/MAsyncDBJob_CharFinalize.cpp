@@ -25,7 +25,7 @@ void MAsyncDBJob_CharFinalize::Run(void* pContext)
 	}
 
 #ifdef _QUEST_ITEM
-	// Äù½ºÆ® ¼­¹öÀÏ °æ¿ì¸¸ Äù½ºÆ® ¾ÆÀÌÅÛ ¸®½ºÆ®¸¦ ¾÷µ¥ÀÌÆ® ÇÔ.
+	// í€˜ìŠ¤íŠ¸ ì„œë²„ì¼ ê²½ìš°ë§Œ í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë¥¼ ì—…ë°ì´íŠ¸ í•¨.
 	if ( QuestTestServer() )
 	{
 		if( m_QuestItemMap.IsDoneDbAccess() && m_bIsRequestQItemUpdate)
@@ -59,7 +59,7 @@ bool MAsyncDBJob_CharFinalize::Input(int nCID,
 
 
 #ifdef _QUEST_ITEM
-	// Äù½ºÆ® ¼­¹öÀÏ °æ¿ì¸¸ Äù½ºÆ® ¾ÆÀÌÅÛ ¸®½ºÆ®¸¦ ¾÷µ¥ÀÌÆ® ÇÔ.
+	// í€˜ìŠ¤íŠ¸ ì„œë²„ì¼ ê²½ìš°ë§Œ í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë¥¼ ì—…ë°ì´íŠ¸ í•¨.
 	if( QuestTestServer() ) 
 	{
 		m_bIsRequestQItemUpdate = bIsRequestQItemUpdate;

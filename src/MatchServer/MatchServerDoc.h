@@ -1,4 +1,4 @@
-// MatchServerDoc.h : CMatchServerDoc Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// MatchServerDoc.h : CMatchServerDoc í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 
@@ -30,7 +30,7 @@ public:
 
 class CMatchServerDoc : public CDocument
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CMatchServerDoc();
 	DECLARE_DYNCREATE(CMatchServerDoc)
 
@@ -58,7 +58,7 @@ public:
 protected:
 	void ProcessLocalCommand(MCommand* pCommand);
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CMatchServerDoc();
 #ifdef _DEBUG
@@ -68,7 +68,7 @@ public:
 
 protected:
 
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 public:

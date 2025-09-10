@@ -1,4 +1,4 @@
-// LocatorDoc.h : CLocatorDoc Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// LocatorDoc.h : CLocatorDoc í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 
@@ -8,14 +8,14 @@ class MLocator;
 
 class CLocatorDoc : public CDocument
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CLocatorDoc();
 	DECLARE_DYNCREATE(CLocatorDoc)
 
-// Æ¯¼º
+// íŠ¹ì„±
 public:
 
-// ÀÛ¾÷
+// ì‘ì—…
 public:
 	void Run();
 
@@ -28,12 +28,12 @@ private :
 private :
 	MLocator*	m_pLocator;
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 	public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CLocatorDoc();
 #ifdef _DEBUG
@@ -43,7 +43,7 @@ public:
 
 protected:
 
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 public:

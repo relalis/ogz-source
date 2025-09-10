@@ -170,7 +170,7 @@ bool ZDirectInput::Create(HWND hWnd, BOOL bExclusive, BOOL bImmediateMode)
 //    if( FAILED( hr = DirectInput8Create( GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8, (VOID**)&m_pDI, NULL ) ) ) return false;
 
 
-	// Å°º¸µå device ¸¦ ¸¸µç´Ù
+	// í‚¤ë³´ë“œ device ë¥¼ ë§Œë“ ë‹¤
 
     if( FAILED( hr = m_pDI->CreateDevice( GUID_SysKeyboard, &m_pKeyboard, NULL ) ) ) return false;
     
@@ -207,7 +207,7 @@ bool ZDirectInput::Create(HWND hWnd, BOOL bExclusive, BOOL bImmediateMode)
 
 #ifndef _DONOTUSE_DINPUT_MOUSE
 
-	// ¸¶¿ì½º device ¸¦ ¸¸µç´Ù
+	// ë§ˆìš°ìŠ¤ device ë¥¼ ë§Œë“ ë‹¤
 	if( FAILED( hr = m_pDI->CreateDevice( GUID_SysMouse, &m_pMouse, NULL ) ) ) return false;
 
 	if( FAILED( hr = m_pMouse->SetDataFormat( &c_dfDIMouse2 ) ) ) return false;
@@ -239,7 +239,7 @@ bool ZDirectInput::Create(HWND hWnd, BOOL bExclusive, BOOL bImmediateMode)
 	m_pMouse->Acquire();
 #endif
 
-	// Á¶ÀÌ½ºÆ½ µð¹ÙÀÌ½º
+	// ì¡°ì´ìŠ¤í‹± ë””ë°”ì´ìŠ¤
 	// Look for a simple Joystick we can use for this sample program.
 	if( FAILED( hr = m_pDI->EnumDevices( DI8DEVCLASS_GAMECTRL, 
 		EnumJoysticksCallback,
@@ -265,7 +265,7 @@ bool ZDirectInput::Create(HWND hWnd, BOOL bExclusive, BOOL bImmediateMode)
 	if(m_nFFAxis>2)
 		m_nFFAxis = 2;
 
-	// Æ÷½ºÇÇµå¹é ÀÌÆåÆ® ÃÊ±âÈ­. ½ÇÆÐÇÏ¸é disable ½ÃÅ°°í ±×´ë·Î ÁøÇàÇÑ´Ù
+	// í¬ìŠ¤í”¼ë“œë°± ì´íŽ™íŠ¸ ì´ˆê¸°í™”. ì‹¤íŒ¨í•˜ë©´ disable ì‹œí‚¤ê³  ê·¸ëŒ€ë¡œ ì§„í–‰í•œë‹¤
 	if(m_bForceFeedback && m_nFFAxis>0)
 	{
 		// This application needs only one effect: Applying raw forces.
@@ -336,7 +336,7 @@ void ZDirectInput::Destroy(void)
 	}
 }
 
-// »ç¿ëÇÏÁö ¾Ê´Â´Ù
+// ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤
 /*
 bool ZDirectInput::GetImmediateData(BYTE ScanCode[256])
 {
@@ -488,7 +488,7 @@ bool ZDirectInput::GetJoystickData(DIJOYSTATE2* pjs)
 		// just re-acquire and try again.
 		hr = m_pJoystick->Acquire();
 		while( hr == DIERR_INPUTLOST ) 
-			hr = m_pJoystick->Acquire();	// À§ÇèÇÑµð..
+			hr = m_pJoystick->Acquire();	// ìœ„í—˜í•œë””..
 
 		// hr may be DIERR_OTHERAPPHASPRIO or other errors.  This
 		// may occur when the app is minimized or in the process of 

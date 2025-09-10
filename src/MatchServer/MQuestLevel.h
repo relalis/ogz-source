@@ -15,41 +15,41 @@ struct MQuestNPCSetInfo;
 
 
 
-/// Äù½ºÆ® ¿ùµå·¹º§¿¡¼­ ³ª¿Ã NPCµé
+/// í€˜ìŠ¤íŠ¸ ì›”ë“œë ˆë²¨ì—ì„œ ë‚˜ì˜¬ NPCë“¤
 class MQuestNPCQueue
 {
 private:
-	vector<MQUEST_NPC>			m_Queue;			///< NPC°¡ vectorÇüÅÂ·Î µé¾îÀÖ´Ù.
+	vector<MQUEST_NPC>			m_Queue;			///< NPCê°€ vectorí˜•íƒœë¡œ ë“¤ì–´ìˆë‹¤.
 	int							m_nCursor;
 public:
-	MQuestNPCQueue();										///< »ı¼ºÀÚ
-	~MQuestNPCQueue();										///< ¼Ò¸êÀÚ
+	MQuestNPCQueue();										///< ìƒì„±ì
+	~MQuestNPCQueue();										///< ì†Œë©¸ì
 
-	/// QLD¿Í NPCSet¸¦ ¹ÙÅÁÀ¸·Î NPCÅ¥¸¦ ¸¸µç´Ù.
+	/// QLDì™€ NPCSetë¥¼ ë°”íƒ•ìœ¼ë¡œ NPCíë¥¼ ë§Œë“ ë‹¤.
 	/// @param nQLD				QLD
-	/// @param pNPCSetInfo		NPC Set Á¤º¸
+	/// @param pNPCSetInfo		NPC Set ì •ë³´
 	void Make(int nQLD, MQuestNPCSetInfo* pNPCSetInfo, MQUEST_NPC nKeyNPC=NPC_NONE);		
-	void Clear();											///< Å¥ ÃÊ±âÈ­
-	bool Pop(MQUEST_NPC& outNPC);							///< Å¥¿¡¼­ NPC¸¦ ÇÏ³ª ²¨³½´Ù.
-	bool GetFirst(MQUEST_NPC& outNPC);						///< Á¦ÀÏ Ã³À½ NPC°ªÀ» ÀĞ´Â´Ù.
-	bool IsEmpty();											///< Å¥°¡ ºñ¾ú´ÂÁö Ã¼Å©
-	int GetCount();											///< Å¥¿¡ µé¾îÀÖ´Â NPC¼ö ¹İÈ¯. PopÀ¸·Î ÀÌ¹Ì ²¨³½ NPCµµ Æ÷ÇÔÇÑ´Ù.
+	void Clear();											///< í ì´ˆê¸°í™”
+	bool Pop(MQUEST_NPC& outNPC);							///< íì—ì„œ NPCë¥¼ í•˜ë‚˜ êº¼ë‚¸ë‹¤.
+	bool GetFirst(MQUEST_NPC& outNPC);						///< ì œì¼ ì²˜ìŒ NPCê°’ì„ ì½ëŠ”ë‹¤.
+	bool IsEmpty();											///< íê°€ ë¹„ì—ˆëŠ”ì§€ ì²´í¬
+	int GetCount();											///< íì— ë“¤ì–´ìˆëŠ” NPCìˆ˜ ë°˜í™˜. Popìœ¼ë¡œ ì´ë¯¸ êº¼ë‚¸ NPCë„ í¬í•¨í•œë‹¤.
 };
 
 
 
 
-/// º¯ÇÏÁö ¾Ê´Â Äù½ºÆ® ¿ùµå·¹º§ Á¤º¸
+/// ë³€í•˜ì§€ ì•ŠëŠ” í€˜ìŠ¤íŠ¸ ì›”ë“œë ˆë²¨ ì •ë³´
 struct MQuestLevelStaticInfo
 {
-	MQuestScenarioInfo*				pScenario;			///< ÇØ´ç ·¹º§ÀÇ ½Ã³ª¸®¿À
-	int								nDice;				///< ±¼¸° ÁÖ»çÀ§¼ö
-	set<MQUEST_NPC>					NPCs;				///< ³ª¿Ã NPC Á¾·ù
-	vector<MQuestLevelSectorNode>	SectorList;			///< Map Sector ¸®½ºÆ®
-	int								nQL;				///< Äù½ºÆ® ·¹º§
-	float							fNPC_TC;			///< NPC ³­ÀÌµµ Á¶Àı °è¼ö(NPC Toughness Coefficient)
-	int								nQLD;				///< Äù½ºÆ® ·¹º§ ³­ÀÌµµ
-	int								nLMT;				///< ÇÑ¹ø¿¡ ½ºÆùµÇ´Â ¸¿ÀÇ ¼ıÀÚ Á¦ÇÑ
+	MQuestScenarioInfo*				pScenario;			///< í•´ë‹¹ ë ˆë²¨ì˜ ì‹œë‚˜ë¦¬ì˜¤
+	int								nDice;				///< êµ´ë¦° ì£¼ì‚¬ìœ„ìˆ˜
+	set<MQUEST_NPC>					NPCs;				///< ë‚˜ì˜¬ NPC ì¢…ë¥˜
+	vector<MQuestLevelSectorNode>	SectorList;			///< Map Sector ë¦¬ìŠ¤íŠ¸
+	int								nQL;				///< í€˜ìŠ¤íŠ¸ ë ˆë²¨
+	float							fNPC_TC;			///< NPC ë‚œì´ë„ ì¡°ì ˆ ê³„ìˆ˜(NPC Toughness Coefficient)
+	int								nQLD;				///< í€˜ìŠ¤íŠ¸ ë ˆë²¨ ë‚œì´ë„
+	int								nLMT;				///< í•œë²ˆì— ìŠ¤í°ë˜ëŠ” ë§™ì˜ ìˆ«ì ì œí•œ
 
 	MQuestLevelStaticInfo()
 	{
@@ -62,19 +62,19 @@ struct MQuestLevelStaticInfo
 	}
 };
 
-/// Äù½ºÆ®¿¡¼­ ³ª¿Â ¾ÆÀÌÅÛ
+/// í€˜ìŠ¤íŠ¸ì—ì„œ ë‚˜ì˜¨ ì•„ì´í…œ
 struct MQuestLevelItem
 {
-	u32	nItemID;			///< Äù½ºÆ® ¾ÆÀÌÅÛ ID
-	int					nRentPeriodHour;	///< ÀÏ¹İ ¾ÆÀÌÅÛÀÏ °æ¿ì »ç¿ë ±â°£
-	bool				bObtained;			///< ÇÃ·¹ÀÌ¾î°¡ ¸Ô¾ú´ÂÁö ¿©ºÎ
-	int					nMonsetBibleIndex;	// ¸ó½ºÅÍ µµ°¨¿¡ »ç¿ëµÉ ¸ó½ºÅÍ Å¸ÀÔÀÇ °íÀ¯ ÀÎµ¦½º.
+	u32	nItemID;			///< í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ID
+	int					nRentPeriodHour;	///< ì¼ë°˜ ì•„ì´í…œì¼ ê²½ìš° ì‚¬ìš© ê¸°ê°„
+	bool				bObtained;			///< í”Œë ˆì´ì–´ê°€ ë¨¹ì—ˆëŠ”ì§€ ì—¬ë¶€
+	int					nMonsetBibleIndex;	// ëª¬ìŠ¤í„° ë„ê°ì— ì‚¬ìš©ë  ëª¬ìŠ¤í„° íƒ€ì…ì˜ ê³ ìœ  ì¸ë±ìŠ¤.
 
 	MQuestLevelItem() : nItemID(0), bObtained(false), nRentPeriodHour(0) {}
 	bool IsQuestItem() { return IsQuestItemID(nItemID); }
 };
 
-/// Äù½ºÆ®¿¡¼­ ¾òÀº ¾ÆÀÌÅÛµé
+/// í€˜ìŠ¤íŠ¸ì—ì„œ ì–»ì€ ì•„ì´í…œë“¤
 class MQuestLevelItemMap : public multimap<u32, MQuestLevelItem*>
 {
 public:
@@ -91,14 +91,14 @@ public:
 };
 
 
-/// Äù½ºÆ® ·¹º§ ÁøÇàÇÏ¸é¼­ º¯ÇÏ´Â Á¤º¸
+/// í€˜ìŠ¤íŠ¸ ë ˆë²¨ ì§„í–‰í•˜ë©´ì„œ ë³€í•˜ëŠ” ì •ë³´
 struct MQuestLevelDynamicInfo
 {
-	int						nCurrSectorIndex;								///< ÇöÀç ÁøÇàÁßÀÎ ¼½ÅÍ ÀÎµ¦½º
-	MQuestMapSectorInfo*	pCurrSector;									///< ÇöÀç ÁøÇàÁßÀÎ ¼½ÅÍ
-	int						nQLD;											///< Äù½ºÆ® ·¹º§ ³­ÀÌµµ »ó¼ö(QLD)
-	bool					bCurrBossSector;								///< ÇöÀç ¼½ÅÍ°¡ º¸½º ¼½ÅÍÀÎÁö ¿©ºÎ
-	MQuestLevelItemMap		ItemMap;										///< Äù½ºÆ®¿¡¼­ ³ª¿Â ¾ÆÀÌÅÛµé
+	int						nCurrSectorIndex;								///< í˜„ì¬ ì§„í–‰ì¤‘ì¸ ì„¹í„° ì¸ë±ìŠ¤
+	MQuestMapSectorInfo*	pCurrSector;									///< í˜„ì¬ ì§„í–‰ì¤‘ì¸ ì„¹í„°
+	int						nQLD;											///< í€˜ìŠ¤íŠ¸ ë ˆë²¨ ë‚œì´ë„ ìƒìˆ˜(QLD)
+	bool					bCurrBossSector;								///< í˜„ì¬ ì„¹í„°ê°€ ë³´ìŠ¤ ì„¹í„°ì¸ì§€ ì—¬ë¶€
+	MQuestLevelItemMap		ItemMap;										///< í€˜ìŠ¤íŠ¸ì—ì„œ ë‚˜ì˜¨ ì•„ì´í…œë“¤
 
 	MQuestLevelDynamicInfo()
 	{
@@ -110,22 +110,22 @@ struct MQuestLevelDynamicInfo
 };
 
 
-/// Äù½ºÆ® ¿ùµå ·¹º§ - Äù½ºÆ®ÀÇ ¸ğµç Á¤º¸°¡ ¿©±â ´Ù ÀÖ´Ù.
+/// í€˜ìŠ¤íŠ¸ ì›”ë“œ ë ˆë²¨ - í€˜ìŠ¤íŠ¸ì˜ ëª¨ë“  ì •ë³´ê°€ ì—¬ê¸° ë‹¤ ìˆë‹¤.
 class MQuestLevel
 {
 private:
-	/// NPC ½ºÆù ½Ã°£À» Á¶Á¤ÇÏ±â À§ÇÑ ±¸Á¶Ã¼
+	/// NPC ìŠ¤í° ì‹œê°„ì„ ì¡°ì •í•˜ê¸° ìœ„í•œ êµ¬ì¡°ì²´
 	struct MQuestLevelSpawnInfo
 	{
-		int					nIndex;								///< ½ºÆù ÀÎµ¦½º
-		u64	nRecentSpawnTime[MAX_SPAWN_COUNT];	///< ÃÖ±Ù¿¡ ½ºÆùµÈ ½Ã°£
+		int					nIndex;								///< ìŠ¤í° ì¸ë±ìŠ¤
+		u64	nRecentSpawnTime[MAX_SPAWN_COUNT];	///< ìµœê·¼ì— ìŠ¤í°ëœ ì‹œê°„
 	};
 
-	MQuestLevelStaticInfo		m_StaticInfo;					///< Äù½ºÆ® ½ÃÀÛÇÏ¸é º¯ÇÏÁö ¾Ê´Â Á¤º¸
-	MQuestLevelDynamicInfo		m_DynamicInfo;					///< Äù½ºÆ® ÁøÇàÇÏ¸é¼­ º¯ÇÏ´Â Á¤º¸
-	MQuestNPCQueue				m_NPCQueue;						///< ³ª¿À´Â NPC ¿ÀºêÁ§Æ® Å¥
+	MQuestLevelStaticInfo		m_StaticInfo;					///< í€˜ìŠ¤íŠ¸ ì‹œì‘í•˜ë©´ ë³€í•˜ì§€ ì•ŠëŠ” ì •ë³´
+	MQuestLevelDynamicInfo		m_DynamicInfo;					///< í€˜ìŠ¤íŠ¸ ì§„í–‰í•˜ë©´ì„œ ë³€í•˜ëŠ” ì •ë³´
+	MQuestNPCQueue				m_NPCQueue;						///< ë‚˜ì˜¤ëŠ” NPC ì˜¤ë¸Œì íŠ¸ í
 
-	MQuestLevelSpawnInfo		m_SpawnInfos[MNST_END];			///< NPC ½ºÆùÁöÁ¡ Á¤º¸
+	MQuestLevelSpawnInfo		m_SpawnInfos[MNST_END];			///< NPC ìŠ¤í°ì§€ì  ì •ë³´
 
 	bool InitSectors();
 	bool InitNPCs();											
@@ -133,42 +133,42 @@ private:
 	void InitCurrSector();
 
 public:
-	MQuestLevel();						///< »ı¼ºÀÚ
-	~MQuestLevel();						///< ¼Ò¸êÀÚ
+	MQuestLevel();						///< ìƒì„±ì
+	~MQuestLevel();						///< ì†Œë©¸ì
 
-	/// ½Ã³ª¸®¿À ID¸¦ ±â¹İÀ¸·Î ¿ùµå·¹º§ ÃÊ±âÈ­
-	/// @param nScenarioID			½Ã³ª¸®¿À ID
-	/// @param nDice				ÁÖ»çÀ§ ±¼¸²
+	/// ì‹œë‚˜ë¦¬ì˜¤ IDë¥¼ ê¸°ë°˜ìœ¼ë¡œ ì›”ë“œë ˆë²¨ ì´ˆê¸°í™”
+	/// @param nScenarioID			ì‹œë‚˜ë¦¬ì˜¤ ID
+	/// @param nDice				ì£¼ì‚¬ìœ„ êµ´ë¦¼
 	void Init(int nScenarioID, int nDice);
-	/// ¼³Á¤µÈ ¿ùµå·¹º§À» ¹ÙÅÁÀ¸·Î Å¬¶óÀÌ¾ğÆ®¿¡ º¸³»ÁÙ Àü¼Ûµ¥ÀÌÅ¸¸¦ ¸¸µç´Ù.
+	/// ì„¤ì •ëœ ì›”ë“œë ˆë²¨ì„ ë°”íƒ•ìœ¼ë¡œ í´ë¼ì´ì–¸íŠ¸ì— ë³´ë‚´ì¤„ ì „ì†¡ë°ì´íƒ€ë¥¼ ë§Œë“ ë‹¤.
 	void Make_MTDQuestGameInfo(MTD_QuestGameInfo* pout);
-	/// ¸Ê¼½ÅÍ ¼ö ¹İÈ¯
-	/// @return		¼½ÅÍ ¼ö
+	/// ë§µì„¹í„° ìˆ˜ ë°˜í™˜
+	/// @return		ì„¹í„° ìˆ˜
 	int GetMapSectorCount();
-	/// ÇöÀç ¼½ÅÍ ÀÎµ¦½º ¹İÈ¯
-	/// @return		ÇöÀç ¼½ÅÍ ÀÎµ¦½º
+	/// í˜„ì¬ ì„¹í„° ì¸ë±ìŠ¤ ë°˜í™˜
+	/// @return		í˜„ì¬ ì„¹í„° ì¸ë±ìŠ¤
 	int GetCurrSectorIndex();
-	/// ´ÙÀ½ ¼½ÅÍ·Î ÀÌµ¿ÇÑ´Ù.
-	/// @return		¼º°ø/½ÇÆĞ ¿©ºÎ
+	/// ë‹¤ìŒ ì„¹í„°ë¡œ ì´ë™í•œë‹¤.
+	/// @return		ì„±ê³µ/ì‹¤íŒ¨ ì—¬ë¶€
 	bool MoveToNextSector();	
-	/// »õ·Î ÅÂ¾î³¯ NPCÀÇ À§Ä¡¸¦ ÃßÃµÇÑ´Ù.
-	/// @param nSpawnType		NPCÀÇ ½ºÆùÅ¸ÀÔ
-	/// @param nNowTime			ÇöÀç ½Ã°£
+	/// ìƒˆë¡œ íƒœì–´ë‚  NPCì˜ ìœ„ì¹˜ë¥¼ ì¶”ì²œí•œë‹¤.
+	/// @param nSpawnType		NPCì˜ ìŠ¤í°íƒ€ì…
+	/// @param nNowTime			í˜„ì¬ ì‹œê°„
 	int GetRecommendedSpawnPosition(MQuestNPCSpawnType nSpawnType, u64 nNowTime);
-	/// Áö±İ NPC°¡ ½ºÆù°¡´ÉÇÑÁö È®ÀÎÇÑ´Ù.
-	/// @param nSpawnType		NPCÀÇ ½ºÆùÅ¸ÀÔ
-	/// @param nNowTime			ÇöÀç ½Ã°£
+	/// ì§€ê¸ˆ NPCê°€ ìŠ¤í°ê°€ëŠ¥í•œì§€ í™•ì¸í•œë‹¤.
+	/// @param nSpawnType		NPCì˜ ìŠ¤í°íƒ€ì…
+	/// @param nNowTime			í˜„ì¬ ì‹œê°„
 	bool IsEnableSpawnNow(MQuestNPCSpawnType nSpawnType, u64 nNowTime);
-	/// ÇöÀç ¼½ÅÍ¿¡¼­ ½ºÆù Áö¿ª °³¼ö¸¦ ±¸ÇÑ´Ù.
-	/// @param nSpawnType		NPCÀÇ ½ºÆùÅ¸ÀÔ
+	/// í˜„ì¬ ì„¹í„°ì—ì„œ ìŠ¤í° ì§€ì—­ ê°œìˆ˜ë¥¼ êµ¬í•œë‹¤.
+	/// @param nSpawnType		NPCì˜ ìŠ¤í°íƒ€ì…
 	int GetSpawnPositionCount(MQuestNPCSpawnType nSpawnType);
 
-	/// Äù½ºÆ® ¾ÆÀÌÅÛÀÌ »ı¼ºµÉ °æ¿ì È£ÃâµÈ´Ù.
-	/// @nItemID				Äù½ºÆ® ¾ÆÀÌÅÛ ID
-	/// @nRentPeriodHour		ÀÏ¹İ ¾ÆÀÌÅÛÀÏ °æ¿ì »ç¿ë ±â°£
+	/// í€˜ìŠ¤íŠ¸ ì•„ì´í…œì´ ìƒì„±ë  ê²½ìš° í˜¸ì¶œëœë‹¤.
+	/// @nItemID				í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ID
+	/// @nRentPeriodHour		ì¼ë°˜ ì•„ì´í…œì¼ ê²½ìš° ì‚¬ìš© ê¸°ê°„
 	void OnItemCreated(u32	nItemID, int nRentPeriodHour);
-	/// ÇÃ·¹ÀÌ¾î°¡ Äù½ºÆ® ¾ÆÀÌÅÛ ¸Ô¾úÀ» °æ¿ì È£ÃâµÈ´Ù.
-	/// @nItemID				Äù½ºÆ® ¾ÆÀÌÅÛ ID
+	/// í”Œë ˆì´ì–´ê°€ í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ë¨¹ì—ˆì„ ê²½ìš° í˜¸ì¶œëœë‹¤.
+	/// @nItemID				í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ID
 	bool OnItemObtained( MMatchObject* pPlayer, u32	nItemID);		
 
 	MQuestNPCQueue* GetNPCQueue()				{ return &m_NPCQueue; }

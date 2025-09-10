@@ -8,10 +8,10 @@
 
 class MMatchRuleBerserker : public MMatchRuleSoloDeath {
 protected:
-	// ¸â¹öº¯¼ö ---------------------
-	MUID		m_uidBerserker;				// ÇöÀç ¹ö¼­Ä¿ÀÎ ÇÃ·¹ÀÌ¾î
+	// ë©¤ë²„ë³€ìˆ˜ ---------------------
+	MUID		m_uidBerserker;				// í˜„ì¬ ë²„ì„œì»¤ì¸ í”Œë ˆì´ì–´
 
-	// ÇÔ¼ö -------------------------
+	// í•¨ìˆ˜ -------------------------
 	bool CheckKillCount(MMatchObject* pOutObject);
 	virtual void OnRoundBegin();
 	virtual bool OnCheckRoundFinish();
@@ -21,8 +21,8 @@ public:
 	MMatchRuleBerserker(MMatchStage* pStage);
 	virtual ~MMatchRuleBerserker() { }
 	virtual void* CreateRuleInfoBlob();
-	virtual void OnEnterBattle(MUID& uidChar);			///< °ÔÀÓÁß ³­ÀÔÇÒ¶§ È£ÃâµÈ´Ù.
-	virtual void OnLeaveBattle(MUID& uidChar);			///< °ÔÀÓÁß ³ª°¬À»¶§ È£ÃâµÈ´Ù.
+	virtual void OnEnterBattle(MUID& uidChar);			///< ê²Œì„ì¤‘ ë‚œì…í• ë•Œ í˜¸ì¶œëœë‹¤.
+	virtual void OnLeaveBattle(MUID& uidChar);			///< ê²Œì„ì¤‘ ë‚˜ê°”ì„ë•Œ í˜¸ì¶œëœë‹¤.
 	virtual void OnGameKill(const MUID& uidAttacker, const MUID& uidVictim);
 	virtual MMATCH_GAMETYPE GetGameType() { return MMATCH_GAMETYPE_BERSERKER; }
 	MUID& GetBerserker() { return m_uidBerserker; }

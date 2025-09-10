@@ -62,8 +62,8 @@ void RNavigationMesh::MakeNodes()
 		rvector temp = m_vertices[m_faces[i].v3];
 
 		_ASSERT( (*vp[0] != *vp[1]) && (*vp[1] != *vp[2]) && (*vp[2] != *vp[1]) );
-		AddNode(i, *vp[0], *vp[1], *vp[2]);		// ¹İ½Ã°è¹æÇâ
-		//AddNode(i, *vp[0], *vp[2], *vp[1]);		// ½Ã°è¹æÇâ
+		AddNode(i, *vp[0], *vp[1], *vp[2]);		// ë°˜ì‹œê³„ë°©í–¥
+		//AddNode(i, *vp[0], *vp[2], *vp[1]);		// ì‹œê³„ë°©í–¥
 	}
 }
 
@@ -112,7 +112,7 @@ RNavigationNode* RNavigationMesh::FindClosestNode(const rvector& point) const
 			rvector NewPosition(point);
 			pNode->MapVectorHeightToNode(NewPosition);
 
-			// °¡Àå °¡±î¿î ³ôÀÌÀÇ ³ëµå¸¦ Ã£´Â´Ù.
+			// ê°€ì¥ ê°€ê¹Œìš´ ë†’ì´ì˜ ë…¸ë“œë¥¼ ì°¾ëŠ”ë‹¤.
 			ThisDistance = fabs(NewPosition.z - point.z);
 
 			if (bFoundHomeNode)
@@ -383,7 +383,7 @@ bool RNavigationMesh::BuildNavigationPath(RNavigationNode* pStartNode,
 	//m_WaypointList.push_back(StartPos);
 
 
-	// ¼ø¼­¸¦ µÚ¹Ù²Û´Ù.
+	// ìˆœì„œë¥¼ ë’¤ë°”ê¾¼ë‹¤.
 	m_WaypointList.reverse();
 
 	return ret;

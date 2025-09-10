@@ -7,8 +7,8 @@
 
 #define BMNUM_NUMOFCHARSET		16
 
-/// ��Ʈ������ �׸� ���̺�.	�κ� ���� ���̺��̴�.
-/// ��Ʈ�ʿ� 0~7 / 8 9 , / .   ������ �׷��� �־�� �Ѵ�.
+/// 비트맵으로 그린 레이블.	로비에 쓰일 레이블이다.
+/// 비트맵에 0~7 / 8 9 , / .   순으로 그려져 있어야 한다.
 class ZBmNumLabel : public MWidget{
 protected:
 	MBitmap*		m_pLabelBitmap;

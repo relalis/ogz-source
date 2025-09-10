@@ -1,9 +1,9 @@
 /***********************************************************************
   ZMonsterBookInterface.h
   
-  ¿ë  µµ : ¸ó½ºÅÍ µµ°¨ ÀÎÅÍÆäÀÌ½º
-  ÀÛ¼ºÀÏ : 29, MAR, 2004
-  ÀÛ¼ºÀÚ : ÀÓµ¿È¯
+  ìš©  ë„ : ëª¬ìŠ¤í„° ë„ê° ì¸í„°í˜ì´ìŠ¤
+  ì‘ì„±ì¼ : 29, MAR, 2004
+  ì‘ì„±ì : ì„ë™í™˜
 ************************************************************************/
 
 
@@ -12,11 +12,11 @@
 
 
 
-// Äù½ºÆ® Èñ»ı ¾ÆÀÌÅÛ °£´Ü Á¤º¸
+// í€˜ìŠ¤íŠ¸ í¬ìƒ ì•„ì´í…œ ê°„ë‹¨ ì •ë³´
 struct MQuestItemSimpleDesc
 {
-	char			m_szName[ 32];								// Äù½ºÆ® Èñ»ı ¾ÆÀÌÅÛ ÀÌ¸§
-	// ¿ø·¡ ¸Ó ´õ ³ÖÀ»·Á´Ù°¡ °Á ³öµÒ...
+	char			m_szName[ 32];								// í€˜ìŠ¤íŠ¸ í¬ìƒ ì•„ì´í…œ ì´ë¦„
+	// ì›ë˜ ë¨¸ ë” ë„£ì„ë ¤ë‹¤ê°€ ê± ë†”ë‘ ...
 
 	MQuestItemSimpleDesc()
 	{
@@ -30,26 +30,26 @@ class ZMonsterBookInterface
 {
 // protected varialbes
 protected:
-	MBitmapR2*		m_pBookBgImg;								// ¹è°æ Ã¥ ÀÌ¹ÌÁö
-	MBitmapR2*		m_pIllustImg;								// ÀÏ·¯½ºÆ® ºñÆ®¸Ê ÀÌ¹ÌÁö
+	MBitmapR2*		m_pBookBgImg;								// ë°°ê²½ ì±… ì´ë¯¸ì§€
+	MBitmapR2*		m_pIllustImg;								// ì¼ëŸ¬ìŠ¤íŠ¸ ë¹„íŠ¸ë§µ ì´ë¯¸ì§€
 
-	map< int, MQuestItemSimpleDesc>	 m_QuestItemDesc;			// Äù½ºÆ® ¾ÆÀÌÅÛ Á¤º¸ ¸®½ºÆ®
+	map< int, MQuestItemSimpleDesc>	 m_QuestItemDesc;			// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ì •ë³´ ë¦¬ìŠ¤íŠ¸
 
 //	ZSkillTable		m_SkillTable;
 
-	int				m_nCurrentPage;								// ÇöÀç º¸°íÀÖ´Â ÆäÀÌÁö ¹øÈ£¸¦ ±â·Ï
+	int				m_nCurrentPage;								// í˜„ì¬ ë³´ê³ ìˆëŠ” í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ê¸°ë¡
 
-	bool			m_bIsFirstPage;								// Ã¹ÆäÀÌÁöÀÎÁö ¾Æ´ÑÁö...
+	bool			m_bIsFirstPage;								// ì²«í˜ì´ì§€ì¸ì§€ ì•„ë‹Œì§€...
 
 
 // protected functions
 protected:
-	void DrawPage( void);										// ÆäÀÌÁö¸¦ ±×¸°´Ù
-	void DrawFirstPage( void);									// Ã¹ÆäÀÌÁö¸¦ ±×¸°´Ù
-	void DrawComplete( void);									// ´Ş¼º·üÀ» Ç¥½ÃÇÑ´Ù
+	void DrawPage( void);										// í˜ì´ì§€ë¥¼ ê·¸ë¦°ë‹¤
+	void DrawFirstPage( void);									// ì²«í˜ì´ì§€ë¥¼ ê·¸ë¦°ë‹¤
+	void DrawComplete( void);									// ë‹¬ì„±ë¥ ì„ í‘œì‹œí•œë‹¤
 
-	bool ReadQuestItemXML( void);								// Äù½ºÆ® Èñ»ı ¾ÆÀÌÅÛ XMLÀ» ÀĞ´Â´Ù
-	bool ReadSimpleQuestItemDesc( int nItemID, map< int, MQuestItemSimpleDesc>::iterator* pIterator);		// Èñ»ı ¾ÆÀÌÅÛ ¸®½ºÆ®·ÎºÎÅÍ ¾ÆÀÌÅÛ Á¤º¸¸¦ ¾ò´Â´Ù
+	bool ReadQuestItemXML( void);								// í€˜ìŠ¤íŠ¸ í¬ìƒ ì•„ì´í…œ XMLì„ ì½ëŠ”ë‹¤
+	bool ReadSimpleQuestItemDesc( int nItemID, map< int, MQuestItemSimpleDesc>::iterator* pIterator);		// í¬ìƒ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë¡œë¶€í„° ì•„ì´í…œ ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤
 
 
 
@@ -66,11 +66,11 @@ public:
 	void OnCreate( void);										// On Create
 	void OnDestroy( void);										// On destroy
 
-	void OnPrevPage( void);										// ÀÌÀü ÆäÀÌÁö ³Ñ±â±â ¹öÆ°À» ´­·¶À» ¶§
-	void OnNextPage( void);										// ´ÙÀ½ ÆäÀÌÁö ³Ñ±â±â ¹öÆ°À» ´­·¶À» ¶§
+	void OnPrevPage( void);										// ì´ì „ í˜ì´ì§€ ë„˜ê¸°ê¸° ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ
+	void OnNextPage( void);										// ë‹¤ìŒ í˜ì´ì§€ ë„˜ê¸°ê¸° ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ
 
-	bool SetIllustImage( const char* szFileName);				// ÇöÀç ÆäÀÌÁö¿¡ ÇØ´çÇÏ´Â ¸ó½ºÅÍ ÀÏ·¯½ºÆ® ÀÌ¹ÌÁö¸¦ Ç¥½ÃÇÑ´Ù
-	bool DeleteIllustImage( void);								// ÀĞ¾î¿Ô´ø ¸ó½ºÅÍ ÀÏ·¯½ºÆ® ÀÌ¹ÌÁö¸¦ ¸Ş¸ğ¸®¿¡¼­ »èÁ¦ÇÑ´Ù
+	bool SetIllustImage( const char* szFileName);				// í˜„ì¬ í˜ì´ì§€ì— í•´ë‹¹í•˜ëŠ” ëª¬ìŠ¤í„° ì¼ëŸ¬ìŠ¤íŠ¸ ì´ë¯¸ì§€ë¥¼ í‘œì‹œí•œë‹¤
+	bool DeleteIllustImage( void);								// ì½ì–´ì™”ë˜ ëª¬ìŠ¤í„° ì¼ëŸ¬ìŠ¤íŠ¸ ì´ë¯¸ì§€ë¥¼ ë©”ëª¨ë¦¬ì—ì„œ ì‚­ì œí•œë‹¤
 };
 
 

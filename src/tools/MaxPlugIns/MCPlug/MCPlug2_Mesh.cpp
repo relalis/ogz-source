@@ -408,7 +408,7 @@ void MCplug2::export_mesh(INode* node, TimeValue t, mesh_data* mesh_node)
 
 		D3DXVECTOR3* pCVec = new D3DXVECTOR3 [ numCVx ];
 		 
-		mesh_node->m_point_color_list = new D3DXVECTOR3 [ point_num ];// Á¤Á¡°ú ¼ø¼­ º¸Àå
+		mesh_node->m_point_color_list = new D3DXVECTOR3 [ point_num ];// ì •ì ê³¼ ìˆœì„œ ë³´ìž¥
 
 		Point3 vc;
 
@@ -443,9 +443,9 @@ void MCplug2::export_mesh(INode* node, TimeValue t, mesh_data* mesh_node)
 
 		delete [] pCVec;
 
-		// check ¸ðµÎ 1ÀÎ ÄÃ·¯°ªÀÌ¸é Ãâ·Â ¾ÈÇÑ´Ù..
-		// µðÀÚÀÌ³Ê°¡ ÄÃ·¯°ªÀ» ¸ðµÎ Áö¿î´Ù°í Èò»öÀ¸·Î ¸¸µé¾î¹ö¸° °æ¿ìµµ 
-		// max ¿¡¼­´Â Áö¿öÁöÁö ¾Ê¾Æ¼­ ´Ù½Ã ÀÛ¾÷ÇØ¾ß ÇÒ¼öµµ ÀÖ´Ù..
+		// check ëª¨ë‘ 1ì¸ ì»¬ëŸ¬ê°’ì´ë©´ ì¶œë ¥ ì•ˆí•œë‹¤..
+		// ë””ìžì´ë„ˆê°€ ì»¬ëŸ¬ê°’ì„ ëª¨ë‘ ì§€ìš´ë‹¤ê³  í°ìƒ‰ìœ¼ë¡œ ë§Œë“¤ì–´ë²„ë¦° ê²½ìš°ë„ 
+		// max ì—ì„œëŠ” ì§€ì›Œì§€ì§€ ì•Šì•„ì„œ ë‹¤ì‹œ ìž‘ì—…í•´ì•¼ í• ìˆ˜ë„ ìžˆë‹¤..
 		
 		D3DXVECTOR3* pColor = NULL;
 
@@ -460,7 +460,7 @@ void MCplug2::export_mesh(INode* node, TimeValue t, mesh_data* mesh_node)
 			}
 		}
 
-		if(bCheck) {//¸ðµÎ Èò»öÀÎ °æ¿ì´Â Ãâ·ÂÇÒ ÇÊ¿ä¾ø´Ù..
+		if(bCheck) {//ëª¨ë‘ í°ìƒ‰ì¸ ê²½ìš°ëŠ” ì¶œë ¥í•  í•„ìš”ì—†ë‹¤..
 			mesh_node->m_point_color_num = 0;
 			delete [] mesh_node->m_point_color_list;
 			mesh_node->m_point_color_list = NULL;

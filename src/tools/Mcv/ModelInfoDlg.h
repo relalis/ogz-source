@@ -2,17 +2,17 @@
 #include "afxwin.h"
 
 
-// CModelInfoDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CModelInfoDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CModelInfoDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CModelInfoDlg)
 
 public:
-	CModelInfoDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CModelInfoDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CModelInfoDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_MODEL_INFO };
 
 	void ClearListBox();
@@ -21,7 +21,7 @@ public:
 	void End();
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

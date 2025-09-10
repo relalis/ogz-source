@@ -1,10 +1,10 @@
 /***********************************************************************
   ZStageInterface.h
   
-  ¿ë  µµ : ½ºÅ×ÀÌÁö ÀÎÅÍÆäÀÌ½º¸¦ °ü¸®ÇÏ´Â Å¬·¡½º. ÄÚµå °ü¸®»óÀÇ Æí¸®¸¦ À§ÇØ
-           ºĞ¸®ÇßÀ½(»ç½Ç ¾ÆÁ÷ ¿ÏÀüÈ÷ ´Ù ºĞ¸® ¸øÇßÀ½. -_-;).
-  ÀÛ¼ºÀÏ : 11, MAR, 2004
-  ÀÛ¼ºÀÚ : ÀÓµ¿È¯
+  ìš©  ë„ : ìŠ¤í…Œì´ì§€ ì¸í„°í˜ì´ìŠ¤ë¥¼ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤. ì½”ë“œ ê´€ë¦¬ìƒì˜ í¸ë¦¬ë¥¼ ìœ„í•´
+           ë¶„ë¦¬í–ˆìŒ(ì‚¬ì‹¤ ì•„ì§ ì™„ì „íˆ ë‹¤ ë¶„ë¦¬ ëª»í–ˆìŒ. -_-;).
+  ì‘ì„±ì¼ : 11, MAR, 2004
+  ì‘ì„±ì : ì„ë™í™˜
 ************************************************************************/
 
 
@@ -18,7 +18,7 @@
 
 
 
-// ¾ÆÀÌÅÛ ½½·Ô¿¡ ÀÖ´Â ¾ÆÀÌÅÛ Á¤º¸
+// ì•„ì´í…œ ìŠ¬ë¡¯ì— ìˆëŠ” ì•„ì´í…œ ì •ë³´
 class SacrificeItemSlotDesc
 {
 protected:
@@ -53,7 +53,7 @@ public:
 };
 
 
-// Èñ»ı ¾ÆÀÌÅÛ¹Ú½º ¸®½ºÆ® ¾ÆÀÌÅÛ
+// í¬ìƒ ì•„ì´í…œë°•ìŠ¤ ë¦¬ìŠ¤íŠ¸ ì•„ì´í…œ
 class SacrificeItemListBoxItem : public MListItem
 {
 protected:
@@ -132,20 +132,20 @@ protected:	// protected varialbes
 	DWORD			m_dwClockOfStartMovie;
 	int				m_nPosOfItem0, m_nPosOfItem1;
 	MMATCH_GAMETYPE		m_nGameType;
-	bool			m_bPrevQuest;								// ÀÌÀü °ÔÀÓ Å¸ÀÔÀÌ Äù½ºÆ®¿´´ÂÁö ¾Æ´ÑÁö...
-	MBitmapR2*		m_pTopBgImg;								// »ó´Ü ¸Ê ÀÌ¹ÌÁö
-	MBitmapR2*		m_pStageFrameImg;							// ÇÁ·¹ÀÓ ÀÌ¹ÌÁö
-	MBitmapR2*		m_pItemListFrameImg;						// ¾ÆÀÌÅÛ ¸®½ºÆ® ÇÁ·¹ÀÓ ÀÌ¹ÌÁö
+	bool			m_bPrevQuest;								// ì´ì „ ê²Œì„ íƒ€ì…ì´ í€˜ìŠ¤íŠ¸ì˜€ëŠ”ì§€ ì•„ë‹Œì§€...
+	MBitmapR2*		m_pTopBgImg;								// ìƒë‹¨ ë§µ ì´ë¯¸ì§€
+	MBitmapR2*		m_pStageFrameImg;							// í”„ë ˆì„ ì´ë¯¸ì§€
+	MBitmapR2*		m_pItemListFrameImg;						// ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ í”„ë ˆì„ ì´ë¯¸ì§€
 
 protected:	// protected functions
 	void UpdateSacrificeItem( void);
 	void UpdateStageGameInfo(const int nQL, const int nMapsetID, const int nScenarioID);
 
 public:		// public variables
-	SacrificeItemSlotDesc	m_SacrificeItem[ 2];				// °¢°¢ÀÇ ¾ÆÀÌÅÛ ½½·Ô¿¡ ÀÖ´Â ¾ÆÀÌÅÛ¿¡ ´ëÇÑ Á¤º¸¸¦ ÀúÀå
+	SacrificeItemSlotDesc	m_SacrificeItem[ 2];				// ê°ê°ì˜ ì•„ì´í…œ ìŠ¬ë¡¯ì— ìˆëŠ” ì•„ì´í…œì— ëŒ€í•œ ì •ë³´ë¥¼ ì €ì¥
 	
-	int				m_nListFramePos;							// ¾ÆÀÌÅÛ ¸®½ºÆ® ÇÁ·¹ÀÓ À§Ä¡
-	int				m_nStateSacrificeItemBox;					// ¾ÆÀÌÅÛ ¸®½ºÆ® ÇÁ·¹ÀÓ »óÅÂ
+	int				m_nListFramePos;							// ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ í”„ë ˆì„ ìœ„ì¹˜
+	int				m_nStateSacrificeItemBox;					// ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ í”„ë ˆì„ ìƒíƒœ
 
 public:		// public functions
 	// Initialize
@@ -178,7 +178,7 @@ public:		// public functions
 
 
 	// Sacrifice item list box
-	void SerializeSacrificeItemListBox( void);					// ¾ÆÀÌÅÛ ¹Ú½º ¾÷µ¥ÀÌÆ®
+	void SerializeSacrificeItemListBox( void);					// ì•„ì´í…œ ë°•ìŠ¤ ì—…ë°ì´íŠ¸
 	bool ReadSenarioNameXML( void);
 
 #ifdef _QUEST_ITEM

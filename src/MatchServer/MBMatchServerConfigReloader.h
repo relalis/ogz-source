@@ -3,9 +3,9 @@
 
 
 /*
- ReloadList.xml¿¡ µé¾î°¡´Â ÆÄÀÏ ÀÌ¸§Àº ÀÐ¾îµéÀÎÈÄ ¸ðµÎ ¼Ò¹®ÀÚ·Î º¯È­ÇØ¼­ Ã³¸®ÇÔ. - by SungE
+ ReloadList.xmlì— ë“¤ì–´ê°€ëŠ” íŒŒì¼ ì´ë¦„ì€ ì½ì–´ë“¤ì¸í›„ ëª¨ë‘ ì†Œë¬¸ìžë¡œ ë³€í™”í•´ì„œ ì²˜ë¦¬í•¨. - by SungE
 
- ÇöÁ¦ ¸®·Îµå °¡´ÉÇÑ ¸ñ·Ï. 
+ í˜„ì œ ë¦¬ë¡œë“œ ê°€ëŠ¥í•œ ëª©ë¡. 
 	server.ini
 	zitem.xml
 	hashmap.txt

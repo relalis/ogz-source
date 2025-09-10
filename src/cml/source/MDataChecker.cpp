@@ -122,5 +122,5 @@ void MDataChecker::BringError()
 {
 	int* pError = new int;
 	AddCheck((BYTE*)(pError), sizeof(int));	
-	*pError = 1742;	// Leak ³»¹ö¸®¸é¼­ Checksum ¾û¸Á ¸¸µé±â
+	*pError = 1742;	// Leak ë‚´ë²„ë¦¬ë©´ì„œ Checksum ì—‰ë§ ë§Œë“¤ê¸°
 }

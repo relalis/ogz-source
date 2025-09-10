@@ -29,7 +29,7 @@ bool MMatchPremiumIPCache::CheckPremiumIP(u32 dwIP, bool& outIsPremiumIP)
 
 	Lock(); //////////////////////////////////////
 
-	// ¸ÕÀú ÇÁ¸®¹Ì¾öIP°¡ ¾Æ´Ñ ¼¼Æ®¿¡¼­ °Ë»ç
+	// ë¨¼ì € í”„ë¦¬ë¯¸ì—„IPê°€ ì•„ë‹Œ ì„¸íŠ¸ì—ì„œ ê²€ì‚¬
 	itor = m_NotPremiumIPMap.find(dwIP);
 	if (itor != m_NotPremiumIPMap.end())
 	{
@@ -38,7 +38,7 @@ bool MMatchPremiumIPCache::CheckPremiumIP(u32 dwIP, bool& outIsPremiumIP)
 	}
 	else
 	{
-		// ÇÁ¸®¹Ì¾öIP ¼¼Æ®¿¡¼­ °Ë»ç
+		// í”„ë¦¬ë¯¸ì—„IP ì„¸íŠ¸ì—ì„œ ê²€ì‚¬
 		itor = m_PremiumIPMap.find(dwIP);
 		if (itor != m_PremiumIPMap.end())
 		{
@@ -47,7 +47,7 @@ bool MMatchPremiumIPCache::CheckPremiumIP(u32 dwIP, bool& outIsPremiumIP)
 		}
 	}
 
-	// ¸¸¾à DB°¡ ¸ØÃçÁ®ÀÖ´Â »óÅÂ¶ó¸é Ä³½¬¿¡ ÀÖ´Â°Å¶ó°í °£ÁÖÇÏ°í ¹«Á¶°Ç false¸¦ ¹ÝÈ¯ÇÑ´Ù.
+	// ë§Œì•½ DBê°€ ë©ˆì¶°ì ¸ìžˆëŠ” ìƒíƒœë¼ë©´ ìºì‰¬ì— ìžˆëŠ”ê±°ë¼ê³  ê°„ì£¼í•˜ê³  ë¬´ì¡°ê±´ falseë¥¼ ë°˜í™˜í•œë‹¤.
 	if ((m_nDBFailedCount > MAX_PREMIUMIP_CACHE_DBFAILED) && (m_nFailedCheckCount < MAX_PREMIUMIP_CACHE_FAILEDCHECK))
 	{
 		++m_nFailedCheckCount;
@@ -72,7 +72,7 @@ void MMatchPremiumIPCache::AddIP(u32 dwIP, bool bPremiumIP)
 {
 	Lock(); ///////////////////
 
-	// db °Ë»çÈÄ IP¸¦ Ãß°¡ÇÏ´Â °ÍÀÌ´Ï DB°¡ »ì¾ÆÀÖ´Ù´Â Áõ°Å
+	// db ê²€ì‚¬í›„ IPë¥¼ ì¶”ê°€í•˜ëŠ” ê²ƒì´ë‹ˆ DBê°€ ì‚´ì•„ìžˆë‹¤ëŠ” ì¦ê±°
 	m_nDBFailedCount = 0;
 
 	MMatchPremiumIPNode node(dwIP, GetGlobalTimeMS());

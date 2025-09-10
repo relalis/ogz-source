@@ -3,7 +3,7 @@
 
 void MAniBmButton::OnDownDraw(MDrawContext* pDC)
 {
-	// ³ªÁß¿¡ Down Event°°Àº °ÍÀ» ¸¸µé¾î¼­, ±×¶§ Ã³¸®ÇØ¾ß ÇÑ´Ù.
+	// ë‚˜ì¤‘ì— Down Eventê°™ì€ ê²ƒì„ ë§Œë“¤ì–´ì„œ, ê·¸ë•Œ ì²˜ë¦¬í•´ì•¼ í•œë‹¤.
 	m_pUpAnimation->Show(false);
 	m_pOverAnimation->Show(true);
 }
@@ -32,7 +32,7 @@ MAniBmButton::MAniBmButton(const char* szName, MWidget* pParent, MListener* pLis
 {
 	m_pUpAnimation = new MAnimation(NULL, NULL, this);
 	m_pOverAnimation = new MAnimation(NULL, NULL, this);
-	m_pUpAnimation->m_nPlayMode = MAPM_REPETITION;		// ¿ì¼± ¹«ÇÑ ¹Ýº¹ ¾Ö´Ï¸ÞÀÌ¼ÇÀ¸·Î Ã³¸®
+	m_pUpAnimation->m_nPlayMode = MAPM_REPETITION;		// ìš°ì„  ë¬´í•œ ë°˜ë³µ ì• ë‹ˆë©”ì´ì…˜ìœ¼ë¡œ ì²˜ë¦¬
 	m_pOverAnimation->m_nPlayMode = MAPM_REPETITION;
 }
 

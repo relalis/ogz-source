@@ -2,20 +2,20 @@
 #include "afxwin.h"
 
 
-// CRCFrameInfoDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CRCFrameInfoDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CRCFrameInfoDlg : public CDHtmlDialog
 {
 	DECLARE_DYNCREATE(CRCFrameInfoDlg)
 
 public:
-	CRCFrameInfoDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CRCFrameInfoDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CRCFrameInfoDlg();
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 	HRESULT OnButtonOK(IHTMLElement *pElement);
 	HRESULT OnButtonCancel(IHTMLElement *pElement);
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_FRAME_INFO, IDH = IDR_HTML_RCFRAMEINFODLG };
 
 	void ClearListBox();
@@ -23,7 +23,7 @@ public:
 	void End();
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()

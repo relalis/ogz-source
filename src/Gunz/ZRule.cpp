@@ -14,7 +14,7 @@
 
 ZRule::ZRule(ZMatch* pMatch)
 {
-	m_pMatch = pMatch;				// ÃÊ±âÈ­ =_=
+	m_pMatch = pMatch;				// ì´ˆê¸°í™” =_=
 }
 
 ZRule::~ZRule()
@@ -100,7 +100,7 @@ ZRule* ZRule::CreateRule(ZMatch* pMatch, MMATCH_GAMETYPE nGameType)
 		break;
 	default:
 		{
-			// °ÔÀÓ Å¸ÀÔÀÌ ¾ø½À´Ï´Ù.
+			// ê²Œì„ íƒ€ì…ì´ ì—†ìŠµë‹ˆë‹¤.
 			_ASSERT(0);
 		}
 	}

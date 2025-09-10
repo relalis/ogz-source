@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CCommandLogView ºäÀÔ´Ï´Ù.
+// CCommandLogView ë·°ì…ë‹ˆë‹¤.
 
 class MCommand;
 
@@ -10,7 +10,7 @@ class CCommandLogView : public CListView
 	DECLARE_DYNCREATE(CCommandLogView)
 
 protected:
-	CCommandLogView();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CCommandLogView();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CCommandLogView();
 
 public:

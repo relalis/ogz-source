@@ -85,7 +85,7 @@ MCommandDesc* MCommandManager::GetCommandDescByID(int nID)
 
 void MCommandManager::AddCommandDesc(MCommandDesc* pCD)
 {
-	_ASSERT(m_CommandDescs.find(pCD->GetID())==m_CommandDescs.end());	// Ä¿¸Çµå´Â Áßº¹µÇ¸é ¾ÈµÈ´Ù
+	_ASSERT(m_CommandDescs.find(pCD->GetID())==m_CommandDescs.end());	// ì»¤ë§¨ë“œëŠ” ì¤‘ë³µë˜ë©´ ì•ˆëœë‹¤
 	m_CommandDescs.insert(MCommandDescMap::value_type(pCD->GetID(), pCD));
 
 #ifdef _DEBUG
@@ -176,7 +176,7 @@ bool MCommandManager::ParseMessage(MCommand* pCmd, char* szErrMsg, int nErrMsgMa
 		//MCommandDesc* pCD = m_CommandDescs[i];
 
 		if(_stricmp(szTemp, pCD->GetName())==0){
-			//if(pCD->IsFlag(ASCDF_CHEAT)==true && EnableDevDebug()==false) return false;	// °³¹ßÀÚ Àü¿ë Ä¿¸ÇµåÀÌ¸é... Debug°¡ EnableµÇ¾î ÀÖ¾î¾ß ÇÑ´Ù.
+			//if(pCD->IsFlag(ASCDF_CHEAT)==true && EnableDevDebug()==false) return false;	// ê°œë°œì ì „ìš© ì»¤ë§¨ë“œì´ë©´... Debugê°€ Enableë˜ì–´ ìˆì–´ì•¼ í•œë‹¤.
 
 			pCmd->SetID(pCD);
 
@@ -270,13 +270,13 @@ bool MCommandManager::ParseMessage(MCommand* pCmd, char* szErrMsg, int nErrMsgMa
 						bSyntaxError = true;
 						break;
 					}
-					// UINT¸¦ ¸¸µé¾î¾ß ÇÑ´Ù.
+					// UINTë¥¼ ë§Œë“¤ì–´ì•¼ í•œë‹¤.
 					pParam = new MCommandParameterUID(MUID(la.GetByInt(nLACount), la.GetByInt(nLACount+1)));
 					nLACount+=2;
 					break;
 					
 				default:
-					_ASSERT(false);		// ¾ÆÁ÷ ÇÚµé¸µÇÒ ÄÚµå°¡ ÁØºñ ¾ÈµÈ ÆÄ¶ó¹ÌÅÍ
+					_ASSERT(false);		// ì•„ì§ í•¸ë“¤ë§í•  ì½”ë“œê°€ ì¤€ë¹„ ì•ˆëœ íŒŒë¼ë¯¸í„°
 					return false;
 					//break;
 				}

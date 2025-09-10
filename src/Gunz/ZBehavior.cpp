@@ -26,7 +26,7 @@ void ZBehavior::Init(ZBrain* pBrain)
 	m_FSM.AddState(pState);
 
 	
-	// ±‚∫ª¿∫ idle
+	// Í∏∞Î≥∏ÏùÄ idle
 	ForceState(ZBEHAVIOR_STATE_IDLE);
 }
 

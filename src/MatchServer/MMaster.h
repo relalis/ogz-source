@@ -5,36 +5,36 @@
 #include "MServer.h"
 #include "MUID.h"
 
-/// ¸ðµç ¼­¹ö¸¦ ±¸¼º/°ü¸®ÇÏ´Â ¸¶½ºÅÍ ÄÁÆ®·Ñ·¯
-/// - UID¸¦ ¹ß±Þ/°ü¸®ÇÑ´Ù.
+/// ëª¨ë“  ì„œë²„ë¥¼ êµ¬ì„±/ê´€ë¦¬í•˜ëŠ” ë§ˆìŠ¤í„° ì»¨íŠ¸ë¡¤ëŸ¬
+/// - UIDë¥¼ ë°œê¸‰/ê´€ë¦¬í•œë‹¤.
 class MMaster : public MServer{
 private:
-	static MMaster*	m_pInstance;		///< Àü¿ª ÀÎ½ºÅÏ½º
+	static MMaster*	m_pInstance;		///< ì „ì—­ ì¸ìŠ¤í„´ìŠ¤
 protected:
-	MUIDRefMap	m_GlobalUIDRefMap;	///< Àü¿ªÀûÀÎ Global UID Reference Map
+	MUIDRefMap	m_GlobalUIDRefMap;	///< ì „ì—­ì ì¸ Global UID Reference Map
 public:
 protected:
-	/// »õ·Î¿î UID ¾ò¾î³»±â
+	/// ìƒˆë¡œìš´ UID ì–»ì–´ë‚´ê¸°
 	virtual MUID UseUID(void);
 
 	virtual int OnAccept(MCommObject* pCommObj);
 	virtual void OnRegisterCommand(MCommandManager* pCommandManager);
 	bool OnCommand(MCommand* pCommand);
 
-	/// MasterÀÇ ¼¼ºÎ Á¤º¸¸¦ TargetÀ¸·Î Àü¼Û
+	/// Masterì˜ ì„¸ë¶€ ì •ë³´ë¥¼ Targetìœ¼ë¡œ ì „ì†¡
 	void ResponseInfo(MUID& Target);
 public:
 	MMaster(void);
 	virtual ~MMaster(void);
 
-	/// Àü¿ª ÀÎ½ºÅÏ½º ¾ò±â
+	/// ì „ì—­ ì¸ìŠ¤í„´ìŠ¤ ì–»ê¸°
 	static MMaster* GetInstance(void);
 
 	bool Create(int nPort);
 	void Destroy(void);
 };
 
-#define MASTER_UID	MUID(0, 1)	///< ¸¶½ºÅÍÀÇ °íÀ¯ UID(ºÒº¯)
+#define MASTER_UID	MUID(0, 1)	///< ë§ˆìŠ¤í„°ì˜ ê³ ìœ  UID(ë¶ˆë³€)
 
 
 #endif

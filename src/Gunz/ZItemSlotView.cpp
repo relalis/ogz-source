@@ -151,13 +151,13 @@ bool ZItemSlotView::IsEquipableItem(u32 nItemID, int nPlayerLevel, MMatchSex nPl
 	MMatchItemDesc* pItemDesc = MGetMatchItemDescMgr()->GetItemDesc(nItemID);
 	if (pItemDesc == NULL) return false;
 
-	// ¼ºº° Á¦ÇÑ Á¶°Ç
+	// ì„±ë³„ ì œí•œ ì¡°ê±´
 	if (pItemDesc->m_nResSex != -1)
 	{
 		if (pItemDesc->m_nResSex != int(nPlayerSex)) return false;
 	}
 
-	// ·¹º§ Á¦ÇÑ Á¶°Ç
+	// ë ˆë²¨ ì œí•œ ì¡°ê±´
 	if (pItemDesc->m_nResLevel > nPlayerLevel) return false;
 
 
@@ -171,7 +171,7 @@ bool ZItemSlotView::OnDrop(MWidget* pSender, MBitmap* pBitmap, const char* szStr
 
 	if (strcmp(pSender->GetClassName(), MINT_EQUIPMENTLISTBOX)==0) {
 
-		// widget id ¼³Á¤
+		// widget id ì„¤ì •
 		ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 		ZEquipmentListBox* pWidget = (ZEquipmentListBox*)pResource->FindWidget("EquipmentList");
 		if (pWidget==NULL) return false;
@@ -196,7 +196,7 @@ bool ZItemSlotView::OnDrop(MWidget* pSender, MBitmap* pBitmap, const char* szStr
 
 	}
 	
-	else if (strcmp(pSender->GetClassName(), MINT_ITEMSLOTVIEW)==0) {	// Equip ½½·Ô¿¡¼­ Equip ½½·ÔÀ¸·Î
+	else if (strcmp(pSender->GetClassName(), MINT_ITEMSLOTVIEW)==0) {	// Equip ìŠ¬ë¡¯ì—ì„œ Equip ìŠ¬ë¡¯ìœ¼ë¡œ
 		ZItemSlotView* pWidget = (ZItemSlotView*)pSender;
 		if (pWidget == this) return false;
 		MUID uidItem = ZGetMyInfo()->GetItemList()->GetEquipedItemUID(pWidget->GetParts());
@@ -233,14 +233,14 @@ bool ZItemSlotView::OnEvent(MEvent* pEvent, MListener* pListener)
 	{
 		m_bSelectBox = true;
 
-		// »óÁ¡ ¹× Àåºñ ¾ÆÀÌÅÛ ½½·ÔÀÏ °æ¿ì
+		// ìƒì  ë° ìž¥ë¹„ ì•„ì´í…œ ìŠ¬ë¡¯ì¼ ê²½ìš°
 		u32 nItemID = ZGetMyInfo()->GetItemList()->GetEquipedItemID(m_nParts);
 		MMatchItemDesc* pItemDesc = NULL;
 		if (nItemID != 0)
 		{
 			pItemDesc = MGetMatchItemDescMgr()->GetItemDesc(nItemID);
 
-			// ¾ÆÀÌÅÛ ¼³¸í ¾÷µ¥ÀÌÆ®
+			// ì•„ì´í…œ ì„¤ëª… ì—…ë°ì´íŠ¸
 			ZMyItemNode* pItemNode = ZGetMyInfo()->GetItemList()->GetEquipedItem( m_nParts);
 			char szItemDescription1[128], szItemDescription2[128], szItemDescription3[128], szItemIcon[128];
 			sprintf_safe( szItemDescription1, "%s_ItemDescription1", m_szItemSlotPlace);
@@ -255,7 +255,7 @@ bool ZItemSlotView::OnEvent(MEvent* pEvent, MListener* pListener)
 														szItemIcon,
 														pItemNode);
 
-			// µå·¡±× & µå·Ó
+			// ë“œëž˜ê·¸ & ë“œë¡­
 			if (pItemDesc && m_bDragAndDrop)
 			{
 				MBitmap* pIconBitmap = GetItemIconBitmap(pItemDesc, true);
@@ -266,7 +266,7 @@ bool ZItemSlotView::OnEvent(MEvent* pEvent, MListener* pListener)
 		}
 
 
-		// Èñ»ý ¾ÆÀÌÅÛ ½½·ÔÀÏ °æ¿ì
+		// í¬ìƒ ì•„ì´í…œ ìŠ¬ë¡¯ì¼ ê²½ìš°
 		if ( (strcmp( m_szItemSlotPlace, "SACRIFICE0") == 0) || (strcmp( m_szItemSlotPlace, "SACRIFICE1") == 0))
 		{
 			int nSlotNum = (strcmp( m_szItemSlotPlace, "SACRIFICE0") == 0) ? 0 : 1;
@@ -274,7 +274,7 @@ bool ZItemSlotView::OnEvent(MEvent* pEvent, MListener* pListener)
 			if ( !ZApplication::GetStageInterface()->m_SacrificeItem[ nSlotNum].IsExist())
 				return bRet;
 
-			// µå·¡±× & µå·Ó
+			// ë“œëž˜ê·¸ & ë“œë¡­
 			if ( m_bDragAndDrop)
 			{
 				Mint::GetInstance()->SetDragObject( this,
@@ -290,7 +290,7 @@ bool ZItemSlotView::OnEvent(MEvent* pEvent, MListener* pListener)
 		ZApplication::GetGameInterface()->SetKindableItem( MMIST_NONE);
 	}
 	
-	// ´õºíÅ¬¸¯½Ã ¾ÆÀÌÅÛ ÇØÁ¦
+	// ë”ë¸”í´ë¦­ì‹œ ì•„ì´í…œ í•´ì œ
 	else if ( pEvent->nMessage == MWM_LBUTTONDBLCLK)
 	{
 		u32 nItemID = ZGetMyInfo()->GetItemList()->GetEquipedItemID(m_nParts);
@@ -309,7 +309,7 @@ bool ZItemSlotView::OnEvent(MEvent* pEvent, MListener* pListener)
 			}
 		}
 
-		// Èñ»ý ¾ÆÀÌÅÛ ½½·ÔÀÏ °æ¿ì
+		// í¬ìƒ ì•„ì´í…œ ìŠ¬ë¡¯ì¼ ê²½ìš°
 		if ( (strcmp( m_szItemSlotPlace, "SACRIFICE0") == 0) || (strcmp( m_szItemSlotPlace, "SACRIFICE1") == 0))
 		{
 			ZApplication::GetStageInterface()->OnRemoveSacrificeItem( (strcmp( m_szItemSlotPlace, "SACRIFICE0") == 0) ? 0 : 1);

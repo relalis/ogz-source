@@ -4,7 +4,7 @@
 #include <list>
 #include <stdio.h>
 
-// 2005.08.01 µğÆæ´ø½Ã Á¦°Å¸¦ À§ÇØ º¤ÅÍ¸¦ »èÁ¦. ÃßÈÄ ÇÊ¿äÇÏ¸é mvector3.hÀÇ MVector3 ¸¦ »ç¿ëÇÒ°Í.
+// 2005.08.01 ë””íœë˜ì‹œ ì œê±°ë¥¼ ìœ„í•´ ë²¡í„°ë¥¼ ì‚­ì œ. ì¶”í›„ í•„ìš”í•˜ë©´ mvector3.hì˜ MVector3 ë¥¼ ì‚¬ìš©í• ê²ƒ.
 //#include "rutils.h"
 
 using namespace std;
@@ -60,8 +60,8 @@ public:
 
 	MAITEM* GetFirst(void);
 	MAITEM* GetNext(void);
-	MAITEM* GetFirst(const char* szName);		// Ã³À½ÀÌ szNameÀ» °¡Áø ¾ÆÀÌÅÛÀÌ¸é ¸®ÅÏ
-	MAITEM* GetNext(const char* szName);		// ÇöÀç szNameÀ» °¡Áø ¾ÆÀÌÅÛÀÌ¸é ¸®ÅÏ
+	MAITEM* GetFirst(const char* szName);		// ì²˜ìŒì´ szNameì„ ê°€ì§„ ì•„ì´í…œì´ë©´ ë¦¬í„´
+	MAITEM* GetNext(const char* szName);		// í˜„ì¬ szNameì„ ê°€ì§„ ì•„ì´í…œì´ë©´ ë¦¬í„´
 	
 	bool GetFirst(const char* szName, char* c);
 	bool GetFirst(const char* szName, bool* b);

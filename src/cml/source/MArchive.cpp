@@ -129,7 +129,7 @@ MAITEM* MArchive::GetFirst(const char* szName)
 	m_CurItem = m_Items.begin();
 	if(m_CurItem==m_Items.end()) return NULL;
 	MAITEM* pItem = *m_CurItem;
-	if(strncmp(pItem->szName, szName, MAITEM_NAME_LENGTH-1)!=0) return NULL;	// ÀÌ¸§ÀÌ °°Áö ¾ÊÀ¸¸é NULL ¸®ÅÏ
+	if(strncmp(pItem->szName, szName, MAITEM_NAME_LENGTH-1)!=0) return NULL;	// ì´ë¦„ì´ ê°™ì§€ ì•Šìœ¼ë©´ NULL ë¦¬í„´
 
 	MAITEMITOR i = m_CurItem;
 	m_CurItem++;
@@ -140,7 +140,7 @@ MAITEM* MArchive::GetNext(const char* szName)
 {
 	if(m_CurItem==m_Items.end()) return NULL;
 	MAITEM* pItem = *m_CurItem;
-	if(strncmp(pItem->szName, szName, MAITEM_NAME_LENGTH-1)!=0) return NULL;	// ÀÌ¸§ÀÌ °°Áö ¾ÊÀ¸¸é NULL ¸®ÅÏ
+	if(strncmp(pItem->szName, szName, MAITEM_NAME_LENGTH-1)!=0) return NULL;	// ì´ë¦„ì´ ê°™ì§€ ì•Šìœ¼ë©´ NULL ë¦¬í„´
 
 	MAITEMITOR i = m_CurItem;
 	m_CurItem++;
@@ -293,7 +293,7 @@ bool MArchive::ReadFile(FILE* fp, int nSize)
 
 		if(nSize>0){
 			if(nReadSize==nSize) return true;
-			if(nReadSize>nSize) return false;	// ÃÊ°úÇÏ¸é ¿¡·¯ÀÌ´Ù.
+			if(nReadSize>nSize) return false;	// ì´ˆê³¼í•˜ë©´ ì—ëŸ¬ì´ë‹¤.
 		}
 	}
 

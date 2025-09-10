@@ -17,7 +17,7 @@
 
 #include "stdio.h"
 
-// ´ëÃæÇÏÀÚ..
+// ëŒ€ì¶©í•˜ì..
 
 extern bool g_bmtrl_dlg;
 
@@ -75,7 +75,7 @@ void CMtrlEditDlg::ClearListBox()
 	}
 }
 
-// save ÇÑ´Ù..
+// save í•œë‹¤..
 
 extern char g_last_open_elu_file[256];
 
@@ -83,13 +83,13 @@ extern char g_last_open_elu_file[256];
 void CMtrlEditDlg::OnBnClickedOksave()
 {
 	g_bmtrl_dlg = !g_bmtrl_dlg;
-	// model ÆÄÀÏÀ» ¿­¾î¼­ ¾ÕºÎºĞ mtrl ¸¸ µ¤¾î¾´´Ù...
+	// model íŒŒì¼ì„ ì—´ì–´ì„œ ì•ë¶€ë¶„ mtrl ë§Œ ë®ì–´ì“´ë‹¤...
 
-	UpdateName();//¸¶Áö¸·À¸·Î ¹Ù²Û°Í °»½Å..
+	UpdateName();//ë§ˆì§€ë§‰ìœ¼ë¡œ ë°”ê¾¼ê²ƒ ê°±ì‹ ..
 
 	if(g_last_open_elu_file[0]) {
 
-		// ¿¹Àü¹öÀü ¶§¹®¿¡ Àá½Ã Áö¿ø... ³ªÁß¿¡ Áö¿ì±â...
+		// ì˜ˆì „ë²„ì „ ë•Œë¬¸ì— ì ì‹œ ì§€ì›... ë‚˜ì¤‘ì— ì§€ìš°ê¸°...
 
 		//<---------------------------------------------------
 
@@ -98,7 +98,7 @@ void CMtrlEditDlg::OnBnClickedOksave()
 		FILE* fp = fopen(g_last_open_elu_file, "rb");
 
 		if(fp==NULL) {
-			::MessageBox(NULL,"ÆÄÀÏÀ» È®ÀÎÇÏ¼¼¿ä.","¾Ë¸²",MB_OK);
+			::MessageBox(NULL,"íŒŒì¼ì„ í™•ì¸í•˜ì„¸ìš”.","ì•Œë¦¼",MB_OK);
 			return;
 		}
 
@@ -111,11 +111,11 @@ void CMtrlEditDlg::OnBnClickedOksave()
 		fp = fopen(g_last_open_elu_file, "rb+");
 
 		if(fp==NULL) {
-			::MessageBox(NULL,"ÆÄÀÏÀÌ ÀĞ±â Àü¿ëÀÎÁö È®ÀÎÇÏ¼¼¿ä.","¾Ë¸²",MB_OK);
+			::MessageBox(NULL,"íŒŒì¼ì´ ì½ê¸° ì „ìš©ì¸ì§€ í™•ì¸í•˜ì„¸ìš”.","ì•Œë¦¼",MB_OK);
 			return;
 		}
 
-		fseek(fp, 16, SEEK_SET);//Çì´õ skip
+		fseek(fp, 16, SEEK_SET);//í—¤ë” skip
 
 		RMtrlMgr* pMtrlMgr = GetMtrlMgr();
 
@@ -129,7 +129,7 @@ void CMtrlEditDlg::OnBnClickedOksave()
 			
 			if(pMtrl == NULL) continue;
 
-			// ±¸Á¶ Á¤ÇØÁú¶§ ±îÁö ÇÏ³ª¾¿ Ãâ·Â
+			// êµ¬ì¡° ì •í•´ì§ˆë•Œ ê¹Œì§€ í•˜ë‚˜ì”© ì¶œë ¥
 
 			fwrite(&pMtrl->m_mtrl_id    ,4,1,fp);
 			fwrite(&pMtrl->m_sub_mtrl_id,4,1,fp);
@@ -178,12 +178,12 @@ void CMtrlEditDlg::OnBnClickedOksave()
 		fclose(fp);
 	}
 	else {
-		::MessageBox(NULL,"xml ÆÄÀÏÀº Áö¿øÇÏÁö ¾Ê½À´Ï´Ù.","¾Ë¸²",MB_OK);
+		::MessageBox(NULL,"xml íŒŒì¼ì€ ì§€ì›í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.","ì•Œë¦¼",MB_OK);
 	}
 
 	g_sel = 0;
 
-	::MessageBox(NULL,"ÀúÀå¿Ï·á","¾Ë¸²",MB_OK);
+	::MessageBox(NULL,"ì €ì¥ì™„ë£Œ","ì•Œë¦¼",MB_OK);
 
 //	OnOK();
 }
@@ -199,7 +199,7 @@ void CMtrlEditDlg::OnBnClickedCancel()
 
 void CMtrlEditDlg::Begin()
 {
-	// º¸¿©Áú ¶§¸¶´Ù ÃÊ±âÈ­
+	// ë³´ì—¬ì§ˆ ë•Œë§ˆë‹¤ ì´ˆê¸°í™”
 
 	ClearListBox();
 
@@ -306,7 +306,7 @@ void CMtrlEditDlg::UpdateName()
 void CMtrlEditDlg::OnLbnSelchangeMtrllist()
 {
 	RMtrl* pMtrl = NULL;
-	// ÀÌÀü¿¡ ¼±ÅÃµÈ°Í
+	// ì´ì „ì— ì„ íƒëœê²ƒ
 
 	UpdateName();
 

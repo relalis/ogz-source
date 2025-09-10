@@ -5,26 +5,26 @@
 #include <map>
 #include "SafeString.h"
 
-/// µå¶ø ¾ÆÀÌÅÛ Å¸ÀÔ
+/// ë“œë ì•„ì´í…œ íƒ€ì…
 enum MQuestDropItemType
 {
-	QDIT_NA			= 0,	///< Á¸ÀçÇÏÁö ¾ÊÀ½
-	QDIT_WORLDITEM	= 1,	///< HP, APµîÀÇ ÀÏ¹İÀûÀÎ ¿ùµå¾ÆÀÌÅÛ
-	QDIT_QUESTITEM	= 2,	///< Äù½ºÆ® ¾ÆÀÌÅÛ
-	QDIT_ZITEM		= 3,	///< ÀÏ¹İ ¾ÆÀÌÅÛ
+	QDIT_NA			= 0,	///< ì¡´ì¬í•˜ì§€ ì•ŠìŒ
+	QDIT_WORLDITEM	= 1,	///< HP, APë“±ì˜ ì¼ë°˜ì ì¸ ì›”ë“œì•„ì´í…œ
+	QDIT_QUESTITEM	= 2,	///< í€˜ìŠ¤íŠ¸ ì•„ì´í…œ
+	QDIT_ZITEM		= 3,	///< ì¼ë°˜ ì•„ì´í…œ
 };
 
-/// µå·Ó ¾ÆÀÌÅÛ Á¤º¸
+/// ë“œë¡­ ì•„ì´í…œ ì •ë³´
 struct MQuestDropItem
 {
 	MQuestDropItemType	nDropItemType;
 	int					nID;
 	int					nRentPeriodHour;
-	// int					nMonsetBibleIndex;	// ¾î¶² Á¾·ùÀÇ ¸ó½ºÅÍ°¡ ¾ÆÀÌÅÛÀ» ¶³¾î¶ß·È´ÂÁö ÀÌ ¾ÆÀÌÅÛÀ» °¡Áö°í ÀÖ´ø ¸ó½ºÅÍÀÇ Á¾·ù¸¦ ÀúÀå.
-											// ¸ó½ºÅÍ µµ°¨À» À§ÇØ¼­ »ç¿ë.
+	// int					nMonsetBibleIndex;	// ì–´ë–¤ ì¢…ë¥˜ì˜ ëª¬ìŠ¤í„°ê°€ ì•„ì´í…œì„ ë–¨ì–´ëœ¨ë ¸ëŠ”ì§€ ì´ ì•„ì´í…œì„ ê°€ì§€ê³  ìˆë˜ ëª¬ìŠ¤í„°ì˜ ì¢…ë¥˜ë¥¼ ì €ì¥.
+											// ëª¬ìŠ¤í„° ë„ê°ì„ ìœ„í•´ì„œ ì‚¬ìš©.
 
 	MQuestDropItem() : nDropItemType(QDIT_NA), nID(0), nRentPeriodHour(0) {}
-	void Assign(MQuestDropItem* pSrc)		// º¹»ç
+	void Assign(MQuestDropItem* pSrc)		// ë³µì‚¬
 	{
 		nDropItemType	= pSrc->nDropItemType;
 		nID				= pSrc->nID;
@@ -32,9 +32,9 @@ struct MQuestDropItem
 	}
 };
 
-#define MAX_DROPSET_RATE		1000		///< µå·Ó ºñÀ² 0.001±îÁö ¼³Á¤ °¡´É
+#define MAX_DROPSET_RATE		1000		///< ë“œë¡­ ë¹„ìœ¨ 0.001ê¹Œì§€ ì„¤ì • ê°€ëŠ¥
 
-/// µå·Ó ¾ÆÀÌÅÛ ¼Â
+/// ë“œë¡­ ì•„ì´í…œ ì…‹
 class MQuestDropSet
 {
 private:
@@ -42,9 +42,9 @@ private:
 	char					m_szName[16];
 	MQuestDropItem			m_DropItemSet[MAX_QL+1][MAX_DROPSET_RATE];
 	int						m_nTop[MAX_QL+1];
-	std::set<int>				m_QuestItems;			// ÀÌ ¼¼Æ®°¡ °¡Áö°í ÀÖ´Â Äù½ºÆ® ¾ÆÀÌÅÛ ¼¼Æ® - Å¬¶óÀÌ¾ğÆ®°¡ »ç¿ëÇÏ·Á°í ¸¸µê
+	std::set<int>				m_QuestItems;			// ì´ ì„¸íŠ¸ê°€ ê°€ì§€ê³  ìˆëŠ” í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ì„¸íŠ¸ - í´ë¼ì´ì–¸íŠ¸ê°€ ì‚¬ìš©í•˜ë ¤ê³  ë§Œë“¦
 public:
-	/// »ı¼ºÀÚ
+	/// ìƒì„±ì
 	MQuestDropSet()
 	{
 		m_nID = 0;
@@ -55,42 +55,42 @@ public:
 			m_nTop[i] = 0;
 		}
 	}
-	int GetID() { return m_nID; }									///< ID ¹İÈ¯
-	const char* GetName() { return m_szName; }						///< ÀÌ¸§ ¹İÈ¯
-	void SetID(int nID) { m_nID = nID; }							///< ID ¼³Á¤
-	void SetName(const char* szName) { strcpy_safe(m_szName, szName); }	///< ÀÌ¸§ ¼³Á¤
-	/// µå·ÓµÇ´Â ¾ÆÀÌÅÛ Ãß°¡
-	/// @param pItem		µå·ÓµÉ ¾ÆÀÌÅÛ Á¤º¸
-	/// @param nQL			Äù½ºÆ® ·¹º§
-	/// @param fRate		³ª¿Ã ºñÀ²
+	int GetID() { return m_nID; }									///< ID ë°˜í™˜
+	const char* GetName() { return m_szName; }						///< ì´ë¦„ ë°˜í™˜
+	void SetID(int nID) { m_nID = nID; }							///< ID ì„¤ì •
+	void SetName(const char* szName) { strcpy_safe(m_szName, szName); }	///< ì´ë¦„ ì„¤ì •
+	/// ë“œë¡­ë˜ëŠ” ì•„ì´í…œ ì¶”ê°€
+	/// @param pItem		ë“œë¡­ë  ì•„ì´í…œ ì •ë³´
+	/// @param nQL			í€˜ìŠ¤íŠ¸ ë ˆë²¨
+	/// @param fRate		ë‚˜ì˜¬ ë¹„ìœ¨
 	void AddItem(MQuestDropItem* pItem, int nQL, float fRate);
-	/// µå·ÓµÉ ¾ÆÀÌÅÛÀ» °áÁ¤ÇÑ´Ù.
-	/// @param outDropItem		µå·ÓµÉ ¾ÆÀÌÅÛ ¹İÈ¯°ª
-	/// @param nQL				Äù½ºÆ® ·¹º§
+	/// ë“œë¡­ë  ì•„ì´í…œì„ ê²°ì •í•œë‹¤.
+	/// @param outDropItem		ë“œë¡­ë  ì•„ì´í…œ ë°˜í™˜ê°’
+	/// @param nQL				í€˜ìŠ¤íŠ¸ ë ˆë²¨
 	bool Roll(MQuestDropItem& outDropItem, int nQL);
 
-	std::set<int>& GetQuestItems() { return m_QuestItems; }				///< µå·ÓµÉ ¾ÆÀÌÅÛ Á¾·ù
+	std::set<int>& GetQuestItems() { return m_QuestItems; }				///< ë“œë¡­ë  ì•„ì´í…œ ì¢…ë¥˜
 };
 
 
-/// µå·Ó Å×ÀÌºí °ü¸®ÀÚ Å¬·¡½º
+/// ë“œë¡­ í…Œì´ë¸” ê´€ë¦¬ì í´ë˜ìŠ¤
 class MQuestDropTable : public std::map<int, MQuestDropSet*>
 {
 private:
 	void ParseDropSet(class MXmlElement& element);
 	void ParseDropItemID(MQuestDropItem* pItem, const char* szAttrValue);
 public:
-	MQuestDropTable();													///< »ı¼ºÀÚ
-	~MQuestDropTable();													///< ¼Ò¸êÀÚ
+	MQuestDropTable();													///< ìƒì„±ì
+	~MQuestDropTable();													///< ì†Œë©¸ì
 
 	void Clear();
 	
-	bool ReadXml(const char* szFileName);								///< xml¿¡¼­ Á¤º¸¸¦ ÀĞ´Â´Ù. 
-	bool ReadXml(class MZFileSystem* pFileSystem,const char* szFileName);		///< xml¿¡¼­ Á¤º¸¸¦ ÀĞ´Â´Ù. 
-	/// µå·Ó Å×ÀÌºí ID¿Í QLÀ» ¹ÙÅÁÀ¸·Î µå·ÓµÉ ¾ÆÀÌÅÛÀ» °áÁ¤ÇÑ´Ù.
-	/// @param outDropItem		µå·ÓµÉ ¾ÆÀÌÅÛ ¹İÈ¯°ª
-	/// @param nDropTableID		µå·Ó Å×ÀÌºí ID
-	/// @param nQL				Äù½ºÆ® ·¹º§
+	bool ReadXml(const char* szFileName);								///< xmlì—ì„œ ì •ë³´ë¥¼ ì½ëŠ”ë‹¤. 
+	bool ReadXml(class MZFileSystem* pFileSystem,const char* szFileName);		///< xmlì—ì„œ ì •ë³´ë¥¼ ì½ëŠ”ë‹¤. 
+	/// ë“œë¡­ í…Œì´ë¸” IDì™€ QLì„ ë°”íƒ•ìœ¼ë¡œ ë“œë¡­ë  ì•„ì´í…œì„ ê²°ì •í•œë‹¤.
+	/// @param outDropItem		ë“œë¡­ë  ì•„ì´í…œ ë°˜í™˜ê°’
+	/// @param nDropTableID		ë“œë¡­ í…Œì´ë¸” ID
+	/// @param nQL				í€˜ìŠ¤íŠ¸ ë ˆë²¨
 	bool Roll(MQuestDropItem& outDropItem, int nDropTableID, int nQL);
-	MQuestDropSet* Find(int nDropTableID);								///< µå·Ó ¾ÆÀÌÅÛ ¼Â Á¤º¸ ¹İÈ¯
+	MQuestDropSet* Find(int nDropTableID);								///< ë“œë¡­ ì•„ì´í…œ ì…‹ ì •ë³´ ë°˜í™˜
 };

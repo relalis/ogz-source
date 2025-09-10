@@ -1,5 +1,5 @@
 //
-//	Dib(bmp)¸¦ 24ºñÆ®·Î ÀÐ¾î ³»´Â Å¬·¡½º
+//	Dib(bmp)ë¥¼ 24ë¹„íŠ¸ë¡œ ì½ì–´ ë‚´ëŠ” í´ëž˜ìŠ¤
 //
 //											written by lee jang ho
 //
@@ -10,7 +10,7 @@
 
 #include <windows.h>
 
-// Dib(bmp)¸¦ 24ºñÆ®·Î ÀÐ¾î ³»´Â Å¬·¡½º
+// Dib(bmp)ë¥¼ 24ë¹„íŠ¸ë¡œ ì½ì–´ ë‚´ëŠ” í´ëž˜ìŠ¤
 class CDib  
 {
 protected:

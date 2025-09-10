@@ -10,9 +10,9 @@
 #include <windows.h>
 
 // Modal OpenDlg
-//		pFileName	:	ÀÌ¸§À» ÀúÀåÇÒ ½ºÆ®¸µ ¹öÆÛ
-//						Allow Multiple SelectionÀÎ °æ¿ì ( bMultiSel=TRUE ) µğ·ºÅä¸®¸íµÚ \0 ±×¸®°í ÆÄÀÏ¸í ¸®½ºÆ®°¡ \0À¸·Î ±¸ºĞµÇ¾î ¿Â´Ù.
-//		nLen		:	pFileName ¹öÆÛÀÇ Å©±â
+//		pFileName	:	ì´ë¦„ì„ ì €ì¥í•  ìŠ¤íŠ¸ë§ ë²„í¼
+//						Allow Multiple Selectionì¸ ê²½ìš° ( bMultiSel=TRUE ) ë””ë ‰í† ë¦¬ëª…ë’¤ \0 ê·¸ë¦¬ê³  íŒŒì¼ëª… ë¦¬ìŠ¤íŠ¸ê°€ \0ìœ¼ë¡œ êµ¬ë¶„ë˜ì–´ ì˜¨ë‹¤.
+//		nLen		:	pFileName ë²„í¼ì˜ í¬ê¸°
 //		pTitle		:	Caption Title
 //		pFilter		:	Filter
 //		pDefExt		:	Default Extension
@@ -20,9 +20,9 @@
 //		bMultiSel	:	Allo Multiple Selection(TRUE) at OpenDlg
 BOOL OpenDlg(HWND hwnd, char *pFileName, int nLen, char *pTitle, char *pFilter, char *pDefExt, BOOL bOpen=TRUE, BOOL bMultiSel=FALSE);
 
-// pFileNameÀ¸·Î ¾ò¾î³½ ÆĞ½º°¡ Multi SelectionÀ¸·Î ¾ò¾î³½°æ¿ì
-// GetDirFirst·Î µğ·ºÅä¸®¸¦ ¾ò°í(NULLÀÎ °æ¿ì´Â ½ÇÆĞ)
-// GetNextFile·Î NULLÀÌ ³ª¿Ã¶§±îÁö ÆÄÀÏ¸íÀ» ¾ò¾î³½´Ù.
+// pFileNameìœ¼ë¡œ ì–»ì–´ë‚¸ íŒ¨ìŠ¤ê°€ Multi Selectionìœ¼ë¡œ ì–»ì–´ë‚¸ê²½ìš°
+// GetDirFirstë¡œ ë””ë ‰í† ë¦¬ë¥¼ ì–»ê³ (NULLì¸ ê²½ìš°ëŠ” ì‹¤íŒ¨)
+// GetNextFileë¡œ NULLì´ ë‚˜ì˜¬ë•Œê¹Œì§€ íŒŒì¼ëª…ì„ ì–»ì–´ë‚¸ë‹¤.
 /*
 char *GetDirFirst(char *pFileNames);
 char *GetNextFile(void);

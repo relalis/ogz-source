@@ -9,38 +9,38 @@
 
 #include <windows.h>
 
-// ÆÄÀÏÀÇ ÃÖ±Ù ¾÷µ¥ÀÌÆ®µÈ ½Ã°£ ¾ò±â
+// íŒŒì¼ì˜ ìµœê·¼ ì—…ë°ì´íŠ¸ëœ ì‹œê°„ ì–»ê¸°
 BOOL GetLastUpdate(const char *pFileName, FILETIME *ft);
 
-// ÆÄÀÏÀÌ ¾÷µ¥ÀÌÆ® µÇ¾ú´Â°¡?
+// íŒŒì¼ì´ ì—…ë°ì´íŠ¸ ë˜ì—ˆëŠ”ê°€?
 //		pFileName
-//		ot			:	ºñ±³ÇÒ ½Ã°£ ( º¸Åë ¿ÀÇÂÇßÀ» ¶§ ½Ã°£ )
+//		ot			:	ë¹„êµí•  ì‹œê°„ ( ë³´í†µ ì˜¤í”ˆí–ˆì„ ë•Œ ì‹œê°„ )
 BOOL IsModifiedOutside(const char *pFileName, FILETIME ot);
 
-// Extension Á¦°Å
+// Extension ì œê±°
 BOOL RemoveExtension(char *pRemoveExt, const char *pFileName);
 
-// Extension ±³Ã¼
+// Extension êµì²´
 void ReplaceExtension(char *pTargetName, const char *pSourceName, char *pExt);
 
-// »ó´ë °æ·Î ¾ò±â
+// ìƒëŒ€ ê²½ë¡œ ì–»ê¸°
 void GetRelativePath(char *pRelativePath, const char *pBasePath, const char *pPath);
 
-// Àı´ë °æ·Î ¾ò±â
+// ì ˆëŒ€ ê²½ë¡œ ì–»ê¸°
 void GetFullPath(char *pFullPath, const char *pBasePath, const char *pRelativePath);
-//¶Ç Àı´ë °æ·Î ¾ò±â... current directory¸¦ ±âÁØÀ¸·Î...
+//ë˜ ì ˆëŒ€ ê²½ë¡œ ì–»ê¸°... current directoryë¥¼ ê¸°ì¤€ìœ¼ë¡œ...
 void GetFullPath(char *pFullPath, const char *pRelativePath);
 
-// path ¿Í extensionÀ» Á¦°ÅÇÑ ¼ø¼öÇÑ ÆÄÀÏÀÌ¸§ ¾ò±â.
+// path ì™€ extensionì„ ì œê±°í•œ ìˆœìˆ˜í•œ íŒŒì¼ì´ë¦„ ì–»ê¸°.
 void GetPureFilename(char *pPureFilename,const char *pFilename);
 
-// Àı´ë °æ·ÎÀÎ°¡? ( ³×Æ®¿öÅ© °æ·Î´Â Áö¿øÇÏÁö ¾ÊÀ½ )
+// ì ˆëŒ€ ê²½ë¡œì¸ê°€? ( ë„¤íŠ¸ì›Œí¬ ê²½ë¡œëŠ” ì§€ì›í•˜ì§€ ì•ŠìŒ )
 BOOL IsFullPath(const char *pPath);
 
-// Çì´õ ÀĞ±â ( Çì´õÀÇ ½ÃÀÛ int´Â Çì´õ ÀüÃ¼ Å©±â¸¦ °¡Áö°í ÀÖ´Ù. )
+// í—¤ë” ì½ê¸° ( í—¤ë”ì˜ ì‹œì‘ intëŠ” í—¤ë” ì „ì²´ í¬ê¸°ë¥¼ ê°€ì§€ê³  ìˆë‹¤. )
 BOOL ReadHeader(HANDLE hFile, void *pHeader, int nHeaderSize);
 
-// ÆÄÀÏÀÌ Á¸ÀçÇÏ´Â°¡?
+// íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ê°€?
 bool IsExist(const char *filename);
 
 #endif	// _FILEINFO_H

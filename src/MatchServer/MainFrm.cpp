@@ -1,4 +1,4 @@
-// MainFrm.cpp : CMainFrame Å¬·¡½ºÀÇ ±¸Çö
+// MainFrm.cpp : CMainFrame í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -35,7 +35,7 @@ END_MESSAGE_MAP()
 
 static UINT indicators[] =
 {
-	ID_SEPARATOR,           // »óÅÂ ÁÙ Ç¥½Ã±â
+	ID_SEPARATOR,           // ìƒíƒœ ì¤„ í‘œì‹œê¸°
 	ID_INDICATOR_SERVERSTATUS,
 	ID_INDICATOR_CAPS,
 	ID_INDICATOR_NUM,
@@ -45,11 +45,11 @@ static UINT indicators[] =
 #define TIMERID_REFRESH_STATUSBAR	101
 
 
-// CMainFrame »ı¼º/¼Ò¸ê
+// CMainFrame ìƒì„±/ì†Œë©¸
 
 CMainFrame::CMainFrame()
 {
-	// TODO: ¿©±â¿¡ ¸â¹ö ÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©¤ë²„ ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 CMainFrame::~CMainFrame()
@@ -67,19 +67,19 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		| CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
-		TRACE0("µµ±¸ ¸ğÀ½À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-		return -1;      // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		TRACE0("ë„êµ¬ ëª¨ìŒì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+		return -1;      // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
 
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
 		  sizeof(indicators)/sizeof(UINT)))
 	{
-		TRACE0("»óÅÂ Ç¥½ÃÁÙÀ» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-		return -1;      // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		TRACE0("ìƒíƒœ í‘œì‹œì¤„ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+		return -1;      // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
 
-	// TODO: µµ±¸ ¸ğÀ½À» µµÅ·ÇÒ ¼ö ¾ø°Ô ÇÏ·Á¸é ÀÌ ¼¼ ÁÙÀ» »èÁ¦ÇÏ½Ê½Ã¿À.
+	// TODO: ë„êµ¬ ëª¨ìŒì„ ë„í‚¹í•  ìˆ˜ ì—†ê²Œ í•˜ë ¤ë©´ ì´ ì„¸ ì¤„ì„ ì‚­ì œí•˜ì‹­ì‹œì˜¤.
 	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
@@ -92,17 +92,17 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	ReadPosition();
 
-	// Æ®·¹ÀÌ ¾ÆÀÌÄÜ µî·Ï
+	// íŠ¸ë ˆì´ ì•„ì´ì½˜ ë“±ë¡
 	if (!m_TrayIcon.Create(this, WM_ICON_NOTIFY, _T("MatchServer"), NULL, IDR_MAINFRAME))
 	{
-		TRACE0("Æ®·¹ÀÌ ¾ÆÀÌÄÜÀ» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
+		TRACE0("íŠ¸ë ˆì´ ì•„ì´ì½˜ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
 		return -1;
 	}
-	// ¾ÆÀÌÄÜ ¼³Á¤
+	// ì•„ì´ì½˜ ì„¤ì •
 	HICON icon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	m_TrayIcon.SetIcon(icon);
 
-	// ¼­¹ö»óÅÂ¹Ù Å¸ÀÌ¸Ó
+	// ì„œë²„ìƒíƒœë°” íƒ€ì´ë¨¸
 	this->SetTimer(TIMERID_REFRESH_STATUSBAR, 5000, NULL);
 
 	return 0;
@@ -112,14 +112,14 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if( !CMDIFrameWnd::PreCreateWindow(cs) )
 		return FALSE;
-	// TODO: CREATESTRUCT cs¸¦ ¼öÁ¤ÇÏ¿© ¿©±â¿¡¼­
-	// Window Å¬·¡½º ¶Ç´Â ½ºÅ¸ÀÏÀ» ¼öÁ¤ÇÕ´Ï´Ù.
+	// TODO: CREATESTRUCT csë¥¼ ìˆ˜ì •í•˜ì—¬ ì—¬ê¸°ì—ì„œ
+	// Window í´ë˜ìŠ¤ ë˜ëŠ” ìŠ¤íƒ€ì¼ì„ ìˆ˜ì •í•©ë‹ˆë‹¤.
 
 	return TRUE;
 }
 
 
-// CMainFrame Áø´Ü
+// CMainFrame ì§„ë‹¨
 
 #ifdef _DEBUG
 void CMainFrame::AssertValid() const
@@ -135,7 +135,7 @@ void CMainFrame::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CMainFrame ¸Ş½ÃÁö Ã³¸®±â
+// CMainFrame ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
@@ -162,7 +162,7 @@ void CMainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 
 void CMainFrame::OnClose()
 {
-	if (AfxMessageBox("Á¤¸»·Î ¼­¹ö ²ø²¨¿¡¿ä?", MB_YESNO | MB_ICONQUESTION) != IDYES)
+	if (AfxMessageBox("ì •ë§ë¡œ ì„œë²„ ëŒêº¼ì—ìš”?", MB_YESNO | MB_ICONQUESTION) != IDYES)
 	{
 		return;
 	}
@@ -245,7 +245,7 @@ void CMainFrame::OnMenuHide()
 
 void CMainFrame::OnTimer(UINT nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if (nIDEvent == TIMERID_REFRESH_STATUSBAR) {
 		UpdateServerStatusBar();
 	}

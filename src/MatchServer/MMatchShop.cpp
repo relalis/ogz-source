@@ -76,7 +76,7 @@ void MMatchShop::ParseSellItem(MXmlElement& element)
 	MMatchItemDesc* pItemDesc = MGetMatchItemDescMgr()->GetItemDesc(nDescID);
 	if (pItemDesc != NULL)
 	{
-		// Ä³½¬ ¾ÆÀÌÅÛÀº ¹«½Ã
+		// ìºì‰¬ ì•„ì´í…œì€ ë¬´ì‹œ
 		if (pItemDesc->IsCashItem()) 
 		{
 			delete pNewItemNode;
@@ -95,7 +95,7 @@ void MMatchShop::ParseSellItem(MXmlElement& element)
 			return;
 		}
 
-		//MatchItem¿¡¼­ ¾øÀ»°æ¿ì QuestItem¿¡¼­ ´Ù½Ã ÇÑ¹ø °Ë»ç¸¦ ÇÔ.
+		//MatchItemì—ì„œ ì—†ì„ê²½ìš° QuestItemì—ì„œ ë‹¤ì‹œ í•œë²ˆ ê²€ì‚¬ë¥¼ í•¨.
 		MQuestItemDesc* pQuestItemDesc = GetQuestItemDescMgr().FindQItemDesc( nDescID );
 		if( 0 == pQuestItemDesc )
 		{

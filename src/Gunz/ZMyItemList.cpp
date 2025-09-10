@@ -117,14 +117,14 @@ bool ZMyItemList::CheckAddType(int type)
 
 void ZMyItemList::Serialize()
 {
-	// m_ItemIndexVector¸¦ ÃÊ±âÈ­
+	// m_ItemIndexVectorë¥¼ ì´ˆê¸°í™”
 	m_ItemIndexVector.clear();
 	m_ItemIndexVectorEquip.clear();
 
 	MMatchItemDesc* pItemDesc = NULL;
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 
-	// ÀåºñÇÏ°í ÀÖ´Â ¾ÆÀÌÅÛÀº Á¦¿ÜÇÑ´Ù
+	// ì¥ë¹„í•˜ê³  ìˆëŠ” ì•„ì´í…œì€ ì œì™¸í•œë‹¤
 	for (MITEMNODEMAP::iterator itor = m_ItemMap.begin(); itor != m_ItemMap.end(); ++itor)
 	{
 		bool bExist = false;
@@ -142,7 +142,7 @@ void ZMyItemList::Serialize()
 	}
 
 
-	// Shop - ÆÈ±â¹°Ç°
+	// Shop - íŒ”ê¸°ë¬¼í’ˆ
     int nStartIndexSell;
 	int nSelIndexSell;
 	MListBox* pListBox = (MListBox*)pResource->FindWidget("MyAllEquipmentList");
@@ -179,7 +179,7 @@ void ZMyItemList::Serialize()
 	}
 
 
-	// °®°í ÀÖ´Â ¾ÆÀÌÅÛ ¹°Ç°(ÀÎº¥)
+	// ê°–ê³  ìˆëŠ” ì•„ì´í…œ ë¬¼í’ˆ(ì¸ë²¤)
     int nStartIndexEquip;
 	int nSelIndexEquip;
 	pListBox = (MListBox*)pResource->FindWidget("EquipmentList");
@@ -190,7 +190,7 @@ void ZMyItemList::Serialize()
 		pListBox->RemoveAll();
 
 
-		// ÀÏ¹İ Àåºñ Ãß°¡
+		// ì¼ë°˜ ì¥ë¹„ ì¶”ê°€
 		for (int i = 0; i < (int)m_ItemIndexVector.size(); i++)
 		{
 			MMatchItemDesc* pItemDesc = NULL;
@@ -204,7 +204,7 @@ void ZMyItemList::Serialize()
 				{
 					MUID uidItem = (*itor).first;
 
-					// Àåºñ ¸ñ·Ï Ã¢
+					// ì¥ë¹„ ëª©ë¡ ì°½
 					if ( CheckAddType( pItemDesc->m_nSlot))
 					{
 						((ZEquipmentListBox*)(pListBox))->Add( uidItem,
@@ -220,7 +220,7 @@ void ZMyItemList::Serialize()
 		}
 
 #ifdef _QUEST_ITEM
-		// Äù½ºÆ® ¾ÆÀÌÅÛ Ãß°¡
+		// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ì¶”ê°€
 		MListBox* pSellListBox = (MListBox*)pResource->FindWidget("MyAllEquipmentList");
 		for ( MQUESTITEMNODEMAP::iterator questitem_itor = m_QuestItemMap.begin();  questitem_itor != m_QuestItemMap.end();  questitem_itor++)
 		{
@@ -260,7 +260,7 @@ void ZMyItemList::Serialize()
 #endif
 	}
 
-	// ¼±ÅÃ¹Ù À§Ä¡ ´Ù½Ã ÁöÁ¤
+	// ì„ íƒë°” ìœ„ì¹˜ ë‹¤ì‹œ ì§€ì •
 	pListBox = (MListBox*)pResource->FindWidget("MyAllEquipmentList");
 	if ( pListBox)
 	{
@@ -275,7 +275,7 @@ void ZMyItemList::Serialize()
 	}
     
 
-	// Àåºñ Ä³¸¯ÅÍ ºä¾î
+	// ì¥ë¹„ ìºë¦­í„° ë·°ì–´
 	BEGIN_WIDGETLIST("EquipmentInformation", pResource, ZCharacterView*, pCharacterView);
 	ZMyInfo* pmi = ZGetMyInfo();
 	u32 nEquipedItemID[MMCIP_END];
@@ -491,7 +491,7 @@ void ZMyItemList::AddAccountItem(int nAIID, u32 nItemID, int nRentMinutePeriodRe
 {
 	ZMyItemNode* pItemNode = new ZMyItemNode();
 	bool bIsRentItem=false;
-	if (nRentMinutePeriodRemainder < RENT_MINUTE_PERIOD_UNLIMITED) bIsRentItem=true;	// ±â°£Á¦ ¾ÆÀÌÅÛ
+	if (nRentMinutePeriodRemainder < RENT_MINUTE_PERIOD_UNLIMITED) bIsRentItem=true;	// ê¸°ê°„ì œ ì•„ì´í…œ
 
 	pItemNode->Create(nItemID, bIsRentItem, nRentMinutePeriodRemainder);
 	m_AccountItemMap.insert(MACCOUNT_ITEMNODEMAP::value_type(nAIID, pItemNode));
@@ -606,7 +606,7 @@ void ZMyItemList::SetQuestItemsAll( MTD_QuestItemNode* pQuestItemNode, const int
 	if( 0 == pQuestItemNode)
 		return;
 
-	// ÀüÃ¼ ¸®½ºÆ®¸¦ ¾÷µ¥ÀÌÆ® ÇÏ±â À§ÇØ¼­ ÀÌÀüÀÇ µ¥ÀÌÅÍ¸¦ ÃÊ±âÈ­ ÇÔ.
+	// ì „ì²´ ë¦¬ìŠ¤íŠ¸ë¥¼ ì—…ë°ì´íŠ¸ í•˜ê¸° ìœ„í•´ì„œ ì´ì „ì˜ ë°ì´í„°ë¥¼ ì´ˆê¸°í™” í•¨.
 	m_QuestItemMap.Clear();
 
 	for( int i = 0; i < nQuestItemCount; ++i )
@@ -636,7 +636,7 @@ ZMyQuestItemMap::ZMyQuestItemMap()
 
 ZMyQuestItemMap::~ZMyQuestItemMap()
 {
-	// ¸¸¾àÀ» À§ÇØ¼­.
+	// ë§Œì•½ì„ ìœ„í•´ì„œ.
 	Clear();
 }
 

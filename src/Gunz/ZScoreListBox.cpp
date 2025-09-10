@@ -9,7 +9,7 @@ ZScoreListBox::ZScoreListBox(const char* szName, MWidget* pParent, MListener* pL
 
 	SetItemHeight(20);
 
-	// ¾Æ¹«·¡µµ IDL¿¡ ÇÊµå Ç×¸ñµµ ³Ö¾î¾ß ÇÒµí..¤Ì.¤Ì
+	// ì•„ë¬´ë˜ë„ IDLì— í•„ë“œ í•­ëª©ë„ ë„£ì–´ì•¼ í• ë“¯..ã…œ.ã…œ
 	AddField("Team", 80);
 	AddField("ID", 100);
 	AddField("State", 70);

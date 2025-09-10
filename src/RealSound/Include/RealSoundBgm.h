@@ -3,7 +3,7 @@
 
 /**
 	Background Music Class
-	ÆÄÀÏÀ» StreamingÇÏ¿© ½ÇÇàÇÑ´Ù.
+	íŒŒì¼ì„ Streamingí•˜ì—¬ ì‹¤í–‰í•œë‹¤.
 */
 
 #include "RealSound.h"
@@ -50,14 +50,14 @@ public:
     RealSoundBgm (void);
     virtual ~RealSoundBgm (void);
 
-	// BGM°´Ã¼¸¦ »ı¼º
+	// BGMê°ì²´ë¥¼ ìƒì„±
 	bool Create (LPSTR pszFilename, RealSound* pRealSound);
     void Destroy();
 
-	// »ı¼ºµÈ BGM°´Ã¼¸¦ ¿¬ÁÖ ÇÑ´Ù.
+	// ìƒì„±ëœ BGMê°ì²´ë¥¼ ì—°ì£¼ í•œë‹¤.
     void Play(bool bLoop);
 
-	// ¿¬ÁÖ¸¦ ÁßÁö½ÃÅ°°í ÇöÀç À§Ä¡¸¦ Ã³À½À¸·Î µ¹¸°´Ù.
+	// ì—°ì£¼ë¥¼ ì¤‘ì§€ì‹œí‚¤ê³  í˜„ì¬ ìœ„ì¹˜ë¥¼ ì²˜ìŒìœ¼ë¡œ ëŒë¦°ë‹¤.
     void Stop(void);
 	//void Pause();
 

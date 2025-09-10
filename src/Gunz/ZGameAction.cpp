@@ -28,7 +28,7 @@ bool ZGameAction::OnReaction(MCommand* pCommand)
 	float fTime;
 	int nReactionID;
 
-	pCommand->GetParameter(&fTime,			0, MPT_FLOAT);		// ½Ã°£
+	pCommand->GetParameter(&fTime,			0, MPT_FLOAT);		// ì‹œê°„
 	pCommand->GetParameter(&nReactionID,	1, MPT_INT);
 
 	ZCharacter *pChar=ZGetCharacterManager()->Find(pCommand->GetSenderUID());
@@ -76,11 +76,11 @@ bool ZGameAction::OnPeerSkill(MCommand* pCommand)
 	if (pOwnerCharacter == NULL) return true;
 
 	switch(nSkill)	{
-		// ¶ç¿ì±â ½ºÅ³
+		// ë„ìš°ê¸° ìŠ¤í‚¬
 		case ZC_SKILL_UPPERCUT		: OnPeerSkill_Uppercut(pOwnerCharacter);break;
-			// °­º£±â ½ºÇÃ·¡½Ã
+			// ê°•ë² ê¸° ìŠ¤í”Œë˜ì‹œ
 		case ZC_SKILL_SPLASHSHOT	: OnPeerSkill_LastShot(fTime,pOwnerCharacter);break;
-			// ´Ü°Ë Æ¯¼ö°ø°İ
+			// ë‹¨ê²€ íŠ¹ìˆ˜ê³µê²©
 		case ZC_SKILL_DASH			: OnPeerSkill_Dash(pOwnerCharacter);break;
 	}
 

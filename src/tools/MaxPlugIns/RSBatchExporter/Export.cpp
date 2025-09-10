@@ -316,13 +316,13 @@ void Exporter::DumpMaterial(MaxMaterial *maxm,Mtl* mtl, int mtlID, int subNo, in
 		stdm->Diffuse=rvector(std->GetDiffuse(t));
 		stdm->Diffuse.x=-stdm->Diffuse.x;
 		stdm->Specular=rvector(std->GetSpecular(t));
-		stdm->Specular.x=-stdm->Specular.x;				// ÃàÀÇ ¹Ù²ñ¶§¹®¿¡ ¸¸µé¾î ³õÀº.. À¸Èæ..
+		stdm->Specular.x=-stdm->Specular.x;				// ì¶•ì˜ ë°”ë€œë•Œë¬¸ì— ë§Œë“¤ì–´ ë†“ì€.. ìœ¼í‘..
 		stdm->TwoSide=std->GetTwoSided();
 		if(std->GetTransparencyType()==TRANSP_ADDITIVE)
 			stdm->ShadeMode=RSSHADEMODE_ADD;
 		else stdm->ShadeMode=RSSHADEMODE_NORMAL;
 		
-		if(rsm->MaxStdMaterialList.GetByName(stdm->name)==-1)	// ÀÌ¹Ì ÀÖ´Â standard material ÀÌ¸é ´õÇÏÁö ¾ÊÀ½.
+		if(rsm->MaxStdMaterialList.GetByName(stdm->name)==-1)	// ì´ë¯¸ ìžˆëŠ” standard material ì´ë©´ ë”í•˜ì§€ ì•ŠìŒ.
 		{
 			rsm->MaxStdMaterialList.Add(stdm);
 			stdm->RMLIndex=rsm->MaxStdMaterialList.GetCount()-1;

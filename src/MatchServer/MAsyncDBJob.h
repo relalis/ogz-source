@@ -56,7 +56,7 @@ protected:	// Input Argument
 
 protected:	// Output Result
 	MCommand*		m_pResultCommand;
-	int				m_nCharMaxLevel;		// newbieÀÎÁö Ã¼Å©ÇÏ±â À§ÇÔ
+	int				m_nCharMaxLevel;		// newbieì¸ì§€ ì²´í¬í•˜ê¸° ìœ„í•¨
 public:
 	MAsyncDBJob_GetAccountCharList(const MUID& uid, int nAID) 
 		: MAsyncJob(MASYNCJOB_GETACCOUNTCHARLIST)

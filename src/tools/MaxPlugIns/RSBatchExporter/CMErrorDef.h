@@ -1,11 +1,11 @@
 /*
  *	CMErrorDef.h
- *		ErrorÃ³¸®¸¦ À§ÇÑ ÄÚµå
- *		ÀÌÀåÈ£ ( 98-01-04 3:31:28 ¿ÀÀü )
+ *		Errorì²˜ë¦¬ë¥¼ ìœ„í•œ ì½”ë“œ
+ *		ì´ìž¥í˜¸ ( 98-01-04 3:31:28 ì˜¤ì „ )
  *
- *		¿¡·¯ ÄÚµå¸í ¾Õ¿¡ ESTR_À» ºÙÀÌ¸é, ¿µ¹® ¹öÀü¿¡¼­ Ãâ·ÂµÇ´Â
- *			¿¡·¯ ¸Þ¼¼ÁöÀÌ°í,
- *		KSTR_À» ºÙÀÌ¸é, ÇÑ±Û ¹öÀü¿¡¼­ Ãâ·ÂµÇ´Â ¿¡·¯ ¸Þ¼¼ÁöÀÌ´Ù.
+ *		ì—ëŸ¬ ì½”ë“œëª… ì•žì— ESTR_ì„ ë¶™ì´ë©´, ì˜ë¬¸ ë²„ì „ì—ì„œ ì¶œë ¥ë˜ëŠ”
+ *			ì—ëŸ¬ ë©”ì„¸ì§€ì´ê³ ,
+ *		KSTR_ì„ ë¶™ì´ë©´, í•œê¸€ ë²„ì „ì—ì„œ ì¶œë ¥ë˜ëŠ” ì—ëŸ¬ ë©”ì„¸ì§€ì´ë‹¤.
  ********************************************************************/
 #ifndef _CMERRORDEF_H
 #define _CMERRORDEF_H
@@ -13,38 +13,38 @@
 /*	OK	*/
 #define CM_OK						0
 #define ESTR_CM_OK					"OK."
-#define KSTR_CM_OK					"Á¤»óÀÔ´Ï´Ù."
+#define KSTR_CM_OK					"ì •ìƒìž…ë‹ˆë‹¤."
 
 /*	Generic Error	*/
 #define CMERR_GENERIC				100
 #define ESTR_CMERR_GENERIC			"Generic Error Occured."
-#define KSTR_CMERR_GENERIC			"ÀÏ¹ÝÀûÀÎ ¿¡·¯ÀÔ´Ï´Ù."
+#define KSTR_CMERR_GENERIC			"ì¼ë°˜ì ì¸ ì—ëŸ¬ìž…ë‹ˆë‹¤."
 
 /*	Out of Memory	*/
 #define CMERR_OUT_OF_MEMORY			101
 #define ESTR_CMERR_OUT_OF_MEMORY	"Out of Memory."
-#define KSTR_CMERR_OUT_OF_MEMORY	"¸Þ¸ð¸®°¡ ºÎÁ·ÇÕ´Ï´Ù."
+#define KSTR_CMERR_OUT_OF_MEMORY	"ë©”ëª¨ë¦¬ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤."
 
-/*	pErrStr : ¿À·ù°¡ ¹ß»ýÇÑ ÆÄÀÏ ÀÌ¸§	*/
+/*	pErrStr : ì˜¤ë¥˜ê°€ ë°œìƒí•œ íŒŒì¼ ì´ë¦„	*/
 #define CMERR_CANT_OPEN_FILE		102
 #define ESTR_CMERR_CANT_OPEN_FILE	"Can't Open File."
-#define KSTR_CMERR_CANT_OPEN_FILE	"ÆÄÀÏÀ» ¿­ ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_CANT_OPEN_FILE	"íŒŒì¼ì„ ì—´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
-/*	pErrStr : ¿À·ù°¡ ¹ß»ýÇÑ ÆÄÀÏ ÀÌ¸§	*/
+/*	pErrStr : ì˜¤ë¥˜ê°€ ë°œìƒí•œ íŒŒì¼ ì´ë¦„	*/
 #define CMERR_CANT_SAVE_FILE		103
 #define ESTR_CMERR_CANT_SAVE_FILE	"Can't Save File."
-#define KSTR_CMERR_CANT_SAVE_FILE	"ÆÄÀÏÀ» ÀúÀåÇÒ ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_CANT_SAVE_FILE	"íŒŒì¼ì„ ì €ìž¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 /*	Cannot Create Window Error	*/
 /*	Modified by CJP */
 #define CMERR_CANT_CREATE_WIN		104
 #define ESTR_CMERR_CANT_CREATE_WIN	"Can't not create a window."
-#define KSTR_CMERR_CANT_CREATE_WIN	"À©µµ¿ì¸¦ »ý¼ºÇÒ ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_CANT_CREATE_WIN	"ìœˆë„ìš°ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
-/* ÆÄÀÏÀÌ ±úÁö°Å³ª ·¹ÄÚµåÀÇ ³»¿ëÀ» ÂüÁ¶ÇÒ ¼ö ¾ø´Â °æ¿ì */
+/* íŒŒì¼ì´ ê¹¨ì§€ê±°ë‚˜ ë ˆì½”ë“œì˜ ë‚´ìš©ì„ ì°¸ì¡°í•  ìˆ˜ ì—†ëŠ” ê²½ìš° */
 #define CMERR_INVALID_FILE			105
 #define ESTR_CMERR_INVALID_FILE		"The file is invalid. Please re-install or find a patch program."
-#define KSTR_CMERR_INVALID_FILE		"ÆÄÀÏÀÌ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù. ´Ù½Ã ¼³Ä¡ÇÏ°Å³ª ÆÐÄ¡ ÇÁ·Î±×·¥À» Ã£¾Æ ¼³Ä¡ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù."
+#define KSTR_CMERR_INVALID_FILE		"íŒŒì¼ì´ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì„¤ì¹˜í•˜ê±°ë‚˜ íŒ¨ì¹˜ í”„ë¡œê·¸ëž¨ì„ ì°¾ì•„ ì„¤ì¹˜í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤."
 
 /*	Error Code by Joongpil, Cho	*/
 #define CMERR_JOONGPIL_CHO					1000
@@ -53,11 +53,11 @@
 
 #define	CMERR_CANNOT_OPEN_UITEX				1001
 #define ESTR_CMERR_CANNOT_OPEN_UITEX		"Cannot open ui.txz."
-#define KSTR_CMERR_CANNOT_OPEN_UITEX		"Data\\ui.txz¸¦ ÀÐ¾î¿Ã ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_CANNOT_OPEN_UITEX		"Data\\ui.txzë¥¼ ì½ì–´ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #define	CMERR_FAIL_INIT_RS					1002
 #define ESTR_CMERR_FAIL_INIT_RS				"Cannot init RealSpace. Please configure for your system."
-#define KSTR_CMERR_FAIL_INIT_RS				"RealSpace¸¦ ÃÊ±âÈ­ÇÒ ¼ö ¾ø½À´Ï´Ù. Config À¯Æ¿¸®Æ¼¸¦ ÀÌ¿ëÇÏ¿© ´Ù½Ã ¼³Á¤ÇØÁÖ¼¼¿ä."
+#define KSTR_CMERR_FAIL_INIT_RS				"RealSpaceë¥¼ ì´ˆê¸°í™”í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. Config ìœ í‹¸ë¦¬í‹°ë¥¼ ì´ìš©í•˜ì—¬ ë‹¤ì‹œ ì„¤ì •í•´ì£¼ì„¸ìš”."
 
 #endif
 
@@ -65,27 +65,27 @@
 
 #define	CMERR_CANNOT_OPEN_UITEX				1001
 #define ESTR_CMERR_CANNOT_OPEN_UITEX		"Cannot open ui.txz."
-#define KSTR_CMERR_CANNOT_OPEN_UITEX		"Data\\ui.txz¸¦ ÀÐ¾î¿Ã ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_CANNOT_OPEN_UITEX		"Data\\ui.txzë¥¼ ì½ì–´ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #define	CMERR_FAIL_INIT_RS					1002
 #define ESTR_CMERR_FAIL_INIT_RS				"Cannot init RealSpace. Please configure for your system."
-#define KSTR_CMERR_FAIL_INIT_RS				"RealSpace¸¦ ÃÊ±âÈ­ÇÒ ¼ö ¾ø½À´Ï´Ù. Config À¯Æ¿¸®Æ¼¸¦ ÀÌ¿ëÇÏ¿© ´Ù½Ã ¼³Á¤ÇØÁÖ¼¼¿ä."
+#define KSTR_CMERR_FAIL_INIT_RS				"RealSpaceë¥¼ ì´ˆê¸°í™”í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. Config ìœ í‹¸ë¦¬í‹°ë¥¼ ì´ìš©í•˜ì—¬ ë‹¤ì‹œ ì„¤ì •í•´ì£¼ì„¸ìš”."
 
 #define CMERR_FAIL_OPEN_MAPFILE				1003
 #define ESTR_CMERR_FAIL_OPEN_MAPFILE		"Cannot open the map file. Please re-install Ard|Net."
-#define KSTR_CMERR_FAIL_OPEN_MAPFILE		"ÁöÁ¤ÇÑ ¸ÊÆÄÀÏÀ» ÀÐ¾î¿Ã ¼ö ¾ø½À´Ï´Ù. ´Ù½Ã ¼³Ä¡ÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù."
+#define KSTR_CMERR_FAIL_OPEN_MAPFILE		"ì§€ì •í•œ ë§µíŒŒì¼ì„ ì½ì–´ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì„¤ì¹˜í•´ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤."
 
 #define CMERR_FAIL_OPEN_ATTFILE				1004
 #define ESTR_CMERR_FAIL_OPEN_ATTFILE		"Cannot open the map attribute file. Please re-install Ard|Net."
-#define KSTR_CMERR_FAIL_OPEN_ATTFILE		"ÁöÁ¤ÇÑ ¸Ê Æ¯¼º ÆÄÀÏÀ» ÀÐ¾î¿Ã ¼ö ¾ø½À´Ï´Ù. ´Ù½Ã ¼³Ä¡ÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù."
+#define KSTR_CMERR_FAIL_OPEN_ATTFILE		"ì§€ì •í•œ ë§µ íŠ¹ì„± íŒŒì¼ì„ ì½ì–´ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì„¤ì¹˜í•´ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤."
 
 #define CMERR_FAIL_OPEN_MESH				1005
 #define ESTR_CMERR_FAIL_OPEN_MESH			"OBSOLUTE FILE FORMAT - Please constct with us."
-#define KSTR_CMERR_FAIL_OPEN_MESH			"´õÀÌ»ó À¯È¿ÇÏÁö ¾Ê´Â ÆÄÀÏÀÔ´Ï´Ù. ¸¸ÀÏ ÀÌ ¿¡·¯°¡ ¹ß»ýµÇ¾ú´Ù¸é ÀúÈñ¿¡°Ô ¿¬¶ôÇØÁÖ¼¼¿ä."
+#define KSTR_CMERR_FAIL_OPEN_MESH			"ë”ì´ìƒ ìœ íš¨í•˜ì§€ ì•ŠëŠ” íŒŒì¼ìž…ë‹ˆë‹¤. ë§Œì¼ ì´ ì—ëŸ¬ê°€ ë°œìƒë˜ì—ˆë‹¤ë©´ ì €í¬ì—ê²Œ ì—°ë½í•´ì£¼ì„¸ìš”."
 
 #define CMERR_FAIL_INIT_CONSOLE				1006
 #define ESTR_CMERR_FAIL_INIT_CONSOLE		"Cannot init the console. Please re-install Ard|Net."
-#define KSTR_CMERR_FAIL_INIT_CONSOLE		"ÄÜ¼Ö ÃÊ±âÈ­¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù."
+#define KSTR_CMERR_FAIL_INIT_CONSOLE		"ì½˜ì†” ì´ˆê¸°í™”ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤."
 
 
 #endif
@@ -93,7 +93,7 @@
 
 #define CMERR_EXCEED_SIZE					1010
 #define ESTR_CMERR_EXCEED_SIZE				"Logical Error: Size is exceed."
-#define KSTR_CMERR_EXCEED_SIZE				"Å©±â°¡ ³Ê¹« Å®´Ï´Ù."
+#define KSTR_CMERR_EXCEED_SIZE				"í¬ê¸°ê°€ ë„ˆë¬´ í½ë‹ˆë‹¤."
 
 
 /*	Error Code by Jangho, Lee	*/
@@ -101,44 +101,44 @@
 
 #define CMERR_CANT_MAP_FILE_TO_MEMORY		2001
 #define ESTR_CMERR_CANT_MAP_FILE_TO_MEMORY	"Cannot Map File to Memory."
-#define KSTR_CMERR_CANT_MAP_FILE_TO_MEMORY	"ÆÄÀÏÀ» ¸Þ¸ð¸®·Î ¸ÅÇÎÇÒ ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_CANT_MAP_FILE_TO_MEMORY	"íŒŒì¼ì„ ë©”ëª¨ë¦¬ë¡œ ë§¤í•‘í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #define CMERR_CANT_CREATE_BITMAP			2002
 #define ESTR_CMERR_CANT_CREATE_BITMAP		"Cannot create(convert) bitmap handle."
-#define KSTR_CMERR_CANT_CREATE_BITMAP		"ºñÆ®¸Ê ÇÚµéÀ» »ý¼º(º¯È¯)ÇÒ ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_CANT_CREATE_BITMAP		"ë¹„íŠ¸ë§µ í•¸ë“¤ì„ ìƒì„±(ë³€í™˜)í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #define CMERR_CANT_TXZ_BACKUP_FILE			2003
 #define ESTR_CMERR_CANT_TXZ_BACKUP_FILE		"Cannot save backup file ( backup.txz )"
-#define KSTR_CMERR_CANT_TXZ_BACKUP_FILE		"¾Æ·¡ Second Error MessageÀÇ ÆÄÀÏÀ» backup.txz¿¡ ¹é¾÷ÇÒ ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_CANT_TXZ_BACKUP_FILE		"ì•„ëž˜ Second Error Messageì˜ íŒŒì¼ì„ backup.txzì— ë°±ì—…í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #define CMERR_CANT_OPEN_FOR_SAVE			2004
 #define ESTR_CMERR_CANT_OPEN_FOR_SAVE		"Cannot open file to save. File might be used another program."
-#define KSTR_CMERR_CANT_OPEN_FOR_SAVE		"ÆÄÀÏÀ» ÀúÀåÇÏ·Á°í ÇÏ¿´À¸³ª, ÆÄÀÏÀ» ¿­ ¼ö ¾ø½À´Ï´Ù. ÀÌ¹Ì »ç¿ëÁßÀÏ °¡´É¼ºÀÌ ³ô½À´Ï´Ù."
+#define KSTR_CMERR_CANT_OPEN_FOR_SAVE		"íŒŒì¼ì„ ì €ìž¥í•˜ë ¤ê³  í•˜ì˜€ìœ¼ë‚˜, íŒŒì¼ì„ ì—´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ì´ë¯¸ ì‚¬ìš©ì¤‘ì¼ ê°€ëŠ¥ì„±ì´ ë†’ìŠµë‹ˆë‹¤."
 
 #define CMERR_CANT_WRITE_FILE				2005
 #define ESTR_CMERR_CANT_WRITE_FILE			"Cannot write to file."
-#define KSTR_CMERR_CANT_WRITE_FILE			"ÆÄÀÏ¿¡ µ¥ÀÌÅ¸¸¦ ¾µ ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_CANT_WRITE_FILE			"íŒŒì¼ì— ë°ì´íƒ€ë¥¼ ì“¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #define CMERR_CANT_READ_FILE				2005
 #define ESTR_CMERR_CANT_READ_FILE			"Cannot read from file."
-#define KSTR_CMERR_CANT_READ_FILE			"ÆÄÀÏÀÇ µ¥ÀÌÅ¸¸¦ ÀÐÀ» ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_CANT_READ_FILE			"íŒŒì¼ì˜ ë°ì´íƒ€ë¥¼ ì½ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #define CMERR_INVALID_FILE_FORMAT			2006
 #define ESTR_CMERR_INVALID_FILE_FORMAT		"Cannot open file. Invalid file format."
-#define KSTR_CMERR_INVALID_FILE_FORMAT		"ÆÄÀÏÀ» ¿­ ¼ö ¾ø½À´Ï´Ù. ÆÄÀÏ Çü½ÄÀÌ ´Ù¸¨´Ï´Ù."
+#define KSTR_CMERR_INVALID_FILE_FORMAT		"íŒŒì¼ì„ ì—´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. íŒŒì¼ í˜•ì‹ì´ ë‹¤ë¦…ë‹ˆë‹¤."
 
 #define CMERR_PREVIOUS_VERSION				2007
 #define ESTR_CMERR_PREVIOUS_VERSION			"Previous vesion."
-#define KSTR_CMERR_PREVIOUS_VERSION			"ÀÌÀü ¹öÀüÀÔ´Ï´Ù."
+#define KSTR_CMERR_PREVIOUS_VERSION			"ì´ì „ ë²„ì „ìž…ë‹ˆë‹¤."
 
 #define CMERR_NEXT_VERSION					2008
 #define ESTR_CMERR_NEXT_VERSION				"Next vesion."
-#define KSTR_CMERR_NEXT_VERSION				"ÀÌÈÄ ¹öÀüÀÔ´Ï´Ù."
+#define KSTR_CMERR_NEXT_VERSION				"ì´í›„ ë²„ì „ìž…ë‹ˆë‹¤."
 
 	/* Map|Blast Errors */
 #define CMERR_INCORRECT_MAP_ID				2100
 #define ESTR_CMERR_INCORRECT_MAP_ID			"Not Map|Blast file. ( *.map )"
-#define KSTR_CMERR_INCORRECT_MAP_ID			"Map|Blast ( *.map ) ÆÄÀÏÀÌ ¾Æ´Õ´Ï´Ù. ÆÄÀÏ ³»ºÎ ID°¡ Æ²¸³´Ï´Ù."
+#define KSTR_CMERR_INCORRECT_MAP_ID			"Map|Blast ( *.map ) íŒŒì¼ì´ ì•„ë‹™ë‹ˆë‹¤. íŒŒì¼ ë‚´ë¶€ IDê°€ í‹€ë¦½ë‹ˆë‹¤."
 
 /*	Error Code by Jayoung, Na	*/
 #define CMERR_JAYOUNG_NA					3000
@@ -148,51 +148,51 @@
 
 #define CMERR_WINSOCK_NOT_AVAIL				4001
 #define ESTR_CMERR_WINSOCK_NOT_AVAIL	"Winsock not available."
-#define KSTR_CMERR_WINSOCK_NOT_AVAIL	"WinsockÀÌ »ç¿ëºÒ´ÉÀÔ´Ï´Ù."
+#define KSTR_CMERR_WINSOCK_NOT_AVAIL	"Winsockì´ ì‚¬ìš©ë¶ˆëŠ¥ìž…ë‹ˆë‹¤."
 
 #define CMERR_CANT_CREATE_SOCKET			4002
 #define ESTR_CMERR_CANT_CREATE_SOCKET	"Can't create socket."
-#define KSTR_CMERR_CANT_CREATE_SOCKET	"¼ÒÄÏÀ» ¿­ ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_CANT_CREATE_SOCKET	"ì†Œì¼“ì„ ì—´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #define CMERR_CANT_SO_REUSEADDR				4003
 #define ESTR_CMERR_CANT_SO_REUSEADDR	"Can't setsockopt SO_REUSEADDR"
-#define KSTR_CMERR_CANT_SO_REUSEADDR	"SO_REUSEADDR¼³Á¤¿¡ ½ÇÆÐÇß½À´Ï´Ù."
+#define KSTR_CMERR_CANT_SO_REUSEADDR	"SO_REUSEADDRì„¤ì •ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤."
 
 #define CMERR_CANT_SO_LINGER				4004
 #define ESTR_CMERR_CANT_SO_LINGER		"Can't setsockopt SO_LINGER"
-#define KSTR_CMERR_CANT_SO_LINGER		"SO_LINGER¼³Á¤¿¡ ½ÇÆÐÇß½À´Ï´Ù."
+#define KSTR_CMERR_CANT_SO_LINGER		"SO_LINGERì„¤ì •ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤."
 
 #define CMERR_CANT_BIND_SOCKET				4005
 #define ESTR_CMERR_CANT_BIND_SOCKET		"Can't bind address."
-#define KSTR_CMERR_CANT_BIND_SOCKET		"bind()¿¡ ½ÇÆÐÇß½À´Ï´Ù."
+#define KSTR_CMERR_CANT_BIND_SOCKET		"bind()ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤."
 
 #define CMERR_INVALID_ARGUMENT				4006
 #define ESTR_CMERR_INVALID_ARGUMENT		"Invalid Argument."
-#define KSTR_CMERR_INVALID_ARGUMENT		"ÀÎÀÚ°¡ Àß¸øµÇ¾ú½À´Ï´Ù."
+#define KSTR_CMERR_INVALID_ARGUMENT		"ì¸ìžê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤."
 
 #define CMERR_SENDTO_FAILED					4007
 #define ESTR_CMERR_SENDTO_FAILED		"sendto() failed."
-#define KSTR_CMERR_SENDTO_FAILED		"sendto() ¿¡¼­ ½ÇÆÐÇß½À´Ï´Ù."
+#define KSTR_CMERR_SENDTO_FAILED		"sendto() ì—ì„œ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤."
 
 #define CMERR_CANT_SET_WSA_READ				4008
 #define ESTR_CMERR_CANT_SET_WSA_READ	"Can't set WSA_READ Message."
-#define KSTR_CMERR_CANT_SET_WSA_READ	"WSA_READ Message ¼³Á¤¿¡ ½ÇÆÐÇß½À´Ï´Ù."
+#define KSTR_CMERR_CANT_SET_WSA_READ	"WSA_READ Message ì„¤ì •ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤."
 
 #define CMERR_FILE_READ_ERROR				4009
 #define ESTR_CMERR_FILE_READ_ERROR		"Can't read FILE"
-#define KSTR_CMERR_FILE_READ_ERROR		"ÆÄÀÏÀ» ÀÐÀ» ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_FILE_READ_ERROR		"íŒŒì¼ì„ ì½ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #define CMERR_FILE_WRITE_ERROR				4010
 #define ESTR_CMERR_FILE_WRITE_ERROR		"Can't write FILE"
-#define KSTR_CMERR_FILE_WRITE_ERROR		"ÆÄÀÏ¿¡ ÀúÀåÇÒ ¼ö ¾ø½À´Ï´Ù."
+#define KSTR_CMERR_FILE_WRITE_ERROR		"íŒŒì¼ì— ì €ìž¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #define CMERR_UNKNOWN_USER					4011
 #define ESTR_CMERR_UNKNOWN_USER			"Unknown user name."
-#define KSTR_CMERR_UNKNOWN_USER			"µî·ÏÀÌ ¾ÈµÈ À¯ÀúÀÔ´Ï´Ù."
+#define KSTR_CMERR_UNKNOWN_USER			"ë“±ë¡ì´ ì•ˆëœ ìœ ì €ìž…ë‹ˆë‹¤."
 
 #define CMERR_INVALID_PASSWORD				4012
 #define ESTR_CMERR_INVALID_PASSWORD		"Invalid password."
-#define KSTR_CMERR_INVALID_PASSWORD		"¾ÏÈ£°¡ Æ²¸³´Ï´Ù."
+#define KSTR_CMERR_INVALID_PASSWORD		"ì•”í˜¸ê°€ í‹€ë¦½ë‹ˆë‹¤."
 
 
 /*******************************
@@ -200,27 +200,27 @@
 *******************************/
 #define CMERR_CANT_INIT_B3D					5001
 #define ESTR_CMERR_CANT_INIT_B3D			"Can't init Blast|3D."
-#define KSTR_CMERR_CANT_INIT_B3D			"Blast|3D¸¦ ÃÊ±âÈ­ÇÏ´Âµ¥ ½ÇÆÐÇÏ¿´½À´Ï´Ù."
+#define KSTR_CMERR_CANT_INIT_B3D			"Blast|3Dë¥¼ ì´ˆê¸°í™”í•˜ëŠ”ë° ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤."
 
 #define CMERR_B3D_INVALID_DRIVER			5002
 #define ESTR_CMERR_B3D_INVALID_DRIVER		"Driver is invalid."
-#define KSTR_CMERR_B3D_INVALID_DRIVER		"À¯È¿ÇÑ µå¶óÀÌ¹ö°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù."
+#define KSTR_CMERR_B3D_INVALID_DRIVER		"ìœ íš¨í•œ ë“œë¼ì´ë²„ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."
 
 #define CMERR_OBJ_NOTFOUND_MATERIAL			5002
 #define ESTR_CMERR_OBJ_NOTFOUND_MATERIAL	"Material(s) or Texture(s) Not Found."
-#define KSTR_CMERR_OBJ_NOTFOUND_MATERIAL	"ÅØ½ºÃÄ È¤Àº ÀçÁúÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù."
+#define KSTR_CMERR_OBJ_NOTFOUND_MATERIAL	"í…ìŠ¤ì³ í˜¹ì€ ìž¬ì§ˆì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."
 
 #define CMERR_OBJ_NOTFOUND_BMP			5003
 #define ESTR_CMERR_OBJ_NOTFOUND_BMP		"*.BMP Not Found."
-#define KSTR_CMERR_OBJ_NOTFOUND_BMP		"ºñÆ®¸ÊÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù."
+#define KSTR_CMERR_OBJ_NOTFOUND_BMP		"ë¹„íŠ¸ë§µíŒŒì¼ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."
 
 #define CMERR_INCORRECT_FILEFORMAT			5004
 #define ESTR_CMERR_INCORRECT_FILEFORMAT		"It's Invalid File or Old Version of RSM"
-#define KSTR_CMERR_INCORRECT_FILEFORMAT		"Àß¸øµÈ ÆÄÀÏÀÌ°Å³ª ¿À·¡µÈ¹öÁ¯ÀÔ´Ï´Ù."
+#define KSTR_CMERR_INCORRECT_FILEFORMAT		"ìž˜ëª»ëœ íŒŒì¼ì´ê±°ë‚˜ ì˜¤ëž˜ëœë²„ì ¼ìž…ë‹ˆë‹¤."
 
 #define CMERROR_RML_MODIFIED			5005
 #define ESTR_CMERROR_RML_MODIFIED		"RML Modified."
-#define KSTR_CMERROR_RML_MODIFIED		"RMLÀÌ ¿ÜºÎ¿¡¼­ ¼öÁ¤µÇ¾ú½À´Ï´Ù."
+#define KSTR_CMERROR_RML_MODIFIED		"RMLì´ ì™¸ë¶€ì—ì„œ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤."
 
 
 

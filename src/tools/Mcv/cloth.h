@@ -3,7 +3,7 @@
 // [10/7/2003]
 //////////////////////////////////////////////////////////////////////////
 // CLOTH HEADER
-// VALET INTERPOLATION ¾Ë°í¸®ÁòÀ» ÀÌ¿ëÇÑ CLOTH ANIMATION
+// VALET INTERPOLATION ì•Œê³ ë¦¬ì¦˜ì„ ì´ìš©í•œ CLOTH ANIMATION
 //
 // MAGICBELL
 //////////////////////////////////////////////////////////////////////////
@@ -67,22 +67,22 @@ private:
 	bool* mHolds;
 	
 	// Collistion Object List
-	// ¿ø±Ô¾¾°ú »óÀÇÇÏ¿© °áÁ¤.. ÇöÀç ¸ğµç ÆÄÆ¼Å¬Àº ¸ğµç ÄÃ¸®Á¯ ¿ÀºêÁ§Æ®¿Í Ãæµ¹°Ë»çÇÑ´Ù
-	// ¼Óµµ Çâ»óÀ» À§ÇØ partº°·Î ´ë»ó ¿ÀºêÁ§Æ®¸¦ ±¸º°ÇÒ ¼ö ÀÖµµ·Ï ÇÒ¼ö ÀÖ´Ù
+	// ì›ê·œì”¨ê³¼ ìƒì˜í•˜ì—¬ ê²°ì •.. í˜„ì¬ ëª¨ë“  íŒŒí‹°í´ì€ ëª¨ë“  ì»¬ë¦¬ì ¼ ì˜¤ë¸Œì íŠ¸ì™€ ì¶©ëŒê²€ì‚¬í•œë‹¤
+	// ì†ë„ í–¥ìƒì„ ìœ„í•´ partë³„ë¡œ ëŒ€ìƒ ì˜¤ë¸Œì íŠ¸ë¥¼ êµ¬ë³„í•  ìˆ˜ ìˆë„ë¡ í• ìˆ˜ ìˆë‹¤
 	//sRCObj* mDestObject;
 
 public:
 	// point to Mesh Node - to Render!!
 	RealSpace2::RMeshNode *mpMesh;	
-	// TODO : Å×½ºÆ® ½Ç¸°´õµé...
+	// TODO : í…ŒìŠ¤íŠ¸ ì‹¤ë¦°ë”ë“¤...
 	Cylinder mCylinders;
 
 private:
-	// Èû °è»ê - Áß·Â ÀÌ¿Ü¿¡ ¾²ÀÌÁö ¾Ê¹Ç¸é °°À¸¸é ¾ø¾Ö ¹ö¸².. ÇöÀç °í·ÁµÇ´Â »óÈ² ¾øÀ½
+	// í˜ ê³„ì‚° - ì¤‘ë ¥ ì´ì™¸ì— ì“°ì´ì§€ ì•Šë¯€ë©´ ê°™ìœ¼ë©´ ì—†ì•  ë²„ë¦¼.. í˜„ì¬ ê³ ë ¤ë˜ëŠ” ìƒí™© ì—†ìŒ
 	void accumulateForces();
 	// Interpolation bet. current frame and last frame
 	void varlet();
-	// satisfy constraints - Ãæµ¹ ¹× Á¦¾à Á¶°ÇÀ» ¸¸Á·½ÃÅ²´Ù
+	// satisfy constraints - ì¶©ëŒ ë° ì œì•½ ì¡°ê±´ì„ ë§Œì¡±ì‹œí‚¨ë‹¤
 	void satisfyConstraints();
 	//xxx calc vertex normal
 	void calcVertexNormal();
@@ -90,12 +90,12 @@ private:
 public:
 	// initialize - set Gravity.. 
 	void init();
-	// XXX Test ¿ë ÄÚµå.. ¸Ş½¬ ³ëµå¸¦ ¹Ş¾Æ cloth¸¦ »ı¼ºÇÑ´Ù
-	// automate constraints -> ¹İµå½Ã ¼öµ¿À¸·Î ¹Ù²ã¾ß ÇÑ´Ù
+	// XXX Test ìš© ì½”ë“œ.. ë©”ì‰¬ ë…¸ë“œë¥¼ ë°›ì•„ clothë¥¼ ìƒì„±í•œë‹¤
+	// automate constraints -> ë°˜ë“œì‹œ ìˆ˜ë™ìœ¼ë¡œ ë°”ê¿”ì•¼ í•œë‹¤
 	void setColth( RealSpace2::RMeshNode* mesh_ );
 	// update - call every frame
 	void Update();
-	// update position - vertexµéÀÇ ÀÚÃ¼ÀûÀÎ ¿òÁ÷ÀÓ
+	// update position - vertexë“¤ì˜ ìì²´ì ì¸ ì›€ì§ì„
 	void updatePosition( RealSpace2::RMeshNode* mesh_, rmatrix* pMatrix_ );
 	// render
 	void render();

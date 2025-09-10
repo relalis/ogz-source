@@ -19,7 +19,7 @@ ZCombatQuestScreen::~ZCombatQuestScreen()
 
 }
 
-// NPC Å³¼ö¸¦ ±âÁØÀ¸·Î ¼ÒÆÃ
+// NPC í‚¬ìˆ˜ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì†ŒíŒ…
 bool CompareQuestScreenCharacter(ZCharacter* a, ZCharacter* b) 
 {
 	ZModule_QuestStatus* pAMod = (ZModule_QuestStatus*)a->GetModule(ZMID_QUESTSTATUS);
@@ -61,7 +61,7 @@ void ZCombatQuestScreen::OnDraw(MDrawContext* pDC)
 
 	if ( ZGetQuest()->IsRoundClear())
 	{
-		// ¿î¿µÀÚ hide´Â Á¦¿Ü
+		// ìš´ì˜ìž hideëŠ” ì œì™¸
 		bool bEventHide = false;
 		if (ZGetMyInfo()->IsAdminGrade()) 
 		{

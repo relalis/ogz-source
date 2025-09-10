@@ -2,34 +2,34 @@
 #define _ZCOLORTABLE_H
 
 
-// Ã¤ÆÃ
-#define ZCOLOR_CHAT_LOBBY_DEFALT	0xFFE0E0E0			///< ·Îºñ¿¡¼­ÀÇ ±âº»»ö
-#define ZCOLOR_CHAT_STAGE_DEFAULT	0xFFE0E0E0			///< ½ºÅ×ÀÌÁö¿¡¼­ÀÇ ±âº»»ö
+// ì±„íŒ…
+#define ZCOLOR_CHAT_LOBBY_DEFALT	0xFFE0E0E0			///< ë¡œë¹„ì—ì„œì˜ ê¸°ë³¸ìƒ‰
+#define ZCOLOR_CHAT_STAGE_DEFAULT	0xFFE0E0E0			///< ìŠ¤í…Œì´ì§€ì—ì„œì˜ ê¸°ë³¸ìƒ‰
 
-#define ZCOLOR_CHAT_SYSTEM			0xFF00FF00			///< Ã¤ÆÃÃ¢ÀÇ ½Ã½ºÅÛ ¸»
-#define ZCOLOR_CHAT_SYSTEM_GAME		0xFF00FF00			///< °ÔÀÓ Ã¤ÆÃÃ¢ÀÇ ½Ã½ºÅÛ ¸»
-#define ZCOLOR_CHAT_SYSTEM_LOBBY	0xFF00FF00			///< ·Îºñ Ã¤ÆÃÃ¢ÀÇ ½Ã½ºÅÛ ¸»
-#define ZCOLOR_CHAT_SYSTEM_STAGE	0xFF00FF00			///< ½ºÅ×ÀÌÁö Ã¤ÆÃÃ¢ÀÇ ½Ã½ºÅÛ ¸»
+#define ZCOLOR_CHAT_SYSTEM			0xFF00FF00			///< ì±„íŒ…ì°½ì˜ ì‹œìŠ¤í…œ ë§
+#define ZCOLOR_CHAT_SYSTEM_GAME		0xFF00FF00			///< ê²Œìž„ ì±„íŒ…ì°½ì˜ ì‹œìŠ¤í…œ ë§
+#define ZCOLOR_CHAT_SYSTEM_LOBBY	0xFF00FF00			///< ë¡œë¹„ ì±„íŒ…ì°½ì˜ ì‹œìŠ¤í…œ ë§
+#define ZCOLOR_CHAT_SYSTEM_STAGE	0xFF00FF00			///< ìŠ¤í…Œì´ì§€ ì±„íŒ…ì°½ì˜ ì‹œìŠ¤í…œ ë§
 
-#define ZCOLOR_CHAT_BROADCAST		0xFFff9b25			///< Ã¤ÆÃÃ¢ÀÇ ¹æ¼Û ¸»
-#define ZCOLOR_CHAT_BROADCAST_GAME	0xFFff9b25			///< °ÔÀÓ Ã¤ÆÃÃ¢ÀÇ ¹æ¼Û ¸»
-#define ZCOLOR_CHAT_BROADCAST_LOBBY	0xFFff9b25			///< ·Îºñ Ã¤ÆÃÃ¢ÀÇ ¹æ¼Û ¸»
-#define ZCOLOR_CHAT_BROADCAST_STAGE	0xFFff9b25			///< ½ºÅ×ÀÌÁö Ã¤ÆÃÃ¢ÀÇ ¹æ¼Û ¸»
+#define ZCOLOR_CHAT_BROADCAST		0xFFff9b25			///< ì±„íŒ…ì°½ì˜ ë°©ì†¡ ë§
+#define ZCOLOR_CHAT_BROADCAST_GAME	0xFFff9b25			///< ê²Œìž„ ì±„íŒ…ì°½ì˜ ë°©ì†¡ ë§
+#define ZCOLOR_CHAT_BROADCAST_LOBBY	0xFFff9b25			///< ë¡œë¹„ ì±„íŒ…ì°½ì˜ ë°©ì†¡ ë§
+#define ZCOLOR_CHAT_BROADCAST_STAGE	0xFFff9b25			///< ìŠ¤í…Œì´ì§€ ì±„íŒ…ì°½ì˜ ë°©ì†¡ ë§
 
 
-#define ZCOLOR_CHAT_WHISPER			0xFF6060A8			///< Ã¤ÆÃÃ¢ÀÇ ±Ó¼Ó¸»
-#define ZCOLOR_CHAT_CLANMSG			0xFF69BAFF			///< Ã¤ÆÃÃ¢ÀÇ Å¬·£¸Þ¼¼Áö
-#define ZCOLOR_CHAT_ROOMCHAT		0xFFF7941D			///< Ã¤ÆÃÃ¢ÀÇ Ã¤ÆÃ¹æ Ã¤ÆÃ±Û
+#define ZCOLOR_CHAT_WHISPER			0xFF6060A8			///< ì±„íŒ…ì°½ì˜ ê·“ì†ë§
+#define ZCOLOR_CHAT_CLANMSG			0xFF69BAFF			///< ì±„íŒ…ì°½ì˜ í´ëžœë©”ì„¸ì§€
+#define ZCOLOR_CHAT_ROOMCHAT		0xFFF7941D			///< ì±„íŒ…ì°½ì˜ ì±„íŒ…ë°© ì±„íŒ…ê¸€
 
-#define ZCOLOR_GAME_INFO			0xFF808080			///< °ÔÀÓ¾È¿¡¼­ÀÇ Á¤º¸ (·¹º§¾÷/´Ù¿î/ÃâÀÔ)
+#define ZCOLOR_GAME_INFO			0xFF808080			///< ê²Œìž„ì•ˆì—ì„œì˜ ì •ë³´ (ë ˆë²¨ì—…/ë‹¤ìš´/ì¶œìž…)
 
-#define ZCOLOR_ADMIN_NAME			0xFFFF8040			///< ¿î¿µÀÚ ÀÌ¸§ »ö±ò
+#define ZCOLOR_ADMIN_NAME			0xFFFF8040			///< ìš´ì˜ìž ì´ë¦„ ìƒ‰ê¹”
 
-#define ZCOLOR_CHAT_CLANVICTORY1	0xFF009b25			///< Å¬·£Àü ¿¬½Â »ö±ò 1
-#define ZCOLOR_CHAT_CLANVICTORY2	0xFF669b25			///< Å¬·£Àü ¿¬½Â »ö±ò 2
-#define ZCOLOR_CHAT_CLANVICTORY3	0xFFAA9b25			///< Å¬·£Àü ¿¬½Â »ö±ò 3
-#define ZCOLOR_CHAT_CLANVICTORY4	0xFFFF9b25			///< Å¬·£Àü ¿¬½Â »ö±ò 4
-#define ZCOLOR_CHAT_CLANVICTORY5	0xFFFFFFFF			///< Å¬·£Àü ¿¬½Â »ö±ò 5
+#define ZCOLOR_CHAT_CLANVICTORY1	0xFF009b25			///< í´ëžœì „ ì—°ìŠ¹ ìƒ‰ê¹” 1
+#define ZCOLOR_CHAT_CLANVICTORY2	0xFF669b25			///< í´ëžœì „ ì—°ìŠ¹ ìƒ‰ê¹” 2
+#define ZCOLOR_CHAT_CLANVICTORY3	0xFFAA9b25			///< í´ëžœì „ ì—°ìŠ¹ ìƒ‰ê¹” 3
+#define ZCOLOR_CHAT_CLANVICTORY4	0xFFFF9b25			///< í´ëžœì „ ì—°ìŠ¹ ìƒ‰ê¹” 4
+#define ZCOLOR_CHAT_CLANVICTORY5	0xFFFFFFFF			///< í´ëžœì „ ì—°ìŠ¹ ìƒ‰ê¹” 5
 
 
 #endif

@@ -44,8 +44,8 @@ BOOL CImage24::Open(CDib *pDib)
 		return FALSE;
 	}
 
-	// À§¿¡¼­ ¾Æ·¡·Î ÂïÈ÷´Â ºñÆ®¸ÊÀÎ°¡? ¾Æ´Ñ°¡?
-	// ¿©±â¼­ 4¹ÙÀÌÆ® Á¤·ÄÀÇ °¡ºñÁö¸¦ Á¦°ÅÇÔ
+	// ìœ„ì—ì„œ ì•„ë˜ë¡œ ì°íˆëŠ” ë¹„íŠ¸ë§µì¸ê°€? ì•„ë‹Œê°€?
+	// ì—¬ê¸°ì„œ 4ë°”ì´íŠ¸ ì •ë ¬ì˜ ê°€ë¹„ì§€ë¥¼ ì œê±°í•¨
 	if(pDib->IsTopDown()==TRUE){
 		memcpy(m_pBitmapData,pDib->GetData(),m_nWidth*m_nHeight*BYTE_PER_PIXEL);
 	}
@@ -82,7 +82,7 @@ LPBYTE CImage24::GetData(void)
 	return m_pBitmapData;
 }
 
-// µ¥ÀÌÅ¸ ºí·° Å©±â ¾ò±â
+// ë°ì´íƒ€ ë¸”ëŸ­ í¬ê¸° ì–»ê¸°
 int CImage24::GetDataSize(void)
 {
 	return (m_nWidth*m_nHeight*BYTE_PER_PIXEL);
@@ -90,20 +90,20 @@ int CImage24::GetDataSize(void)
 
 void CImage24::BitBlt(LPBYTE pDst,WORD nDstX,WORD nDstY,WORD nDstWidth,WORD nSrcX,WORD nSrcY,WORD nSrcWidth,WORD nSrcHeight)
 {
-	// ÂïÀ» °ÍÀÌ ¾øÀ¸¸é...
+	// ì°ì„ ê²ƒì´ ì—†ìœ¼ë©´...
 	if(nSrcWidth<=0 || nSrcHeight<=0)return;
 
 	// Destination Address
 	DWORD pDestAddress=(DWORD)pDst+nDstX*BYTE_PER_PIXEL+nDstY*nDstWidth*BYTE_PER_PIXEL;
 	// Source Address
 	DWORD pSrcAddress=(DWORD)m_pBitmapData+nSrcX*BYTE_PER_PIXEL+nSrcY*m_nWidth*BYTE_PER_PIXEL;
-	// °¡·Î¸¦ Âï°í °Ç³Ê¶ç¾î¾ß ÇÒ°ª
+	// ê°€ë¡œë¥¼ ì°ê³  ê±´ë„ˆë„ì–´ì•¼ í• ê°’
 	DWORD nDestGap=(nDstWidth-nSrcWidth)*BYTE_PER_PIXEL;
-	// °¡·Î¸¦ Âï°í ¼Ò½º ÀÌ¹ÌÁö¿¡¼­ °Ç³Ê¶ç¾î¾ß ÇÒ°ª
+	// ê°€ë¡œë¥¼ ì°ê³  ì†ŒìŠ¤ ì´ë¯¸ì§€ì—ì„œ ê±´ë„ˆë„ì–´ì•¼ í• ê°’
 	DWORD nSrcGap=(m_nWidth-nSrcWidth)*BYTE_PER_PIXEL;
-	// 4¹ÙÀÌÆ®¾¿ ÂïÀ»¶§ Âï¾î¾ß ÇÒ È½¼ö
+	// 4ë°”ì´íŠ¸ì”© ì°ì„ë•Œ ì°ì–´ì•¼ í•  íšŸìˆ˜
 	DWORD nWidthCount=(nSrcWidth*BYTE_PER_PIXEL)/4;
-	// 4¹ÙÀÌÆ®¾¿ ÂïÀ»¶§ 4·Î ³ª´² ¶³¾îÁö´ÂÁö?
+	// 4ë°”ì´íŠ¸ì”© ì°ì„ë•Œ 4ë¡œ ë‚˜ëˆ  ë–¨ì–´ì§€ëŠ”ì§€?
 	DWORD nLeft=(nSrcWidth*BYTE_PER_PIXEL)%4;
 
 	DWORD dwSrcHeight=(DWORD)nSrcHeight;
@@ -131,20 +131,20 @@ LOOP1:
 // BitBlt with Pitch width(byte value)
 void CImage24::BitBltwp(LPBYTE pDst,WORD nDstX,WORD nDstY,WORD nPitchByte,WORD nSrcX,WORD nSrcY,WORD nSrcWidth,WORD nSrcHeight)
 {
-	// ÂïÀ» °ÍÀÌ ¾øÀ¸¸é...
+	// ì°ì„ ê²ƒì´ ì—†ìœ¼ë©´...
 	if(nSrcWidth<=0 || nSrcHeight<=0)return;
 
 	// Destination Address
 	DWORD pDestAddress=(DWORD)pDst+nDstX*BYTE_PER_PIXEL+nDstY*nPitchByte;
 	// Source Address
 	DWORD pSrcAddress=(DWORD)m_pBitmapData+nSrcX*BYTE_PER_PIXEL+nSrcY*m_nWidth*BYTE_PER_PIXEL;
-	// °¡·Î¸¦ Âï°í °Ç³Ê¶ç¾î¾ß ÇÒ°ª
+	// ê°€ë¡œë¥¼ ì°ê³  ê±´ë„ˆë„ì–´ì•¼ í• ê°’
 	DWORD nDestGap=nPitchByte-nSrcWidth*BYTE_PER_PIXEL;
-	// °¡·Î¸¦ Âï°í ¼Ò½º ÀÌ¹ÌÁö¿¡¼­ °Ç³Ê¶ç¾î¾ß ÇÒ°ª
+	// ê°€ë¡œë¥¼ ì°ê³  ì†ŒìŠ¤ ì´ë¯¸ì§€ì—ì„œ ê±´ë„ˆë„ì–´ì•¼ í• ê°’
 	DWORD nSrcGap=(m_nWidth-nSrcWidth)*BYTE_PER_PIXEL;
-	// 4¹ÙÀÌÆ®¾¿ ÂïÀ»¶§ Âï¾î¾ß ÇÒ È½¼ö
+	// 4ë°”ì´íŠ¸ì”© ì°ì„ë•Œ ì°ì–´ì•¼ í•  íšŸìˆ˜
 	DWORD nWidthCount=(nSrcWidth*BYTE_PER_PIXEL)/4;
-	// 4¹ÙÀÌÆ®¾¿ ÂïÀ»¶§ 4·Î ³ª´² ¶³¾îÁö´ÂÁö?
+	// 4ë°”ì´íŠ¸ì”© ì°ì„ë•Œ 4ë¡œ ë‚˜ëˆ  ë–¨ì–´ì§€ëŠ”ì§€?
 	DWORD nLeft=(nSrcWidth*BYTE_PER_PIXEL)%4;
 
 	DWORD dwSrcHeight=(DWORD)nSrcHeight;

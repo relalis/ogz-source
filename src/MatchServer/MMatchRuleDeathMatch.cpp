@@ -66,7 +66,7 @@ void MMatchRuleTeamDeath::OnRoundEnd()
 
 bool MMatchRuleTeamDeath::OnCheckEnableBattleCondition()
 {
-	// ¼±½ÂÁ¦ÀÏ °æ¿ì´Â Free»óÅÂ°¡ ¾ÈµÈ´Ù.
+	// ì„ ìŠ¹ì œì¼ ê²½ìš°ëŠ” Freeìƒíƒœê°€ ì•ˆëœë‹¤.
 	if (m_pStage->GetStageSetting()->IsTeamWinThePoint() == true)
 	{
 		return true;
@@ -74,7 +74,7 @@ bool MMatchRuleTeamDeath::OnCheckEnableBattleCondition()
 
 	int nRedTeam = 0, nBlueTeam = 0;
 	int nPreRedTeam = 0, nPreBlueTeam = 0;
-	int nStageObjects = 0;		// °ÔÀÓ¾È¿¡ ¾ø°í ½ºÅ×ÀÌÁö¿¡ ÀÖ´Â »ç¶÷
+	int nStageObjects = 0;		// ê²Œìž„ì•ˆì— ì—†ê³  ìŠ¤í…Œì´ì§€ì— ìžˆëŠ” ì‚¬ëžŒ
 
 	MMatchStage* pStage = GetStage();
 	if (pStage == NULL) return false;
@@ -106,7 +106,7 @@ bool MMatchRuleTeamDeath::OnCheckEnableBattleCondition()
 	return true;
 }
 
-// ¸¸¾à ·¹µåÆÀÀÌ³ª ºí·çÆÀ¿¡¼­ ÆÀ¿øÀÌ 0¸íÀÏ °æ¿ì´Â false ¹ÝÈ¯ , true,false ¸ðµÎ AliveCount ¹ÝÈ¯
+// ë§Œì•½ ë ˆë“œíŒ€ì´ë‚˜ ë¸”ë£¨íŒ€ì—ì„œ íŒ€ì›ì´ 0ëª…ì¼ ê²½ìš°ëŠ” false ë°˜í™˜ , true,false ëª¨ë‘ AliveCount ë°˜í™˜
 bool MMatchRuleTeamDeath::GetAliveCount(int* pRedAliveCount, int* pBlueAliveCount)
 {
 	int nRedCount = 0, nBlueCount = 0;
@@ -120,7 +120,7 @@ bool MMatchRuleTeamDeath::GetAliveCount(int* pRedAliveCount, int* pBlueAliveCoun
 	for (auto i=pStage->GetObjBegin(); i!=pStage->GetObjEnd(); i++)
 	{
 		MMatchObject* pObj = i->second;
-		if (pObj->GetEnterBattle() == false) continue;	// ¹èÆ²Âü°¡ÇÏ°í ÀÖ´Â ÇÃ·¹ÀÌ¾î¸¸ Ã¼Å©
+		if (pObj->GetEnterBattle() == false) continue;	// ë°°í‹€ì°¸ê°€í•˜ê³  ìžˆëŠ” í”Œë ˆì´ì–´ë§Œ ì²´í¬
 
 		if (pObj->GetTeam() == MMT_RED)
 		{
@@ -155,7 +155,7 @@ bool MMatchRuleTeamDeath::OnCheckRoundFinish()
 	int nRedAliveCount = 0;
 	int nBlueAliveCount = 0;
 
-	// ÆÀ¿øÀÌ 0¸íÀÎ ÆÀÀÌ ÀÖÀ¸¸é false¹ÝÈ¯
+	// íŒ€ì›ì´ 0ëª…ì¸ íŒ€ì´ ìžˆìœ¼ë©´ falseë°˜í™˜
 	if (GetAliveCount(&nRedAliveCount, &nBlueAliveCount) == false)
 	{
 		if ( (nRedAliveCount == 0) && (nBlueAliveCount == 0) )
@@ -183,7 +183,7 @@ void MMatchRuleTeamDeath::OnRoundTimeOut()
 	else SetRoundArg(MMATCH_ROUNDRESULT_DRAW);
 }
 
-// ¹ÝÈ¯°ªÀÌ falseÀÌ¸é °ÔÀÓÀÌ ³¡³­´Ù.
+// ë°˜í™˜ê°’ì´ falseì´ë©´ ê²Œìž„ì´ ëë‚œë‹¤.
 bool MMatchRuleTeamDeath::RoundCount() 
 {
 	if (m_pStage == NULL) return false;
@@ -193,15 +193,15 @@ bool MMatchRuleTeamDeath::RoundCount()
 
 	if (m_pStage->GetStageSetting()->IsTeamWinThePoint() == false)
 	{
-		// ¼±½ÂÁ¦°¡ ¾Æ´Ò °æ¿ì
+		// ì„ ìŠ¹ì œê°€ ì•„ë‹ ê²½ìš°
 		if (m_nRoundCount < nTotalRound) return true;
 
 	}
 	else
 	{
-		// ¼±½ÂÁ¦ÀÏ °æ¿ì 
+		// ì„ ìŠ¹ì œì¼ ê²½ìš° 
 
-		// ÆÀ¿øÀÌ 0¸íÀÎ ÆÀÀÌ ÀÖ¾îµµ °ÔÀÓÀÌ ³¡³­´Ù.
+		// íŒ€ì›ì´ 0ëª…ì¸ íŒ€ì´ ìžˆì–´ë„ ê²Œìž„ì´ ëë‚œë‹¤.
 		int nRedTeamCount=0, nBlueTeamCount=0;
 		m_pStage->GetTeamMemberCount(&nRedTeamCount, &nBlueTeamCount, NULL, true);
 
@@ -213,11 +213,11 @@ bool MMatchRuleTeamDeath::RoundCount()
 		int nRedScore = m_pStage->GetTeamScore(MMT_RED);
 		int nBlueScore = m_pStage->GetTeamScore(MMT_BLUE);
 		
-		// ·¡´õ°ÔÀÓ¿¡¼­ ¸ÕÀú 4½ÂÀÎ ÆÀÀÌ ½Â¸®
+		// ëž˜ë”ê²Œìž„ì—ì„œ ë¨¼ì € 4ìŠ¹ì¸ íŒ€ì´ ìŠ¹ë¦¬
 		const int LADDER_WINNING_ROUNT_COUNT = 4;
 
 
-		// µÎÆÀÀÌ ¸ðµÎ 4½ÂÀÌ ¾Æ´Ï¸é true¹ÝÈ¯
+		// ë‘íŒ€ì´ ëª¨ë‘ 4ìŠ¹ì´ ì•„ë‹ˆë©´ trueë°˜í™˜
 		if ((nRedScore < LADDER_WINNING_ROUNT_COUNT) && (nBlueScore < LADDER_WINNING_ROUNT_COUNT))
 		{
 			return true;
@@ -298,7 +298,7 @@ void MMatchRuleSoloDeath::OnRoundTimeOut()
 
 
 
-// ¹«ÇÑ ÆÀµ¥½º¸ÅÄ¡ - Ãß°¡ by µ¿¼·
+// ë¬´í•œ íŒ€ë°ìŠ¤ë§¤ì¹˜ - ì¶”ê°€ by ë™ì„­
 //////////////////////////////////////////////////////////////////////////
 MMatchRuleTeamDeath2::MMatchRuleTeamDeath2(MMatchStage* pStage) : MMatchRule(pStage)
 {
@@ -347,7 +347,7 @@ void MMatchRuleTeamDeath2::OnRoundEnd()
 	MMatchRule::OnRoundEnd();
 }
 
-// ¸¸¾à ·¹µåÆÀÀÌ³ª ºí·çÆÀ¿¡¼­ ÆÀ¿øÀÌ 0¸íÀÏ °æ¿ì´Â false ¹ÝÈ¯ , true,false ¸ðµÎ AliveCount ¹ÝÈ¯
+// ë§Œì•½ ë ˆë“œíŒ€ì´ë‚˜ ë¸”ë£¨íŒ€ì—ì„œ íŒ€ì›ì´ 0ëª…ì¼ ê²½ìš°ëŠ” false ë°˜í™˜ , true,false ëª¨ë‘ AliveCount ë°˜í™˜
 void MMatchRuleTeamDeath2::GetTeamScore(int* pRedTeamScore, int* pBlueTeamScore)
 {
 	(*pRedTeamScore) = 0;
@@ -389,7 +389,7 @@ void MMatchRuleTeamDeath2::OnRoundTimeOut()
 		SetRoundArg(MMATCH_ROUNDRESULT_DRAW);
 }
 
-// ¹ÝÈ¯°ªÀÌ falseÀÌ¸é °ÔÀÓÀÌ ³¡³­´Ù.
+// ë°˜í™˜ê°’ì´ falseì´ë©´ ê²Œìž„ì´ ëë‚œë‹¤.
 bool MMatchRuleTeamDeath2::RoundCount() 
 {
 	if (++m_nRoundCount < 1) return true;
@@ -425,6 +425,6 @@ void MMatchRuleTeamDeath2::OnGameKill(const MUID& uidAttacker, const MUID& uidVi
 //			m_pStage->AddTeamKills(pAttacker->GetTeam());
 //		}
 
-		m_pStage->AddTeamKills(pVictim->GetTeam() == MMT_BLUE ? MMT_RED : MMT_BLUE);		// Á×Àº»ç¶÷ ¹Ý´ëÆíÆÀ Å³¼ö ¿Ã¸²
+		m_pStage->AddTeamKills(pVictim->GetTeam() == MMT_BLUE ? MMT_RED : MMT_BLUE);		// ì£½ì€ì‚¬ëžŒ ë°˜ëŒ€íŽ¸íŒ€ í‚¬ìˆ˜ ì˜¬ë¦¼
 	}
 }

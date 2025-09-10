@@ -11,12 +11,12 @@
 /*
 	TODO: 
 	
-	1. z sort°¡ ÀüÇô °í·ÁµÇ¾îÀÖÁö ¾Ê´Ù. updateµî¿¡ sort¸¦ ³Ö¾îº¼¸¸µµ ÇÏ´Ù,
+	1. z sortê°€ ì „í˜€ ê³ ë ¤ë˜ì–´ìˆì§€ ì•Šë‹¤. updateë“±ì— sortë¥¼ ë„£ì–´ë³¼ë§Œë„ í•˜ë‹¤,
 
-	2. billboard ÀÇ  rotation µµ ÆÄ¶ó¹ÌÅÍ·Î µé¾î°¬À¸¸é ÇÏ´Â ¼Ò¸Á.
+	2. billboard ì˜  rotation ë„ íŒŒë¼ë¯¸í„°ë¡œ ë“¤ì–´ê°”ìœ¼ë©´ í•˜ëŠ” ì†Œë§.
 
-	3. ·ÎÄÏ ¿¬±â °°Àº °æ¿ì¿¡´Â opacity ÀÇ °¨¼â°¡ ¼±Çü´ë½Å ±Ş°İÇÏ°Ô 
-		ÀÏ¾î³ª¸é (1/xÃ³·³) ¿¬±â°¡ »¡·Á°¡´ÂµíÇÑ ´À³¦À» ¾ø¾Ù¼ö ÀÖÀ»µí.
+	3. ë¡œì¼“ ì—°ê¸° ê°™ì€ ê²½ìš°ì—ëŠ” opacity ì˜ ê°ì‡„ê°€ ì„ í˜•ëŒ€ì‹  ê¸‰ê²©í•˜ê²Œ 
+		ì¼ì–´ë‚˜ë©´ (1/xì²˜ëŸ¼) ì—°ê¸°ê°€ ë¹¨ë ¤ê°€ëŠ”ë“¯í•œ ëŠë‚Œì„ ì—†ì•¨ìˆ˜ ìˆì„ë“¯.
 
  */
 
@@ -267,7 +267,7 @@ void ZEffectBillboardList::Update(float fElapsed)
 			}
 			else if(fRatio > 0.6f) {
 
-				if(p->nDir == -1) {// ÆÛÁú ¾î´ÀÇÑ ¹æÇâÀ» Àâ¾ÆÁÖ±â
+				if(p->nDir == -1) {// í¼ì§ˆ ì–´ëŠí•œ ë°©í–¥ì„ ì¡ì•„ì£¼ê¸°
 					p->nDir = rand()%4;
 				}
 
@@ -330,7 +330,7 @@ void ZEffectBillboardList::Update(float fElapsed)
 				p->dwColor = _D3DRGBA(col.x,col.y,col.z ,0.f);
 			}
 			else {
-				col=rvector(0.5f,0.5f,0.5f);//È¸»ö
+				col=rvector(0.5f,0.5f,0.5f);//íšŒìƒ‰
 				p->dwColor = _D3DRGBA(col.x,col.y,col.z ,0.f);
 			}
 		}
@@ -654,7 +654,7 @@ void ZEffectBillboardTexAniList::SetTile(int xCnt,int yCnt,float fXTileUV,float 
 
 void ZEffectBillboardTexAniList::GetFrameUV(int frame)
 {
-//	±âº»ÀûÀ¸·Î  128*128 Å©±âÀÇ texture ¸¦ »ç¿ëÇÏ´Â °É·Î..
+//	ê¸°ë³¸ì ìœ¼ë¡œ  128*128 í¬ê¸°ì˜ texture ë¥¼ ì‚¬ìš©í•˜ëŠ” ê±¸ë¡œ..
 
 	int x = frame%m_nXCnt;
 	int y = frame/m_nXCnt;

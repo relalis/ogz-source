@@ -59,7 +59,7 @@ rvector ZRangeWeaponHitDice::ReturnShotDir()
 	{
 		float fHeight = m_fTargetHeight * 0.6f * 0.5f;
 		float fWidth = m_fTargetWidth * 0.6f * 0.5f;
-		// ¸íÁß
+		// ëª…ì¤‘
 		fRandX = RandomNumber(-fWidth, fWidth);
 		fRandY = RandomNumber(-fHeight, fHeight);
 	}

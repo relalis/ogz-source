@@ -167,7 +167,7 @@ bool MMatchServer::StageJoin(const MUID& uidPlayer, const MUID& uidStage)
 		MSTAGE_SETTING_NODE* pNode = pStage->GetStageSetting()->GetStageSetting();
 		if( 0 == pNode )
 		{
-			mlog( "MMatchServer::StageJoin - ½ºÅ×ÀÌÁö ¼ÂÆÃ ³ëµå Ã£±â ½ÇÆĞ.\n" );
+			mlog( "MMatchServer::StageJoin - ìŠ¤í…Œì´ì§€ ì…‹íŒ… ë…¸ë“œ ì°¾ê¸° ì‹¤íŒ¨.\n" );
 			return false;
 		}
 
@@ -176,7 +176,7 @@ bool MMatchServer::StageJoin(const MUID& uidPlayer, const MUID& uidStage)
 			MMatchRuleBaseQuest* pRuleQuest = reinterpret_cast< MMatchRuleBaseQuest* >( pStage->GetRule() );
 			if( 0 == pRuleQuest )
 			{
-				mlog( "MMatchServer::StageJoin - Æ÷ÀÎÅÍ Çüº¯È¯ ½ÇÆĞ.\n" );
+				mlog( "MMatchServer::StageJoin - í¬ì¸í„° í˜•ë³€í™˜ ì‹¤íŒ¨.\n" );
 				return false;
 			}
 
@@ -247,7 +247,7 @@ bool MMatchServer::StageLeave(const MUID& uidPlayer, const MUID& uidStage)
 		MSTAGE_SETTING_NODE* pNode = pStage->GetStageSetting()->GetStageSetting();
 		if( 0 == pNode )
 		{
-			mlog( "MMatchServer::StageLeave - ½ºÅ×ÀÌÁö ¼ÂÆÃ ³ëµå Ã£±â ½ÇÆĞ.\n" );
+			mlog( "MMatchServer::StageLeave - ìŠ¤í…Œì´ì§€ ì…‹íŒ… ë…¸ë“œ ì°¾ê¸° ì‹¤íŒ¨.\n" );
 			return false;
 		}
 
@@ -256,7 +256,7 @@ bool MMatchServer::StageLeave(const MUID& uidPlayer, const MUID& uidStage)
 			MMatchRuleBaseQuest* pRuleQuest = reinterpret_cast< MMatchRuleBaseQuest* >( pStage->GetRule() );
 			if( 0 == pRuleQuest )
 			{
-				mlog( "MMatchServer::StageLeave - Æ÷ÀÎÅÍ Çüº¯È¯ ½ÇÆĞ.\n" );
+				mlog( "MMatchServer::StageLeave - í¬ì¸í„° í˜•ë³€í™˜ ì‹¤íŒ¨.\n" );
 				return false;
 			}
 

@@ -35,14 +35,14 @@ static struct _STAGESETTING_LIMITTIME_SINGLE
 	char				szText[32];
 	static constexpr auto Default = 4;
 } StageSetting_LimitTime_Single[] =
-{ {99999, "¹«ÇÑ"}, {10, "10ºĞ"}, {15, "15ºĞ"}, {20, "20ºĞ"}, {30, "30ºĞ"}, {60, "60ºĞ"} };
+{ {99999, "ë¬´í•œ"}, {10, "10ë¶„"}, {15, "15ë¶„"}, {20, "20ë¶„"}, {30, "30ë¶„"}, {60, "60ë¶„"} };
 static struct _STAGESETTING_LIMITTIME_TEAM
 {
 	int					Value;
 	char				szText[32];
 	static constexpr auto Default = 4;
 } StageSetting_LimitTime_Team[] =
-{ {99999, "¹«ÇÑ"}, {3, "3ºĞ"}, {5, "5ºĞ"}, {7, "7ºĞ"}, {10, "10ºĞ"}, {15, "15ºĞ"} };
+{ {99999, "ë¬´í•œ"}, {3, "3ë¶„"}, {5, "5ë¶„"}, {7, "7ë¶„"}, {10, "10ë¶„"}, {15, "15ë¶„"} };
 
 static struct _STAGESETTING_LIMITLEVEL
 {
@@ -50,7 +50,7 @@ static struct _STAGESETTING_LIMITLEVEL
 	char				szText[32];
 	static constexpr auto Default = 0;
 } StageSetting_LimitLevel[] =
-{ {0, "¾øÀ½"}, {5, "·¹º§Â÷ 5"}, {10, "·¹º§Â÷ 10"}, {15, "·¹º§Â÷ 15"} };
+{ {0, "ì—†ìŒ"}, {5, "ë ˆë²¨ì°¨ 5"}, {10, "ë ˆë²¨ì°¨ 10"}, {15, "ë ˆë²¨ì°¨ 15"} };
 
 static struct _STAGESETTING_TEAM
 {
@@ -58,7 +58,7 @@ static struct _STAGESETTING_TEAM
 	char	szText[32];
 	static constexpr auto Default = 0;
 } StageSetting_TeamKill[] =
-{ {true, "Çã¿ë"}, {false, "±İÁö"} };
+{ {true, "í—ˆìš©"}, {false, "ê¸ˆì§€"} };
 
 static struct _STAGESETTING_FORCEDENTRY
 {
@@ -66,7 +66,7 @@ static struct _STAGESETTING_FORCEDENTRY
 	char	szText[32];
 	static constexpr auto Default = 0;
 } StageSetting_ForcedEntry[] =
-{ {true, "Çã¿ë"}, {false, "±İÁö"} };
+{ {true, "í—ˆìš©"}, {false, "ê¸ˆì§€"} };
 
 static struct _STAGESETTING_OBSERVER
 {
@@ -74,7 +74,7 @@ static struct _STAGESETTING_OBSERVER
 	char	szText[32];
 	static constexpr auto Default = 1;
 } StageSetting_Observer[] =
-{ {true, "Çã¿ë"}, {false, "±İÁö"} };
+{ {true, "í—ˆìš©"}, {false, "ê¸ˆì§€"} };
 
 static struct _STAGESETTING_VOTE
 {
@@ -82,7 +82,7 @@ static struct _STAGESETTING_VOTE
 	char	szText[32];
 	static constexpr auto Default = 0;
 } StageSetting_Vote[] =
-{ {true, "Çã¿ë"}, {false, "±İÁö"} };
+{ {true, "í—ˆìš©"}, {false, "ê¸ˆì§€"} };
 
 static struct _STAGESETTING_TEAMBALANCING
 {

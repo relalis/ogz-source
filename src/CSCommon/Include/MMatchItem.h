@@ -136,7 +136,7 @@ enum MMatchWeaponType
 	MWT_FRAGMENTATION,
 	MWT_SMOKE_GRENADE,
 	MWT_FOOD,
-	MWT_SKILL,				// NPC¿ë - skill.xml¿¡ ±â¼úµÇ¾î ÀÖ´Â °É·Î °ø°İÇÑ´Ù.
+	MWT_SKILL,				// NPCìš© - skill.xmlì— ê¸°ìˆ ë˜ì–´ ìˆëŠ” ê±¸ë¡œ ê³µê²©í•œë‹¤.
 
 	// custom - enchant
 	MWT_ENCHANT_FIRE,			
@@ -344,7 +344,7 @@ public:
 
 class MMatchItemMap;
 
-/// ÀåºñÇÏ°íÀÖ´Â ¾ÆÀÌÅÛ
+/// ì¥ë¹„í•˜ê³ ìˆëŠ” ì•„ì´í…œ
 class MMatchEquipedItem
 {
 protected:
@@ -358,7 +358,7 @@ public:
 	void Remove(MMatchCharItemParts parts);
 	bool IsEmpty(MMatchCharItemParts parts) { if (m_pParts[parts] != NULL) return false; return true; }
 	void GetTotalWeight(int* poutWeight, int* poutMaxWeight);
-	bool IsEquipedItem(MMatchItem* pCheckItem, MMatchCharItemParts& outParts); // ÇØ´ç ¾ÆÀÌÅÛÀÌ ÀåºñÁßÀÎÁö Ã¼Å©
+	bool IsEquipedItem(MMatchItem* pCheckItem, MMatchCharItemParts& outParts); // í•´ë‹¹ ì•„ì´í…œì´ ì¥ë¹„ì¤‘ì¸ì§€ ì²´í¬
 	void Clear();
 	auto begin() const { return std::begin(m_pParts); }
 	auto end() const { return std::end(m_pParts); }
@@ -492,79 +492,79 @@ struct MAccountItemNode
 #define MICTOK_BONUS_DUPLICATE		"duplicate"
 
 /*
-== XML ±â¼ú ¼³¸í ==
-+ zitem.xml ¼³¸í
+== XML ê¸°ìˆ  ì„¤ëª… ==
++ zitem.xml ì„¤ëª…
 
-+ ÅÂ±×ÀÌ¸§ : ITEM
-+ attribute ¼³¸í
-id : ¾ÆÀÌÅÛ ¾ÆÀÌµğ(int)
-name : ¾ÆÀÌÅÛ ÀÌ¸§(string[128])
-mesh_name : ¸Ş½¬ ÀÌ¸§(str[256]) , weapon.xmlÀÇ nameÇ×¸ñÀÇ ÀÌ¸§
-totalpoint : Á¾ÇÕ Á¡¼ö(int)
-type : Á¾·ù(melee, range, equip, custom)
-res_sex : ¼ºº° Á¦ÇÑ»çÇ×(m, f, a)
-res_level : ·¹º§ Á¦ÇÑ»çÇ×(int) , Á¦ÇÑÀÌ ¾øÀ»°æ¿ì 0À¸·Î ¼¼ÆÃÇÏµµ·Ï ÇÑ´Ù.
-slot : ½½·Ô(none, melee, range, head, chest, hands, legs, feet, finger, custom)
-weapon : ¹«±âÅ¸ÀÔ(none, dagger, katana, pistol, smg, shotgun, rifle, machinegun, 
++ íƒœê·¸ì´ë¦„ : ITEM
++ attribute ì„¤ëª…
+id : ì•„ì´í…œ ì•„ì´ë””(int)
+name : ì•„ì´í…œ ì´ë¦„(string[128])
+mesh_name : ë©”ì‰¬ ì´ë¦„(str[256]) , weapon.xmlì˜ nameí•­ëª©ì˜ ì´ë¦„
+totalpoint : ì¢…í•© ì ìˆ˜(int)
+type : ì¢…ë¥˜(melee, range, equip, custom)
+res_sex : ì„±ë³„ ì œí•œì‚¬í•­(m, f, a)
+res_level : ë ˆë²¨ ì œí•œì‚¬í•­(int) , ì œí•œì´ ì—†ì„ê²½ìš° 0ìœ¼ë¡œ ì„¸íŒ…í•˜ë„ë¡ í•œë‹¤.
+slot : ìŠ¬ë¡¯(none, melee, range, head, chest, hands, legs, feet, finger, custom)
+weapon : ë¬´ê¸°íƒ€ì…(none, dagger, katana, pistol, smg, shotgun, rifle, machinegun, 
                   rocket, snifer, medkit, flashbang, frag, smoke, 
 				  enchant_fire, enchant_cold, enchant_lightning, enchant_poison)
-weight : ¹«°Ô(int)
-bt_price : ÆÇ¸Å°¡(int)
-iscashitem : Ä³½¬¾ÆÀÌÅÛÀÎÁö ¿©ºÎ(true, false)
-damage : µ¥¹ÌÁö(int)
-delay : µô·¹ÀÌ(int)
-effect_id : ÀÌÆåÆ® ¾ÆÀÌµğ(int) , effect.xmlÀÇ Ç×¸ñ°ú ¿¬µ¿µÇ´Â ID
-ctrl_ability : Á¦¾î¼º(int)
-magazine : ÀåÅº¼ö(int)
-reloadtime : ÀåÀü½Ã°£(int)
-slug_output : ÅºÇÇÀûÃâ(true, false)
-gadget_id : ¿É¼Ç ¾ÆÀÌµğ(int)
-hp : hp Ä³¸¯ÅÍ ¼öÁ¤Ä¡(int)
-ap : ap Ä³¸¯ÅÍ ¼öÁ¤Ä¡(int)
-maxwt : max wt Ä³¸¯ÅÍ ¼öÁ¤Ä¡(int)
-sf : sf Ä³¸¯ÅÍ ¼öÁ¤Ä¡(int)
-fr : fr Ä³¸¯ÅÍ ¼öÁ¤Ä¡(int)
-cr : cr Ä³¸¯ÅÍ ¼öÁ¤Ä¡(int)
-pr : pr Ä³¸¯ÅÍ ¼öÁ¤Ä¡(int)
-lr : lr Ä³¸¯ÅÍ ¼öÁ¤Ä¡(int)
-desc : ¼³¸í(string[65535])
-color : »ö±ò(color)
-image_id : ui¿¡¼­ º¸ÀÌ´Â image ¾ÆÀÌµğ(int) , Áö±İÀº ¾²ÀÌÁö ¾ÊÀ½
-bullet_image_id : ui¿¡¼­ º¸ÀÌ´Â bullet ÀÌ¹ÌÁö ¾ÆÀÌµğ(int) , Áö±İÀº ¾²ÀÌÁö ¾ÊÀ½
-magazine_image_id : ui¿¡¼­ º¸ÀÌ´Â magazine ÀÌ¹ÌÁö ¾ÆÀÌµğ(int) , Áö±İÀº ¾²ÀÌÁö ¾ÊÀ½
-snd_reload : reload¶§ ³ª¿À´Â »ç¿îµå ÀÌ¸§(str[128])
-snd_fire : fire¶§ ³ª¿À´Â »ç¿îµå ÀÌ¸§(str[128])
-snd_dryfire : dryfire ¶§ ³ª¿À´Â »ç¿îµå ÀÌ¸§(str[128])
-range : melee °ø°İÀÇ ¹üÀ§(int)
+weight : ë¬´ê²Œ(int)
+bt_price : íŒë§¤ê°€(int)
+iscashitem : ìºì‰¬ì•„ì´í…œì¸ì§€ ì—¬ë¶€(true, false)
+damage : ë°ë¯¸ì§€(int)
+delay : ë”œë ˆì´(int)
+effect_id : ì´í™íŠ¸ ì•„ì´ë””(int) , effect.xmlì˜ í•­ëª©ê³¼ ì—°ë™ë˜ëŠ” ID
+ctrl_ability : ì œì–´ì„±(int)
+magazine : ì¥íƒ„ìˆ˜(int)
+reloadtime : ì¥ì „ì‹œê°„(int)
+slug_output : íƒ„í”¼ì ì¶œ(true, false)
+gadget_id : ì˜µì…˜ ì•„ì´ë””(int)
+hp : hp ìºë¦­í„° ìˆ˜ì •ì¹˜(int)
+ap : ap ìºë¦­í„° ìˆ˜ì •ì¹˜(int)
+maxwt : max wt ìºë¦­í„° ìˆ˜ì •ì¹˜(int)
+sf : sf ìºë¦­í„° ìˆ˜ì •ì¹˜(int)
+fr : fr ìºë¦­í„° ìˆ˜ì •ì¹˜(int)
+cr : cr ìºë¦­í„° ìˆ˜ì •ì¹˜(int)
+pr : pr ìºë¦­í„° ìˆ˜ì •ì¹˜(int)
+lr : lr ìºë¦­í„° ìˆ˜ì •ì¹˜(int)
+desc : ì„¤ëª…(string[65535])
+color : ìƒ‰ê¹”(color)
+image_id : uiì—ì„œ ë³´ì´ëŠ” image ì•„ì´ë””(int) , ì§€ê¸ˆì€ ì“°ì´ì§€ ì•ŠìŒ
+bullet_image_id : uiì—ì„œ ë³´ì´ëŠ” bullet ì´ë¯¸ì§€ ì•„ì´ë””(int) , ì§€ê¸ˆì€ ì“°ì´ì§€ ì•ŠìŒ
+magazine_image_id : uiì—ì„œ ë³´ì´ëŠ” magazine ì´ë¯¸ì§€ ì•„ì´ë””(int) , ì§€ê¸ˆì€ ì“°ì´ì§€ ì•ŠìŒ
+snd_reload : reloadë•Œ ë‚˜ì˜¤ëŠ” ì‚¬ìš´ë“œ ì´ë¦„(str[128])
+snd_fire : fireë•Œ ë‚˜ì˜¤ëŠ” ì‚¬ìš´ë“œ ì´ë¦„(str[128])
+snd_dryfire : dryfire ë•Œ ë‚˜ì˜¤ëŠ” ì‚¬ìš´ë“œ ì´ë¦„(str[128])
+range : melee ê³µê²©ì˜ ë²”ìœ„(int)
 
 
-+ effect.xml ¼³¸í
++ effect.xml ì„¤ëª…
 
-- ÅÂ±×ÀÌ¸§ : EFFECT
-+ attribute ¼³¸í
-id : ÀÌÆåÆ® ¾ÆÀÌµğ(int)
-name : ÀÌÆåÆ® ÀÌ¸§(string[128])
-area : ÀÌÆåÆ® ¿µ¿ª(int)
-time : ÀÌÆåÆ® ½Ã°£(msec)
-mod_hp : hp ¼öÁ¤Ä¡ 
-mod_ap : ap ¼öÁ¤Ä¡
-mod_maxwt : max wt ¼öÁ¤Ä¡
-mod_sf : sf ¼öÁ¤Ä¡
-mod_fr : fr ¼öÁ¤Ä¡
-mod_cr : cr ¼öÁ¤Ä¡
-mod_pr : pr ¼öÁ¤Ä¡
-mod_lr : lr ¼öÁ¤Ä¡
-res_ap : ap ÀúÇ×ÆÇÁ¤
-res_fr : fr ÀúÇ×ÆÇÁ¤
-res_cr : cr ÀúÇ×ÆÇÁ¤
-res_pr : pr ÀúÇ×ÆÇÁ¤
-res_lr : lr ÀúÇ×ÆÇÁ¤
-stun : stun ¼öÁ¤Ä¡
-knockback : knockback ¼öÁ¤Ä¡
-smoke : smoke ¼öÁ¤Ä¡
-flash : flash ¼öÁ¤Ä¡
-tear : tear ¼öÁ¤Ä¡
-flame : frame ¼öÁ¤Ä¡
+- íƒœê·¸ì´ë¦„ : EFFECT
++ attribute ì„¤ëª…
+id : ì´í™íŠ¸ ì•„ì´ë””(int)
+name : ì´í™íŠ¸ ì´ë¦„(string[128])
+area : ì´í™íŠ¸ ì˜ì—­(int)
+time : ì´í™íŠ¸ ì‹œê°„(msec)
+mod_hp : hp ìˆ˜ì •ì¹˜ 
+mod_ap : ap ìˆ˜ì •ì¹˜
+mod_maxwt : max wt ìˆ˜ì •ì¹˜
+mod_sf : sf ìˆ˜ì •ì¹˜
+mod_fr : fr ìˆ˜ì •ì¹˜
+mod_cr : cr ìˆ˜ì •ì¹˜
+mod_pr : pr ìˆ˜ì •ì¹˜
+mod_lr : lr ìˆ˜ì •ì¹˜
+res_ap : ap ì €í•­íŒì •
+res_fr : fr ì €í•­íŒì •
+res_cr : cr ì €í•­íŒì •
+res_pr : pr ì €í•­íŒì •
+res_lr : lr ì €í•­íŒì •
+stun : stun ìˆ˜ì •ì¹˜
+knockback : knockback ìˆ˜ì •ì¹˜
+smoke : smoke ìˆ˜ì •ì¹˜
+flash : flash ìˆ˜ì •ì¹˜
+tear : tear ìˆ˜ì •ì¹˜
+flame : frame ìˆ˜ì •ì¹˜
 
-duplicate : Áßº¹ Âø¿ë ¿©ºÎ.(true, false)
+duplicate : ì¤‘ë³µ ì°©ìš© ì—¬ë¶€.(true, false)
  */

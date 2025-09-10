@@ -145,7 +145,7 @@ void MMatchServer::OnAsyncGetLoginInfo(MAsyncJob* pJobInput)
 	{
 		delete pJob->GetAccountInfo();
 
-		// Á¢¼Ó ²÷¾î¹ö¸®ÀÚ
+		// ì ‘ì† ëŠì–´ë²„ë¦¬ìž
 		Disconnect(pJob->GetCommUID());
 		return;
 	}
@@ -257,7 +257,7 @@ void MMatchServer::OnAsyncGetCharInfo(MAsyncJob* pJobResult)
 		return;
 	}
 
-	// Client¿¡ ¼±ÅÃÇÑ Ä³¸¯ÅÍ Á¤º¸ Àü¼Û
+	// Clientì— ì„ íƒí•œ ìºë¦­í„° ì •ë³´ ì „ì†¡
 	MTD_CharInfo trans_charinfo;
 	CopyCharInfoForTrans(&trans_charinfo, pJob->GetCharInfo(), pObj);
 	
@@ -271,7 +271,7 @@ void MMatchServer::OnAsyncGetCharInfo(MAsyncJob* pJobResult)
 	MEraseBlobArray(pCharArray);
 
 
-	// ³» Ä³¸¯ÅÍÀÇ Ãß°¡ Á¤º¸
+	// ë‚´ ìºë¦­í„°ì˜ ì¶”ê°€ ì •ë³´
 	void* pMyExtraInfoArray = MMakeBlobArray(sizeof(MTD_MyExtraCharInfo), 1);
 	MTD_MyExtraCharInfo* pMyExtraInfo = (MTD_MyExtraCharInfo*)MGetBlobArrayElement(pMyExtraInfoArray, 0);
 	int nPercent = MMatchFormula::GetLevelPercent(trans_charinfo.nXP, (int)trans_charinfo.nLevel);
@@ -286,7 +286,7 @@ void MMatchServer::OnAsyncGetCharInfo(MAsyncJob* pJobResult)
 	{
 		if( MMCDS_WAIT == pJob->GetDeleteState() )
 		{
-			// ±Û·£ Æó¼â ³¯Â¥¸¦ ¾Ë·ÁÁÜ.
+			// ê¸€ëžœ íì‡„ ë‚ ì§œë¥¼ ì•Œë ¤ì¤Œ.
 			
 			MCommand* pCmdDelClan = CreateCommand( MC_MATCH_CLAN_ACCOUNCE_DELETE, pObj->GetUID() );
 			pCmdDelClan->AddParameter( new MCmdParamStr(pObj->GetCharInfo()->m_ClanInfo.m_strDeleteDate.c_str()) );
@@ -294,7 +294,7 @@ void MMatchServer::OnAsyncGetCharInfo(MAsyncJob* pJobResult)
 		}
 		else if( MMCDS_DELETE == pJob->GetDeleteState() )
 		{
-			// Å¬·£ Æó¼â ½ÃÅ´.
+			// í´ëžœ íì‡„ ì‹œí‚´.
 		}
 	}
 #endif
@@ -409,14 +409,14 @@ void MMatchServer::OnAsyncBringAccountItem(MAsyncJob* pJobResult)
 
 
 
-		// ¿ÀºêÁ§Æ®¿¡ ¾ÆÀÌÅÛ Ãß°¡
+		// ì˜¤ë¸Œì íŠ¸ì— ì•„ì´í…œ ì¶”ê°€
 		MUID uidNew = MMatchItemMap::UseUID();
 		pObj->GetCharInfo()->m_ItemList.CreateItem(uidNew, nNewCIID, nNewItemID, bIsRentItem, nRentMinutePeriodRemainder);
 
 		nRet = MOK;
 	}		
 
-	ResponseCharacterItemList(pJob->GetUID());	// »õ·Î ¹Ù²ï ¾ÆÀÌÅÛ ¸®½ºÆ®µµ ´Ù½Ã »Ñ·ÁÁØ´Ù.
+	ResponseCharacterItemList(pJob->GetUID());	// ìƒˆë¡œ ë°”ë€ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë„ ë‹¤ì‹œ ë¿Œë ¤ì¤€ë‹¤.
 
 
 	MCommand* pNew = CreateCommand(MC_MATCH_RESPONSE_BRING_ACCOUNTITEM, MUID(0,0));
@@ -477,7 +477,7 @@ void MMatchServer::OnAsyncCreateClan(MAsyncJob* pJobResult)
 	}
 
 
-	// ¸¶½ºÅÍÀÇ ¹Ù¿îÆ¼¸¦ ±ð´Â´Ù.
+	// ë§ˆìŠ¤í„°ì˜ ë°”ìš´í‹°ë¥¼ ê¹ŽëŠ”ë‹¤.
 	if (IsEnabledObject(pMasterObject))
 	{
 		pMasterObject->GetCharInfo()->IncBP(-CLAN_CREATING_NEED_BOUNTY);

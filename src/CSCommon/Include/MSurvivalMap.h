@@ -1,7 +1,7 @@
 #ifndef _MSURVIVAL_MAP_H
 #define _MSURVIVAL_MAP_H
 
-// ¼­¹ÙÀÌ¹ú ¸Ê Á¾·ù
+// ì„œë°”ì´ë²Œ ë§µ ì¢…ë¥˜
 enum MSURVIVAL_MAP
 {
 	MSURVIVAL_MAP_HALL2 = 0,
@@ -10,7 +10,7 @@ enum MSURVIVAL_MAP
 	MSURVIVAL_MAP_END
 };
 
-// ¼­¹ÙÀÌ¹ú ¸Ê Á¤º¸
+// ì„œë°”ì´ë²Œ ë§µ ì •ë³´
 struct MSurvivalMapInfo
 {
 	MSURVIVAL_MAP		nID;
@@ -21,10 +21,10 @@ struct MSurvivalMapInfo
 class MSurvivalMapCatalogue
 {
 private:
-	// ¸â¹ö º¯¼ö
+	// ë©¤ë²„ ë³€ìˆ˜
 	MSurvivalMapInfo		m_MapInfo[MSURVIVAL_MAP_END];
 
-	// ÇÔ¼ö
+	// í•¨ìˆ˜
 	void SetMap(MSURVIVAL_MAP nMap, const char* szMapName);
 	void Clear();
 public:

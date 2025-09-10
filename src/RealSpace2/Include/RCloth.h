@@ -37,11 +37,11 @@ public:
 
 protected:
 	
-	virtual void accumulateForces();			// �� ��� - �߷� �̿ܿ� ������ �ʹǸ� ������ ���� ����.. ���� �����Ǵ� ��Ȳ ����
+	virtual void accumulateForces();			// 힘 계산 - 중력 이외에 쓰이지 않므면 같으면 없애 버림.. 현재 고려되는 상황 없음
 
 	virtual void varlet();						// Interpolation bet. current frame and last frame
 
-	virtual void satisfyConstraints();			// satisfy constraints - �浹 �� ���� ������ ������Ų��
+	virtual void satisfyConstraints();			// satisfy constraints - 충돌 및 제약 조건을 만족시킨다
 
 public:
 	
@@ -94,25 +94,25 @@ protected:
 	LPDIRECT3DINDEXBUFFER9	m_pIndexBuffer;
 };
 
-// �ð��� ���� �ٶ��� ����� �ִ� �ٶ� ������
+// 시간에 따라 바람을 만들어 주는 바람 생성기
 
 enum WIND_TYPE
 {
 	NO_WIND = 0,
 	RANDOM_WIND,	
-	CALM_WIND,					//����
-	LIGHT_AIR_WIND,				//�ǹٶ�
-	SLIGHT_BREEZE_WIND,			//���ǹٶ�
-	GENTLE_BREEZE_WIND,			//���ٶ�
-	MODERATE_BREEZE_WIND,		//�ǵ�ٶ�
-	FRESH_BREEZE_WIND,			//���ٶ�
-	STRONG_BREEZE_WIND,			//�ȹٶ�
-	NEAR_GALE_WIND,				//���ٶ�
-	GALE_WIND,					//ū�ٶ�
-	STRONG_GALE_WIND,			//ū���ٶ�
-	STROM_WIND,					//���ٶ�
-	VIOLENT_STROM_WIND,			//�չٶ�
-	HURRICANE_WIND,				//�Ͼ��̹ٶ�
+	CALM_WIND,					//고요
+	LIGHT_AIR_WIND,				//실바람
+	SLIGHT_BREEZE_WIND,			//남실바람
+	GENTLE_BREEZE_WIND,			//산들바람
+	MODERATE_BREEZE_WIND,		//건들바람
+	FRESH_BREEZE_WIND,			//흔들바람
+	STRONG_BREEZE_WIND,			//된바람
+	NEAR_GALE_WIND,				//센바람
+	GALE_WIND,					//큰바람
+	STRONG_GALE_WIND,			//큰센바람
+	STROM_WIND,					//노대바람
+	VIOLENT_STROM_WIND,			//왕바람
+	HURRICANE_WIND,				//싹쓸이바람
 	NUM_WIND_TYPE,		
 };
 

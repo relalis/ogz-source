@@ -5,25 +5,25 @@
 #include "MQuestScenario.h"
 
 
-/// ¼­¹ö¿ë Äù½ºÆ® ÃÖ°í °üÀå Å¬·¡½º
+/// ì„œë²„ìš© í€˜ìŠ¤íŠ¸ ìµœê³  ê´€ì¥ í´ë˜ìŠ¤
 class MMatchQuest : public MBaseQuest
 {
 protected:
-	virtual bool OnCreate();				///< ÃÊ±âÈ­
-	virtual void OnDestroy();				///< ÇØÁ¦
+	virtual bool OnCreate();				///< ì´ˆê¸°í™”
+	virtual void OnDestroy();				///< í•´ì œ
 	
 
-	MQuestNPCSetCatalogue		m_NPCSetCatalogue;						///< NPC Set Á¤º¸
-	MQuestScenarioCatalogue		m_ScenarioCatalogue;					///< ½Ã³ª¸®¿À Á¤º¸
+	MQuestNPCSetCatalogue		m_NPCSetCatalogue;						///< NPC Set ì •ë³´
+	MQuestScenarioCatalogue		m_ScenarioCatalogue;					///< ì‹œë‚˜ë¦¬ì˜¤ ì •ë³´
 
 public:
-	MMatchQuest();														///< »ı¼ºÀÚ
-	virtual ~MMatchQuest();												///< ¼Ò¸êÀÚ
+	MMatchQuest();														///< ìƒì„±ì
+	virtual ~MMatchQuest();												///< ì†Œë©¸ì
 
-	inline MQuestNPCSetInfo* GetNPCSetInfo(int nID);					///< NPC Set Á¤º¸ ¹İÈ¯
-	inline MQuestNPCSetInfo* GetNPCSetInfo(const char* szName);			///< NPC Set Á¤º¸ ¹İÈ¯
-	inline MQuestScenarioCatalogue* GetScenarioCatalogue();				///< ½Ã³ª¸®¿À Á¤º¸ ¹İÈ¯
-	inline MQuestScenarioInfo*		GetScenarioInfo(int nScenarioID);	///< ½Ã³ª¸®¿À Á¤º¸ ¹İÈ¯
+	inline MQuestNPCSetInfo* GetNPCSetInfo(int nID);					///< NPC Set ì •ë³´ ë°˜í™˜
+	inline MQuestNPCSetInfo* GetNPCSetInfo(const char* szName);			///< NPC Set ì •ë³´ ë°˜í™˜
+	inline MQuestScenarioCatalogue* GetScenarioCatalogue();				///< ì‹œë‚˜ë¦¬ì˜¤ ì •ë³´ ë°˜í™˜
+	inline MQuestScenarioInfo*		GetScenarioInfo(int nScenarioID);	///< ì‹œë‚˜ë¦¬ì˜¤ ì •ë³´ ë°˜í™˜
 
 };
 

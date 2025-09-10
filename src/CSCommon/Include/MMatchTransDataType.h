@@ -95,17 +95,17 @@ struct MTD_ItemNode
 {
 	MUID				uidItem;
 	u32	nItemID;
-	int					nRentMinutePeriodRemainder;		// ±â°£Á¦ ¾ÆÀÌÅÛ »ç¿ë°¡´É½Ã°£(ÃÊ´ÜÀ§), RENT_MINUTE_PERIOD_UNLIMITEDÀÌ¸é ¹«Á¦ÇÑ
+	int					nRentMinutePeriodRemainder;		// ê¸°ê°„ì œ ì•„ì´í…œ ì‚¬ìš©ê°€ëŠ¥ì‹œê°„(ì´ˆë‹¨ìœ„), RENT_MINUTE_PERIOD_UNLIMITEDì´ë©´ ë¬´ì œí•œ
 };
 
 struct MTD_AccountItemNode
 {
 	int					nAIID;
 	u32	nItemID;
-	int					nRentMinutePeriodRemainder;		// ±â°£Á¦ ¾ÆÀÌÅÛ »ç¿ë°¡´É½Ã°£(ÃÊ´ÜÀ§), RENT_MINUTE_PERIOD_UNLIMITEDÀÌ¸é ¹«Á¦ÇÑ
+	int					nRentMinutePeriodRemainder;		// ê¸°ê°„ì œ ì•„ì´í…œ ì‚¬ìš©ê°€ëŠ¥ì‹œê°„(ì´ˆë‹¨ìœ„), RENT_MINUTE_PERIOD_UNLIMITEDì´ë©´ ë¬´ì œí•œ
 };
 
-// °ÔÀÓ¾È »óÅÂ Á¤º¸
+// ê²Œì„ì•ˆ ìƒíƒœ ì •ë³´
 struct MTD_GameInfoPlayerItem
 {
 	MUID	uidPlayer;
@@ -116,11 +116,11 @@ struct MTD_GameInfoPlayerItem
 
 struct MTD_GameInfo
 {
-	char	nRedTeamScore;		// ÆÀÀü¿¡¼­¸¸ »ç¿ëÇÏ´Â ·¹µåÆÀÁ¤º¸
-	char	nBlueTeamScore;		// ÆÀÀü¿¡¼­¸¸ »ç¿ëÇÏ´Â ºí·çÆÀÁ¤º¸
+	char	nRedTeamScore;		// íŒ€ì „ì—ì„œë§Œ ì‚¬ìš©í•˜ëŠ” ë ˆë“œíŒ€ì •ë³´
+	char	nBlueTeamScore;		// íŒ€ì „ì—ì„œë§Œ ì‚¬ìš©í•˜ëŠ” ë¸”ë£¨íŒ€ì •ë³´
 
-	short	nRedTeamKills;		// ¹«ÇÑÆÀµ¥½º¸ÅÄ¡¿¡¼­¸¸ »ç¿ëÇÏ´Â ·¹µåÆÀÅ³¼ö
-	short	nBlueTeamKills;		// ¹«ÇÑÆÀµ¥½º¸ÅÄ¡¿¡¼­¸¸ »ç¿ëÇÏ´Â ºí·çÆÀÅ³¼ö
+	short	nRedTeamKills;		// ë¬´í•œíŒ€ë°ìŠ¤ë§¤ì¹˜ì—ì„œë§Œ ì‚¬ìš©í•˜ëŠ” ë ˆë“œíŒ€í‚¬ìˆ˜
+	short	nBlueTeamKills;		// ë¬´í•œíŒ€ë°ìŠ¤ë§¤ì¹˜ì—ì„œë§Œ ì‚¬ìš©í•˜ëŠ” ë¸”ë£¨íŒ€í‚¬ìˆ˜
 };
 
 struct MTD_RuleInfo	
@@ -154,8 +154,8 @@ struct MTD_ChannelPlayerListNode
 	char			szClanName[CLAN_NAME_LENGTH];
 	char			nLevel;
 	MMatchPlace		nPlace;
-	unsigned char	nGrade;			// ·Îºñ¿¡¼­´Â uid ·Î Ä³¸¯ÅÍÀÇ µî±ŞÀ» ¾Ë¼ö°¡ ¾ø¾î¼­..
-	unsigned char	nPlayerFlags;	// ÇÃ·¹ÀÌ¾î ¼Ó¼º(¿î¿µÀÚ¼û±èµî) - MTD_PlayerFlags »ç¿ë
+	unsigned char	nGrade;			// ë¡œë¹„ì—ì„œëŠ” uid ë¡œ ìºë¦­í„°ì˜ ë“±ê¸‰ì„ ì•Œìˆ˜ê°€ ì—†ì–´ì„œ..
+	unsigned char	nPlayerFlags;	// í”Œë ˆì´ì–´ ì†ì„±(ìš´ì˜ììˆ¨ê¹€ë“±) - MTD_PlayerFlags ì‚¬ìš©
 	unsigned int	nCLID;			// ClanID
 	unsigned int	nEmblemChecksum;// Emblem Checksum
 };
@@ -176,7 +176,7 @@ enum MTD_WorldItemSubType
 	MTD_Static  = 1,
 };
 
-// ¾ÆÀÌÅÛ ½ºÆù Á¤º¸
+// ì•„ì´í…œ ìŠ¤í° ì •ë³´
 struct MTD_WorldItem
 {
 	unsigned short	nUID;
@@ -193,46 +193,46 @@ struct MTD_WorldItem
 };
 
 
-// ¹Ù·Î°ÔÀÓÇÏ±â ÇÊÅÍ¸µ Á¤º¸
+// ë°”ë¡œê²Œì„í•˜ê¸° í•„í„°ë§ ì •ë³´
 struct MTD_QuickJoinParam
 {
-	u32	nMapEnum;		// ¿øÇÏ´Â ¸ÊÀÇ ºñÆ®¾î·¹ÀÌ
-	u32	nModeEnum;		// À©ÇÏ´Â °ÔÀÓ¸ğµåÀÇ ºñÆ®¾î·¹ÀÌ
+	u32	nMapEnum;		// ì›í•˜ëŠ” ë§µì˜ ë¹„íŠ¸ì–´ë ˆì´
+	u32	nModeEnum;		// ìœˆí•˜ëŠ” ê²Œì„ëª¨ë“œì˜ ë¹„íŠ¸ì–´ë ˆì´
 };
 
 
-// Ä³¸¯ÅÍÀÇ Å¬·£ ¾÷µ¥ÀÌÆ® Á¤º¸
+// ìºë¦­í„°ì˜ í´ëœ ì—…ë°ì´íŠ¸ ì •ë³´
 struct MTD_CharClanInfo
 {
-	char				szClanName[CLAN_NAME_LENGTH];		// Å¬·£ ÀÌ¸§
+	char				szClanName[CLAN_NAME_LENGTH];		// í´ëœ ì´ë¦„
 	MMatchClanGrade		nGrade;
 };
 
 
-// À¯Àú Á¤º¸º¸±â
+// ìœ ì € ì •ë³´ë³´ê¸°
 struct MTD_CharInfo_Detail
 {
-	char				szName[32];						// ÀÌ¸§
-	char				szClanName[CLAN_NAME_LENGTH];	// Å¬·£ÀÌ¸§
-	MMatchClanGrade		nClanGrade;						// Å¬·£Á÷Ã¥
-	int					nClanContPoint;					// Å¬·£ ±â¿©µµ
-	unsigned short		nLevel;							// ·¹º§
-	char				nSex;							// ¼ºº°
-	char				nHair;							// ¸Ó¸® ÄÚ½ºÃõ
-	char				nFace;							// ¾ó±¼ ÄÚ½ºÃõ
+	char				szName[32];						// ì´ë¦„
+	char				szClanName[CLAN_NAME_LENGTH];	// í´ëœì´ë¦„
+	MMatchClanGrade		nClanGrade;						// í´ëœì§ì±…
+	int					nClanContPoint;					// í´ëœ ê¸°ì—¬ë„
+	unsigned short		nLevel;							// ë ˆë²¨
+	char				nSex;							// ì„±ë³„
+	char				nHair;							// ë¨¸ë¦¬ ì½”ìŠ¤ì¸”
+	char				nFace;							// ì–¼êµ´ ì½”ìŠ¤ì¸”
 	u32	nXP;							// xp
 	int					nBP;							// bp
 
 	int					nKillCount;
 	int					nDeathCount;
 
-	// Á¢¼Ó»óÈ²
+	// ì ‘ì†ìƒí™©
 
-	u32	nTotalPlayTimeSec;				// ÃÑ ÇÃ·¹ÀÌ ½Ã°£
-	u32	nConnPlayTimeSec;				// ÇöÀç Á¢¼Ó ½Ã°£
+	u32	nTotalPlayTimeSec;				// ì´ í”Œë ˆì´ ì‹œê°„
+	u32	nConnPlayTimeSec;				// í˜„ì¬ ì ‘ì† ì‹œê°„
 
 
-	u32	nEquipedItemDesc[MMCIP_END];	// ¾ÆÀÌÅÛ Á¤º¸
+	u32	nEquipedItemDesc[MMCIP_END];	// ì•„ì´í…œ ì •ë³´
 
 	MMatchUserGradeID	nUGradeID;						// account UGrade
 
@@ -241,28 +241,28 @@ struct MTD_CharInfo_Detail
 };
 
 
-/// ¹æ ¸®½ºÆ® ´Ş¶ó°í ¿äÃ»ÇÒ¶§ º¸³»´Â ±¸Á¶Ã¼
+/// ë°© ë¦¬ìŠ¤íŠ¸ ë‹¬ë¼ê³  ìš”ì²­í• ë•Œ ë³´ë‚´ëŠ” êµ¬ì¡°ì²´
 struct MTD_StageListNode
 {
-	MUID			uidStage;							///< ¹æ UID
-	unsigned char	nNo;								///< ¹æ¹øÈ£
-	char			szStageName[STAGENAME_LENGTH];		///< ¹æÀÌ¸§
-	char			nPlayers;							///< ÇöÀçÀÎ¿ø
-	char			nMaxPlayers;						///< ÃÖ´ëÀÎ¿ø
-	STAGE_STATE		nState;								///< ÇöÀç»óÅÂ
-	MMATCH_GAMETYPE nGameType;							///< °ÔÀÓ Å¸ÀÔ
-	char			nMapIndex;							///< ¸Ê
-	int				nSettingFlag;						///< ¹æ ¼¼ÆÃ ÇÃ·¡±×(³­ÀÔ, ºñ¹Ğ¹æ, ·¹º§Á¦ÇÑ)
-	char			nMasterLevel;						///< ¹æÀå ·¹º§
-	char			nLimitLevel;						///< Á¦ÇÑ·¹º§
+	MUID			uidStage;							///< ë°© UID
+	unsigned char	nNo;								///< ë°©ë²ˆí˜¸
+	char			szStageName[STAGENAME_LENGTH];		///< ë°©ì´ë¦„
+	char			nPlayers;							///< í˜„ì¬ì¸ì›
+	char			nMaxPlayers;						///< ìµœëŒ€ì¸ì›
+	STAGE_STATE		nState;								///< í˜„ì¬ìƒíƒœ
+	MMATCH_GAMETYPE nGameType;							///< ê²Œì„ íƒ€ì…
+	char			nMapIndex;							///< ë§µ
+	int				nSettingFlag;						///< ë°© ì„¸íŒ… í”Œë˜ê·¸(ë‚œì…, ë¹„ë°€ë°©, ë ˆë²¨ì œí•œ)
+	char			nMasterLevel;						///< ë°©ì¥ ë ˆë²¨
+	char			nLimitLevel;						///< ì œí•œë ˆë²¨
 };
 
-/// Å¬¶óÀÌ¾ğÆ®°¡ ¾Ë¾Æ¾ßÇÒ ±âÅ¸Á¤º¸ : AdminHide »óÅÂ¸¦ ¸í½ÃÀûÀ¸·Î ±³È¯ & ³ìÈ­ÆÄÀÏ¿¡ ÀúÀå
+/// í´ë¼ì´ì–¸íŠ¸ê°€ ì•Œì•„ì•¼í•  ê¸°íƒ€ì •ë³´ : AdminHide ìƒíƒœë¥¼ ëª…ì‹œì ìœ¼ë¡œ êµí™˜ & ë…¹í™”íŒŒì¼ì— ì €ì¥
 struct MTD_ExtendInfo
 {
 	char			nTeam;
-	unsigned char	nPlayerFlags;	// ÇÃ·¹ÀÌ¾î ¼Ó¼º(¿î¿µÀÚ¼û±èµî) - MTD_PlayerFlags »ç¿ë
-	unsigned char	nReserved1;		// ¿©ºĞ
+	unsigned char	nPlayerFlags;	// í”Œë ˆì´ì–´ ì†ì„±(ìš´ì˜ììˆ¨ê¹€ë“±) - MTD_PlayerFlags ì‚¬ìš©
+	unsigned char	nReserved1;		// ì—¬ë¶„
 	unsigned char	nReserved2;
 };
 
@@ -276,80 +276,80 @@ struct MTD_PeerListNode
 };
 
 
-// µ¿ÀÇ ´äº¯ÀÚ
+// ë™ì˜ ë‹µë³€ì
 struct MTD_ReplierNode
 {
 	char szName[MATCHOBJECT_NAME_LENGTH];
 };
 
 
-// ·¡´õ °ÔÀÓ ½ÅÃ» ÆÀ ±×·ì
+// ë˜ë” ê²Œì„ ì‹ ì²­ íŒ€ ê·¸ë£¹
 struct MTD_LadderTeamMemberNode
 {
 	char szName[MATCHOBJECT_NAME_LENGTH];
 
 };
 
-// Å¬·£ Á¤º¸
+// í´ëœ ì •ë³´
 struct MTD_ClanInfo
 {
-	char				szClanName[CLAN_NAME_LENGTH];		// Å¬·£ ÀÌ¸§
-	short				nLevel;								// ·¹º§
-	int					nPoint;								// Æ÷ÀÎÆ®
-	int					nTotalPoint;						// ÅäÅ»Æ÷ÀÎÆ®
-	int					nRanking;							// ·©Å·
-	char				szMaster[MATCHOBJECT_NAME_LENGTH];	// Å¬·£ ¸¶½ºÅÍ
-	unsigned short		nWins;								// ÀüÀû - ½Â¼ö
-	unsigned short		nLosses;							// ÀüÀû - ÆĞ¼ö
-	unsigned short		nTotalMemberCount;					// ÀüÃ¼ Å¬·£¿ø¼ö
-	unsigned short		nConnedMember;						// ÇöÀç Á¢¼ÓµÈ Å¬·£¿ø¼ö
+	char				szClanName[CLAN_NAME_LENGTH];		// í´ëœ ì´ë¦„
+	short				nLevel;								// ë ˆë²¨
+	int					nPoint;								// í¬ì¸íŠ¸
+	int					nTotalPoint;						// í† íƒˆí¬ì¸íŠ¸
+	int					nRanking;							// ë­í‚¹
+	char				szMaster[MATCHOBJECT_NAME_LENGTH];	// í´ëœ ë§ˆìŠ¤í„°
+	unsigned short		nWins;								// ì „ì  - ìŠ¹ìˆ˜
+	unsigned short		nLosses;							// ì „ì  - íŒ¨ìˆ˜
+	unsigned short		nTotalMemberCount;					// ì „ì²´ í´ëœì›ìˆ˜
+	unsigned short		nConnedMember;						// í˜„ì¬ ì ‘ì†ëœ í´ëœì›ìˆ˜
 	unsigned int		nCLID;								// ClanID
 	unsigned int		nEmblemChecksum;					// Emblem Checksum
 };
 
-// Å¬·£Àü ´ë±âÁßÀÎ Å¬·£ ¸®½ºÆ®
+// í´ëœì „ ëŒ€ê¸°ì¤‘ì¸ í´ëœ ë¦¬ìŠ¤íŠ¸
 struct MTD_StandbyClanList
 {
-	char				szClanName[CLAN_NAME_LENGTH];		// Å¬·£ ÀÌ¸§
-	short				nPlayers;							// ´ë±âÁßÀÎ ÀÎ¿ø¼ö
-	short				nLevel;								// ·¹º§
-	int					nRanking;							// ·©Å· - 0ÀÌ¸é unranked
+	char				szClanName[CLAN_NAME_LENGTH];		// í´ëœ ì´ë¦„
+	short				nPlayers;							// ëŒ€ê¸°ì¤‘ì¸ ì¸ì›ìˆ˜
+	short				nLevel;								// ë ˆë²¨
+	int					nRanking;							// ë­í‚¹ - 0ì´ë©´ unranked
 	unsigned int		nCLID;								// ClanID
 	unsigned int		nEmblemChecksum;					// Emblem Checksum
 };
 
 
-// Äù½ºÆ®, ¼­¹ÙÀÌ¹úÀÇ °ÔÀÓ Á¤º¸
+// í€˜ìŠ¤íŠ¸, ì„œë°”ì´ë²Œì˜ ê²Œì„ ì •ë³´
 struct MTD_QuestGameInfo
 {
-	unsigned short		nQL;												// Äù½ºÆ® ·¹º§
-	float				fNPC_TC;											// NPC ³­ÀÌµµ Á¶Àı °è¼ö
-	unsigned short		nNPCCount;											// ¼½ÅÍ´ç µîÀåÇÒ NPC°³¼ö
+	unsigned short		nQL;												// í€˜ìŠ¤íŠ¸ ë ˆë²¨
+	float				fNPC_TC;											// NPC ë‚œì´ë„ ì¡°ì ˆ ê³„ìˆ˜
+	unsigned short		nNPCCount;											// ì„¹í„°ë‹¹ ë“±ì¥í•  NPCê°œìˆ˜
 
-	unsigned char		nNPCInfoCount;										// µîÀåÇÒ NPC Á¾·ù °³¼ö
-	unsigned char		nNPCInfo[MAX_QUEST_NPC_INFO_COUNT];					// µîÀåÇÒ NPC Á¤º¸
-	unsigned short		nMapSectorCount;									// ¸Ê ³ëµå °³¼ö
-	unsigned short		nMapSectorID[MAX_QUEST_MAP_SECTOR_COUNT];			// ¸Ê ³ëµå ID
-	char				nMapSectorLinkIndex[MAX_QUEST_MAP_SECTOR_COUNT];	// ¸Ê ³ëµåÀÇ Link Index
+	unsigned char		nNPCInfoCount;										// ë“±ì¥í•  NPC ì¢…ë¥˜ ê°œìˆ˜
+	unsigned char		nNPCInfo[MAX_QUEST_NPC_INFO_COUNT];					// ë“±ì¥í•  NPC ì •ë³´
+	unsigned short		nMapSectorCount;									// ë§µ ë…¸ë“œ ê°œìˆ˜
+	unsigned short		nMapSectorID[MAX_QUEST_MAP_SECTOR_COUNT];			// ë§µ ë…¸ë“œ ID
+	char				nMapSectorLinkIndex[MAX_QUEST_MAP_SECTOR_COUNT];	// ë§µ ë…¸ë“œì˜ Link Index
 
 };
 
-// Äù½ºÆ®, º¸»ó ³»¿ë
+// í€˜ìŠ¤íŠ¸, ë³´ìƒ ë‚´ìš©
 struct MTD_QuestReward
 {
-	MUID				uidPlayer;	// ÇØ´ç ÇÃ·¹ÀÌ¾î UID
-	int					nXP;		// ÇØ´ç ÇÃ·¹ÀÌ¾î°¡ ¾òÀº XP
-	int					nBP;		// ÇØ´ç ÇÃ·¹ÀÌ¾î°¡ ¾òÀº BP
+	MUID				uidPlayer;	// í•´ë‹¹ í”Œë ˆì´ì–´ UID
+	int					nXP;		// í•´ë‹¹ í”Œë ˆì´ì–´ê°€ ì–»ì€ XP
+	int					nBP;		// í•´ë‹¹ í”Œë ˆì´ì–´ê°€ ì–»ì€ BP
 };
 
-// Äù½ºÆ® ¾ÆÀÌÅÛ º¸»ó ³»¿ë
+// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ë³´ìƒ ë‚´ìš©
 struct MTD_QuestItemNode
 {
 	int		m_nItemID;
 	int		m_nCount;
 };
 
-// Äù½ºÆ® ÀÏ¹İ ¾ÆÀÌÅÛ º¸»ó ³»¿ë
+// í€˜ìŠ¤íŠ¸ ì¼ë°˜ ì•„ì´í…œ ë³´ìƒ ë‚´ìš©
 struct MTD_QuestZItemNode
 {
 	unsigned int		m_nItemID;
@@ -370,21 +370,21 @@ struct MTD_ServerStatusInfo
 
 struct MTD_ResetTeamMembersData
 {
-	MUID			m_uidPlayer;		// ÇØ´ç ÇÃ·¹ÀÌ¾î
-	char			nTeam;				// ÆÀ
+	MUID			m_uidPlayer;		// í•´ë‹¹ í”Œë ˆì´ì–´
+	char			nTeam;				// íŒ€
 };
 
 
-// µà¾ó Å¥ Á¤º¸
+// ë“€ì–¼ í ì •ë³´
 
 struct MTD_DuelQueueInfo
 {
 	MUID			m_uidChampion;
 	MUID			m_uidChallenger;
-	MUID			m_WaitQueue[14];				// ÆÀ
+	MUID			m_WaitQueue[14];				// íŒ€
 	char			m_nQueueLength;
-	char			m_nVictory;						// ¿¬½Â¼ö
-	bool			m_bIsRoundEnd;					// ¶ó¿îµå ³¡³¯¶§ÀÎ°¡
+	char			m_nVictory;						// ì—°ìŠ¹ìˆ˜
+	bool			m_bIsRoundEnd;					// ë¼ìš´ë“œ ëë‚ ë•Œì¸ê°€
 };
 
 struct MTD_GunGameWeaponInfo
@@ -434,7 +434,7 @@ struct ZPACKEDDASHINFO {
 #pragma pack(pop, old)
 
 
-// admin Àü¿ë
+// admin ì „ìš©
 enum ZAdminAnnounceType
 {
 	ZAAT_CHAT = 0,
@@ -449,8 +449,8 @@ void Make_MTDAccountItemNode(MTD_AccountItemNode* pout, int nAIID, u32 nItemID, 
 
 void Make_MTDQuestItemNode( MTD_QuestItemNode* pOut, const u32 nItemID, const int nCount );
 
-// °æÇèÄ¡, °æÇèÄ¡ ºñÀ²À» 4byte·Î Á¶ÇÕ
-// »óÀ§ 2¹ÙÀÌÆ®´Â °æÇèÄ¡, ÇÏÀ§ 2¹ÙÀÌÆ®´Â °æÇèÄ¡ÀÇ ÆÛ¼¾Æ®ÀÌ´Ù.
+// ê²½í—˜ì¹˜, ê²½í—˜ì¹˜ ë¹„ìœ¨ì„ 4byteë¡œ ì¡°í•©
+// ìƒìœ„ 2ë°”ì´íŠ¸ëŠ” ê²½í—˜ì¹˜, í•˜ìœ„ 2ë°”ì´íŠ¸ëŠ” ê²½í—˜ì¹˜ì˜ í¼ì„¼íŠ¸ì´ë‹¤.
 inline u32 MakeExpTransData(int nAddedXP, int nPercent)
 {
 	u32 ret = 0;

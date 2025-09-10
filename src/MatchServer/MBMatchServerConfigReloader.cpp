@@ -14,7 +14,7 @@ bool MBMatchServerServerIniReloadObj::OnReload()
 		mlog( "MBMatchServerServerIniReloadObj::OnReload - success reload server.ini reload\n" );
 	else
 	{
-		ASSERT( 0 && "Server.ini reload½ÇÆÐ." );
+		ASSERT( 0 && "Server.ini reloadì‹¤íŒ¨." );
 		mlog( "MBMatchServerServerIniReloadObj::OnReload - fail to server.ini reload\n" );
 	}
 

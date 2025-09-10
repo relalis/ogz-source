@@ -6,7 +6,7 @@ MSurvivalMapCatalogue::MSurvivalMapCatalogue()
 {
 	Clear();
 
-	// ÇÏµåÄÚµùÀ¸·Î Á÷Á¢ »ğÀÔ
+	// í•˜ë“œì½”ë”©ìœ¼ë¡œ ì§ì ‘ ì‚½ì…
 	SetMap(MSURVIVAL_MAP_HALL2,		"Mansion_hall2");
 	SetMap(MSURVIVAL_MAP_ROOM3,		"Mansion_room3");
 }

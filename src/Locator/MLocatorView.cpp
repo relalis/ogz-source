@@ -1,4 +1,4 @@
-// MLocatorView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// MLocatorView.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -35,7 +35,7 @@ BEGIN_MESSAGE_MAP(MLocatorView, CListView)
 END_MESSAGE_MAP()
 
 
-// MLocatorView Áø´ÜÀÔ´Ï´Ù.
+// MLocatorView ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void MLocatorView::AssertValid() const
@@ -50,11 +50,11 @@ void MLocatorView::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// MLocatorView ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// MLocatorView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL MLocatorView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	cs.style |= LVS_SHOWSELALWAYS | LVS_REPORT;
 
@@ -64,7 +64,7 @@ BOOL MLocatorView::PreCreateWindow(CREATESTRUCT& cs)
 
 BOOL MLocatorView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	BOOL bCreated = CListView::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 	if( bCreated )

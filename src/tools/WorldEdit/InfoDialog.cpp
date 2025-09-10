@@ -83,7 +83,7 @@ BOOL CInfoDialog::OnInitDialog()
 	*/
 
 
-	// material °ü·Ã Ãâ·ÂÇÑ´Ù.
+	// material ê´€ë ¨ ì¶œë ¥í•œë‹¤.
 	{
 		string.Format("\r\n%d materials\r\n",pBsp->GetMaterialCount());
 		info+=string;
@@ -127,7 +127,7 @@ BOOL CInfoDialog::OnInitDialog()
 		pBsp->GetMapObjectList()->size(), pBsp->GetMapLightList().size(), pBsp->GetObjectLightList().size());
 	info+=string;
 
-	// object °ü·Ã Ãâ·Â
+	// object ê´€ë ¨ ì¶œë ¥
 	{
 		int nCount=0;
 		RMapObjectList *pol=pBsp->GetMapObjectList();

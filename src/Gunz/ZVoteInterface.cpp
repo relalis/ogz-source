@@ -87,9 +87,9 @@ void ZVoteInterface::DrawVoteTargetlist(MDrawContext* pDC)
 }
 
 void TextRelative(MDrawContext* pDC,float x,float y,const char *szText,bool bCenter);
-void ZVoteInterface::DrawVoteMessage(MDrawContext* pDC)		// ÅõÇ¥°¡ ÁøÇàÁßÀÏ¶§ ¸Þ½ÃÁö
+void ZVoteInterface::DrawVoteMessage(MDrawContext* pDC)		// íˆ¬í‘œê°€ ì§„í–‰ì¤‘ì¼ë•Œ ë©”ì‹œì§€
 {
-	// ÅõÇ¥ ÁøÇàÁßÀÏ¶§ ¸Þ½ÃÁö
+	// íˆ¬í‘œ ì§„í–‰ì¤‘ì¼ë•Œ ë©”ì‹œì§€
 	if ( (ZGetGameInterface()->GetState() == GUNZ_GAME) &&
 		ZGetGameClient() &&
 		ZGetGameClient()->IsVoteInProgress() && 
@@ -120,7 +120,7 @@ char ZVoteInterface::ConvIndexToKey(int nIndex)
 void ZVoteInterface::VoteInput(char nKey)
 {
 	if (GetShowTargetList()) {	
-		// 1~0 , A~F ±îÁö - ´©¸¥Å°¿¡ ÇØ´çÇÏ´Â ÇÃ·¹ÀÌ¾î ¾øÀ» ¼öµµ ÀÖÀ½
+		// 1~0 , A~F ê¹Œì§€ - ëˆ„ë¥¸í‚¤ì— í•´ë‹¹í•˜ëŠ” í”Œë ˆì´ì–´ ì—†ì„ ìˆ˜ë„ ìžˆìŒ
 		int nIndex = ConvKeyToIndex(nKey);
 		if (OnVoteRun(nIndex)) {
 			ZGetGameClient()->SetCanVote(false);

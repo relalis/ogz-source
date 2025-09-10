@@ -189,7 +189,7 @@ void MClient::SendCommand(MCommand* pCommand)
 	{
 		if(!m_ClientSocket.Send(pSendBuf, size))
 		{
-			delete [] pSendBuf;	// 2006.12.4 dubble added. ½ÇÁ¦ Ä¿³Ø¼ÇÀÌ ÀÌ·ç¾îÁöÁö ¾Ê¾ÒÀ»°æ¿ì, ¸Ş¸ğ¸® ¸¯
+			delete [] pSendBuf;	// 2006.12.4 dubble added. ì‹¤ì œ ì»¤ë„¥ì…˜ì´ ì´ë£¨ì–´ì§€ì§€ ì•Šì•˜ì„ê²½ìš°, ë©”ëª¨ë¦¬ ë¦­
 		}
 	}
 	else

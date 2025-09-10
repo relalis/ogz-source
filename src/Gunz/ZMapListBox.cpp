@@ -28,7 +28,7 @@ bool ZMapListBox::OnShow(void)
 		m_pThumbnail = NULL;
 	}
 
-	// Ã³À½ ¾ÆÀÌÅÛÀ» °¡¸®Å²´Ù.
+	// ì²˜ìŒ ì•„ì´í…œì„ ê°€ë¦¬í‚¨ë‹¤.
 	SetSelIndex(0);
 
 	m_pListBox->SetFocus();

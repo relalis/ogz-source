@@ -555,7 +555,7 @@ void ZWater::Render()
 	if(g_pGame==NULL || !ZGetGame()->GetWorld()->GetBsp()->IsVisible(m_BoundingBox)) 
 		return;
 
-	//¹Ý»ç ±×¸®±â
+	//ë°˜ì‚¬ ê·¸ë¦¬ê¸°
   	if(Z_VIDEO_REFLECTION && RCameraPosition.z > m_fbaseZpos)
 	{
 		if(!RenderReflectionSurface())

@@ -41,7 +41,7 @@ bool ReadElu(const char* fname, rapidxml::xml_document<> &doc, rapidxml::xml_nod
 	printf_s("Version: %08X, mesh_num: %d, mtrl_num: %d\n", t_hd.ver, t_hd.mesh_num, t_hd.mtrl_num);
 
 	if (t_hd.sig != EXPORTER_SIG) {
-		printf_s("%s elu file ÆÄÀÏ ½Äº° ½ÇÆĞ.\n", fname);
+		printf_s("%s elu file íŒŒì¼ ì‹ë³„ ì‹¤íŒ¨.\n", fname);
 		return false;
 	}
 
@@ -152,11 +152,11 @@ bool ReadElu(const char* fname, rapidxml::xml_document<> &doc, rapidxml::xml_nod
 				MZF_READ(pMeshNode->m_face_normal_list, sizeof(RFaceNormalInfo) * m_face_num);
 
 			}
-			else if (t_hd.ver > EXPORTER_MESH_VER2) {//ver3 ºÎÅÍ
+			else if (t_hd.ver > EXPORTER_MESH_VER2) {//ver3 ë¶€í„°
 
 				MZF_READ(pMeshNode->m_face_list, sizeof(RFaceInfo) * m_face_num);
 			}
-			else {									//ver3 ÀÌÇÏ
+			else {									//ver3 ì´í•˜
 
 				MZF_READ(pInfo, sizeof(RFaceInfoOld) * m_face_num);
 			}

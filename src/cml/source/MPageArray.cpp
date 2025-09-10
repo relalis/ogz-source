@@ -1,4 +1,4 @@
 #include "stdafx.h"
 #include "MPageArray.h"
 
-// Template ·Î ¹Ù²Û°ü°è·Î ºóÆÄÀÏ
+// Template ë¡œ ë°”ê¾¼ê´€ê³„ë¡œ ë¹ˆíŒŒì¼

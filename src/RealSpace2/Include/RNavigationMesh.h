@@ -25,7 +25,7 @@ public:
 class RNavigationMesh
 {
 public:
-	// --- Å¸ÀÔ Á¤ÀÇ -------------
+	// --- íƒ€ì… ì •ì˜ -------------
 	typedef	std::vector<RNavigationNode*> RNodeArray;
 private:
 	// --- data ------------------
@@ -71,11 +71,11 @@ public:
 	int GetNodeCount()			{ return (int)m_NodeArray.size(); }
 	std::list<rvector>&	GetWaypointList() { return m_WaypointList; }
 
-	// Å×½ºÆ®¿ë ------------------
+	// í…ŒìŠ¤íŠ¸ìš© ------------------
 	void Render();
 	void RenderLinks();
 
-	// exporter¿¡¼­ »ç¿ë ---------
+	// exporterì—ì„œ ì‚¬ìš© ---------
 	inline void InitVertices(int vert_count);
 	inline void InitFaces(int face_count);
 	inline void SetVertex(int index, rvector& v);

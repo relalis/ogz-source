@@ -9,12 +9,12 @@
 // MVoteDiscussBuilder
 MVoteDiscuss* MVoteDiscussBuilder::Build(const MUID& uidDrafter, const MUID& uidStage, const char* pszDiscuss, const char* pszArg)
 {
-	if ( (_stricmp(pszDiscuss, "joke") == 0) || (_stricmp(pszDiscuss, "³ó´ã") == 0) ) {
+	if ( (_stricmp(pszDiscuss, "joke") == 0) || (_stricmp(pszDiscuss, "ë†ë‹´") == 0) ) {
 		MVoteDiscussJoke* pDiscuss = new MVoteDiscussJoke(uidStage);
 		pDiscuss->m_strJoke = pszArg;
 		return pDiscuss;
 	}
-	else if ( (_stricmp(pszDiscuss, "kick") == 0) || (_stricmp(pszDiscuss, "Ãß¹æ") == 0) ) {
+	else if ( (_stricmp(pszDiscuss, "kick") == 0) || (_stricmp(pszDiscuss, "ì¶”ë°©") == 0) ) {
 		MVoteDiscussKick* pDiscuss = new MVoteDiscussKick(uidStage);
 		pDiscuss->m_strTarget = pszArg;
 		return pDiscuss;

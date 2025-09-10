@@ -56,7 +56,7 @@ void ShowProposalWaitFrame(bool bVisible, const char* szTitle, const char* szMes
                                            "ProposalAgreementWait",
 										   ShowProposalWaitFrame_OnExpire};
 
-			countDown.nSeconds=PROPOSAL_AGREEMENT_TIMEOUT_SEC;	// static ÀÌ¹Ç·Î Àç¼³Á¤
+			countDown.nSeconds=PROPOSAL_AGREEMENT_TIMEOUT_SEC;	// static ì´ë¯€ë¡œ ì¬ì„¤ì •
 			SetCountdown(countDown);
 
 			pWidget->Show(true, true);
@@ -69,7 +69,7 @@ void ShowProposalWaitFrame(bool bVisible, const char* szTitle, const char* szMes
 }
 
 
-/// µ¿ÀÇÀ» ±â´Ù¸®°í ÀÖ´ÂÁöÀÇ ¿©ºÎ - ui·Î Ã¼Å©ÇÑ´Ù.
+/// ë™ì˜ì„ ê¸°ë‹¤ë¦¬ê³  ìˆëŠ”ì§€ì˜ ì—¬ë¶€ - uië¡œ ì²´í¬í•œë‹¤.
 bool IsWaitingRepliersAgreement()
 {
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
@@ -88,7 +88,7 @@ bool IsWaitingRepliersAgreement()
 
 void ZGameClient::OnResponseProposal(const int nResult, const MMatchProposalMode nProposalMode, const int nRequestID)
 {
-	// ·Îºñ°¡ ¾Æ´Ï¸é ¾ÈµÈ´Ù.
+	// ë¡œë¹„ê°€ ì•„ë‹ˆë©´ ì•ˆëœë‹¤.
 	if (ZApplication::GetGameInterface()->GetState() != GUNZ_LOBBY) 
 	{
 		m_AgreementBuilder.CancelProposal();
@@ -105,7 +105,7 @@ void ZGameClient::OnResponseProposal(const int nResult, const MMatchProposalMode
 
 		strcpy_safe(szDesc, 
 			ZMsg(MSG_LADDER_PROPOSAL_WAIT_DESC) );
-		// µ¿ÀÇÇÒµ¿¾È ±â´Ù¸®¶ó´Â ¸Ş¼¼ÁöÃ¢À» ¶ç¿î´Ù.
+		// ë™ì˜í• ë™ì•ˆ ê¸°ë‹¤ë¦¬ë¼ëŠ” ë©”ì„¸ì§€ì°½ì„ ë„ìš´ë‹¤.
 		
 		ShowProposalWaitFrame(true, szTitle, szDesc);
 	}
@@ -119,7 +119,7 @@ void ZGameClient::OnResponseProposal(const int nResult, const MMatchProposalMode
 void ZGameClient::OnAskAgreement(const MUID& uidProposer, void* pMemberNamesBlob,
 					const MMatchProposalMode nProposalMode, const int nRequestID)
 {
-	// ÀÀ´äÇÒ ¼ö ¾ø´Â »óÈ²ÀÌ¸é ¹Ù·Î °ÅÀıÇÑ´Ù.
+	// ì‘ë‹µí•  ìˆ˜ ì—†ëŠ” ìƒí™©ì´ë©´ ë°”ë¡œ ê±°ì ˆí•œë‹¤.
 	if ((IsWaitingRepliersAgreement()) || (!ZGetGameInterface()->IsReadyToPropose()))
 	{
 		char szCharName[MATCHOBJECT_NAME_LENGTH];
@@ -129,7 +129,7 @@ void ZGameClient::OnAskAgreement(const MUID& uidProposer, void* pMemberNamesBlob
 		return;
 	}
 
-	char szMemberNames[MAX_REPLIER][256];		// 0 ¹øÂ°´Â Á¦¾ÈÀÚ
+	char szMemberNames[MAX_REPLIER][256];		// 0 ë²ˆì§¸ëŠ” ì œì•ˆì
 
 	int nMemberCount = MGetBlobArrayCount(pMemberNamesBlob);
 	if (nMemberCount < 1) return;
@@ -246,11 +246,11 @@ void ZGameClient::OnReplyAgreement(const MUID& uidProposer,
 					std::size(*szMember),
 					std::size(ppMember) - 1);
 
-				// ÀÚ½Åµµ ³Ö´Â´Ù.
+				// ìì‹ ë„ ë„£ëŠ”ë‹¤.
 				strcpy_safe(szMember[0], ZGetMyInfo()->GetCharName());
 				nCount++;
 
-				// Balance ¿É¼Ç
+				// Balance ì˜µì…˜
 				int nBalancedMatching = 0;
 				ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 				MButton* pButton = (MButton*)pResource->FindWidget("BalancedMatchingCheckBox");
@@ -259,7 +259,7 @@ void ZGameClient::OnReplyAgreement(const MUID& uidProposer,
 					nBalancedMatching = 1;
 				}
 
-				// ¿©±â¼­ ½ÇÁ¦·Î ¿äÃ»
+				// ì—¬ê¸°ì„œ ì‹¤ì œë¡œ ìš”ì²­
 				ZPostLadderRequestChallenge(ppMember, nCount, nBalancedMatching);
 			}
 			break;
@@ -268,14 +268,14 @@ void ZGameClient::OnReplyAgreement(const MUID& uidProposer,
 		ShowProposalWaitFrame(false);
 		return;
 	}
-	else if (nResult == ZNetAgreementBuilder::BRR_DISAGREED)	// °ÅÀıÇßÀ» °æ¿ì
+	else if (nResult == ZNetAgreementBuilder::BRR_DISAGREED)	// ê±°ì ˆí–ˆì„ ê²½ìš°
 	{
 		ShowProposalWaitFrame(false);
 
 		char temp[256] = "";
 		char szRejecter[64] = "";
 
-		// °ÅÀıÇÑ »ç¶÷ ¹İÈ¯, °ÅÀıÇÑ »ç¶÷ÀÌ ¾øÀ» °æ¿ì´Â ±×³É ¸¶Áö¸·¿¡ ´ë´äÇÑ »ç¶÷À¸·Î Á¤ÇÑ´Ù.
+		// ê±°ì ˆí•œ ì‚¬ëŒ ë°˜í™˜, ê±°ì ˆí•œ ì‚¬ëŒì´ ì—†ì„ ê²½ìš°ëŠ” ê·¸ëƒ¥ ë§ˆì§€ë§‰ì— ëŒ€ë‹µí•œ ì‚¬ëŒìœ¼ë¡œ ì •í•œë‹¤.
 		if (!m_AgreementBuilder.GetRejecter(szRejecter)) strcpy_safe(szRejecter, szReplierName);
 
 		ZTransMsg(temp, MSG_LADDER_REPLIER_AGREEMENT_REJECT, 1, szRejecter);
@@ -286,7 +286,7 @@ void ZGameClient::OnReplyAgreement(const MUID& uidProposer,
 
 void ZGameClient::RequestProposal(const MMatchProposalMode nProposalMode, char** ppReplierCharNames, const int nReplierCount)
 {
-	// °¢°¢¿¡ ¸Â°Ô validate ÇØ¾ßÇÑ´Ù.
+	// ê°ê°ì— ë§ê²Œ validate í•´ì•¼í•œë‹¤.
 	switch (nProposalMode)
 	{
 		case MPROPOSAL_LADDER_INVITE:
@@ -345,7 +345,7 @@ void ZGameClient::OnLadderLaunch(const MUID& uidStage, const char* pszMapName)
 	m_MatchStageSetting.SetMapName(const_cast<char*>(pszMapName));
 
 
-	// ¾ÏÈ£È­ Å° ¼³Á¤  - Å¬·£ÀüÀº OnStageJoin´ë½Å ¿©±â¼­ ¾ÏÈ£È­Å°¸¦ ¼³Á¤ÇÑ´Ù.
+	// ì•”í˜¸í™” í‚¤ ì„¤ì •  - í´ëœì „ì€ OnStageJoinëŒ€ì‹  ì—¬ê¸°ì„œ ì•”í˜¸í™”í‚¤ë¥¼ ì„¤ì •í•œë‹¤.
 	unsigned int nStageNameChecksum = m_szStageName[0] + m_szStageName[1] + m_szStageName[2] + m_szStageName[3];
 	InitPeerCrypt(uidStage, nStageNameChecksum);
 

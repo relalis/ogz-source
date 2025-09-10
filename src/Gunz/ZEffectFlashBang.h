@@ -2,23 +2,23 @@
 
 #include "RMeshUtil.h"
 
-//	sort°¡ ÇÊ¿ä ¾ø°í 
-//	effectmanager¿¡¼­ °°ÀÌ ±×·ÁÁÙ °æ¿ì ¹«ÇÑ loop°¡ ¹ß»ıÇÒ ¼ö ÀÖ±â ¶§¹®¿¡
-//	º°µµ·Î update / draw ÇØÁØ´Ù
+//	sortê°€ í•„ìš” ì—†ê³  
+//	effectmanagerì—ì„œ ê°™ì´ ê·¸ë ¤ì¤„ ê²½ìš° ë¬´í•œ loopê°€ ë°œìƒí•  ìˆ˜ ìˆê¸° ë•Œë¬¸ì—
+//	ë³„ë„ë¡œ update / draw í•´ì¤€ë‹¤
 
 class RealSoundEffectPlay;
 
 class ZEffectFlashBang
 {
 protected:
-	bool	mbActivated;			// ÇÃ·¡½Ã¹ğÀÇ ¿µÇâÀ» ¹Ş´ÂÁöÀÇ ¿©ºÎ
-	bool	mbInitialSound;			// »ç¿îµå ÃÊ±âÈ­°¡ ÇÊ¿äÇÑÁö ¿©ºÎ
+	bool	mbActivated;			// í”Œë˜ì‹œë±…ì˜ ì˜í–¥ì„ ë°›ëŠ”ì§€ì˜ ì—¬ë¶€
+	bool	mbInitialSound;			// ì‚¬ìš´ë“œ ì´ˆê¸°í™”ê°€ í•„ìš”í•œì§€ ì—¬ë¶€
 	static bool	mbDrawCopyScreen;
 	
 	float	mfStartTime;
-	float	mfPower;				// myCharacter¿Í Æø¹ß À§Ä¡¿ÍÀÇ °Å¸® & ½Ã¼±¿¡ µû¶ó °áÁ¤µÊ (0~1)
-	float	mfDuration;				// È¿°ú Áö¼Ó ½Ã°£..
-	float	mfVolumn;				// Def Sound ÀÇ º¼·ıfElapsedTime
+	float	mfPower;				// myCharacterì™€ í­ë°œ ìœ„ì¹˜ì™€ì˜ ê±°ë¦¬ & ì‹œì„ ì— ë”°ë¼ ê²°ì •ë¨ (0~1)
+	float	mfDuration;				// íš¨ê³¼ ì§€ì† ì‹œê°„..
+	float	mfVolumn;				// Def Sound ì˜ ë³¼ë¥¨fElapsedTime
 
 	RTLVertex	mBuffer[4];
 	//RealSoundEffectPlay* mpRSEffectPlay;
@@ -32,13 +32,13 @@ protected:
 	static ZEffectFlashBang		msInstance;
 
 public:
-	void	SetBuffer();			// °ÔÀÓ »ı¼º½Ã È£Ãâ
-	void	ReleaseBuffer();		// °ÔÀÓ ÆÄ±«½Ã È£Ãâ
+	void	SetBuffer();			// ê²Œì„ ìƒì„±ì‹œ í˜¸ì¶œ
+	void	ReleaseBuffer();		// ê²Œì„ íŒŒê´´ì‹œ í˜¸ì¶œ
 	void	OnInvalidate();			
 	void	OnRestore();			
 
 	void	Init( rvector& ExplosionPos_, rvector playerPos_, rvector playerDir_, float Duration_ );
-	void	End();	// ÀÌÆåÆ® °­Á¦ Á¾·áÇÑ´Ù
+	void	End();	// ì´í™íŠ¸ ê°•ì œ ì¢…ë£Œí•œë‹¤
 
 	void	Render();
 	void	PlaySound();
@@ -60,9 +60,9 @@ public:
 //	Interface
 //////////////////////////////////////////////////////////////////////////
 ZEffectFlashBang* ZGetFlashBangEffect();
-//	Duration_ : È¿°ú Áö¼Ó ½Ã°£(¹«±âÀÇ ¼Ó¼º), ExplosionPos_ : ÆøÆÄ Àå¼Ò
-//	playerPos_ : myCharacterÀÇ À§Ä¡, playerDir_ : Ä³¸¯ÅÍ°¡ ¹Ù¶óº¸°í ÀÖ´Â ¹æÇâ
+//	Duration_ : íš¨ê³¼ ì§€ì† ì‹œê°„(ë¬´ê¸°ì˜ ì†ì„±), ExplosionPos_ : í­íŒŒ ì¥ì†Œ
+//	playerPos_ : myCharacterì˜ ìœ„ì¹˜, playerDir_ : ìºë¦­í„°ê°€ ë°”ë¼ë³´ê³  ìˆëŠ” ë°©í–¥
 void	CreateFlashBangEffect( rvector& ExplosionPos_, rvector playerPos_, rvector playerDir_, float Duration_ );
-bool	IsActivatedFlashBangEffect();				// °ÔÀÓ¿¡¼­ ÇöÀç flashbangÈ¿°ú¸¦ ¹Ş´ÂÁö ¿©ºÎ¸¦ Ã¼Å©
+bool	IsActivatedFlashBangEffect();				// ê²Œì„ì—ì„œ í˜„ì¬ flashbangíš¨ê³¼ë¥¼ ë°›ëŠ”ì§€ ì—¬ë¶€ë¥¼ ì²´í¬
 void	ShowFlashBangEffect();
 void	ReleaseFlashBangEffect();

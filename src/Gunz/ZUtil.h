@@ -2,8 +2,8 @@
 #define _ZUTIL_H
 
 
-// È¨ÆäÀÌÁö¸¦ º¸ÀÌ°Å³ª ¾Èº¸ÀÌµµ·Ï ÇÑ´Ù(±¤°í ¹è³Ê·Î ÀÎÇÑ ¼Óµµ ÀúÇÏ ¹æÁö°¡ ¸ñÀû)
-// bShow : º¸¿©ÁÙÁö ¿©ºÎ, szTitleTok : ÇØ´ç ¹®ÀÚ°¡ Å¸ÀÌÆ²·Î µé¾îÀÖ´Â À¥ºê¶ó¿ìÀú¸¸ ÄÁÆ®·ÑÇÑ´Ù.
+// í™ˆíŽ˜ì´ì§€ë¥¼ ë³´ì´ê±°ë‚˜ ì•ˆë³´ì´ë„ë¡ í•œë‹¤(ê´‘ê³  ë°°ë„ˆë¡œ ì¸í•œ ì†ë„ ì €í•˜ ë°©ì§€ê°€ ëª©ì )
+// bShow : ë³´ì—¬ì¤„ì§€ ì—¬ë¶€, szTitleTok : í•´ë‹¹ ë¬¸ìžê°€ íƒ€ì´í‹€ë¡œ ë“¤ì–´ìžˆëŠ” ì›¹ë¸Œë¼ìš°ì €ë§Œ ì»¨íŠ¸ë¡¤í•œë‹¤.
 void ShowIExplorer(BOOL bShow, const char* szTitleTok);
 
 

@@ -12,12 +12,12 @@ struct SpawnTriggerNPCInfoNode
 
 struct SpawnTriggerInfo
 {
-	int				nSpawnNPCCount;			// 1È¸ ½ºÆù½Ã ½ºÆùµÉ NPC¼ö
-	unsigned int	nSpawnTickTime;			// ½ºÆù Æ½ Å¸ÀÓ
+	int				nSpawnNPCCount;			// 1íšŒ ìŠ¤í°ì‹œ ìŠ¤í°ë  NPCìˆ˜
+	unsigned int	nSpawnTickTime;			// ìŠ¤í° í‹± íƒ€ì„
 
-	// Á¶°Ç
-	int				nCurrMinNPCCount;		// ÀÌ°ªÀÌÇÏÀÏ¶§ ½ºÆùÇÑ´Ù.
-	int				nCurrMaxNPCCount;		// ÀÌ°ªÀÌ»óÀÏ¶§ ½ºÆùÇÑ´Ù.
+	// ì¡°ê±´
+	int				nCurrMinNPCCount;		// ì´ê°’ì´í•˜ì¼ë•Œ ìŠ¤í°í•œë‹¤.
+	int				nCurrMaxNPCCount;		// ì´ê°’ì´ìƒì¼ë•Œ ìŠ¤í°í•œë‹¤.
 };
 
 class MQuestNPCSpawnTrigger

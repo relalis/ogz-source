@@ -55,7 +55,7 @@ void MLadderMgr::AddGroup(MLADDERTYPE nLadderType, MLadderGroup* pGroup)
 	pGroupMap->Add(pGroup);
 	m_GroupList.push_back(pGroup);
 
-	// Ladder »ó´ë Ã£´ÂÁß ¾Ë¸²(for UI)
+	// Ladder ìƒëŒ€ ì°¾ëŠ”ì¤‘ ì•Œë¦¼(for UI)
 	for (list<MUID>::iterator i=pGroup->GetPlayerListBegin(); i!= pGroup->GetPlayerListEnd(); i++)
 	{
 		MUID uidPlayer = (*i);
@@ -200,7 +200,7 @@ void MLadderMgr::CleaningGarbages()
 		{
 			MLadderGroup* pGroup = (*itorGroup).second;
 
-			// ÇÑ¸íÀÌ¶óµµ Á¢¼ÓÀ» ²÷¾úÀ¸¸é CancelÇÑ´Ù.
+			// í•œëª…ì´ë¼ë„ ì ‘ì†ì„ ëŠì—ˆìœ¼ë©´ Cancelí•œë‹¤.
 			bool bExistCannotPlayer = false;
 			for (list<MUID>::iterator itorPlayerUID=pGroup->GetPlayerListBegin(); itorPlayerUID!= pGroup->GetPlayerListEnd(); 
 				itorPlayerUID++)
@@ -221,7 +221,7 @@ void MLadderMgr::CleaningGarbages()
 			}
 		}
 
-		// »ó´ëÆÀ ´ë±âÁßÀÎ ÇÃ·¹ÀÌ¾îÀÇ Á¢¼ÓÀÌ ²÷¾îÁ®¼­ CancelÇØ¾ß µÇ´Â ±×·ìÀº CancelÇØÁØ´Ù.
+		// ìƒëŒ€íŒ€ ëŒ€ê¸°ì¤‘ì¸ í”Œë ˆì´ì–´ì˜ ì ‘ì†ì´ ëŠì–´ì ¸ì„œ Cancelí•´ì•¼ ë˜ëŠ” ê·¸ë£¹ì€ Cancelí•´ì¤€ë‹¤.
 		for (list<int>::iterator itorGroupID = CancelGroupIDList.begin(); itorGroupID != CancelGroupIDList.end(); 
 			++itorGroupID)
 		{
@@ -244,7 +244,7 @@ void MLadderMgr::LaunchLadder(MLADDERTYPE nLadderType, int nGroupA, int nGroupB)
 	MLadderGroup* pGroupA = pGroupMap->Find(nGroupA);
 	MLadderGroup* pGroupB = pGroupMap->Find(nGroupB);
 
-	// ¸¸¾à °°Àº Å¬·£ÀÌ°Å³ª °°Àº ±×·ìÀÌ¸é ·±Ä¡°¡ ¾ÈµÈ´Ù.
+	// ë§Œì•½ ê°™ì€ í´ëœì´ê±°ë‚˜ ê°™ì€ ê·¸ë£¹ì´ë©´ ëŸ°ì¹˜ê°€ ì•ˆëœë‹¤.
 	if ((pGroupA != NULL) && (pGroupB != NULL) && (pGroupA->IsSameGroup(pGroupB))) return;
 
 	pGroupMap->Remove(nGroupA);
@@ -254,7 +254,7 @@ void MLadderMgr::LaunchLadder(MLADDERTYPE nLadderType, int nGroupA, int nGroupB)
 	RemoveFromGroupList(pGroupB);
 
 	if ((pGroupA == NULL) || (pGroupB == NULL)) {
-		DMLog("LADDER ºÒ¹ß \n");
+		DMLog("LADDER ë¶ˆë°œ \n");
 		return;
 	}
 
@@ -262,26 +262,26 @@ void MLadderMgr::LaunchLadder(MLADDERTYPE nLadderType, int nGroupA, int nGroupB)
 	pServer->LadderGameLaunch(pGroupA, pGroupB);
 }
 
-#define MTIME_LADDER_DEFAULT_TICKINTERVAL		10000			// ±âº»Æ½ 10ÃÊ
+#define MTIME_LADDER_DEFAULT_TICKINTERVAL		10000			// ê¸°ë³¸í‹± 10ì´ˆ
 
 u32 MLadderMgr::GetTickInterval()
 {
 	u32 nDefaultTickInterval = MTIME_LADDER_DEFAULT_TICKINTERVAL;
 
-	// µ¿Á¢¿¡ µû¶ó Æ½½Ã°£À» °¡º¯À¸·Î ÇÑ´Ù.
+	// ë™ì ‘ì— ë”°ë¼ í‹±ì‹œê°„ì„ ê°€ë³€ìœ¼ë¡œ í•œë‹¤.
 	int nObjSize = (int)MMatchServer::GetInstance()->GetObjects()->size();
 	
 	if (nObjSize < 50)
 	{
-		nDefaultTickInterval = 5000;		// 50¸í¹Ì¸¸Àº 5ÃÊ
+		nDefaultTickInterval = 5000;		// 50ëª…ë¯¸ë§Œì€ 5ì´ˆ
 	}
 	else if ((nObjSize>=50) && (nObjSize < 150))
 	{
-		nDefaultTickInterval = 7000;		// 150¸í ¹Ì¸¸Àº 7ÃÊ
+		nDefaultTickInterval = 7000;		// 150ëª… ë¯¸ë§Œì€ 7ì´ˆ
 	}
 	else if ((nObjSize>=150) && (nObjSize < 300))
 	{
-		nDefaultTickInterval = 9000;		// 300¸í ¹Ì¸¸Àº 9ÃÊ
+		nDefaultTickInterval = 9000;		// 300ëª… ë¯¸ë§Œì€ 9ì´ˆ
 	}
 	return nDefaultTickInterval;
 }
@@ -355,9 +355,9 @@ void MLadderMgr::DebugTest()
 
 	MMatchServer* pServer = MMatchServer::GetInstance();
 
-	MMatchObject* pPlayer1 = pServer->GetPlayerByName("¶ó¿Â¸¶ÀÌ");
+	MMatchObject* pPlayer1 = pServer->GetPlayerByName("ë¼ì˜¨ë§ˆì´");
 	if (pPlayer1 == NULL) return;
-	MMatchObject* pPlayer2 = pServer->GetPlayerByName("¶ó¿ÂÇÏÁ¦2");
+	MMatchObject* pPlayer2 = pServer->GetPlayerByName("ë¼ì˜¨í•˜ì œ2");
 	if (pPlayer2 == NULL) return;
 
 

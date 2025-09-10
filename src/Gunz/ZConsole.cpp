@@ -25,10 +25,10 @@ void OutputToConsole(const char* pFormat,...)
 	va_end(args);
 }
 
-// ÄÜ¼Ö¿¡¼­ ÀÔ·ÂÃ¢¿¡ ÀÔ·ÂÇßÀ»¶§ÀÇ ÀÌº¥Æ®¸¦ ¹Þ´Â ÇÔ¼ö
+// ì½˜ì†”ì—ì„œ ìž…ë ¥ì°½ì— ìž…ë ¥í–ˆì„ë•Œì˜ ì´ë²¤íŠ¸ë¥¼ ë°›ëŠ” í•¨ìˆ˜
 void ConsoleInputEvent(const char* szInputStr)
 {
-#ifdef _DEBUG		// ¿ÀÁ÷ µð¹ö±× ¸ðµå¿¡¼­¸¸ ½ÇÇà °¡´ÉÇÏ°Ô º¯°æ
+#ifdef _DEBUG		// ì˜¤ì§ ë””ë²„ê·¸ ëª¨ë“œì—ì„œë§Œ ì‹¤í–‰ ê°€ëŠ¥í•˜ê²Œ ë³€ê²½
 	char szErr[256];
 
 	if (ZGetGameClient())
@@ -49,7 +49,7 @@ void ConsoleInputEvent(const char* szInputStr)
 #endif	
 }
 
-// ÄÜ¼Ö ÃÊ±âÈ­
+// ì½˜ì†” ì´ˆê¸°í™”
 void CreateConsole(MCommandManager* pCM)
 {
 	g_pConsole = new MConsoleFrame("Console", Mint::GetInstance()->GetMainFrame(), Mint::GetInstance()->GetMainFrame());

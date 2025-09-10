@@ -116,7 +116,7 @@ bool MEmblemMgr::LoadCache()
 
 			if ((nCLID != -1) && (szURL[0] != 0) && (nChecksum != -1))
 			{
-				emblemElement.GetChildContents((int*)&tmLastUsed, MTOK_EMBLEM_TIMELASTUSED); // ¾ø¾îµµ ·ÎµåµÇ°Ô
+				emblemElement.GetChildContents((int*)&tmLastUsed, MTOK_EMBLEM_TIMELASTUSED); // ì—†ì–´ë„ ë¡œë“œë˜ê²Œ
 				RegisterEmblem(nCLID, szURL, nChecksum, tmLastUsed);
 			}
 		}
@@ -228,7 +228,7 @@ bool MEmblemMgr::GetEmblemPath(char* pszFilePath, size_t maxlen, const char* psz
 	char szFileName[256];
 	MUrl::GetPath(szFileName, pszURL);
 
-	sprintf_safe(pszFilePath, maxlen, "%s/%s", GetEmblemBaseDir(), szFileName);
+	sprintf_safe(pszFilePath, maxlen, "%s/%s", GetEmblemBaseDir().c_str(), szFileName);
 
 	return true;
 }
@@ -324,7 +324,7 @@ void MEmblemMgr::Tick(u32 nTick)
 		//u32 nChecksum = GetFileCheckSum(szFilePath);
 		if (RegisterEmblem(nCLID, strURL.c_str(), nChecksum)) {
 			nRegisterCount++;
-			CheckEmblem(nCLID, nChecksum);	// LastUsedTime ¾÷µ¥ÀÌÆ®À§ÇØ °øÃ¼Å©
+			CheckEmblem(nCLID, nChecksum);	// LastUsedTime ì—…ë°ì´íŠ¸ìœ„í•´ ê³µì²´í¬
 			NotifyDownloadDone(nCLID, strURL.c_str());
 		}
 	}
@@ -332,7 +332,7 @@ void MEmblemMgr::Tick(u32 nTick)
 		SetSaveFlag(true);
 		SetLastSavedTick(nTick);
 	}
-/*	AUTOSAVE ºÀÀÎ
+/*	AUTOSAVE ë´‰ì¸
 	if (CheckSaveFlag() && (nTick - GetLastSavedTick() > MTICK_EMBLEM_SAVE_THRESHOLD))
 	{
 		SaveCache();

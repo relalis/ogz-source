@@ -34,15 +34,15 @@ void CreateTestGame(const char *mapname, int nDummyCharacterCount, bool bShot, b
 
 	std::fill(std::begin(info.nEquipedItemDesc), std::end(info.nEquipedItemDesc), 0);
 
-	//info.nEquipedItemDesc[MMCIP_MELEE] = 1;		// ±¸½Ä´Ü°Ë
-	info.nEquipedItemDesc[MMCIP_MELEE] = 2;		// ±¸½ÄÀå°Ë
-	//	info.nEquipedItemDesc[MMCIP_MELEE] = 31;		// ¿ë¿ù¶û
+	//info.nEquipedItemDesc[MMCIP_MELEE] = 1;		// êµ¬ì‹ë‹¨ê²€
+	info.nEquipedItemDesc[MMCIP_MELEE] = 2;		// êµ¬ì‹ì¥ê²€
+	//	info.nEquipedItemDesc[MMCIP_MELEE] = 31;		// ìš©ì›”ë‘
 	//	info.nEquipedItemDesc[MMCIP_PRIMARY] = 5018;
-	//	info.nEquipedItemDesc[MMCIP_PRIMARY] = 4514;	// ÀÚ¿ì¸£½º B x2
+	//	info.nEquipedItemDesc[MMCIP_PRIMARY] = 4514;	// ììš°ë¥´ìŠ¤ B x2
 	info.nEquipedItemDesc[MMCIP_PRIMARY] = 7006;	// LX 44
-	info.nEquipedItemDesc[MMCIP_PRIMARY] = 6001;// 9003;	// ¿ùÄŞ L1 mk. II
-	//	info.nEquipedItemDesc[MMCIP_SECONDARY] = 6001;	// ¼¦°Ç
-	info.nEquipedItemDesc[MMCIP_SECONDARY] = 8003;	// ¸Ó½Å°Ç
+	info.nEquipedItemDesc[MMCIP_PRIMARY] = 6001;// 9003;	// ì›”ì½¤ L1 mk. II
+	//	info.nEquipedItemDesc[MMCIP_SECONDARY] = 6001;	// ìƒ·ê±´
+	info.nEquipedItemDesc[MMCIP_SECONDARY] = 8003;	// ë¨¸ì‹ ê±´
 	info.nEquipedItemDesc[MMCIP_CUSTOM1] = 30003;
 	info.nEquipedItemDesc[MMCIP_CUSTOM2] = 30103;
 

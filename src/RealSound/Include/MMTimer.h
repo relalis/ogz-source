@@ -16,15 +16,15 @@
 
 typedef bool (*MMTIMERCALLBACK)(uintptr_t);
 
-// ÇÏ³ªÀÇ Å¬·¡½º´Â ÇÑ°³ÀÇ Å¸ÀÌ¸Ó¸¦ °®´Â´Ù.
-// ¿©·¯°³ÀÇ ¼ÂÆÃÀ» Áö¿øÇÏÁö ¾ÊÀ¸¹Ç·Î ÁÖÀÇÇÒ °Í.
+// í•˜ë‚˜ì˜ í´ë˜ìŠ¤ëŠ” í•œê°œì˜ íƒ€ì´ë¨¸ë¥¼ ê°–ëŠ”ë‹¤.
+// ì—¬ëŸ¬ê°œì˜ ì…‹íŒ…ì„ ì§€ì›í•˜ì§€ ì•Šìœ¼ë¯€ë¡œ ì£¼ì˜í•  ê²ƒ.
 class MMTimer
 {
 public:
     MMTimer();
     ~MMTimer();
 	
-	// Multimedia TimerÇÑ°³¸¦ »ı¼ºÇÑ´Ù.
+	// Multimedia Timerí•œê°œë¥¼ ìƒì„±í•œë‹¤.
     bool Create(u32 nPeriod, u32 nRes, u32 dwUser,  MMTIMERCALLBACK pfnCallback);
 	void Destroy();
 
@@ -32,7 +32,7 @@ protected:
 	static void STDCALL TimeProc(unsigned int uID, unsigned int uMsg,
 		WIN_DWORD_PTR dwUser, WIN_DWORD_PTR dw1, WIN_DWORD_PTR dw2);
 
-	// ÇöÀç Å¸ÀÌ¸Ó°¡ ºĞ±âÇÒ Äİ¹é ÇÔ¼ö
+	// í˜„ì¬ íƒ€ì´ë¨¸ê°€ ë¶„ê¸°í•  ì½œë°± í•¨ìˆ˜
     MMTIMERCALLBACK m_pfnCallback;
 
     u32 m_dwUser;

@@ -25,11 +25,11 @@ class MVoterMap : public map<MUID, MVoter*> {};
 
 class MVoteDiscuss {
 protected:
-	MUID			m_uidStage;			// ½ºÅ×ÀÌÁöUID
-	string			m_strDiscuss;		// ¾È°Ç
-	u64				m_nBeginTime;		// ¹ßÀÇµÈ ½Ã°£
-	std::list<MUID>		m_YesVoterList;		// Âù¼ºÀÚ
-	std::list<MUID>		m_NoVoterList;		// ¹İ´ëÀÚ
+	MUID			m_uidStage;			// ìŠ¤í…Œì´ì§€UID
+	string			m_strDiscuss;		// ì•ˆê±´
+	u64				m_nBeginTime;		// ë°œì˜ëœ ì‹œê°„
+	std::list<MUID>		m_YesVoterList;		// ì°¬ì„±ì
+	std::list<MUID>		m_NoVoterList;		// ë°˜ëŒ€ì
 
 public:
 	MVoteDiscuss(const MUID& uidStage);
@@ -41,7 +41,7 @@ public:
 	size_t GetYesVoterCount()	{ return m_YesVoterList.size(); }
 	size_t GetNoVoterCount()	{ return m_NoVoterList.size(); }
 
-	bool CheckVoter(const MUID& uid);	// ÅõÇ¥ÀÚÀÎÁö °Ë»ç
+	bool CheckVoter(const MUID& uid);	// íˆ¬í‘œìì¸ì§€ ê²€ì‚¬
 	void Vote(const MUID& uid, MVOTE nVote);
 public:
 	virtual bool OnJudge(bool bJudge) = 0;

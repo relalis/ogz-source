@@ -1,18 +1,18 @@
 #ifndef _ZTASKID_H
 #define _ZTASKID_H
 
-/// AI°¡ ÇÏ´Â ÀÏ
+/// AIê°€ í•˜ëŠ” ì¼
 enum ZTASK_ID
 {
 	ZTID_NONE = 0,
-	ZTID_MOVE_TO_TARGET,			///< ¸ñÀû ´ë»óÀ¸·Î ÀÌµ¿
-	ZTID_MOVE_TO_POS,				///< ÁöÁ¤ À§Ä¡·Î ÀÌµ¿
-	ZTID_MOVE_TO_DIR,				///< ¸ñÀû ¹æÇâÀ¸·Î ÀÌµ¿(±æÃ£±â¾ÈÇÑ´Ù.)
-	ZTID_ROTATE_TO_DIR,				///< ¸ñÀû ¹æÇâÀ¸·Î È¸Àü
-	ZTID_ATTACK_MELEE,				///< ±ÙÁ¢ °ø°İ
-	ZTID_ATTACK_RANGE,				///< ¿ø±Ù °ø°İ
-	ZTID_DELAY,						///< ´ë±â
-	ZTID_SKILL,						///< ¸¶¹ı ¹× ±â¼ú
+	ZTID_MOVE_TO_TARGET,			///< ëª©ì  ëŒ€ìƒìœ¼ë¡œ ì´ë™
+	ZTID_MOVE_TO_POS,				///< ì§€ì • ìœ„ì¹˜ë¡œ ì´ë™
+	ZTID_MOVE_TO_DIR,				///< ëª©ì  ë°©í–¥ìœ¼ë¡œ ì´ë™(ê¸¸ì°¾ê¸°ì•ˆí•œë‹¤.)
+	ZTID_ROTATE_TO_DIR,				///< ëª©ì  ë°©í–¥ìœ¼ë¡œ íšŒì „
+	ZTID_ATTACK_MELEE,				///< ê·¼ì ‘ ê³µê²©
+	ZTID_ATTACK_RANGE,				///< ì›ê·¼ ê³µê²©
+	ZTID_DELAY,						///< ëŒ€ê¸°
+	ZTID_SKILL,						///< ë§ˆë²• ë° ê¸°ìˆ 
 	ZTID_END
 };
 

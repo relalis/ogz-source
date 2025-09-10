@@ -12,7 +12,7 @@ MMatchEventManager::~MMatchEventManager()
 }
 
 
-// ÀÌÀüÀÇ ¸®½ºÆ®¿¡ ÇÏ³ª¾¿ Ãß°¡.
+// ì´ì „ì˜ ë¦¬ìŠ¤íŠ¸ì— í•˜ë‚˜ì”© ì¶”ê°€.
 void MMatchEventManager::AddEvent( MMatchEvent* pEvent )
 {
 	if( 0 != pEvent )
@@ -24,7 +24,7 @@ void MMatchEventManager::AddEvent( MMatchEvent* pEvent )
 	}
 }
 
-// ±âÁ¸¿¡ ÀÖ´Â ÀÌº¥Æ® ¸®½ºÆ®¿¡ Ãß°¡¸¦ ÇÑ´Ù.
+// ê¸°ì¡´ì— ìˆëŠ” ì´ë²¤íŠ¸ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€ë¥¼ í•œë‹¤.
 void MMatchEventManager::AddEventList( EventPtrVec& EvnPtrVec )
 {
 	EventPtrVec::iterator it, end;
@@ -38,7 +38,7 @@ void MMatchEventManager::AddEventList( EventPtrVec& EvnPtrVec )
 	}
 }
 
-// ±âÁ¸¿¡ ÀÖ´Â ÀÌº¥Æ® ¸®½ºÆ®¸¦ »õ°ÍÀ¸·Î ±³Ã¼ÇÑ´Ù. ÀÌÀüÀÇ ³»¿ëÀº Áö¿öÁü.
+// ê¸°ì¡´ì— ìˆëŠ” ì´ë²¤íŠ¸ ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒˆê²ƒìœ¼ë¡œ êµì²´í•œë‹¤. ì´ì „ì˜ ë‚´ìš©ì€ ì§€ì›Œì§.
 void MMatchEventManager::ChangeEventList( EventPtrVec& EvnPtrVec )
 {
 	Clear();
@@ -54,9 +54,9 @@ void MMatchEventManager::ChangeEventList( EventPtrVec& EvnPtrVec )
 	}
 }
 
-// ÇÑ¹ø¿¡ ÇÏ³ª¾¿ Á¦°ÅµÊ. °°Àº°Ô ¿©·¯°Ô ÀÖÀ»½Ã´Â Ã³À½°Å¸¸ Áö¿öÁü.
-// °°Àº°É ÀüºÎ Áö¿ì°í ½ÍÀ»½Ã´Â GetEventCount·Î Ä«¿îÆ®¸¦ È®ÀÎÇÑ´ÙÀ½,
-//  ÇÊ¿äÇÑ ¸¸Å­ È£ÃâÇØ¾ß µÈ´Ù.
+// í•œë²ˆì— í•˜ë‚˜ì”© ì œê±°ë¨. ê°™ì€ê²Œ ì—¬ëŸ¬ê²Œ ìˆì„ì‹œëŠ” ì²˜ìŒê±°ë§Œ ì§€ì›Œì§.
+// ê°™ì€ê±¸ ì „ë¶€ ì§€ìš°ê³  ì‹¶ì„ì‹œëŠ” GetEventCountë¡œ ì¹´ìš´íŠ¸ë¥¼ í™•ì¸í•œë‹¤ìŒ,
+//  í•„ìš”í•œ ë§Œí¼ í˜¸ì¶œí•´ì•¼ ëœë‹¤.
 void MMatchEventManager::DeleteEvent( const u32 dwEventID )
 {
 	EventPtrVec::iterator it, end;

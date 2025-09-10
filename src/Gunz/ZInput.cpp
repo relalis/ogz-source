@@ -1,25 +1,25 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "ZInput.h"
 #include "Mint4Gunz.h"
 #include "ZConfiguration.h"
 
 //////// ZInput 
-// ZDirectInput ¿∏∑Œ∫Œ≈Õ ≈∞∫∏µÂ/∏∂øÏΩ∫/¡∂¿ÃΩ∫∆Ω¿« ¿‘∑¬¿ª πﬁæ∆º≠
-// ∞‘¿”¿« æ◊º«¿‘∑¬¿∏∑Œ ∫Ø»Ø«œø©¡÷∞Ì ¿Ã∫•∆Æ∏¶ πﬂª˝Ω√≈∞¥¬ ≈¨∑°Ω∫¿‘¥œ¥Ÿ.
+// ZDirectInput ÏúºÎ°úÎ∂ÄÌÑ∞ ÌÇ§Î≥¥Îìú/ÎßàÏö∞Ïä§/Ï°∞Ïù¥Ïä§Ìã±Ïùò ÏûÖÎ†•ÏùÑ Î∞õÏïÑÏÑú
+// Í≤åÏûÑÏùò Ïï°ÏÖòÏûÖÎ†•ÏúºÎ°ú Î≥ÄÌôòÌïòÏó¨Ï£ºÍ≥† Ïù¥Î≤§Ìä∏Î•º Î∞úÏÉùÏãúÌÇ§Îäî ÌÅ¥ÎûòÏä§ÏûÖÎãàÎã§.
 
 /*
-ZVIRTUALKEY ¿∏∑Œ ¥Ÿ¿Ω¿ª ≈Î«’«—¥Ÿ
+ZVIRTUALKEY ÏúºÎ°ú Îã§ÏùåÏùÑ ÌÜµÌï©ÌïúÎã§
 
-≈∞∫∏µÂ Ω∫ƒµƒ⁄µÂ  0 ~ 255
-∏∂øÏΩ∫ πˆ∆∞		 256 ~ 511
-¡∂¿ÃΩ∫∆Ω πˆ∆∞	 512 ~
+ÌÇ§Î≥¥Îìú Ïä§Ï∫îÏΩîÎìú  0 ~ 255
+ÎßàÏö∞Ïä§ Î≤ÑÌäº		 256 ~ 511
+Ï°∞Ïù¥Ïä§Ìã± Î≤ÑÌäº	 512 ~
 */
 
 const ZVIRTUALKEY MOUSE_BASE		= 256;
 const ZVIRTUALKEY MOUSE_WHEEL		= MOUSE_BASE;
 const ZVIRTUALKEY MOUSE_LBUTTON		= MOUSE_BASE+2;
 const ZVIRTUALKEY JOY_BASE			= 512;
-const ZVIRTUALKEY JOY_BUTTON_BASE	= 512+16;	// pov √÷¥Î4∞≥(*4πÊ«‚)
+const ZVIRTUALKEY JOY_BUTTON_BASE	= 512+16;	// pov ÏµúÎåÄ4Í∞ú(*4Î∞©Ìñ•)
 
 extern ZDirectInput	g_DInput;
 extern Mint4Gunz	g_Mint;
@@ -38,7 +38,7 @@ ZInput::~ZInput(void)
 
 void ZInput::OnActionKey(int nActionID, bool bPressed)
 {
-	if(bPressed==m_ActionKeyPressedTable[nActionID]) return;	// ¿ÃπÃ ∞∞¿∫ªÛ»≤
+	if(bPressed==m_ActionKeyPressedTable[nActionID]) return;	// Ïù¥ÎØ∏ Í∞ôÏùÄÏÉÅÌô©
 	m_ActionKeyPressedTable[nActionID] = bPressed;
 	if(m_pEventListener==NULL) return;
 
@@ -124,7 +124,7 @@ void ZInput::Update()
 	memcpy(m_ActionKeyPressedLastTable, m_ActionKeyPressedTable, sizeof(m_ActionKeyPressedTable));
 
 	////////////////////////////////////////////////////////
-	// ≈∞∫∏µÂ ¿‘∑¬
+	// ÌÇ§Î≥¥Îìú ÏûÖÎ†•
 	static ZDIBUFFER keyBuffer[256];
 	int nCount = m_pDirectInput->GetKeyboardBufferedData(keyBuffer,sizeof(keyBuffer)/sizeof(keyBuffer[0]));
 	for(int i=0; i<nCount; i++){
@@ -221,7 +221,7 @@ void ZInput::Update()
 			}
 		}
 
-		// πˆ∆∞ ¿‘∑¬
+		// Î≤ÑÌäº ÏûÖÎ†•
 		for( unsigned int i = 0; i < m_pDirectInput->GetJoystickButtonCount(); i++ )
 		{
 			int nJoyVirtualButtonIndex = MAX_JOY_POV_COUNT*4+i;
@@ -261,7 +261,7 @@ bool ZInput::RegisterActionKey(int nActionID, ZVIRTUALKEY nKey)
 bool ZInput::UnregisterActionKey(int nActionID)
 {
 	if(nActionID<0 || nActionID>=ZACTION_COUNT){
-		_ASSERT(FALSE);	// 0 ~ ZACTION_COUNT-1 ªÁ¿Ã∞™¿Ãø©æﬂ «—¥Ÿ.
+		_ASSERT(FALSE);	// 0 ~ ZACTION_COUNT-1 ÏÇ¨Ïù¥Í∞íÏù¥Ïó¨Ïïº ÌïúÎã§.
 		return false;
 	}
 

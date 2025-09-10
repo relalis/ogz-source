@@ -1,4 +1,4 @@
-// MatchServerDoc.cpp : CMatchServerDoc Å¬·¡½ºÀÇ ±¸Çö
+// MatchServerDoc.cpp : CMatchServerDoc í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -41,7 +41,7 @@ BEGIN_MESSAGE_MAP(CMatchServerDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CMatchServerDoc »ı¼º/¼Ò¸ê
+// CMatchServerDoc ìƒì„±/ì†Œë©¸
 CMatchServerDoc::CMatchServerDoc()
 {
 //	m_pMaster = new MBMaster();
@@ -92,7 +92,7 @@ BOOL CMatchServerDoc::OnNewDocument()
 	m_pFrmWndMasterView = pFrmWndOutput;*/
 	//((CMDIFrameWnd*)AfxGetMainWnd())->MDIActivate(pFrmWndOutput);
 
-	// Command Log View Ãß°¡
+	// Command Log View ì¶”ê°€
 	CFrameWnd* pFrmWndCmdLogView = pApp->m_pDocTemplateCmdLogView->CreateNewFrame(this, NULL);
 	ASSERT(pFrmWndCmdLogView!=NULL);
 	pApp->m_pDocTemplateCmdLogView->InitialUpdateFrame(pFrmWndCmdLogView, this);
@@ -114,7 +114,7 @@ BOOL CMatchServerDoc::OnNewDocument()
 
 	if (!m_pMatchServer->Create(nMatchPort))
 	{
-		AfxMessageBox("MatchServer ÃÊ±âÈ­¿¡ ½ÇÆĞÇß½À´Ï´Ù.", MB_OK);
+		AfxMessageBox("MatchServer ì´ˆê¸°í™”ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.", MB_OK);
 		AfxAbort();
 		return FALSE;
 	}
@@ -177,16 +177,16 @@ void CMatchServerDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: ¿©±â¿¡ ÀúÀå ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ì €ì¥ ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 	else
 	{
-		// TODO: ¿©±â¿¡ ·Îµù ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ë¡œë”© ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 }
 
 
-// CMatchServerDoc Áø´Ü
+// CMatchServerDoc ì§„ë‹¨
 
 #ifdef _DEBUG
 void CMatchServerDoc::AssertValid() const
@@ -201,7 +201,7 @@ void CMatchServerDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CMatchServerDoc ¸í·É
+// CMatchServerDoc ëª…ë ¹
 
 BOOL CMatchServerDoc::OnOpenDocument(LPCTSTR lpszPathName)
 {

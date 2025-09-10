@@ -34,7 +34,7 @@ public:
 	ZSoundEngine() { }
 	virtual ~ZSoundEngine() { }
 
-	// Á¤½Ä ÆíÀÇ ÇÔ¼ö
+	// ì •ì‹ í¸ì˜ í•¨ìˆ˜
 	bool OpenMusic(int nBgmIndex);
 	int PlaySoundCharacter(const char* szSoundName, rvector& pos, bool bHero, int nPriority=128);
 	//int PlaySound(const char* szSoundName, rvector& pos, int nPriority=128, DWORD dwDelay=0);
@@ -49,7 +49,7 @@ public:
 
 
 
-	// ÆíÀÇÇÔ¼ö
+	// í¸ì˜í•¨ìˆ˜
 	int PlaySE( FSOUND_SAMPLE* pFS, rvector& pos, int Priority , bool bPlayer = false, bool bLoop = false ) { }
 	//void PlaySound(char* Name,rvector& pos,bool bHero=false, bool bLoop = false, DWORD dwDelay = 0 ) { }
 	void PlaySoundElseDefault(char* Name,char* NameDefault,rvector& pos,bool bHero=false, bool bLoop = false, DWORD dwDelay = 0 ) { }
@@ -59,11 +59,11 @@ public:
 	void PlaySEDryFire(MMatchItemDesc *pDesc, float x, float y, float z, bool bHero=false);
 	void PlaySEReload(MMatchItemDesc *pDesc, float x, float y, float z, bool bHero=false);
 
-	// ÃÑ¾Ë Æ¨±â´Â ¼Ò¸®
+	// ì´ì•Œ íŠ•ê¸°ëŠ” ì†Œë¦¬
 	void PlaySERicochet(float x, float y, float z);
 	void PlaySEHitObject( float x, float y, float z, RBSPPICKINFO& info_ );
 
-	// ÃÑ¾ËÀÌ ¸ö¿¡ ¸Â´Â ¼Ò¸®
+	// ì´ì•Œì´ ëª¸ì— ë§ëŠ” ì†Œë¦¬
 	void PlaySEHitBody(float x, float y, float z);
 	bool Get3DSoundUpdate() const { return false; }
 };
@@ -118,12 +118,12 @@ struct AmbSound
 {
 	int type;
 	SoundSource* pSS;
-	rvector pos[2];		//»ç°¢Çü(min, max)
+	rvector pos[2];		//ì‚¬ê°í˜•(min, max)
 	float radius;
 	rvector center;
 	int iChannel;
 	float dx, dy, dz;
-	char szSoundName[64];	// »ç¿îµå ÀÌ¸§.. resetÇÒ¶§ ÇÊ¿äÇÔ
+	char szSoundName[64];	// ì‚¬ìš´ë“œ ì´ë¦„.. resetí• ë•Œ í•„ìš”í•¨
 	AmbSound()
 	{
 		type = 0;
@@ -142,15 +142,15 @@ class ZSoundEngine
 {
 private:
 	char					m_SoundFileName[256];	// for Reload
-	ZActorSoundManager		m_ASManager;			// NPC¿ë »ç¿îµå °ü¸® Å¬·¡½º
+	ZActorSoundManager		m_ASManager;			// NPCìš© ì‚¬ìš´ë“œ ê´€ë¦¬ í´ë˜ìŠ¤
 protected:
 	char*			m_pMusicBuffer;
 	char			m_szOpenedMusicName[256];
 
 	SESMAP			m_SoundEffectSource;
 	SESMAP			m_SoundEffectSource2D;
-	DSLIST			m_DelaySoundList; // Áö¿¬ »ç¿îµå ¸®½ºÆ®
-	ASLIST			m_AmbientSoundList; // È¯°æ »ç¿îµå ¸®½ºÆ®
+	DSLIST			m_DelaySoundList; // ì§€ì—° ì‚¬ìš´ë“œ ë¦¬ìŠ¤íŠ¸
+	ASLIST			m_AmbientSoundList; // í™˜ê²½ ì‚¬ìš´ë“œ ë¦¬ìŠ¤íŠ¸
 
 	float			m_fEffectVolume;
 	float			m_fMusicVolume;
@@ -210,7 +210,7 @@ public:
 	void SetInverseSound( bool bInverse )	{ m_bInverse = bInverse; }
 
 	// Game-Specified Sound Effect
-	// ÀÌ ÇÔ¼ö °è¿­À» »ç¿ëÇÒ °æ¿ì max distance culling, Priority ¼ÂÆÃÀÌ ¾ÈµÊ
+	// ì´ í•¨ìˆ˜ ê³„ì—´ì„ ì‚¬ìš©í•  ê²½ìš° max distance culling, Priority ì…‹íŒ…ì´ ì•ˆë¨
 	//int PlaySE( FSOUND_SAMPLE* pFS, rvector& pos, bool bPlayer = false, bool bLoop = false );
 	//int PlaySE( FSOUND_SAMPLE* pFS, bool bLoop = false );
 	int PlaySE( FSOUND_SAMPLE* pFS, const rvector& pos, int Priority , bool bPlayer = false, bool bLoop = false );
@@ -222,11 +222,11 @@ public:
 	void PlaySEDryFire(MMatchItemDesc *pDesc, float x, float y, float z, bool bPlayer=false);
 	void PlaySEReload(MMatchItemDesc *pDesc, float x, float y, float z, bool bPlayer=false);
 
-	// ÃÑ¾Ë Æ¨±â´Â ¼Ò¸®
+	// ì´ì•Œ íŠ•ê¸°ëŠ” ì†Œë¦¬
 	void PlaySERicochet(float x, float y, float z);
 	void PlaySEHitObject( float x, float y, float z, RBSPPICKINFO& info_ );
 
-	// ÃÑ¾ËÀÌ ¸ö¿¡ ¸Â´Â ¼Ò¸®
+	// ì´ì•Œì´ ëª¸ì— ë§ëŠ” ì†Œë¦¬
 	void PlaySEHitBody(float x, float y, float z);
 
 	int PlaySound(const char* Name, const rvector& pos, bool bHero=false, bool bLoop = false, DWORD dwDelay = 0 );
@@ -234,7 +234,7 @@ public:
 	int PlaySound(const char* Name, bool bLoop=false, DWORD dwDelay = 0 ); // only 2D sound
 	
 	bool isPlayAble(char* name);
-	bool isPlayAbleMtrl(char* name);//Æ¯¼ö¸ñÀû¿ë~
+	bool isPlayAbleMtrl(char* name);//íŠ¹ìˆ˜ëª©ì ìš©~
 
 	void Run(void);
 	void UpdateAmbSound(rvector& Pos, rvector& Ori);
@@ -258,10 +258,10 @@ public:
 	void SetAmbientSoundSphere( char* Name, rvector& pos, float radius, bool b2d = true );
 	void ClearAmbientSound();
 
-	// ÀÏÁ¤½Ã°£¿¡ °ÉÃÄ ½ÃÀÛ º¼·ı¿¡¼­ºÎÅÍ ³¡ º¼·ı±îÁö Á¶ÀıÇØ ÁÖ´Â ÇÔ¼ö
+	// ì¼ì •ì‹œê°„ì— ê±¸ì³ ì‹œì‘ ë³¼ë¥¨ì—ì„œë¶€í„° ë ë³¼ë¥¨ê¹Œì§€ ì¡°ì ˆí•´ ì£¼ëŠ” í•¨ìˆ˜
 	void SetVolumeControlwithDuration( float fStartPercent, float fEndPercent, DWORD dwDuration, bool bEffect, bool bBGM );
 
-	// NPC Sound °ü·Ã ÇÔ¼ö
+	// NPC Sound ê´€ë ¨ í•¨ìˆ˜
 	bool LoadNPCResource(MQUEST_NPC nNPC, ZLoadingProgress* pLoading = NULL);
 	void ReleaseNPCResources();
 	void PlayNPCSound(MQUEST_NPC nNPC, MQUEST_NPC_SOUND nSound, rvector& pos, bool bMyKill=true);
@@ -279,29 +279,29 @@ public:
 
 
 
-#define VOICE_COOL					"nar/NAR01"		// 0.7  Ãß°¡ ¿Ï·á
-#define VOICE_NICE					"nar/NAR02"		// 1.0  Ãß°¡ ¿Ï·á
-#define VOICE_GREAT					"nar/NAR03"		// 0.8  Ãß°¡ ¿Ï·á
-#define VOICE_WONDERFUL				"nar/NAR04"		// 1.2  Ãß°¡ ¿Ï·á
-#define VOICE_KILLEDALL				"nar/NAR05"		// 2.0  Ãß°¡ ¿Ï·á
-#define VOICE_HEADSHOT				"nar/NAR06"		// 0.7  Ãß°¡ ¿Ï·á
-#define VOICE_FANTASTIC				"nar/NAR07"		// 1.5  Ãß°¡ ¿Ï·á
-#define VOICE_EXCELLENT				"nar/NAR08"		// 1.0  Ãß°¡ ¿Ï·á
-#define VOICE_UNBELIEVABLE			"nar/NAR09"		// 1.3  Ãß°¡ ¿Ï·á
-#define VOICE_GET_READY				"nar/NAR10"		// 1.3  Ãß°¡ ¿Ï·á
-#define VOICE_LETS_ROCK				"nar/NAR11"		// 1.1  Ãß°¡ ¿Ï·á
-#define VOICE_FINAL_ROUND			"nar/NAR27"		// 1.2  Ãß°¡ ¿Ï·á
-#define VOICE_YOU_WON				"nar/NAR12"		// 1.0  Ãß°¡ ¿Ï·á
-#define VOICE_YOU_LOSE				"nar/NAR13"		// 1.3  Ãß°¡ ¿Ï·á
-#define VOICE_RED_TEAM_WON			"nar/NAR14"		// 1.4  Ãß°¡ ¿Ï·á
-#define VOICE_BLUE_TEAM_WON			"nar/NAR15"		// 1.4  Ãß°¡ ¿Ï·á
-#define VOICE_DRAW_GAME				"nar/NAR16"		// 1.2  Ãß°¡ ¿Ï·á
-#define VOICE_REDTEAM_BOSS_DOWN		"nar/NAR19"		// 2.0  Ãß°¡ ¿Ï·á
-#define VOICE_BLUETEAM_BOSS_DOWN	"nar/NAR20"		// 2.1  Ãß°¡ ¿Ï·á
-#define VOICE_PLAYER_NOT_READY		"nar/NAR26"		// 1.5  Ãß°¡ ¿Ï·á
-#define VOICE_BERSERKER_DOWN		"nar/NAR28"		// 1.3  Ãß°¡ ¿Ï·á
-#define VOICE_GOT_BERSERKER			"nar/NAR29"		// 1.6  Ãß°¡ ¿Ï·á
-#define VOICE_QUEST_START_FAIL		"nar/NAR22"		// 2.8  Ãß°¡ ¿Ï·á
+#define VOICE_COOL					"nar/NAR01"		// 0.7  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_NICE					"nar/NAR02"		// 1.0  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_GREAT					"nar/NAR03"		// 0.8  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_WONDERFUL				"nar/NAR04"		// 1.2  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_KILLEDALL				"nar/NAR05"		// 2.0  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_HEADSHOT				"nar/NAR06"		// 0.7  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_FANTASTIC				"nar/NAR07"		// 1.5  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_EXCELLENT				"nar/NAR08"		// 1.0  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_UNBELIEVABLE			"nar/NAR09"		// 1.3  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_GET_READY				"nar/NAR10"		// 1.3  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_LETS_ROCK				"nar/NAR11"		// 1.1  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_FINAL_ROUND			"nar/NAR27"		// 1.2  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_YOU_WON				"nar/NAR12"		// 1.0  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_YOU_LOSE				"nar/NAR13"		// 1.3  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_RED_TEAM_WON			"nar/NAR14"		// 1.4  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_BLUE_TEAM_WON			"nar/NAR15"		// 1.4  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_DRAW_GAME				"nar/NAR16"		// 1.2  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_REDTEAM_BOSS_DOWN		"nar/NAR19"		// 2.0  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_BLUETEAM_BOSS_DOWN	"nar/NAR20"		// 2.1  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_PLAYER_NOT_READY		"nar/NAR26"		// 1.5  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_BERSERKER_DOWN		"nar/NAR28"		// 1.3  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_GOT_BERSERKER			"nar/NAR29"		// 1.6  ì¶”ê°€ ì™„ë£Œ
+#define VOICE_QUEST_START_FAIL		"nar/NAR22"		// 2.8  ì¶”ê°€ ì™„ë£Œ
 #define VOICE_FIGHT					""
 #define VOICE_NEW_INTRUDER			"nar/NAR17"		// 1.3
 #define VOICE_NEW_CHALLENGER		"nar/NAR18"		// 1.6

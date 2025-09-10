@@ -50,13 +50,13 @@ void MMatchRule::InitRound()
 		return;
 	}
 
-	// ÆÀÀü º¸³Ê½º ÃÊ±âÈ­
+	// íŒ€ì „ ë³´ë„ˆìŠ¤ ì´ˆê¸°í™”
 	m_pStage->OnInitRound();
 
-	// ¿ùµå¾ÆÀÌÅÛ ÃÊ±âÈ­
+	// ì›”ë“œì•„ì´í…œ ì´ˆê¸°í™”
 	m_pStage->m_WorldItemManager.OnRoundBegin();
 
-	// ½Ã°£Á¦ÇÑ ÀÜ·® °øÁö ÃÊ±âÈ­
+	// ì‹œê°„ì œí•œ ì”ëŸ‰ ê³µì§€ ì´ˆê¸°í™”
 	SetLastTimeLimitAnnounce(INT_MAX);
 }
 
@@ -144,7 +144,7 @@ bool MMatchRule::OnRun()
 				// Drop Timedout Player
 				if (nClock - GetRoundStateTimer() > 30*1000)
 				{
-					// ¾ÆÁ÷ ¸¸µéÁö ¾Ê¾Ò´Ù.
+					// ì•„ì§ ë§Œë“¤ì§€ ì•Šì•˜ë‹¤.
 				} 
 
 				
@@ -166,7 +166,7 @@ bool MMatchRule::OnRun()
 		break;
 	case MMATCH_ROUNDSTATE_PLAY:
 		{
-			// °ÔÀÓÇÏÁö ¸øÇÒ »óÈ²ÀÌ¸é Free»óÅÂ·Î º¯È¯
+			// ê²Œì„í•˜ì§€ ëª»í•  ìƒí™©ì´ë©´ Freeìƒíƒœë¡œ ë³€í™˜
 			if (!OnCheckEnableBattleCondition())
 			{
 				SetRoundState(MMATCH_ROUNDSTATE_FREE);
@@ -174,7 +174,7 @@ bool MMatchRule::OnRun()
 
 			if (OnCheckRoundFinish())
 			{
-				// Á¤»óÀ¸·Î Äù½ºÆ® Á¾·á.
+				// ì •ìƒìœ¼ë¡œ í€˜ìŠ¤íŠ¸ ì¢…ë£Œ.
 				// OnRoundTimeOut();
 				SetRoundState( MMATCH_ROUNDSTATE_FINISH );
 			} 
@@ -197,7 +197,7 @@ bool MMatchRule::OnRun()
 		break;
 	case MMATCH_ROUNDSTATE_FINISH:
 		{
-			if (nClock - GetRoundStateTimer() > 3*1000) {	// 3ÃÊ
+			if (nClock - GetRoundStateTimer() > 3*1000) {	// 3ì´ˆ
 				if (RoundCount() == true)
 				{
 					SetRoundState(MMATCH_ROUNDSTATE_PREPARE);
@@ -222,7 +222,7 @@ bool MMatchRule::OnRun()
 		{
 			if (OnCheckEnableBattleCondition())
 			{
-				// °ÔÀÓ ½ÃÀÛ
+				// ê²Œì„ ì‹œì‘
 				SetRoundState(MMATCH_ROUNDSTATE_PREPARE);
 			}
 
@@ -285,8 +285,8 @@ void MMatchRule::InitOnBeginEventManager()
 		EventPtrVec EvnPtrVec;
 		if( !MMatchEventFactoryManager::GetInstance().GetEventList(GetGameType(), ET_BEGIN, EvnPtrVec) )
 		{
-			ASSERT( 0 && "ÀÌº¥Æ® ¸®½ºÆ® »ı¼º ½ÇÆĞ.\n" );
-			mlog( "MMatchRule::InitOnBeginEventManager - ¸®½ºÆ® »ı¼º ½ÇÆĞ.\n" );
+			ASSERT( 0 && "ì´ë²¤íŠ¸ ë¦¬ìŠ¤íŠ¸ ìƒì„± ì‹¤íŒ¨.\n" );
+			mlog( "MMatchRule::InitOnBeginEventManager - ë¦¬ìŠ¤íŠ¸ ìƒì„± ì‹¤íŒ¨.\n" );
 			MMatchEventManager::ClearEventPtrVec( EvnPtrVec );
 			return;
 		}
@@ -302,8 +302,8 @@ void MMatchRule::InitOnGameEventManager()
 		EventPtrVec EvnPtrVec;
 		if( !MMatchEventFactoryManager::GetInstance().GetEventList(GetGameType(), ET_ONGAME, EvnPtrVec) )
 		{
-			ASSERT( 0 && "ÀÌº¥Æ® ¸®½ºÆ® »ı¼º ½ÇÆĞ.\n" );
-			mlog( "MMatchRule::InitOnGameEventManager - ¸®½ºÆ® »ı¼º ½ÇÆĞ.\n" );
+			ASSERT( 0 && "ì´ë²¤íŠ¸ ë¦¬ìŠ¤íŠ¸ ìƒì„± ì‹¤íŒ¨.\n" );
+			mlog( "MMatchRule::InitOnGameEventManager - ë¦¬ìŠ¤íŠ¸ ìƒì„± ì‹¤íŒ¨.\n" );
 			MMatchEventManager::ClearEventPtrVec( EvnPtrVec );
 			return;
 		}
@@ -319,8 +319,8 @@ void MMatchRule::InitOnEndEventManager()
 		EventPtrVec EvnPtrVec;
 		if( !MMatchEventFactoryManager::GetInstance().GetEventList(GetGameType(), ET_END, EvnPtrVec) )
 		{
-			ASSERT( 0 && "ÀÌº¥Æ® ¸®½ºÆ® »ı¼º ½ÇÆĞ.\n" );
-			mlog( "MMatchRule::InitOnEndEventManager - ¸®½ºÆ® »ı¼º ½ÇÆĞ.\n" );
+			ASSERT( 0 && "ì´ë²¤íŠ¸ ë¦¬ìŠ¤íŠ¸ ìƒì„± ì‹¤íŒ¨.\n" );
+			mlog( "MMatchRule::InitOnEndEventManager - ë¦¬ìŠ¤íŠ¸ ìƒì„± ì‹¤íŒ¨.\n" );
 			MMatchEventManager::ClearEventPtrVec( EvnPtrVec );
 			return;
 		}
@@ -353,7 +353,7 @@ void MMatchRule::CheckOnGameEvent()
 {
 	if( MMATCH_ROUNDSTATE_PLAY == GetRoundState() )
 	{
-		// °ÔÀÓ»ó¿¡ ¾Æ¹«µµ ¾øÀ¸¸é exit
+		// ê²Œì„ìƒì— ì•„ë¬´ë„ ì—†ìœ¼ë©´ exit
 		int nInGamePlayer = 0;
 
 		MMatchObject*	pObj = nullptr;

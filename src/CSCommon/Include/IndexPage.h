@@ -1,18 +1,18 @@
 /*! \mainpage MAIET Client/Server/Monitor Library
 
-@section Introductoin ¼Ò°³
-GUNZ¸¦ ±¸µ¿ÇÏ´Â ÃÖ¼ÒÇÑÀÇ ±â´ÉÀÇ ¼­¹ö/Å¬¶óÀÌ¾ðÆ®/¸ð´ÏÅÍ ¼ÒÇÁÆ®¿þ¾î ±º.\n
+@section Introductoin ì†Œê°œ
+GUNZë¥¼ êµ¬ë™í•˜ëŠ” ìµœì†Œí•œì˜ ê¸°ëŠ¥ì˜ ì„œë²„/í´ë¼ì´ì–¸íŠ¸/ëª¨ë‹ˆí„° ì†Œí”„íŠ¸ì›¨ì–´ êµ°.\n
 
-@section RequireLib ÇÊ¿ä ¶óÀÌºê·¯¸®
+@section RequireLib í•„ìš” ë¼ì´ë¸ŒëŸ¬ë¦¬
 CML\n
 
-@section ChangeLog ÃÖ±Ù ¼öÁ¤ »çÇ×
-2005/03/31 Doxygen »õ·Î ÀÛ¼º\n
+@section ChangeLog ìµœê·¼ ìˆ˜ì • ì‚¬í•­
+2005/03/31 Doxygen ìƒˆë¡œ ìž‘ì„±\n
 
-@section About ÀÌ ¹®¼­¿¡ °üÇÏ¿©...
-(ÁÖ)¸¶ÀÌ¿¡Æ®¿£ÅÍÅ×ÀÎ¸ÕÆ®¿¡¼­ °³¹ßµÇ´Â ¶óÀÌºê·¯¸® µµ¿ò¸»ÀÔ´Ï´Ù.\n
-Çã¿ëµÇÁö ¾ÊÀº È¸»ç ¿ÜºÎ¿¡¼­ÀÇ »ç¿ëÀÌ ±ÝÁöµË´Ï´Ù.\n
-ÃÖ½Å µµ¿ò¸»À» »ý¼ºÇÏ·Á¸é ÇØ´ç ÇÁ·ÎÁ§Æ®¿¡¼­ DoxygenÀ» ½ÇÇàÇÏ¸é µË´Ï´Ù.\n
+@section About ì´ ë¬¸ì„œì— ê´€í•˜ì—¬...
+(ì£¼)ë§ˆì´ì—íŠ¸ì—”í„°í…Œì¸ë¨¼íŠ¸ì—ì„œ ê°œë°œë˜ëŠ” ë¼ì´ë¸ŒëŸ¬ë¦¬ ë„ì›€ë§ìž…ë‹ˆë‹¤.\n
+í—ˆìš©ë˜ì§€ ì•Šì€ íšŒì‚¬ ì™¸ë¶€ì—ì„œì˜ ì‚¬ìš©ì´ ê¸ˆì§€ë©ë‹ˆë‹¤.\n
+ìµœì‹  ë„ì›€ë§ì„ ìƒì„±í•˜ë ¤ë©´ í•´ë‹¹ í”„ë¡œì íŠ¸ì—ì„œ Doxygenì„ ì‹¤í–‰í•˜ë©´ ë©ë‹ˆë‹¤.\n
 
 */
 

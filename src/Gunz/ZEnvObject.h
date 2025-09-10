@@ -12,7 +12,7 @@ using namespace std;
 _USING_NAMESPACE_REALSPACE2
 
 
-// ºÎ¼­Áö´Â ¹Ú½ºµîÀÇ È¯°æ ¿ÀºêÁ§Æ® »óÀ§ Å¬·¡½º
+// ë¶€ì„œì§€ëŠ” ë°•ìŠ¤ë“±ì˜ í™˜ê²½ ì˜¤ë¸Œì íŠ¸ ìƒìœ„ í´ëž˜ìŠ¤
 class ZEnvObject : public ZActor
 {
 	MDeclareRTTI;

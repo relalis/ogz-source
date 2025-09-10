@@ -31,7 +31,7 @@ void MMatchRuleBaseQuest::OnBegin()
 m_nFirstPlayerCount = (int)m_pStage->GetObjCount();
 	m_nNPCSpawnCount=0;
 
-	// °ÔÀÓ Á¤º¸¸¦ °¢ À¯Àú¿¡°Ô º¸³½´Ù.
+	// ê²Œìž„ ì •ë³´ë¥¼ ê° ìœ ì €ì—ê²Œ ë³´ë‚¸ë‹¤.
 	RouteGameInfo();
 
 	m_bQuestCompleted = false;
@@ -72,20 +72,20 @@ bool MMatchRuleBaseQuest::OnCheckRoundFinish()
 {
 	if (CheckPlayersAlive() == false)
 	{
-		/// ´Ù Á×À¸¸é ³¡³­´Ù. => ½ÇÆÐ °á°ú¸¦ Åëº¸ÇÏ´Â ¹æ½ÄÀ¸·Î ¼öÁ¤µÇ¾î¾ß ÇÔ. - by Ãß±³¼º.
+		/// ë‹¤ ì£½ìœ¼ë©´ ëë‚œë‹¤. => ì‹¤íŒ¨ ê²°ê³¼ë¥¼ í†µë³´í•˜ëŠ” ë°©ì‹ìœ¼ë¡œ ìˆ˜ì •ë˜ì–´ì•¼ í•¨. - by ì¶”êµì„±.
 
-		// ´Ù Á×¾úÀ»°æ¿ì´Â ±×³É ³¡³»Áö ¸»°í Äù½ºÆ®°¡ ½ÇÆÐµÈ °ÍÀ¸·Î ¼³Á¤ÀÌ µÇ¾î¾ß ÇÑ´Ù.
-		// ÇöÀç´Â ´Ù Á×¾úÀ»°æ¿ì´Â °ÔÀÓÀÌ ±×³É ³¡³ª°í Á¤»óÀûÀ¸·Î Äù½ºÆ®°¡ ³¡³µÀ»¶§¿Í °°Àº ¸¶¹«¸® Ã³¸®¸¦ ÇÑ´Ù.
+		// ë‹¤ ì£½ì—ˆì„ê²½ìš°ëŠ” ê·¸ëƒ¥ ëë‚´ì§€ ë§ê³  í€˜ìŠ¤íŠ¸ê°€ ì‹¤íŒ¨ëœ ê²ƒìœ¼ë¡œ ì„¤ì •ì´ ë˜ì–´ì•¼ í•œë‹¤.
+		// í˜„ìž¬ëŠ” ë‹¤ ì£½ì—ˆì„ê²½ìš°ëŠ” ê²Œìž„ì´ ê·¸ëƒ¥ ëë‚˜ê³  ì •ìƒì ìœ¼ë¡œ í€˜ìŠ¤íŠ¸ê°€ ëë‚¬ì„ë•Œì™€ ê°™ì€ ë§ˆë¬´ë¦¬ ì²˜ë¦¬ë¥¼ í•œë‹¤.
 
 #ifdef _QUEST_ITEM
-		// Äù½ºÆ® ½ÇÆÐ¸¦ ¿©±â¼­ ¹Ù·Î Ã³¸®ÇØÁÜ.
+		// í€˜ìŠ¤íŠ¸ ì‹¤íŒ¨ë¥¼ ì—¬ê¸°ì„œ ë°”ë¡œ ì²˜ë¦¬í•´ì¤Œ.
 		OnFailed();
 #endif
 
 		return true;
 	}
 
-	// Quest CompletedµÇ¾úÀ¸¸é ÀÏÁ¤ ½Ã°£ÈÄ Á¾·áµÈ´Ù. Áö±ÝÀº ±×³É ¹Ù·Î..-_-¤»
+	// Quest Completedë˜ì—ˆìœ¼ë©´ ì¼ì • ì‹œê°„í›„ ì¢…ë£Œëœë‹¤. ì§€ê¸ˆì€ ê·¸ëƒ¥ ë°”ë¡œ..-_-ã…‹
 	if (m_bQuestCompleted)
 	{
 		return true;
@@ -101,7 +101,7 @@ void MMatchRuleBaseQuest::OnRoundTimeOut()
 	MMatchRule::OnRoundTimeOut();
 }
 
-// ¹ÝÈ¯°ªÀÌ falseÀÌ¸é °ÔÀÓÀÌ ³¡³­´Ù.
+// ë°˜í™˜ê°’ì´ falseì´ë©´ ê²Œìž„ì´ ëë‚œë‹¤.
 bool MMatchRuleBaseQuest::RoundCount()
 {
 	if (++m_nRoundCount < 1) return true;
@@ -155,10 +155,10 @@ void MMatchRuleBaseQuest::OnRequestNPCDead(MUID& uidSender, MUID& uidKiller, MUI
 	else
 	{
 		if(m_NPCManager.GetNPCObject(uidNPC)==NULL) {
-			// finishµÈ ÀÌÈÄ¿¡´Â npcµéÀÌ Å¬¸®¾îµÈ »óÅÂÀÌ´Ù
+			// finishëœ ì´í›„ì—ëŠ” npcë“¤ì´ í´ë¦¬ì–´ëœ ìƒíƒœì´ë‹¤
 			//_ASSERT(0);
 		}else {
-			// ¹®Á¦°¡ÀÖ´Ù.
+			// ë¬¸ì œê°€ìžˆë‹¤.
 			_ASSERT(0);
 		}
 	}
@@ -223,10 +223,10 @@ void MMatchRuleBaseQuest::RefreshPlayerStatus()
 	for (auto i=m_pStage->GetObjBegin(); i!=m_pStage->GetObjEnd(); i++)
 	{
 		MMatchObject* pObj = i->second;
-		if (pObj->GetEnterBattle() == false) continue;	// ¹èÆ²Âü°¡ÇÏ°í ÀÖ´Â ÇÃ·¹ÀÌ¾î¸¸ Ã¼Å©
+		if (pObj->GetEnterBattle() == false) continue;	// ë°°í‹€ì°¸ê°€í•˜ê³  ìžˆëŠ” í”Œë ˆì´ì–´ë§Œ ì²´í¬
 		if (IsAdminGrade(pObj) && pObj->CheckPlayerFlags(MTD_PlayerFlags_AdminHide)) continue;
 
-		// ¸ðµÎ ºÎÈ°
+		// ëª¨ë‘ ë¶€í™œ
 		pObj->SetAlive(true);
 	}
 
@@ -251,7 +251,7 @@ bool MMatchRuleBaseQuest::CheckPlayersAlive()
 	for (auto i=m_pStage->GetObjBegin(); i!=m_pStage->GetObjEnd(); i++)
 	{
 		pObj = i->second;
-		if (pObj->GetEnterBattle() == false) continue;	// ¹èÆ²Âü°¡ÇÏ°í ÀÖ´Â ÇÃ·¹ÀÌ¾î¸¸ Ã¼Å©
+		if (pObj->GetEnterBattle() == false) continue;	// ë°°í‹€ì°¸ê°€í•˜ê³  ìžˆëŠ” í”Œë ˆì´ì–´ë§Œ ì²´í¬
 		if (IsAdminGrade(pObj) && pObj->CheckPlayerFlags(MTD_PlayerFlags_AdminHide)) continue;
 
 		if (pObj->CheckAlive()==true)
@@ -260,7 +260,7 @@ bool MMatchRuleBaseQuest::CheckPlayersAlive()
 		}
 	}
 
-	// ¸ðµÎ Á×¾úÀ¸¸é ¸®¼Â
+	// ëª¨ë‘ ì£½ì—ˆìœ¼ë©´ ë¦¬ì…‹
 	if (nAliveCount == 0) return false;
 
 	return true;
@@ -329,7 +329,7 @@ void MMatchRuleBaseQuest::CheckMonsterBible( const MUID& uidUser, const int nMon
 	if( (0 > nMonsterBibleIndex) || (MAX_DB_MONSTERBIBLE_SIZE <= nMonsterBibleIndex) )
 		return;
 
-	// ¿©±â¼­ Ã³¸®.
+	// ì—¬ê¸°ì„œ ì²˜ë¦¬.
 
 	MMatchCharInfo* pCharInfo = pObj->GetCharInfo();
 	if( 0 == pCharInfo )
@@ -344,10 +344,10 @@ void MMatchRuleBaseQuest::CheckMonsterBible( const MUID& uidUser, const int nMon
 
 
 #ifdef _DEBUG
-	// Ã³À½ È¹µæÇÑ ¸ó½ºÅÍ Á¤º¸.
+	// ì²˜ìŒ íšë“í•œ ëª¬ìŠ¤í„° ì •ë³´.
 	mlog( "MMatchRuleBaseQuest::CheckMonsterBible - New obtain monster info:%d\n", nMonsterBibleIndex );
 
-	// ÇöÀç °¡Áö°í ÀÖ´Â ¸ó½ºÅÍ Á¤º¸.
+	// í˜„ìž¬ ê°€ì§€ê³  ìžˆëŠ” ëª¬ìŠ¤í„° ì •ë³´.
 	MQuestMonsterBible qmb = pCharInfo->m_QMonsterBible;
 	for( int i = 0; i < MAX_DB_MONSTERBIBLE_SIZE; ++i )
 	{
@@ -370,17 +370,17 @@ void MMatchRuleBaseQuest::PostNewMonsterInfo( const MUID& uidUser, const char nM
 	if( 0 > nMonIndex )
 		return;
 
-	// ¿©±â¼­ ¹Ù·Î Ã³À½ ½ÀµæÇÑ ¸ó½ºÅÍ Á¤º¸¸¦ º¸³»ÁÜ.
+	// ì—¬ê¸°ì„œ ë°”ë¡œ ì²˜ìŒ ìŠµë“í•œ ëª¬ìŠ¤í„° ì •ë³´ë¥¼ ë³´ë‚´ì¤Œ.
 	MCommand* pMonInfoCmd = MMatchServer::GetInstance()->CreateCommand( MC_MATCH_NEW_MONSTER_INFO, uidUser );
 	if( 0 == pMonInfoCmd )
 	{
-		mlog( "MMatchRuleBaseQuest::CheckMonsterBible - »õ·Î ½ÀµæÇÑ ¸ó½ºÅÍ Á¤º¸¸¦ ¾Ë·ÁÁÖ´Â Ä¿¸Çµå »ý¼º ½ÇÆÐ.\n" );
+		mlog( "MMatchRuleBaseQuest::CheckMonsterBible - ìƒˆë¡œ ìŠµë“í•œ ëª¬ìŠ¤í„° ì •ë³´ë¥¼ ì•Œë ¤ì£¼ëŠ” ì»¤ë§¨ë“œ ìƒì„± ì‹¤íŒ¨.\n" );
 		return;
 	}
 	pMonInfoCmd->AddParameter( new MCmdParamChar(nMonIndex) );
 
 	if( !MMatchServer::GetInstance()->Post(pMonInfoCmd) )
-		mlog( "MMatchRuleBaseQuest::CheckMonsterBible - »õ·Î ½ÀµæÇÑ ¸ó½ºÅÍ Á¤º¸¸¦ ¾Ë·ÁÁÖ´Â Ä¿¸Çµå POST½ÇÆÐ.\n" );
+		mlog( "MMatchRuleBaseQuest::CheckMonsterBible - ìƒˆë¡œ ìŠµë“í•œ ëª¬ìŠ¤í„° ì •ë³´ë¥¼ ì•Œë ¤ì£¼ëŠ” ì»¤ë§¨ë“œ POSTì‹¤íŒ¨.\n" );
 }
 
 
@@ -400,7 +400,7 @@ void MMatchRuleBaseQuest::ReAssignNPC()
 		for (auto i=pStage->GetObjBegin(); i!=pStage->GetObjEnd(); i++)
 		{
 			MMatchObject* pObj = i->second;
-			if (pObj->GetEnterBattle() == false) continue;	// ¹èÆ²Âü°¡ÇÏ°í ÀÖ´Â ÇÃ·¹ÀÌ¾î¸¸ Ã¼Å©
+			if (pObj->GetEnterBattle() == false) continue;	// ë°°í‹€ì°¸ê°€í•˜ê³  ìžˆëŠ” í”Œë ˆì´ì–´ë§Œ ì²´í¬
 
 			u32 lat = pObj->GetQuestLatency();
 

@@ -55,7 +55,7 @@ void ZBmNumLabel::SetNumber(int n,bool bAddComma)
 	*pDest = 0;
 }
 
-// ÆùÆ® ¼ø¼­ ÇÏµåÄÚµå =_=
+// í°íŠ¸ ìˆœì„œ í•˜ë“œì½”ë“œ =_=
 int GetIndex(char c)
 {
 	int n=-1;
@@ -73,7 +73,7 @@ int GetIndex(char c)
 
 void ZBmNumLabel::OnDraw(MDrawContext* pDC)
 {
-	// ³ôÀÌ°¡ ¿ø·¡´Â 32 ÀÌ´Ù. ÇØ»óµµ¿¡ µû¶ó ºñÀ²À» ¸ÂÃá´Ù
+	// ë†’ì´ê°€ ì›ë˜ëŠ” 32 ì´ë‹¤. í•´ìƒë„ì— ë”°ë¼ ë¹„ìœ¨ì„ ë§ì¶˜ë‹¤
 	float fRatio = (float)m_Rect.h / (float)32;
 
 	if (m_pLabelBitmap == NULL) return;

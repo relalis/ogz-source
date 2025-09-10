@@ -1,4 +1,4 @@
-//// Memory HackÀ» ´ëºñ, Áß¿äÁ¤º¸µéÀÇ ChecksumÀ» ÃßÀûÇÑ´Ù. ////
+//// Memory Hackì„ ëŒ€ë¹„, ì¤‘ìš”ì •ë³´ë“¤ì˜ Checksumì„ ì¶”ì í•œë‹¤. ////
 #ifndef _MDATACHECKER_H
 #define _MDATACHECKER_H
 
@@ -16,7 +16,7 @@ typedef unsigned char BYTE;
 class MDataChecker;
 class MDataCheckNode {
 protected:
-	unsigned int	m_nID;	// µğ¹ö±ë¿ë ½Äº°ÀÚ
+	unsigned int	m_nID;	// ë””ë²„ê¹…ìš© ì‹ë³„ì
 	BYTE*			m_pData;
 	unsigned int	m_nLen;
 	unsigned int	m_nChecksum;
@@ -29,7 +29,7 @@ public:
 	unsigned int GetID()			{ return m_nID; }
 	unsigned int GetChecksum()		{ return m_nChecksum; }
 	unsigned int GetLastChecksum()	{ return m_nLastChecksum; }
-	bool UpdateChecksum();	// ¾÷µ¥ÀÌÆ®ÈÄ Àü°ú °°À¸¸é true, ´Ù¸£¸é false
+	bool UpdateChecksum();	// ì—…ë°ì´íŠ¸í›„ ì „ê³¼ ê°™ìœ¼ë©´ true, ë‹¤ë¥´ë©´ false
 	void Validate()	{ m_nLastChecksum = m_nChecksum; }
 
 friend MDataChecker;

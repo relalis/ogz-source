@@ -31,8 +31,8 @@ RealSoundEffectPlay* RealSoundEffectPlayer::Play(RealSoundEffectSource* pSES, fl
 		}
 	}
 
-	// ÇÃ·¹ÀÌ ÇÏ´Â ´ë½Å ¹öÆÛ¿¡ ´ã¾ÆµĞ´Ù
-	// ÀÌ¶§ Áßº¹µÇ´Â »ç¿îµå´Â ¹«½ÃÇÑ´Ù
+	// í”Œë ˆì´ í•˜ëŠ” ëŒ€ì‹  ë²„í¼ì— ë‹´ì•„ë‘”ë‹¤
+	// ì´ë•Œ ì¤‘ë³µë˜ëŠ” ì‚¬ìš´ë“œëŠ” ë¬´ì‹œí•œë‹¤
 	//SNDB_Iter iter = mSndBuffer.find( string(pSES->getFileName()) );
 	//if( iter == mSndBuffer.end() )
 //	{
@@ -83,7 +83,7 @@ void RealSoundEffectPlayer::Move(RealSoundEffectPlayer* pSource)
 	}
 }
 
-void RealSoundEffectPlayer::SetPos(float x, float y, float z) // ¸ğµç »ç¿îµå ÀÌÆåÆ®ÀÇ ÁÂÇ¥¸¦ ÇÑ °÷À¸·Î ¹Ù²Û´Ù.. ¹«¾ù¿¡ ¾²´Â ¹°°ÇÀÎ°í?
+void RealSoundEffectPlayer::SetPos(float x, float y, float z) // ëª¨ë“  ì‚¬ìš´ë“œ ì´í™íŠ¸ì˜ ì¢Œí‘œë¥¼ í•œ ê³³ìœ¼ë¡œ ë°”ê¾¼ë‹¤.. ë¬´ì—‡ì— ì“°ëŠ” ë¬¼ê±´ì¸ê³ ?
 {
 	m_fX = x;
 	m_fY = y;
@@ -136,12 +136,12 @@ void RealSoundEffectPlayer::Run(void)
 		else i++;
 	}
 
-	//// ¹öÆÛ¿¡ ´ã¾ÆµĞ »ç¿îµå¸¦ ÇÃ·¹ÀÌ ÇÑ´Ù
+	//// ë²„í¼ì— ë‹´ì•„ë‘” ì‚¬ìš´ë“œë¥¼ í”Œë ˆì´ í•œë‹¤
 	//for( SNDB_Iter iter = mSndBuffer.begin(); iter != mSndBuffer.end(); ++iter )
 	//{
 	//	RealSoundEffectPlay* pSE = iter->second;
 	//	pSE->Play();
-	//	m_SEs.push_back( pSE );	// ¸ŞÀÎ ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù
+	//	m_SEs.push_back( pSE );	// ë©”ì¸ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•œë‹¤
 	//}
-	//mSndBuffer.clear();				// ¹öÆÛ Å¬¸®¾î
+	//mSndBuffer.clear();				// ë²„í¼ í´ë¦¬ì–´
 }

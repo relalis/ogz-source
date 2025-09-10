@@ -22,16 +22,16 @@ public:
 	RAStarNode();
 	virtual ~RAStarNode();
 	float GetTotalCost(void)							{ return m_fCostFromStart + m_fCostToGoal; }
-	// ÀÌ¿ô NodeµéÀÇ Cost ¾ò±â
+	// ì´ì›ƒ Nodeë“¤ì˜ Cost ì–»ê¸°
 	float GetSuccessorCost(int i)						{ return GetSuccessorCost(GetSuccessor(i)); }
 
-	// ½ÃÀÛÁ¡ºÎÅÍ ÀÌ¿ô Nodeµé±îÁöÀÇ Cost ¾ò±â
+	// ì‹œì‘ì ë¶€í„° ì´ì›ƒ Nodeë“¤ê¹Œì§€ì˜ Cost ì–»ê¸°
 	virtual float GetSuccessorCostFromStart(RAStarNode* pSuccessor)
 	{
 		return m_fCostFromStart + GetSuccessorCost(pSuccessor);
 	}
 
-	// »ó¼Ó¹Ş¾Æ¼­ ½á¾ßÇÒ °Í
+	// ìƒì†ë°›ì•„ì„œ ì¨ì•¼í•  ê²ƒ
 	virtual float GetSuccessorCost(RAStarNode* pSuccessor) = 0;
 	virtual int GetSuccessorCount() = 0;
 	virtual RAStarNode* GetSuccessor(int i) = 0;

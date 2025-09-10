@@ -200,13 +200,13 @@ bool ZServerView::OnEvent(MEvent* pEvent, MListener* pListener)
 		{
 			SERVERLIST::iterator itr = m_cServerList.begin();
 			for ( int i = 0;  i < nSelect;  i++)
-				itr++;			// ¾Æ mapÀ» ›§¾î¾ß Çß´Âµ¥...ÀÏ´Ü ¹èÂ°~ -¤·-; ´Ô¾Æ ±×·¯½Ã¸é °ñ·ë~
+				itr++;			// ì•„ mapì„ ì»ì–´ì•¼ í–ˆëŠ”ë°...ì¼ë‹¨ ë°°ì§¸~ -ã…‡-; ë‹˜ì•„ ê·¸ëŸ¬ì‹œë©´ ê³¨ë£¸~
 
 			if ( ( (*itr)->nType > 0) && (*itr)->bIsLive)
 			{
 				m_nSelectNum = nSelect;
 
-				// »ç¿îµå Ãâ·Â
+				// ì‚¬ìš´ë“œ ì¶œë ¥
 				ZGetSoundEngine()->PlaySound("if_click");
 				bRet = true;
 			}
@@ -259,7 +259,7 @@ const ServerInfo *ZServerView::GetSelectedServer() const
 		if ( itr == m_cServerList.end())
 			return NULL;
 
-		itr++;			// ¾Æ  mapÀ» ›§¾î¾ß Çß´Âµ¥... -¤·-;
+		itr++;			// ì•„  mapì„ ì»ì–´ì•¼ í–ˆëŠ”ë°... -ã…‡-;
 	}
 
 	return (*itr);
@@ -286,7 +286,7 @@ void ZServerView::SetCurrSel( int nNumber)
 
 	SERVERLIST::iterator itr = m_cServerList.begin();
 	for ( int i = 0;  i < nNumber;  i++)
-		itr++;			// ¾Æ mapÀ» ›§¾î¾ß Çß´Âµ¥...ÀÏ´Ü ¹èÂ°~ -¤·-; ´Ô¾Æ ±×·¯½Ã¸é °ñ·ë~
+		itr++;			// ì•„ mapì„ ì»ì–´ì•¼ í–ˆëŠ”ë°...ì¼ë‹¨ ë°°ì§¸~ -ã…‡-; ë‹˜ì•„ ê·¸ëŸ¬ì‹œë©´ ê³¨ë£¸~
 
 
 //	if ( ( (*itr)->nType > 0) && ( (*itr)->nNumOfUser < (*itr)->nCapacity) && (*itr)->bIsLive)

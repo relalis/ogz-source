@@ -8,13 +8,13 @@
 class MBmButton;
 class ZMeshView;
 
-// ÇÁ·¹ÀÓÀ» ±×¸®±â À§ÇØ MGroupÀ» »ó¼Ó¹Ş´Â´Ù.
+// í”„ë ˆì„ì„ ê·¸ë¦¬ê¸° ìœ„í•´ MGroupì„ ìƒì†ë°›ëŠ”ë‹¤.
 class ZMeshViewList : public MGroup{
 protected:
-	int	m_nItemStartIndex;	// ¾ÆÀÌÅÛ ½ÃÀÛ ÀÎµ¦½º
-	int	m_nItemWidth;		// ¾ÆÀÌÅÛ °¡·Î Å©±â
-	//MButton*	m_pLeft;	// ¿ŞÂÊ ÀÌµ¿
-	//MButton*	m_pRight;	// ¿À¸¥ÂÊ ÀÌµ¿
+	int	m_nItemStartIndex;	// ì•„ì´í…œ ì‹œì‘ ì¸ë±ìŠ¤
+	int	m_nItemWidth;		// ì•„ì´í…œ ê°€ë¡œ í¬ê¸°
+	//MButton*	m_pLeft;	// ì™¼ìª½ ì´ë™
+	//MButton*	m_pRight;	// ì˜¤ë¥¸ìª½ ì´ë™
 	MBmButton* m_pBmLeft;
 	MBmButton* m_pBmRight;
 	//list<ZMeshView*>	m_Items;

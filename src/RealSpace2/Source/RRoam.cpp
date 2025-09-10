@@ -1,9 +1,9 @@
 #include "stdafx.h"
 /*
 
-	2001-11, TurnerÀÇ ½î½º¸¦ ±â¹İÀ¸·Î ¸¸µé¾îÁ³À½.
+	2001-11, Turnerì˜ ì˜ìŠ¤ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ë§Œë“¤ì–´ì¡ŒìŒ.
 
-	Âü°íÇØ¾ßÇÒ ¹®¼­.
+	ì°¸ê³ í•´ì•¼í•  ë¬¸ì„œ.
 
 	Mark Duchaineau, LLNL, Murray Wolinsky, LANL, David E. Sigeti, LANL, 
 	Mark C. Miller, LLNL, Charles Aldrich, LANL, Mark B. Mineev-Weinstein; 

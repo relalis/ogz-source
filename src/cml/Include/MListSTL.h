@@ -6,8 +6,8 @@
 #include <list>
 using namespace std;
 
-// list<A*> ¿Í °°Àº ÇüÅÂ·Î ¾²´Â Å¬·¡½º
-// ¼Ò¸êÀÚ¿¡¼­ ÀÚµ¿À¸·Î °´Ã¼¸¦ deleteÇØÁØ´Ù.
+// list<A*> ì™€ ê°™ì€ í˜•íƒœë¡œ ì“°ëŠ” í´ë˜ìŠ¤
+// ì†Œë©¸ìì—ì„œ ìë™ìœ¼ë¡œ ê°ì²´ë¥¼ deleteí•´ì¤€ë‹¤.
 template<class _Ty, class _A = allocator<_Ty> >
 class MAutoDelPtrList : public list<_Ty, _A>{
 public:
@@ -17,7 +17,7 @@ public:
 	}
 	void Clear(void){
 		while(begin()!=end()){
-			delete *begin();	// Æ÷ÀÎÅÍÇüÀÌ¿©¾ß ÇÑ´Ù. ±×·¸Áö ¾Ê´Ù¸é ÄÄÆÄÀÏ·¯ ¿¡·¯°¡ ³­´Ù.
+			delete *begin();	// í¬ì¸í„°í˜•ì´ì—¬ì•¼ í•œë‹¤. ê·¸ë ‡ì§€ ì•Šë‹¤ë©´ ì»´íŒŒì¼ëŸ¬ ì—ëŸ¬ê°€ ë‚œë‹¤.
 			erase(begin());
 		}
 	}	

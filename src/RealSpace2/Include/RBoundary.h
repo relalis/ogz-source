@@ -15,9 +15,9 @@
 
 // Struct
 
-// Collision Detection¿¡¼­ ³Ñ°ÜÁà¾ß ÇÏ´Â °ªÀÌ³ª
-// ¾ò¾î¿Í¾ß ÇÏ´Â °ªÀº ´Ù¾çÇÒ ¼ö ÀÖ´Ù
-// unionÀ» È°¿ëÇÏ¿© ÇÊ¿äÇÑ °ªÀ» ¼ÂÆÃÇÏ¿© ³Ñ°ÜÁÙ¼ö ÀÖ´Ù
+// Collision Detectionì—ì„œ ë„˜ê²¨ì¤˜ì•¼ í•˜ëŠ” ê°’ì´ë‚˜
+// ì–»ì–´ì™€ì•¼ í•˜ëŠ” ê°’ì€ ë‹¤ì–‘í•  ìˆ˜ ìžˆë‹¤
+// unionì„ í™œìš©í•˜ì—¬ í•„ìš”í•œ ê°’ì„ ì…‹íŒ…í•˜ì—¬ ë„˜ê²¨ì¤„ìˆ˜ ìžˆë‹¤
 enum CDInfoType
 {
 	CDINFO_CLOTH

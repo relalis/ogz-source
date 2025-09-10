@@ -1,14 +1,14 @@
 #pragma once
 
 
-// MLocatorView 轰涝聪促.
+// MLocatorView 敕办瀰雼堧嫟.
 
 class MLocatorView : public CListView
 {
 	DECLARE_DYNCREATE(MLocatorView)
 
 protected:
-	MLocatorView();           // 悼利 父甸扁俊 荤侩登绰 protected 积己磊涝聪促.
+	MLocatorView();           // 霃欖爜 毵岆摛旮办棎 靷毄霅橂姅 protected 靸濎劚鞛愳瀰雼堧嫟.
 	virtual ~MLocatorView();
 
 public :

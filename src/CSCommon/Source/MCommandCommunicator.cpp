@@ -190,7 +190,7 @@ void MCommandCommunicator::Run()
 				m_CommandProfiler.OnCommandBegin(pCommand, GetGlobalTimeMS());
 			#endif
 
-			OnCommand(pCommand);	// Local Command¸é ·ÎÄÃ¿¡¼­ Ã³¸®
+			OnCommand(pCommand);	// Local Commandë©´ ë¡œì»¬ì—ì„œ ì²˜ë¦¬
 
 			#ifdef _CMD_PROFILE
 				m_CommandProfiler.OnCommandEnd(pCommand, GetGlobalTimeMS());
@@ -202,7 +202,7 @@ void MCommandCommunicator::Run()
 				m_CommandProfiler.OnSend(pCommand);
 			#endif
 
-			SendCommand(pCommand);	// ±×¿Ü¿¡´Â ¼³Á¤µÈ Receiver·Î Àü¼Û
+			SendCommand(pCommand);	// ê·¸ì™¸ì—ëŠ” ì„¤ì •ëœ Receiverë¡œ ì „ì†¡
 		}
 
 		delete pCommand;

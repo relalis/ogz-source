@@ -3,7 +3,7 @@
 
 bool MState::SetNextState(int nID)
 {
-	return m_pSM->SetNextState(nID);	// CallStack¿¡ ÀÇÇÑ ¿À·ù ¹æÁö¸¦ À§ÇØ SetState()¸¦ ¾²Áö ¾Ê´Â´Ù.
+	return m_pSM->SetNextState(nID);	// CallStackì— ì˜í•œ ì˜¤ë¥˜ ë°©ì§€ë¥¼ ìœ„í•´ SetState()ë¥¼ ì“°ì§€ ì•ŠëŠ”ë‹¤.
 }
 
 MStateStackMachine::MStateStackMachine(void)

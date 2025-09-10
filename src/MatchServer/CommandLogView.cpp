@@ -1,4 +1,4 @@
-// CommandLogView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// CommandLogView.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -28,7 +28,7 @@ BEGIN_MESSAGE_MAP(CCommandLogView, CListView)
 END_MESSAGE_MAP()
 
 
-// CCommandLogView Áø´ÜÀÔ´Ï´Ù.
+// CCommandLogView ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CCommandLogView::AssertValid() const
@@ -43,7 +43,7 @@ void CCommandLogView::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CCommandLogView ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CCommandLogView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CCommandLogView::OnInitialUpdate()
 {
@@ -51,8 +51,8 @@ void CCommandLogView::OnInitialUpdate()
 
 	CListView::OnInitialUpdate();
 
-	// TODO: GetListCtrl()À» È£ÃâÇÏ¿© ÇØ´ç list ÄÁÆ®·ÑÀ» Á÷Á¢ ¾×¼¼½ºÇÔÀ¸·Î½á
-	// ListView¸¦ Ç×¸ñÀ¸·Î Ã¤¿ï ¼ö ÀÖ½À´Ï´Ù.
+	// TODO: GetListCtrl()ì„ í˜¸ì¶œí•˜ì—¬ í•´ë‹¹ list ì»¨íŠ¸ë¡¤ì„ ì§ì ‘ ì•¡ì„¸ìŠ¤í•¨ìœ¼ë¡œì¨
+	// ListViewë¥¼ í•­ëª©ìœ¼ë¡œ ì±„ìš¸ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 
 	// this code only works for a report-mode list view
 	ASSERT(GetStyle() & LVS_REPORT);

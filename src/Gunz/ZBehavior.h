@@ -4,28 +4,28 @@
 
 #include "ZStateMachine.h"
 
-/// AI°¡ ÇÏ´Â ÀÏ
+/// AIê°€ í•˜ëŠ” ì¼
 enum ZBEHAVIOR_STATE
 {
-	ZBEHAVIOR_STATE_IDLE			=0,				///< °¡¸¸È÷ ÀÖ´Â´Ù.
-	ZBEHAVIOR_STATE_PATROL,							///< ¼øÂû
-	ZBEHAVIOR_STATE_ATTACK,							///< °ø°İ
-	ZBEHAVIOR_STATE_RETREAT,						///< µµ¸Á
-	ZBEHAVIOR_STATE_SCRIPT,							///< ½ºÅ©¸³Æ®
+	ZBEHAVIOR_STATE_IDLE			=0,				///< ê°€ë§Œíˆ ìˆëŠ”ë‹¤.
+	ZBEHAVIOR_STATE_PATROL,							///< ìˆœì°°
+	ZBEHAVIOR_STATE_ATTACK,							///< ê³µê²©
+	ZBEHAVIOR_STATE_RETREAT,						///< ë„ë§
+	ZBEHAVIOR_STATE_SCRIPT,							///< ìŠ¤í¬ë¦½íŠ¸
 	ZBEHAVIOR_STATE_END
 };
 
 enum ZBEHAVIOR_INPUT 
 {
 	ZBEHAVIOR_INPUT_NONE = 0,
-	ZBEHAVIOR_INPUT_ATTACKED,						///< °ø°İ´çÇÔ
+	ZBEHAVIOR_INPUT_ATTACKED,						///< ê³µê²©ë‹¹í•¨
 
 	ZBEHAVIOR_INPUT_END
 };
 
 class ZBrain;
 
-/// Behavior State Ãß»ó Å¬·¡½º
+/// Behavior State ì¶”ìƒ í´ë˜ìŠ¤
 class ZBehaviorState : public ZState
 {
 protected:

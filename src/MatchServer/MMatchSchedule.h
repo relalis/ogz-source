@@ -11,16 +11,16 @@ class MServer;
 class MMatchScheduleImpl;
 
 /*
- * ¸ğµç ½ºÄÉÁìÀº bIsNeedDeleteÀÌ true°¡ µÇ¸é Á¦°ÅµÊ.
+ * ëª¨ë“  ìŠ¤ì¼€ì¥´ì€ bIsNeedDeleteì´ trueê°€ ë˜ë©´ ì œê±°ë¨.
  *
- * once : ÇÑ¹ø ½ÇÇàÇÏ¸é ¹«Á¶°Ç bIsNeedDelete¸¦ true·Î ¼³Á¤ÇÔ.
+ * once : í•œë²ˆ ì‹¤í–‰í•˜ë©´ ë¬´ì¡°ê±´ bIsNeedDeleteë¥¼ trueë¡œ ì„¤ì •í•¨.
  *
- * count : ½ÇÇà½Ã m_nCountº¯¼ö¸¦ 1¾¿ °¨¼Ò½ÃÅ°°í 0ÀÌ µÇ´Â ½ÃÁ¡¿¡¼­ bIsNeedDelete¸¦ true·Î ¼³Á¤ÇÔ.
- *			cMonth, cDay, cHour, cMinÀÌ ½ÇÇà ½Ã°£°ú °°¾Æ¾ß ½ÇÇàÇÔ.
- *			cNextMonth, cNextDay, cNextHour, cNextMin´Â ´ÙÀ½¿¡ ½ÇÇàµÉ ½Ã°£ÀÇ Áõ°¡Ä¡.
+ * count : ì‹¤í–‰ì‹œ m_nCountë³€ìˆ˜ë¥¼ 1ì”© ê°ì†Œì‹œí‚¤ê³  0ì´ ë˜ëŠ” ì‹œì ì—ì„œ bIsNeedDeleteë¥¼ trueë¡œ ì„¤ì •í•¨.
+ *			cMonth, cDay, cHour, cMinì´ ì‹¤í–‰ ì‹œê°„ê³¼ ê°™ì•„ì•¼ ì‹¤í–‰í•¨.
+ *			cNextMonth, cNextDay, cNextHour, cNextMinëŠ” ë‹¤ìŒì— ì‹¤í–‰ë  ì‹œê°„ì˜ ì¦ê°€ì¹˜.
  *
- * repeat : °è¼ÓÇØ¼­ ½ÇÇàÇÔ. bIsNeedDelete¸¦ true·Î ¸¸µéÁö ¾ÊÀ½.
- *			cMonth, cDay, cHour, cMinÀÌ ½ÇÇà ½Ã°£°ú °°¾Æ¾ß ½ÇÇàÇÔ.
+ * repeat : ê³„ì†í•´ì„œ ì‹¤í–‰í•¨. bIsNeedDeleteë¥¼ trueë¡œ ë§Œë“¤ì§€ ì•ŠìŒ.
+ *			cMonth, cDay, cHour, cMinì´ ì‹¤í–‰ ì‹œê°„ê³¼ ê°™ì•„ì•¼ ì‹¤í–‰í•¨.
  */
 
 class MMatchDayOfMonth
@@ -40,7 +40,7 @@ public :
 		if( 1 > iMonth ) 
 			return -1;
 
-		// ¹è¿­°ªÀ¸·Î ¼öÁ¤ÈÄ Ã³¸®.
+		// ë°°ì—´ê°’ìœ¼ë¡œ ìˆ˜ì •í›„ ì²˜ë¦¬.
 		return m_cDayOfMonth[ iMonth - 1 ];
 	}
 private :
@@ -58,7 +58,7 @@ private :
 class MMatchScheduleData
 {
 public:
-	// ½ºÄÉÁìÀÇ Á¾·ù´Â 1:repeat, 2:Count, 3:Once·Î µÇ¾îÀÖÀ½.
+	// ìŠ¤ì¼€ì¥´ì˜ ì¢…ë¥˜ëŠ” 1:repeat, 2:Count, 3:Onceë¡œ ë˜ì–´ìˆìŒ.
 	enum MMatchScheduleState
 	{
 		REPEAT = 0,
@@ -133,25 +133,25 @@ public:
 
 private :
 	// int				nID;
-	int					m_nType;			// ½ºÄÉÁì Å¸ÀÔ( REPAT, COUNT, ONCE ).
-	MCommand*			m_pCmd;				// ½ºÄÉÁìÀÌ È°¼ºÈ­ µÇ¾úÀ»¶§ ½ÇÇàÇÒ ¸í·É.
-	bool				m_bIsNeedDelete;	// trueÀÌ¸é ½ºÄÉÁìÀ» Á¦°Å ¶Ç´Â ºñÈ°¼ºÈ­ ÇÔ.
-	MMatchScheduleImpl*	m_pImpl;			// ½ºÄÉÁìÀÌ ¼öÇàµÇ±âÀü¿¡ ÇØ¾ß ÇÒ ¼öÇàÀÚ.
+	int					m_nType;			// ìŠ¤ì¼€ì¥´ íƒ€ì…( REPAT, COUNT, ONCE ).
+	MCommand*			m_pCmd;				// ìŠ¤ì¼€ì¥´ì´ í™œì„±í™” ë˜ì—ˆì„ë•Œ ì‹¤í–‰í•  ëª…ë ¹.
+	bool				m_bIsNeedDelete;	// trueì´ë©´ ìŠ¤ì¼€ì¥´ì„ ì œê±° ë˜ëŠ” ë¹„í™œì„±í™” í•¨.
+	MMatchScheduleImpl*	m_pImpl;			// ìŠ¤ì¼€ì¥´ì´ ìˆ˜í–‰ë˜ê¸°ì „ì— í•´ì•¼ í•  ìˆ˜í–‰ì.
 
-	int	m_nCount;		// Æ¯Á¤ È½¼ö¸¦ ½ÇÇàÇÒ °æ¿ì »ç¿ë.
-	int m_nErrorTime;	// º¸Á¤¿¡ Àû¿ëµÉ¼ö ÀÖ´Â ÇÑ°èÄ¡( ºĞ ).
+	int	m_nCount;		// íŠ¹ì • íšŸìˆ˜ë¥¼ ì‹¤í–‰í•  ê²½ìš° ì‚¬ìš©.
+	int m_nErrorTime;	// ë³´ì •ì— ì ìš©ë ìˆ˜ ìˆëŠ” í•œê³„ì¹˜( ë¶„ ).
 
-	unsigned char	m_cYear;	// ½ÇÇà µÇ¾î¾ß ÇÏ´Â ÇØ.
-	unsigned char	m_cMonth;	// ½ÇÇà µÇ¾î¾ß ÇÏ´Â ´Ş.
-	unsigned char	m_cDay;		// ½ÇÇà µÇ¾î¾ß ÇÏ´Â ³¯.
-	unsigned char	m_cHour;	// ½ÇÇà µÇ¾î¾ß ÇÏ´Â ½Ã°£.
-	unsigned char	m_cMin;		// ½ÇÇà µÇ¾î¾ß ÇÏ´Â ºĞ.
+	unsigned char	m_cYear;	// ì‹¤í–‰ ë˜ì–´ì•¼ í•˜ëŠ” í•´.
+	unsigned char	m_cMonth;	// ì‹¤í–‰ ë˜ì–´ì•¼ í•˜ëŠ” ë‹¬.
+	unsigned char	m_cDay;		// ì‹¤í–‰ ë˜ì–´ì•¼ í•˜ëŠ” ë‚ .
+	unsigned char	m_cHour;	// ì‹¤í–‰ ë˜ì–´ì•¼ í•˜ëŠ” ì‹œê°„.
+	unsigned char	m_cMin;		// ì‹¤í–‰ ë˜ì–´ì•¼ í•˜ëŠ” ë¶„.
 	
-	unsigned char	m_cNextYear;	// ´ÙÀ½¿¡ ½ÇÇØµÇ¾î¾ß ÇÏ´Â ÇØÀÇ Áõ°¡Ä¡.
-	unsigned char	m_cNextMonth;	// ´ÙÀ½¿¡ ½ÇÇàµÇ¾î¾ß ÇÏ´Â ´ŞÀÇ Áõ°¡Ä¡.
-	unsigned char	m_cNextDay;		// ´ÙÀ½¿¡ ½ÇÇàµÇ¾î¾ß ÇÏ´Â ÀÏÀÇ Áõ°¡Ä¡.
-	unsigned char	m_cNextHour;	// ´ÙÀ½¿¡ ½ÇÇàµÇ¾î¾ß ÇÏ´Â ½Ã°£ÀÇ Áõ°¡Ä¡.
-	unsigned char	m_cNextMin;		// ´ÙÀ½¿¡ ½ÇÇàµÇ¾î¾ß ÇÏ´Â ºĞÀÇ Áõ°¡Ä¡.
+	unsigned char	m_cNextYear;	// ë‹¤ìŒì— ì‹¤í•´ë˜ì–´ì•¼ í•˜ëŠ” í•´ì˜ ì¦ê°€ì¹˜.
+	unsigned char	m_cNextMonth;	// ë‹¤ìŒì— ì‹¤í–‰ë˜ì–´ì•¼ í•˜ëŠ” ë‹¬ì˜ ì¦ê°€ì¹˜.
+	unsigned char	m_cNextDay;		// ë‹¤ìŒì— ì‹¤í–‰ë˜ì–´ì•¼ í•˜ëŠ” ì¼ì˜ ì¦ê°€ì¹˜.
+	unsigned char	m_cNextHour;	// ë‹¤ìŒì— ì‹¤í–‰ë˜ì–´ì•¼ í•˜ëŠ” ì‹œê°„ì˜ ì¦ê°€ì¹˜.
+	unsigned char	m_cNextMin;		// ë‹¤ìŒì— ì‹¤í–‰ë˜ì–´ì•¼ í•˜ëŠ” ë¶„ì˜ ì¦ê°€ì¹˜.
 };
 
 class MMatchScheduleReleaser
@@ -167,48 +167,48 @@ public :
 	}
 };
 
-/// °¢ ½ºÄÉÁì Å¸ÀÔ¿¡ ¸Â´Â µ¥ÀÌÅÍ Ã³¸®¸¦ ÇØÁÙ ¼öÇàÀÚ.
-// ¼ø¼ö °¡»ó ÀÎÅÍÆäÀÌ½º Å¬·¡½º.
+/// ê° ìŠ¤ì¼€ì¥´ íƒ€ì…ì— ë§ëŠ” ë°ì´í„° ì²˜ë¦¬ë¥¼ í•´ì¤„ ìˆ˜í–‰ì.
+// ìˆœìˆ˜ ê°€ìƒ ì¸í„°í˜ì´ìŠ¤ í´ë˜ìŠ¤.
 class MMatchScheduleImpl
 {
 public :
 	virtual ~MMatchScheduleImpl() {}
 
-	// ½Ã°£ ¿ÀÂ÷ º¸Á¤.
+	// ì‹œê°„ ì˜¤ì°¨ ë³´ì •.
 	virtual void CorrectTime( MMatchScheduleData* pScheduleData ) = 0;
-	// ½Ã°£À» ´Ù½Ã ¼³Á¤ÇÔ.
+	// ì‹œê°„ì„ ë‹¤ì‹œ ì„¤ì •í•¨.
 	virtual void Reset( MMatchScheduleData* pScheduleData ) = 0;
 };
-// Á¦°ÅµÇÁö ¾Ê°í °è¼Ó ¹İº¹µÇ´Â ½ºÄÉÁì.
+// ì œê±°ë˜ì§€ ì•Šê³  ê³„ì† ë°˜ë³µë˜ëŠ” ìŠ¤ì¼€ì¥´.
 class MMatchRepeatScheduleImpl : public MMatchScheduleImpl
 {
 public :
-	// ½Ã°£ ¿ÀÂ÷ º¸Á¤.
+	// ì‹œê°„ ì˜¤ì°¨ ë³´ì •.
 	void CorrectTime( MMatchScheduleData* pScheduleData );
-	// ½Ã°£À» ´Ù½Ã ¼³Á¤ÇÔ.
+	// ì‹œê°„ì„ ë‹¤ì‹œ ì„¤ì •í•¨.
 	void Reset( MMatchScheduleData* pScheduleData );
 };
-// ÀÏÁ¤ È½¼ö¸¦ ½ÇÇàÇÏ°í Á¦°ÅµÇ´Â ½ºÄÉÁì.
+// ì¼ì • íšŸìˆ˜ë¥¼ ì‹¤í–‰í•˜ê³  ì œê±°ë˜ëŠ” ìŠ¤ì¼€ì¥´.
 class MMatchCountScheduleImpl : public MMatchScheduleImpl
 {
 public :
-	// ½Ã°£ ¿ÀÂ÷ º¸Á¤.
+	// ì‹œê°„ ì˜¤ì°¨ ë³´ì •.
 	void CorrectTime( MMatchScheduleData* pScheduleData );
-	// ½Ã°£À» ´Ù½Ã ¼³Á¤ÇÔ.
+	// ì‹œê°„ì„ ë‹¤ì‹œ ì„¤ì •í•¨.
 	void Reset( MMatchScheduleData* pScheduleData );
 };
-// ÇÑ¹ø¸¸ ½ÇÇàÇÏ°í Á¦°ÅµÇ´Â ½ºÄÉÁì.
+// í•œë²ˆë§Œ ì‹¤í–‰í•˜ê³  ì œê±°ë˜ëŠ” ìŠ¤ì¼€ì¥´.
 class MMatchOnceScheduleImpl : public MMatchScheduleImpl
 {
 public :
-	// ½Ã°£ ¿ÀÂ÷ º¸Á¤.
+	// ì‹œê°„ ì˜¤ì°¨ ë³´ì •.
 	void CorrectTime( MMatchScheduleData* pScheduleData );
-	// ½Ã°£À» ´Ù½Ã ¼³Á¤ÇÔ.
+	// ì‹œê°„ì„ ë‹¤ì‹œ ì„¤ì •í•¨.
 	void Reset( MMatchScheduleData* pScheduleData );
 };
 
 
-/// ½ºÄÉÁìÀ» ÀúÀåÇÏ°í °ü¸®ÇÏ´Â ½ºÄÉÁì °ü¸®ÀÚ.
+/// ìŠ¤ì¼€ì¥´ì„ ì €ì¥í•˜ê³  ê´€ë¦¬í•˜ëŠ” ìŠ¤ì¼€ì¥´ ê´€ë¦¬ì.
 typedef vector< MMatchScheduleData* > ScheduleVec;
 typedef ScheduleVec::iterator	ScheduleVecIter;
 
@@ -222,54 +222,54 @@ public :
 	MMatchScheduleMgr( MServer* pServer );
 	~MMatchScheduleMgr();
 
-	// µ¿ÀûÀÎ ½ºÄÉÁì µî·Ï. Á¶°Ç¿¡ ÀÇÇØ¼­ Áö¿öÁú¼ö ÀÖÀ½.
+	// ë™ì ì¸ ìŠ¤ì¼€ì¥´ ë“±ë¡. ì¡°ê±´ì— ì˜í•´ì„œ ì§€ì›Œì§ˆìˆ˜ ìˆìŒ.
 	bool AddDynamicSchedule( MMatchScheduleData* pNewSchedule );
-	// ½Ã½ºÅÛÀÌ ½ÃÀÛÇÏ¸é¼­ Á¾·áµÉ¶§±îÁö À¯ÁöµÇ¾î¾ß ÇÏ´Â ½ºÄÉÁì.
+	// ì‹œìŠ¤í…œì´ ì‹œì‘í•˜ë©´ì„œ ì¢…ë£Œë ë•Œê¹Œì§€ ìœ ì§€ë˜ì–´ì•¼ í•˜ëŠ” ìŠ¤ì¼€ì¥´.
 	bool AddStaticSchedule( MMatchScheduleData* pNewSchedule );
 
 	// Schedule data maker.
-	MMatchScheduleData* MakeRepeatScheduleData( const unsigned char	cNextYear,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ÇØÀÇ »ó´ë°ª.	ex) 1³â ÈÄ.
-												const unsigned char cNextMonth, // ´ÙÀ½¿¡ ½ÇÇàµÉ ´ŞÀÇ »ó´ë°ª.	ex) 1´Ş ÈÄ.
-												const unsigned char cNextDay,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ÀÏÀÇ »ó´ë°ª.	ex) 1ÀÏ ÈÄ.
-												const unsigned char cNextHour,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ½Ã°£ÀÇ »ó´ë°ª.	ex) 1½Ã°£ ÈÄ.
-												const unsigned char cNextMin,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ºĞÀÇ »ó´ë°ª.	ex) 1ºĞ ÈÄ.
-												MCommand* pCmd					// ¼öÇàÇÒ ¸í·É.
+	MMatchScheduleData* MakeRepeatScheduleData( const unsigned char	cNextYear,	// ë‹¤ìŒì— ì‹¤í–‰ë  í•´ì˜ ìƒëŒ€ê°’.	ex) 1ë…„ í›„.
+												const unsigned char cNextMonth, // ë‹¤ìŒì— ì‹¤í–‰ë  ë‹¬ì˜ ìƒëŒ€ê°’.	ex) 1ë‹¬ í›„.
+												const unsigned char cNextDay,	// ë‹¤ìŒì— ì‹¤í–‰ë  ì¼ì˜ ìƒëŒ€ê°’.	ex) 1ì¼ í›„.
+												const unsigned char cNextHour,	// ë‹¤ìŒì— ì‹¤í–‰ë  ì‹œê°„ì˜ ìƒëŒ€ê°’.	ex) 1ì‹œê°„ í›„.
+												const unsigned char cNextMin,	// ë‹¤ìŒì— ì‹¤í–‰ë  ë¶„ì˜ ìƒëŒ€ê°’.	ex) 1ë¶„ í›„.
+												MCommand* pCmd					// ìˆ˜í–‰í•  ëª…ë ¹.
 												);
-	MMatchScheduleData* MakeCountScheduleData( const unsigned char cNextYear,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ÇØÀÇ »ó´ë°ª.	ex) 1³â ÈÄ.
-											   const unsigned char cNextMonth,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ´ŞÀÇ »ó´ë°ª.	ex) 1´Ş ÈÄ.
-											   const unsigned char cNextDay,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ÀÏÀÇ »ó´ë°ª.	ex) 1ÀÏ ÈÄ.
-											   const unsigned char cNextHour,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ½Ã°£ÀÇ »ó´ë°ª.	ex) 1½Ã°£ ÈÄ.
-											   const unsigned char cNextMin,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ºĞÀÇ »ó´ë°ª.	ex) 1ºĞ ÈÄ.
-											   const unsigned int nCount,		// ½ÇÇàµÉ È½¼ö.
-											   MCommand* pCmd					// ¼öÇàÇÒ ¸í·É.
+	MMatchScheduleData* MakeCountScheduleData( const unsigned char cNextYear,	// ë‹¤ìŒì— ì‹¤í–‰ë  í•´ì˜ ìƒëŒ€ê°’.	ex) 1ë…„ í›„.
+											   const unsigned char cNextMonth,	// ë‹¤ìŒì— ì‹¤í–‰ë  ë‹¬ì˜ ìƒëŒ€ê°’.	ex) 1ë‹¬ í›„.
+											   const unsigned char cNextDay,	// ë‹¤ìŒì— ì‹¤í–‰ë  ì¼ì˜ ìƒëŒ€ê°’.	ex) 1ì¼ í›„.
+											   const unsigned char cNextHour,	// ë‹¤ìŒì— ì‹¤í–‰ë  ì‹œê°„ì˜ ìƒëŒ€ê°’.	ex) 1ì‹œê°„ í›„.
+											   const unsigned char cNextMin,	// ë‹¤ìŒì— ì‹¤í–‰ë  ë¶„ì˜ ìƒëŒ€ê°’.	ex) 1ë¶„ í›„.
+											   const unsigned int nCount,		// ì‹¤í–‰ë  íšŸìˆ˜.
+											   MCommand* pCmd					// ìˆ˜í–‰í•  ëª…ë ¹.
 											   );
-	MMatchScheduleData* MakeOnceScheduleData( const unsigned char cYear,	// ½ÇÇàµÉ ÇØ.
-											  const unsigned char cMonth,	// ½ÇÇàµÉ ´Ş.
-											  const unsigned char cDay,		// ½ÇÇàµÉ ³¯.
-                                              const unsigned char cHour,	// ½ÇÇàµÉ ½Ã°£.
-                                              const unsigned char cMin,		// ½ÇÇàµÉ ºĞ.
-                                              MCommand* pCmd				// ¼öÇàÇÒ ¸í·É.	
+	MMatchScheduleData* MakeOnceScheduleData( const unsigned char cYear,	// ì‹¤í–‰ë  í•´.
+											  const unsigned char cMonth,	// ì‹¤í–‰ë  ë‹¬.
+											  const unsigned char cDay,		// ì‹¤í–‰ë  ë‚ .
+                                              const unsigned char cHour,	// ì‹¤í–‰ë  ì‹œê°„.
+                                              const unsigned char cMin,		// ì‹¤í–‰ë  ë¶„.
+                                              MCommand* pCmd				// ìˆ˜í–‰í•  ëª…ë ¹.	
 											  );
 
-	// ÃÊ±âÈ­.
+	// ì´ˆê¸°í™”.
 	bool Init();
 
 	inline void SetUpdateTerm( time_t tmTime ) { m_tmUpdateTerm = tmTime; }
 
-	// µî·ÏµÇÀÖ´Â ¸ğµç ½ºÄÉÁìÀ» Å½»öÇÏ¿© ¾÷µ¥ÀÌÆ®ÇÔ.
+	// ë“±ë¡ë˜ìˆëŠ” ëª¨ë“  ìŠ¤ì¼€ì¥´ì„ íƒìƒ‰í•˜ì—¬ ì—…ë°ì´íŠ¸í•¨.
 	void Update();
 
-	// Á¾·á½Ã±îÁö ³²¾ÆÀÖ´Â ½ºÄÉÁêÀ» Á¦°ÅÇÔ.
+	// ì¢…ë£Œì‹œê¹Œì§€ ë‚¨ì•„ìˆëŠ” ìŠ¤ì¼€ì¥¬ì„ ì œê±°í•¨.
 	void Release();
 
 private :
-	// ¸¶Áö¸· ¾÷µ¥ÀÌÆ® ½ÃÁ¡¿¡¼­ºÎÅÍ °æ°ú½Ã°£ °è»ê.
+	// ë§ˆì§€ë§‰ ì—…ë°ì´íŠ¸ ì‹œì ì—ì„œë¶€í„° ê²½ê³¼ì‹œê°„ ê³„ì‚°.
 	const time_t CalculateElapseUpdateTime();
-	// Á¤»óÀûÀûÀÎ µ¥ÀÌÅÍÀÎÁö °Ë»çÇÔ.
+	// ì •ìƒì ì ì¸ ë°ì´í„°ì¸ì§€ ê²€ì‚¬í•¨.
 	bool CheckData( MMatchScheduleData* pScheduleData ) const;
-	// ¾÷µ¥ÀÌÆ® µÇ¾î¾ß ÇÏ´Â ½Ã°£ÀÎÁö °Ë»çÇÔ.
+	// ì—…ë°ì´íŠ¸ ë˜ì–´ì•¼ í•˜ëŠ” ì‹œê°„ì¸ì§€ ê²€ì‚¬í•¨.
 	bool CompareTime( MMatchScheduleData* pScheduleData );
-	// ¾÷µ¥ÀÌÆ®°¡ °¡´ÉÇÑÁö °Ë»ç.
+	// ì—…ë°ì´íŠ¸ê°€ ê°€ëŠ¥í•œì§€ ê²€ì‚¬.
 	bool IsUpdate();
 
 	void UpdateStaticSchedule();
@@ -282,7 +282,7 @@ private :
 
 	enum MONTH_NUM { MonthNum = 12, };
 
-	// ¼öÇàÀÚ¸¦ °¡Áö°í ÀÖ´Â ÀúÀå Å¬·¡½º.
+	// ìˆ˜í–‰ìë¥¼ ê°€ì§€ê³  ìˆëŠ” ì €ì¥ í´ë˜ìŠ¤.
 	class MMatchScheduleImplPrototype
 	{
 	private :
@@ -294,11 +294,11 @@ private :
 		~MMatchScheduleImplPrototype() {}
 
 		bool Init();
-		// ÇØ´ç Å¸ÀÔID¿¡ ¸Â´Â ¼öÇàÀÚÀÇ Æ÷ÀÎÅÍ¸¦ ³Ñ°ÜÁÜ. Àı´ë deleteÇÏ¸é ¾ÊµÊ.
+		// í•´ë‹¹ íƒ€ì…IDì— ë§ëŠ” ìˆ˜í–‰ìì˜ í¬ì¸í„°ë¥¼ ë„˜ê²¨ì¤Œ. ì ˆëŒ€ deleteí•˜ë©´ ì•Šë¨.
 		MMatchScheduleImpl* GetImpl( const unsigned int nTypeID );
 		void Release();
 
-		// ¼öÇàÀÚ¸¦ ÀúÀåÇÏ°í ÀÖÀ» º¤ÅÍ.
+		// ìˆ˜í–‰ìë¥¼ ì €ì¥í•˜ê³  ìˆì„ ë²¡í„°.
 		ScheduleImplVec	m_ScheduleImplVec;
 	};
 
@@ -320,13 +320,13 @@ private :
 
 	int	m_nIndex;
 
-	time_t m_tmUpdateTerm;		// ¾÷µ¥ÀÌÆ®µÇ´Â °£°İ.
-	time_t m_tmLastUpdateTime;	// ¸¶Áö¸· ¾÷µ¥ÀÌÆ®µÈ ½Ã°£.
+	time_t m_tmUpdateTerm;		// ì—…ë°ì´íŠ¸ë˜ëŠ” ê°„ê²©.
+	time_t m_tmLastUpdateTime;	// ë§ˆì§€ë§‰ ì—…ë°ì´íŠ¸ëœ ì‹œê°„.
 
 	MMatchScheduleImplPrototype	m_ScheduleImplPrototype;
 
-	vector< MMatchScheduleData* >	m_vecStaticSchedule;	// ½Ã½ºÅÛ °¡µ¿½Ã µî·ÏµÇ´Â ½ºÄÉÁì. ½Ã½ºÅÛ¼ö¸í°ú °°À½.
-	list< MMatchScheduleData* >		m_lstDynamicSchedule;	// °øÁö»çÇ×.
+	vector< MMatchScheduleData* >	m_vecStaticSchedule;	// ì‹œìŠ¤í…œ ê°€ë™ì‹œ ë“±ë¡ë˜ëŠ” ìŠ¤ì¼€ì¥´. ì‹œìŠ¤í…œìˆ˜ëª…ê³¼ ê°™ìŒ.
+	list< MMatchScheduleData* >		m_lstDynamicSchedule;	// ê³µì§€ì‚¬í•­.
 };
 
 int MMatchGetLocalTime(tm *ptm);

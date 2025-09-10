@@ -3,8 +3,8 @@
 	--------
 
 	RealSound Main Module
-	RealSound Object´Â RealSound Class LibraryÀÇ ÃÖ»óÀ§ °´Ã¼·Î¼­
-	Manager¿ªÇÒÀ» ´ã´çÇÏ°Ô µÈ´Ù.
+	RealSound ObjectëŠ” RealSound Class Libraryì˜ ìµœìƒìœ„ ê°ì²´ë¡œì„œ
+	Managerì—­í• ì„ ë‹´ë‹¹í•˜ê²Œ ëœë‹¤.
 
 	Programming by Chojoongpil
 	All copyright 1997 (c), MAIET entertainment sotware
@@ -137,7 +137,7 @@ bool RealSound::Create( HWND hWnd, LPGUID lpGUID )
 	DSBUFFERDESC dsbdesc;
 	ZeroMemory(&dsbdesc, sizeof(DSBUFFERDESC));
 	dsbdesc.dwSize = sizeof(DSBUFFERDESC);
-	// ¹Í½ÌÇÒ¶§ ¼Ò¸® ¿Ö°îÀÌ »ý°Ü¼­ DSBCAPS_LOCSOFTWARE·Î ¿ì¼± Ã³¸®
+	// ë¯¹ì‹±í• ë•Œ ì†Œë¦¬ ì™œê³¡ì´ ìƒê²¨ì„œ DSBCAPS_LOCSOFTWAREë¡œ ìš°ì„  ì²˜ë¦¬
 	dsbdesc.dwFlags = DSBCAPS_CTRL3D | DSBCAPS_CTRLVOLUME |  DSBCAPS_PRIMARYBUFFER | DSBCAPS_LOCSOFTWARE;// | DSBCAPS_CTRLFX;
 	if( FAILED( m_lpDS->CreateSoundBuffer( &dsbdesc, &pDSBPrimary, NULL ) ) )
 	{

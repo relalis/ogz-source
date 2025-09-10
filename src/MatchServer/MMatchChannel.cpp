@@ -41,7 +41,7 @@ bool MMatchChannel::Create(const MUID& uid, const char* pszName, const char* psz
 	memset(m_pStages, 0, sizeof(MMatchStage*) * MAX_CHANNEL_MAXSTAGES);
 
 
-	// Ã¤³Î·ê¿¡ ´ëÇÑ Æ¯¼ºµé Á¤ÀÇ
+	// ì±„ë„ë£°ì— ëŒ€í•œ íŠ¹ì„±ë“¤ ì •ì˜
 	if (nType == MCHANNEL_TYPE_PRESET)
 	{
 		if (!_stricmp(m_szRuleName, MCHANNEL_RULE_NOVICE_STR))		m_nRuleType = MCHANNEL_RULE_NOVICE;
@@ -51,7 +51,7 @@ bool MMatchChannel::Create(const MUID& uid, const char* pszName, const char* psz
 		else if (!_stricmp(m_szRuleName, MCHANNEL_RULE_ELITE_STR))	m_nRuleType = MCHANNEL_RULE_ELITE;
 	}
 
-	// ·êÀÌ¸§ÀÌ "newbie"ÀÌ¸é ´ººñÃ¤³Î
+	// ë£°ì´ë¦„ì´ "newbie"ì´ë©´ ë‰´ë¹„ì±„ë„
 //	if ((nType == MCHANNEL_TYPE_PRESET) && (!_stricmp(m_szRuleName, MCHANNEL_RULE_NEWBIE_STR)))
 //	{
 //		m_bNewbieChannel = true;
@@ -396,7 +396,7 @@ int MMatchChannel::GetPlayers()
 	{
 		MMatchObject* pObj = i->second;
 		
-//		if ( IsAdminGrade(pObj) && pObj->CheckPlayerFlags(MTD_PlayerFlags_AdminHide))		// Å×½ºÆ® ¿äÇÔ
+//		if ( IsAdminGrade(pObj) && pObj->CheckPlayerFlags(MTD_PlayerFlags_AdminHide))		// í…ŒìŠ¤íŠ¸ ìš”í•¨
 //			continue;
 
 		nPlayers++;

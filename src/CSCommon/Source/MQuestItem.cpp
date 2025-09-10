@@ -52,7 +52,7 @@ MQuestItemDesc* MQuestItem::GetDesc()
 		return m_pDesc; 
 	}
 	
-	// ÀÚ½ÅÀÌ DescriptionÀ» °¡Áö°í ÀÖÀ» ¾ÊÀ»°æ¿ì.
+	// ìì‹ ì´ Descriptionì„ ê°€ì§€ê³  ìˆì„ ì•Šì„ê²½ìš°.
 	return GetQuestItemDescMgr().FindQItemDesc( m_nItemID );
 }
 
@@ -253,7 +253,7 @@ void MQuestItemDescManager::ParseQuestItem( MXmlElement& element )
 	_ASSERT( find(pNewQuestItemDesc->m_nItemID) == end() );
 	insert( value_type(pNewQuestItemDesc->m_nItemID, pNewQuestItemDesc) );
 
-	// Monster bibleÅ¸ÀÔÀÇ Äù½ºÆ® ¾ÆÀÌÅÛÀº Param°ªÀ» page·Î »ç¿ëÇÔ.
+	// Monster bibleíƒ€ì…ì˜ í€˜ìŠ¤íŠ¸ ì•„ì´í…œì€ Paramê°’ì„ pageë¡œ ì‚¬ìš©í•¨.
 	if( MMQIT_MONBIBLE == pNewQuestItemDesc->m_nType )
 		m_MonsterBibleMgr.insert( map<int, MQuestItemDesc*>::value_type(pNewQuestItemDesc->m_nParam, pNewQuestItemDesc) );
 }
@@ -339,7 +339,7 @@ bool MQuestItemMap::CreateQuestItem( const u32 nItemID, const int nCount, bool b
 	MQuestItemDesc* pDesc = GetQuestItemDescMgr().FindQItemDesc( nItemID );
 	if( 0 == pDesc )
 	{
-		// ÇØ´ç ¾ÆÀÌÅÛ¸¸ Ãß°¡¸¦ ÇÏÁö ¾Ê°í Á¤»óÀûÀ¸·Î ÁøÇàÇÏ°Ô ÇÔ.
+		// í•´ë‹¹ ì•„ì´í…œë§Œ ì¶”ê°€ë¥¼ í•˜ì§€ ì•Šê³  ì •ìƒì ìœ¼ë¡œ ì§„í–‰í•˜ê²Œ í•¨.
 		ASSERT( 0 );
 		return true;
 	}
@@ -347,11 +347,11 @@ bool MQuestItemMap::CreateQuestItem( const u32 nItemID, const int nCount, bool b
 	iterator itMyQItem = find( nItemID );
 	if( end() != itMyQItem )
 	{
-		_ASSERT(0); // °°Àº ¾ÆÀÌÅÛÀ» ÀÌ¹Ì °¡Áö°í ÀÖÀ¸¹Ç·Î »ı¼º¾ÈÇÔ. ÀÌ¸®·Î ¿À¸é ¹ö±×. - bird
+		_ASSERT(0); // ê°™ì€ ì•„ì´í…œì„ ì´ë¯¸ ê°€ì§€ê³  ìˆìœ¼ë¯€ë¡œ ìƒì„±ì•ˆí•¨. ì´ë¦¬ë¡œ ì˜¤ë©´ ë²„ê·¸. - bird
 		return false;
 	}
 
-	// ÀÌÀü¿¡ Ãß°¡°¡ µÇ¾îÀÖÁö ¾ÊÀ¸¹Ç·Î »õ·Ó°Ô Ãß°¡µÊ.
+	// ì´ì „ì— ì¶”ê°€ê°€ ë˜ì–´ìˆì§€ ì•Šìœ¼ë¯€ë¡œ ìƒˆë¡­ê²Œ ì¶”ê°€ë¨.
 	MQuestItem* pNewQuestItem = new MQuestItem();
 	if( 0 == pNewQuestItem )
 		return false;

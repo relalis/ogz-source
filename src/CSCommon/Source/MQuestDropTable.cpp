@@ -9,13 +9,13 @@ void MQuestDropSet::AddItem(MQuestDropItem* pItem, int nQL, float fRate)
 {
 	if ((pItem->nDropItemType == QDIT_ZITEM) && (pItem->nRentPeriodHour == 0))
 	{
-		_ASSERT(0);	// ±â°£ ¼³Á¤ÀÌ ¾ÈµÇ¾î ÀÖ´Ù.
+		_ASSERT(0);	// ê¸°ê°„ ì„¤ì •ì´ ì•ˆë˜ì–´ ìˆë‹¤.
 		return;
 	}
 
 	if (fRate > 1.0f) 
 	{
-		_ASSERT(0);		// ºñÀ²ÀÌ Àß¸øµÇ¾î ÀÖ´Ù.
+		_ASSERT(0);		// ë¹„ìœ¨ì´ ì˜ëª»ë˜ì–´ ìˆë‹¤.
 		return;
 	}
 
@@ -68,7 +68,7 @@ MQuestDropTable::~MQuestDropTable()
 
 #define MTOK_DROPSET						"DROPSET"
 
-// ±âº»Á¤º¸
+// ê¸°ë³¸ì •ë³´
 #define MTOK_DROPSET_ITEMSET				"ITEMSET"
 #define MTOK_DROPSET_ITEM					"ITEM"
 //#define MTOK_DROPSET_ZITEM					"ZITEM"
@@ -161,7 +161,7 @@ void MQuestDropTable::ParseDropSet(MXmlElement& element)
 
 	MQuestDropSet* pDropSet = new MQuestDropSet();
 
-	// NPC ÅÂ±× ¼Ó¼º°ª --------------------
+	// NPC íƒœê·¸ ì†ì„±ê°’ --------------------
 	int nAttrCount = element.GetAttributeCount();
 	for (int i = 0; i < nAttrCount; i++)
 	{
@@ -186,7 +186,7 @@ void MQuestDropTable::ParseDropSet(MXmlElement& element)
 		if (szTagName[0] == '#') continue;
 
 		int nQL = -1;
-		// ITEMSET ÅÂ±× --------------------
+		// ITEMSET íƒœê·¸ --------------------
 		if (!_stricmp(szTagName, MTOK_DROPSET_ITEMSET))
 		{
 			int nAttrCount = chrElement.GetAttributeCount();
@@ -205,7 +205,7 @@ void MQuestDropTable::ParseDropSet(MXmlElement& element)
 						ItemElement.GetTagName(szTagName);
 						if (szTagName[0] == '#') continue;
 
-						// GAMEITEM ÅÂ±× --------------------
+						// GAMEITEM íƒœê·¸ --------------------
 						if (!_stricmp(szTagName, MTOK_DROPSET_ITEM))
 						{
 							MQuestDropItem item;
@@ -248,7 +248,7 @@ void MQuestDropTable::ParseDropSet(MXmlElement& element)
 
 void MQuestDropTable::ParseDropItemID(MQuestDropItem* pItem, const char* szAttrValue)
 {
-	// id´Â ±×³É ÇÏµåÄÚµù..-_-¤»
+	// idëŠ” ê·¸ëƒ¥ í•˜ë“œì½”ë”©..-_-ã…‹
 	if (!_stricmp(szAttrValue, "hp1"))
 	{
 		pItem->nDropItemType = QDIT_WORLDITEM;
@@ -291,12 +291,12 @@ void MQuestDropTable::ParseDropItemID(MQuestDropItem* pItem, const char* szAttrV
 	}
 	else
 	{
-		// ¸¸¾à À§¿¡²¨°¡ ¾Æ´Ï¸é ¾ÆÀÌÅÛ
+		// ë§Œì•½ ìœ„ì—êº¼ê°€ ì•„ë‹ˆë©´ ì•„ì´í…œ
 		int nID = atoi(szAttrValue);
 
 		if (IsQuestItemID(nID))
 		{
-			// Äù½ºÆ® ¾ÆÀÌÅÛ
+			// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ
 			MQuestItemDesc* pQuestItemDesc = GetQuestItemDescMgr().FindQItemDesc(nID);
 			if (pQuestItemDesc)
 			{
@@ -311,7 +311,7 @@ void MQuestDropTable::ParseDropItemID(MQuestDropItem* pItem, const char* szAttrV
 		}
 		else
 		{
-			// ÀÏ¹İ ¾ÆÀÌÅÛ
+			// ì¼ë°˜ ì•„ì´í…œ
 			MMatchItemDesc* pItemDesc = MGetMatchItemDescMgr()->GetItemDesc(nID);
 			if (pItemDesc)
 			{

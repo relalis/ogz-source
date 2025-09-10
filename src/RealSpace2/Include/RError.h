@@ -9,7 +9,7 @@ enum RERROR
 {
 	ROK = 0,
 
-	// d3d°ü·Ã
+	// d3dê´€ë ¨
 	RERROR_CANNOT_CREATE_D3D	= 1000,
 	RERROR_INVALID_DEVICE		= 1001,
 	

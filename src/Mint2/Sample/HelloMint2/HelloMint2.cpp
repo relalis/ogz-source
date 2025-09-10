@@ -72,9 +72,9 @@ RRESULT OnCreate(void *pParam)
 
 	g_pDefFont = new MFontR2;
 
-	if( !g_pDefFont->Create("Default", "±¼¸²", 9, 1.0f) )
-		//	if( !g_pDefFont->Create("Default", RGetDevice(), "µ¸¿ò", 9, 1.0f, true, false) )
-		//	if( !g_pDefFont->Create("Default", RGetDevice(), "µ¸¿ò", 14, 1.0f, true, false) )
+	if( !g_pDefFont->Create("Default", "êµ´ë¦¼", 9, 1.0f) )
+		//	if( !g_pDefFont->Create("Default", RGetDevice(), "ë‹ì›€", 9, 1.0f, true, false) )
+		//	if( !g_pDefFont->Create("Default", RGetDevice(), "ë‹ì›€", 14, 1.0f, true, false) )
 	{
 		g_pDefFont->Destroy();
 		SAFE_DELETE( g_pDefFont );

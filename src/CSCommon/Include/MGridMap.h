@@ -31,7 +31,7 @@ protected:
 		int nXPos = int((x-m_fSX)/(GetXSize()/(float)m_nXDivision));
 		int nYPos = int((y-m_fSY)/(GetYSize()/(float)m_nYDivision));
 
-		// ¿µ¿µ °Ë»ç
+		// ì˜ì˜ ê²€ì‚¬
 		_ASSERT(nXPos>=0 && nYPos>=0);
 		if(nXPos>=m_nXDivision) return NULL;
 		if(nYPos>=m_nYDivision) return NULL;

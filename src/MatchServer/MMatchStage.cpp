@@ -143,7 +143,7 @@ MMatchObjectMap::iterator MMatchStage::RemoveObject(const MUID& uid)
 
 	MMatchObject* pObj = MMatchServer::GetInstance()->GetObject(uid);
 	if (pObj) {
-		// ¾îµå¹Î À¯Àú °ü¸®
+		// ì–´ë“œë¯¼ ìœ ì € ê´€ë¦¬
 		if (IsAdminGrade(pObj->GetAccountInfo()->m_nUGrade))
 		{
 			m_nAdminObjectCount--;
@@ -506,14 +506,14 @@ bool _GetUserGradeIDName(MMatchUserGradeID gid, char* sp_name, int maxlen)
 	if(gid == MMUG_DEVELOPER) 
 	{ 
 		if(sp_name) {
-			strcpy_safe(sp_name, maxlen, "°³¹ßÀÚ");
+			strcpy_safe(sp_name, maxlen, "ê°œë°œì");
 		}
 		return true; 
 	}
 	else if(gid == MMUG_ADMIN) {
 		
 		if(sp_name) { 
-			strcpy_safe(sp_name, maxlen, "¿î¿µÀÚ");
+			strcpy_safe(sp_name, maxlen, "ìš´ì˜ì");
 		}
 		return true; 
 	}
@@ -572,7 +572,7 @@ bool MMatchStage::StartGame()
 		MCommand* pCmdNotReady = MMatchServer::GetInstance()->CreateCommand( MC_GAME_START_FAIL, MUID(0, 0) );
 		if( 0 == pCmdNotReady )
 		{
-			mlog( "MMatchStage::StartGame - Ä¿¸Çµå »ı¼º ½ÇÆĞ.\n" );
+			mlog( "MMatchStage::StartGame - ì»¤ë§¨ë“œ ìƒì„± ì‹¤íŒ¨.\n" );
 			bResult = false;
 		}
 		pCmdNotReady->AddParameter( new MCmdParamInt(ALL_PLAYER_NOT_READY) );
@@ -601,7 +601,7 @@ bool MMatchStage::StartGame()
 		MSTAGE_SETTING_NODE* pNode = GetStageSetting()->GetStageSetting();
 		if( 0 == pNode )
 		{
-			mlog( "MMatchServer::CharFinalize - ½ºÅ×ÀÌÁö ¼ÂÆÃ ³ëµå Ã£±â ½ÇÆĞ.\n" );
+			mlog( "MMatchServer::CharFinalize - ìŠ¤í…Œì´ì§€ ì…‹íŒ… ë…¸ë“œ ì°¾ê¸° ì‹¤íŒ¨.\n" );
 			return false;
 		}
 
@@ -610,7 +610,7 @@ bool MMatchStage::StartGame()
 			MMatchRuleBaseQuest* pRuleQuest = reinterpret_cast< MMatchRuleBaseQuest* >( GetRule() );
 			if( 0 == pRuleQuest )
 			{
-				mlog( "MMatchStage::StartGame - Quest rule·Î Æ÷ÀÎÅÍ Çüº¯È¯ ½ÇÆĞ.\n" );
+				mlog( "MMatchStage::StartGame - Quest ruleë¡œ í¬ì¸í„° í˜•ë³€í™˜ ì‹¤íŒ¨.\n" );
 				return false;
 			}
 
@@ -633,7 +633,7 @@ bool MMatchStage::StartGame()
 
 
 				#ifdef _DEBUG
-					mlog( "MMatchServer::OnStageStart - ½½·Ô Á¶°Ç °Ë»ç¿¡¼­ ½ÇÆĞÇÏ¿© °ÔÀÓÀ» ½ÃÀÛÇÒ¼ö ¾øÀ½.\n" );
+					mlog( "MMatchServer::OnStageStart - ìŠ¬ë¡¯ ì¡°ê±´ ê²€ì‚¬ì—ì„œ ì‹¤íŒ¨í•˜ì—¬ ê²Œì„ì„ ì‹œì‘í• ìˆ˜ ì—†ìŒ.\n" );
 				#endif
 
 				return false;

@@ -48,7 +48,7 @@ MUID MMatchRuleBerserker::RecommendBerserker()
 	int nCount = 0;
 	for(auto itor=pStage->GetObjBegin(); itor!=pStage->GetObjEnd(); itor++) {
 		MMatchObject* pObj = itor->second;
-		if (pObj->GetEnterBattle() == false) continue;	// ¹èÆ²Âü°¡ÇÏ°í ÀÖ´Â ÇÃ·¹ÀÌ¾î¸¸ Ã¼Å©
+		if (pObj->GetEnterBattle() == false) continue;	// ë°°í‹€ì°¸ê°€í•˜ê³  ìˆëŠ” í”Œë ˆì´ì–´ë§Œ ì²´í¬
 		if (pObj->CheckAlive())
 		{
 			return pObj->GetUID();
@@ -74,23 +74,23 @@ void MMatchRuleBerserker::OnLeaveBattle(MUID& uidChar)
 
 void MMatchRuleBerserker::OnGameKill(const MUID& uidAttacker, const MUID& uidVictim)
 {
-	// Èñ»ıÀÚ°¡ ¹ö¼­Ä¿ÀÌ°Å³ª ÇöÀç ¹ö¼­Ä¿°¡ ÇÑ¸íµµ ¾øÀ»¶§
+	// í¬ìƒìê°€ ë²„ì„œì»¤ì´ê±°ë‚˜ í˜„ì¬ ë²„ì„œì»¤ê°€ í•œëª…ë„ ì—†ì„ë•Œ
 	if ((m_uidBerserker == uidVictim) || (m_uidBerserker == MUID(0,0)))
 	{
 		bool bAttackerCanBeBerserker = false;
 
-		 // °ø°İÀÚ°¡ ÀÚ½ÅÀÌ ¾Æ´Ò °æ¿ì
+		 // ê³µê²©ìê°€ ìì‹ ì´ ì•„ë‹ ê²½ìš°
 		if (uidAttacker != uidVictim)
 		{
 			MMatchObject* pAttacker = MMatchServer::GetInstance()->GetObject(uidAttacker);
 
-			// °ø°İÀÚ°¡ Á×¾îÀÖÀ¸¸é ¹ö¼­Ä¿°¡ µÉ ¼ö ¾ø´Ù(·¯ºê¼¦)
+			// ê³µê²©ìê°€ ì£½ì–´ìˆìœ¼ë©´ ë²„ì„œì»¤ê°€ ë  ìˆ˜ ì—†ë‹¤(ëŸ¬ë¸Œìƒ·)
 			if ((pAttacker) && (pAttacker->CheckAlive()))
 			{
 				bAttackerCanBeBerserker = true;
 			}
 		}
-		// °ø°İÀÚ°¡ ÀÚ½ÅÀÏ °æ¿ì ¹ö¼­Ä¿´Â ¾Æ¹«µµ µÇÁö ¾Ê´Â´Ù.
+		// ê³µê²©ìê°€ ìì‹ ì¼ ê²½ìš° ë²„ì„œì»¤ëŠ” ì•„ë¬´ë„ ë˜ì§€ ì•ŠëŠ”ë‹¤.
 		else if ((uidAttacker == MUID(0,0)) || (uidAttacker == uidVictim))
 		{
 			bAttackerCanBeBerserker = false;

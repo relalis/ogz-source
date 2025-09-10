@@ -50,18 +50,18 @@ void DBQuestCachingData::Reset()
 
 bool DBQuestCachingData::DoUpdateDBCharQuestItemInfo()
 {
-	// Äù½ºÆ® ¼­¹öÀÎÁö ¸ÕÀú °Ë»ç.
+	// í€˜ìŠ¤íŠ¸ ì„œë²„ì¸ì§€ ë¨¼ì € ê²€ì‚¬.
 	if (MSM_TEST != MGetServerConfig()->GetServerMode())
 		return false;
 
-	// Á¤»óÀûÀÎ ObjectÀÎÁö °Ë»ç.
+	// ì •ìƒì ì¸ Objectì¸ì§€ ê²€ì‚¬.
 	if (!IsEnabledObject(m_pObject))
 		return false;
 
-	// ÇöÀç »óÅÂ°¡ ¾÷µ¥ÀÌÆ® °¡´ÉÇÑÁö °Ë»ç.
+	// í˜„ì¬ ìƒíƒœê°€ ì—…ë°ì´íŠ¸ ê°€ëŠ¥í•œì§€ ê²€ì‚¬.
 	if (!IsRequestUpdate())
 	{
-		// ´ÙÀ½ ¾÷µ¥ÀÌÆ®¸¦ °Ë»ç¸¦ À§ÇØ¼­ ¸¶Áö¸· ¾÷µ¥ÀÌÆ® °Ë»ç ½Ã°£À» ÀúÀåÇØ ³õÀ½.
+		// ë‹¤ìŒ ì—…ë°ì´íŠ¸ë¥¼ ê²€ì‚¬ë¥¼ ìœ„í•´ì„œ ë§ˆì§€ë§‰ ì—…ë°ì´íŠ¸ ê²€ì‚¬ ì‹œê°„ì„ ì €ì¥í•´ ë†“ìŒ.
 		m_dwLastUpdateTime = GetGlobalTimeMS();
 		return false;
 	}
@@ -69,7 +69,7 @@ bool DBQuestCachingData::DoUpdateDBCharQuestItemInfo()
 	MAsyncDBJob_UpdateQuestItemInfo* pAsyncJob = new MAsyncDBJob_UpdateQuestItemInfo;
 	if (0 == pAsyncJob)
 	{
-		mlog("DBQuestCachingData::DoUpdateDBCharQuestItemInfo - QuestItemUpdate asyncÀÛ¾÷ ½ÇÆĞ.\n");
+		mlog("DBQuestCachingData::DoUpdateDBCharQuestItemInfo - QuestItemUpdate asyncì‘ì—… ì‹¤íŒ¨.\n");
 		return false;
 	}
 	if (!pAsyncJob->Input(m_pObject->GetCharInfo()->m_nCID,
@@ -83,7 +83,7 @@ bool DBQuestCachingData::DoUpdateDBCharQuestItemInfo()
 
 #ifdef _DEBUG
 	{
-		// ¾÷µ¥ÀÌÆ® Á¤º¸°¡ Á¤»óÀûÀ¸·Î µÇ´ÂÁö ·Î±×¸¦ ³²±è.
+		// ì—…ë°ì´íŠ¸ ì •ë³´ê°€ ì •ìƒì ìœ¼ë¡œ ë˜ëŠ”ì§€ ë¡œê·¸ë¥¼ ë‚¨ê¹€.
 		char szDbgOut[1000] = { 0 };
 		MQuestItemMap::iterator it, end;
 
@@ -105,7 +105,7 @@ bool DBQuestCachingData::DoUpdateDBCharQuestItemInfo()
 	}
 #endif
 
-	// ¾÷µ¥ÀÌÆ®°¡ ¼º°øÇÏ¸é ´ÙÀ½ °Ë»ç¸¦ À§ÇØ¼­ ´Ù½Ã ¼³Á¤ÇÔ.
+	// ì—…ë°ì´íŠ¸ê°€ ì„±ê³µí•˜ë©´ ë‹¤ìŒ ê²€ì‚¬ë¥¼ ìœ„í•´ì„œ ë‹¤ì‹œ ì„¤ì •í•¨.
 	Reset();
 
 	return true;

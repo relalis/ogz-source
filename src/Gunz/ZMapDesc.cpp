@@ -138,7 +138,7 @@ ZMapSpawnData* ZMapSpawnManager::GetTeamData(int nTeamIndex, int nDataIndex)
 	int nTeamPositionsCount = GetTeamCount(nTeamIndex);
 	if (nTeamPositionsCount <= 0)
 	{
-		// ¸ÊÀÇ ÆÀ ½ºÆù Æ÷Áö¼ÇÀÌ 1°³µµ ¾ø´Ù.
+		// ë§µì˜ íŒ€ ìŠ¤í° í¬ì§€ì…˜ì´ 1ê°œë„ ì—†ë‹¤.
 		_ASSERT(0);
 		return NULL;
 	}
@@ -259,7 +259,7 @@ ZMapSpawnData* ZMapSpawnManager::GetSpawnData(ZMapSpawnType nSpawnType, int nInd
 	int nPositionsCount = GetSpawnCount(nSpawnType);
 	if (nPositionsCount <= 0)
 	{
-		// ½ºÆù Æ÷Áö¼ÇÀÌ 1°³µµ ¾ø´Ù.
+		// ìŠ¤í° í¬ì§€ì…˜ì´ 1ê°œë„ ì—†ë‹¤.
 //		_ASSERT(0);
 		return NULL;
 	}
@@ -513,7 +513,7 @@ void ZMapDesc::DrawSmokeSS(ZMapSmokeSS* pDummy)
 			rvector(0,0,500),						// dir				
 			pDummy->m_vDir*pDummy->m_fPower,		// acc
 			pDummy->m_dwColor,						// 
-			pDummy->m_nDelay,						// °»½Å ÁÖ±â¿¡ ½á¾ßÇÑ´Ù.
+			pDummy->m_nDelay,						// ê°±ì‹  ì£¼ê¸°ì— ì¨ì•¼í•œë‹¤.
 			fLife ,
 			fStartScale ,
 			fEndScale 
@@ -540,7 +540,7 @@ void ZMapDesc::DrawSmokeST(ZMapSmokeST* pDummy)
 
 	}
 
-	if( pDummy->m_fToggleMinTime < 0.01f) // ¾ÆÁÖ ÀÛÀ¸¸é °è¼Ó Ãâ·Â..
+	if( pDummy->m_fToggleMinTime < 0.01f) // ì•„ì£¼ ì‘ìœ¼ë©´ ê³„ì† ì¶œë ¥..
 		pDummy->m_bToggle = false;
 
 	if( pDummy->m_bToggle ) {
@@ -558,10 +558,10 @@ void ZMapDesc::DrawSmokeST(ZMapSmokeST* pDummy)
 		ZGetEffectManager()->AddMapSmokeSTEffect(	
 			pDummy->m_vPos + addpos ,								// target
 			pDummy->m_vSteamDir,									// dir
-			pDummy->m_vDir * pDummy->m_fPower,						// acc  ¹Ù¶÷¹æÇâ..
-			pDummy->m_vSteamDir * 200.f,//pDummy->m_fPower,			// acc2 ´õ¹Ì¹æÇâ..
+			pDummy->m_vDir * pDummy->m_fPower,						// acc  ë°”ëŒë°©í–¥..
+			pDummy->m_vSteamDir * 200.f,//pDummy->m_fPower,			// acc2 ë”ë¯¸ë°©í–¥..
 			pDummy->m_dwColor,										// 
-			pDummy->m_nDelay,										// °»½Å ÁÖ±â¿¡ ½á¾ßÇÑ´Ù.
+			pDummy->m_nDelay,										// ê°±ì‹  ì£¼ê¸°ì— ì¨ì•¼í•œë‹¤.
 			fLife ,
 			fStartScale ,
 			fEndScale 
@@ -599,7 +599,7 @@ void ZMapDesc::DrawSmokeTS(ZMapSmokeTS* pDummy)
 			rvector(0,0,500),						// dir				
 			pDummy->m_vDir*pDummy->m_fPower,		// acc
 			pDummy->m_dwColor,						// 
-			pDummy->m_nDelay,						// °»½Å ÁÖ±â¿¡ ½á¾ßÇÑ´Ù.
+			pDummy->m_nDelay,						// ê°±ì‹  ì£¼ê¸°ì— ì¨ì•¼í•œë‹¤.
 			fLife ,
 			fStartScale ,
 			fEndScale 

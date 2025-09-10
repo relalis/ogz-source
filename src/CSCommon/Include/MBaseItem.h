@@ -2,19 +2,19 @@
 #define _MBASEITEM_H
 
 
-#define MAX_ITEM_COUNT					100			// ÇÑ»ç¶÷ÀÌ ÃÖ´ë·Î °®À» ¼ö ÀÖ´Â ¾ÆÀÌÅÛ °³¼ö
-//#define RENT_PERIOD_UNLIMITED			(8760)		// ±â°£Á¦ ¾ÆÀÌÅÛ hour period°¡ 8760ÀÌ¸é ¹«Á¦ÇÑ(1³â)
-#define RENT_MINUTE_PERIOD_UNLIMITED	(525600)	// Å¬¶óÀÌ¾ðÆ®ÇÑÅ×´Â ±â°£Á¦ ¾ÆÀÌÅÛ ±â°£À» minute´ÜÀ§·Î º¸³½´Ù. 525600ÀÌ¸é ¹«Á¦ÇÑ(1³â)
+#define MAX_ITEM_COUNT					100			// í•œì‚¬ëžŒì´ ìµœëŒ€ë¡œ ê°–ì„ ìˆ˜ ìžˆëŠ” ì•„ì´í…œ ê°œìˆ˜
+//#define RENT_PERIOD_UNLIMITED			(8760)		// ê¸°ê°„ì œ ì•„ì´í…œ hour periodê°€ 8760ì´ë©´ ë¬´ì œí•œ(1ë…„)
+#define RENT_MINUTE_PERIOD_UNLIMITED	(525600)	// í´ë¼ì´ì–¸íŠ¸í•œí…ŒëŠ” ê¸°ê°„ì œ ì•„ì´í…œ ê¸°ê°„ì„ minuteë‹¨ìœ„ë¡œ ë³´ë‚¸ë‹¤. 525600ì´ë©´ ë¬´ì œí•œ(1ë…„)
 
 
-// ¾ÆÀÌÅÛ. ¼­¹ö, Å¬¶óÀÌ¾ðÆ® °øÅëÀÇ ºÎ¸ð Å¬·¡½º
+// ì•„ì´í…œ. ì„œë²„, í´ë¼ì´ì–¸íŠ¸ ê³µí†µì˜ ë¶€ëª¨ í´ëž˜ìŠ¤
 class MBaseItem
 {
 protected:
-	bool				m_bIsRentItem;						///< ±â°£Á¦ ¾ÆÀÌÅÛÀÎÁö ¿©ºÎ
-	int					m_nRentMinutePeriodRemainder;		///< ±â°£Á¦ ³²Àº±â°£(ºÐ´ÜÀ§)
-	bool				m_bIsSpendingItem;					///< ¼Òºñ¾ÆÀÌÅÛÀÎÁö ¿©ºÎ
-	int					m_nCount;							///< ¼ö·®
+	bool				m_bIsRentItem;						///< ê¸°ê°„ì œ ì•„ì´í…œì¸ì§€ ì—¬ë¶€
+	int					m_nRentMinutePeriodRemainder;		///< ê¸°ê°„ì œ ë‚¨ì€ê¸°ê°„(ë¶„ë‹¨ìœ„)
+	bool				m_bIsSpendingItem;					///< ì†Œë¹„ì•„ì´í…œì¸ì§€ ì—¬ë¶€
+	int					m_nCount;							///< ìˆ˜ëŸ‰
 public:
 	MBaseItem(): m_bIsRentItem(false), m_nRentMinutePeriodRemainder(RENT_MINUTE_PERIOD_UNLIMITED), m_bIsSpendingItem(false),
 					m_nCount(0) { }

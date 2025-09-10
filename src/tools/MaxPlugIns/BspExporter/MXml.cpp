@@ -584,7 +584,7 @@ MXmlDocument::~MXmlDocument(void)
 
 bool MXmlDocument::Create(void)
 {
-	// CoInitialize()¸¦ ¸ÕÀú ¼öÇàÇÏ±â À§ÇØ µ¿ÀûÀ¸·Î ÇÒ´çÇÔ.
+	// CoInitialize()ë¥¼ ë¨¼ì € ìˆ˜í–‰í•˜ê¸° ìœ„í•´ ë™ì ìœ¼ë¡œ í• ë‹¹í•¨.
 	m_ppDom = new MXmlDomDocPtr;
 
 

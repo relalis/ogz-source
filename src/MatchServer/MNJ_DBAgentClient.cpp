@@ -40,7 +40,7 @@ bool MNJ_DBAgentClient::OnSockDisconnect(SOCKET sock)
 
 void MNJ_DBAgentClient::Send(const MUID& uidComm, const char* szCN, const char* szPW, bool bFreeLoginIP, u32 nChecksumPack, int nTotalUserCount)
 {
-	// Ç®¿¡ ³Ö¾î³õ´Â´Ù.
+	// í’€ì— ë„£ì–´ë†“ëŠ”ë‹¤.
 	LockPool();  //-------------------------------------------------------|
 	m_Pool.Insert(szCN, uidComm, nChecksumPack, bFreeLoginIP);
 	UnlockPool(); //------------------------------------------------------|

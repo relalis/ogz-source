@@ -28,7 +28,7 @@ struct rcapsule {
 	float radius;
 };
 
-// RSphereµµ ÀÖÁö¸¸ º¹ÀâÇØ¼­ °£´ÜÇÏ°í ¹ü¿ëÀûÀ¸·Î ¾µ ¼ö ÀÖ´Â°É·Î »õ·Î ¸¸µê. =_=
+// RSphereë„ ìˆì§€ë§Œ ë³µì¡í•´ì„œ ê°„ë‹¨í•˜ê³  ë²”ìš©ì ìœ¼ë¡œ ì“¸ ìˆ˜ ìˆëŠ”ê±¸ë¡œ ìƒˆë¡œ ë§Œë“¦. =_=
 struct rsphere {
 	rsphere() {}
 	rsphere(const rvector& pos, float r) {

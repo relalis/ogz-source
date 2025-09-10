@@ -51,12 +51,12 @@ bool TBCylinder::setBCylinder( RealSpace2::RMeshNode * pMeshNode_, DWORD flag_ )
 
 void TBCylinder::update( rvector* point_list_ )
 {
-	// ¸ÕÀú vertexµéÀÇ x,y,zÀÇ °¡Àå Å« °ª°ú °¡Àå ÀÛÀº °ªÀ» ±¸ÇÑ´Ù
-	// xÀÇ °¡Àå Å«°ª°ú °¡Àå ÀÛÀº°ªÀÇ Áß°£°ªÀÌ base_centerÀÇ xÁÂÇ¥
-	// ¸¶Âù°¡Áö·Î zÀÇ °ªÀ» ±¸ÇÑ´Ù
-	// yÀÇ °ªÀº r°¡Àå ÀÛÀº °ªÀÌ´Ù
-	// highet´Â °¡Àå Å« °ª¿¡¼­ °¡Àå ÀÛÀº °ªÀ» »«°Í
-	// radius´Â ¾ËÁö? ¾²±â Èûµé´Ù..¤¾¤¾
+	// ë¨¼ì € vertexë“¤ì˜ x,y,zì˜ ê°€ì¥ í° ê°’ê³¼ ê°€ì¥ ì‘ì€ ê°’ì„ êµ¬í•œë‹¤
+	// xì˜ ê°€ì¥ í°ê°’ê³¼ ê°€ì¥ ì‘ì€ê°’ì˜ ì¤‘ê°„ê°’ì´ base_centerì˜ xì¢Œí‘œ
+	// ë§ˆì°¬ê°€ì§€ë¡œ zì˜ ê°’ì„ êµ¬í•œë‹¤
+	// yì˜ ê°’ì€ rê°€ì¥ ì‘ì€ ê°’ì´ë‹¤
+	// highetëŠ” ê°€ì¥ í° ê°’ì—ì„œ ê°€ì¥ ì‘ì€ ê°’ì„ ëº€ê²ƒ
+	// radiusëŠ” ì•Œì§€? ì“°ê¸° í˜ë“¤ë‹¤..ã…ã…
     
 	float min_x = 100000;
 	float min_y = 100000;
@@ -164,10 +164,10 @@ bool getDistanceBetLineSegmentAndPoint( rvector& lineStart_, rvector& lineEnd_, 
 
 bool TBCylinder::isCollide( rvector& v_, rvector& n_, rvector& pos_ )
 {
-	// TODO : axis alligned cylinder¿¡¸¸ ÇØ´çµÇ´Â ÄÚµå ½ÃÀÛ
+	// TODO : axis alligned cylinderì—ë§Œ í•´ë‹¹ë˜ëŠ” ì½”ë“œ ì‹œì‘
 	rvector top_centre = base_centre;
 	top_centre.y += height;
-	// TODO : axis alligned cylinder¿¡¸¸ ÇØ´çµÇ´Â ÄÚµå ³¡ 
+	// TODO : axis alligned cylinderì—ë§Œ í•´ë‹¹ë˜ëŠ” ì½”ë“œ ë 
 
 	rvector intersection;
 	rvector direction;

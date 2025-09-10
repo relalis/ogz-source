@@ -8,7 +8,7 @@ ZCharacterItem::ZCharacterItem()
 	memset(&m_Items, 0, sizeof(m_Items));
 	m_nSelectedWeapon = MMCIP_END;
 
-	// ¿ì¼± ÀÓÀÇ·Î ¾ÆÀÌÅÛ Áö±Ş
+	// ìš°ì„  ì„ì˜ë¡œ ì•„ì´í…œ ì§€ê¸‰
 
 #ifndef _PUBLISH
 	EquipItem(MMCIP_MELEE,		2);				// knife

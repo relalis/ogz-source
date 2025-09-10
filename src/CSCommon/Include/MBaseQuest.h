@@ -1,7 +1,7 @@
 #ifndef _MBASEQUEST_H
 #define _MBASEQUEST_H
 
-// ÀÌ°÷¿¡´Â Äù½ºÆ®°ü·Ã Å¬¶óÀÌ¾ðÆ®¿Í ¼­¹ö°¡ °øÅëÀ¸·Î »ç¿ëÇÏ´Â °ÍÀ» ³Öµµ·Ï ÇÑ´Ù.
+// ì´ê³³ì—ëŠ” í€˜ìŠ¤íŠ¸ê´€ë ¨ í´ë¼ì´ì–¸íŠ¸ì™€ ì„œë²„ê°€ ê³µí†µìœ¼ë¡œ ì‚¬ìš©í•˜ëŠ” ê²ƒì„ ë„£ë„ë¡ í•œë‹¤.
 //////////////////////////////////////////////////////////////////////////////
 
 #include "MQuestNPC.h"
@@ -15,42 +15,42 @@ using namespace std;
 
 struct MQuestNPCInfo;
 
-/// Äù½ºÆ® ¿ùµå·¹º§¿¡¼­ »ç¿ëÇÏ´Â ¼½ÅÍ ³ëµå
+/// í€˜ìŠ¤íŠ¸ ì›”ë“œë ˆë²¨ì—ì„œ ì‚¬ìš©í•˜ëŠ” ì„¹í„° ë…¸ë“œ
 struct MQuestLevelSectorNode
 {
 	int		nSectorID;
 	int		nNextLinkIndex;
 
-	// ¿©±â¿¡ Ãß°¡Á¤º¸ µé¾î°¥µí
+	// ì—¬ê¸°ì— ì¶”ê°€ì •ë³´ ë“¤ì–´ê°ˆë“¯
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-/// ¼­¹ö¿Í Å¬¶óÀÌ¾ðÆ® Äù½ºÆ® ÃÖ°í °üÀåÅ¬·¡½ºÀÇ °øÅë ºÎ¸ð Å¬·¡½º
+/// ì„œë²„ì™€ í´ë¼ì´ì–¸íŠ¸ í€˜ìŠ¤íŠ¸ ìµœê³  ê´€ìž¥í´ëž˜ìŠ¤ì˜ ê³µí†µ ë¶€ëª¨ í´ëž˜ìŠ¤
 class MBaseQuest
 {
 private:
 	bool m_bCreated;
 protected:
 	
-	MQuestMapCatalogue			m_MapCatalogue;								///< ¸Ê Á¤º¸
-	MQuestNPCCatalogue			m_NPCCatalogue;								///< NPC Á¤º¸
-	MSurvivalMapCatalogue		m_SurvivalMapCatalogue;						///< ¼­¹ÙÀÌ¹ú ¸ðµå¿ë ¸Ê Á¤º¸
-	MQuestDropTable				m_DropTable;								///< µå·Ó Å×ÀÌºí Á¤º¸
-	virtual bool OnCreate();												///< Create()È£Ãâ½Ã ºÒ¸®´Â ÇÔ¼ö
-	virtual void OnDestroy();												///< Destroy()È£Ãâ½Ã ºÒ¸®´Â ÇÔ¼ö
+	MQuestMapCatalogue			m_MapCatalogue;								///< ë§µ ì •ë³´
+	MQuestNPCCatalogue			m_NPCCatalogue;								///< NPC ì •ë³´
+	MSurvivalMapCatalogue		m_SurvivalMapCatalogue;						///< ì„œë°”ì´ë²Œ ëª¨ë“œìš© ë§µ ì •ë³´
+	MQuestDropTable				m_DropTable;								///< ë“œë¡­ í…Œì´ë¸” ì •ë³´
+	virtual bool OnCreate();												///< Create()í˜¸ì¶œì‹œ ë¶ˆë¦¬ëŠ” í•¨ìˆ˜
+	virtual void OnDestroy();												///< Destroy()í˜¸ì¶œì‹œ ë¶ˆë¦¬ëŠ” í•¨ìˆ˜
 
-	void ProcessNPCDropTableMatching();		// npc.xmlÀÇ DroptableÀ» ¸ÅÄª½ÃÅ²´Ù.
+	void ProcessNPCDropTableMatching();		// npc.xmlì˜ Droptableì„ ë§¤ì¹­ì‹œí‚¨ë‹¤.
 public:
-	MBaseQuest();															///< »ý¼ºÀÚ
-	virtual ~MBaseQuest();													///< ¼Ò¸êÀÚ
-	inline MQuestMapSectorInfo*		GetSectorInfo(int nSectorID);			///< ¼½ÅÍ Á¤º¸ ¹ÝÈ¯
-	inline MQuestNPCInfo*			GetNPCInfo(MQUEST_NPC nNPC);			///< NPC Á¤º¸ ¹ÝÈ¯
-	inline MQuestNPCInfo*			GetNPCPageInfo( int nPage);				///< NPC Á¤º¸ ¹ÝÈ¯
-	inline MSurvivalMapInfo*		GetSurvivalMapInfo(MSURVIVAL_MAP nMap);	///< ¼­¹ÙÀÌ¹ú ¸ðµå¿ë ¸Ê Á¤º¸ ¹ÝÈ¯
-	inline MQuestDropTable*			GetDropTable();							///< Äù½ºÆ® ¾ÆÀÌÅÛ µå·Ó Å×ÀÌºí Á¤º¸ ¹ÝÈ¯
-	bool Create();															///< ÃÊ±âÈ­
+	MBaseQuest();															///< ìƒì„±ìž
+	virtual ~MBaseQuest();													///< ì†Œë©¸ìž
+	inline MQuestMapSectorInfo*		GetSectorInfo(int nSectorID);			///< ì„¹í„° ì •ë³´ ë°˜í™˜
+	inline MQuestNPCInfo*			GetNPCInfo(MQUEST_NPC nNPC);			///< NPC ì •ë³´ ë°˜í™˜
+	inline MQuestNPCInfo*			GetNPCPageInfo( int nPage);				///< NPC ì •ë³´ ë°˜í™˜
+	inline MSurvivalMapInfo*		GetSurvivalMapInfo(MSURVIVAL_MAP nMap);	///< ì„œë°”ì´ë²Œ ëª¨ë“œìš© ë§µ ì •ë³´ ë°˜í™˜
+	inline MQuestDropTable*			GetDropTable();							///< í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ë“œë¡­ í…Œì´ë¸” ì •ë³´ ë°˜í™˜
+	bool Create();															///< ì´ˆê¸°í™”
 	int GetNumOfPage( void)			{ return (int)m_NPCCatalogue.size(); }
-	void Destroy();															///< ÇØÁ¦
+	void Destroy();															///< í•´ì œ
 
 	MQuestNPCInfo* GetNPCIndexInfo( int nMonsterBibleIndex )
 	{

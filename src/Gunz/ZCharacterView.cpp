@@ -258,7 +258,7 @@ void ZCharacterView::ChangeVisualWeaponParts(MMatchCharItemParts nVisualWeaponPa
 
 	ZChangeCharWeaponMesh(m_pTVisualMesh.GetVMesh(), nWeaponID);
 
-	//µé°í ÀÖ´Â ¹«±â¿¡ µû¶ó¼­ ¿¬°á..
+	//ë“¤ê³  ìžˆëŠ” ë¬´ê¸°ì— ë”°ë¼ì„œ ì—°ê²°..
 
 	m_pTVisualMesh.GetVMesh()->SetAnimation("login_idle");
 	m_pTVisualMesh.GetVMesh()->SetCheckViewFrustum(false);

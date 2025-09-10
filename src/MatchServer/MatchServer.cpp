@@ -1,4 +1,4 @@
-// MatchServer.cpp : ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ Å¬·¡½º µ¿ÀÛÀ» Á¤ÀÇÇÕ´Ï´Ù.
+// MatchServer.cpp : ì‘ìš© í”„ë¡œê·¸ëž¨ì— ëŒ€í•œ í´ëž˜ìŠ¤ ë™ìž‘ì„ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -26,7 +26,7 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 
-// ÀÌ°ÍÀº Å×½ºÆ®¿ë..bird
+// ì´ê²ƒì€ í…ŒìŠ¤íŠ¸ìš©..bird
 #define _FETCH_112
 
 #endif
@@ -39,7 +39,7 @@
 
 #define APPLICATION_NAME	"MatchServer"
 
-// À¯ÀÏÇÑ CMatchServerApp °³Ã¼ÀÔ´Ï´Ù.
+// ìœ ì¼í•œ CMatchServerApp ê°œì²´ìž…ë‹ˆë‹¤.
 CMatchServerApp			theApp;
 MSingleRunController	g_SingleRunController("MatchServer"); 
 
@@ -48,10 +48,10 @@ MSingleRunController	g_SingleRunController("MatchServer");
 
 BEGIN_MESSAGE_MAP(CMatchServerApp, CWinApp)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
-	// Ç¥ÁØ ÆÄÀÏÀ» ±âÃÊ·Î ÇÏ´Â ¹®¼­ ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ íŒŒì¼ì„ ê¸°ì´ˆë¡œ í•˜ëŠ” ë¬¸ì„œ ëª…ë ¹ìž…ë‹ˆë‹¤.
 	ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
 	ON_COMMAND(ID_FILE_OPEN, CWinApp::OnFileOpen)
-	// Ç¥ÁØ ÀÎ¼â ¼³Á¤ ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ ì¸ì‡„ ì„¤ì • ëª…ë ¹ìž…ë‹ˆë‹¤.
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 	ON_COMMAND(ID_ViewServerStatus, OnViewServerStatus)
 	ON_COMMAND(ID_MESSAGE_EXIT, OnMessageExit)
@@ -71,11 +71,11 @@ END_MESSAGE_MAP()
 
 
 
-// CMatchServerApp »ý¼º
+// CMatchServerApp ìƒì„±
 CMatchServerApp::CMatchServerApp()
 {
-	// TODO: ¿©±â¿¡ »ý¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// InitInstance¿¡ ¸ðµç Áß¿äÇÑ ÃÊ±âÈ­ ÀÛ¾÷À» ¹èÄ¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// InitInstanceì— ëª¨ë“  ì¤‘ìš”í•œ ì´ˆê¸°í™” ìž‘ì—…ì„ ë°°ì¹˜í•©ë‹ˆë‹¤.
 }
 
 CMatchServerApp::~CMatchServerApp()
@@ -90,7 +90,7 @@ CMatchServerApp::~CMatchServerApp()
 	}
 }
 
-// CMatchServerApp ÃÊ±âÈ­
+// CMatchServerApp ì´ˆê¸°í™”
 BOOL CMatchServerApp::InitInstance()
 {
 #ifdef _MTRACEMEMORY
@@ -100,7 +100,7 @@ BOOL CMatchServerApp::InitInstance()
 
 	m_bOutputLog = 0;
 
-	// Current Directory¸¦ ¸ÂÃá´Ù.
+	// Current Directoryë¥¼ ë§žì¶˜ë‹¤.
 	char szModuleFileName[_MAX_DIR] = {0,};
 	GetModuleFileName(NULL, szModuleFileName, _MAX_DIR);
 	PathRemoveFileSpec(szModuleFileName);
@@ -125,34 +125,34 @@ BOOL CMatchServerApp::InitInstance()
 		return FALSE;
 	}
 
-	// ÀÀ¿ë ÇÁ·Î±×·¥ ¸Å´ÏÆä½ºÆ®°¡ ComCtl32.dll ¹öÀü 6 ÀÌ»óÀ» »ç¿ëÇÏ¿© ºñÁÖ¾ó ½ºÅ¸ÀÏÀ»
-	// »ç¿ëÇÏµµ·Ï ÁöÁ¤ÇÏ´Â °æ¿ì, Windows XP »ó¿¡¼­ ¹Ýµå½Ã InitCommonControls()°¡ ÇÊ¿äÇÕ´Ï´Ù. 
-	// InitCommonControls()¸¦ »ç¿ëÇÏÁö ¾ÊÀ¸¸é Ã¢À» ¸¸µé ¼ö ¾ø½À´Ï´Ù.
+	// ì‘ìš© í”„ë¡œê·¸ëž¨ ë§¤ë‹ˆíŽ˜ìŠ¤íŠ¸ê°€ ComCtl32.dll ë²„ì „ 6 ì´ìƒì„ ì‚¬ìš©í•˜ì—¬ ë¹„ì£¼ì–¼ ìŠ¤íƒ€ì¼ì„
+	// ì‚¬ìš©í•˜ë„ë¡ ì§€ì •í•˜ëŠ” ê²½ìš°, Windows XP ìƒì—ì„œ ë°˜ë“œì‹œ InitCommonControls()ê°€ í•„ìš”í•©ë‹ˆë‹¤. 
+	// InitCommonControls()ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë©´ ì°½ì„ ë§Œë“¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 	InitCommonControls();
 
 	CWinApp::InitInstance();
 
-	// OLE ¶óÀÌºê·¯¸®¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.
+	// OLE ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
 	if (!AfxOleInit())
 	{
 		AfxMessageBox(IDP_OLE_INIT_FAILED);
 		return FALSE;
 	}
 	AfxEnableControlContainer();
-	// Ç¥ÁØ ÃÊ±âÈ­
-	// ÀÌµé ±â´ÉÀ» »ç¿ëÇÏÁö ¾Ê°í ÃÖÁ¾ ½ÇÇà ÆÄÀÏÀÇ Å©±â¸¦ ÁÙÀÌ·Á¸é
-	// ¾Æ·¡¿¡¼­ ÇÊ¿ä ¾ø´Â Æ¯Á¤ ÃÊ±âÈ­ ·çÆ¾À» Á¦°ÅÇØ¾ß ÇÕ´Ï´Ù.
-	// ÇØ´ç ¼³Á¤ÀÌ ÀúÀåµÈ ·¹Áö½ºÆ®¸® Å°¸¦ º¯°æÇÏ½Ê½Ã¿À.
-	// TODO: ÀÌ ¹®ÀÚ¿­À» È¸»ç ¶Ç´Â Á¶Á÷ÀÇ ÀÌ¸§°ú °°Àº
-	// ÀûÀýÇÑ ³»¿ëÀ¸·Î ¼öÁ¤ÇØ¾ß ÇÕ´Ï´Ù.
-	SetRegistryKey(_T("·ÎÄÃ ÀÀ¿ë ÇÁ·Î±×·¥ ¸¶¹ý»ç¿¡¼­ »ý¼ºµÈ ÀÀ¿ë ÇÁ·Î±×·¥"));
-	LoadStdProfileSettings(4);  // MRU¸¦ Æ÷ÇÔÇÏ¿© Ç¥ÁØ INI ÆÄÀÏ ¿É¼ÇÀ» ·ÎµåÇÕ´Ï´Ù.
-	// ÀÀ¿ë ÇÁ·Î±×·¥ÀÇ ¹®¼­ ÅÛÇÃ¸´À» µî·ÏÇÕ´Ï´Ù. ¹®¼­ ÅÛÇÃ¸´Àº
-	// ¹®¼­, ÇÁ·¹ÀÓ Ã¢ ¹× ºä »çÀÌÀÇ ¿¬°á ¿ªÇÒÀ» ÇÕ´Ï´Ù.
+	// í‘œì¤€ ì´ˆê¸°í™”
+	// ì´ë“¤ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì§€ ì•Šê³  ìµœì¢… ì‹¤í–‰ íŒŒì¼ì˜ í¬ê¸°ë¥¼ ì¤„ì´ë ¤ë©´
+	// ì•„ëž˜ì—ì„œ í•„ìš” ì—†ëŠ” íŠ¹ì • ì´ˆê¸°í™” ë£¨í‹´ì„ ì œê±°í•´ì•¼ í•©ë‹ˆë‹¤.
+	// í•´ë‹¹ ì„¤ì •ì´ ì €ìž¥ëœ ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤ë¥¼ ë³€ê²½í•˜ì‹­ì‹œì˜¤.
+	// TODO: ì´ ë¬¸ìžì—´ì„ íšŒì‚¬ ë˜ëŠ” ì¡°ì§ì˜ ì´ë¦„ê³¼ ê°™ì€
+	// ì ì ˆí•œ ë‚´ìš©ìœ¼ë¡œ ìˆ˜ì •í•´ì•¼ í•©ë‹ˆë‹¤.
+	SetRegistryKey(_T("ë¡œì»¬ ì‘ìš© í”„ë¡œê·¸ëž¨ ë§ˆë²•ì‚¬ì—ì„œ ìƒì„±ëœ ì‘ìš© í”„ë¡œê·¸ëž¨"));
+	LoadStdProfileSettings(4);  // MRUë¥¼ í¬í•¨í•˜ì—¬ í‘œì¤€ INI íŒŒì¼ ì˜µì…˜ì„ ë¡œë“œí•©ë‹ˆë‹¤.
+	// ì‘ìš© í”„ë¡œê·¸ëž¨ì˜ ë¬¸ì„œ í…œí”Œë¦¿ì„ ë“±ë¡í•©ë‹ˆë‹¤. ë¬¸ì„œ í…œí”Œë¦¿ì€
+	// ë¬¸ì„œ, í”„ë ˆìž„ ì°½ ë° ë·° ì‚¬ì´ì˜ ì—°ê²° ì—­í• ì„ í•©ë‹ˆë‹¤.
 	CMultiDocTemplate* pDocTemplate;
 	pDocTemplate = new CMultiDocTemplate(IDR_MatchServerTYPE,
 		RUNTIME_CLASS(CMatchServerDoc),
-		RUNTIME_CLASS(CChildFrame), // »ç¿ëÀÚ ÁöÁ¤ MDI ÀÚ½Ä ÇÁ·¹ÀÓÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CChildFrame), // ì‚¬ìš©ìž ì§€ì • MDI ìžì‹ í”„ë ˆìž„ìž…ë‹ˆë‹¤.
 		RUNTIME_CLASS(COutputView));
 	AddDocTemplate(pDocTemplate);
 
@@ -166,20 +166,20 @@ BOOL CMatchServerApp::InitInstance()
 		RUNTIME_CLASS(CCommandLogView));
 
 
-	// ÁÖ MDI ÇÁ·¹ÀÓ Ã¢À» ¸¸µì´Ï´Ù.
+	// ì£¼ MDI í”„ë ˆìž„ ì°½ì„ ë§Œë“­ë‹ˆë‹¤.
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
 		return FALSE;
 	m_pMainWnd = pMainFrame;
-	// Á¢¹Ì»ç°¡ ÀÖÀ» °æ¿ì¿¡¸¸ DragAcceptFiles¸¦ È£ÃâÇÕ´Ï´Ù.
-	// MDI ÀÀ¿ë ÇÁ·Î±×·¥¿¡¼­´Â m_pMainWnd¸¦ ¼³Á¤ÇÑ ÈÄ ¹Ù·Î ÀÌ·¯ÇÑ È£ÃâÀÌ ¹ß»ýÇØ¾ß ÇÕ´Ï´Ù.
-	// Ç¥ÁØ ¼Ð ¸í·É, DDE, ÆÄÀÏ ¿­±â¿¡ ´ëÇÑ ¸í·ÉÁÙÀ» ±¸¹® ºÐ¼®ÇÕ´Ï´Ù.
+	// ì ‘ë¯¸ì‚¬ê°€ ìžˆì„ ê²½ìš°ì—ë§Œ DragAcceptFilesë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
+	// MDI ì‘ìš© í”„ë¡œê·¸ëž¨ì—ì„œëŠ” m_pMainWndë¥¼ ì„¤ì •í•œ í›„ ë°”ë¡œ ì´ëŸ¬í•œ í˜¸ì¶œì´ ë°œìƒí•´ì•¼ í•©ë‹ˆë‹¤.
+	// í‘œì¤€ ì…¸ ëª…ë ¹, DDE, íŒŒì¼ ì—´ê¸°ì— ëŒ€í•œ ëª…ë ¹ì¤„ì„ êµ¬ë¬¸ ë¶„ì„í•©ë‹ˆë‹¤.
 	CCommandLineInfo cmdInfo;
 	ParseCommandLine(cmdInfo);
-	// ¸í·ÉÁÙ¿¡ ÁöÁ¤µÈ ¸í·ÉÀ» µð½ºÆÐÄ¡ÇÕ´Ï´Ù. ÀÀ¿ë ÇÁ·Î±×·¥ÀÌ /RegServer, /Register, /Unregserver ¶Ç´Â /Unregister·Î ½ÃÀÛµÈ °æ¿ì FALSE¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
+	// ëª…ë ¹ì¤„ì— ì§€ì •ëœ ëª…ë ¹ì„ ë””ìŠ¤íŒ¨ì¹˜í•©ë‹ˆë‹¤. ì‘ìš© í”„ë¡œê·¸ëž¨ì´ /RegServer, /Register, /Unregserver ë˜ëŠ” /Unregisterë¡œ ì‹œìž‘ëœ ê²½ìš° FALSEë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
-	// ÁÖ Ã¢ÀÌ ÃÊ±âÈ­µÇ¾úÀ¸¹Ç·Î ÀÌ¸¦ Ç¥½ÃÇÏ°í ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
+	// ì£¼ ì°½ì´ ì´ˆê¸°í™”ë˜ì—ˆìœ¼ë¯€ë¡œ ì´ë¥¼ í‘œì‹œí•˜ê³  ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤.
 	pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->UpdateWindow();
 
@@ -187,7 +187,7 @@ BOOL CMatchServerApp::InitInstance()
 	pMainFrame->m_wndConsoleBar.ShowWindow(SW_HIDE);
 
 
-	// µð¹ö±× ¸ðµåÀÏ¶§´Â ¶ß´Â Ã¢ÀÌ ±ÍÂúÀ¸¹Ç·Î ¾Èº¸ÀÌ°Ô ÇÑ´Ù.
+	// ë””ë²„ê·¸ ëª¨ë“œì¼ë•ŒëŠ” ëœ¨ëŠ” ì°½ì´ ê·€ì°®ìœ¼ë¯€ë¡œ ì•ˆë³´ì´ê²Œ í•œë‹¤.
 #ifdef _DEBUG
 	m_pMainWnd->ShowWindow(SW_HIDE);
 #endif
@@ -195,7 +195,7 @@ BOOL CMatchServerApp::InitInstance()
 	return TRUE;
 }
 
-// CMatchServerApp ¸Þ½ÃÁö Ã³¸®±â
+// CMatchServerApp ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 int CMatchServerApp::ExitInstance()
 {
 #ifdef _FETCH_112
@@ -219,8 +219,8 @@ void CMatchServerApp::HeartBeat()
 #ifdef _FETCH_112
 	u32 nNowTime=timeGetTime();
 	static u32 nLastTime = 0;
-	//if ((nNowTime - nLastTime) >= (1000 * 60 * 5))		// 5ºÐ¸¶´Ù ÇÑ¹ø¾¿ fetch
-	if ((nNowTime - nLastTime) >= (1000 * 60  * 1))		// 5ºÐ¸¶´Ù ÇÑ¹ø¾¿ fetch
+	//if ((nNowTime - nLastTime) >= (1000 * 60 * 5))		// 5ë¶„ë§ˆë‹¤ í•œë²ˆì”© fetch
+	if ((nNowTime - nLastTime) >= (1000 * 60  * 1))		// 5ë¶„ë§ˆë‹¤ í•œë²ˆì”© fetch
 	{
 		g_Http.Query("http://192.168.0.31:8080/112.html?mode=fetch");
 		nLastTime = nNowTime;
@@ -262,7 +262,7 @@ void CMatchServerApp::OnViewServerStatus()
 {
 	// TODO: Add your command handler code here
 	MMatchServer* pServer = MMatchServer::GetInstance();
-	if (pServer) pServer->Log(MCommandCommunicator::LOG_ALL, "¼­¹ö»óÅÂº¸±â");
+	if (pServer) pServer->Log(MCommandCommunicator::LOG_ALL, "ì„œë²„ìƒíƒœë³´ê¸°");
 
 	POSITION p = GetFirstDocTemplatePosition(); 
 	CDocTemplate* pTemplate = GetNextDocTemplate(p); 
@@ -308,19 +308,19 @@ BOOL CMatchServerApp::PreTranslateMessage(MSG* pMsg)
 }
 
 
-// ÀÀ¿ë ÇÁ·Î±×·¥ Á¤º¸¿¡ »ç¿ëµÇ´Â CAboutDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// ì‘ìš© í”„ë¡œê·¸ëž¨ ì •ë³´ì— ì‚¬ìš©ë˜ëŠ” CAboutDlg ëŒ€í™” ìƒìžìž…ë‹ˆë‹¤.
 class CAboutDlg : public CDialog
 {
 public:
 	CAboutDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍ
+// ëŒ€í™” ìƒìž ë°ì´í„°
 	enum { IDD = IDD_ABOUTBOX };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿ø
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›
 
-// ±¸Çö
+// êµ¬í˜„
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -337,7 +337,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 END_MESSAGE_MAP()
 
-// ´ëÈ­ »óÀÚ¸¦ ½ÇÇàÇÏ±â À§ÇÑ ÀÀ¿ë ÇÁ·Î±×·¥ ¸í·ÉÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒìžë¥¼ ì‹¤í–‰í•˜ê¸° ìœ„í•œ ì‘ìš© í”„ë¡œê·¸ëž¨ ëª…ë ¹ìž…ë‹ˆë‹¤.
 void CMatchServerApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
@@ -345,23 +345,23 @@ void CMatchServerApp::OnAppAbout()
 }
 void CMatchServerApp::OnMessageExit()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	MMatchServer* pServer = MMatchServer::GetInstance();
 	if(pServer)	{
 		pServer->OnAdminServerHalt();
-		pServer->Log(MCommandCommunicator::LOG_ALL, "¼­¹öÁ¾·á Ä«¿îÆ®´Ù¿î");
+		pServer->Log(MCommandCommunicator::LOG_ALL, "ì„œë²„ì¢…ë£Œ ì¹´ìš´íŠ¸ë‹¤ìš´");
 	}
 }
 
 void CMatchServerApp::OnShowCmdLog()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_bOutputLog = !m_bOutputLog;
 }
 
 void CMatchServerApp::OnUpdateShowCmdLog(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	pCmdUI->SetCheck(m_bOutputLog);
 }
 

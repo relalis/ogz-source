@@ -236,7 +236,7 @@ bool UpdateProgress(float fProgress)
 }
 
 
-//// thread Æã¼Ç¶«½Ã..
+//// thread íŽ‘ì…˜ë•œì‹œ..
 char lightmapfilename[256];
 int nMaxSize;
 int nMinSize;

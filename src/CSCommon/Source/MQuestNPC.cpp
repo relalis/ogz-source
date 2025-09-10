@@ -99,7 +99,7 @@ MQuestNPCInfo* MQuestNPCCatalogue::GetIndexInfo( int nIndex )
 #define MTOK_NPC						"NPC"
 #define MTOK_NPC_AI_VALUE				"AI_VALUE"
 
-// ±âº»Á¤º¸
+// ê¸°ë³¸ì •ë³´
 #define	MTOK_NPC_AI_SHAKING							"SHAKING"
 #define	MTOK_NPC_AI_SHAKING_ATTR_PATHFINDING_UPDATE	"pathfinding_update"
 #define	MTOK_NPC_AI_SHAKING_ATTR_ATTACK_UPDATE		"attack_update"
@@ -245,7 +245,7 @@ void MQuestNPCCatalogue::ParseNPC(MXmlElement& element)
 	MQuestNPCInfo* pNPCInfo = new MQuestNPCInfo();
 	pNPCInfo->SetDefault();
 
-	// NPC ÅÂ±× ¼Ó¼º°ª --------------------
+	// NPC íƒœê·¸ ì†ì„±ê°’ --------------------
 	int nAttrCount = element.GetAttributeCount();
 	for (int i = 0; i < nAttrCount; i++)
 	{
@@ -318,7 +318,7 @@ void MQuestNPCCatalogue::ParseNPC(MXmlElement& element)
 		chrElement.GetTagName(szTagName);
 		if (szTagName[0] == '#') continue;
 
-		// COLLISION ÅÂ±× --------------------
+		// COLLISION íƒœê·¸ --------------------
 		if (!_stricmp(szTagName, MTOK_NPC_TAG_COLLISION))
 		{
 			int nAttrCount = chrElement.GetAttributeCount();
@@ -343,7 +343,7 @@ void MQuestNPCCatalogue::ParseNPC(MXmlElement& element)
 				}
 			}
 		}
-		// ATTACK ÅÂ±× -----------------------
+		// ATTACK íƒœê·¸ -----------------------
 		else if (!_stricmp(szTagName, MTOK_NPC_TAG_ATTACK))
 		{
 			int nAttrCount = chrElement.GetAttributeCount();
@@ -381,7 +381,7 @@ void MQuestNPCCatalogue::ParseNPC(MXmlElement& element)
 				}
 			}
 		}
-		// SPEED ÅÂ±× ------------------------
+		// SPEED íƒœê·¸ ------------------------
 		else if (!_stricmp(szTagName, MTOK_NPC_TAG_SPEED))
 		{
 			int nAttrCount = chrElement.GetAttributeCount();
@@ -398,7 +398,7 @@ void MQuestNPCCatalogue::ParseNPC(MXmlElement& element)
 				}
 			}
 		}
-		// FLAG ÅÂ±× -------------------------
+		// FLAG íƒœê·¸ -------------------------
 		else if (!_stricmp(szTagName, MTOK_NPC_TAG_FLAG))
 		{
 			int nAttrCount = chrElement.GetAttributeCount();
@@ -445,11 +445,11 @@ void MQuestNPCCatalogue::ParseNPC(MXmlElement& element)
 			if(pNPCInfo->nSkills<MAX_SKILL)
 			{
 				pNPCInfo->nSkillIDs[pNPCInfo->nSkills++]=nSkillID;
-				// ±â¼úÀÌ ÇÏ³ª¶óµµ ÀÖÀ¸¸é ÇÃ·¡±× Ã¼Å©ÇØµĞ´Ù
+				// ê¸°ìˆ ì´ í•˜ë‚˜ë¼ë„ ìˆìœ¼ë©´ í”Œë˜ê·¸ ì²´í¬í•´ë‘”ë‹¤
 				pNPCInfo->nNPCAttackTypes|=NPC_ATTACK_MAGIC;
 			}
 		}
-		// SOUND ÅÂ±× --------------------
+		// SOUND íƒœê·¸ --------------------
 		if (!_stricmp(szTagName, MTOK_NPC_TAG_SOUND))
 		{
 			int nAttrCount = chrElement.GetAttributeCount();
@@ -470,7 +470,7 @@ void MQuestNPCCatalogue::ParseNPC(MXmlElement& element)
 				}
 			}
 		}
-		// DROP ÅÂ±× -------------------------
+		// DROP íƒœê·¸ -------------------------
 		else if (!_stricmp(szTagName, MTOK_NPC_TAG_DROP))
 		{
 			int nAttrCount = chrElement.GetAttributeCount();
@@ -504,7 +504,7 @@ void MQuestNPCCatalogue::ParseGlobalAIValue(MXmlElement& element)
 		chrElement.GetTagName(szTagName);
 		if (szTagName[0] == '#') continue;
 
-		// SHAKING ÅÂ±× --------------------
+		// SHAKING íƒœê·¸ --------------------
 		if (!_stricmp(szTagName, MTOK_NPC_AI_SHAKING))
 		{
 			int nAttrCount = chrElement.GetAttributeCount();
@@ -525,7 +525,7 @@ void MQuestNPCCatalogue::ParseGlobalAIValue(MXmlElement& element)
 				}
 			}
 		}
-		// INTELLIGENCE ÅÂ±× -----------------------
+		// INTELLIGENCE íƒœê·¸ -----------------------
 		else if (!_stricmp(szTagName, MTOK_NPC_AI_INTELLIGENCE))
 		{
 			int nChild = chrElement.GetChildNodeCount();
@@ -553,7 +553,7 @@ void MQuestNPCCatalogue::ParseGlobalAIValue(MXmlElement& element)
 				}
 			}
 		}
-		// AGILITY ÅÂ±× -----------------------
+		// AGILITY íƒœê·¸ -----------------------
 		else if (!_stricmp(szTagName, MTOK_NPC_AI_AGILITY))
 		{
 			int nChild = chrElement.GetChildNodeCount();

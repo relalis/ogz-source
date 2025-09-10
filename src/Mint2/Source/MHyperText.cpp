@@ -3,7 +3,7 @@
 	MHyperText.cpp
 	--------------
 	
-	MHyperText´Â ¾ÆÁÖ ´Ü¼øÇÑ Çü½ÄÀ» °¡Áö°í ÀÖ±â ¶§¹®¿¡ Á¦´ë·Î µÈ ÆÄ¼­/½ºÄ³³ÊÀÇ ÇüÅÂ¸¦ °¡Áö°í ÀÖÁö´Â ¾Ê´Ù.
+	MHyperTextëŠ” ì•„ì£¼ ë‹¨ìˆœí•œ í˜•ì‹ì„ ê°€ì§€ê³  ìžˆê¸° ë•Œë¬¸ì— ì œëŒ€ë¡œ ëœ íŒŒì„œ/ìŠ¤ìºë„ˆì˜ í˜•íƒœë¥¼ ê°€ì§€ê³  ìžˆì§€ëŠ” ì•Šë‹¤.
 
 	Programming by Joongpil Cho
 	All copyright (c) 1999, MAIET entertainment Inc.
@@ -15,54 +15,54 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#define TINVALID		-1		// ¿¡·¯
-#define TINTEGER		0		// Á¤¼ö°ª
-#define TCOLORVAL		1		// ÄÃ·¯°ª, #µÚ¿¡ 6°³ÀÇ 16Áø¼ö°¡ ³ª¿Â´Ù.
-#define TSTRING			2		// ¹®ÀÚ¿­ "" ¾È¿¡ µé¾î°¡ÀÖ´Â ½ºÆ®¸µ
+#define TINVALID		-1		// ì—ëŸ¬
+#define TINTEGER		0		// ì •ìˆ˜ê°’
+#define TCOLORVAL		1		// ì»¬ëŸ¬ê°’, #ë’¤ì— 6ê°œì˜ 16ì§„ìˆ˜ê°€ ë‚˜ì˜¨ë‹¤.
+#define TSTRING			2		// ë¬¸ìžì—´ "" ì•ˆì— ë“¤ì–´ê°€ìžˆëŠ” ìŠ¤íŠ¸ë§
 
-#define TTAGSTART		5		// <, ÅÂ±× ½ÃÀÛ Ç¥½Ã, ½ºÄ³´×ÀÌ ÇàÇØÁø ÈÄ ÀÌ ÅäÅ«ÀÌ ¶³¾îÁö°í m_nOffset°ªÀÌ 0ÀÌ ¾Æ´Ï¶ó¸é
-								// Ãâ·ÂÇÒ ÅØ½ºÆ®ÀÇ ¸®½ºÆ®°¡ Á¸ÀçÇÔÀ» ¸»ÇÏ´Â °ÍÀÌ´Ù.
-#define TTAGEND			6		// >, ÅÂ±× ³¡ Ç¥½Ã
+#define TTAGSTART		5		// <, íƒœê·¸ ì‹œìž‘ í‘œì‹œ, ìŠ¤ìºë‹ì´ í–‰í•´ì§„ í›„ ì´ í† í°ì´ ë–¨ì–´ì§€ê³  m_nOffsetê°’ì´ 0ì´ ì•„ë‹ˆë¼ë©´
+								// ì¶œë ¥í•  í…ìŠ¤íŠ¸ì˜ ë¦¬ìŠ¤íŠ¸ê°€ ì¡´ìž¬í•¨ì„ ë§í•˜ëŠ” ê²ƒì´ë‹¤.
+#define TTAGEND			6		// >, íƒœê·¸ ë í‘œì‹œ
 #define TEQUAL			7		// EQUAL
 
-// TT·Î ½ÃÀÛÇÏ´Â °ÍÀº TAG¸¦ À§ÇÑ ÅäÅ« »ó¼öÀÌ´Ù.
-#define TTSTD			50		// STD TAG, ÆÄÀÏÀÌ MAIET STD±Ô¾àÀ» ÁöÅ°°í ÀÖÀ½À» ³ªÅ¸³½´Ù.
-#define TTIMAGE			51		// IMAGE TAG, ¿ÜºÎ ÀÌ¹ÌÁö ÆÄÀÏ°ú ¸µÅ©µÇ¾î ÀÖÀ½À» ³ªÅ¸³½´Ù.
-#define TTSTYLE			52		// STYLE TAG, ÀÌ¹ÌÁö³ª ÅØ½ºÆ® ÆÄÀÏÀÇ ½ºÅ¸ÀÏÀ» ³ªÅ¸³½´Ù.
-#define TTLINK			53		// ¸µÅ©¸¦ À§ÇÑ TAG
-#define TTBR			54		// ´ÙÀ½ÁÙ·Î...
-#define TTDEFAULT		55		// ÃÊ±â ¼³Á¤À¸·Î
-#define TTLINKEND		56		// LINKÀÇ ³¡À» ¾Ë¸®´Â ÅÂ±×
+// TTë¡œ ì‹œìž‘í•˜ëŠ” ê²ƒì€ TAGë¥¼ ìœ„í•œ í† í° ìƒìˆ˜ì´ë‹¤.
+#define TTSTD			50		// STD TAG, íŒŒì¼ì´ MAIET STDê·œì•½ì„ ì§€í‚¤ê³  ìžˆìŒì„ ë‚˜íƒ€ë‚¸ë‹¤.
+#define TTIMAGE			51		// IMAGE TAG, ì™¸ë¶€ ì´ë¯¸ì§€ íŒŒì¼ê³¼ ë§í¬ë˜ì–´ ìžˆìŒì„ ë‚˜íƒ€ë‚¸ë‹¤.
+#define TTSTYLE			52		// STYLE TAG, ì´ë¯¸ì§€ë‚˜ í…ìŠ¤íŠ¸ íŒŒì¼ì˜ ìŠ¤íƒ€ì¼ì„ ë‚˜íƒ€ë‚¸ë‹¤.
+#define TTLINK			53		// ë§í¬ë¥¼ ìœ„í•œ TAG
+#define TTBR			54		// ë‹¤ìŒì¤„ë¡œ...
+#define TTDEFAULT		55		// ì´ˆê¸° ì„¤ì •ìœ¼ë¡œ
+#define TTLINKEND		56		// LINKì˜ ëì„ ì•Œë¦¬ëŠ” íƒœê·¸
 
-// TR·Î ½ÃÀÛÇÏ´Â °ÍÀº TAGÀÇ º¯¼öµéÀ» À§ÇÑ °ÍÀÌ´Ù. ARGUMENTs
-#define TRBACKGROUND	100		// Background º¯¼ö (Áö¿ø : STD)
-#define TRCOLOR			101		// Color º¯¼ö (Áö¿ø : STD, STYLE)
-#define TRSIZE			102		// Å©±â (Áö¿ø : STYLE)
-#define TRALIGN			103		// Á¤·Ä (Áö¿ø : STYLE)
-#define TRTYPE			104		// ¸µÅ©ÀÇ Á¾·ù
-#define TRSRC			105		// ¼Ò½º µ¥ÀÌÅÍ À§Ä¡
-#define TRBOLD			106		// ÆùÆ®¸¦ À§ÇÑ °Í. (BOLD?)
-#define TRHIGHLIGHT		107		// ÇÏÀÌ¶óÀÌÆ® ÄÃ·¯ (Áö¿ø : STD, STYLE)
+// TRë¡œ ì‹œìž‘í•˜ëŠ” ê²ƒì€ TAGì˜ ë³€ìˆ˜ë“¤ì„ ìœ„í•œ ê²ƒì´ë‹¤. ARGUMENTs
+#define TRBACKGROUND	100		// Background ë³€ìˆ˜ (ì§€ì› : STD)
+#define TRCOLOR			101		// Color ë³€ìˆ˜ (ì§€ì› : STD, STYLE)
+#define TRSIZE			102		// í¬ê¸° (ì§€ì› : STYLE)
+#define TRALIGN			103		// ì •ë ¬ (ì§€ì› : STYLE)
+#define TRTYPE			104		// ë§í¬ì˜ ì¢…ë¥˜
+#define TRSRC			105		// ì†ŒìŠ¤ ë°ì´í„° ìœ„ì¹˜
+#define TRBOLD			106		// í°íŠ¸ë¥¼ ìœ„í•œ ê²ƒ. (BOLD?)
+#define TRHIGHLIGHT		107		// í•˜ì´ë¼ì´íŠ¸ ì»¬ëŸ¬ (ì§€ì› : STD, STYLE)
 #define TRHREF			108
 #define TRXMARGIN		109
 #define TRYMARGIN		110
-//#define TRFACE			106		// ÆùÆ® ÀÌ¸§, ¾ÆÁ÷ Áö¿øÇÏÁö ¾ÊÀ½.
+//#define TRFACE			106		// í°íŠ¸ ì´ë¦„, ì•„ì§ ì§€ì›í•˜ì§€ ì•ŠìŒ.
 
-// ¿©±âºÎÅÍ¼± ½ºÅ¸ÀÏ Á¤ÀÇ¸¦ À§ÇÑ »ó¼ö°ªµé
+// ì—¬ê¸°ë¶€í„°ì„  ìŠ¤íƒ€ì¼ ì •ì˜ë¥¼ ìœ„í•œ ìƒìˆ˜ê°’ë“¤
 #define TRLEFT			150
 #define TRCENTER		151
 #define TRRIGHT			152
 
-#define TROPEN			153		// ´Ù¸¥ STDÆÄÀÏÀ» ¿¬´Ù.
-#define TRWWW			154		// À¥ºê¶ó¿ìÁî¸¦ À§ÇÑ °Í
-#define TREXEC			155		// ½ÇÇàÀ» À§ÇÑ °Í
+#define TROPEN			153		// ë‹¤ë¥¸ STDíŒŒì¼ì„ ì—°ë‹¤.
+#define TRWWW			154		// ì›¹ë¸Œë¼ìš°ì¦ˆë¥¼ ìœ„í•œ ê²ƒ
+#define TREXEC			155		// ì‹¤í–‰ì„ ìœ„í•œ ê²ƒ
 #define TRYES			156
 #define TRNO			157
 #define TRTRUE			158
 #define TRFALSE			159
 
-#define TENDDOC			254		// EOS(END-OF-STRING) ¶Ç´Â EOF(END-OF-FILE) °ªÀÏ¶§ ÀÌ°ÍÀ¸·Î Á¾·áµÈ´Ù.
-								// ÀÌ ÅäÅ« ¿ª½Ã m_nOffset°ªÀÌ 0ÀÌ ¾Æ´Ò¶§ Ãâ·ÂÇÒ ÅØ½ºÆ®°¡ Á¸ÀçÇÑ´Ù.
+#define TENDDOC			254		// EOS(END-OF-STRING) ë˜ëŠ” EOF(END-OF-FILE) ê°’ì¼ë•Œ ì´ê²ƒìœ¼ë¡œ ì¢…ë£Œëœë‹¤.
+								// ì´ í† í° ì—­ì‹œ m_nOffsetê°’ì´ 0ì´ ì•„ë‹ë•Œ ì¶œë ¥í•  í…ìŠ¤íŠ¸ê°€ ì¡´ìž¬í•œë‹¤.
 
 #define MAKERGB(r,g,b)			((DWORD)(((BYTE)(b)|((WORD) (g) << 8))|(((DWORD)(BYTE)(r)) << 16)))
 
@@ -80,7 +80,7 @@ static struct _reserved_word {
 	{ TTDEFAULT,	"default"	},
 
 		/* TAG variable */
-	{ TRBACKGROUND,	"background"},			// BACKGROUND, STDÀÇ style
+	{ TRBACKGROUND,	"background"},			// BACKGROUND, STDì˜ style
 	{ TRCOLOR,		"color"		},			//
 	{ TRSIZE,		"size"		},			//
 	{ TRALIGN,		"align"		},			//
@@ -152,10 +152,10 @@ int	MHyperText::Scan()
 read_plain_text_loop:
 		c = Input();
 
-		//ÀÏ¹Ý ÅØ½ºÆ®·Î °£ÁÖÇÏ°í ¹«Á¶°Ç ÀÐ¾î µéÀÎ´Ù.
+		//ì¼ë°˜ í…ìŠ¤íŠ¸ë¡œ ê°„ì£¼í•˜ê³  ë¬´ì¡°ê±´ ì½ì–´ ë“¤ì¸ë‹¤.
 		if((c=='\t'||c==' '||c=='\n') && bFirstSpace == true)
 		{
-			//°ø¶õ ÇÕÄ¡±â
+			//ê³µëž€ í•©ì¹˜ê¸°
 			for(c = Input(); (c=='\t'||c==' '||c=='\n'); );
 			Unput();
 			Gather(' ');
@@ -163,13 +163,13 @@ read_plain_text_loop:
 		}
 		else if(c=='<')
 		{
-			//ÅÂ±×°¡ ½ÃÀÛµÇ¾ú´Ù.
-			m_bTagReady = true;		//ÅÂ±× ½ºÅ¸Æ®
-			Gather('\0');			//ÅØ½ºÆ®¹öÆÛ Á¾·á
+			//íƒœê·¸ê°€ ì‹œìž‘ë˜ì—ˆë‹¤.
+			m_bTagReady = true;		//íƒœê·¸ ìŠ¤íƒ€íŠ¸
+			Gather('\0');			//í…ìŠ¤íŠ¸ë²„í¼ ì¢…ë£Œ
 			return TTAGSTART;
 		}
-		else if(c==EOF || c=='\0')	//¸¸ÀÏ m_bTagReady°¡ trueÀÎ »óÅÂ¿¡¼­ ÀÌ°ªÀ» ¹Þ¾Ò´Ù¸é ±×°ÍÀº ¿¡·¯´Ù.
-		{	//³¡
+		else if(c==EOF || c=='\0')	//ë§Œì¼ m_bTagReadyê°€ trueì¸ ìƒíƒœì—ì„œ ì´ê°’ì„ ë°›ì•˜ë‹¤ë©´ ê·¸ê²ƒì€ ì—ëŸ¬ë‹¤.
+		{	//ë
 			Gather('\0');
 			return TENDDOC;
 		}
@@ -184,12 +184,12 @@ read_plain_text_loop:
 	}
 	else 
 	{
-		//ÅÂ±×°¡ ½ÃÀÛµÇ¾úÀ¸¹Ç·Î ÅÂ±×¿Í °ü·ÃµÈ ½ºÄ³´×À» ÇÑ´Ù.
-		//ÅÂ±×¿¡ °ü·ÃµÈ °ÍÀÌ¹Ç·Î ¾Ë¾Æ ¸ÔÁö ¸øÇÏ´Â °ªÀÌ µé¾î¿À¸é ¹«Á¶°Ç ¿¡·¯´Ù.
+		//íƒœê·¸ê°€ ì‹œìž‘ë˜ì—ˆìœ¼ë¯€ë¡œ íƒœê·¸ì™€ ê´€ë ¨ëœ ìŠ¤ìºë‹ì„ í•œë‹¤.
+		//íƒœê·¸ì— ê´€ë ¨ëœ ê²ƒì´ë¯€ë¡œ ì•Œì•„ ë¨¹ì§€ ëª»í•˜ëŠ” ê°’ì´ ë“¤ì–´ì˜¤ë©´ ë¬´ì¡°ê±´ ì—ëŸ¬ë‹¤.
 read_tag_loop:
 		c = Input();
 
-		if(c=='\t' || c==' ' || c=='\n'){		//°ø¶õ ¹«½ÃÇÏ±â
+		if(c=='\t' || c==' ' || c=='\n'){		//ê³µëž€ ë¬´ì‹œí•˜ê¸°
 			goto read_tag_loop;
 		}
 		else if(c=='>'){
@@ -197,18 +197,18 @@ read_tag_loop:
 			m_bTagReady = false;
 			return TTAGEND;
 		}
-		else if(isdigit(c)){					//¼ýÀÚ°¡ µé¾î¿Ô´Ù.
+		else if(isdigit(c)){					//ìˆ«ìžê°€ ë“¤ì–´ì™”ë‹¤.
 			m_nOffset = 0;
 			GetDigit(c);
 			Gather('\0');
 			return TINTEGER;
 		}
-		else if(c==EOF || c=='\0'){				//ÅÂ±×µµ ³¡³ªÁö ¾Ê¾Ò´Âµ¥ ÀÌ·± ÀÏÀÌ »ý±ä´Ù¸é ±×°Í ¿ª½Ã ¿¡·¯´Ù.
+		else if(c==EOF || c=='\0'){				//íƒœê·¸ë„ ëë‚˜ì§€ ì•Šì•˜ëŠ”ë° ì´ëŸ° ì¼ì´ ìƒê¸´ë‹¤ë©´ ê·¸ê²ƒ ì—­ì‹œ ì—ëŸ¬ë‹¤.
 			m_nOffset = 0;
 			Gather('\0');
 			return TINVALID;
 		}
-		else if(c=='#'){						//ÄÃ·¯°ªÀÌ µé¾î¿Ô´Ù.
+		else if(c=='#'){						//ì»¬ëŸ¬ê°’ì´ ë“¤ì–´ì™”ë‹¤.
 			u8 nHigh, nLow;
 			u8 rgb[3];
 
@@ -223,7 +223,7 @@ read_tag_loop:
 						if(c >= 'a' && c <= 'z') nHigh = 10 + (c - 'a'); else nHigh = 10 + (c - 'A');
 					}
 				}else{
-					nHigh = c - 48;	/* 48Àº 0ÀÇ ¾Æ½ºÅ°ÄÚµå */
+					nHigh = c - 48;	/* 48ì€ 0ì˜ ì•„ìŠ¤í‚¤ì½”ë“œ */
 				}
 
 				c = Input();
@@ -274,7 +274,7 @@ read_tag_loop:
 				return Reserved[i].nToken;
 			}
 			else
-			{	//»ó¼ö Ã¼Å©
+			{	//ìƒìˆ˜ ì²´í¬
 				for(i=0; Constant[i].szText != NULL; i++){
 					if(strcmp(m_szScan, Constant[i].szText) == 0){
 						break;
@@ -291,7 +291,7 @@ read_tag_loop:
 			}
 		}
 		else if(c == '\"')
-		{	// ÀÌ°Ç ¹®ÀÚ¿­ÀÌ´Ù.
+		{	// ì´ê±´ ë¬¸ìžì—´ì´ë‹¤.
 			m_nOffset = 0;
 			for(c = Input(); ; c = Input()){
 				if(c == '\"'){
@@ -325,17 +325,17 @@ MHyperText::MHyperText()
 
 bool MHyperText::Parse()
 {
-	//ÅÂ±×¿Í Plain-Text¸¦ ÀÐ¾î³»´Â ºÎºÐÀ» STD¿¡¼­´Â Element¶ó°í ºÎ¸¥´Ù.
+	//íƒœê·¸ì™€ Plain-Textë¥¼ ì½ì–´ë‚´ëŠ” ë¶€ë¶„ì„ STDì—ì„œëŠ” Elementë¼ê³  ë¶€ë¥¸ë‹¤.
 	MHyperTextElement*	pElement = NULL;
 	MHyperTextArg*		pArg = NULL;
-	//ÇöÀç ÆÄ½ÌÇÏ´Â µ¥ÀÌÅÍ¸¦ À§ÇÑ ÅäÅ«
+	//í˜„ìž¬ íŒŒì‹±í•˜ëŠ” ë°ì´í„°ë¥¼ ìœ„í•œ í† í°
 	int nToken, nVal;
 
-	//ÃÊ! ÇãÁ¢ ÆÄ½ÌÀ» À§ÇÏ¿© ¾²ÀÌ´Â 2°³ÀÇ º¯¼öµé
+	//ì´ˆ! í—ˆì ‘ íŒŒì‹±ì„ ìœ„í•˜ì—¬ ì“°ì´ëŠ” 2ê°œì˜ ë³€ìˆ˜ë“¤
 	int nLastArg = TINVALID;
 	bool bEqual = false;
 
-	m_bTagReady	= false;			//½ºÄµÇÏ±â Àü¿¡ ÀÏ´Ü ¸ðµç °ªÀ» ¸®¼Â
+	m_bTagReady	= false;			//ìŠ¤ìº”í•˜ê¸° ì „ì— ì¼ë‹¨ ëª¨ë“  ê°’ì„ ë¦¬ì…‹
 	bp			= 0;
 	m_nOffset	= 0;
 
@@ -370,7 +370,7 @@ bool MHyperText::Parse()
 
 			switch(nToken)
 			{
-			case TTAGEND :		//ÅÂ±×°¡ ³¡³µ´Ù.
+			case TTAGEND :		//íƒœê·¸ê°€ ëë‚¬ë‹¤.
 				if(pElement != NULL) Elements.Add(pElement);
 				pElement	= NULL;
 				pArg		= NULL;
@@ -378,19 +378,19 @@ bool MHyperText::Parse()
 
 
 			case TTSTD :		//TAG
-				if(pElement != NULL) goto parse_failure;	//ÅÂ±×°¡ Á¸ÀçÇÑ´Ù.
+				if(pElement != NULL) goto parse_failure;	//íƒœê·¸ê°€ ì¡´ìž¬í•œë‹¤.
 				pElement = new MHyperTextElement(MHTE_STD);
 				break;
 			case TTIMAGE :		//TAG
-				if(pElement != NULL) goto parse_failure;	//ÅÂ±×°¡ Á¸ÀçÇÑ´Ù.
+				if(pElement != NULL) goto parse_failure;	//íƒœê·¸ê°€ ì¡´ìž¬í•œë‹¤.
 				pElement = new MHyperTextElement(MHTE_IMAGE);
 				break;
 			case TTSTYLE :		//TAG
-				if(pElement != NULL) goto parse_failure;	//ÅÂ±×°¡ Á¸ÀçÇÑ´Ù.
+				if(pElement != NULL) goto parse_failure;	//íƒœê·¸ê°€ ì¡´ìž¬í•œë‹¤.
 				pElement = new MHyperTextElement(MHTE_STYLE);
 				break;
 			case TTLINK :		//TAG
-				if(pElement != NULL) goto parse_failure;	//ÅÂ±×°¡ Á¸ÀçÇÑ´Ù.
+				if(pElement != NULL) goto parse_failure;	//íƒœê·¸ê°€ ì¡´ìž¬í•œë‹¤.
 				pElement = new MHyperTextElement(MHTE_LINK);
 				break;
 			case TTLINKEND :
@@ -398,7 +398,7 @@ bool MHyperText::Parse()
 				pElement = new MHyperTextElement(MHTE_LINKEND);
 				break;
 			case TTBR :			//TAG
-				if(pElement != NULL) goto parse_failure;	//ÅÂ±×°¡ Á¸ÀçÇÑ´Ù.
+				if(pElement != NULL) goto parse_failure;	//íƒœê·¸ê°€ ì¡´ìž¬í•œë‹¤.
 				pElement = new MHyperTextElement(MHTE_BR);
 				break;
 			case TTDEFAULT :
@@ -418,13 +418,13 @@ bool MHyperText::Parse()
 			case TRHREF :		//ARG
 			case TRXMARGIN :	//ARG
 			case TRYMARGIN :	//ARG
-				//ÅÂ±×°¡ ÁöÁ¤µÇ¾ú´Â°¡¿Í '='ÀÇ µÚ¿¡ ³ª¿ÀÁö ¾Êµµ·Ï Ã¼Å©ÇÑ´Ù.
+				//íƒœê·¸ê°€ ì§€ì •ë˜ì—ˆëŠ”ê°€ì™€ '='ì˜ ë’¤ì— ë‚˜ì˜¤ì§€ ì•Šë„ë¡ ì²´í¬í•œë‹¤.
 				if(pElement == NULL || bEqual == true) goto parse_failure;
 				nLastArg = nToken;
 				break;
 
 
-			case TEQUAL :		//EQUALÀº L-VALUE°¡ ¿ä±¸µÈ´Ù.
+			case TEQUAL :		//EQUALì€ L-VALUEê°€ ìš”êµ¬ëœë‹¤.
 				if(bEqual==true || pElement==NULL) goto parse_failure;
 				bEqual = true;
 				break;
@@ -620,7 +620,7 @@ bool MHyperText::Open(char *szTextBuffer)
 	}
 #endif
 
-	//ÆÄ½ÌÈÄ STD°¡ ¼±µÎ¿¡ À§Ä¡ÇÒ ¼ö ÀÖµµ·Ï ¸®½ºÆ®¸¦ Á¤¸®ÇÑ´Ù.
+	//íŒŒì‹±í›„ STDê°€ ì„ ë‘ì— ìœ„ì¹˜í•  ìˆ˜ ìžˆë„ë¡ ë¦¬ìŠ¤íŠ¸ë¥¼ ì •ë¦¬í•œë‹¤.
 	while(Elements.GetCount() > 0){
 		MHyperTextElement *pEl = Elements.Get(0);
 		if(pEl->nType != MHTE_STD) Elements.Delete(0); else break;

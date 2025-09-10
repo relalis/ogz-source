@@ -52,7 +52,7 @@ bool StrTok(char *pToken, int maxlen, const char *pStr, const char *pSep)
 bool CMLexicalAnalyzer::Create(const char *pStr)
 {
 	//strcpy_safe(m_szOriginal, pStr);
-	char seps[] = " ,\t'";	// ','´Â ÀÓ½Ã·Î »© ³õ´Â´Ù. ''·Î ½ºÆ®¸µÀ» ±¸ºĞÇÏ±â À§ÇØ
+	char seps[] = " ,\t'";	// ','ëŠ” ì„ì‹œë¡œ ë¹¼ ë†“ëŠ”ë‹¤. ''ë¡œ ìŠ¤íŠ¸ë§ì„ êµ¬ë¶„í•˜ê¸° ìœ„í•´
 	char szToken[256];
 	if(StrTok(szToken, sizeof(szToken), pStr, seps)==false) return true;
 	while(1){

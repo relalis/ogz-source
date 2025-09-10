@@ -3,8 +3,8 @@
 
 #ifdef _WIN32
 
-// CrashExceptionDump ÇÔ¼ö¸¦ »ç¿ëÇÏ·Á¸é dbghelp.dllÀÌ ÇÊ¿äÇÏ´Ù.
-// ÇØ´ç dllÀº http://www.microsoft.com/whdc/ddk/debugging/ ¿¡¼­ ±¸ÇÒ ¼ö ÀÖ´Ù.
+// CrashExceptionDump í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ë ¤ë©´ dbghelp.dllì´ í•„ìš”í•˜ë‹¤.
+// í•´ë‹¹ dllì€ http://www.microsoft.com/whdc/ddk/debugging/ ì—ì„œ êµ¬í•  ìˆ˜ ìˆë‹¤.
 #pragma comment(lib, "dbghelp.lib") 
 
 DWORD CrashExceptionDump(PEXCEPTION_POINTERS ExceptionInfo, const char* szDumpFileName)

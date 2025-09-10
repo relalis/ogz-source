@@ -1,11 +1,11 @@
 /*
  *	CMError.h
- *		ErrorÃ³¸®¸¦ À§ÇÑ ÇÔ¼ö ¹× ¿¡·¯ ÄÚµå Á¤ÀÇ
- *		ÀÌÀåÈ£ ( 98-01-04 1:19:44 ¿ÀÀü )
+ *		Errorì²˜ë¦¬ë¥¼ ìœ„í•œ í•¨ìˆ˜ ë° ì—ëŸ¬ ì½”ë“œ ì •ì˜
+ *		ì´ìž¥í˜¸ ( 98-01-04 1:19:44 ì˜¤ì „ )
  *
  *		SetError(CodeNum)
  *		SetErrors(CodeNum,SubStr)
- *			¸¦ »ç¿ëÇØ ¿¡·¯ »óÅÂ¸¦ ÀúÀåÇÑ´Ù.
+ *			ë¥¼ ì‚¬ìš©í•´ ì—ëŸ¬ ìƒíƒœë¥¼ ì €ìž¥í•œë‹¤.
  ********************************************************************/
 
 #ifndef _CMERROR_H
@@ -30,7 +30,7 @@ extern "C" {
 		#define SetErrors(_nErrCode,_pErrSubStr)	\
 			_SetError(_nErrCode,_pErrSubStr,__FILE__,__LINE__,__TIME__,KSTR_##_nErrCode)
 
-		#define ERROR_MESSAGE_TITLE		"¿¡·¯"
+		#define ERROR_MESSAGE_TITLE		"ì—ëŸ¬"
 
 	#else
 
@@ -39,7 +39,7 @@ extern "C" {
 		#define SetErrors(_nErrCode,_pErrSubStr)	\
 			_SetError(_nErrCode,_pErrSubStr,__FILE__,__LINE__,__TIMESTAMP__,KSTR_##_nErrCode)
 	
-		#define ERROR_MESSAGE_TITLE		"¿¡·¯"
+		#define ERROR_MESSAGE_TITLE		"ì—ëŸ¬"
 
 	#endif	// __BORLANDC__
 
@@ -66,49 +66,49 @@ extern "C" {
 #endif
 
 /*
-¿¡·¯ ÁöÁ¤
-	nErrCode			¿¡·¯ ÄÚµå
-	pErrSubStr			¿¡·¯ ÄÚµå¿¡ µû¸¥ ºÎ°¡ ½ºÆ®¸µ
-	pFileName			¿¡·¯°¡ ÀÏ¾î³­ ÆÄÀÏ ¸í(__FILE__)
-	nLineNum			¿¡·¯°¡ ÀÏ¾î³­ ¶óÀÎ ¼ö(__LINE__)
-	pLastModification	¿¡·¯°¡ ÀÏ¾î³­ ÆÄÀÏÀÇ ÃÖ±Ù ¼öÁ¤ÀÏ(__TIMESTAMP__)
-	pErrStr				¿¡·¯ ½ºÆ®¸µ(¿¡·¯ÄÚµå + _KSTR or _ESTR)
+ì—ëŸ¬ ì§€ì •
+	nErrCode			ì—ëŸ¬ ì½”ë“œ
+	pErrSubStr			ì—ëŸ¬ ì½”ë“œì— ë”°ë¥¸ ë¶€ê°€ ìŠ¤íŠ¸ë§
+	pFileName			ì—ëŸ¬ê°€ ì¼ì–´ë‚œ íŒŒì¼ ëª…(__FILE__)
+	nLineNum			ì—ëŸ¬ê°€ ì¼ì–´ë‚œ ë¼ì¸ ìˆ˜(__LINE__)
+	pLastModification	ì—ëŸ¬ê°€ ì¼ì–´ë‚œ íŒŒì¼ì˜ ìµœê·¼ ìˆ˜ì •ì¼(__TIMESTAMP__)
+	pErrStr				ì—ëŸ¬ ìŠ¤íŠ¸ë§(ì—ëŸ¬ì½”ë“œ + _KSTR or _ESTR)
 */
 void _SetError(int nErrCode,const char *pErrSubStr,const char *pFileName,int nLineNum,const char *pLastModification,const char *pErrStr);
 
 /*
-ºÎ°¡ ¿¡·¯ ½ºÆ®¸µ ÁöÁ¤
-	pErrSubStr			¿¡·¯ ÄÚµå¿¡ µû¸¥ ºÎ°¡ ½ºÆ®¸µ
+ë¶€ê°€ ì—ëŸ¬ ìŠ¤íŠ¸ë§ ì§€ì •
+	pErrSubStr			ì—ëŸ¬ ì½”ë“œì— ë”°ë¥¸ ë¶€ê°€ ìŠ¤íŠ¸ë§
 */
 void SetErrorSubStr(const char *pErrSubStr);
 /*
-¿¡·¯ ÄÚµå ¾ò±â
+ì—ëŸ¬ ì½”ë“œ ì–»ê¸°
 */
 int GetErrorCode(void);
 /*
-¿¡·¯ ½ºÆ®¸µ ¾ò±â
+ì—ëŸ¬ ìŠ¤íŠ¸ë§ ì–»ê¸°
 */
 char *GetErrorString(void);
 /*
-ºÎ°¡ ¿¡·¯ ½ºÆ®¸µ ¾ò±â
+ë¶€ê°€ ì—ëŸ¬ ìŠ¤íŠ¸ë§ ì–»ê¸°
 */
 char *GetErrorSubString(void);
 /*
-¿¡·¯°¡ ³­ ÆÄÀÏ¸í ¾ò±â
+ì—ëŸ¬ê°€ ë‚œ íŒŒì¼ëª… ì–»ê¸°
 */
 char *GetFileName(void);
 /*
-¿¡·¯°¡ ³­ ¶óÀÎ ¼ö ¾ò±â
+ì—ëŸ¬ê°€ ë‚œ ë¼ì¸ ìˆ˜ ì–»ê¸°
 */
 int GetLineNumber(void);
 /*
-¿¡·¯°¡ ³­ ÆÄÀÏÀÇ ÃÖ±Ù ¼öÁ¤ ÀÏ ¾ò±â
+ì—ëŸ¬ê°€ ë‚œ íŒŒì¼ì˜ ìµœê·¼ ìˆ˜ì • ì¼ ì–»ê¸°
 */
 char *GetLastModification(void);
 
 #ifdef	_WIN32
 /*
-¿¡·¯ ¸Þ¼¼Áö Ãâ·Â
+ì—ëŸ¬ ë©”ì„¸ì§€ ì¶œë ¥
 */
 void ErrMsgBox(HWND hWnd);
 #endif

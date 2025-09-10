@@ -9,82 +9,82 @@
 
 class MMatchQuestGameLogInfoManager;
 
-/// Äù½ºÆ®·êµéÀÇ ºÎ¸ğ Å¬·¡½º
+/// í€˜ìŠ¤íŠ¸ë£°ë“¤ì˜ ë¶€ëª¨ í´ë˜ìŠ¤
 class MMatchRuleBaseQuest : public MMatchRule {
 protected:
-	MMatchNPCManager			m_NPCManager;				///< NPC °ü¸®ÀÚ
-	MQuestPlayerManager			m_PlayerManager;			///< ÇÃ·¹ÀÌ¾î °ü¸®ÀÚ
-	bool						m_bQuestCompleted;			///< Äù½ºÆ®°¡ ³¡³µ´ÂÁö ¿©ºÎ
+	MMatchNPCManager			m_NPCManager;				///< NPC ê´€ë¦¬ì
+	MQuestPlayerManager			m_PlayerManager;			///< í”Œë ˆì´ì–´ ê´€ë¦¬ì
+	bool						m_bQuestCompleted;			///< í€˜ìŠ¤íŠ¸ê°€ ëë‚¬ëŠ”ì§€ ì—¬ë¶€
 
 	u64							m_nLastNPCSpawnTime;		// for test
-	int							m_nNPCSpawnCount;			///< ½ºÆùµÈ NPC¼ö
-	u64							m_nSpawnTime;				///< ¸¶Áö¸· NPC ½ºÆù ½Ã°£
-	int							m_nFirstPlayerCount;		///< Ã³À½ °ÔÀÓ½ÃÀÛ½Ã ÇÃ·¹ÀÌ¾î ¼ö
+	int							m_nNPCSpawnCount;			///< ìŠ¤í°ëœ NPCìˆ˜
+	u64							m_nSpawnTime;				///< ë§ˆì§€ë§‰ NPC ìŠ¤í° ì‹œê°„
+	int							m_nFirstPlayerCount;		///< ì²˜ìŒ ê²Œì„ì‹œì‘ì‹œ í”Œë ˆì´ì–´ ìˆ˜
 
-	u64							m_nLastNPCAssignCheckTime;	///< ¸¶Áö¸·À¸·Î NPC ÀçÇÒ´ç Ã¼Å©¸¦ ÇÑ ½Ã°£
-	u64							m_nLastPingTime;			///< ¸¶Áö¸·À¸·Î Å¬¶óÀÌ¾ğÆ® ÇÎ Àé ½Ã°£
+	u64							m_nLastNPCAssignCheckTime;	///< ë§ˆì§€ë§‰ìœ¼ë¡œ NPC ì¬í• ë‹¹ ì²´í¬ë¥¼ í•œ ì‹œê°„
+	u64							m_nLastPingTime;			///< ë§ˆì§€ë§‰ìœ¼ë¡œ í´ë¼ì´ì–¸íŠ¸ í•‘ ì° ì‹œê°„
 
 protected:
-	virtual void OnBegin();								///< ÀüÃ¼ °ÔÀÓ ½ÃÀÛ½Ã È£Ãâ
-	virtual void OnEnd();								///< ÀüÃ¼ °ÔÀÓ Á¾·á½Ã È£Ãâ
-	virtual bool OnRun();								///< °ÔÀÓÆ½½Ã È£Ãâ
-	virtual void OnRoundBegin();						///< ¶ó¿îµå ½ÃÀÛÇÒ ¶§ È£Ãâ
-	virtual void OnRoundEnd();							///< ¶ó¿îµå ³¡³¯ ¶§ È£Ãâ
-	virtual bool OnCheckRoundFinish();					///< ¶ó¿îµå°¡ ³¡³µ´ÂÁö Ã¼Å©
-	virtual void OnRoundTimeOut();						///< ¶ó¿îµå°¡ Å¸ÀÓ¾Æ¿ôÀ¸·Î Á¾·áµÉ ‹š OnRoundEnd() ÀüÀÌ´Ù.
-	virtual bool RoundCount();							///< ¶ó¿îµå Ä«¿îÆ®. ¸ğµç ¶ó¿îµå°¡ ³¡³ª¸é false¸¦ ¹İÈ¯ÇÑ´Ù.
-	virtual bool OnCheckEnableBattleCondition();		///< °ÔÀÓ °¡´ÉÇÑÁö Ã¼Å©
+	virtual void OnBegin();								///< ì „ì²´ ê²Œì„ ì‹œì‘ì‹œ í˜¸ì¶œ
+	virtual void OnEnd();								///< ì „ì²´ ê²Œì„ ì¢…ë£Œì‹œ í˜¸ì¶œ
+	virtual bool OnRun();								///< ê²Œì„í‹±ì‹œ í˜¸ì¶œ
+	virtual void OnRoundBegin();						///< ë¼ìš´ë“œ ì‹œì‘í•  ë•Œ í˜¸ì¶œ
+	virtual void OnRoundEnd();							///< ë¼ìš´ë“œ ëë‚  ë•Œ í˜¸ì¶œ
+	virtual bool OnCheckRoundFinish();					///< ë¼ìš´ë“œê°€ ëë‚¬ëŠ”ì§€ ì²´í¬
+	virtual void OnRoundTimeOut();						///< ë¼ìš´ë“œê°€ íƒ€ì„ì•„ì›ƒìœ¼ë¡œ ì¢…ë£Œë  ë–„ OnRoundEnd() ì „ì´ë‹¤.
+	virtual bool RoundCount();							///< ë¼ìš´ë“œ ì¹´ìš´íŠ¸. ëª¨ë“  ë¼ìš´ë“œê°€ ëë‚˜ë©´ falseë¥¼ ë°˜í™˜í•œë‹¤.
+	virtual bool OnCheckEnableBattleCondition();		///< ê²Œì„ ê°€ëŠ¥í•œì§€ ì²´í¬
 
-	virtual void OnCommand(MCommand* pCommand);			///< Äù½ºÆ®¿¡¼­¸¸ »ç¿ëÇÏ´Â Ä¿¸Çµå Ã³¸®
+	virtual void OnCommand(MCommand* pCommand);			///< í€˜ìŠ¤íŠ¸ì—ì„œë§Œ ì‚¬ìš©í•˜ëŠ” ì»¤ë§¨ë“œ ì²˜ë¦¬
 protected:
-	/// npc°¡ Á×°í ³ª¼­ µå·Ó¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö Ã¼Å©ÇÏ°í ÀÖÀ¸¸é ¾ÆÀÌÅÛÀ» µå·Ó½ÃÅ²´Ù.
-	/// @param uidPlayer	°ø°İÀÚ ÇÃ·¹ÀÌ¾î UID
-	/// @param pDropItem	µå·ÓÇÒ ¾ÆÀÌÅÛ
-	/// @param pos			À§Ä¡
+	/// npcê°€ ì£½ê³  ë‚˜ì„œ ë“œë¡­ì•„ì´í…œì´ ìˆëŠ”ì§€ ì²´í¬í•˜ê³  ìˆìœ¼ë©´ ì•„ì´í…œì„ ë“œë¡­ì‹œí‚¨ë‹¤.
+	/// @param uidPlayer	ê³µê²©ì í”Œë ˆì´ì–´ UID
+	/// @param pDropItem	ë“œë¡­í•  ì•„ì´í…œ
+	/// @param pos			ìœ„ì¹˜
 	void CheckRewards(MUID& uidPlayer, MQuestDropItem* pDropItem, MVector& pos);
-	bool CheckPlayersAlive();								///< ÇÃ·¹ÀÌ¾î°¡ ¸ğµÎ Á×¾ú´ÂÁö Ã¼Å©
-	virtual void ProcessNPCSpawn() = 0;						///< NPC ½ºÆùÀÛ¾÷
-	virtual bool CheckNPCSpawnEnable() = 0;					///< NPC°¡ ½ºÆù °¡´ÉÇÑÁö ¿©ºÎ
-	virtual void RouteGameInfo() = 0;						///< Å¬¶óÀÌ¾ğÆ®¿¡ °ÔÀÓ Á¤º¸ º¸³»ÁØ´Ù.
-	virtual void RouteStageGameInfo() = 0;					///< ´ë±âÁß ½ºÅ×ÀÌÁö¿¡¼­ ¹Ù²ï °ÔÀÓ Á¤º¸¸¦ º¸³»ÁØ´Ù.
+	bool CheckPlayersAlive();								///< í”Œë ˆì´ì–´ê°€ ëª¨ë‘ ì£½ì—ˆëŠ”ì§€ ì²´í¬
+	virtual void ProcessNPCSpawn() = 0;						///< NPC ìŠ¤í°ì‘ì—…
+	virtual bool CheckNPCSpawnEnable() = 0;					///< NPCê°€ ìŠ¤í° ê°€ëŠ¥í•œì§€ ì—¬ë¶€
+	virtual void RouteGameInfo() = 0;						///< í´ë¼ì´ì–¸íŠ¸ì— ê²Œì„ ì •ë³´ ë³´ë‚´ì¤€ë‹¤.
+	virtual void RouteStageGameInfo() = 0;					///< ëŒ€ê¸°ì¤‘ ìŠ¤í…Œì´ì§€ì—ì„œ ë°”ë€ ê²Œì„ ì •ë³´ë¥¼ ë³´ë‚´ì¤€ë‹¤.
 
-	/// NPC¸¦ ½ºÆù½ÃÅ²´Ù.
-	/// @param nNPC			NPC Á¾·ù
-	/// @param nPosIndex	½ºÆù À§Ä¡
+	/// NPCë¥¼ ìŠ¤í°ì‹œí‚¨ë‹¤.
+	/// @param nNPC			NPC ì¢…ë¥˜
+	/// @param nPosIndex	ìŠ¤í° ìœ„ì¹˜
 	MMatchNPCObject* SpawnNPC(MQUEST_NPC nNPC, int nPosIndex);
 
-	virtual void OnCompleted();					///< Äù½ºÆ® ¼º°ø½Ã È£ÃâµÈ´Ù.
-	virtual void OnFailed();					///< Äù½ºÆ® ½ÇÆĞ½Ã È£ÃâµÈ´Ù.
-	virtual void RouteCompleted() = 0;			///< Äù½ºÆ® ¼º°ø ¸Ş½ÃÁö¸¦ º¸³½´Ù. - ¸®¿öµå±îÁö ÇÔ²² º¸³½´Ù.
-	virtual void RouteFailed() = 0;				///< Äù½ºÆ® ½ÇÆĞ ¸Ş½ÃÁö º¸³½´Ù.
-	virtual void DistributeReward() = 0;		///< Äù½ºÆ® ¼º°ø½Ã ¸®¿öµå ¹èºĞ
+	virtual void OnCompleted();					///< í€˜ìŠ¤íŠ¸ ì„±ê³µì‹œ í˜¸ì¶œëœë‹¤.
+	virtual void OnFailed();					///< í€˜ìŠ¤íŠ¸ ì‹¤íŒ¨ì‹œ í˜¸ì¶œëœë‹¤.
+	virtual void RouteCompleted() = 0;			///< í€˜ìŠ¤íŠ¸ ì„±ê³µ ë©”ì‹œì§€ë¥¼ ë³´ë‚¸ë‹¤. - ë¦¬ì›Œë“œê¹Œì§€ í•¨ê»˜ ë³´ë‚¸ë‹¤.
+	virtual void RouteFailed() = 0;				///< í€˜ìŠ¤íŠ¸ ì‹¤íŒ¨ ë©”ì‹œì§€ ë³´ë‚¸ë‹¤.
+	virtual void DistributeReward() = 0;		///< í€˜ìŠ¤íŠ¸ ì„±ê³µì‹œ ë¦¬ì›Œë“œ ë°°ë¶„
 
 	void ReAssignNPC();
 	void SendClientLatencyPing();
 public:
-	// Ä¿¸Çµå Ã³¸® °ü·Ã ÇÔ¼ö
+	// ì»¤ë§¨ë“œ ì²˜ë¦¬ ê´€ë ¨ í•¨ìˆ˜
 
-	/// NPC¸¦ Á×¿´À»¶§ È£Ãâ
-	/// @param uidSender		¸Ş¼¼Áö º¸³½ ÇÃ·¹ÀÌ¾î
-	/// @param uidKiller		Á×ÀÎ ÇÃ·¹ÀÌ¾î
-	/// @param uidNPC			Á×Àº NPC
-	/// @param pos				NPC À§Ä¡
+	/// NPCë¥¼ ì£½ì˜€ì„ë•Œ í˜¸ì¶œ
+	/// @param uidSender		ë©”ì„¸ì§€ ë³´ë‚¸ í”Œë ˆì´ì–´
+	/// @param uidKiller		ì£½ì¸ í”Œë ˆì´ì–´
+	/// @param uidNPC			ì£½ì€ NPC
+	/// @param pos				NPC ìœ„ì¹˜
 	virtual void OnRequestNPCDead(MUID& uidSender, MUID& uidKiller, MUID& uidNPC, MVector& pos);
 
-	/// ÇÃ·¹ÀÌ¾î Á×¾úÀ» ¶§ È£Ãâ
-	/// @param uidVictim		Á×Àº ÇÃ·¹ÀÌ¾î UID
+	/// í”Œë ˆì´ì–´ ì£½ì—ˆì„ ë•Œ í˜¸ì¶œ
+	/// @param uidVictim		ì£½ì€ í”Œë ˆì´ì–´ UID
 	virtual void OnRequestPlayerDead(const MUID& uidVictim);
 	virtual void OnRequestTestNPCSpawn(int nNPCType, int nNPCCount);
 	virtual void OnRequestTestClearNPC();
 
-	/// ¸ğµç ÇÃ·¹ÀÌ¾î ºÎÈ° ¹× HP, AP ÃÊ±âÈ­
+	/// ëª¨ë“  í”Œë ˆì´ì–´ ë¶€í™œ ë° HP, AP ì´ˆê¸°í™”
 	void RefreshPlayerStatus();
-	/// ¸ğµç NPC¸¦ ÃÊ±âÈ­
+	/// ëª¨ë“  NPCë¥¼ ì´ˆê¸°í™”
 	void ClearAllNPC();
 
 
-	// Äù½ºÆ®¶§¹®¿¡ Ãß°¡µÈ °¡»ó ÀÎÅÍÆäÀÌ½º.
-	// ±¸Á¶¿¡´ëÇØ Á»´õ »ı°¢À» ÇØºÁ¾ßÇÔ. ³Ê¹« ¸¹Àº ÀÎÅÍÆäÀÌ½º°¡ MMatchRule±îÁö ¿Ã¶ó¿Í ¹ö·ÈÀ½... - by Ãß±³¼º.
+	// í€˜ìŠ¤íŠ¸ë•Œë¬¸ì— ì¶”ê°€ëœ ê°€ìƒ ì¸í„°í˜ì´ìŠ¤.
+	// êµ¬ì¡°ì—ëŒ€í•´ ì¢€ë” ìƒê°ì„ í•´ë´ì•¼í•¨. ë„ˆë¬´ ë§ì€ ì¸í„°í˜ì´ìŠ¤ê°€ MMatchRuleê¹Œì§€ ì˜¬ë¼ì™€ ë²„ë ¸ìŒ... - by ì¶”êµì„±.
 	virtual void OnRequestDropSacrificeItemOnSlot( const MUID& uidSender, const int nSlotIndex, const u32 nItemID ) {}
 	virtual void OnResponseDropSacrificeItemOnSlot( const MUID& uidSender, const int nSlotIndex, const u32 nItemID ) {}
 	virtual void OnRequestCallbackSacrificeItem( const MUID& uidSender, const int nSlotIndex, const u32 nItemID ) {}
@@ -100,15 +100,15 @@ public:
 	virtual void							PreProcessLeaveStage( const MUID& uidLeaverUID );
 
 
-	// ¸ó½ºÅÍ ¹ÙÀÌºí Ãß°¡ ÀÎÅÍÆäÀÌ½º.
+	// ëª¬ìŠ¤í„° ë°”ì´ë¸” ì¶”ê°€ ì¸í„°í˜ì´ìŠ¤.
 	virtual void CheckMonsterBible( const MUID& uidUser, const int nMonsterBibleIndex );
 	virtual void PostNewMonsterInfo( const MUID& uidUser, const char nMonIndex );
 	
 public:
-	MMatchRuleBaseQuest(MMatchStage* pStage);			///< »ı¼ºÀÚ
-	virtual ~MMatchRuleBaseQuest();						///< ¼Ò¸êÀÚ
-	virtual void OnEnterBattle(MUID& uidChar);			///< °ÔÀÓÁß ³­ÀÔÇÒ¶§ È£ÃâµÈ´Ù.
-	virtual void OnLeaveBattle(MUID& uidChar);			///< °ÔÀÓÁß ³ª°¬À»¶§ È£ÃâµÈ´Ù.
+	MMatchRuleBaseQuest(MMatchStage* pStage);			///< ìƒì„±ì
+	virtual ~MMatchRuleBaseQuest();						///< ì†Œë©¸ì
+	virtual void OnEnterBattle(MUID& uidChar);			///< ê²Œì„ì¤‘ ë‚œì…í• ë•Œ í˜¸ì¶œëœë‹¤.
+	virtual void OnLeaveBattle(MUID& uidChar);			///< ê²Œì„ì¤‘ ë‚˜ê°”ì„ë•Œ í˜¸ì¶œëœë‹¤.
 };
 
 

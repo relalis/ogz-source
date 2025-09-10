@@ -40,11 +40,11 @@ void MQuestLevelGenerator::BuildSacriQItem(unsigned int nItemID)
 
 MQuestLevel* MQuestLevelGenerator::MakeLevel()
 {
-	// ½Ã³ª¸®¿À °áÁ¤
+	// ì‹œë‚˜ë¦¬ì˜¤ ê²°ì •
 	m_nScenarioID = MakeScenarioID();
 
 
-	// ÁÖ»çÀ§ ±¼¸²
+	// ì£¼ì‚¬ìœ„ êµ´ë¦¼
 	int dice = (int)Dice(1, SCENARIO_STANDARD_DICE_SIDES, 0);
 
 	MQuestLevel* pNewLevel = new MQuestLevel();
@@ -61,7 +61,7 @@ int MQuestLevelGenerator::MakeScenarioID()
 	MMatchQuest* pQuest = MMatchServer::GetInstance()->GetQuest();
 	int id = pQuest->GetScenarioCatalogue()->MakeScenarioID(m_nMapsetID, m_nPlayerQL, m_nSacriQItemID);
 
-	// ½Ã³ª¸®¿À°¡ ¾øÀ¸¸é ±âº» ½Ã³ª¸®¿À.
+	// ì‹œë‚˜ë¦¬ì˜¤ê°€ ì—†ìœ¼ë©´ ê¸°ë³¸ ì‹œë‚˜ë¦¬ì˜¤.
 	if (!pQuest->GetScenarioCatalogue()->GetInfo(id))
 	{
 		id = pQuest->GetScenarioCatalogue()->GetDefaultStandardScenarioID();

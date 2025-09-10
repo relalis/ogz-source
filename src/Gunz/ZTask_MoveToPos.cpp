@@ -34,7 +34,7 @@ ZTaskResult ZTask_MoveToPos::OnRun(float fDelta)
 
 	if (!m_bRotated)
 	{
-		// ¹æÇâÀÌ ¸ÂÁö ¾ÊÀ¸¸é Á¦ÀÚ¸®¿¡¼­ È¸ÀüÇÑ´Ù.
+		// ë°©í–¥ì´ ë§žì§€ ì•Šìœ¼ë©´ ì œìžë¦¬ì—ì„œ íšŒì „í•œë‹¤.
 		rmatrix mat;
 		rvector vBodyDir = m_pParent->GetDirection();
 		float fAngle=GetAngleOfVectors(dir, vBodyDir);

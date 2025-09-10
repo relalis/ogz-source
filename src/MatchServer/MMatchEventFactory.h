@@ -125,10 +125,10 @@ private :
 	void ParseEventPartTime( MXmlElement& chrElement, vector<EventPartTime>& EventPartTimeVec );
 	
 private :
-	MMatchEventFactory m_OnBeginEventFactory;	// ¹æÀ» ¸¸µé¾î °ÔÀÓÀ» ½ÃÀÛÇÏ´Â ½ÃÁ¡ÀÇ ÀÌº¥Æ®.
-	MMatchEventFactory m_OnGameEventFactory;	// ¹æÀ» ¸¸µé¾î °ÔÀÓÀ» ½ÃÀÛÇÑ ÈÄÀÇ °ÔÀÓÁøÇàÁß ÀÌº¥Æ®.
-	MMatchEventFactory m_OnEndEventFactory;		// °ÔÀÓÀÌ ³¡³ª´Â ½ÃÁ¡ÀÇ ÀÌº¥Æ®.
-	MMatchEventFactory m_CustomEventFactory;	// Á÷Á¢ È£ÃâÇÏ´Â ÀÌº¥Æ®.
+	MMatchEventFactory m_OnBeginEventFactory;	// ë°©ì„ ë§Œë“¤ì–´ ê²Œì„ì„ ì‹œì‘í•˜ëŠ” ì‹œì ì˜ ì´ë²¤íŠ¸.
+	MMatchEventFactory m_OnGameEventFactory;	// ë°©ì„ ë§Œë“¤ì–´ ê²Œì„ì„ ì‹œì‘í•œ í›„ì˜ ê²Œì„ì§„í–‰ì¤‘ ì´ë²¤íŠ¸.
+	MMatchEventFactory m_OnEndEventFactory;		// ê²Œì„ì´ ëë‚˜ëŠ” ì‹œì ì˜ ì´ë²¤íŠ¸.
+	MMatchEventFactory m_CustomEventFactory;	// ì§ì ‘ í˜¸ì¶œí•˜ëŠ” ì´ë²¤íŠ¸.
 
 	bool m_bIsUsable;
 

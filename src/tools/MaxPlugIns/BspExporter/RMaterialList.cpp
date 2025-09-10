@@ -20,7 +20,7 @@ bool RMaterialList::Save(const char *szFileName)
 	for(iterator i=begin();i!=end();i++)
 	{
 		RMATERIAL *pMaterial=*i;
-		if(!pMaterial->Name.empty())		// ÀÌ¸§ÀÌ ÀÖ¾î¾ß ÇÑ´Ù.
+		if(!pMaterial->Name.empty())		// ì´ë¦„ì´ ìžˆì–´ì•¼ í•œë‹¤.
 		{
 			fprintf(file,"%s { \n",RTOK_HEADER);
 			fprintf(file,"%s \"%s\"\n",RTOK_NAME,pMaterial->Name.c_str());
@@ -31,7 +31,7 @@ bool RMaterialList::Save(const char *szFileName)
 			if(!pMaterial->DiffuseMap.empty())
 				fprintf(file,"%s \"%s\"\n",RTOK_DIFFUSEMAP,pMaterial->DiffuseMap.c_str());
 			
-			// ÇÃ·¡±×µé.
+			// í”Œëž˜ê·¸ë“¤.
 			if((pMaterial->dwFlags & RM_FLAG_ADDITIVE) !=0 )
 				fprintf(file,"%s\n",RTOK_ADDITIVE);
 			if((pMaterial->dwFlags & RM_FLAG_USEOPACITY) !=0 )

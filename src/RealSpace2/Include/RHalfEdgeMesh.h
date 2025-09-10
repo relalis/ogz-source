@@ -112,7 +112,7 @@ protected:
 	virtual void	Smoothing();
 
 	void	CalAddedVertex( sHEEdge* peCurr_, sHEVertex* pvCurr_, sHEVertex* pvDest_, 
-		int valence_ /* pvDest¿« valence*/, sHEVertex* nVertex_ );	
+		int valence_ /* pvDestÏùò valence*/, sHEVertex* nVertex_ );	
 	
 public:
 	void			initialize( int level_, RMeshNode* pMeshNode_, rvector* pPointList_ = 0 )

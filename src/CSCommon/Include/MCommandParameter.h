@@ -81,7 +81,7 @@ public:
 	virtual int GetSize() = 0;
 };
 
-/// Á¤¼ö ÆÄ¶ó¹ÌÅÍ
+/// ì •ìˆ˜ íŒŒë¼ë¯¸í„°
 class MCommandParameterInt : public MCommandParameter, public CMemPool<MCommandParameterInt> {
 public:
 	int		m_Value;

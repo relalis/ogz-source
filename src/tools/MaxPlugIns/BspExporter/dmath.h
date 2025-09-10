@@ -146,12 +146,12 @@ inline dpoint InterpolatedVector(dpoint &a,dpoint &b,double x)
 	double ab,theta,theta1,theta2,costheta1,costheta2,u,v;
 
 	ab=min(max(DotProduct(a,b),-1.),1.);
-	if(ab==1.0f) return b;	// °¢µµ°¡ 0ÀÌ¸é ±×³É ¸®ÅÏ
+	if(ab==1.0f) return b;	// ê°ë„ê°€ 0ì´ë©´ ê·¸ëƒ¥ ë¦¬í„´
 
-	//	else if(ab==-1.0f) return TransformVector(a, RotateZMatrix(pi*x));		// °¢µµ°¡ 180ÀÌ¸é ZÃàÀ¸·Î È¸ÀüÇÑ´Ù.
+	//	else if(ab==-1.0f) return TransformVector(a, RotateZMatrix(pi*x));		// ê°ë„ê°€ 180ì´ë©´ Zì¶•ìœ¼ë¡œ íšŒì „í•œë‹¤.
 
 	theta=acos(ab);
-	//if(theta==0.0f) return a;	// 0µµÀÌ¸é a ¸®ÅÏ
+	//if(theta==0.0f) return a;	// 0ë„ì´ë©´ a ë¦¬í„´
 
 	theta1=theta*x;
 	theta2=theta*(1.0f-x);
@@ -160,7 +160,7 @@ inline dpoint InterpolatedVector(dpoint &a,dpoint &b,double x)
 	u=costheta1-ab*costheta2;
 	v=costheta2-ab*costheta1;
 	double D = (1.0f-ab*ab);
-	//	_ASSERT(D!=0.0f);	// ¾Õ¿¡¼­ ab¸¦ °Ë»çÇÏ¹Ç·Î 0ÀÌ ³ª¿Ã ¼ö ¾ø´Ù.
+	//	_ASSERT(D!=0.0f);	// ì•ì—ì„œ abë¥¼ ê²€ì‚¬í•˜ë¯€ë¡œ 0ì´ ë‚˜ì˜¬ ìˆ˜ ì—†ë‹¤.
 	if(D==0) return a;
 
 	dpoint vReturn=(1.0f/D*(u*a+v*b));
@@ -239,7 +239,7 @@ inline void MergeBoundingBox(dboundingbox *dest,dboundingbox *src)
 
 
 inline double GetArea(dpoint &v1,dpoint &v2,dpoint &v3) {
-	double a,b,c;	// »ï°¢ÇüÀÇ ¼¼º¯ÀÇ ±æÀÌ.
+	double a,b,c;	// ì‚¼ê°í˜•ì˜ ì„¸ë³€ì˜ ê¸¸ì´.
 	a=Length(v1-v2);
 	b=Length(v2-v3);
 	c=Length(v3-v1);

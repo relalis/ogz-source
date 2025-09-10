@@ -186,7 +186,7 @@ void MMatchFormula::PreCalcNeedExp()
 	for (int lvl = 1; lvl <= MAX_LEVEL; lvl++)
 	{
 		n = (u32)((lvl * lvl * m_fNeedExpLMTable[lvl] * 100) + 0.5f);
-		n = n * 2;	// ±âÈ¹¼­º¸´Ù 2¹è ´õÇÑ´Ù.
+		n = n * 2;	// ê¸°íšì„œë³´ë‹¤ 2ë°° ë”í•œë‹¤.
 		m_nNeedExp[lvl] = m_nNeedExp[lvl-1] + n;
 	}
 }
@@ -197,7 +197,7 @@ void MMatchFormula::PreCalcGettingExp()
 	{
 		u32 nExp = 0;
 
-		// È¹µæ°æÇèÄ¡ = LVL * LM * 20 + (LVL-1) * LM * 10
+		// íšë“ê²½í—˜ì¹˜ = LVL * LM * 20 + (LVL-1) * LM * 10
 		m_nGettingExp[lvl] = ( (u32)((lvl * m_fGettingExpLMTable[lvl] * 20) +0.5f) + 
                             (u32)(((lvl-1) * m_fGettingExpLMTable[lvl] * 10) + 0.5f) );
 	}
@@ -209,7 +209,7 @@ void MMatchFormula::PreCalcGettingBounty()
 	{
 		u32 nExp = 0;
 
-		// È¹µæ¹Ù¿îÆ¼ = TRUNC(LVL * LM * 1.2)
+		// íšë“ë°”ìš´í‹° = TRUNC(LVL * LM * 1.2)
 		m_nGettingBounty[lvl] = ( (u32)((lvl * m_fGettingBountyLMTable[lvl] * 1.2f) + 0.5f) );
 	}
 }
@@ -219,13 +219,13 @@ u32 MMatchFormula::CalcPanaltyEXP(int nAttackerLevel, int nVictimLevel)
 {
 #define BOUNDARY_PANALTY_LEVEL		20
 
-	// 20·¹º§ ÀÌÇÏ´Â °æÇèÄ¡°¡ ¶³¾îÁöÁö ¾Ê´Â´Ù.
+	// 20ë ˆë²¨ ì´í•˜ëŠ” ê²½í—˜ì¹˜ê°€ ë–¨ì–´ì§€ì§€ ì•ŠëŠ”ë‹¤.
 	if (nVictimLevel <= BOUNDARY_PANALTY_LEVEL) return 0;
 
-	// ÀÚ½Åº¸´Ù ·¹º§ÀÌ ³ôÀº »ç¶÷¿¡°Ô Á×À¸¸é ¼Õ½ÇÀÌ ¾ø´Ù.
+	// ìì‹ ë³´ë‹¤ ë ˆë²¨ì´ ë†’ì€ ì‚¬ëŒì—ê²Œ ì£½ìœ¼ë©´ ì†ì‹¤ì´ ì—†ë‹¤.
 	if (nAttackerLevel > nVictimLevel) return 0;
 
-	// ÀÏÁ¤ ·¹º§Â÷ÀÌ¿¡´Â °æÇèÄ¡ ¼Õ½ÇÀÌ ¾ø´Ù
+	// ì¼ì • ë ˆë²¨ì°¨ì´ì—ëŠ” ê²½í—˜ì¹˜ ì†ì‹¤ì´ ì—†ë‹¤
 	if (abs(nAttackerLevel - nVictimLevel) <= (int(nVictimLevel/10) + 1) * 2) return 0;
 
 	u32 nExp = 0;
@@ -245,7 +245,7 @@ u32 MMatchFormula::GetSuicidePanaltyEXP(int nLevel)
 {
 #define BOUNDARY_SUICIDE_PANALTY_LEVEL		5
 
-	// 5·¹º§ ÀÌÇÏ´Â °æÇèÄ¡°¡ ¶³¾îÁöÁö ¾Ê´Â´Ù.
+	// 5ë ˆë²¨ ì´í•˜ëŠ” ê²½í—˜ì¹˜ê°€ ë–¨ì–´ì§€ì§€ ì•ŠëŠ”ë‹¤.
 	if (nLevel <= BOUNDARY_SUICIDE_PANALTY_LEVEL) return 0;
 
 	u32 nExp = 0;
@@ -257,7 +257,7 @@ u32 MMatchFormula::GetSuicidePanaltyEXP(int nLevel)
 
 	if (nExp > nMaxExp) nExp = nMaxExp;
 
-	// ÀÚ»ìÀÏ °æ¿ì °æÇèÄ¡ ¼Õ½ÇÀÌ µÎ¹è
+	// ìì‚´ì¼ ê²½ìš° ê²½í—˜ì¹˜ ì†ì‹¤ì´ ë‘ë°°
 	nExp = nExp * 2;
 
 	return (u32)nExp;
@@ -315,14 +315,14 @@ int MMatchFormula::GetLevelPercent(u32 nExp, int nNowLevel)
 
 int MMatchFormula::GetClanBattlePoint(int nWinnerClanPoint, int nLoserClanPoint, int nOneTeamMemberCount)
 {
-	// http://iworks.maietgames.com/mdn/wiki.php/Å¬·£Àü ¿¡ °ø½ÄÀÌ ³ª¿ÍÀÖÀ½
+	// http://iworks.maietgames.com/mdn/wiki.php/í´ëœì „ ì— ê³µì‹ì´ ë‚˜ì™€ìˆìŒ
 /*
-Delta ¸¸Å­ ÀÌ±ä Å¬·£¿¡ Á¡¼ö ´õÇÏ°í Áø Å¬·£¿¡ Á¡¼ö »©±â
-(k=ÀÌ±ä Å¬·£ Á¡¼ö) (v=Áø Å¬·£ Á¡¼ö)
+Delta ë§Œí¼ ì´ê¸´ í´ëœì— ì ìˆ˜ ë”í•˜ê³  ì§„ í´ëœì— ì ìˆ˜ ë¹¼ê¸°
+(k=ì´ê¸´ í´ëœ ì ìˆ˜) (v=ì§„ í´ëœ ì ìˆ˜)
 
 Delta1 = 5 / 1 + 10^((k-v)/1000)
 Delta2 = tc / 10^((wc-lc)/50)
-(tc=ÃÑÀÎ¿ø) (wc=ÀÌ±äÆÀÀÎ¿ø) (lc=ÁøÆÀÀÎ¿ø)
+(tc=ì´ì¸ì›) (wc=ì´ê¸´íŒ€ì¸ì›) (lc=ì§„íŒ€ì¸ì›)
 Delta = Delta1+Delta2
 */
 
@@ -334,20 +334,20 @@ Delta = Delta1+Delta2
 	return Delta;
 }
 
-// ¿ì¼± ¿ŞÂÊ °ÍÀ» °Ë»çÇÑ ÈÄ¿¡ ¿À¸¥ÂÊ °ÍÀ» °Ë»çÇØ¼­ ¹İÁö ÇÑ°³¸¸ Àû¿ëÇÑ´Ù. ÇÁ¸®¹Ì¾ö IPµµ °Ë»ç
+// ìš°ì„  ì™¼ìª½ ê²ƒì„ ê²€ì‚¬í•œ í›„ì— ì˜¤ë¥¸ìª½ ê²ƒì„ ê²€ì‚¬í•´ì„œ ë°˜ì§€ í•œê°œë§Œ ì ìš©í•œë‹¤. í”„ë¦¬ë¯¸ì—„ IPë„ ê²€ì‚¬
 float MMatchFormula::CalcXPBonusRatio(MMatchObject* pCharObj, MMatchItemBonusType nBonusType)
 {
 	float fBonusRatio = 0.0f;
 
-	// ³İ¸¶ºí PC¹æ º¸³Ê½º °è»ê ////////////////////////////////////////////////////////////
+	// ë„·ë§ˆë¸” PCë°© ë³´ë„ˆìŠ¤ ê³„ì‚° ////////////////////////////////////////////////////////////
 	if (pCharObj->GetAccountInfo()->m_nPGrade == MMPG_PREMIUM_IP)
 	{
-		const float PREMIUM_IP_BONUS = 0.2f;	// 1.2¹è
+		const float PREMIUM_IP_BONUS = 0.2f;	// 1.2ë°°
 
 		fBonusRatio += PREMIUM_IP_BONUS;
 	}
 
-	// °æÇèÄ¡ ¾ÆÀÌÅÛ °è»ê //////////////////////////////////////////////////////////////////
+	// ê²½í—˜ì¹˜ ì•„ì´í…œ ê³„ì‚° //////////////////////////////////////////////////////////////////
 	MMatchEquipedItem* pEquipedItems = &pCharObj->GetCharInfo()->m_EquipedItem;
 
 	MMatchItem*		pItemL = pEquipedItems->GetItem(MMCIP_FINGERL);
@@ -410,10 +410,10 @@ float MMatchFormula::CalcBPBounsRatio(MMatchObject* pCharObj, MMatchItemBonusTyp
 {
 	float fBonusRatio = 0.0f;
 
-	// ³İ¸¶ºí PC¹æ º¸³Ê½º °è»ê ////////////////////////////////////////////////////////////
+	// ë„·ë§ˆë¸” PCë°© ë³´ë„ˆìŠ¤ ê³„ì‚° ////////////////////////////////////////////////////////////
 	if (pCharObj->GetAccountInfo()->m_nPGrade == MMPG_PREMIUM_IP)
 	{
-		const float PREMIUM_IP_BONUS = 0.2f;	// 1.2¹è
+		const float PREMIUM_IP_BONUS = 0.2f;	// 1.2ë°°
 
 		fBonusRatio += PREMIUM_IP_BONUS;
 	}

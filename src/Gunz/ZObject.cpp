@@ -109,7 +109,7 @@ void ZObject::Tremble(float fValue, DWORD nMaxTime, DWORD nReturnMaxTime)
 	{
 		RFrameTime* ft = &m_pVMesh->m_FrameTime;
 		if(ft && !ft->m_bActive)
-			ft->Start(fValue,nMaxTime,nReturnMaxTime);// °­µµ , ÃÖ´ë½Ã°£ , º¹±Í½Ã°£...
+			ft->Start(fValue,nMaxTime,nReturnMaxTime);// ê°•ë„ , ìµœëŒ€ì‹œê°„ , ë³µê·€ì‹œê°„...
 	}
 
 }
@@ -138,10 +138,10 @@ void ZObject::OnSimpleDamaged(ZObject* pAttacker, float fDamage, float fPiercing
 	pModule->OnDamage(pAttacker ? pAttacker->GetUID() : MUID(0,0), fDamage, fPiercingRatio);
 }
 
-// HP/AP¸¦ È¸º¹ÇÑ´Ù
+// HP/APë¥¼ íšŒë³µí•œë‹¤
 void ZObject::OnHealing(ZObject* pOwner,int nHP,int nAP)
 {
-	// Èú¸µ
+	// ížë§
 	ZModule_HPAP *pModule = (ZModule_HPAP*)GetModule(ZMID_HPAP);
 	if(!pModule) return;
 
@@ -149,7 +149,7 @@ void ZObject::OnHealing(ZObject* pOwner,int nHP,int nAP)
 	pModule->SetAP( min( pModule->GetAP() + nAP, pModule->GetMaxAP() ) );
 
 
-	// TODO: ÀÌÆåÆ® Ãß°¡. ÀÓ½Ã·Î ´Þ¾ÒÀ½
+	// TODO: ì´íŽ™íŠ¸ ì¶”ê°€. ìž„ì‹œë¡œ ë‹¬ì•˜ìŒ
 	ZGetEffectManager()->AddHealEffect(GetPosition(),this);
 
 }

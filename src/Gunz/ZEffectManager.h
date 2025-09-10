@@ -399,16 +399,16 @@ public:
 
 	void AddShadowEffect(rmatrix& m,DWORD _color);
 
-	// ¿Â°ÔÀÓ³İ Â¯ ¾ÆÀÌÄÜ
+	// ì˜¨ê²Œì„ë„· ì§± ì•„ì´ì½˜
 	void AddStarEffect(ZObject* pObj);
 
-	// ÀÏ¹İÀûÀÎ ÀÌÆåÆ®
+	// ì¼ë°˜ì ì¸ ì´í™íŠ¸
 	void Add(const char* szName,const rvector& pos, const rvector& dir,const MUID& uidOwner,int nLifeTime);
 	void AddSp(const char* szName,int nCnt,const rvector& pos, const rvector& dir,const MUID& uidOwner);
 	void AddPartsPosType(const char* szName,const MUID& uidOwner,RMeshPartsPosInfoType type,int nLifeTime);
 };
 
-// ÀÌÆåÆ® µğÅ×ÀÏ ·¹º§..¿É¼Ç
+// ì´í™íŠ¸ ë””í…Œì¼ ë ˆë²¨..ì˜µì…˜
 
 void SetEffectLevel(int level);
 int	 GetEffectLevel();

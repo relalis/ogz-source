@@ -4,12 +4,12 @@
 
 	Backgound Music Waveform Object Handling
 	
-	WaGe´Â 4°³ÀÇ Æ®·¢À» °ü¸®ÇÏ¸ç, ±×Áß ÇÑ°³¸¦ ±× ±æÀÌ°¡ ±ä ¿şÀÌºê
-	È­ÀÏÀ» À§ÇØ ÇÒ´çÇÑ´Ù. 
-	ÀÌ´Â ±æÀÌ°¡ ±ä À½¼º Ãâ·Â, ¶Ç´Â À½¾Ç È­ÀÏÀ» À§ÇØ »ç¿ëÇÏ°Ô µÇ¸ç
-	±× À½ÁúÀº 22kHz, 16bit Stereo SamplingÀ» ±âÁØÀ¸·Î ÇÑ´Ù.
-	BGM Object´Â PannigµîÀÇ È¿°ú¸¦ ÁÙ¼ö ¾øÀ¸¸ç ¿ÀÁ÷ º¼·ı¿¡ ´ëÇÑ Á¶
-	Á¤À» ÇÒ ¼ö ÀÖ´Ù.
+	WaGeëŠ” 4ê°œì˜ íŠ¸ë™ì„ ê´€ë¦¬í•˜ë©°, ê·¸ì¤‘ í•œê°œë¥¼ ê·¸ ê¸¸ì´ê°€ ê¸´ ì›¨ì´ë¸Œ
+	í™”ì¼ì„ ìœ„í•´ í• ë‹¹í•œë‹¤. 
+	ì´ëŠ” ê¸¸ì´ê°€ ê¸´ ìŒì„± ì¶œë ¥, ë˜ëŠ” ìŒì•… í™”ì¼ì„ ìœ„í•´ ì‚¬ìš©í•˜ê²Œ ë˜ë©°
+	ê·¸ ìŒì§ˆì€ 22kHz, 16bit Stereo Samplingì„ ê¸°ì¤€ìœ¼ë¡œ í•œë‹¤.
+	BGM ObjectëŠ” Pannigë“±ì˜ íš¨ê³¼ë¥¼ ì¤„ìˆ˜ ì—†ìœ¼ë©° ì˜¤ì§ ë³¼ë¥¨ì— ëŒ€í•œ ì¡°
+	ì •ì„ í•  ìˆ˜ ìˆë‹¤.
 
 	Programming by Chojoongpil
 	All copyright 1996 (c), MAIET entertainment software
@@ -41,14 +41,14 @@ RealSoundBgm::RealSoundBgm()
     // Initialize data members
     m_pRealSound = NULL;					// WaGe (Waveform Generator) Object's Pointer
     m_pwavefile = NULL;				// Wavefile Object's Pointer
-    m_pdsb = NULL;					// BGM µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ DirectSound Buffer
+    m_pdsb = NULL;					// BGM ë°ì´í„°ë¥¼ ì €ì¥í•  DirectSound Buffer
     m_ptimer = NULL;				// Multimedia Timer
 
     m_bLooped = m_fPlaying = m_fCued = FALSE;	// Semaphores for Streaming
     m_lInService = FALSE;			// Semaphore
 
     m_cbBufOffset = 0;				// Write Position
-    m_nBufLength = DefBufferLength;	// Sound BufferÀÇ ±æÀÌ (in msec) ?????
+    m_nBufLength = DefBufferLength;	// Sound Bufferì˜ ê¸¸ì´ (in msec) ?????
     m_cbBufSize = 0;				// Waveform Object Wave Buffer Size
     m_nBufService = DefBufferServiceInterval;	// Service Interval
     m_nDuration = 0;				// duration of wave file ( in KB(s) )
@@ -56,8 +56,8 @@ RealSoundBgm::RealSoundBgm()
 	    m_nDataSize = m_mmckiData.cksize;
 	    m_nDuration = (m_nDataSize * 1000) / m_nAvgDataRate;
 	*/
-    m_nTimeStarted = 0;				// Play°¡ ½ÃÀÛµÈ ½Ã½ºÅÛ ½Ã°£.
-    m_nTimeElapsed = 0;				// PlayµÈ ÀÌÈÄÀÇ °æ°ú ½Ã°£.	
+    m_nTimeStarted = 0;				// Playê°€ ì‹œì‘ëœ ì‹œìŠ¤í…œ ì‹œê°„.
+    m_nTimeElapsed = 0;				// Playëœ ì´í›„ì˜ ê²½ê³¼ ì‹œê°„.	
 }
 
 RealSoundBgm::~RealSoundBgm()
@@ -68,15 +68,15 @@ RealSoundBgm::~RealSoundBgm()
 //////////////////////////////////////
 // Member Functions Implementation
 
-// Multimedia Timer°´Ã¼¸¦ À§ÇÑ CallbackÇÔ¼ö.
+// Multimedia Timerê°ì²´ë¥¼ ìœ„í•œ Callbackí•¨ìˆ˜.
 bool RealSoundBgm::TimerCallback (uintptr_t dwUser)
 {
-    RealSoundBgm * pas = (RealSoundBgm *) dwUser;	// C++¿¡¼­ÀÇ CallbackÇÔ¼ö¸¦ À§ÇØ ÀÌ¿Í °°Àº ¹æ¹ıÀ» »ç¿ëÇÏ¿´´Ù.
+    RealSoundBgm * pas = (RealSoundBgm *) dwUser;	// C++ì—ì„œì˜ Callbackí•¨ìˆ˜ë¥¼ ìœ„í•´ ì´ì™€ ê°™ì€ ë°©ë²•ì„ ì‚¬ìš©í•˜ì˜€ë‹¤.
 	if( pas ) return pas->ServiceBuffer(); else return FALSE;
 }
 
 /*
-	pszFilenameÀ¸·Î ÁÖ¾îÁø Waveform fileÀ» ±âÃÊ·Î BGM Object¸¦ ±¸¼ºÇÑ´Ù.
+	pszFilenameìœ¼ë¡œ ì£¼ì–´ì§„ Waveform fileì„ ê¸°ì´ˆë¡œ BGM Objectë¥¼ êµ¬ì„±í•œë‹¤.
 
 	pszFilename : Wave file name
 	pRealSound       : WaGe object pointer
@@ -123,7 +123,7 @@ bool RealSoundBgm::Create (LPSTR pszFilename, RealSound* pRealSound)
 		return FALSE;
 	}
 
-	Cue();	// ÁØºñ½ÅÈ£¸¦ ÁØ´Ù.
+	Cue();	// ì¤€ë¹„ì‹ í˜¸ë¥¼ ì¤€ë‹¤.
         
     return TRUE;
 }
@@ -152,24 +152,24 @@ void RealSoundBgm::Destroy (void)
 /*
 	Cue
 
-	Play¸¦ À§ÇØ¼­ ½ÅÈ£¸¦ ÁØ´Ù. (ready½ÃÅ²´Ù.)
+	Playë¥¼ ìœ„í•´ì„œ ì‹ í˜¸ë¥¼ ì¤€ë‹¤. (readyì‹œí‚¨ë‹¤.)
 */
 void RealSoundBgm::Cue (void)
 {   
     if (!m_fCued)
     {	        
-        m_cbBufOffset = 0;				// Write PositionÀ» zero·Î ¸®¼Â½ÃÅ²´Ù.		        
-        m_pwavefile->Cue ();			// File Pointer¿ª½Ã ¸®¼Â.        
-        m_pdsb->SetCurrentPosition (0); // Buffer»óÅÂ¸¦ ÃÊ±âÈ­. 
+        m_cbBufOffset = 0;				// Write Positionì„ zeroë¡œ ë¦¬ì…‹ì‹œí‚¨ë‹¤.		        
+        m_pwavefile->Cue ();			// File Pointerì—­ì‹œ ë¦¬ì…‹.        
+        m_pdsb->SetCurrentPosition (0); // Bufferìƒíƒœë¥¼ ì´ˆê¸°í™”. 
         WriteWaveData (m_cbBufSize);	// Fill buffer with wave data        
-        m_fCued = TRUE;					// Semaphore True·Î ÃÊ±âÈ­.
+        m_fCued = TRUE;					// Semaphore Trueë¡œ ì´ˆê¸°í™”.
     }
 }
 
 /*
 	WriteWaveData
 
-	size¸¸Å­ Sound Buffer¿¡ Wavedata¸¦ ±â·ÏÇÑ´Ù.
+	sizeë§Œí¼ Sound Bufferì— Wavedataë¥¼ ê¸°ë¡í•œë‹¤.
 */
 bool RealSoundBgm::WriteWaveData (UINT size)
 {
@@ -192,7 +192,7 @@ bool RealSoundBgm::WriteWaveData (UINT size)
 	if ((dwbyteswritten1 = m_pwavefile->Read (lpbuf1, dwsize1)) != dwsize1) return FALSE;
 		// Second write required?
 	
-	if ( lpbuf2 )	// ¸¸ÀÏ 2Áß ¹öÆÛ±îÁö ½á¾ß ÇÑ´Ù¸é ´ÙÀ½ µ¿ÀÛÀ» ÇàÇÑ´Ù.
+	if ( lpbuf2 )	// ë§Œì¼ 2ì¤‘ ë²„í¼ê¹Œì§€ ì¨ì•¼ í•œë‹¤ë©´ ë‹¤ìŒ ë™ì‘ì„ í–‰í•œë‹¤.
 		if ((dwbyteswritten2 = m_pwavefile->Read (lpbuf2, dwsize2)) != dwsize2) 
 			return FALSE;	
 
@@ -207,7 +207,7 @@ bool RealSoundBgm::WriteWaveData (UINT size)
 /*
 	WriteSilence
 
-	size¸¸Å­ÀÇ Silenceµ¥ÀÌÅÍ¸¦ ½á³Ö´Â´Ù.
+	sizeë§Œí¼ì˜ Silenceë°ì´í„°ë¥¼ ì¨ë„£ëŠ”ë‹¤.
 */
 bool RealSoundBgm::WriteSilence (UINT size)
 {	
@@ -227,16 +227,16 @@ bool RealSoundBgm::WriteSilence (UINT size)
 
 	BYTE bSilence = m_pwavefile->GetSilenceData ();
         
-    memset(lpbuf1, bSilence, dwsize1);	// 1Â÷ ¹öÆÛ¿¡ ¾²±â µ¿ÀÛÀ» ÇàÇÑ´Ù. (Silence Data)
+    memset(lpbuf1, bSilence, dwsize1);	// 1ì°¨ ë²„í¼ì— ì“°ê¸° ë™ì‘ì„ í–‰í•œë‹¤. (Silence Data)
     
 	dwbyteswritten1 = dwsize1;
         
-    if (lpbuf2){	// 2nd Buffer°¡ ÇÊ¿äÇÏ´Ù¸é 2Â÷ ¹öÆÛµµ ¾²±â µ¿ÀÛÀ» ÇàÇÑ´Ù. (Silence Data)
+    if (lpbuf2){	// 2nd Bufferê°€ í•„ìš”í•˜ë‹¤ë©´ 2ì°¨ ë²„í¼ë„ ì“°ê¸° ë™ì‘ì„ í–‰í•œë‹¤. (Silence Data)
         memset (lpbuf1, bSilence, dwsize1);
         dwbyteswritten2 = dwsize2;
     }
 	
-    // Write Cursor PositionÀ» UpdateÇÑ´Ù.
+    // Write Cursor Positionì„ Updateí•œë‹¤.
     m_cbBufOffset = (m_cbBufOffset + dwbyteswritten1 + dwbyteswritten2) % m_cbBufSize;
     m_pdsb->Unlock (lpbuf1, dwbyteswritten1, lpbuf2, dwbyteswritten2);
 
@@ -247,7 +247,7 @@ bool RealSoundBgm::WriteSilence (UINT size)
 /*
 	GetMaxWriteSize
 	
-	¾²±â µ¿ÀÛÀ» À§ÇÑ Sound BufferÀÇ ÃÖ´ë Å©±â¸¦ ±¸ÇÑ´Ù.
+	ì“°ê¸° ë™ì‘ì„ ìœ„í•œ Sound Bufferì˜ ìµœëŒ€ í¬ê¸°ë¥¼ êµ¬í•œë‹¤.
 */
 u32 RealSoundBgm::GetMaxWriteSize (void)
 {
@@ -258,14 +258,14 @@ u32 RealSoundBgm::GetMaxWriteSize (void)
 		dwMaxSize = 0;
 	}
 
-    if (m_cbBufOffset <= dwPlayCursor)	// ¾²±â Ä¿¼­ÀÇ À§Ä¡°¡ ÇÃ·¹ÀÌ Ä¿¼­ÀÇ À§Ä¡º¸´Ù ÀÛÀ¸¸é
+    if (m_cbBufOffset <= dwPlayCursor)	// ì“°ê¸° ì»¤ì„œì˜ ìœ„ì¹˜ê°€ í”Œë ˆì´ ì»¤ì„œì˜ ìœ„ì¹˜ë³´ë‹¤ ì‘ìœ¼ë©´
     {
         // Our write position trails play cursor
         dwMaxSize = dwPlayCursor - m_cbBufOffset;
     }
 
     else // (m_cbBufOffset > dwPlayCursor)
-    {	// Play Cursor¸¦ Wrapping½ÃÅ²´Ù. (Sound Buffer´Â È¯ÇüÀÌ´Ù.)
+    {	// Play Cursorë¥¼ Wrappingì‹œí‚¨ë‹¤. (Sound BufferëŠ” í™˜í˜•ì´ë‹¤.)
         dwMaxSize = m_cbBufSize - m_cbBufOffset + dwPlayCursor;
     }
 	       
@@ -275,25 +275,25 @@ u32 RealSoundBgm::GetMaxWriteSize (void)
 /*
 	Play()
 
-	CreateµÈ °´Ã¼¸¦ ½ÇÇà½ÃÅ²´Ù.
-	Play´Â ±× °´Ã¼ÀÇ Ã³À½ºÎÅÍ Àç»ıÇÏ°Ô µÈ´Ù.
+	Createëœ ê°ì²´ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.
+	PlayëŠ” ê·¸ ê°ì²´ì˜ ì²˜ìŒë¶€í„° ì¬ìƒí•˜ê²Œ ëœë‹¤.
 */
 void RealSoundBgm::Play( bool bLoop )
 {
-    if (m_pdsb)						// Buffer°¡ Á¸ÀçÇØ¾ß ÇÑ´Ù.
+    if (m_pdsb)						// Bufferê°€ ì¡´ì¬í•´ì•¼ í•œë‹¤.
     {
-        if (m_fPlaying) Stop ();	// PlayÁßÀÏ¶§¿£ ¿¬ÁÖ ÁßÁö.
-        if (!m_fCued) Cue ();		// ¸¸ÀÏ ÃÊ±âÈ­ µÇ¾î ÀÖÁö ¾Ê´Ù¸é Buffer¿¡ ´ëÇÑ ÃÊ±âÈ­¸¦ ÇÑ´Ù.
-        HRESULT hr = m_pdsb->Play (0, 0, DSBPLAY_LOOPING);	// Streaming ±â¹ı¿¡¼­´Â ¹öÆÛ¸¦ ·çÇÎÇÏ¿©
-															// ¿¬ÁÖÇÏ´Â ±â¹ıÀ» »ç¿ëÇÑ´Ù.
-															// Sound Buffer´Â È¯ÇüÀ¸·Î Á¸ÀçÇÏ°í ¿ì¸®´Â
-															// ¸ÖÆ¼¹Ìµğ¾î Å¸ÀÌ¸Ó¸¦ ÀÌ¿ëÇÏ¿© ÀÌ¸¦ °»½ÅÇÏ¿©
-															// ÀÛÀº ¹öÆÛ¸¦ »ç¿ëÇÏ¿© Å« µ¥ÀÌÅÍ¸¦ ¿¬ÁÖÇÒ ¼ö
-															// ÀÖ°Ô ÇÑ´Ù.
+        if (m_fPlaying) Stop ();	// Playì¤‘ì¼ë•Œì—” ì—°ì£¼ ì¤‘ì§€.
+        if (!m_fCued) Cue ();		// ë§Œì¼ ì´ˆê¸°í™” ë˜ì–´ ìˆì§€ ì•Šë‹¤ë©´ Bufferì— ëŒ€í•œ ì´ˆê¸°í™”ë¥¼ í•œë‹¤.
+        HRESULT hr = m_pdsb->Play (0, 0, DSBPLAY_LOOPING);	// Streaming ê¸°ë²•ì—ì„œëŠ” ë²„í¼ë¥¼ ë£¨í•‘í•˜ì—¬
+															// ì—°ì£¼í•˜ëŠ” ê¸°ë²•ì„ ì‚¬ìš©í•œë‹¤.
+															// Sound BufferëŠ” í™˜í˜•ìœ¼ë¡œ ì¡´ì¬í•˜ê³  ìš°ë¦¬ëŠ”
+															// ë©€í‹°ë¯¸ë””ì–´ íƒ€ì´ë¨¸ë¥¼ ì´ìš©í•˜ì—¬ ì´ë¥¼ ê°±ì‹ í•˜ì—¬
+															// ì‘ì€ ë²„í¼ë¥¼ ì‚¬ìš©í•˜ì—¬ í° ë°ì´í„°ë¥¼ ì—°ì£¼í•  ìˆ˜
+															// ìˆê²Œ í•œë‹¤.
         if( hr != DS_OK ) _D("RealSoundBgm::Play : Fail to play\n");
 		
 		m_nTimeStarted = GetGlobalTimeMS ();
-		m_ptimer = new MMTimer ();	// ¹öÆÛ °ü¸®¸¦ À§ÇÏ¿© Multimedia Timer¸¦ ±¸µ¿½ÃÅ²´Ù.
+		m_ptimer = new MMTimer ();	// ë²„í¼ ê´€ë¦¬ë¥¼ ìœ„í•˜ì—¬ Multimedia Timerë¥¼ êµ¬ë™ì‹œí‚¨ë‹¤.
 		if (m_ptimer){
 			if( !m_ptimer->Create (m_nBufService, m_nBufService, u32 (this), TimerCallback) ){
 				m_pdsb->Stop ();		
@@ -317,8 +317,8 @@ void RealSoundBgm::Play( bool bLoop )
 			return;
 		}
 		
-		m_fPlaying = TRUE;	// Playing Flag¸¦ ¼ÂÆ®½ÃÅ²´Ù.
-		m_fCued = FALSE;	// Cue flag´Â ²¨¹ö¸°´Ù. (ÀÌ¹Ì ÇÃ·¹ÀÌ´Â ½ÃÀÛµÇ¾ú´Ù.)
+		m_fPlaying = TRUE;	// Playing Flagë¥¼ ì…‹íŠ¸ì‹œí‚¨ë‹¤.
+		m_fCued = FALSE;	// Cue flagëŠ” êº¼ë²„ë¦°ë‹¤. (ì´ë¯¸ í”Œë ˆì´ëŠ” ì‹œì‘ë˜ì—ˆë‹¤.)
 		m_bLooped = bLoop;
     }
 }
@@ -326,7 +326,7 @@ void RealSoundBgm::Play( bool bLoop )
 /*
 	Stop
 
-	BGMÀÇ ¿¬ÁÖ¸¦ ÁßÁö½ÃÅ²´Ù. ÃÊ±â»óÅÂ·Î ¸ğµÎ ÀüÈ¯½ÃÅ²´Ù.
+	BGMì˜ ì—°ì£¼ë¥¼ ì¤‘ì§€ì‹œí‚¨ë‹¤. ì´ˆê¸°ìƒíƒœë¡œ ëª¨ë‘ ì „í™˜ì‹œí‚¨ë‹¤.
 */
 void RealSoundBgm::Stop()
 {
@@ -342,8 +342,8 @@ void RealSoundBgm::Stop()
 /*
 	ServiceBuffer
 
-	Å¸ÀÌ¸Ó¿¡ ÀÇÇØ ½ÇÇàµÇ´Â ¹öÆÛ °ü¸® ·çÆ¾, RealSoundBgmÀÇ ÇÙ½É ÆÄÆ®ÀÌ´Ù.
-	BooleanÇüÀÇ °á°ú°ªÀ» ¹İÈ¯ÇÑ´Ù. Á¤»óÀÎ °æ¿ì -> TRUE, ºñÁ¤»ó ½ÇÇàÀÎ °æ¿ì -> FALSE
+	íƒ€ì´ë¨¸ì— ì˜í•´ ì‹¤í–‰ë˜ëŠ” ë²„í¼ ê´€ë¦¬ ë£¨í‹´, RealSoundBgmì˜ í•µì‹¬ íŒŒíŠ¸ì´ë‹¤.
+	Booleaní˜•ì˜ ê²°ê³¼ê°’ì„ ë°˜í™˜í•œë‹¤. ì •ìƒì¸ ê²½ìš° -> TRUE, ë¹„ì •ìƒ ì‹¤í–‰ì¸ ê²½ìš° -> FALSE
 */
 bool RealSoundBgm::ServiceBuffer (void)
 {

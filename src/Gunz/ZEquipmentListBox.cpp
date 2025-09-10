@@ -14,7 +14,7 @@
 #include "ZItemMenu.h"
 
 
-// ÆÄÀÏ ÀÌ¸§Àº ±×³É ÇÏµåÄÚµù..-_-;
+// íŒŒì¼ ì´ë¦„ì€ ê·¸ëƒ¥ í•˜ë“œì½”ë”©..-_-;
 MBitmap* GetItemIconBitmap(MMatchItemDesc* pItemDesc, bool bSmallIcon)
 {
 	if (pItemDesc == NULL) return NULL;
@@ -208,9 +208,9 @@ ZEquipmentListBox::ZEquipmentListBox(const char* szName, MWidget* pParent, MList
 	m_bAbsoulteTabSpacing = true;
 
 	AddField("ICON", 32);
-	AddField("¾ÆÀÌÅÛ", 160);
-	AddField("·¹º§", 35);
-	AddField("°¡°Ý", 45);
+	AddField("ì•„ì´í…œ", 160);
+	AddField("ë ˆë²¨", 35);
+	AddField("ê°€ê²©", 45);
 
 	m_bVisibleHeader = true;
 
@@ -327,7 +327,7 @@ public:
 					pButton->Show( false);
 			}
 
-			// Äù½ºÆ® ¾ÆÀÌÅÛ
+			// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ
 			MQuestItemDesc* pQuestItemDesc = GetQuestItemDescMgr().FindQItemDesc( pListItem->GetItemID());
 			if ( pQuestItemDesc)
 			{
@@ -377,7 +377,7 @@ MListener* ZGetShopSaleItemListBoxListener(void)
 
 
 
-// frame À» ÅøÆÁÃ³·³ º¸ÀÌ°Ô ÇÏ±â À§ÇØ ÇÏµåÄÚµù µÇ¾îÀÖ´Âµ¥, ¹Ýº¹À» ÁÙÀÏ¼ö ÀÖ°Ú´Ù.
+// frame ì„ íˆ´íŒì²˜ëŸ¼ ë³´ì´ê²Œ í•˜ê¸° ìœ„í•´ í•˜ë“œì½”ë”© ë˜ì–´ìžˆëŠ”ë°, ë°˜ë³µì„ ì¤„ì¼ìˆ˜ ìžˆê² ë‹¤.
 class MCashShopItemListBoxListener : public MListener
 {
 public:
@@ -453,11 +453,11 @@ public:
 			{
 				int sel = pComboBox->GetSelIndex();
 
-				// »ç±â»óÅÂ¶ó¸é
+				// ì‚¬ê¸°ìƒíƒœë¼ë©´
 				ZGetShop()->m_ListFilter = sel;
 				ZGetShop()->Serialize();
 
-				// ÆÈ±â»óÅÂ¶ó¸é - ÆÈ±â´Â ´Ù º¸¿©ÁØ´Ù..
+				// íŒ”ê¸°ìƒíƒœë¼ë©´ - íŒ”ê¸°ëŠ” ë‹¤ ë³´ì—¬ì¤€ë‹¤..
 				ZMyItemList* pil = ZGetMyInfo()->GetItemList();
 				pil->m_ListFilter = sel;
 				pil->Serialize();
@@ -528,10 +528,10 @@ public:
 			MMatchItemDesc* pItemDesc = MGetMatchItemDescMgr()->GetItemDesc(nItemID);
 
 #ifdef _QUEST_ITEM
-			// ¸¸¾à ÀÏ¹Ý¾ÆÀÌÅÛÀÌ ¾øÀ¸¸é Äù½ºÆ® ¾ÆÀÌÅÛ¿¡¼­ °Ë»öÀ» ÇÔ.
+			// ë§Œì•½ ì¼ë°˜ì•„ì´í…œì´ ì—†ìœ¼ë©´ í€˜ìŠ¤íŠ¸ ì•„ì´í…œì—ì„œ ê²€ìƒ‰ì„ í•¨.
 			if( 0 == pItemDesc )
 			{
-				// Äù½ºÆ® ¾ÆÀÌÅÛÀÏ °æ¿ì¸¦ Ã³¸®ÇØ ÁÖ°í ÇÔ¼ö¸¦ Á¾·áÇÔ.
+				// í€˜ìŠ¤íŠ¸ ì•„ì´í…œì¼ ê²½ìš°ë¥¼ ì²˜ë¦¬í•´ ì£¼ê³  í•¨ìˆ˜ë¥¼ ì¢…ë£Œí•¨.
 				MQuestItemDesc* pQuestItemDesc = GetQuestItemDescMgr().FindQItemDesc( nItemID );
 				if( 0 == pQuestItemDesc )
 					return false;
@@ -639,7 +639,7 @@ public:
 			if (pListItem != NULL) 
 				nItemID = ZGetMyInfo()->GetItemList()->GetItemID(pListItem->GetUID());
 
-			// ÀÏ¹Ý ¾ÆÀÌÅÛ...
+			// ì¼ë°˜ ì•„ì´í…œ...
 			MButton* pButtonEquip = (MButton*)ZGetGameInterface()->GetIDLResource()->FindWidget( "Equip");
 			MButton* pButtonAccItemBtn = (MButton*)ZGetGameInterface()->GetIDLResource()->FindWidget( "SendAccountItemBtn");
 
@@ -669,7 +669,7 @@ public:
 				if ( pButtonEquip)
 					pButtonEquip->Enable( true);
 
-				// Ä³½¬ ¾ÆÀÌÅÛÀÏ °æ¿ì 'Áß¾ÓÀºÇà¿¡ º¸³»±â'¹öÆ° È°¼ºÈ­, ¾Æ´Ô ºñÈ°¼ºÈ­
+				// ìºì‰¬ ì•„ì´í…œì¼ ê²½ìš° 'ì¤‘ì•™ì€í–‰ì— ë³´ë‚´ê¸°'ë²„íŠ¼ í™œì„±í™”, ì•„ë‹˜ ë¹„í™œì„±í™”
 				if ( pButtonAccItemBtn)
 				{
 					if ( ZGetIsCashItem( nItemID))
@@ -679,7 +679,7 @@ public:
 				}
 			}
 
-			// Äù½ºÆ® ¾ÆÀÌÅÛ
+			// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ
 			MQuestItemDesc* pQuestItemDesc = GetQuestItemDescMgr().FindQItemDesc( pListItem->GetItemID());
 			if ( pQuestItemDesc)
 			{
@@ -752,7 +752,7 @@ public:
 																pAccountItemNode);
 			}
 
-			// ¼ºº°ÀÌ ¸ÂÁö ¾ÊÀ¸¸é ¹öÆ°À» Disable ½ÃÅ²´Ù.
+			// ì„±ë³„ì´ ë§žì§€ ì•Šìœ¼ë©´ ë²„íŠ¼ì„ Disable ì‹œí‚¨ë‹¤.
 			MButton* pButton = (MButton*)ZGetGameInterface()->GetIDLResource()->FindWidget( "BringAccountItemBtn");
 			if ( pButton)
 			{

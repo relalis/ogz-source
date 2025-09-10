@@ -15,7 +15,7 @@ MProfileStack::~MProfileStack()
 
 void MProfileLoop::AddProfile(MPROFILELOG* pPL)
 {
-	// ¸Ç µÚ¿¡¼­ ºÎÅÍ °°Àº Depth¿Í °°Àº ÀÌ¸§À» °¡Áø ·Î±×¸¦ Ã£¾Æ Áõ°¡½ÃÅ°°Å³ª ¾øÀ¸¸é »õ·Î »ý¼º
+	// ë§¨ ë’¤ì—ì„œ ë¶€í„° ê°™ì€ Depthì™€ ê°™ì€ ì´ë¦„ì„ ê°€ì§„ ë¡œê·¸ë¥¼ ì°¾ì•„ ì¦ê°€ì‹œí‚¤ê±°ë‚˜ ì—†ìœ¼ë©´ ìƒˆë¡œ ìƒì„±
 	for(MProfileLoop::reverse_iterator i=rbegin(); i!=rend(); i++){
 		MPROFILELOG* pLog = *i;
 

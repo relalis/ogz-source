@@ -132,7 +132,7 @@ void ZButton::OnButtonClick()
 {
 	MButton::OnButtonClick();
 
-	if(m_bClicked)	// ¼ºÁú±ŞÇÑ»ç¶÷ÀÌ ±ôºıÀÌ´ÂÁß¿¡ ¶Ç ´©¸£¸é..
+	if(m_bClicked)	// ì„±ì§ˆê¸‰í•œì‚¬ëŒì´ ê¹œë¹¡ì´ëŠ”ì¤‘ì— ë˜ ëˆ„ë¥´ë©´..
 	{
 		m_bClicked=false;	
 		g_bWaiting=false;
@@ -140,7 +140,7 @@ void ZButton::OnButtonClick()
 		return;
 	}
 
-	// ±ôºıÀÌ¸é¼­ ±â´Ù¸®´Âµ¿¾È ´Ù¸¥ ¹öÆ°ÀÌ ¸ø´­¸®°Ô ÇÑ´Ù
+	// ê¹œë¹¡ì´ë©´ì„œ ê¸°ë‹¤ë¦¬ëŠ”ë™ì•ˆ ë‹¤ë¥¸ ë²„íŠ¼ì´ ëª»ëˆŒë¦¬ê²Œ í•œë‹¤
 //	if(g_bWaiting) return;
 
 	ZGetSoundEngine()->PlaySound("if_click");
@@ -280,7 +280,7 @@ void ZBmButton::OnButtonClick()
 
 	ZGetSoundEngine()->PlaySound("if_click");
 
-	if(m_bClicked)	// ¼ºÁú±ŞÇÑ»ç¶÷ÀÌ ±ôºıÀÌ´ÂÁß¿¡ ¶Ç ´©¸£¸é..
+	if(m_bClicked)	// ì„±ì§ˆê¸‰í•œì‚¬ëŒì´ ê¹œë¹¡ì´ëŠ”ì¤‘ì— ë˜ ëˆ„ë¥´ë©´..
 	{
 		m_bClicked=false;
 		g_bWaiting=false;
@@ -288,7 +288,7 @@ void ZBmButton::OnButtonClick()
 		return;
 	}
 
-	// ±ôºıÀÌ¸é¼­ ±â´Ù¸®´Âµ¿¾È ´Ù¸¥ ¹öÆ°ÀÌ ¸ø´­¸®°Ô ÇÑ´Ù
+	// ê¹œë¹¡ì´ë©´ì„œ ê¸°ë‹¤ë¦¬ëŠ”ë™ì•ˆ ë‹¤ë¥¸ ë²„íŠ¼ì´ ëª»ëˆŒë¦¬ê²Œ í•œë‹¤
 //	if(g_bWaiting) return;
 
 	m_dwClickedTime=m_dwCurrentTime;

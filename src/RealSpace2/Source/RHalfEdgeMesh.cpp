@@ -274,7 +274,7 @@ RHEMesh::RHEMesh()
 }
 
 //////////////////////////////////////////////////////////////////////////
-//	¼Ò¸êÀÚ
+//	ì†Œë©¸ì
 //////////////////////////////////////////////////////////////////////////
 RHEMesh::~RHEMesh()
 {
@@ -285,7 +285,7 @@ RHEMesh::~RHEMesh()
 
 //////////////////////////////////////////////////////////////////////////
 //	GetSubdivisionMesh
-//	¾öÃ»³ª°Ô ´À¸².. 
+//	ì—„ì²­ë‚˜ê²Œ ëŠë¦¼.. 
 //////////////////////////////////////////////////////////////////////////
 void RHEMesh::GetSubdivisionMesh(	RMeshNode* pMeshNode_, eSubdivisionType eType_, rvector* pPointList_ )
 {
@@ -348,7 +348,7 @@ void RHEMesh::GetSubdivisionMesh(	RMeshNode* pMeshNode_, eSubdivisionType eType_
 			nEdge	= &mEdges[iEdge];
 			AddEdge( &mVertices[index], nFace, peTemp, NULL, NULL, nEdge );
 
-			// ÀÌÀü Edge°¡ ÀÖÀ¸¸é »õ·Î¿î edge¸¦ ÀÌÀü edgeÀÇ next·Î ¿¬°áÇØ ÁØ´Ù
+			// ì´ì „ Edgeê°€ ìˆìœ¼ë©´ ìƒˆë¡œìš´ edgeë¥¼ ì´ì „ edgeì˜ nextë¡œ ì—°ê²°í•´ ì¤€ë‹¤
 			if( peTemp != NULL )
 			{
 				peTemp->pNext	= nEdge;
@@ -358,7 +358,7 @@ void RHEMesh::GetSubdivisionMesh(	RMeshNode* pMeshNode_, eSubdivisionType eType_
 				peFirst	= nEdge;
 			}
 
-			//	¸¸¾à vertex¿¡ ¿¬°áµÈ edge°¡ ¾øÀ¸¸é ¿¬°áÇØ ÁØ´Ù
+			//	ë§Œì•½ vertexì— ì—°ê²°ëœ edgeê°€ ì—†ìœ¼ë©´ ì—°ê²°í•´ ì¤€ë‹¤
 			if( mVertices[index].pEdge == NULL )
 			{
 				mVertices[index].tu	= pMeshNode_->m_face_list[i].m_point_tex[j].x;
@@ -366,7 +366,7 @@ void RHEMesh::GetSubdivisionMesh(	RMeshNode* pMeshNode_, eSubdivisionType eType_
 				mVertices[index].pEdge	= nEdge;
 			}
 
-			//	face¿¡ ¿¬°áµÈ edge°¡ ¾øÀ¸¸é ¿¬°áÇØ ÁØ´Ù
+			//	faceì— ì—°ê²°ëœ edgeê°€ ì—†ìœ¼ë©´ ì—°ê²°í•´ ì¤€ë‹¤
 			if( nFace->pEdge == NULL )
 			{
 				nFace->pEdge	= nEdge;
@@ -714,7 +714,7 @@ void RSubdivisionMesh::Subdivide( int subLevel_ )
 
 	int i;
 
-	if( mbIsFirstTime )	// Ã¹¹øÂ° Subdivision
+	if( mbIsFirstTime )	// ì²«ë²ˆì§¸ Subdivision
 	{
 		memset( mSubDestEdge, 0, sizeof(sHEEdge) * miSubEdgeSize );
 		memset( mSubDestVertex, 0, sizeof(sHEVertex) * miSubVertexSize );
@@ -731,7 +731,7 @@ void RSubdivisionMesh::Subdivide( int subLevel_ )
 		memcpy( mSubDestVertex, mVertices, sizeof(sHEVertex) * miNumVertices );
 		memcpy( mSubDestFace, mFaces, sizeof(sHEFace) * miNumFaces );
 
-		// ¸Ş¸ğ¸® Â÷ÀÌ º¸Á¤
+		// ë©”ëª¨ë¦¬ ì°¨ì´ ë³´ì •
 		INT64 disp_edge		= ((byte*)mSubDestEdge - (byte*)mEdges);
 		INT64 disp_vertex	= ((byte*)mSubDestVertex - (byte*)mVertices);
 		INT64 disp_face		= ((byte*)mSubDestFace - (byte*)mFaces);
@@ -770,7 +770,7 @@ void RSubdivisionMesh::Subdivide( int subLevel_ )
 		mbIsFirstTime = FALSE;
 	}
 
-	// ÃÊ±âÈ­
+	// ì´ˆê¸°í™”
 	//memset( mSubEdge, 0, sizeof(sHEEdge) * miSubNumEdges );
 	//memset( mSubVertex, 0, sizeof(sHEVertex) * miSubNumVertices );
 	//memset( mSubFace, 0, sizeof(sHEFace) * miSubNumFaces );
@@ -987,7 +987,7 @@ void	RButterflyMesh::Refinement()
 			
 			pvTemp	= peCurr->pPrev->pVertex;
 			
-			// ´ëÄªÁ¡ Ã£±â
+			// ëŒ€ì¹­ì  ì°¾ê¸°
 			sHEVertex invVertex;
 			invVertex	= *pvDest - *pvTemp;
 			invVertex	+= *pvCurr;
@@ -1039,7 +1039,7 @@ void	RButterflyMesh::Refinement()
 		}
 	}
 
-	// update Normal	- ¾öÃ» ´À¸±µí..
+	// update Normal	- ì—„ì²­ ëŠë¦´ë“¯..
 	sHEVertex* pvTemp;
 	sHEVertex* pvDestTemp;
 	for( i = 0 ; i < miSubNumVertices; ++i )
@@ -1248,7 +1248,7 @@ void RButterflyMesh::Smoothing()
 	memcpy( mSubDestVertex, mSubVertex, sizeof(sHEVertex) * miSubNumVertices );
 	memcpy( mSubDestFace, mSubFace, sizeof(sHEFace) * miSubNumFaces );
 
-	// ¸Ş¸ğ¸® Â÷ÀÌ º¸Á¤
+	// ë©”ëª¨ë¦¬ ì°¨ì´ ë³´ì •
 	INT64 disp_edge		= ((byte*)mSubDestEdge - (byte*)mSubEdge);
 	INT64 disp_vertex	= ((byte*)mSubDestVertex - (byte*)mSubVertex);
 	INT64 disp_face		= ((byte*)mSubDestFace - (byte*)mSubFace);
@@ -1299,9 +1299,9 @@ void RSubdivisionMesh::init( int subLevel_ )
 {
 	miSubLevel			= subLevel_;
 
-	miSubEdgeSize	= miNumEdges << (2*subLevel_);		// Á¤È®ÇÔ..
-	miSubFaceSize	= miNumFaces << (2*subLevel_);		// Á¤È®ÇÔ..
-	miSubVertexSize	= miSubEdgeSize;					// ÃæºĞÇÑ °ø°£..
+	miSubEdgeSize	= miNumEdges << (2*subLevel_);		// ì •í™•í•¨..
+	miSubFaceSize	= miNumFaces << (2*subLevel_);		// ì •í™•í•¨..
+	miSubVertexSize	= miSubEdgeSize;					// ì¶©ë¶„í•œ ê³µê°„..
 
 	mSubEdge			= new sHEEdge[miSubEdgeSize];
 	mSubVertex			= new sHEVertex[miSubVertexSize];

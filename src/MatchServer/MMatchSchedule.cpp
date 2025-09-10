@@ -51,10 +51,10 @@ void MMatchScheduleData::CorrectTime()
 	struct tm tmLocalTime;
 	MMatchGetLocalTime(&tmLocalTime);
 
-	// ºĞ´ÜÀ§·Î ¼³Á¤µÈ ½Ã°£¿¡¼­ ¿À¹öµÈ ÃÊ°¡ º¸Á¤½Ã°£º¸´Ù Å«Áö °Ë»ç.
+	// ë¶„ë‹¨ìœ„ë¡œ ì„¤ì •ëœ ì‹œê°„ì—ì„œ ì˜¤ë²„ëœ ì´ˆê°€ ë³´ì •ì‹œê°„ë³´ë‹¤ í°ì§€ ê²€ì‚¬.
 	if( tmLocalTime.tm_sec > m_nErrorTime ) return;
 
-	// ´ÊÀº ½Ã°£À» °­Á¦·Î Áõ°¡½ÃÅ´.
+	// ëŠ¦ì€ ì‹œê°„ì„ ê°•ì œë¡œ ì¦ê°€ì‹œí‚´.
 	++m_cMin;
 
 	if( 59 < m_cMin ){
@@ -67,7 +67,7 @@ void MMatchScheduleData::CorrectTime()
 		++m_cDay;
 	}
 
-	// ÀÌ¹ø ´ŞÀÌ ¸îÀÏ±îÁö ÀÖ´ÂÁö¸¦ ¾Ë¾Æ¿Í¾ß ÇÔ... 
+	// ì´ë²ˆ ë‹¬ì´ ëª‡ì¼ê¹Œì§€ ìˆëŠ”ì§€ë¥¼ ì•Œì•„ì™€ì•¼ í•¨... 
 	if( GetMaxDay() < m_cDay ){
 		m_cDay -= GetMaxDay();
 		m_cYear += 1;
@@ -186,16 +186,16 @@ void MMatchScheduleData::Release()
 }
 
 /////////////////////////////////////////////////////
-// ½Ã°£À» ´Ù½Ã ¼³Á¤.
+// ì‹œê°„ì„ ë‹¤ì‹œ ì„¤ì •.
 void MMatchRepeatScheduleImpl::Reset( MMatchScheduleData* pScheduleData )
 {
 	pScheduleData->ResetTime();
 }
-// ½Ã°£ ¿ÀÂ÷ º¸Á¤.
+// ì‹œê°„ ì˜¤ì°¨ ë³´ì •.
 void MMatchRepeatScheduleImpl::CorrectTime( MMatchScheduleData* pScheduleData )
 {
 	pScheduleData->CorrectTime();
-	// º¸Á¤À» ÇØµµ ÇöÁ¦ ½Ã°£º¸´Ù ´ÊÀ¸¸é ¹®Á¦°¡ ÀÖ´Â °ÍÀÌ¹Ç·Î ½ºÄÉÁì¿¡¼­ Á¦°ÅÇÔ.
+	// ë³´ì •ì„ í•´ë„ í˜„ì œ ì‹œê°„ë³´ë‹¤ ëŠ¦ìœ¼ë©´ ë¬¸ì œê°€ ìˆëŠ” ê²ƒì´ë¯€ë¡œ ìŠ¤ì¼€ì¥´ì—ì„œ ì œê±°í•¨.
 	if( 0 > pScheduleData->CompareCurrentTime() ){
 		pScheduleData->SetDeleteState( true );
 		return;
@@ -210,21 +210,21 @@ void MMatchRepeatScheduleImpl::CorrectTime( MMatchScheduleData* pScheduleData )
 							 tmLocalTime.tm_min );
 }
 
-// ½Ã°£À» ´Ù½Ã ¼³Á¤.
+// ì‹œê°„ì„ ë‹¤ì‹œ ì„¤ì •.
 void MMatchCountScheduleImpl::Reset( MMatchScheduleData* pScheduleData )
 {
-	// countÅ¸ÀÔÀÇ ½ºÄÉÁêÀº count°ªÀÌ 0ÀÌµÇ¸é Á¦°Å µÇ¾î¾ß ÇÑ´Ù.
+	// countíƒ€ì…ì˜ ìŠ¤ì¼€ì¥¬ì€ countê°’ì´ 0ì´ë˜ë©´ ì œê±° ë˜ì–´ì•¼ í•œë‹¤.
 	pScheduleData->DecreaseCount();
 	if( 0 == pScheduleData->GetCount() ) 
 		pScheduleData->SetDeleteState( true );
 
 	pScheduleData->ResetTime();
 }
-// ½Ã°£ ¿ÀÂ÷ º¸Á¤.
+// ì‹œê°„ ì˜¤ì°¨ ë³´ì •.
 void MMatchCountScheduleImpl::CorrectTime( MMatchScheduleData* pScheduleData )
 {
 	pScheduleData->CorrectTime();
-	// º¸Á¤À» ÇØµµ ÇöÁ¦ ½Ã°£º¸´Ù ´ÊÀ¸¸é Ä«¿îÆ®¸¦ ÇÏ³ª °¨¼Ò½ÃÅ´.
+	// ë³´ì •ì„ í•´ë„ í˜„ì œ ì‹œê°„ë³´ë‹¤ ëŠ¦ìœ¼ë©´ ì¹´ìš´íŠ¸ë¥¼ í•˜ë‚˜ ê°ì†Œì‹œí‚´.
 	if( 0 > pScheduleData->CompareCurrentTime() ){
 		pScheduleData->DecreaseCount();
 		if( 0 == pScheduleData->GetCount() )
@@ -232,7 +232,7 @@ void MMatchCountScheduleImpl::CorrectTime( MMatchScheduleData* pScheduleData )
 		return;
 	}
 
-	// ÇöÁ¦ ½Ã°£À¸·Î ¼³Á¤.
+	// í˜„ì œ ì‹œê°„ìœ¼ë¡œ ì„¤ì •.
 	struct tm tmLocalTime;
 	MMatchGetLocalTime(&tmLocalTime);
 	pScheduleData->SetTimes( tmLocalTime.tm_year - 100, 
@@ -270,7 +270,7 @@ MMatchScheduleMgr::~MMatchScheduleMgr()
 {
 }
 
-// ¸¶Áö¸· ¾÷µ¥ÀÌÆ® ½ÃÁ¡¿¡¼­ºÎÅÍ °æ°ú½Ã°£ °è»ê.
+// ë§ˆì§€ë§‰ ì—…ë°ì´íŠ¸ ì‹œì ì—ì„œë¶€í„° ê²½ê³¼ì‹œê°„ ê³„ì‚°.
 const time_t MMatchScheduleMgr::CalculateElapseUpdateTime()
 {
 	time_t tmCurTime;
@@ -294,9 +294,9 @@ bool MMatchScheduleMgr::IsUpdate()
 	return false;
 }
 
-// first	: Ãß±³¼º. 2004. 11. 08
-// last		: Ãß±³¼º. 2004. 11. 08
-// Á¤»óÀûÀÎ µ¥ÀÌÅÍÀÎÁö °Ë»çÇÏ¿© Á¤»óÀÏ°æ¿ì¸¸ true¸¦ ¹İÈ¯ÇÔ.
+// first	: ì¶”êµì„±. 2004. 11. 08
+// last		: ì¶”êµì„±. 2004. 11. 08
+// ì •ìƒì ì¸ ë°ì´í„°ì¸ì§€ ê²€ì‚¬í•˜ì—¬ ì •ìƒì¼ê²½ìš°ë§Œ trueë¥¼ ë°˜í™˜í•¨.
 bool MMatchScheduleMgr::CheckData( MMatchScheduleData* pScheduleData ) const
 {
 	if( 0 == pScheduleData )				return false;
@@ -320,16 +320,16 @@ bool MMatchScheduleMgr::CheckData( MMatchScheduleData* pScheduleData ) const
 	return true;
 }
 
-// first	: Ãß±³¼º. 2004. 11. 08
-// last		: Ãß±³¼º. 2004. 11. 08
-// ½Ã°£À» ºñ±³ÇÏ¿© °°À»°æ¿ì¸¸ true¸¦ ¹İÈ¯ÇÔ.
+// first	: ì¶”êµì„±. 2004. 11. 08
+// last		: ì¶”êµì„±. 2004. 11. 08
+// ì‹œê°„ì„ ë¹„êµí•˜ì—¬ ê°™ì„ê²½ìš°ë§Œ trueë¥¼ ë°˜í™˜í•¨.
 bool MMatchScheduleMgr::CompareTime( MMatchScheduleData* pScheduleData )
 {
 	bool bIsEqual = true;
 
 	const int nCompareResult = pScheduleData->CompareCurrentTime();
 
-	// ·ÎÄÃ ½Ã°£°ú ºñ±³.
+	// ë¡œì»¬ ì‹œê°„ê³¼ ë¹„êµ.
 	if( 0 < nCompareResult )
 		return false;
 	else if( 0 == nCompareResult )
@@ -337,13 +337,13 @@ bool MMatchScheduleMgr::CompareTime( MMatchScheduleData* pScheduleData )
 	else if( 0 > nCompareResult )
 		bIsEqual = false;
 
-	// ½Ã°£ÀÌ ´Ù¸¦°æ¿ì ¿ÀÂ÷º¸Á¤À» ÇÔ.
+	// ì‹œê°„ì´ ë‹¤ë¥¼ê²½ìš° ì˜¤ì°¨ë³´ì •ì„ í•¨.
 	if( !bIsEqual ){
 		pScheduleData->GetImpl()->CorrectTime( pScheduleData );
 
 		bIsEqual = true;
 
-		// º¸Á¤µÈ ½Ã°£À» °¡Áö°í ´Ù½Ã ºñ±³ÇÔ.
+		// ë³´ì •ëœ ì‹œê°„ì„ ê°€ì§€ê³  ë‹¤ì‹œ ë¹„êµí•¨.
 		if( 0 != pScheduleData->CompareCurrentTime() )
 			bIsEqual = false;
 	}
@@ -357,9 +357,9 @@ void MMatchScheduleMgr::SetLastUpdateTime()
 	time( &m_tmLastUpdateTime );
 }
 
-// first	: Ãß±³¼º. 2004. 11. 08
-// last		: Ãß±³¼º. 2004. 11. 08
-// ½ºÄÉÁì ¸®½ºÆ®¸¦ ¾÷µ¥ÀÌÆ® ÇÔ.
+// first	: ì¶”êµì„±. 2004. 11. 08
+// last		: ì¶”êµì„±. 2004. 11. 08
+// ìŠ¤ì¼€ì¥´ ë¦¬ìŠ¤íŠ¸ë¥¼ ì—…ë°ì´íŠ¸ í•¨.
 void MMatchScheduleMgr::Update()
 {
 	if( !IsUpdate() ) return;
@@ -370,9 +370,9 @@ void MMatchScheduleMgr::Update()
 	SetLastUpdateTime();
 }
 
-// first	: Ãß±³¼º. 2004. 11. 08
-// last		: Ãß±³¼º. 2004. 11. 08
-// º¯µ¿ÀÌ °ÅÀÇ ¾÷´Â Á¤Àû ½ºÄÉÁì ¾÷µ¥ÀÌÆ®.
+// first	: ì¶”êµì„±. 2004. 11. 08
+// last		: ì¶”êµì„±. 2004. 11. 08
+// ë³€ë™ì´ ê±°ì˜ ì—…ëŠ” ì •ì  ìŠ¤ì¼€ì¥´ ì—…ë°ì´íŠ¸.
 void MMatchScheduleMgr::UpdateStaticSchedule()
 {
 	MCommand* pCmd = 0;
@@ -380,7 +380,7 @@ void MMatchScheduleMgr::UpdateStaticSchedule()
 
 	end = m_vecStaticSchedule.end();
 	for( it = m_vecStaticSchedule.begin(); it != end; ++it ){
-		// ½ÇÇàµÉ ½Ã°£ÀÎ°¡?
+		// ì‹¤í–‰ë  ì‹œê°„ì¸ê°€?
 		if( !CompareTime((*it)) ) continue;
 
 		pCmd = (*it)->GetCommand()->Clone();
@@ -388,17 +388,17 @@ void MMatchScheduleMgr::UpdateStaticSchedule()
 			m_pServer->GetCommandManager()->Post( pCmd );
 		}
 
-		// È¤½Ã Áö¿ï °ÍÀÎ°¡?
-		// Á¤Àû ½ºÄÉÁìÀÌ IsNeedDelete()ÀÌ true¸é ³¯ÀÚ¸¸ ¾÷µ¥ÀÌÆ® ÇÏÁö ¾Ê¾Æ ½ÇÇàµÇ´Â°ÍÀ» ¸·À½.
+		// í˜¹ì‹œ ì§€ìš¸ ê²ƒì¸ê°€?
+		// ì •ì  ìŠ¤ì¼€ì¥´ì´ IsNeedDelete()ì´ trueë©´ ë‚ ìë§Œ ì—…ë°ì´íŠ¸ í•˜ì§€ ì•Šì•„ ì‹¤í–‰ë˜ëŠ”ê²ƒì„ ë§‰ìŒ.
 		if( (*it)->IsNeedDelete() ) continue;
 
 		(*it)->GetImpl()->Reset( (*it) );
 	}
 }
 
-// first	: Ãß±³¼º. 2004. 11. 08
-// last		: Ãß±³¼º. 2004. 11. 08
-// °øÁö»çÇ× ½ºÄÉÁì ¾÷µ¥ÀÌÆ®.
+// first	: ì¶”êµì„±. 2004. 11. 08
+// last		: ì¶”êµì„±. 2004. 11. 08
+// ê³µì§€ì‚¬í•­ ìŠ¤ì¼€ì¥´ ì—…ë°ì´íŠ¸.
 void MMatchScheduleMgr::UpdateDynamicSchedule()
 {
 	MCommand* pCmd = 0;
@@ -418,7 +418,7 @@ void MMatchScheduleMgr::UpdateDynamicSchedule()
 
 		(*it)->GetImpl()->Reset( (*it) );
 
-		// ÀÌ¹øÀÌ Áö¿ï Â÷·ÊÀÎ°¡?
+		// ì´ë²ˆì´ ì§€ìš¸ ì°¨ë¡€ì¸ê°€?
 		if( (*it)->IsNeedDelete() ){
 			delete *it;
 			m_lstDynamicSchedule.erase( it++ );
@@ -429,9 +429,9 @@ void MMatchScheduleMgr::UpdateDynamicSchedule()
 	}
 }
 
-// first	: Ãß±³¼º. 2004. 11. 08
-// last		: Ãß±³¼º. 2004. 11. 08
-// »õ·Î¿î °øÁö »çÇ×À» µî·ÏÇÔ.
+// first	: ì¶”êµì„±. 2004. 11. 08
+// last		: ì¶”êµì„±. 2004. 11. 08
+// ìƒˆë¡œìš´ ê³µì§€ ì‚¬í•­ì„ ë“±ë¡í•¨.
 bool MMatchScheduleMgr::AddDynamicSchedule( MMatchScheduleData* pNewSchedule )
 {
 	if( !CheckData(pNewSchedule) ) return false;
@@ -446,9 +446,9 @@ bool MMatchScheduleMgr::AddDynamicSchedule( MMatchScheduleData* pNewSchedule )
 	return true;
 }
 
-// first	: Ãß±³¼º. 2004. 11. 08
-// last		: Ãß±³¼º. 2004. 11. 08
-// Á¤Àû ½ºÄÉÁì µî·Ï.
+// first	: ì¶”êµì„±. 2004. 11. 08
+// last		: ì¶”êµì„±. 2004. 11. 08
+// ì •ì  ìŠ¤ì¼€ì¥´ ë“±ë¡.
 bool MMatchScheduleMgr::AddStaticSchedule( MMatchScheduleData* pNewSchedule )
 {
 	if( !CheckData(pNewSchedule) ) return false;
@@ -463,12 +463,12 @@ bool MMatchScheduleMgr::AddStaticSchedule( MMatchScheduleData* pNewSchedule )
 	return true;
 }
 
-MMatchScheduleData* MMatchScheduleMgr::MakeRepeatScheduleData( const unsigned char cNextYear,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ÇØÀÇ »ó´ë°ª.	ex) 1³â ÈÄ.
-															   const unsigned char cNextMonth,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ´ŞÀÇ »ó´ë°ª.	ex) 1´Ş ÈÄ.
-															   const unsigned char cNextDay,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ÀÏÀÇ »ó´ë°ª.	ex) 1ÀÏ ÈÄ.
-															   const unsigned char cNextHour,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ½Ã°£ÀÇ »ó´ë°ª.	ex) 1½Ã°£ ÈÄ.
-															   const unsigned char cNextMin,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ºĞÀÇ »ó´ë°ª.	ex) 1ºĞ ÈÄ.
-															   MCommand* pCmd					// ¼öÇàÇÒ ¸í·É.
+MMatchScheduleData* MMatchScheduleMgr::MakeRepeatScheduleData( const unsigned char cNextYear,	// ë‹¤ìŒì— ì‹¤í–‰ë  í•´ì˜ ìƒëŒ€ê°’.	ex) 1ë…„ í›„.
+															   const unsigned char cNextMonth,	// ë‹¤ìŒì— ì‹¤í–‰ë  ë‹¬ì˜ ìƒëŒ€ê°’.	ex) 1ë‹¬ í›„.
+															   const unsigned char cNextDay,	// ë‹¤ìŒì— ì‹¤í–‰ë  ì¼ì˜ ìƒëŒ€ê°’.	ex) 1ì¼ í›„.
+															   const unsigned char cNextHour,	// ë‹¤ìŒì— ì‹¤í–‰ë  ì‹œê°„ì˜ ìƒëŒ€ê°’.	ex) 1ì‹œê°„ í›„.
+															   const unsigned char cNextMin,	// ë‹¤ìŒì— ì‹¤í–‰ë  ë¶„ì˜ ìƒëŒ€ê°’.	ex) 1ë¶„ í›„.
+															   MCommand* pCmd					// ìˆ˜í–‰í•  ëª…ë ¹.
 															   )
 {
 	if( 0 == pCmd ) return 0;
@@ -499,13 +499,13 @@ MMatchScheduleData* MMatchScheduleMgr::MakeRepeatScheduleData( const unsigned ch
 	return pData;
 }
 
-MMatchScheduleData* MMatchScheduleMgr::MakeCountScheduleData( const unsigned char cNextYear,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ÇØÀÇ »ó´ë°ª.	ex) 1³â ÈÄ.
-															  const unsigned char cNextMonth,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ´ŞÀÇ »ó´ë°ª.	ex) 1´Ş ÈÄ.
-															  const unsigned char cNextDay,		// ´ÙÀ½¿¡ ½ÇÇàµÉ ÀÏÀÇ »ó´ë°ª.	ex) 1ÀÏ ÈÄ.
-															  const unsigned char cNextHour,	// ´ÙÀ½¿¡ ½ÇÇàµÉ ½Ã°£ÀÇ »ó´ë°ª.	ex) 1½Ã°£ ÈÄ.
-															  const unsigned char cNextMin,		// ´ÙÀ½¿¡ ½ÇÇàµÉ ºĞÀÇ »ó´ë°ª.	ex) 1ºĞ ÈÄ.
-															  const unsigned int nCount,		// ½ÇÇàµÉ È½¼ö.
-															  MCommand* pCmd					// ¼öÇàÇÒ ¸í·É.
+MMatchScheduleData* MMatchScheduleMgr::MakeCountScheduleData( const unsigned char cNextYear,	// ë‹¤ìŒì— ì‹¤í–‰ë  í•´ì˜ ìƒëŒ€ê°’.	ex) 1ë…„ í›„.
+															  const unsigned char cNextMonth,	// ë‹¤ìŒì— ì‹¤í–‰ë  ë‹¬ì˜ ìƒëŒ€ê°’.	ex) 1ë‹¬ í›„.
+															  const unsigned char cNextDay,		// ë‹¤ìŒì— ì‹¤í–‰ë  ì¼ì˜ ìƒëŒ€ê°’.	ex) 1ì¼ í›„.
+															  const unsigned char cNextHour,	// ë‹¤ìŒì— ì‹¤í–‰ë  ì‹œê°„ì˜ ìƒëŒ€ê°’.	ex) 1ì‹œê°„ í›„.
+															  const unsigned char cNextMin,		// ë‹¤ìŒì— ì‹¤í–‰ë  ë¶„ì˜ ìƒëŒ€ê°’.	ex) 1ë¶„ í›„.
+															  const unsigned int nCount,		// ì‹¤í–‰ë  íšŸìˆ˜.
+															  MCommand* pCmd					// ìˆ˜í–‰í•  ëª…ë ¹.
 															  )
 {
 	if( 0 == pCmd ) return 0;
@@ -538,12 +538,12 @@ MMatchScheduleData* MMatchScheduleMgr::MakeCountScheduleData( const unsigned cha
 	return pData;
 }
 
-MMatchScheduleData* MMatchScheduleMgr::MakeOnceScheduleData( const unsigned char cYear,		// ½ÇÇàµÉ ÇØ.
-															 const unsigned char cMonth,	// ½ÇÇàµÉ ´Ş.
-															 const unsigned char cDay,		// ½ÇÇàµÉ ³¯.
-															 const unsigned char cHour,		// ½ÇÇàµÉ ½Ã°£.
-															 const unsigned char cMin,		// ½ÇÇàµÉ ºĞ.
-															 MCommand* pCmd					// ¼öÇàÇÒ ¸í·É.	
+MMatchScheduleData* MMatchScheduleMgr::MakeOnceScheduleData( const unsigned char cYear,		// ì‹¤í–‰ë  í•´.
+															 const unsigned char cMonth,	// ì‹¤í–‰ë  ë‹¬.
+															 const unsigned char cDay,		// ì‹¤í–‰ë  ë‚ .
+															 const unsigned char cHour,		// ì‹¤í–‰ë  ì‹œê°„.
+															 const unsigned char cMin,		// ì‹¤í–‰ë  ë¶„.
+															 MCommand* pCmd					// ìˆ˜í–‰í•  ëª…ë ¹.	
 															 )
 {
 	if( 0 == pCmd ) return 0;
@@ -551,7 +551,7 @@ MMatchScheduleData* MMatchScheduleMgr::MakeOnceScheduleData( const unsigned char
 	MMatchScheduleData* pData = new MMatchScheduleData;
 	if( 0 == pData ) return 0;
 
-	// cYear % 100 => µÎ¿¡ µÎÀÚ¸®¸¸À» »ç¿ëÇÔ.
+	// cYear % 100 => ë‘ì— ë‘ìë¦¬ë§Œì„ ì‚¬ìš©í•¨.
 	if( !pData->SetTimes(cYear % 100, cMonth, cDay, cHour, cMin) ) return 0;
 
 	mlog( "\n%u\n", m_tmUpdateTerm );
@@ -566,9 +566,9 @@ MMatchScheduleData* MMatchScheduleMgr::MakeOnceScheduleData( const unsigned char
 	return pData;
 }
 
-// first	: Ãß±³¼º. 2004. 11. 08
-// last		: Ãß±³¼º. 2004. 11. 08
-// ¸ğµç ¸®½ºÆ® Á¦°Å.
+// first	: ì¶”êµì„±. 2004. 11. 08
+// last		: ì¶”êµì„±. 2004. 11. 08
+// ëª¨ë“  ë¦¬ìŠ¤íŠ¸ ì œê±°.
 void MMatchScheduleMgr::Release()
 {
 	ReleaseStaticSchedule();
@@ -576,9 +576,9 @@ void MMatchScheduleMgr::Release()
 	m_ScheduleImplPrototype.Release();
 }
 
-// first	: Ãß±³¼º. 2004. 11. 08
-// last		: Ãß±³¼º. 2004. 11. 08
-// Á¤Àû ½ºÄÉÁì Á¦°Å.
+// first	: ì¶”êµì„±. 2004. 11. 08
+// last		: ì¶”êµì„±. 2004. 11. 08
+// ì •ì  ìŠ¤ì¼€ì¥´ ì œê±°.
 void MMatchScheduleMgr::ReleaseStaticSchedule()
 {
 	for_each( m_vecStaticSchedule.begin(), 
@@ -587,9 +587,9 @@ void MMatchScheduleMgr::ReleaseStaticSchedule()
 	m_vecStaticSchedule.clear();
 }
 
-// first	: Ãß±³¼º. 2004. 11. 08
-// last		: Ãß±³¼º. 2004. 11. 08
-// °øÁö»çÇ× ½ºÄÉÁì Á¦°Å.
+// first	: ì¶”êµì„±. 2004. 11. 08
+// last		: ì¶”êµì„±. 2004. 11. 08
+// ê³µì§€ì‚¬í•­ ìŠ¤ì¼€ì¥´ ì œê±°.
 void MMatchScheduleMgr::ReleaseDynamicSchedule()
 {
 	for_each( m_lstDynamicSchedule.begin(),
@@ -598,9 +598,9 @@ void MMatchScheduleMgr::ReleaseDynamicSchedule()
 	m_lstDynamicSchedule.clear();
 }
 
-// first	: Ãß±³¼º. 2004. 11. 09.
-// last		: Ãß±³¼º. 2004. 11. 09.
-// ImplÀ» prototypeÅ¬·¡½º¿¡ µî·ÏÇÔ.
+// first	: ì¶”êµì„±. 2004. 11. 09.
+// last		: ì¶”êµì„±. 2004. 11. 09.
+// Implì„ prototypeí´ë˜ìŠ¤ì— ë“±ë¡í•¨.
 bool MMatchScheduleMgr::MMatchScheduleImplPrototype::Init()
 {
 	MMatchScheduleImpl* pImpl;
@@ -620,9 +620,9 @@ bool MMatchScheduleMgr::MMatchScheduleImplPrototype::Init()
 	return true;
 }
 
-// first	: Ãß±³¼º. 2004. 11. 09.
-// last		: Ãß±³¼º. 2005. 01. 27.
-// ÇØ´ç ½ºÄÉÁì Å¸ÀÔ¿¡ ¸Â´Â ¼öÇàÀÚ¸¦ ¹İÈ¯ÇØÁÜ.
+// first	: ì¶”êµì„±. 2004. 11. 09.
+// last		: ì¶”êµì„±. 2005. 01. 27.
+// í•´ë‹¹ ìŠ¤ì¼€ì¥´ íƒ€ì…ì— ë§ëŠ” ìˆ˜í–‰ìë¥¼ ë°˜í™˜í•´ì¤Œ.
 MMatchScheduleImpl* MMatchScheduleMgr::MMatchScheduleImplPrototype::GetImpl( const unsigned int nTypeID )
 {
 	if( nTypeID >= m_ScheduleImplVec.size() ) return 0;
@@ -630,9 +630,9 @@ MMatchScheduleImpl* MMatchScheduleMgr::MMatchScheduleImplPrototype::GetImpl( con
 	return m_ScheduleImplVec[ nTypeID ];
 }
 
-// first	: Ãß±³¼º. 2004. 11. 09.
-// last		: Ãß±³¼º. 2004. 11. 09.
-// µî·ÏµÇ¾îÀÖ´Â ¼öÇàÀÚ¸¦ Á¦°ÅÇÔ.
+// first	: ì¶”êµì„±. 2004. 11. 09.
+// last		: ì¶”êµì„±. 2004. 11. 09.
+// ë“±ë¡ë˜ì–´ìˆëŠ” ìˆ˜í–‰ìë¥¼ ì œê±°í•¨.
 void MMatchScheduleMgr::MMatchScheduleImplPrototype::Release()
 {
 	for_each( m_ScheduleImplVec.begin(), 

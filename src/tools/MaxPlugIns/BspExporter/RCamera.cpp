@@ -3,7 +3,7 @@
 
 _NAMESPACE_REALSPACE2_BEGIN
 
-// Ä«¸Ş¶ó °ü·Ã
+// ì¹´ë©”ë¼ ê´€ë ¨
 rvector RCameraPosition,RCameraDirection,RCameraUp;
 rmatrix RView,RProjection,RViewProjection,RViewport,RViewProjectionViewport;
 static rplane RViewFrustum[6];

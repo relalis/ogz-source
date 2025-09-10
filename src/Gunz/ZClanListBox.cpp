@@ -27,7 +27,7 @@ ZClanListBox::~ZClanListBox()
 
 void ZClanListBox::OnDraw( MDrawContext* pDC )
 {
-	const int nWidth = 376;	// ¿ø·¡ À§Á¬ Å©±â
+	const int nWidth = 376;	// ì›ëž˜ ìœ„ì ¯ í¬ê¸°
 	float fRatio = (float)m_Rect.w / (float)nWidth;
 
 	const int nGap = 7;
@@ -39,12 +39,12 @@ void ZClanListBox::OnDraw( MDrawContext* pDC )
 		if(!pInfo->bEmpty) {
 			if(m_pRoomFrame)
 			{
-				// ÇÁ·¹ÀÓ
+				// í”„ë ˆìž„
 				pDC->SetBitmap(m_pRoomFrame);
 				int y = (int)(fRatio * (m_pRoomFrame->GetHeight() + nGap ) * i) ;
 				pDC->Draw(0, y , (int)(fRatio * m_pRoomFrame->GetWidth()), (int)(fRatio * m_pRoomFrame->GetHeight()));
 
-				// Å¬·£ emblem
+				// í´ëžœ emblem
 				MBitmap *pBitmap = ZGetEmblemInterface()->GetClanEmblem( pInfo->nClanEmblemID);
 				if(pBitmap) {
 					int nSize = (int)(.95f * fRatio * m_pRoomFrame->GetHeight());
@@ -53,11 +53,11 @@ void ZClanListBox::OnDraw( MDrawContext* pDC )
 					pDC->Draw(nMargin , y + nMargin , nSize , nSize);
 				}
 
-				// ´ë±âÁßÀÎ Å¬·£ ÀÌ¸§
+				// ëŒ€ê¸°ì¤‘ì¸ í´ëžœ ì´ë¦„
 				pDC->SetColor(MCOLOR(0xffffffff));
 				pDC->Text((int)(fRatio*40) , (int)(y + fRatio*10) , pInfo->szClanName);
 
-				// ´ë±âÁßÀÎ »ç¶÷ ¼ö ( x¸í ´ë±âÁß )
+				// ëŒ€ê¸°ì¤‘ì¸ ì‚¬ëžŒ ìˆ˜ ( xëª… ëŒ€ê¸°ì¤‘ )
 				char szBuffer[256];
 				sprintf_safe(szBuffer,ZMsg( MSG_LOBBY_WAITING ),pInfo->nPlayers );
 				pDC->Text((int)(fRatio*280) , (int)(y + fRatio*10) , szBuffer);

@@ -1,4 +1,4 @@
-// MatchServer.h : MatchServer ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁÖ Çì´õ ÆÄÀÏ
+// MatchServer.h : MatchServer ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ì£¼ í—¤ë” íŒŒì¼
 //
 #pragma once
 
@@ -6,12 +6,12 @@
 	#error include 'stdafx.h' before including this file for PCH
 #endif
 
-#include "resource.h"       // ÁÖ ±âÈ£
+#include "resource.h"       // ì£¼ ê¸°í˜¸
 #include "MZFileSystem.h"
 
 
 // CMatchServerApp:
-// ÀÌ Å¬·¡½ºÀÇ ±¸Çö¿¡ ´ëÇØ¼­´Â MatchServer.cppÀ» ÂüÁ¶ÇÏ½Ê½Ã¿À.
+// ì´ í´ë˜ìŠ¤ì˜ êµ¬í˜„ì— ëŒ€í•´ì„œëŠ” MatchServer.cppì„ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 
 class CMatchServerApp : public CWinApp
@@ -38,11 +38,11 @@ public:
 	void Shutdown()		{ m_bShutdown = true; }
 	void HeartBeat();
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 public:
 	virtual BOOL InitInstance();
 
-// ±¸Çö
+// êµ¬í˜„
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
 	virtual int ExitInstance();

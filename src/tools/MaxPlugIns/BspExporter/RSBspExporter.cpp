@@ -20,7 +20,7 @@
 
 //#include <d3dx8.h>
 
-// ÀÌ Á¤µµ °³¼ö ÀÌÇÏ´Â ÂÉ°³Áö ¾Ê´Â´Ù ( octree )
+// ì´ ì •ë„ ê°œìˆ˜ ì´í•˜ëŠ” ìª¼ê°œì§€ ì•ŠëŠ”ë‹¤ ( octree )
 #define MAX_NODE_POLYGON_COUNT		200
 
 RSBspExporter::RSBspExporter()
@@ -84,7 +84,7 @@ void RSBspExporter::Preprocessing()
 
 
 
-	// vertex Ä«ÇÇ°¡ µé¾î°©´Ï´Ù ~
+	// vertex ì¹´í”¼ê°€ ë“¤ì–´ê°‘ë‹ˆë‹¤ ~
 	dpoint light=dpoint(1,0,1);
 	Normalize(light);
 
@@ -123,7 +123,7 @@ void RSBspExporter::Preprocessing()
 	log("RSBsp Info : %d faces\n",face.GetCount());
 //	log("%d faces elliminated.\n",elimcount);
 
-	// ±×¸®°í ¹Ù¿îµù¹Ú½º.
+	// ê·¸ë¦¬ê³  ë°”ìš´ë”©ë°•ìŠ¤.
 	m_bb.vmin.x=m_bb.vmin.y=m_bb.vmin.z=FLT_MAX;
 	m_bb.vmax.x=m_bb.vmax.y=m_bb.vmax.z=-FLT_MAX;
 
@@ -311,7 +311,7 @@ bool RSBspExporter::SaveDesc(const char *name)
 	return true;
 }
 
-// spawn.xml¿¡¼­ »ç¿ë
+// spawn.xmlì—ì„œ ì‚¬ìš©
 #define RTOK_GAMETYPE		"GAMETYPE"
 #define RTOK_SPAWN			"SPAWN"
 #define RTOK_ITEM			"item"
@@ -482,7 +482,7 @@ bool RSBspExporter::SaveSmoke(const char* name)
 
 			SmokeElement.AppendText("\t");
 
-//			mlog("SaveSmoke ÁøÀÔÇßÀ½\n");
+//			mlog("SaveSmoke ì§„ì…í–ˆìŒ\n");
 		}
 	}
 
@@ -737,7 +737,7 @@ bool RSBspExporter::SaveSoundProp( MXmlElement& Root )
             if(psp->GetUserPropValue("type",szBuffer,256))
 			{
 				ambSndElement.AddAttribute("type", szBuffer );
-				if(szBuffer[1]=='1') // ±¸ÀÏ °æ¿ì Áß½ÉÀ» Ç¥½Ã
+				if(szBuffer[1]=='1') // êµ¬ì¼ ê²½ìš° ì¤‘ì‹¬ì„ í‘œì‹œ
 				{
 					ambSndElement.AppendText("\n\t\t\t");
 					MXmlElement posElement=ambSndElement.CreateChildElement("CENTER");
@@ -798,8 +798,8 @@ bool RSBspExporter::SaveSoundProp( MXmlElement& Root )
 	return true;
 }
 
-// xml¿¡ <GLOBAL> ÅÂ±×¾È¿¡ PropertyµéÀÌ ÀúÀåµÈ´Ù. 
-// ¸ÊÀÇ Àü¿ªÀûÀÎ °ªÀ» ¼³Á¤ÇÒ¶§ »ç¿ëÇÔ.
+// xmlì— <GLOBAL> íƒœê·¸ì•ˆì— Propertyë“¤ì´ ì €ì¥ëœë‹¤. 
+// ë§µì˜ ì „ì—­ì ì¸ ê°’ì„ ì„¤ì •í• ë•Œ ì‚¬ìš©í•¨.
 bool RSBspExporter::SaveCustomProperties(MXmlElement& Root)
 {
 	char szBuffer[256];
@@ -915,9 +915,9 @@ RSBspNode *RSBspExporter::ConstructOctree(RSPolygonList *FaceList,int depth,dbou
 
 	RSPolygonList faceNegList,facePosList;
 
-	if(depth<g_nTreeDepth && FaceList->GetCount()>MAX_NODE_POLYGON_COUNT)	// Àû´çÇÑ depth ¿¡ µµ´ŞÇÏ°Å³ª °³¼ö°¡ Àû´çÇØÁú¶§±îÁö ³ª´«´Ù.
+	if(depth<g_nTreeDepth && FaceList->GetCount()>MAX_NODE_POLYGON_COUNT)	// ì ë‹¹í•œ depth ì— ë„ë‹¬í•˜ê±°ë‚˜ ê°œìˆ˜ê°€ ì ë‹¹í•´ì§ˆë•Œê¹Œì§€ ë‚˜ëˆˆë‹¤.
 	{
-		if(depth-1<(int)m_PartitionPlaneVector.size())			// ¹Ì¸® Á¤ÀÇµÈ ºĞÇÒÆò¸éÀÌ ÀÖ´Ù¸é...
+		if(depth-1<(int)m_PartitionPlaneVector.size())			// ë¯¸ë¦¬ ì •ì˜ëœ ë¶„í• í‰ë©´ì´ ìˆë‹¤ë©´...
 		{
 			node->plane=m_PartitionPlaneVector[depth-1];
 			Partition(&node->plane,FaceList,&faceNegList,&facePosList);
@@ -928,7 +928,7 @@ RSBspNode *RSBspExporter::ConstructOctree(RSPolygonList *FaceList,int depth,dbou
 		}else
 		{
 			dpoint diff=bb->vmax-bb->vmin;
-			int nAxis =		diff.x > diff.y					 // ¹Ù¿îµù¹Ú½ºÁß °¡Àå Å« ÃàÀ» Ã£´Â´Ù..
+			int nAxis =		diff.x > diff.y					 // ë°”ìš´ë”©ë°•ìŠ¤ì¤‘ ê°€ì¥ í° ì¶•ì„ ì°¾ëŠ”ë‹¤..
 				? diff.z > diff.x ? 2 : 0 
 				: diff.z > diff.y ? 2 : 1;
 
@@ -945,7 +945,7 @@ RSBspNode *RSBspExporter::ConstructOctree(RSPolygonList *FaceList,int depth,dbou
 			dpoint normal=dpoint(0,0,0);
 			normal[nAxis]=-1.f;
 
-			DPlaneFromPointNormal(&node->plane,center,normal);		// °ñ¶óÁø ÃàÀ¸·Î 2µîºĞÇÏ´Â Æò¸éÀ» ¸¸µç´Ù.
+			DPlaneFromPointNormal(&node->plane,center,normal);		// ê³¨ë¼ì§„ ì¶•ìœ¼ë¡œ 2ë“±ë¶„í•˜ëŠ” í‰ë©´ì„ ë§Œë“ ë‹¤.
 
 			Partition(&node->plane,FaceList,&faceNegList,&facePosList);
 			faceNegList.MoveFirst();facePosList.MoveFirst(); // for speed;
@@ -954,7 +954,7 @@ RSBspNode *RSBspExporter::ConstructOctree(RSPolygonList *FaceList,int depth,dbou
 		}
 
 	}
-	else	// ´õÀÌ»ó ÂÉ°¶¼ö ÀÖ´Â Æú¸®°ïÀÌ ¾øÀ¸¸é, ÀÌ¹Ì º¼·Ï´Ù°¢ÇüÀÌ¸ç leaf ³ëµå·Î ¸¸µç´Ù.
+	else	// ë”ì´ìƒ ìª¼ê°¤ìˆ˜ ìˆëŠ” í´ë¦¬ê³¤ì´ ì—†ìœ¼ë©´, ì´ë¯¸ ë³¼ë¡ë‹¤ê°í˜•ì´ë©° leaf ë…¸ë“œë¡œ ë§Œë“ ë‹¤.
 	{
 		FaceList->MoveFirst();// for speed
 
@@ -967,11 +967,11 @@ RSBspNode *RSBspExporter::ConstructOctree(RSPolygonList *FaceList,int depth,dbou
 		{
 			rpolygon *p=FaceList->Get(i);
 			memcpy(&node->Face[i],p,sizeof(rpolygon));
-			p->v=NULL;	// Áö¿ï¶§ delete ÇÏ´Â°É ¸·´Â´Ù
+			p->v=NULL;	// ì§€ìš¸ë•Œ delete í•˜ëŠ”ê±¸ ë§‰ëŠ”ë‹¤
 		}
 
 		/*
-		// ´Ù°¢ÇüÀ» »ï°¢ÇüÀ¸·Î ÂÉ°µ´Ù.
+		// ë‹¤ê°í˜•ì„ ì‚¼ê°í˜•ìœ¼ë¡œ ìª¼ê° ë‹¤.
 
 		int nFaceCount=0;
 		for(int i=0;i<FaceList->GetCount();i++)
@@ -1030,12 +1030,12 @@ RSBspNode *RSBspExporter::ConstructBspTree(RSPolygonList *FaceList)
 		node->Negative=faceNegList.GetCount()?ConstructBspTree(&faceNegList):NULL;
 		node->Positive=facePosList.GetCount()?ConstructBspTree(&facePosList):NULL;
 	}
-	else	// ´õÀÌ»ó ÂÉ°¶¼ö ÀÖ´Â Æú¸®°ïÀÌ ¾øÀ¸¸é, ÀÌ¹Ì º¼·Ï´Ù°¢ÇüÀÌ¸ç leaf ³ëµå·Î ¸¸µç´Ù.
+	else	// ë”ì´ìƒ ìª¼ê°¤ìˆ˜ ìˆëŠ” í´ë¦¬ê³¤ì´ ì—†ìœ¼ë©´, ì´ë¯¸ ë³¼ë¡ë‹¤ê°í˜•ì´ë©° leaf ë…¸ë“œë¡œ ë§Œë“ ë‹¤.
 
 /*
 	{
 		FaceList->MoveFirst();// for speed
-		// ´Ù°¢ÇüÀ» »ï°¢ÇüÀ¸·Î ÂÉ°µ´Ù.
+		// ë‹¤ê°í˜•ì„ ì‚¼ê°í˜•ìœ¼ë¡œ ìª¼ê° ë‹¤.
 
 		int nFaceCount=0;
 		for(int i=0;i<FaceList->GetCount();i++)
@@ -1085,7 +1085,7 @@ RSBspNode *RSBspExporter::ConstructBspTree(RSPolygonList *FaceList)
 		{
 			rpolygon *p=FaceList->Get(i);
 			memcpy(&node->Face[i],p,sizeof(rpolygon));
-			p->v=NULL;	// Áö¿ï¶§ delete ÇÏ´Â°É ¸·´Â´Ù
+			p->v=NULL;	// ì§€ìš¸ë•Œ delete í•˜ëŠ”ê±¸ ë§‰ëŠ”ë‹¤
 		}
 
 		nleafcount++;
@@ -1108,7 +1108,7 @@ bool RSBspExporter::ChoosePlane(RSPolygonList *facelist,dplane *plane)
 
 	for(int i=0;i<facelist->GetCount();i++)
 	{
-		int nCount[5]={0,};		// 0,1 : pos/neg ¼ö     2 : ÂÉ°³Áö´Â ¼ö		3,4 : °°ÀºÆò¸éÀÇ ¼ö (pos/neg)
+		int nCount[5]={0,};		// 0,1 : pos/neg ìˆ˜     2 : ìª¼ê°œì§€ëŠ” ìˆ˜		3,4 : ê°™ì€í‰ë©´ì˜ ìˆ˜ (pos/neg)
 		face=facelist->Get(i);
 
 		for(int j=0;j<facelist->GetCount();j++)
@@ -1118,13 +1118,13 @@ bool RSBspExporter::ChoosePlane(RSPolygonList *facelist,dplane *plane)
 
 		float fScore;
 		if(m_nDepth<4)	
-			// depth °¡ ÀÌ ÀÌÇÏÀÏ¶§´Â ¹ë·±½º ¿ì¼±..
+			// depth ê°€ ì´ ì´í•˜ì¼ë•ŒëŠ” ë°¸ëŸ°ìŠ¤ ìš°ì„ ..
 			fScore=1.f*abs(nCount[0]-nCount[1])+0.5f*nCount[2]+0.1f*(nCount[3]+nCount[4]);
 		else
-			// ÀÌ»óÀÏ¶§´Â ÂÉ°³Áö´Â Æú¸®°ïÀÌ ¾ø´Â ÂÊ ¿ì¼±.
+			// ì´ìƒì¼ë•ŒëŠ” ìª¼ê°œì§€ëŠ” í´ë¦¬ê³¤ì´ ì—†ëŠ” ìª½ ìš°ì„ .
 			fScore=0.5f*abs(nCount[0]-nCount[1])+1.f*nCount[2]+0.1f*(nCount[3]+nCount[4]);
 
-		// ÃÖ¼ÒÇÑ ¾çÂÊ¿¡ ´Ù Æú¸®°ïÀÌ ÀÖ¾î¾ß ÇÏ°í »ç¿ëÇÏÁö ¾ÊÀº Æú¸®°ïÀÌ¾î¾ß ÇÑ´Ù
+		// ìµœì†Œí•œ ì–‘ìª½ì— ë‹¤ í´ë¦¬ê³¤ì´ ìˆì–´ì•¼ í•˜ê³  ì‚¬ìš©í•˜ì§€ ì•Šì€ í´ë¦¬ê³¤ì´ì–´ì•¼ í•œë‹¤
 		int nPos=nCount[0]+nCount[3], nNeg=nCount[1]+nCount[4];
 		if( nPos!=0 && nNeg!=0 && fScore<fChosenScore && !face->bPlaneUsed)
 		{
@@ -1139,17 +1139,17 @@ bool RSBspExporter::ChoosePlane(RSPolygonList *facelist,dplane *plane)
 	return chosen!=NULL;
 }
 
-// Æò¸é ¼±ÅÃÀÇ ±âÁØÀ» balance & split À» ÅëÇÕÇÑ score ·Î °¡ÀÚ~!
+// í‰ë©´ ì„ íƒì˜ ê¸°ì¤€ì„ balance & split ì„ í†µí•©í•œ score ë¡œ ê°€ì~!
 bool RSBspExporter::ChoosePlaneSolid(RSPolygonList *facelist,dplane *plane)
 {
-	// front ³ª back ÇÑÂÊÀ¸·Î ´Ù ¸ô¸®´õ¶óµµ ¸ğµç Æò¸é¿¡ ´ëÇØ ÂÉ°³¾ß ÇÑ´Ù (solid bsp tree)
+	// front ë‚˜ back í•œìª½ìœ¼ë¡œ ë‹¤ ëª°ë¦¬ë”ë¼ë„ ëª¨ë“  í‰ë©´ì— ëŒ€í•´ ìª¼ê°œì•¼ í•œë‹¤ (solid bsp tree)
 	float	fChosenScore=FLT_MAX;
 	rpolygon *chosen=NULL;
 	rpolygon *face;
 
 	for(int i=0;i<facelist->GetCount();i++)
 	{
-		int nCount[5]={0,};		// 0,1 : pos/neg ¼ö     2 : ÂÉ°³Áö´Â ¼ö		3,4 : °°ÀºÆò¸éÀÇ ¼ö
+		int nCount[5]={0,};		// 0,1 : pos/neg ìˆ˜     2 : ìª¼ê°œì§€ëŠ” ìˆ˜		3,4 : ê°™ì€í‰ë©´ì˜ ìˆ˜
 		face=facelist->Get(i);
 
 		for(int j=0;j<facelist->GetCount();j++)
@@ -1157,9 +1157,9 @@ bool RSBspExporter::ChoosePlaneSolid(RSPolygonList *facelist,dplane *plane)
 			nCount[whichSideIsFaceWRTplane(facelist->Get(j),(dplane*)&face->normal)]++;
 		}
 
-		if(!face->bPlaneUsed)		// ÀÌ¹Ì À­´Ü°è¿¡¼­ »ç¿ëÇÑ Æú¸®°ïÀº ¶Ç ¼±ÅÃµÇÁö ¾Ê´Â´Ù
+		if(!face->bPlaneUsed)		// ì´ë¯¸ ìœ—ë‹¨ê³„ì—ì„œ ì‚¬ìš©í•œ í´ë¦¬ê³¤ì€ ë˜ ì„ íƒë˜ì§€ ì•ŠëŠ”ë‹¤
 		{
-			// °¢°¢ÀÇ factor ¸¦ ´Ù¸£°Ô ÁÙ¼ö ÀÖ´Ù.. more balance / less split ...
+			// ê°ê°ì˜ factor ë¥¼ ë‹¤ë¥´ê²Œ ì¤„ìˆ˜ ìˆë‹¤.. more balance / less split ...
 
 			float fScore=1.f*abs(nCount[0]-nCount[1])+1.f*nCount[2]+.1f*(nCount[3]+nCount[4]);
 
@@ -1228,9 +1228,9 @@ void SplitPolygon(rpolygon *f,dplane *plane,rpolygon **ppPosPoly,rpolygon **ppNe
 	dists[i]=dists[0];
 
 
-	if(nNegative==0 && nPositive==0)	// ÂÉ°³´Â Æò¸éÀ§¿¡ Æú¸®°ïÀÌ ³õ¿©Á®ÀÖ´Ù
+	if(nNegative==0 && nPositive==0)	// ìª¼ê°œëŠ” í‰ë©´ìœ„ì— í´ë¦¬ê³¤ì´ ë†“ì—¬ì ¸ìˆë‹¤
 	{
-		f->bPlaneUsed=true;			// °°ÀºÆò¸éÀÌ¸é »ç¿ëÇß´Ù°í check !
+		f->bPlaneUsed=true;			// ê°™ì€í‰ë©´ì´ë©´ ì‚¬ìš©í–ˆë‹¤ê³  check !
 
 		if(DPlaneDotNormal(*plane,f->normal)>-0.9)
 		{
@@ -1244,19 +1244,19 @@ void SplitPolygon(rpolygon *f,dplane *plane,rpolygon **ppPosPoly,rpolygon **ppNe
 		}
 	}
 
-	if(nNegative==0)	// ¸ğµÎ positive ÂÊ¿¡ ÀÖÀ¸¹Ç·Î poslist ·Î ³Ö´Â´Ù.
+	if(nNegative==0)	// ëª¨ë‘ positive ìª½ì— ìˆìœ¼ë¯€ë¡œ poslist ë¡œ ë„£ëŠ”ë‹¤.
 	{
 		*ppPosPoly=f;
 		return;
 	}
 
-	if(nPositive==0)	// neglist ·Î..
+	if(nPositive==0)	// neglist ë¡œ..
 	{
 		*ppNegPoly=f;
 		return;
 	}
 
-	// ¾çÂÊ¿¡ °ÉÄ£°æ¿ì ÂÉ°³¾ß ÇÑ´Ù
+	// ì–‘ìª½ì— ê±¸ì¹œê²½ìš° ìª¼ê°œì•¼ í•œë‹¤
 
 	int nPosVerCount=0,nNegVerCount=0;
 
@@ -1379,7 +1379,7 @@ rpolygon *NewLargePolygon(dplane &plane)
 	return p;
 }
 
-// plane ¿¡ ´ëÇØ¼­ negative ÂÊÀ» Àß¶ó³½´Ù. (¼Óµµ¸¦À§ÇØ¼­) µû·Î¸¸µå´Â°Ô ³´´Ù
+// plane ì— ëŒ€í•´ì„œ negative ìª½ì„ ì˜ë¼ë‚¸ë‹¤. (ì†ë„ë¥¼ìœ„í•´ì„œ) ë”°ë¡œë§Œë“œëŠ”ê²Œ ë‚«ë‹¤
 rpolygon *ClipPolygon(rpolygon *f,dplane *plane)
 {
 	rpolygon *ppos,*pneg;
@@ -1417,7 +1417,7 @@ RSBspNode *RSBspExporter::ConstructSolidBspTree(RSPolygonList *FaceList)
 
 	if(ChoosePlaneSolid(FaceList,&node->plane))
 	{
-		// ¿ùµå¸¦ ÀÌ·ç´Â Æú¸®°ïÀ» ³ª´«´Ù
+		// ì›”ë“œë¥¼ ì´ë£¨ëŠ” í´ë¦¬ê³¤ì„ ë‚˜ëˆˆë‹¤
 		Partition(&node->plane,FaceList,&faceNegList,&facePosList);
 		faceNegList.MoveFirst();facePosList.MoveFirst(); // for speed;
 
@@ -1425,10 +1425,10 @@ RSBspNode *RSBspExporter::ConstructSolidBspTree(RSPolygonList *FaceList)
 		node->Negative=ConstructSolidBspTree(&faceNegList);
 
 	}
-	else	// ´õÀÌ»ó ÂÉ°¶¼ö ÀÖ´Â Æú¸®°ïÀÌ ¾øÀ¸¸é, ÀÌ¹Ì º¼·Ï´Ù°¢ÇüÀÌ¸ç leaf ³ëµå·Î ¸¸µç´Ù.
+	else	// ë”ì´ìƒ ìª¼ê°¤ìˆ˜ ìˆëŠ” í´ë¦¬ê³¤ì´ ì—†ìœ¼ë©´, ì´ë¯¸ ë³¼ë¡ë‹¤ê°í˜•ì´ë©° leaf ë…¸ë“œë¡œ ë§Œë“ ë‹¤.
 	{
 		FaceList->MoveFirst();// for speed
-		// ´Ù°¢ÇüÀ» »ï°¢ÇüÀ¸·Î ÂÉ°µ´Ù.
+		// ë‹¤ê°í˜•ì„ ì‚¼ê°í˜•ìœ¼ë¡œ ìª¼ê° ë‹¤.
 
 		int nFaceCount=0;
 		for(int i=0;i<FaceList->GetCount();i++)
@@ -1479,8 +1479,8 @@ float GetAngle(rvector &a)
 		return (float)-acos(a.x);
 }
 
-// convex hullÀÇ ´Ü¸é Æú¸®°ïÀ» ±¸ÇÑ´Ù. split polygon °ú Á¤È®ÇÏ°Ô ¶È°°ÀÌ µ¿ÀÛÇØ¾ß
-// Æú¸®°ïÀÌ ¶ßÁö ¾Ê´Â´Ù. (¿ÀÂ÷°¡ »ı±âÁö ¾Êµµ·Ï ÇØ¾ßÇÔ)
+// convex hullì˜ ë‹¨ë©´ í´ë¦¬ê³¤ì„ êµ¬í•œë‹¤. split polygon ê³¼ ì •í™•í•˜ê²Œ ë˜‘ê°™ì´ ë™ì‘í•´ì•¼
+// í´ë¦¬ê³¤ì´ ëœ¨ì§€ ì•ŠëŠ”ë‹¤. (ì˜¤ì°¨ê°€ ìƒê¸°ì§€ ì•Šë„ë¡ í•´ì•¼í•¨)
 rpolygon *GetPartitionPolygon(dplane &plane,RSPolygonList *ppl)
 {
 	RSolidVertexList ppv;
@@ -1511,7 +1511,7 @@ rpolygon *GetPartitionPolygon(dplane &plane,RSPolygonList *ppl)
 					nZero++;
 		}
 
-		if(nNegative==0 && nPositive==0) {		// Æò¸éÀ§ÀÇ Æú¸®°ïÀº »èÁ¦
+		if(nNegative==0 && nPositive==0) {		// í‰ë©´ìœ„ì˜ í´ë¦¬ê³¤ì€ ì‚­ì œ
 			ppl->Delete(ip);
 			continue;
 		}
@@ -1537,7 +1537,7 @@ rpolygon *GetPartitionPolygon(dplane &plane,RSPolygonList *ppl)
 		ip++;
 	}
 
-	// ÀÌÁ¦ intersect µÈ Á¡µéÀ» ½Ã°è¹æÇâÀ¸·Î ¹­¾îÁÖ¸é µÈ´Ù.
+	// ì´ì œ intersect ëœ ì ë“¤ì„ ì‹œê³„ë°©í–¥ìœ¼ë¡œ ë¬¶ì–´ì£¼ë©´ ëœë‹¤.
 
 	if(ppv.size()<3) return NULL;
 
@@ -1594,12 +1594,12 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 	if(FaceList->GetCount()==0) 
 	{
 		if(SpaceFaceList->GetCount()==0) {
-			// ¿ø·¡ ÀÌ·±°æ¿ì´Â ¾ø´Âµ¥ -_-; ¿Ö ³ª¿À³ª ? -_-;
+			// ì›ë˜ ì´ëŸ°ê²½ìš°ëŠ” ì—†ëŠ”ë° -_-; ì™œ ë‚˜ì˜¤ë‚˜ ? -_-;
 			return NULL;
 		}
 
-		// Æú¸®°ïÀÌ ¾øÀ¸¹Ç·Î solid leaf ³ëµåÀÌ´Ù.
-		// ÀÌÁ¦ °ø°£À» ÀÌ·ç´Â Æú¸®°ïÀ» »ìÆìº¸¾Æ »ÏÁ·ÇÑ edge ³ª vertex ¸¦ Ã£¾Æ¼­ Æò¸éÀ» Ãß°¡ÇØ bevel ÇØÁØ´Ù.
+		// í´ë¦¬ê³¤ì´ ì—†ìœ¼ë¯€ë¡œ solid leaf ë…¸ë“œì´ë‹¤.
+		// ì´ì œ ê³µê°„ì„ ì´ë£¨ëŠ” í´ë¦¬ê³¤ì„ ì‚´í´ë³´ì•„ ë¾°ì¡±í•œ edge ë‚˜ vertex ë¥¼ ì°¾ì•„ì„œ í‰ë©´ì„ ì¶”ê°€í•´ bevel í•´ì¤€ë‹¤.
 
 		list<dplane> RBevelPlanes;
 
@@ -1619,7 +1619,7 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 			}
 		}
 
-		// ³¯Ä«·Î¿î edge ¸¦ Ã£´Â´Ù.
+		// ë‚ ì¹´ë¡œìš´ edge ë¥¼ ì°¾ëŠ”ë‹¤.
 		for(i=0;i<SpaceFaceList->GetCount();i++)
 		{
 			rpolygon *p=SpaceFaceList->Get(i);
@@ -1631,13 +1631,13 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 
 					for(l=0;l<p2->nCount;l++)
 					{
-						// ÀÎÁ¢ÇÑ edge ÀÌ¸é
+						// ì¸ì ‘í•œ edge ì´ë©´
 						if((p->vi[(j+1)%p->nCount]==p2->vi[l] && p->vi[j]==p2->vi[(l+1)%p2->nCount]) ||
 							(p->vi[j]==p2->vi[l] && p->vi[(j+1)%p->nCount]==p2->vi[(l+1)%p2->nCount]))
 						{
 
-#define EDGE_ANGLE		85.	// normalÀÇ °¢µµÀÌ¹Ç·Î ½ÇÁ¦°¢Àº 95µµ
-							// normalÀ» ÀÌ·ç´Â °¢µµ°¡ EDGE_ANGLEµµ º¸´Ùµµ ³¯Ä«·Î¿î edge ÀÌ¸é Ãß°¡ÇÑ´Ù
+#define EDGE_ANGLE		85.	// normalì˜ ê°ë„ì´ë¯€ë¡œ ì‹¤ì œê°ì€ 95ë„
+							// normalì„ ì´ë£¨ëŠ” ê°ë„ê°€ EDGE_ANGLEë„ ë³´ë‹¤ë„ ë‚ ì¹´ë¡œìš´ edge ì´ë©´ ì¶”ê°€í•œë‹¤
 							if(DotProduct(p->normal,p2->normal)<cos(EDGE_ANGLE/pi)) {
 
 								dpoint normal=p->normal+p2->normal;
@@ -1651,13 +1651,13 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 								/*
 								if(fabs(DPlaneDotCoord(newplane,p->v[(j+1)%p->nCount].coord))>0.01)
 								{
-									log("”î! edge error!\n");
+									log("ë·! edge error!\n");
 								}
 								*/
 
 
 								/*
-								// (À§¿¡¼­ ºÃÀ»¶§ ¿Ü°ûedgeÀÌ¸é) ¼öÁ÷ÀÎ ¸éÀ» ÇÏ³ª ´õ ¼¼¿î´Ù 
+								// (ìœ„ì—ì„œ ë´¤ì„ë•Œ ì™¸ê³½edgeì´ë©´) ìˆ˜ì§ì¸ ë©´ì„ í•˜ë‚˜ ë” ì„¸ìš´ë‹¤ 
 								if(signof(p->normal.z)*signof(p2->normal.z)<0)
 								{
 									normal.z=0;
@@ -1670,16 +1670,16 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 										dpoint apoint=*it;
 										if(DPlaneDotCoord(newplane,apoint)<-0.01)
 										{
-											log("”î! vertex error!\n");
+											log("ë·! vertex error!\n");
 										}
 									}
 									RBevelPlanes.push_back(newplane);
 								}
-								*/ // ¿¹¿Ü°æ¿ì°¡ ÀÖ¾î¼­ ºÀÀÎ
+								*/ // ì˜ˆì™¸ê²½ìš°ê°€ ìˆì–´ì„œ ë´‰ì¸
 							}
 
 							/*
-							// edge normal À» ½á³Ö´Â´Ù ( ÀÎÁ¢ÇÑ Æò¸éÀÇ normalÀÇ Æò±Õ )
+							// edge normal ì„ ì¨ë„£ëŠ”ë‹¤ ( ì¸ì ‘í•œ í‰ë©´ì˜ normalì˜ í‰ê·  )
 							dpoint en=.5f*(p->normal+p2->normal);
 							en.Normalize();
 
@@ -1693,7 +1693,7 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 		}
 
 		/*
-		// ÁßÁ¡À» ±¸ÇÑ´Ù 
+		// ì¤‘ì ì„ êµ¬í•œë‹¤ 
 		dpoint center=dpoint(0,0,0);
 		RSolidVertexList::iterator it=vertices.begin();
 		for(i=0;i<(int)vertices.size();i++,it++)
@@ -1703,7 +1703,7 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 		center*=1./(double)vertices.size();
 		*/
 
-		// »ÏÁ·ÇÑ vertex ¸¦ Ã£´Â´Ù
+		// ë¾°ì¡±í•œ vertex ë¥¼ ì°¾ëŠ”ë‹¤
 
 		RSolidVertexList::iterator it=vertices.begin();
 		for(i=0;i<(int)vertices.size();i++,it++)
@@ -1714,16 +1714,16 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 			map<double,dpoint>	areanormals;
 			double	TotalArea=0.;
 
-			// normals ¿¡´Ù°¡ »ç¿ëµÈ Æú¸®°ïÀÇ ³ë¸»µéÀ» ¸ğ¾Æ³õ´Â´Ù
+			// normals ì—ë‹¤ê°€ ì‚¬ìš©ëœ í´ë¦¬ê³¤ì˜ ë…¸ë§ë“¤ì„ ëª¨ì•„ë†“ëŠ”ë‹¤
 			for(j=0;j<SpaceFaceList->GetCount();j++)
 			{
 				rpolygon *p=SpaceFaceList->Get(j);
 				for(k=0;k<p->nCount;k++)
 				{
-					if(p->vi[k]==i) {	// i ¹öÅØ½º°¡ j Æú¸®°ï¿¡ »ç¿ëµÇ¾îÁö¸é
+					if(p->vi[k]==i) {	// i ë²„í…ìŠ¤ê°€ j í´ë¦¬ê³¤ì— ì‚¬ìš©ë˜ì–´ì§€ë©´
 						normals.push_back(p->normal);
 
-						// Áß¿ä ! TODO : °¢µµ¿¡ ÀÇÇÑ °¡ÁßÄ¡·Î ´Ù½ÃÄÚµù
+						// ì¤‘ìš” ! TODO : ê°ë„ì— ì˜í•œ ê°€ì¤‘ì¹˜ë¡œ ë‹¤ì‹œì½”ë”©
 						dpoint e1=*p->coord(k+1)-*p->coord(k),e2=*p->coord(k-1)-*p->coord(k);
 						/*
 						dpoint normal= CrossProduct(e1,e2)/(DotProduct(e1,e1)*DotProduct(e2,e2));
@@ -1738,7 +1738,7 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 //						avrnormal+=p->normal;
 
 						/*
-						// k ¹öÅØ½º¸¦ Æ÷ÇÔÇÏ´Â k , k-1 edgeÀÇ normalÀ» ´õÇÑ´Ù
+						// k ë²„í…ìŠ¤ë¥¼ í¬í•¨í•˜ëŠ” k , k-1 edgeì˜ normalì„ ë”í•œë‹¤
 						avrnormal+=p->en[k];
 						avrnormal+=p->en[(k+p->nCount-1)%p->nCount];
 						*/
@@ -1757,7 +1757,7 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 			}
 
 
-			// ¸ğ¾Æ³õÀº normals µéÀ» ºñ±³ÇØ¼­ ³¯Ä«·Ó´Ù°í ÆÇ´ÜµÇ¸é empty node¸¦ Ãß°¡ÇÑ´Ù
+			// ëª¨ì•„ë†“ì€ normals ë“¤ì„ ë¹„êµí•´ì„œ ë‚ ì¹´ë¡­ë‹¤ê³  íŒë‹¨ë˜ë©´ empty nodeë¥¼ ì¶”ê°€í•œë‹¤
 			bool bNeedToSplit=false;
 			for(RSolidVertexList::iterator it1=normals.begin();it1!=normals.end();it1++)
 			{
@@ -1784,7 +1784,7 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 				normal.Normalize();
 				*/
 
-				// °¢µµ¿¡ weight¸¦ Áà¼­ ±¸ÇÏ´Â ¹æ¹ı. avrnormal Àº ÀÌ¹Ì unitÀÌ³ª.. Á¤È®µµ¸¦ À§ÇØ ´Ù½ÃÇÑ¹ø.
+				// ê°ë„ì— weightë¥¼ ì¤˜ì„œ êµ¬í•˜ëŠ” ë°©ë²•. avrnormal ì€ ì´ë¯¸ unitì´ë‚˜.. ì •í™•ë„ë¥¼ ìœ„í•´ ë‹¤ì‹œí•œë²ˆ.
 				avrnormal.Normalize();
 
 				dplane newplane;
@@ -1794,7 +1794,7 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 
 				DPlaneFromPointNormal(&newplane,apoint,avrnormal);
 
-				// È®ÀÎÇÔ ÇØº¸ÀÚ
+				// í™•ì¸í•¨ í•´ë³´ì
 
 				
 				for(RSolidVertexList::iterator itt=vertices.begin();itt!=vertices.end();itt++)
@@ -1878,21 +1878,21 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 	if(ChoosePlaneSolid(FaceList,&node->plane))
 	{
 		g_bSplitWorld=true;
-		// ¿ùµå¸¦ ÀÌ·ç´Â Æú¸®°ïÀ» ³ª´«´Ù
+		// ì›”ë“œë¥¼ ì´ë£¨ëŠ” í´ë¦¬ê³¤ì„ ë‚˜ëˆˆë‹¤
 		Partition(&node->plane,FaceList,&faceNegList,&facePosList);
 		g_bSplitWorld=false;
 
 		faceNegList.MoveFirst();facePosList.MoveFirst(); // for speed;
 
 
-		// °ø°£À» ÀÌ·ç´Â Æú¸®°ïµµ ³ª´«´Ù
+		// ê³µê°„ì„ ì´ë£¨ëŠ” í´ë¦¬ê³¤ë„ ë‚˜ëˆˆë‹¤
 
-		// ¸ÕÀú ÂÉ°³´Â Æò¸éÀ§ÀÇ Æú¸®°ïÀ» ±¸ÇÑ´Ù.
+		// ë¨¼ì € ìª¼ê°œëŠ” í‰ë©´ìœ„ì˜ í´ë¦¬ê³¤ì„ êµ¬í•œë‹¤.
 		rpolygon *ppp=GetPartitionPolygon(node->plane,SpaceFaceList);
 
 		Partition(&node->plane,SpaceFaceList,&negspaceFaceList,&posspaceFaceList);
 
-		// »õ·Î¿î °ø°£À» ÀÌ·ç´Â Æú¸®°ïÀ» Ãß°¡ÇÑ´Ù (positiveÂÊ)
+		// ìƒˆë¡œìš´ ê³µê°„ì„ ì´ë£¨ëŠ” í´ë¦¬ê³¤ì„ ì¶”ê°€í•œë‹¤ (positiveìª½)
 
 		/*
 		int j;
@@ -1907,7 +1907,7 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 
 		if(ppp) negspaceFaceList.Add(ppp);
 		if(ppp) {
-			// negative ÂÊÀº Æú¸®°ïÀ» µÚÁı¾î¼­ ³Ö´Â´Ù.
+			// negative ìª½ì€ í´ë¦¬ê³¤ì„ ë’¤ì§‘ì–´ì„œ ë„£ëŠ”ë‹¤.
 			rpolygon *pppn=new rpolygon(ppp);
 			for(int i=0;i<ppp->nCount;i++)
 			{
@@ -1925,7 +1925,7 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 		node->Positive=ConstructBevelSolidBspTree(&facePosList,&posspaceFaceList);
 		m_nDepth--;
 
-		// »õ·Î¿î °ø°£À» ÀÌ·ç´Â Æú¸®°ïÀ» Ãß°¡ÇÑ´Ù (negativeÂÊ)
+		// ìƒˆë¡œìš´ ê³µê°„ì„ ì´ë£¨ëŠ” í´ë¦¬ê³¤ì„ ì¶”ê°€í•œë‹¤ (negativeìª½)
 
 		/*
 		p=NewLargePolygon(node->plane);
@@ -1944,10 +1944,10 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 		m_nDepth--;
 
 	}
-	else	// ´õÀÌ»ó ÂÉ°¶¼ö ÀÖ´Â Æú¸®°ïÀÌ ¾øÀ¸¸é, ÀÌ¹Ì º¼·Ï´Ù°¢ÇüÀÌ¸ç leaf ³ëµå·Î ¸¸µç´Ù.
+	else	// ë”ì´ìƒ ìª¼ê°¤ìˆ˜ ìˆëŠ” í´ë¦¬ê³¤ì´ ì—†ìœ¼ë©´, ì´ë¯¸ ë³¼ë¡ë‹¤ê°í˜•ì´ë©° leaf ë…¸ë“œë¡œ ë§Œë“ ë‹¤.
 	{
 		FaceList->MoveFirst();// for speed
-		// ´Ù°¢ÇüÀ» »ï°¢ÇüÀ¸·Î ÂÉ°µ´Ù.
+		// ë‹¤ê°í˜•ì„ ì‚¼ê°í˜•ìœ¼ë¡œ ìª¼ê° ë‹¤.
 
 		int nFaceCount=0;
 		for(int i=0;i<FaceList->GetCount();i++)
@@ -1998,7 +1998,7 @@ RSBspNode *RSBspExporter::ConstructBevelSolidBspTree(RSPolygonList *FaceList,RSP
 	return(node);
 }
 
-// ¾î¶»°Ô ÂÉ°³ÁúÁö ¾Ë¾Æº¸´Â Æã¼ÇÀÌ¹Ç·Î partition & splitpolygon °ú °°Àº °á°ú¸¦ ¸®ÅÏÇØ¾ßÇÑ´Ù
+// ì–´ë–»ê²Œ ìª¼ê°œì§ˆì§€ ì•Œì•„ë³´ëŠ” í‘ì…˜ì´ë¯€ë¡œ partition & splitpolygon ê³¼ ê°™ì€ ê²°ê³¼ë¥¼ ë¦¬í„´í•´ì•¼í•œë‹¤
 RSIDE RSBspExporter::whichSideIsFaceWRTplane(rpolygon *f,dplane *plane)
 {
 	int i,nPositive=0,nNegative=0,nZero=0;
@@ -2016,7 +2016,7 @@ RSIDE RSBspExporter::whichSideIsFaceWRTplane(rpolygon *f,dplane *plane)
 				nZero++;
 	}
 
-	if(nNegative==0 && nPositive==0)	// ÂÉ°³´Â Æò¸éÀ§¿¡ Æú¸®°ïÀÌ ³õ¿©Á®ÀÖ´Ù
+	if(nNegative==0 && nPositive==0)	// ìª¼ê°œëŠ” í‰ë©´ìœ„ì— í´ë¦¬ê³¤ì´ ë†“ì—¬ì ¸ìˆë‹¤
 	{
 		if(DPlaneDotNormal(*plane,f->normal)>-0.9)
 		{
@@ -2028,10 +2028,10 @@ RSIDE RSBspExporter::whichSideIsFaceWRTplane(rpolygon *f,dplane *plane)
 		}
 	}
 
-	if(nNegative==0)	// ¸ğµÎ positive ÂÊ¿¡ ÀÖÀ¸¹Ç·Î poslist ·Î ³Ö´Â´Ù.
+	if(nNegative==0)	// ëª¨ë‘ positive ìª½ì— ìˆìœ¼ë¯€ë¡œ poslist ë¡œ ë„£ëŠ”ë‹¤.
 		return RSIDE_POSITIVE;
 
-	if(nPositive==0)	// neglist ·Î..
+	if(nPositive==0)	// neglist ë¡œ..
 		return RSIDE_NEGATIVE;
 
 	return RSIDE_BOTH;							
@@ -2167,7 +2167,7 @@ bool RSBspNode::SaveCol(FILE *file)
 	fwrite(&flag,sizeof(bool),1,file);
 	if(Negative) Negative->SaveCol(file);
 
-	// Æú¸®°ïÁ¤º¸. ÀÌ°Ç ³ªÁß¿¡ ¾ø¾Ö¾ßÇÔ.
+	// í´ë¦¬ê³¤ì •ë³´. ì´ê±´ ë‚˜ì¤‘ì— ì—†ì• ì•¼í•¨.
 	fwrite(&nFace,sizeof(int),1,file);
 	for(int i=0;i<nFace;i++)
 	{
@@ -2220,7 +2220,7 @@ bool RSBspNode::SaveNavigation(FILE* file)
 	fwrite(&flag,sizeof(bool),1,file);
 	if(Negative) Negative->SaveCol(file);
 
-	// face Á¤º¸.
+	// face ì •ë³´.
 	fwrite(&nFace,sizeof(int),1,file);
 	for(int i=0;i<nFace;i++)
 	{
@@ -2237,7 +2237,7 @@ bool RSBspExporter::Save(FILE *file)
 {
 	if(!OcHead) return false;
 
-	{	// ³ªÁß¿¡ ÀÌ Á¤º¸¸¦ ÀĞ¾î¼­ ¸Â´Â bsp ÆÄÀÏÀÎÁö È®ÀÎÇÑ´Ù.
+	{	// ë‚˜ì¤‘ì— ì´ ì •ë³´ë¥¼ ì½ì–´ì„œ ë§ëŠ” bsp íŒŒì¼ì¸ì§€ í™•ì¸í•œë‹¤.
 		int nNodeCount=BspHead->GetNodeCount();
 		fwrite(&nNodeCount,sizeof(int),1,file);
 		int nPolygonCount=BspHead->GetPolygonCount();
@@ -2352,7 +2352,7 @@ void RSBspExporter::CutPolygon(rpolygon *ppolygon)
 
 	dplane plane=ppolygon->GetPlane();
 	RSPolygonList *pcutlist=new RSPolygonList;
-	// °°Àº Æò¸é¿¡ ÀÖ´Â Æú¸®°ïÀ» ÀÏ´Ü cutlist ·Î ¿Å±ä´Ù
+	// ê°™ì€ í‰ë©´ì— ìˆëŠ” í´ë¦¬ê³¤ì„ ì¼ë‹¨ cutlist ë¡œ ì˜®ê¸´ë‹¤
 	for(i=0;i<pcurrentlist->GetCount();)
 	{
 		rpolygon *pp=pcurrentlist->Get(i);
@@ -2367,7 +2367,7 @@ void RSBspExporter::CutPolygon(rpolygon *ppolygon)
 			i++;
 	}
 
-	// °¢°¢ÀÇ edge ¿¡ ´ëÇØ Æò¸éÀ» ¼¼¿îµÚ ±×°ÍÀ¸·Î Àß¶ó³½´Ù
+	// ê°ê°ì˜ edge ì— ëŒ€í•´ í‰ë©´ì„ ì„¸ìš´ë’¤ ê·¸ê²ƒìœ¼ë¡œ ì˜ë¼ë‚¸ë‹¤
 	for(i=0;i<ppolygon->nCount;i++)
 	{
 		dpoint apoint=ppolygon->v[i].coord;
@@ -2421,7 +2421,7 @@ void RSBspExporter::CutPolygon(rpolygon *ppolygon)
 		pcutlist=newcutlist;
 	}
 
-	delete pcutlist;			// ¸¶Áö¸·±îÁö ³²´Â ³ÑµéÀÌ Á¤¸» ¹ö¸®´Â ºÎºĞÀÌ´Ù
+	delete pcutlist;			// ë§ˆì§€ë§‰ê¹Œì§€ ë‚¨ëŠ” ë„˜ë“¤ì´ ì •ë§ ë²„ë¦¬ëŠ” ë¶€ë¶„ì´ë‹¤
 }
 
 RCSGObject::RCSGObject()
@@ -2445,7 +2445,7 @@ void RSBspExporter::CheckPolygonInSolid(rpolygon *ppolygon,RSBspNode *pNode)
 		return;
 	}
 
-	if(!pNode->Positive && !pNode->Negative)	// ¸»´Ü³ëµåÀÌ¸é
+	if(!pNode->Positive && !pNode->Negative)	// ë§ë‹¨ë…¸ë“œì´ë©´
 	{
 		if(pNode->nFace==0)
 			CutPolygon(ppolygon);
@@ -2464,7 +2464,7 @@ void RSBspExporter::CheckPolygonInSolid(rpolygon *ppolygon,RSBspNode *pNode)
 
 bool RSBspExporter::CSGUnion(RSPolygonList *pOutputPolygons, RSPolygonList* pOutputPolygonList, list<RCSGObject*>& Objects)
 {
-	// ÀÏ´Ü °¢°¢ÀÇ object µé¿¡ ´ëÇØ bsptree¸¦ »ı¼ºÇÑ´Ù
+	// ì¼ë‹¨ ê°ê°ì˜ object ë“¤ì— ëŒ€í•´ bsptreeë¥¼ ìƒì„±í•œë‹¤
 	for(list<RCSGObject*>::iterator i=Objects.begin();i!=Objects.end();i++){
 		fComplete=0.f;
 		m_nDepth=0;
@@ -2472,7 +2472,7 @@ bool RSBspExporter::CSGUnion(RSPolygonList *pOutputPolygons, RSPolygonList* pOut
 
 		RCSGObject *pc1=*i;
 
-		// °¢ objectÀÇ bspÆ®¸®¸¦ ¸¸µé±â À§ÇØ ¿©¹úÀÇ facelist ¸¦ ¸¸µç´Ù.
+		// ê° objectì˜ bspíŠ¸ë¦¬ë¥¼ ë§Œë“¤ê¸° ìœ„í•´ ì—¬ë²Œì˜ facelist ë¥¼ ë§Œë“ ë‹¤.
 		RSPolygonList pl;
 		for(int i=0;i<pc1->m_pPolygons->GetCount();i++)
 		{
@@ -2492,7 +2492,7 @@ bool RSBspExporter::CSGUnion(RSPolygonList *pOutputPolygons, RSPolygonList* pOut
 		RCSGObject *pc1=*i;
 		pcurrentlist=pc1->m_pPolygons;
 
-		// °¢ Æú¸®°ï¿¡ ´ëÇØ solid ¾È¿¡ µé¾î°¡ÀÖ´ÂÁö Ã¼Å©ÇÏ±â À§ÇØ ´Ù½Ã ¿©¹úÀÇ facelist ¸¦ ¸¸µç´Ù.
+		// ê° í´ë¦¬ê³¤ì— ëŒ€í•´ solid ì•ˆì— ë“¤ì–´ê°€ìˆëŠ”ì§€ ì²´í¬í•˜ê¸° ìœ„í•´ ë‹¤ì‹œ ì—¬ë²Œì˜ facelist ë¥¼ ë§Œë“ ë‹¤.
 		RSPolygonList pl;
 		for(int i=0;i<pc1->m_pPolygons->GetCount();i++)
 		{
@@ -2514,8 +2514,8 @@ bool RSBspExporter::CSGUnion(RSPolygonList *pOutputPolygons, RSPolygonList* pOut
 		}
 	}
 
-	// ¼­·Î¿¡ ´ëÇØ solid ¾È¿¡ µé¾î°¡ ÀÖ´Â Æú¸®°ïµéÀÌ Á¦°ÅµÇ¾ú´Ù.
-	// ÀÌÁ¦ ¿ÏÀüÈ÷ Á¦°ÅµÈ Æú¸®°ïÀ» ¿øº»¿¡¼­ »èÁ¦ÇÑ´Ù
+	// ì„œë¡œì— ëŒ€í•´ solid ì•ˆì— ë“¤ì–´ê°€ ìˆëŠ” í´ë¦¬ê³¤ë“¤ì´ ì œê±°ë˜ì—ˆë‹¤.
+	// ì´ì œ ì™„ì „íˆ ì œê±°ëœ í´ë¦¬ê³¤ì„ ì›ë³¸ì—ì„œ ì‚­ì œí•œë‹¤
 
 	int nSolidFaces=0;
 	{
@@ -2535,7 +2535,7 @@ bool RSBspExporter::CSGUnion(RSPolygonList *pOutputPolygons, RSPolygonList* pOut
 		{
 			rpolygon *pp=face.Get(i);
 
-			// additive ³ª opacitymap ¾²´Â Æú¸®°ï È¤Àº pass ÀÎ ³ÑµéÀº Á¦°ÅÇÏÁö¾Ê´Â´Ù
+			// additive ë‚˜ opacitymap ì“°ëŠ” í´ë¦¬ê³¤ í˜¹ì€ pass ì¸ ë„˜ë“¤ì€ ì œê±°í•˜ì§€ì•ŠëŠ”ë‹¤
 			if(((pp->dwFlags && ( RM_FLAG_PASSTHROUGH | RM_FLAG_ADDITIVE | RM_FLAG_USEOPACITY ))==NULL) 
 				&& (ids.find(i)==ids.end()))
 			{
@@ -2571,7 +2571,7 @@ bool RSBspExporter::CSGUnion(RSPolygonList *pOutputPolygons, RSPolygonList* pOut
 
 	/*
 	RConvexPolygons convexpolygons;
-	// ÀÏ´Ü º¼·Ï´Ù°¢ÇüÀ¸·Î ÇÕÄ¥¼ö ÀÖ´Âµ¥±îÁö ÇÕÃÄº»´Ù..
+	// ì¼ë‹¨ ë³¼ë¡ë‹¤ê°í˜•ìœ¼ë¡œ í•©ì¹ ìˆ˜ ìˆëŠ”ë°ê¹Œì§€ í•©ì³ë³¸ë‹¤..
 	{
 
 		int i,j,nStartIndex=0,nCount=faceCol.GetCount();
@@ -2583,7 +2583,7 @@ bool RSBspExporter::CSGUnion(RSPolygonList *pOutputPolygons, RSPolygonList* pOut
 		{
 			if(!isdone[i])	
 			{
-				// ÀÌ Æú¸®°ïÀÌ ¾ÆÁ÷ Ãß°¡¾ÈµÇ¾úÀ¸¸é °°Àº Æò¸é¿¡ ÀÖ´Â °°Àº materialÀÇ Æú¸®°ïµéÀ» Áı¾î³Ö´Â´Ù.
+				// ì´ í´ë¦¬ê³¤ì´ ì•„ì§ ì¶”ê°€ì•ˆë˜ì—ˆìœ¼ë©´ ê°™ì€ í‰ë©´ì— ìˆëŠ” ê°™ì€ materialì˜ í´ë¦¬ê³¤ë“¤ì„ ì§‘ì–´ë„£ëŠ”ë‹¤.
 				rpolygon *f=faceCol.Get(i);
 				//_ASSERT(f->nCount==3);
 
@@ -2633,7 +2633,7 @@ bool RSBspExporter::CSGUnion(RSPolygonList *pOutputPolygons, RSPolygonList* pOut
 					}
 				}
 
-				// °°Àº Æò¸éÀÇ Æú¸®°ïÀ» ´Ù Áı¾î ³Ö¾úÀ¸¸é ±× ¾È¿¡¼­ º¼·Ï´Ù°¢ÇüÀÌ µÉ¸¸ÇÑ°ÍµéÀ» Ã£¾Æ¼­ ÇÕÃÄÁØ´Ù.
+				// ê°™ì€ í‰ë©´ì˜ í´ë¦¬ê³¤ì„ ë‹¤ ì§‘ì–´ ë„£ì—ˆìœ¼ë©´ ê·¸ ì•ˆì—ì„œ ë³¼ë¡ë‹¤ê°í˜•ì´ ë ë§Œí•œê²ƒë“¤ì„ ì°¾ì•„ì„œ í•©ì³ì¤€ë‹¤.
 				convexpolygons.MergePolygons(nStartIndex);
 				nStartIndex=convexpolygons.size();
 			}
@@ -2717,7 +2717,7 @@ rpolygon *NewPolygonFromBoundingBox(dboundingbox &bb,int i)
 
 bool RSBspExporter::ConstructBspTree()
 {
-	// collision bsp tree ¸¦ »ı¼ºÇÑ´Ù.
+	// collision bsp tree ë¥¼ ìƒì„±í•œë‹¤.
 
 	log("Constructing Collision BspTree. ( %d source polygons )\n",faceCol.GetCount());
 
@@ -2725,7 +2725,7 @@ bool RSBspExporter::ConstructBspTree()
 	m_nDepth=0;
 	nsplitcount=0;nleafcount=0;
 	
-	// collision ÀÇ ¹Ù¿îµù¹Ú½º¸¦ Ã£´Â´Ù
+	// collision ì˜ ë°”ìš´ë”©ë°•ìŠ¤ë¥¼ ì°¾ëŠ”ë‹¤
 	dboundingbox bbCol;
 	bbCol.vmin.x=bbCol.vmin.y=bbCol.vmin.z=FLT_MAX;
 	bbCol.vmax.x=bbCol.vmax.y=bbCol.vmax.z=-FLT_MAX;
@@ -2743,7 +2743,7 @@ bool RSBspExporter::ConstructBspTree()
 		}
 	}
 
-	// solid³ëµå¸¦ ÀÌ·ê ¹Ú½º ¸Ş½¬¸¦ ¸¸µç´Ù
+	// solidë…¸ë“œë¥¼ ì´ë£° ë°•ìŠ¤ ë©”ì‰¬ë¥¼ ë§Œë“ ë‹¤
 	RSPolygonList spacepolygons;
 	for(int i=0;i<6;i++)
 	{
@@ -2770,7 +2770,7 @@ bool RSBspExporter::ConstructBspTree()
 	}
 */
 
-	// bsptree ¸¦ »ı¼ºÇÏ±â À§ÇØ ¿©¹úÀÇ facelist ¸¦ ¸¸µç´Ù.
+	// bsptree ë¥¼ ìƒì„±í•˜ê¸° ìœ„í•´ ì—¬ë²Œì˜ facelist ë¥¼ ë§Œë“ ë‹¤.
 	for(int i=0;i<faceOc.GetCount();i++)
 	{
 		rpolygon *fs=faceOc.Get(i);
@@ -2778,20 +2778,20 @@ bool RSBspExporter::ConstructBspTree()
 		face.Add(f);
 	}
 
-	// partition plane vector ¸¦ »ı¼º (sort)
+	// partition plane vector ë¥¼ ìƒì„± (sort)
 	for(map<int,dplane>::iterator i=m_PartitionPlanes.begin();i!=m_PartitionPlanes.end();i++)
 	{
 		m_PartitionPlaneVector.push_back(i->second);
 	}
 
-	// Octree ¸¦ »ı¼ºÇÕ´Ï´Ù.
+	// Octree ë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
 	log("Constructing OcTree. ( %d source polygons )\n",faceOc.GetCount());
 	nsplitcount=0;nleafcount=0;
 	OcHead=ConstructOctree(&faceOc,1,&m_bb);
 	log("Octree Info : total %d faces splitted %d leaf nodes %d nodes %d polygons\n",
 		nsplitcount,nleafcount,OcHead->GetNodeCount(),OcHead->GetPolygonCount());
 
-	// bsp tree ¸¦ »ı¼ºÇÑ´Ù.
+	// bsp tree ë¥¼ ìƒì„±í•œë‹¤.
 	log("Constructing BspTree. ( %d source polygons )\n",face.GetCount());
 	fComplete=0.f;
 	m_nDepth=0;
@@ -2804,7 +2804,7 @@ bool RSBspExporter::ConstructBspTree()
 	ConstructBoundingBox(BspHead);
 
 	/*
-	// collision bsp tree ¸¦ »ı¼ºÇÑ´Ù.
+	// collision bsp tree ë¥¼ ìƒì„±í•œë‹¤.
 	fComplete=0.f;
 	m_nDepth=0;
 	nsplitcount=0;nleafcount=0;
@@ -2816,8 +2816,8 @@ bool RSBspExporter::ConstructBspTree()
 	return true;
 }
 
-// nStartIndex ºÎÅÍ ³¡±îÁö Æú¸®°ïÁß¿¡¼­ ÇÕÄ¥¼ö ÀÖ´Â°ÍµéÀ» ÇÕÄ£´Ù.
-// ÀÌ Æú¸®°ïµéÀº ¸ğµÎ ÇÑÆò¸éÀ§¿¡ ÀÖ´Ù.
+// nStartIndex ë¶€í„° ëê¹Œì§€ í´ë¦¬ê³¤ì¤‘ì—ì„œ í•©ì¹ ìˆ˜ ìˆëŠ”ê²ƒë“¤ì„ í•©ì¹œë‹¤.
+// ì´ í´ë¦¬ê³¤ë“¤ì€ ëª¨ë‘ í•œí‰ë©´ìœ„ì— ìˆë‹¤.
 /*
 void RSBspExporter::RConvexPolygons::MergePolygons(int nStartIndex)	
 {
@@ -2845,7 +2845,7 @@ void RSBspExporter::RConvexPolygons::MergePolygons(int nStartIndex)
 			{
 				RConvexPolygon *poly2=(*this)[k];
 
-				if(poly->dwFlags==poly2->dwFlags)				// ÇÃ·¡±×°¡ °°¾Æ¾ß ÇÕÃÄÁø´Ù (nopath..cast/receive shadow µîµî)
+				if(poly->dwFlags==poly2->dwFlags)				// í”Œë˜ê·¸ê°€ ê°™ì•„ì•¼ í•©ì³ì§„ë‹¤ (nopath..cast/receive shadow ë“±ë“±)
 				{
 					for(l=0;l<poly2->vertices.size();l++)
 					{
@@ -2855,9 +2855,9 @@ void RSBspExporter::RConvexPolygons::MergePolygons(int nStartIndex)
 						
 						if((BSPEQ3(*edge2a,*edgeb) && BSPEQ3(*edge2b,*edgea)) 
 						//	|| (IS_EQ3(*edge2a,*edgeb) && IS_EQ3(*edge2b,*edgea))
-							)				// ¸Â´Â edge ¸¦ Ã£¾Ò´Ù !
+							)				// ë§ëŠ” edge ë¥¼ ì°¾ì•˜ë‹¤ !
 						{
-							// normal ÀÌ °°ÀºÁö È®ÀÎ
+							// normal ì´ ê°™ì€ì§€ í™•ì¸
 							dpoint n1=*poly->normals.Get(j+1);
 							dpoint n2=*poly2->normals.Get(l);
 							_ASSERT(BSPEQ3(n1,n2));
@@ -2872,7 +2872,7 @@ void RSBspExporter::RConvexPolygons::MergePolygons(int nStartIndex)
 							DPlaneFromPointNormal(&testplane,*poly->vertices.Get(j),normal);
 							double fDetHead=DPlaneDotCoord(testplane,*poly2->vertices.Get(l+2));
 
-#define CONVEX_TOLER	0.00001 // BSPTOLER º¸´Ù ÀÛ¾Æ¾ß ÇÒµí. ¤Ì.¤Ñ
+#define CONVEX_TOLER	0.00001 // BSPTOLER ë³´ë‹¤ ì‘ì•„ì•¼ í• ë“¯. ã…œ.ã…¡
 
 
 							if(fDetHead>-CONVEX_TOLER)
@@ -2882,12 +2882,12 @@ void RSBspExporter::RConvexPolygons::MergePolygons(int nStartIndex)
 								DPlaneFromPointNormal(&testplane,*poly2->vertices.Get(l),normal);
 								double fDetTail=DPlaneDotCoord(testplane,*poly->vertices.Get(j+2));
 
-								if(fDetTail>-CONVEX_TOLER)		// ÀÌ°æ¿ì ÇÕÄ¡¸é º¼·Ï´Ù°¢ÇüÀÌ µÈ´Ù !
+								if(fDetTail>-CONVEX_TOLER)		// ì´ê²½ìš° í•©ì¹˜ë©´ ë³¼ë¡ë‹¤ê°í˜•ì´ ëœë‹¤ !
 								{
 									int nInsertPos=j;
 
-									// Á÷¼±ÀÌ¸é °¡¿îµ¥¿¡ ÀÖ´Â ¹öÅØ½º¸¦ »èÁ¦ÇØµµ µÇ³ª, ÀÌ°æ¿ì edge °¡ »ç¶óÁ®¼­ ¸ø°¡´Â °æ¿ì°¡ ¹ß»ı..
-									// 2003.12.1 ±×·¯³ª Áö±İÀº path finding À» »ı°¢ÇÏÁö ¾ÊÀ¸¹Ç·Î ÇÕÄ£´Ù
+									// ì§ì„ ì´ë©´ ê°€ìš´ë°ì— ìˆëŠ” ë²„í…ìŠ¤ë¥¼ ì‚­ì œí•´ë„ ë˜ë‚˜, ì´ê²½ìš° edge ê°€ ì‚¬ë¼ì ¸ì„œ ëª»ê°€ëŠ” ê²½ìš°ê°€ ë°œìƒ..
+									// 2003.12.1 ê·¸ëŸ¬ë‚˜ ì§€ê¸ˆì€ path finding ì„ ìƒê°í•˜ì§€ ì•Šìœ¼ë¯€ë¡œ í•©ì¹œë‹¤
 									if(fDetHead<CONVEX_TOLER)
 									{
 										delete *poly->vertices[nInsertPos];
@@ -2903,7 +2903,7 @@ void RSBspExporter::RConvexPolygons::MergePolygons(int nStartIndex)
 										nInsertPos++;
 									}
 
-									// À§¿Í ¸¶Âù°¡ÁöÀÌÀ¯·Î...
+									// ìœ„ì™€ ë§ˆì°¬ê°€ì§€ì´ìœ ë¡œ...
 									if(fDetTail<CONVEX_TOLER)
 									{
 										if(nInsertPos==poly->vertices.size())
@@ -2943,7 +2943,7 @@ void RSBspExporter::RConvexPolygons::MergePolygons(int nStartIndex)
 /*
 void RSBspExporter::ConstructConvexPolygon()
 {
-	// ÀÏ´Ü º¼·Ï´Ù°¢ÇüÀ¸·Î ÇÕÄ¥¼ö ÀÖ´Âµ¥±îÁö ÇÕÃÄº»´Ù..
+	// ì¼ë‹¨ ë³¼ë¡ë‹¤ê°í˜•ìœ¼ë¡œ í•©ì¹ ìˆ˜ ìˆëŠ”ë°ê¹Œì§€ í•©ì³ë³¸ë‹¤..
 
 	int i,j,nStartIndex=0,nCount=face.GetCount();
 	bool *isdone=new bool[face.GetCount()];
@@ -2954,7 +2954,7 @@ void RSBspExporter::ConstructConvexPolygon()
 	{
 		if(!isdone[i])	
 		{
-			// ÀÌ Æú¸®°ïÀÌ ¾ÆÁ÷ Ãß°¡¾ÈµÇ¾úÀ¸¸é °°Àº Æò¸é¿¡ ÀÖ´Â °°Àº materialÀÇ Æú¸®°ïµéÀ» Áı¾î³Ö´Â´Ù.
+			// ì´ í´ë¦¬ê³¤ì´ ì•„ì§ ì¶”ê°€ì•ˆë˜ì—ˆìœ¼ë©´ ê°™ì€ í‰ë©´ì— ìˆëŠ” ê°™ì€ materialì˜ í´ë¦¬ê³¤ë“¤ì„ ì§‘ì–´ë„£ëŠ”ë‹¤.
 			rpolygon *f=face.Get(i);
 			//_ASSERT(f->nCount==3);
 
@@ -2989,7 +2989,7 @@ void RSBspExporter::ConstructConvexPolygon()
 				}
 			}
 
-			// °°Àº Æò¸éÀÇ Æú¸®°ïÀ» ´Ù Áı¾î ³Ö¾úÀ¸¸é ±× ¾È¿¡¼­ º¼·Ï´Ù°¢ÇüÀÌ µÉ¸¸ÇÑ°ÍµéÀ» Ã£¾Æ¼­ ÇÕÃÄÁØ´Ù.
+			// ê°™ì€ í‰ë©´ì˜ í´ë¦¬ê³¤ì„ ë‹¤ ì§‘ì–´ ë„£ì—ˆìœ¼ë©´ ê·¸ ì•ˆì—ì„œ ë³¼ë¡ë‹¤ê°í˜•ì´ ë ë§Œí•œê²ƒë“¤ì„ ì°¾ì•„ì„œ í•©ì³ì¤€ë‹¤.
 			m_ConvexPolygons.MergePolygons(nStartIndex);
 			nStartIndex=m_ConvexPolygons.size();
 		}
@@ -2999,7 +2999,7 @@ void RSBspExporter::ConstructConvexPolygon()
 
 bool RSBspExporter::SaveSource(FILE *file)
 {
-	// csg union & Æú¸®°ïÀ» ´Ù°¢ÇüÀ¸·Î ÇÕÄ¥¸¸Å­ ÇÕÄ¡°í ÀúÀåÇÑ´Ù.
+	// csg union & í´ë¦¬ê³¤ì„ ë‹¤ê°í˜•ìœ¼ë¡œ í•©ì¹ ë§Œí¼ í•©ì¹˜ê³  ì €ì¥í•œë‹¤.
 	RSPolygonList pl;
 
 	log("CSG union - %d objects\n",m_CSGObjects.size());
@@ -3021,11 +3021,11 @@ bool RSBspExporter::SaveSource(FILE *file)
 
 	int i,j;
 
-	// Æú¸®°ïÀÇ ¼ö
+	// í´ë¦¬ê³¤ì˜ ìˆ˜
 	int nConvexPolygon=faceOc.GetCount(),nTotalVertices=0;
 	fwrite(&nConvexPolygon,sizeof(int),1,file);
 
-	// ÃÑ ¹öÅØ½º ¼ıÀÚ¸¦ ¼¾´Ù.
+	// ì´ ë²„í…ìŠ¤ ìˆ«ìë¥¼ ì„¼ë‹¤.
 	for(i=0;i<nConvexPolygon;i++)		
 	{
 		nTotalVertices+=faceOc.Get(i)->nCount;
@@ -3063,7 +3063,7 @@ bool RSBspExporter::SaveSource(FILE *file)
 	int nConvexPolygon=m_ConvexPolygons.size(),nTotalVertices=0;
 	fwrite(&nConvexPolygon,sizeof(int),1,file);
 
-	for(i=0;i<nConvexPolygon;i++)		// ¹öÅØ½º ¼ıÀÚ¸¦ ¼¾´Ù.
+	for(i=0;i<nConvexPolygon;i++)		// ë²„í…ìŠ¤ ìˆ«ìë¥¼ ì„¼ë‹¤.
 	{
 		nTotalVertices+=m_ConvexPolygons[i]->vertices.size();
 	}
@@ -3090,7 +3090,7 @@ bool RSBspExporter::SaveSource(FILE *file)
 		for(j=0;j<nVertCount;j++)
 			poly->normals[j]->SaveFloat(file);
 
-		// ±×¸®°í ÂÉ°³Áú Æú¸®°ïµéÀÇ source index µéÀ» Á¤¸®ÇÑ´Ù..
+		// ê·¸ë¦¬ê³  ìª¼ê°œì§ˆ í´ë¦¬ê³¤ë“¤ì˜ source index ë“¤ì„ ì •ë¦¬í•œë‹¤..
 		list<int>::iterator k=poly->RefIDs.begin();
 		while(k!=poly->RefIDs.end())
 		{
@@ -3110,16 +3110,16 @@ void GetUVTransformMatrix(D3DXMATRIX *pOut,rvertex *v1,rvertex *v2,rvertex *v3,d
 	dpoint e2=v3->coord-cj;
 
 	if(!normal) {
-		// ¹°·Ğ normal ÀÌ ¾ÈÁÖ¾îÁö¸é v1,v2,v3·Î ±¸ÇÒ¼ö ÀÖ´Ù.
-		// Áö±İÀº ÇÊ¿ä¾øÀ¸¹Ç·Î ÄÚµùÇÏÁö ¾Ê¾Ò´Ù.
+		// ë¬¼ë¡  normal ì´ ì•ˆì£¼ì–´ì§€ë©´ v1,v2,v3ë¡œ êµ¬í• ìˆ˜ ìˆë‹¤.
+		// ì§€ê¸ˆì€ í•„ìš”ì—†ìœ¼ë¯€ë¡œ ì½”ë”©í•˜ì§€ ì•Šì•˜ë‹¤.
 		_ASSERT(FALSE);
 	}
 
-	// j Á¡À» Áß½ÉÀ¸·Î translation
+	// j ì ì„ ì¤‘ì‹¬ìœ¼ë¡œ translation
 	D3DXMATRIX tr;
 	D3DXMatrixTranslation(&tr,-cj.x,-cj.y,-cj.z);
 
-	// e1,e2 (jÁ¡À» ³¤ µÎ edge)¿Í »ï°¢ÇüÀÇ ¹ı¼± º¤ÅÍ 3ÃàÀ» Áß½ÉÀ¸·Î transform
+	// e1,e2 (jì ì„ ë‚€ ë‘ edge)ì™€ ì‚¼ê°í˜•ì˜ ë²•ì„  ë²¡í„° 3ì¶•ì„ ì¤‘ì‹¬ìœ¼ë¡œ transform
 	D3DXMATRIX m;
 	D3DXMatrixIdentity(&m);
 	m._11=e1.x;m._12=e1.y;m._13=e1.z;
@@ -3127,7 +3127,7 @@ void GetUVTransformMatrix(D3DXMATRIX *pOut,rvertex *v1,rvertex *v2,rvertex *v3,d
 	m._31=normal->x;m._32=normal->y;m._33=normal->z;
 	D3DXMatrixInverse(&m,NULL,&m);
 
-	// À§ÀÇ µÎ º¯È¯À» °ÅÄ¡¸é e1,e2ÁÂÇ¥°è·Î º¯È¯µÈ´Ù. ÀÌÁ¦ uv ÁÂÇ¥·Î º¯È¯
+	// ìœ„ì˜ ë‘ ë³€í™˜ì„ ê±°ì¹˜ë©´ e1,e2ì¢Œí‘œê³„ë¡œ ë³€í™˜ëœë‹¤. ì´ì œ uv ì¢Œí‘œë¡œ ë³€í™˜
 	D3DXMATRIX m2;
 	D3DXMatrixIdentity(&m2);
 
@@ -3142,7 +3142,7 @@ void GetUVTransformMatrix(D3DXMATRIX *pOut,rvertex *v1,rvertex *v2,rvertex *v3,d
 	m2._41=v1->u;
 	m2._42=v1->v;
 
-	// ÃÖÁ¾º¯È¯Çà·Ä
+	// ìµœì¢…ë³€í™˜í–‰ë ¬
 	*pOut=tr*m*m2;
 }
 
@@ -3174,8 +3174,8 @@ void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,int nStartIndex
 			{
 				rpolygon *poly2=pSourcePolygons->Get(k);
 
-				// TODO : normal ÀÌ °°ÀºÁö uv °¡ °°ÀºÁö È®ÀÎÇÑ´Ù
-				if(poly->dwFlags==poly2->dwFlags)				// ÇÃ·¡±×°¡ °°¾Æ¾ß ÇÕÃÄÁø´Ù (nopath..cast/receive shadow µîµî)
+				// TODO : normal ì´ ê°™ì€ì§€ uv ê°€ ê°™ì€ì§€ í™•ì¸í•œë‹¤
+				if(poly->dwFlags==poly2->dwFlags)				// í”Œë˜ê·¸ê°€ ê°™ì•„ì•¼ í•©ì³ì§„ë‹¤ (nopath..cast/receive shadow ë“±ë“±)
 				{
 					for(l=0;l<poly2->nCount;l++)
 					{
@@ -3193,16 +3193,16 @@ void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,int nStartIndex
 										+-----------+-----------+
 								    	j+2      j+1 l         l-1
 
-										j,j+1 edge °¡ l+1,l edge¿Í ¸ÂÀ»°æ¿ì¿¡ ÇÕÄ£´Ù
+										j,j+1 edge ê°€ l+1,l edgeì™€ ë§ì„ê²½ìš°ì— í•©ì¹œë‹¤
 						 */
 
 
 						if(BSPEQ3(edge2a->coord,edgeb->coord) && BSPEQ3(edge2b->coord,edgea->coord) &&
 							BSPEQ(edge2a->u,edgeb->u) && BSPEQ(edge2a->v,edgeb->v) &&
-							BSPEQ(edge2b->u,edgea->u) && BSPEQ(edge2b->v,edgea->v))				// ¸Â´Â edge ¸¦ Ã£¾Ò´Ù !
+							BSPEQ(edge2b->u,edgea->u) && BSPEQ(edge2b->v,edgea->v))				// ë§ëŠ” edge ë¥¼ ì°¾ì•˜ë‹¤ !
 						{
 
-							// j , j-1 , j+1 À» ÀÌ·ç´Â »ï°¢Çü¿¡¼­ uv transform matrix ¸¦ ÃßÁ¤ÇÑ´Ù.
+							// j , j-1 , j+1 ì„ ì´ë£¨ëŠ” ì‚¼ê°í˜•ì—ì„œ uv transform matrix ë¥¼ ì¶”ì •í•œë‹¤.
 
 							D3DXMATRIX m;
 							GetUVTransformMatrix(&m,poly->GetVertex(j),poly->GetVertex(j-1),poly->GetVertex(j+1),&poly->normal);
@@ -3211,14 +3211,14 @@ void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,int nStartIndex
 							rvector test=rvector(testdp.x,testdp.y,testdp.z);
 							D3DXVec3TransformCoord(&test,&test,&m);
 
-							// poly ÀÇ uvtransform matrix ·Îµµ poly2 ÀÇ l+2 ¹öÅØ½º¿Í ¸Â´ÂÁö È®ÀÎÇØº»´Ù
+							// poly ì˜ uvtransform matrix ë¡œë„ poly2 ì˜ l+2 ë²„í…ìŠ¤ì™€ ë§ëŠ”ì§€ í™•ì¸í•´ë³¸ë‹¤
 							
 							if(fabs(poly2->GetVertex(l+2)->u-test.x)>0.01 ||
 								fabs(poly2->GetVertex(l+2)->v-test.y)>0.01 )
 								continue;
 
 							/*
-							// normal ÀÌ °°ÀºÁö È®ÀÎ
+							// normal ì´ ê°™ì€ì§€ í™•ì¸
 							dpoint n1=*poly->normals.Get(j+1);
 							dpoint n2=*poly2->normals.Get(l);
 							_ASSERT(BSPEQ3(n1,n2));
@@ -3234,7 +3234,7 @@ void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,int nStartIndex
 							DPlaneFromPointNormal(&testplane,*poly->coord(j),normal);
 							double fDetHead=DPlaneDotCoord(testplane,*poly2->coord(l+2));
 
-#define CONVEX_TOLER	0.00001 // BSPTOLER º¸´Ù ÀÛ¾Æ¾ß ÇÒµí. ¤Ì.¤Ñ
+#define CONVEX_TOLER	0.00001 // BSPTOLER ë³´ë‹¤ ì‘ì•„ì•¼ í• ë“¯. ã…œ.ã…¡
 
 
 							if(fDetHead>-CONVEX_TOLER)
@@ -3244,7 +3244,7 @@ void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,int nStartIndex
 								DPlaneFromPointNormal(&testplane,*poly2->coord(l),normal);
 								double fDetTail=DPlaneDotCoord(testplane,*poly->coord(j+2));
 
-								if(fDetTail>-CONVEX_TOLER)		// ÀÌ°æ¿ì ÇÕÄ¡¸é º¼·Ï´Ù°¢ÇüÀÌ µÈ´Ù !
+								if(fDetTail>-CONVEX_TOLER)		// ì´ê²½ìš° í•©ì¹˜ë©´ ë³¼ë¡ë‹¤ê°í˜•ì´ ëœë‹¤ !
 								{
 									/*// for debug
 									log("Merge %d :: \n",nMergeCount);
@@ -3272,12 +3272,12 @@ void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,int nStartIndex
 									log("poly2 : %s\n",buffer);
 									}//*/
 
-									// Á÷¼±ÀÌ¸é °¡¿îµ¥¿¡ ÀÖ´Â ¹öÅØ½º¸¦ »èÁ¦ÇØµµ µÇ³ª, ÀÌ°æ¿ì edge °¡ »ç¶óÁ®¼­ ¸ø°¡´Â °æ¿ì°¡ ¹ß»ı..
-									// 2003.12.1 ±×·¯³ª Áö±İÀº path finding À» »ı°¢ÇÏÁö ¾ÊÀ¸¹Ç·Î ÇÕÄ£´Ù
+									// ì§ì„ ì´ë©´ ê°€ìš´ë°ì— ìˆëŠ” ë²„í…ìŠ¤ë¥¼ ì‚­ì œí•´ë„ ë˜ë‚˜, ì´ê²½ìš° edge ê°€ ì‚¬ë¼ì ¸ì„œ ëª»ê°€ëŠ” ê²½ìš°ê°€ ë°œìƒ..
+									// 2003.12.1 ê·¸ëŸ¬ë‚˜ ì§€ê¸ˆì€ path finding ì„ ìƒê°í•˜ì§€ ì•Šìœ¼ë¯€ë¡œ í•©ì¹œë‹¤
 
 									int nnewvertices=poly->nCount+poly2->nCount-2;
 									
-									// ´Ü uv °¡ ¸Â´ÂÁö´Â È®ÀÎÇØ¾ß ÇÑ´Ù
+									// ë‹¨ uv ê°€ ë§ëŠ”ì§€ëŠ” í™•ì¸í•´ì•¼ í•œë‹¤
 
 									bool bDelTail = fDetTail<CONVEX_TOLER;
 									bool bDelHead = fDetHead<CONVEX_TOLER;
@@ -3298,7 +3298,7 @@ void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,int nStartIndex
 										nCurPos++;
 									}
 
-									// Á÷¼±ÀÌµÇ¾î¼­ ¹öÅØ½º¸¦ »ı·«ÇØµµ ±¦ÂúÀ¸¸é ?  : ±×·¸Áö ¾ÊÀ¸¸é
+									// ì§ì„ ì´ë˜ì–´ì„œ ë²„í…ìŠ¤ë¥¼ ìƒëµí•´ë„ ê´œì°®ìœ¼ë©´ ?  : ê·¸ë ‡ì§€ ì•Šìœ¼ë©´
 
 									int startj=bDelTail ? j+2 : j+1;
 									int endj=bDelHead  ? j+poly->nCount : j+poly->nCount+1;
@@ -3311,19 +3311,19 @@ void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,int nStartIndex
 									_ASSERT(nCurPos==nnewvertices);
 
 									/*
-									// »ğÀÔÇÒ À§Ä¡ ¾ÕÂÊÀ» º¹»çÇÏ°í
+									// ì‚½ì…í•  ìœ„ì¹˜ ì•ìª½ì„ ë³µì‚¬í•˜ê³ 
 									int nInsertPos = (fDetHead<CONVEX_TOLER) ? j : j+1;
 									memcpy(pnewvertices,poly->v,sizeof(rvertex)*nInsertPos);
 
 									int nCurPos=nInsertPos;
-									// »ğÀÔµÇ¾îÁö´Â ³»¿ëÀ» º¹»çÇÏ°í
+									// ì‚½ì…ë˜ì–´ì§€ëŠ” ë‚´ìš©ì„ ë³µì‚¬í•˜ê³ 
 									for(int iv=l+2;iv<l+poly2->nCount;iv++)
 									{
 										memcpy(&pnewvertices[nCurPos],poly2->GetVertex(iv),sizeof(rvertex));
 										nCurPos++;
 									}
 
-									// »ğÀÔµÇ¾îÁú À§Ä¡ µÚÂÊÀ» º¹»ç
+									// ì‚½ì…ë˜ì–´ì§ˆ ìœ„ì¹˜ ë’¤ìª½ì„ ë³µì‚¬
 									nInsertPos = (fDetTail<CONVEX_TOLER) ? j+2 : j+1;
 									memcpy(&pnewvertices[nCurPos],&poly->v[nInsertPos],sizeof(rvertex)*(poly->nCount-nInsertPos));
 									*/
@@ -3371,7 +3371,7 @@ void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,int nStartIndex
 
 void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,RSPolygonList *pOutputPolygons)
 {
-	// ÀÏ´Ü º¼·Ï´Ù°¢ÇüÀ¸·Î ÇÕÄ¥¼ö ÀÖ´Âµ¥±îÁö ÇÕÃÄº»´Ù..
+	// ì¼ë‹¨ ë³¼ë¡ë‹¤ê°í˜•ìœ¼ë¡œ í•©ì¹ ìˆ˜ ìˆëŠ”ë°ê¹Œì§€ í•©ì³ë³¸ë‹¤..
 
 	int i,j,nStartIndex=0,nCount=pSourcePolygons->GetCount();
 	bool *isdone=new bool[nCount];
@@ -3382,12 +3382,12 @@ void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,RSPolygonList *
 	{
 		if(!isdone[i])	
 		{
-			// ÀÌ Æú¸®°ïÀÌ ¾ÆÁ÷ Ãß°¡¾ÈµÇ¾úÀ¸¸é °°Àº Æò¸é¿¡ ÀÖ´Â °°Àº materialÀÇ Æú¸®°ïµéÀ» Áı¾î³Ö´Â´Ù.
+			// ì´ í´ë¦¬ê³¤ì´ ì•„ì§ ì¶”ê°€ì•ˆë˜ì—ˆìœ¼ë©´ ê°™ì€ í‰ë©´ì— ìˆëŠ” ê°™ì€ materialì˜ í´ë¦¬ê³¤ë“¤ì„ ì§‘ì–´ë„£ëŠ”ë‹¤.
 			rpolygon *f=pSourcePolygons->Get(i);
 
 			dplane plane=f->GetPlane();
 
-			// ºĞ¸íÈ÷ f ÀÇ ¹öÅØ½ºµéÀº plane À§¿¡ ÀÖ¾î¾ß ÇÑ´Ù. ±×·¸Áö ¾ÊÀ¸¸é »¸´Â´Ù.
+			// ë¶„ëª…íˆ f ì˜ ë²„í…ìŠ¤ë“¤ì€ plane ìœ„ì— ìˆì–´ì•¼ í•œë‹¤. ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ë»—ëŠ”ë‹¤.
 
 			for(j=i;j<nCount;j++)
 			{
@@ -3411,7 +3411,7 @@ void RSBspExporter::MergePolygons(RSPolygonList *pSourcePolygons,RSPolygonList *
 				}
 			}
 
-			// °°Àº Æò¸éÀÇ Æú¸®°ïÀ» ´Ù Áı¾î ³Ö¾úÀ¸¸é ±× ¾È¿¡¼­ º¼·Ï´Ù°¢ÇüÀÌ µÉ¸¸ÇÑ°ÍµéÀ» Ã£¾Æ¼­ ÇÕÃÄÁØ´Ù.
+			// ê°™ì€ í‰ë©´ì˜ í´ë¦¬ê³¤ì„ ë‹¤ ì§‘ì–´ ë„£ì—ˆìœ¼ë©´ ê·¸ ì•ˆì—ì„œ ë³¼ë¡ë‹¤ê°í˜•ì´ ë ë§Œí•œê²ƒë“¤ì„ ì°¾ì•„ì„œ í•©ì³ì¤€ë‹¤.
 			MergePolygons(pOutputPolygons,nStartIndex);
 			nStartIndex=pOutputPolygons->GetCount();
 		}

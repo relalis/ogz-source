@@ -62,7 +62,7 @@ void MMatchClan::Create(int nCLID, const char* szClanName)
 	strcpy_safe(m_szClanName, szClanName);
 
 
-	m_SmartRefresh.AddCategory(new MRefreshCategoryClanMemberImpl(this, 0));	// Category 0 ·Î ÀüÃ¼¸ñ·Ï ¸ğµÎ ´ã´ç
+	m_SmartRefresh.AddCategory(new MRefreshCategoryClanMemberImpl(this, 0));	// Category 0 ë¡œ ì „ì²´ëª©ë¡ ëª¨ë‘ ë‹´ë‹¹
 }
 
 void MMatchClan::InitClanInfoEx(const int nLevel, const int nTotalPoint, const int nPoint, const int nRanking,
@@ -196,7 +196,7 @@ void MMatchClanMap::AddObject(const MUID& uid, MMatchObject* pObj)
 	int nCLID = pObj->GetCharInfo()->m_ClanInfo.m_nClanID;
 	if (nCLID == 0) return;
 
-	// Å¬·£ÀÌ ¾øÀ¸¸é »õ·Î »ı¼º
+	// í´ëœì´ ì—†ìœ¼ë©´ ìƒˆë¡œ ìƒì„±
 	iterator itor = find(nCLID);
 	if (itor == end()) 
 	{

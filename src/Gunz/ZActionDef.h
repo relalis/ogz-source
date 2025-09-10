@@ -1,7 +1,7 @@
 /*
-modified by : Á¤µ¿¼· @ 2006/3/16
-	define->const enumÀ¸·Î º¯°æ
-	ZACTION_USE_WEAPON Ãß°¡
+modified by : ì •ë™ì„­ @ 2006/3/16
+	define->const enumìœ¼ë¡œ ë³€ê²½
+	ZACTION_USE_WEAPON ì¶”ê°€
 */
 
 

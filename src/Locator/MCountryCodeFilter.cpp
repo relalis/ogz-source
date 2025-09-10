@@ -69,7 +69,7 @@ bool MCountryCodeFilter::InitContryCodeTableList( const BlockCountryCodeInfoList
 		}
 		else
 		{
-			ASSERT( 0 && "Áßº¹µÈ ÄÚµå." );
+			ASSERT( 0 && "ì¤‘ë³µëœ ì½”ë“œ." );
 			return false;
 		}
 	}
@@ -125,7 +125,7 @@ bool MCountryCodeFilter::InitIPtoCountryList( const IPtoCountryList& rfIPtoCount
 	{
 		if( !CheckIPtoCountryRange(it->nIPFrom, it->nIPTo, m_IPtoCountryList) )
 		{
-			ASSERT( 0 && "Áßº¹µÇ´Â ±¸°£ÀÌ ÀÖÀ½.\n" );
+			ASSERT( 0 && "ì¤‘ë³µë˜ëŠ” êµ¬ê°„ì´ ìˆìŒ.\n" );
 			return false;
 		}
 
@@ -173,7 +173,7 @@ const int MCountryCodeFilter::GetIPCountryCode( const string& strIP, string& str
 			strOutCountryCode = m_IPtoCountryList[ nMiddle ].strCountryCode3;
 #ifdef _LOCATOR_TEST
 			if( -1 == idx ) 
-				mlog( "¾îÈæ Æ²¸®´Ù...(%u)\n", dwIP );
+				mlog( "ì–´í‘ í‹€ë¦¬ë‹¤...(%u)\n", dwIP );
 #endif
 			return true;
 		}
@@ -282,8 +282,8 @@ bool MCountryCodeFilter::Update( const BlockCountryCodeInfoList& rfBlockCountryC
 	if( rfBlockCountryCodeInfoList.empty() || 
 		rfIPtoCountryList.empty() ) return false;
 
-	// ÀÌÀü Á¤º¸´Â ¸®¼ÂÇÏ°í »õ·Î ¸®½ºÆ®¸¦ ±¸¼ºÇÔ.
-	// ¸®½ºÆ®¿ÜÀÇ ´Ù¸¥ Á¤º¸´Â ¼öÁ¤µÇ´Â°ÍÀÌ ¾ø¾î¾ß ÇÑ´Ù.
+	// ì´ì „ ì •ë³´ëŠ” ë¦¬ì…‹í•˜ê³  ìƒˆë¡œ ë¦¬ìŠ¤íŠ¸ë¥¼ êµ¬ì„±í•¨.
+	// ë¦¬ìŠ¤íŠ¸ì™¸ì˜ ë‹¤ë¥¸ ì •ë³´ëŠ” ìˆ˜ì •ë˜ëŠ”ê²ƒì´ ì—†ì–´ì•¼ í•œë‹¤.
 
 	InitContryCodeTableList( rfBlockCountryCodeInfoList );
 	InitIPtoCountryList( rfIPtoCountryList );
@@ -313,7 +313,7 @@ bool MCountryCodeFilter::UpdateCountryCodeTableList( const BlockCountryCodeInfoL
 				bcil.push_back( (*it) );
 			else
 			{
-				ASSERT( 0 && "Áßº¹µÈ ÄÚµå." );
+				ASSERT( 0 && "ì¤‘ë³µëœ ì½”ë“œ." );
 				return false;
 			}
 		}
@@ -345,7 +345,7 @@ bool MCountryCodeFilter::UpdateIPtoCountryList( const IPtoCountryList& rfIPtoCou
 		{
 			if( !CheckIPtoCountryRange(it->nIPFrom, it->nIPTo, icl) )
 			{
-				ASSERT( 0 && "Áßº¹µÇ´Â ±¸°£ÀÌ ÀÖÀ½.\n" );
+				ASSERT( 0 && "ì¤‘ë³µë˜ëŠ” êµ¬ê°„ì´ ìˆìŒ.\n" );
 				return false;
 			}
 
@@ -364,7 +364,7 @@ bool MCountryCodeFilter::UpdateIPtoCountryList( const IPtoCountryList& rfIPtoCou
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// TestÄÚµå.
+// Testì½”ë“œ.
 
 
 #ifdef _LOCATOR_TEST
@@ -379,7 +379,7 @@ void MCountryCodeFilter::TestIP()
 	FILE* fp = fopen( "testip.txt", "r" );
 	if( 0 == fp )
 	{
-		ASSERT( 0 && "Å×½ºÆ®¿ë ip¸®½ºÆ® ÆÄÀÏ ¿­±â ½ÇÆĞ." );
+		ASSERT( 0 && "í…ŒìŠ¤íŠ¸ìš© ipë¦¬ìŠ¤íŠ¸ íŒŒì¼ ì—´ê¸° ì‹¤íŒ¨." );
 		return;
 	}
 
@@ -448,5 +448,5 @@ bool MCountryCodeFilter::FindEqual( const u32 dwIPFrom, const u32 dwIPTo, const 
 }
 #endif
 
-// TestÄÚµå.
+// Testì½”ë“œ.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

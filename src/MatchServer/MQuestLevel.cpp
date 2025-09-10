@@ -24,7 +24,7 @@ void MQuestNPCQueue::Make(int nQLD, MQuestNPCSetInfo* pNPCSetInfo, MQUEST_NPC nK
 	m_nCursor = 0;
 	int nSize = nQLD;
 
-	m_Queue.reserve(nSize);			// QLD°¡ ³ª¿Ã NPC °³¼ö¸¦ ÀÇ¹ÌÇÑ´Ù.
+	m_Queue.reserve(nSize);			// QLDê°€ ë‚˜ì˜¬ NPC ê°œìˆ˜ë¥¼ ì˜ë¯¸í•œë‹¤.
 	m_Queue.resize(nSize, pNPCSetInfo->nBaseNPC);
 
 	int nNPCSetCount = (int)pNPCSetInfo->vecNPCs.size();
@@ -37,7 +37,7 @@ void MQuestNPCQueue::Make(int nQLD, MQuestNPCSetInfo* pNPCSetInfo, MQUEST_NPC nK
 		float fSpawnRate = (float)(RandomNumber(npc.nMinRate, npc.nMaxRate) / 100.0f);
 		int nSpawnCount = (int)floor(nSize * fSpawnRate);
 
-		// ¸¸¾à ºñÀ²»ó 1°³µµ ¾È³ª¿À´Â NPC°¡ ÀÖÀ¸¸é 1°³¶óµµ ³ª¿Ã ¼ö ÀÖ´Â ºñÀ²À» °è»êÇÑ´Ù.
+		// ë§Œì•½ ë¹„ìœ¨ìƒ 1ê°œë„ ì•ˆë‚˜ì˜¤ëŠ” NPCê°€ ìˆìœ¼ë©´ 1ê°œë¼ë„ ë‚˜ì˜¬ ìˆ˜ ìˆëŠ” ë¹„ìœ¨ì„ ê³„ì‚°í•œë‹¤.
 		if (nSpawnCount <= 0)
 		{
 			if (RandomNumber(0.0f, 1.0f) < float(nSize / 100.0f))
@@ -67,7 +67,7 @@ void MQuestNPCQueue::Make(int nQLD, MQuestNPCSetInfo* pNPCSetInfo, MQUEST_NPC nK
 		m_Queue[i] = temp;
 	}
 
-	// Å° NPC°¡ ÀÖÀ¸¸é Á¦ÀÏ Ã³À½¿¡ ³Ö´Â´Ù.
+	// í‚¤ NPCê°€ ìˆìœ¼ë©´ ì œì¼ ì²˜ìŒì— ë„£ëŠ”ë‹¤.
 	if (nKeyNPC != NPC_NONE)
 	{
 		m_Queue[0] = nKeyNPC;
@@ -151,7 +151,7 @@ void MQuestLevel::Init(int nScenarioID, int nDice)
 {
 	MMatchQuest* pQuest = MMatchServer::GetInstance()->GetQuest();
 	m_StaticInfo.pScenario = pQuest->GetScenarioInfo(nScenarioID);
-	m_StaticInfo.nDice = nDice - 1;		// 0ºÎÅÍ 5±îÁö
+	m_StaticInfo.nDice = nDice - 1;		// 0ë¶€í„° 5ê¹Œì§€
 
 	if (m_StaticInfo.pScenario)
 	{
@@ -161,7 +161,7 @@ void MQuestLevel::Init(int nScenarioID, int nDice)
 
 	m_DynamicInfo.nCurrSectorIndex = 0;
 
-	InitStaticInfo();	// ³­ÀÌµµ »ó¼ö, NPC ³­ÀÌµµ Á¶Àı °è¼ö µîÀ» ¼³Á¤
+	InitStaticInfo();	// ë‚œì´ë„ ìƒìˆ˜, NPC ë‚œì´ë„ ì¡°ì ˆ ê³„ìˆ˜ ë“±ì„ ì„¤ì •
 	InitCurrSector();
 }
 
@@ -195,7 +195,7 @@ bool MQuestLevel::InitSectors()
 			return false;
 		}
 
-		// ¼½ÅÍ Á¤º¸ ÀÔ·Â
+		// ì„¹í„° ì •ë³´ ì…ë ¥
 		MQuestLevelSectorNode node;
 		node.nSectorID = nSectorID;
 		node.nNextLinkIndex = nLinkIndex;
@@ -204,7 +204,7 @@ bool MQuestLevel::InitSectors()
 
 		if (i != (nSectorCount-1)) 
 		{
-			// ÇöÀç ¼½ÅÍ³ëµå¸¦ ¹ÙÅÁÀ¸·Î ÀÌÀü ¼½ÅÍ¿Í ¸µÅ©¸¦ °áÁ¤ÇÑ´Ù.
+			// í˜„ì¬ ì„¹í„°ë…¸ë“œë¥¼ ë°”íƒ•ìœ¼ë¡œ ì´ì „ ì„¹í„°ì™€ ë§í¬ë¥¼ ê²°ì •í•œë‹¤.
 			int nBacklinkCount = (int)pSector->VecBacklinks.size();
 			if (nBacklinkCount > 0)
 			{
@@ -218,7 +218,7 @@ bool MQuestLevel::InitSectors()
 					nSectorID = pSector->VecBacklinks[backlink_index].nSectorID;
 					nLinkIndex = pSector->VecBacklinks[backlink_index].nLinkIndex;
 
-					// °°Àº ³ëµå°¡ µÎ¹ø ¹İº¹ÇØ¼­ °É¸®Áö ¾Êµµ·Ï ÇÑ´Ù.
+					// ê°™ì€ ë…¸ë“œê°€ ë‘ë²ˆ ë°˜ë³µí•´ì„œ ê±¸ë¦¬ì§€ ì•Šë„ë¡ í•œë‹¤.
 					if ((nBacklinkCount > 1) && ((nSectorIndex+1) < nSectorCount))
 					{
 						if (nSectorID == m_StaticInfo.SectorList[nSectorIndex+1].nSectorID)
@@ -227,12 +227,12 @@ bool MQuestLevel::InitSectors()
 						}
 					}
 				}
-				while ((bSameNode) && (nLoopCount < 2));	// ÀÌÀü ³ëµå¶û °°Àº ³ëµå°¡ °É¸®¸é ¹İº¹
+				while ((bSameNode) && (nLoopCount < 2));	// ì´ì „ ë…¸ë“œë‘ ê°™ì€ ë…¸ë“œê°€ ê±¸ë¦¬ë©´ ë°˜ë³µ
 
 			}
 			else
 			{
-				// ¿ª¸µÅ©°¡ ÇÏ³ª¶óµµ ÀÖ¾î¾ß ÇÑ´Ù.
+				// ì—­ë§í¬ê°€ í•˜ë‚˜ë¼ë„ ìˆì–´ì•¼ í•œë‹¤.
 				_ASSERT(0);
 				return false;
 			}
@@ -265,7 +265,7 @@ bool MQuestLevel::InitNPCs()
 			return false;
 		}
 		
-		// base npc´Â µû·Î ³Ö´Â´Ù.
+		// base npcëŠ” ë”°ë¡œ ë„£ëŠ”ë‹¤.
 		m_StaticInfo.NPCs.insert(set<MQUEST_NPC>::value_type(pNPCSetInfo->nBaseNPC));
 
 		int nNPCSize = (int)pNPCSetInfo->vecNPCs.size();
@@ -301,7 +301,7 @@ bool MQuestLevel::MoveToNextSector()
 
 void MQuestLevel::InitCurrSector()
 {
-	// npc queue ¼¼ÆÃ
+	// npc queue ì„¸íŒ…
 	MMatchQuest* pQuest = MMatchServer::GetInstance()->GetQuest();
 	int nNPCSetID = m_StaticInfo.pScenario->Maps[m_StaticInfo.nDice].vecNPCSetArray[m_DynamicInfo.nCurrSectorIndex];
 	MQuestNPCSetInfo* pNPCSetInfo = pQuest->GetNPCSetInfo(nNPCSetID);
@@ -310,7 +310,7 @@ void MQuestLevel::InitCurrSector()
 
 	m_DynamicInfo.bCurrBossSector = false;
 
-	// ¸¸¾à Å° NPC°¡ ÀÖ°í, ¸¶Áö¸· ¼½ÅÍÀÌ¸é Å° NPC ¼¼ÆÃ
+	// ë§Œì•½ í‚¤ NPCê°€ ìˆê³ , ë§ˆì§€ë§‰ ì„¹í„°ì´ë©´ í‚¤ NPC ì„¸íŒ…
 	if ((m_StaticInfo.pScenario->Maps[m_StaticInfo.nDice].nKeyNPCID != 0) &&
 		(m_DynamicInfo.nCurrSectorIndex == GetMapSectorCount() - 1))
 	{
@@ -325,7 +325,7 @@ void MQuestLevel::InitCurrSector()
 		m_NPCQueue.Make(m_StaticInfo.nQLD, pNPCSetInfo);
 	}
 
-	// spawn index ¼¼ÆÃ
+	// spawn index ì„¸íŒ…
 	memset(m_SpawnInfos, 0, sizeof(m_SpawnInfos));
 
 	int nSectorID = m_StaticInfo.SectorList[m_DynamicInfo.nCurrSectorIndex].nSectorID;
@@ -367,7 +367,7 @@ int MQuestLevel::GetRecommendedSpawnPosition(MQuestNPCSpawnType nSpawnType, u64 
 	{
 		int nRecommendIndex = m_SpawnInfos[nSpawnType].nIndex;
 
-		// ½ºÆùÆ÷Áö¼ÇÀ» ÃßÃµ¹Ş¾ÒÀ»¶§ ½ºÆù½Ã°£µµ ¼¼ÆÃÇÑ´Ù.
+		// ìŠ¤í°í¬ì§€ì…˜ì„ ì¶”ì²œë°›ì•˜ì„ë•Œ ìŠ¤í°ì‹œê°„ë„ ì„¸íŒ…í•œë‹¤.
 		if (nRecommendIndex < MAX_SPAWN_COUNT)
 		{
 			m_SpawnInfos[nSpawnType].nRecentSpawnTime[nRecommendIndex] = nTickTime;
@@ -421,6 +421,6 @@ bool MQuestLevel::OnItemObtained( MMatchObject* pPlayer, u32 nItemID )
 		}
 	}
 	
-	// ¸¸¾à falseÀÌ¸é ÇÃ·¹ÀÌ¾î°¡ Ä¡ÆÃÀ» ÇÏ´Â °ÍÀÓ..-_-;
+	// ë§Œì•½ falseì´ë©´ í”Œë ˆì´ì–´ê°€ ì¹˜íŒ…ì„ í•˜ëŠ” ê²ƒì„..-_-;
 	return false;
 }

@@ -1,161 +1,161 @@
 #ifndef MERRORTABLE_H
 #define MERRORTABLE_H
 
-#define MOK				0	///< ¿¡·¯ ¾øÀ½
+#define MOK				0	///< ì—ëŸ¬ ì—†ìŒ
 
-#define MERR_UNKNOWN	-1	///< ¾ËÁö ¸øÇÏ´Â ¿¡·¯
+#define MERR_UNKNOWN	-1	///< ì•Œì§€ ëª»í•˜ëŠ” ì—ëŸ¬
 
-#define MERR_COMMUNICATOR_HAS_NOT_UID						100		///< Ä¿¹Â´ÏÄÉÀÌÅÍ°¡ UID¸¦ °¡ÁöÁö ¾ÊÀº °æ¿ì, ¾ÆÁ÷ ¸¶½ºÅÍ³ª È¤Àº UID¸¦ ¹ß±Þ¹ÞÀ» ¼ö ÀÖ´Â Ä¿¹Â´ÏÄÉÀÌÅÍ¿Í Á¢¼ÓÇÏÁö ¾Ê¾ÒÀ» °æ¿ì´Ù.
-#define MERR_COMMUNICATOR_HAS_NOT_UID_SPACE					101		///< Ä¿¹Â´ÏÄÉÀÌÅÍ°¡ ¹ß±ÞÇÒ UID °¡Áö°í ÀÖÁö ¾Ê´Ù. UID¸¦ ¿¹¾àÁßÀÏ °¡´É¼ºÀÌ ³ô´Ù.
-#define MERR_COMMUNICATOR_INVALID_DIRECT_CONNECTION_POINTER	110		///< ÇÏ³ªÀÇ ÇÁ·Î¼¼½º³»¿¡ ¿©·¯ Ä¿¹Â´ÏÄÉÀÌÅÍ°¡ µ¿½Ã¿¡ ¶¸À»¶§, DirectConnectionPointer°¡ À¯È¿ÇÏÁö ¾ÊÀº °æ¿ì
-#define MERR_COMMAND_HAS_INVALID_RECEIVER_UID				200		///< Ä¿¸Çµå¿¡ ¼³Á¤µÈ Receiver UID°¡ À¯È¿ÇÏÁö ¾ÊÀ»¶§
+#define MERR_COMMUNICATOR_HAS_NOT_UID						100		///< ì»¤ë®¤ë‹ˆì¼€ì´í„°ê°€ UIDë¥¼ ê°€ì§€ì§€ ì•Šì€ ê²½ìš°, ì•„ì§ ë§ˆìŠ¤í„°ë‚˜ í˜¹ì€ UIDë¥¼ ë°œê¸‰ë°›ì„ ìˆ˜ ìžˆëŠ” ì»¤ë®¤ë‹ˆì¼€ì´í„°ì™€ ì ‘ì†í•˜ì§€ ì•Šì•˜ì„ ê²½ìš°ë‹¤.
+#define MERR_COMMUNICATOR_HAS_NOT_UID_SPACE					101		///< ì»¤ë®¤ë‹ˆì¼€ì´í„°ê°€ ë°œê¸‰í•  UID ê°€ì§€ê³  ìžˆì§€ ì•Šë‹¤. UIDë¥¼ ì˜ˆì•½ì¤‘ì¼ ê°€ëŠ¥ì„±ì´ ë†’ë‹¤.
+#define MERR_COMMUNICATOR_INVALID_DIRECT_CONNECTION_POINTER	110		///< í•˜ë‚˜ì˜ í”„ë¡œì„¸ìŠ¤ë‚´ì— ì—¬ëŸ¬ ì»¤ë®¤ë‹ˆì¼€ì´í„°ê°€ ë™ì‹œì— ë–³ì„ë•Œ, DirectConnectionPointerê°€ ìœ íš¨í•˜ì§€ ì•Šì€ ê²½ìš°
+#define MERR_COMMAND_HAS_INVALID_RECEIVER_UID				200		///< ì»¤ë§¨ë“œì— ì„¤ì •ëœ Receiver UIDê°€ ìœ íš¨í•˜ì§€ ì•Šì„ë•Œ
 
-#define MERR_ZONESERVER_NOT_CONNECTED_TO_MASTER				300		///< Zone-Server°¡ Master-Controller¿Í ¿¬°áµÇÁö ¾Ê¾ÒÀ»¶§
-#define MERR_ZONESERVER_TRY_TO_INVALID_MASTER				301		///< Zone-Server°¡ Master-Controller°¡ ¾Æ´Ï Ä¿¹Â´ÏÄÉÀÌÅÍ¿¡°Ô Master-Controller·Î ¿ÀÀÎÇÏ°í ¿¬°áÀ» ½ÃµµÇÒ¶§
+#define MERR_ZONESERVER_NOT_CONNECTED_TO_MASTER				300		///< Zone-Serverê°€ Master-Controllerì™€ ì—°ê²°ë˜ì§€ ì•Šì•˜ì„ë•Œ
+#define MERR_ZONESERVER_TRY_TO_INVALID_MASTER				301		///< Zone-Serverê°€ Master-Controllerê°€ ì•„ë‹ˆ ì»¤ë®¤ë‹ˆì¼€ì´í„°ì—ê²Œ Master-Controllerë¡œ ì˜¤ì¸í•˜ê³  ì—°ê²°ì„ ì‹œë„í• ë•Œ
 
-#define MERR_OBJECT_INVALID									1000	///< À¯È¿ÇÏÁö ¾ÊÀº ¿ÀºêÁ§Æ®
-#define MERR_OBJECT_INVALID_MODE							1001	///< ÀûÇÕÇÏÁö ¾ÊÀº ¸ðµå
+#define MERR_OBJECT_INVALID									1000	///< ìœ íš¨í•˜ì§€ ì•Šì€ ì˜¤ë¸Œì íŠ¸
+#define MERR_OBJECT_INVALID_MODE							1001	///< ì í•©í•˜ì§€ ì•Šì€ ëª¨ë“œ
 
-#define MERR_MAP_CANNOT_OPEN_FILE							2000	///< ¸ÊÀ» ¿­Áö ¸øÇÏ´Â °æ¿ì
-
-
-// Á¢¼Ó, ·Î±×ÀÎ °ü·Ã
-#define MERR_CLIENT_WRONG_PASSWORD							10000	///< ÆÐ½º¿öµå°¡ Àß¸øµÊ
-#define MERR_CLIENT_CONNECTED_ALREADY						10001	///< ÀÌ¹Ì Á¢¼ÓÁßÀÌ´Ù.
-#define MERR_COMMAND_INVALID_VERSION						10002	///< ¼­¹ö¿Í Å¬¶óÀÌ¾ðÆ®°¡ ¹öÀüÀÌ ´Ù¸£´Ù.
-#define MERR_CLIENT_FULL_PLAYERS							10003	///< ¼­¹ö ÀÎ¿øÀÌ ²ËÃ¡´Ù
-#define MERR_CLIENT_MMUG_BLOCKED							10004	///< ºí·°´çÇß´Ù.
-#define MERR_FAILED_AUTHENTICATION							10005	///< »ç¿ëÀÚ ÀÎÁõ¿¡ ¿À·ù°¡ ¹ß»ýÇÏ¿´½À´Ï´Ù.
-
-// Ä³¸¯ÅÍ °ü¸® °ü·Ã
-#define MERR_CLIENT_EXIST_CHARNAME							10100	///< ¼­¹ö¿¡ ÀÌ¹Ì Ä³¸¯ÅÍ ¾ÆÀÌµð°¡ Á¸Àç
-#define MERR_WRONG_WORD_NAME								10101	///< Ä³¸¯ÅÍÀÌ¸§¿¡ »ç¿ëÇÒ ¼ö ¾ø´Â ¹®ÀÚ°¡ ÀÖ´Ù.
-#define MERR_TOO_SHORT_NAME									10102	///< Ä³¸¯ÅÍÀÌ¸§ ±æÀÌ°¡ ³Ê¹« Âª´Ù.
-#define MERR_TOO_LONG_NAME									10103	///< Ä³¸¯ÅÍ ÀÌ¸§ÀÌ ³Ê¹« ±æ´Ù
-#define MERR_PLZ_INPUT_CHARNAME								10104	///< Ä³¸¯ÅÍ ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä
-#define MERR_CHAR_NOT_EXIST									10110	///< Á¸ÀçÇÏÁö ¾Ê´Â Ä³¸¯ÅÍÀÌ¸§
-#define MERR_CANNOT_DELETE_CHAR								10111	///< Ä³¸¯ÅÍ¸¦ »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù.
-
-// ¾ÆÀÌÅÛ °ü·Ã
-#define MERR_TOO_EXPENSIVE_BOUNTY							20001	///< ¹Ù¿îÆ¼°¡ ºÎÁ·ÇÏ´Ù
-#define MERR_CANNOT_BUY_ITEM								20002	///< ¾ÆÀÌÅÛÀ» »ì¼ö ¾ø´Ù.
-#define MERR_CANNOT_EQUIP_ITEM								20003	///< ¾ÆÀÌÅÛÀ» ÀåºñÇÒ ¼ö ¾ø´Ù.
-#define MERR_CANNOT_TAKEOFF_ITEM							20004	///< ÀåÂø ¾ÆÀÌÅÛ ÇØÁ¦ÇÒ ¼ö ¾ø´Ù
-#define MERR_CANNOT_SELL_ITEM								20005	///< ¾ÆÀÌÅÛÀ» ÆÈ ¼ö ¾ø´Ù.
-#define MERR_CANNOT_SELL_EQUIPED_ITEM						20006	///< ÀåºñÇÑ ¾ÆÀÌÅÛÀº ÆÈ ¼ö ¾ø´Ù.
-#define MERR_CANNOT_SELL_NONE_ITEM							20007	///< ÇØ´ç ¾ÆÀÌÅÛÀÌ ¾ø´Ù.
-#define MERR_TOO_MANY_ITEM									20008	///< °®°í ÀÖ´Â ¾ÆÀÌÅÛÀÌ ³Ê¹« ¸¹´Ù
-#define MERR_NO_SELITEM										20009	///< ¼±ÅÃÇÑ ¾ÆÀÌÅÛÀÌ ¾ø´Ù
-#define MERR_TOO_HEAVY										20010	///< Àåºñ¾ÆÀÌÅÛ ¹«°Ô°¡ ³Ê¹« ¹«°Ì´Ù
-#define MERR_LOW_LEVEL										20011	///< ·¹º§ÀÌ ³Ê¹« ³·´Ù
-#define MERR_CANNOT_EQUIP_EQUAL_ITEM						20012	///< ¾ç½½·Ô¿¡ °°Àº ¾ÆÀÌÅÛ Âø¿ëºÒ°¡
-#define MERR_CANNOT_TAKEOFF_ITEM_BY_WEIGHT					20013	///< ¹«°Ô¶§¹®¿¡ ¹þÀ» ¼ö ¾ø´Ù
-#define MERR_CANNOT_SELL_CASHITEM							20014	///< Ä³½¬¾ÆÀÌÅÛÀº ÆÈ ¼ö ¾ø½À´Ï´Ù.
-#define MERR_BRING_ACCOUNTITEM_BECAUSEOF_SEX				20015	///< ¼ºº°ÀÌ ¸ÂÁö¾Ê¾Æ ¾ÆÀÌÅÛÀ» °¡Á®¿Ã ¼ö ¾ø´Ù.
-#define MERR_BRING_CONFIRM_ACCOUNTITEM_BECAUSEOF_LEVEL		20016	///< ·¹º§ÀÌ ¸ÂÁö¾Ê¾Æ ¾ÆÀÌÅÛÀ» °¡Á®¿Ã ¼ö ¾ø´Ù. ±×·¡µµ °¡Á®¿À°Ú´Â°¡?
-#define MERR_BRING_BACK_ACCOUNTITEM							20017	///< Áß¾ÓÀºÇà¿¡ ³ÖÀ» ¼ö ¾ø½À´Ï´Ù.
-#define MERR_BRING_BACK_ACCOUNTITEM_FOR_CASHITEM			20018	///< Ä³½¬¾ÆÀÌÅÛ¸¸ Áß¾ÓÀºÇà¿¡ ³ÖÀ» ¼ö ÀÖ½À´Ï´Ù.
-#define MERR_TAKEOFF_ITEM_BY_LEVELDOWN						20019	///< ·¹º§´Ù¿îÀ¸·Î ¾ÆÀÌÅÛÀÌ ¹þ°ÜÁ³½À´Ï´Ù.
-
-#define MERR_CANNOT_JOIN_STAGE								30000	///< ½ºÅ×ÀÌÁö¿¡ Á¶ÀÎÇÒ ¼ö ¾ø´Ù.
-#define MERR_CANNOT_JOIN_STAGE_BY_MAXPLAYERS				30001	///< ½ºÅ×ÀÌÁö ÀÎ¿øÀÌ ²Ë Ã¡´Ù.
-#define MERR_CANNOT_JOIN_STAGE_BY_PASSWORD					30002	///< ºñ¹Ð¹øÈ£°¡ Æ²·È½À´Ï´Ù.
-#define MERR_CANNOT_JOIN_STAGE_BY_LEVEL						30003	///< ·¹º§ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.
-#define MERR_CANNOT_JOIN_STAGE_BY_FORCEDENTRY				30004	///< ³­ÀÔÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MERR_CANNOT_JOIN_STAGE_BY_BAN						30005	///< ÀÔÀåÀÌ ±ÝÁöµÇ¾ú½À´Ï´Ù.
-#define MERR_STAGE_NOT_EXIST								30006	///< Á¸ÀçÇÏÁö ¾Ê´Â ½ºÅ×ÀÌÁöÀÔ´Ï´Ù
-#define MERR_STAGE_ALREADY_EXIST							30007	///< ½ºÅ×ÀÌÁö°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù
-#define MERR_CANNOT_CREATE_STAGE							30008	///< ¹æÀ» ¸¸µé ¼ö ¾ø½À´Ï´Ù.
-#define MERR_CANNOT_NO_STAGE								30009	///< ¹æÀÌ ¾ø½À´Ï´Ù.
-
-#define MERR_CANNOT_JOIN_CHANNEL							30020	///< Ã¤³Î¿¡ Á¶ÀÎÇÒ ¼ö ¾ø´Ù
-#define MERR_CANNOT_JOIN_CHANNEL_BY_MAXPLAYERS				30021	///< Ã¤³Î ÀÎ¿øÀÌ ²Ë Ã¡´Ù
-#define MERR_CANNOT_JOIN_CHANNEL_BY_LEVEL					30022	///< ·¹º§ÀÌ ¸ÂÁö ¾Ê´Ù
-#define MERR_CANNOT_JOIN_CHANNEL_BY_NEWBIE					30023	///< °¡Áö°í ÀÖ´Â Ä³¸¯ÅÍÀÇ ·¹º§ÀÌ ³ô¾Æ ´õÀÌ»ó ÀÔ¹®Ã¤³Î¿¡´Â µé¾î°¥ ¼ö ¾ø½À´Ï´Ù.
-
-#define MERR_NO_TARGET										30026	///< ´ë»óÀÌ ¾ø½À´Ï´Ù.
-
-// Å¬·£°ü·Ã
-#define MERR_CLAN_CANNOT_CREATE								30030	///< Å¬·£À» ¸¸µé ¼ö ¾ø½À´Ï´Ù.
-#define MERR_CLAN_CANNOT_CLOSE								30031	///< Å¬·£À» Æó¼âÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MERR_EXIST_CLAN										30032	///< Å¬·£ÀÌ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù.
-#define MERR_CLAN_NO_SPONSOR								30033	///< Å¬·£»ý¼º¸â¹ö°¡ ºÎÁ·ÇÕ´Ï´Ù.
-#define MERR_CLAN_SPONSOR_JOINED_OTHERCLAN					30034	///< Å¬·£»ý¼º¸â¹ö°¡ ÀÌ¹Ì ´Ù¸¥ Å¬·£¿¡ °¡ÀÔµÇ¾î ÀÖ½À´Ï´Ù.
-#define MERR_CLAN_SPONSOR_NOT_LOBBY							30035	///< Å¬·£»ý¼º¸â¹ö°¡ ·Îºñ¿¡ ¾ø½À´Ï´Ù.
-#define MERR_CLAN_WRONG_CLANNAME							30036	///< Å¬·£ÀÌ¸§ÀÌ Àß¸øµÇ¾ú½À´Ï´Ù.
-#define MERR_CLAN_NOT_MASTER								30037	///< Å¬·£¸¶½ºÅÍ°¡ ¾Æ´Õ´Ï´Ù.
-#define MERR_CLAN_NOT_MASTER_OR_ADMIN						30038	///< Å¬·£¸¶½ºÅÍ³ª ¿î¿µÀÚ°¡ ¾Æ´Õ´Ï´Ù.
-#define MERR_CLAN_JOINER_JOINED_ALREADY						30039	///< °¡ÀÔÀÚ°¡ ÀÌ¹Ì ´Ù¸¥ Å¬·£¿¡ °¡ÀÔµÇ¾î ÀÖ½À´Ï´Ù.
-#define MERR_CLAN_DONT_JOINED								30040	///< °¡ÀÔÃ³¸®µÇÁö ¾Ê¾Ò½À´Ï´Ù.
-#define MERR_CLAN_JOINED_ALREADY							30041	///< ÀÌ¹Ì Å¬·£¿¡ °¡ÀÔµÇ¾î ÀÖ½À´Ï´Ù.
-#define MERR_CLAN_JOINER_NOT_LOBBY							30042	///< °¡ÀÔÀÚ°¡ ·Îºñ¿¡ ¾ø½À´Ï´Ù.
-#define MERR_CLAN_NOT_JOINED								30043	///< Å¬·£¿¡ °¡ÀÔµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.
-#define MERR_CLAN_CANNOT_LEAVE								30044	///< Å¬·£¿¡¼­ Å»ÅðÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MERR_CLAN_MEMBER_FULL								30045	///< ´õÀÌ»ó Å¬·£¿øÀ» Ãß°¡ÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MERR_CLAN_OFFLINE_TARGET							30046	///< ´ë»óÀÌ Á¢¼ÓÇØÀÖÁö ¾Ê½À´Ï´Ù.
-#define MERR_CLAN_OTHER_CLAN								30047	///< °°Àº Å¬·£ÀÌ ¾Æ´Õ´Ï´Ù.
-#define MERR_CLAN_CANNOT_CHANGE_GRADE						30048	///< ±ÇÇÑÀ» º¯°æÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MERR_CLAN_CANNOT_EXPEL_FOR_NO_MEMBER				30049	///< ÇØ´ç Å¬·£¿øÀÌ ¾ø½À´Ï´Ù.
-#define MERR_CLAN_CREATING_LESS_BOUNTY						30050	///< Å¬·£À» »ý¼ºÇÏ´Âµ¥ ÇÊ¿äÇÑ ¹Ù¿îÆ¼°¡ ºÎÁ·ÇÕ´Ï´Ù.
-#define MERR_CLAN_CREATING_LESS_LEVEL						30051	///< 10·¹º§ ÀÌ»ó¸¸ Å¬·£À» »ý¼ºÇÒ ¼ö ÀÖ½À´Ï´Ù.
-#define MERR_CLAN_ANNOUNCE_DELETE							30052	///< Å¬·£ Æó¼â½ÅÃ» Á¢¼ö¸¦ ¾Ë·ÁÁÜ.
-
-// µ¿ÀÇ°ü·Ã
-
-// ·¡´õ°ü·Ã
-#define MERR_LADDER_CANNOT_CHALLENGE						30070	///< °ÔÀÓÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define MERR_LADDER_WRONG_TEAM_MEMBER						30071	///< ÆÀ ¸â¹ö°¡ ´Ù¸¨´Ï´Ù.
-#define MERR_LADDER_NO_TEAM_MEMBER							30072	///< ÆÀ ¸â¹ö°¡ ¾ø½À´Ï´Ù.
-#define MERR_LADDER_EXIST_CANNOT_CHALLENGE_MEMBER			30073	///< ÆÀ°ÔÀÓ¿¡ ½ÅÃ»ÇÒ ¼ö ¾ø´Â ¸â¹ö°¡ ÀÖ½À´Ï´Ù.
-
-// Å¬·£Àü°ü·Ã
-#define MERR_CB_WRONG_TEAM_MEMBER							30080	///< °°Àº Å¬·£¿øÀÌ ¾Æ´Õ´Ï´Ù.
-#define MERR_CB_NO_TEAM_MEMBER								30081	///< ¸â¹ö°¡ ¾ø½À´Ï´Ù.
-#define MERR_CB_EXIST_CANNOT_CHALLENGE_MEMBER				30082	///< Å¬·£Àü¿¡ ½ÅÃ»ÇÒ ¼ö ¾ø´Â ¸â¹ö°¡ ÀÖ½À´Ï´Ù.
+#define MERR_MAP_CANNOT_OPEN_FILE							2000	///< ë§µì„ ì—´ì§€ ëª»í•˜ëŠ” ê²½ìš°
 
 
-// Å¬¶óÀÌ¾ðÆ®
-#define MERR_NOT_SUPPORT									30103	///< Áö¿øÇÏÁö ¾Ê½À´Ï´Ù.
-#define MERR_CANNOT_ABUSE									30104	///< ¿Ã¹Ù¸¥ Ç¥ÇöÀÌ ¾Æ´Õ´Ï´Ù.
-#define MERR_CANNOT_INPUT_SAME_CHAT_MSG						30105	///< °°Àº ´ëÈ­ ³»¿ë 3¹øÀÌ»ó ¿¬¼ÓÇØ¼­ ¾µ ¼ö ¾ø´Ù
-#define MERR_CHAT_PENALTY_FOR_ONE_MINUTE					30106	///< 1ºÐ°£ Ã¤ÆÃÀ» ±ÝÁöÇÕ´Ï´Ù.
+// ì ‘ì†, ë¡œê·¸ì¸ ê´€ë ¨
+#define MERR_CLIENT_WRONG_PASSWORD							10000	///< íŒ¨ìŠ¤ì›Œë“œê°€ ìž˜ëª»ë¨
+#define MERR_CLIENT_CONNECTED_ALREADY						10001	///< ì´ë¯¸ ì ‘ì†ì¤‘ì´ë‹¤.
+#define MERR_COMMAND_INVALID_VERSION						10002	///< ì„œë²„ì™€ í´ë¼ì´ì–¸íŠ¸ê°€ ë²„ì „ì´ ë‹¤ë¥´ë‹¤.
+#define MERR_CLIENT_FULL_PLAYERS							10003	///< ì„œë²„ ì¸ì›ì´ ê½‰ì°¼ë‹¤
+#define MERR_CLIENT_MMUG_BLOCKED							10004	///< ë¸”ëŸ­ë‹¹í–ˆë‹¤.
+#define MERR_FAILED_AUTHENTICATION							10005	///< ì‚¬ìš©ìž ì¸ì¦ì— ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.
 
-#define MERR_CLIENT_CONNECT_FAILED							90000	///< Server¿¡ ¿¬°á½ÇÆÐÇÒ¶§
-#define MERR_CLIENT_DISCONNECTED							90002	///< Server¿Í ¿¬°áÀÌ ²÷¾îÁ³À»¶§
+// ìºë¦­í„° ê´€ë¦¬ ê´€ë ¨
+#define MERR_CLIENT_EXIST_CHARNAME							10100	///< ì„œë²„ì— ì´ë¯¸ ìºë¦­í„° ì•„ì´ë””ê°€ ì¡´ìž¬
+#define MERR_WRONG_WORD_NAME								10101	///< ìºë¦­í„°ì´ë¦„ì— ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ë¬¸ìžê°€ ìžˆë‹¤.
+#define MERR_TOO_SHORT_NAME									10102	///< ìºë¦­í„°ì´ë¦„ ê¸¸ì´ê°€ ë„ˆë¬´ ì§§ë‹¤.
+#define MERR_TOO_LONG_NAME									10103	///< ìºë¦­í„° ì´ë¦„ì´ ë„ˆë¬´ ê¸¸ë‹¤
+#define MERR_PLZ_INPUT_CHARNAME								10104	///< ìºë¦­í„° ì´ë¦„ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”
+#define MERR_CHAR_NOT_EXIST									10110	///< ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ìºë¦­í„°ì´ë¦„
+#define MERR_CANNOT_DELETE_CHAR								10111	///< ìºë¦­í„°ë¥¼ ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+
+// ì•„ì´í…œ ê´€ë ¨
+#define MERR_TOO_EXPENSIVE_BOUNTY							20001	///< ë°”ìš´í‹°ê°€ ë¶€ì¡±í•˜ë‹¤
+#define MERR_CANNOT_BUY_ITEM								20002	///< ì•„ì´í…œì„ ì‚´ìˆ˜ ì—†ë‹¤.
+#define MERR_CANNOT_EQUIP_ITEM								20003	///< ì•„ì´í…œì„ ìž¥ë¹„í•  ìˆ˜ ì—†ë‹¤.
+#define MERR_CANNOT_TAKEOFF_ITEM							20004	///< ìž¥ì°© ì•„ì´í…œ í•´ì œí•  ìˆ˜ ì—†ë‹¤
+#define MERR_CANNOT_SELL_ITEM								20005	///< ì•„ì´í…œì„ íŒ” ìˆ˜ ì—†ë‹¤.
+#define MERR_CANNOT_SELL_EQUIPED_ITEM						20006	///< ìž¥ë¹„í•œ ì•„ì´í…œì€ íŒ” ìˆ˜ ì—†ë‹¤.
+#define MERR_CANNOT_SELL_NONE_ITEM							20007	///< í•´ë‹¹ ì•„ì´í…œì´ ì—†ë‹¤.
+#define MERR_TOO_MANY_ITEM									20008	///< ê°–ê³  ìžˆëŠ” ì•„ì´í…œì´ ë„ˆë¬´ ë§Žë‹¤
+#define MERR_NO_SELITEM										20009	///< ì„ íƒí•œ ì•„ì´í…œì´ ì—†ë‹¤
+#define MERR_TOO_HEAVY										20010	///< ìž¥ë¹„ì•„ì´í…œ ë¬´ê²Œê°€ ë„ˆë¬´ ë¬´ê²ë‹¤
+#define MERR_LOW_LEVEL										20011	///< ë ˆë²¨ì´ ë„ˆë¬´ ë‚®ë‹¤
+#define MERR_CANNOT_EQUIP_EQUAL_ITEM						20012	///< ì–‘ìŠ¬ë¡¯ì— ê°™ì€ ì•„ì´í…œ ì°©ìš©ë¶ˆê°€
+#define MERR_CANNOT_TAKEOFF_ITEM_BY_WEIGHT					20013	///< ë¬´ê²Œë•Œë¬¸ì— ë²—ì„ ìˆ˜ ì—†ë‹¤
+#define MERR_CANNOT_SELL_CASHITEM							20014	///< ìºì‰¬ì•„ì´í…œì€ íŒ” ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_BRING_ACCOUNTITEM_BECAUSEOF_SEX				20015	///< ì„±ë³„ì´ ë§žì§€ì•Šì•„ ì•„ì´í…œì„ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ë‹¤.
+#define MERR_BRING_CONFIRM_ACCOUNTITEM_BECAUSEOF_LEVEL		20016	///< ë ˆë²¨ì´ ë§žì§€ì•Šì•„ ì•„ì´í…œì„ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ë‹¤. ê·¸ëž˜ë„ ê°€ì ¸ì˜¤ê² ëŠ”ê°€?
+#define MERR_BRING_BACK_ACCOUNTITEM							20017	///< ì¤‘ì•™ì€í–‰ì— ë„£ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_BRING_BACK_ACCOUNTITEM_FOR_CASHITEM			20018	///< ìºì‰¬ì•„ì´í…œë§Œ ì¤‘ì•™ì€í–‰ì— ë„£ì„ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+#define MERR_TAKEOFF_ITEM_BY_LEVELDOWN						20019	///< ë ˆë²¨ë‹¤ìš´ìœ¼ë¡œ ì•„ì´í…œì´ ë²—ê²¨ì¡ŒìŠµë‹ˆë‹¤.
+
+#define MERR_CANNOT_JOIN_STAGE								30000	///< ìŠ¤í…Œì´ì§€ì— ì¡°ì¸í•  ìˆ˜ ì—†ë‹¤.
+#define MERR_CANNOT_JOIN_STAGE_BY_MAXPLAYERS				30001	///< ìŠ¤í…Œì´ì§€ ì¸ì›ì´ ê½‰ ì°¼ë‹¤.
+#define MERR_CANNOT_JOIN_STAGE_BY_PASSWORD					30002	///< ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.
+#define MERR_CANNOT_JOIN_STAGE_BY_LEVEL						30003	///< ë ˆë²¨ì´ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.
+#define MERR_CANNOT_JOIN_STAGE_BY_FORCEDENTRY				30004	///< ë‚œìž…í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_CANNOT_JOIN_STAGE_BY_BAN						30005	///< ìž…ìž¥ì´ ê¸ˆì§€ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MERR_STAGE_NOT_EXIST								30006	///< ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ìŠ¤í…Œì´ì§€ìž…ë‹ˆë‹¤
+#define MERR_STAGE_ALREADY_EXIST							30007	///< ìŠ¤í…Œì´ì§€ê°€ ì´ë¯¸ ì¡´ìž¬í•©ë‹ˆë‹¤
+#define MERR_CANNOT_CREATE_STAGE							30008	///< ë°©ì„ ë§Œë“¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_CANNOT_NO_STAGE								30009	///< ë°©ì´ ì—†ìŠµë‹ˆë‹¤.
+
+#define MERR_CANNOT_JOIN_CHANNEL							30020	///< ì±„ë„ì— ì¡°ì¸í•  ìˆ˜ ì—†ë‹¤
+#define MERR_CANNOT_JOIN_CHANNEL_BY_MAXPLAYERS				30021	///< ì±„ë„ ì¸ì›ì´ ê½‰ ì°¼ë‹¤
+#define MERR_CANNOT_JOIN_CHANNEL_BY_LEVEL					30022	///< ë ˆë²¨ì´ ë§žì§€ ì•Šë‹¤
+#define MERR_CANNOT_JOIN_CHANNEL_BY_NEWBIE					30023	///< ê°€ì§€ê³  ìžˆëŠ” ìºë¦­í„°ì˜ ë ˆë²¨ì´ ë†’ì•„ ë”ì´ìƒ ìž…ë¬¸ì±„ë„ì—ëŠ” ë“¤ì–´ê°ˆ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+
+#define MERR_NO_TARGET										30026	///< ëŒ€ìƒì´ ì—†ìŠµë‹ˆë‹¤.
+
+// í´ëžœê´€ë ¨
+#define MERR_CLAN_CANNOT_CREATE								30030	///< í´ëžœì„ ë§Œë“¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_CLAN_CANNOT_CLOSE								30031	///< í´ëžœì„ íì‡„í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_EXIST_CLAN										30032	///< í´ëžœì´ ì´ë¯¸ ì¡´ìž¬í•©ë‹ˆë‹¤.
+#define MERR_CLAN_NO_SPONSOR								30033	///< í´ëžœìƒì„±ë©¤ë²„ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.
+#define MERR_CLAN_SPONSOR_JOINED_OTHERCLAN					30034	///< í´ëžœìƒì„±ë©¤ë²„ê°€ ì´ë¯¸ ë‹¤ë¥¸ í´ëžœì— ê°€ìž…ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+#define MERR_CLAN_SPONSOR_NOT_LOBBY							30035	///< í´ëžœìƒì„±ë©¤ë²„ê°€ ë¡œë¹„ì— ì—†ìŠµë‹ˆë‹¤.
+#define MERR_CLAN_WRONG_CLANNAME							30036	///< í´ëžœì´ë¦„ì´ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MERR_CLAN_NOT_MASTER								30037	///< í´ëžœë§ˆìŠ¤í„°ê°€ ì•„ë‹™ë‹ˆë‹¤.
+#define MERR_CLAN_NOT_MASTER_OR_ADMIN						30038	///< í´ëžœë§ˆìŠ¤í„°ë‚˜ ìš´ì˜ìžê°€ ì•„ë‹™ë‹ˆë‹¤.
+#define MERR_CLAN_JOINER_JOINED_ALREADY						30039	///< ê°€ìž…ìžê°€ ì´ë¯¸ ë‹¤ë¥¸ í´ëžœì— ê°€ìž…ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+#define MERR_CLAN_DONT_JOINED								30040	///< ê°€ìž…ì²˜ë¦¬ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
+#define MERR_CLAN_JOINED_ALREADY							30041	///< ì´ë¯¸ í´ëžœì— ê°€ìž…ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+#define MERR_CLAN_JOINER_NOT_LOBBY							30042	///< ê°€ìž…ìžê°€ ë¡œë¹„ì— ì—†ìŠµë‹ˆë‹¤.
+#define MERR_CLAN_NOT_JOINED								30043	///< í´ëžœì— ê°€ìž…ë˜ì–´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+#define MERR_CLAN_CANNOT_LEAVE								30044	///< í´ëžœì—ì„œ íƒˆí‡´í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_CLAN_MEMBER_FULL								30045	///< ë”ì´ìƒ í´ëžœì›ì„ ì¶”ê°€í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_CLAN_OFFLINE_TARGET							30046	///< ëŒ€ìƒì´ ì ‘ì†í•´ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+#define MERR_CLAN_OTHER_CLAN								30047	///< ê°™ì€ í´ëžœì´ ì•„ë‹™ë‹ˆë‹¤.
+#define MERR_CLAN_CANNOT_CHANGE_GRADE						30048	///< ê¶Œí•œì„ ë³€ê²½í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_CLAN_CANNOT_EXPEL_FOR_NO_MEMBER				30049	///< í•´ë‹¹ í´ëžœì›ì´ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_CLAN_CREATING_LESS_BOUNTY						30050	///< í´ëžœì„ ìƒì„±í•˜ëŠ”ë° í•„ìš”í•œ ë°”ìš´í‹°ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.
+#define MERR_CLAN_CREATING_LESS_LEVEL						30051	///< 10ë ˆë²¨ ì´ìƒë§Œ í´ëžœì„ ìƒì„±í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+#define MERR_CLAN_ANNOUNCE_DELETE							30052	///< í´ëžœ íì‡„ì‹ ì²­ ì ‘ìˆ˜ë¥¼ ì•Œë ¤ì¤Œ.
+
+// ë™ì˜ê´€ë ¨
+
+// ëž˜ë”ê´€ë ¨
+#define MERR_LADDER_CANNOT_CHALLENGE						30070	///< ê²Œìž„í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_LADDER_WRONG_TEAM_MEMBER						30071	///< íŒ€ ë©¤ë²„ê°€ ë‹¤ë¦…ë‹ˆë‹¤.
+#define MERR_LADDER_NO_TEAM_MEMBER							30072	///< íŒ€ ë©¤ë²„ê°€ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_LADDER_EXIST_CANNOT_CHALLENGE_MEMBER			30073	///< íŒ€ê²Œìž„ì— ì‹ ì²­í•  ìˆ˜ ì—†ëŠ” ë©¤ë²„ê°€ ìžˆìŠµë‹ˆë‹¤.
+
+// í´ëžœì „ê´€ë ¨
+#define MERR_CB_WRONG_TEAM_MEMBER							30080	///< ê°™ì€ í´ëžœì›ì´ ì•„ë‹™ë‹ˆë‹¤.
+#define MERR_CB_NO_TEAM_MEMBER								30081	///< ë©¤ë²„ê°€ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_CB_EXIST_CANNOT_CHALLENGE_MEMBER				30082	///< í´ëžœì „ì— ì‹ ì²­í•  ìˆ˜ ì—†ëŠ” ë©¤ë²„ê°€ ìžˆìŠµë‹ˆë‹¤.
+
+
+// í´ë¼ì´ì–¸íŠ¸
+#define MERR_NOT_SUPPORT									30103	///< ì§€ì›í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+#define MERR_CANNOT_ABUSE									30104	///< ì˜¬ë°”ë¥¸ í‘œí˜„ì´ ì•„ë‹™ë‹ˆë‹¤.
+#define MERR_CANNOT_INPUT_SAME_CHAT_MSG						30105	///< ê°™ì€ ëŒ€í™” ë‚´ìš© 3ë²ˆì´ìƒ ì—°ì†í•´ì„œ ì“¸ ìˆ˜ ì—†ë‹¤
+#define MERR_CHAT_PENALTY_FOR_ONE_MINUTE					30106	///< 1ë¶„ê°„ ì±„íŒ…ì„ ê¸ˆì§€í•©ë‹ˆë‹¤.
+
+#define MERR_CLIENT_CONNECT_FAILED							90000	///< Serverì— ì—°ê²°ì‹¤íŒ¨í• ë•Œ
+#define MERR_CLIENT_DISCONNECTED							90002	///< Serverì™€ ì—°ê²°ì´ ëŠì–´ì¡Œì„ë•Œ
 
 
 
-// ¸Þ¼¼Áö °á°ú°ª
-#define MRESULT_CLAN_JOINED									100000	///< Å¬·£¿¡ °¡ÀÔµÇ¾ú½À´Ï´Ù.
-#define MRESULT_CLAN_CREATED								100001	///< Å¬·£ÀÌ »ý¼ºµÇ¾ú½À´Ï´Ù.
+// ë©”ì„¸ì§€ ê²°ê³¼ê°’
+#define MRESULT_CLAN_JOINED									100000	///< í´ëžœì— ê°€ìž…ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define MRESULT_CLAN_CREATED								100001	///< í´ëžœì´ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.
 
-// µû¶ó°¡±â °ü·Ã
-#define MERR_CANNOT_FOLLOW									110000	///< µé¾î°¥¼ö ¾ø½À´Ï´Ù.
-#define MERR_CANNOT_FOLLOW_BY_PASSWORD						110001	///< ºñ¹Ð¹øÈ£°¡ ÇÊ¿äÇÑ ¹æÀÌ¶ó µû¶ó µé¾î°¥¼ö ¾ø´Ù.
-// #define MERR_CANNOT_FOLLOW_BY_CHANNER						110002	///< ´Ù¸¥ Ã¤³Î¿¡ ÀÖ¾î µû¶ó µé¾î°¥¼ö ¾ø´Ù.
+// ë”°ë¼ê°€ê¸° ê´€ë ¨
+#define MERR_CANNOT_FOLLOW									110000	///< ë“¤ì–´ê°ˆìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define MERR_CANNOT_FOLLOW_BY_PASSWORD						110001	///< ë¹„ë°€ë²ˆí˜¸ê°€ í•„ìš”í•œ ë°©ì´ë¼ ë”°ë¼ ë“¤ì–´ê°ˆìˆ˜ ì—†ë‹¤.
+// #define MERR_CANNOT_FOLLOW_BY_CHANNER						110002	///< ë‹¤ë¥¸ ì±„ë„ì— ìžˆì–´ ë”°ë¼ ë“¤ì–´ê°ˆìˆ˜ ì—†ë‹¤.
 
-// ÅõÇ¥°ü·Ã.
-#define MERR_CANNOT_CALL_VOTE								120000 // ÅõÇ¥¸¦ ½ÅÃ»ÇÒ¼ö ¾ø½À´Ï´Ù.
+// íˆ¬í‘œê´€ë ¨.
+#define MERR_CANNOT_CALL_VOTE								120000 // íˆ¬í‘œë¥¼ ì‹ ì²­í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
 
 // Disconnect message
-#define MERR_FIND_HACKER									130001	/// ÇØÅ· °ËÃâ.
-#define MERR_BLOCK_HACKER									130002	/// ÇØÅ· Àü°úÀÚ·Î ºí·°.
-#define MERR_BLOCK_BADUSER									130003	/// ºÒ·® À¯Àú·Î ºí·°.
+#define MERR_FIND_HACKER									130001	/// í•´í‚¹ ê²€ì¶œ.
+#define MERR_BLOCK_HACKER									130002	/// í•´í‚¹ ì „ê³¼ìžë¡œ ë¸”ëŸ­.
+#define MERR_BLOCK_BADUSER									130003	/// ë¶ˆëŸ‰ ìœ ì €ë¡œ ë¸”ëŸ­.
 
 
 
 
-// ¼­¹ö °ü·Ã ¸Þ½ÃÁö
-#define MERR_CANNOT_VOTE									200000 // ÅõÇ¥ ºÒ°¡´É.
-#define MERR_CANNOT_VOTE_LADERGAME							200001 // ·¡´õ°ÔÀÓÀº ÅõÇ¥°¡ Çã¿ëµÇÁö ¾Ê½À´Ï´Ù.
-#define MERR_VOTE_ALREADY_START								200002 // ÀÌ¹Ì ÅõÇ¥°¡ ÁøÇàÁßÀÔ´Ï´Ù.
-#define MERR_VOTE_FAILED									200003 // ÅõÇ¥¿¡ ½ÇÆÐÇß½À´Ï´Ù.
-#define MERR_TIME_10REMAINING								200004 // ½Ã°£Á¦ÇÑ 10ÃÊ ³²¾Ò½À´Ï´Ù.
-#define MERR_TIME_30REMAINING								200005 // ½Ã°£Á¦ÇÑ 30ÃÊ ³²¾Ò½À´Ï´Ù.
-#define MERR_TIME_60REMAINING								200006 // ½Ã°£Á¦ÇÑ 60ÃÊ ³²¾Ò½À´Ï´Ù.
-#define MERR_PERSONNEL_TOO_MUCH								200007 // ÀÎ¿øÀÌ ³Ê¹« ¸¹½À´Ï´Ù.
-#define MERR_HE_IS_NOT_READY								200008 //  '%s'´ÔÀº ÁØºñ°¡ ¾ÈµÇ¾ú½À´Ï´Ù.
+// ì„œë²„ ê´€ë ¨ ë©”ì‹œì§€
+#define MERR_CANNOT_VOTE									200000 // íˆ¬í‘œ ë¶ˆê°€ëŠ¥.
+#define MERR_CANNOT_VOTE_LADERGAME							200001 // ëž˜ë”ê²Œìž„ì€ íˆ¬í‘œê°€ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+#define MERR_VOTE_ALREADY_START								200002 // ì´ë¯¸ íˆ¬í‘œê°€ ì§„í–‰ì¤‘ìž…ë‹ˆë‹¤.
+#define MERR_VOTE_FAILED									200003 // íˆ¬í‘œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
+#define MERR_TIME_10REMAINING								200004 // ì‹œê°„ì œí•œ 10ì´ˆ ë‚¨ì•˜ìŠµë‹ˆë‹¤.
+#define MERR_TIME_30REMAINING								200005 // ì‹œê°„ì œí•œ 30ì´ˆ ë‚¨ì•˜ìŠµë‹ˆë‹¤.
+#define MERR_TIME_60REMAINING								200006 // ì‹œê°„ì œí•œ 60ì´ˆ ë‚¨ì•˜ìŠµë‹ˆë‹¤.
+#define MERR_PERSONNEL_TOO_MUCH								200007 // ì¸ì›ì´ ë„ˆë¬´ ë§ŽìŠµë‹ˆë‹¤.
+#define MERR_HE_IS_NOT_READY								200008 //  '%s'ë‹˜ì€ ì¤€ë¹„ê°€ ì•ˆë˜ì—ˆìŠµë‹ˆë‹¤.
 
 
 #endif

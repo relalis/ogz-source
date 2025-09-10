@@ -346,7 +346,7 @@ void MMatchProbabiltyEventPerTime::OnCheckEventObj( MMatchObject* pObj, const u3
 			m_vEventObj.push_back( pObj->GetUID() );		
 		}
         
-		// ¿©±â¼­ ¾÷µ¥ÀÌÆ®ÇÏ¸é °¡Àå Ã³À½ À¯Àú¸¸ Ã³¸®µÇ°í ±× ´ÙÀ½ºÎÅÏ ºñÁ¤»ó Ã³¸®µÊ.
+		// ì—¬ê¸°ì„œ ì—…ë°ì´íŠ¸í•˜ë©´ ê°€ìž¥ ì²˜ìŒ ìœ ì €ë§Œ ì²˜ë¦¬ë˜ê³  ê·¸ ë‹¤ìŒë¶€í„´ ë¹„ì •ìƒ ì²˜ë¦¬ë¨.
 		// SetLastCheckTime( dwCurTime ); 
 	}
 }

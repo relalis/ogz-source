@@ -140,8 +140,8 @@ void ZQuest::OnGameCreate()
 	if (!ZGetGameTypeManager()->IsQuestDerived(ZGetGameClient()->GetMatchStageSetting()->GetGameType())) return;
 
 
-	// ¿©±â¼­ npc.xml µî Äù½ºÆ®¿¡ ÇÊ¿äÇÑ ÆÄÀÏÀ» ÀÐ´Â´Ù. ¸¸¾à ÀÌ¹Ì ÀÌÀü¿¡ ÀÐ¾ú¾ú´Ù¸é ÀÐÁö ¾Ê´Â´Ù.
-	// ¶§¹®¿¡ ZQuest::OnDestroyOnce()´Â ¸í½ÃÀûÀ¸·Î È£ÃâÇÏÁö ¾ÊÀ½.
+	// ì—¬ê¸°ì„œ npc.xml ë“± í€˜ìŠ¤íŠ¸ì— í•„ìš”í•œ íŒŒì¼ì„ ì½ëŠ”ë‹¤. ë§Œì•½ ì´ë¯¸ ì´ì „ì— ì½ì—ˆì—ˆë‹¤ë©´ ì½ì§€ ì•ŠëŠ”ë‹¤.
+	// ë•Œë¬¸ì— ZQuest::OnDestroyOnce()ëŠ” ëª…ì‹œì ìœ¼ë¡œ í˜¸ì¶œí•˜ì§€ ì•ŠìŒ.
 	OnCreateOnce();
 	Create();
 
@@ -297,7 +297,7 @@ bool ZQuest::OnNPCSpawn(MCommand* pCommand)
 	
 	
 
-	// ¸¸¾à ¸®¼Ò½º ·ÎµùÀ» ¾ÈÇßÀ¸¸é ·Îµå - ÀÌ·²ÀÏÀº Å×½ºÆ®»©°ï ¾ø¾î¾ßÇÑ´Ù.
+	// ë§Œì•½ ë¦¬ì†ŒìŠ¤ ë¡œë”©ì„ ì•ˆí–ˆìœ¼ë©´ ë¡œë“œ - ì´ëŸ´ì¼ì€ í…ŒìŠ¤íŠ¸ë¹¼ê³¤ ì—†ì–´ì•¼í•œë‹¤.
 //	if (ZIsLaunchDevelop())
 	{
 		RMesh* pNPCMesh = ZGetNpcMeshMgr()->Get(pNPCInfo->szMeshName);
@@ -334,14 +334,14 @@ bool ZQuest::OnNPCSpawn(MCommand* pCommand)
 			color.b = pNPCInfo->vColor.z;
 			color.a = 1.f;
 
-			pNewActor->m_pVMesh->SetNPCBlendColor(color);//»öÀ» ÁöÁ¤ÇÑ °æ¿ì..
+			pNewActor->m_pVMesh->SetNPCBlendColor(color);//ìƒ‰ì„ ì§€ì •í•œ ê²½ìš°..
 		}
 
 		ZGetObjectManager()->Add(pNewActor);
 		ZGetEffectManager()->AddReBirthEffect(NPCPos);
 
 
-		// ¸¸¾à º¸½º±Þ NPC°¡ ½ºÆùÇÏ¸é ÀÚµ¿ÀûÀ¸·Î boss µî·Ï
+		// ë§Œì•½ ë³´ìŠ¤ê¸‰ NPCê°€ ìŠ¤í°í•˜ë©´ ìžë™ì ìœ¼ë¡œ boss ë“±ë¡
 		if ((pNPCInfo->nGrade == NPC_GRADE_BOSS) || (pNPCInfo->nGrade == NPC_GRADE_LEGENDARY))
 		{
 			m_GameInfo.GetBosses().push_back(uidNPC);
@@ -395,7 +395,7 @@ bool ZQuest::OnQuestGroupLoad(MCommand* pCommand)
 
 	MNPCGroup* pGroup = MGetNPCGroupMgr()->GetGroup( nGroupID );
 
-	ZGetNpcMeshMgr()->CheckUnUsed();// ¸ðµÎ »ç¿ë¾ÈÇÏ´Â°É·Î Ã¼Å©ÇÏ°í
+	ZGetNpcMeshMgr()->CheckUnUsed();// ëª¨ë‘ ì‚¬ìš©ì•ˆí•˜ëŠ”ê±¸ë¡œ ì²´í¬í•˜ê³ 
 
 	if( pGroup ) {
 
@@ -407,9 +407,9 @@ bool ZQuest::OnQuestGroupLoad(MCommand* pCommand)
 		}
 	}
 
-	ZGetNpcMeshMgr()->ReloadAllAnimation();// ÀÐÁö ¾ÊÀº ¿¡´Ï¸ÞÀÌ¼ÇÀÌ ÀÖ´Ù¸é ·Îµù
+	ZGetNpcMeshMgr()->ReloadAllAnimation();// ì½ì§€ ì•Šì€ ì—ë‹ˆë©”ì´ì…˜ì´ ìžˆë‹¤ë©´ ë¡œë”©
 
-	ZGetNpcMeshMgr()->UnLoadChecked();// »ç¿ë¾ÈÇÏ´Â ¸ðµ¨ Á¦°Å
+	ZGetNpcMeshMgr()->UnLoadChecked();// ì‚¬ìš©ì•ˆí•˜ëŠ” ëª¨ë¸ ì œê±°
 
 	return true;
 }
@@ -431,7 +431,7 @@ bool ZQuest::OnEntrustNPCControl(MCommand* pCommand)
 	ZActor* pNPC = ZGetObjectManager()->GetNPCObject(uidNPC);
 	if (pNPC)
 	{
-		// uidCharÀÌ ³»ÇÃ·¹ÀÌ¾î UIDÀÌ¸é ÇØ´ç NPC´Â ³»°¡ Á¶Á¾ÇÏ´Â °ÍÀÌ´Ù.
+		// uidCharì´ ë‚´í”Œë ˆì´ì–´ UIDì´ë©´ í•´ë‹¹ NPCëŠ” ë‚´ê°€ ì¡°ì¢…í•˜ëŠ” ê²ƒì´ë‹¤.
 		bool bMyControl = (uidChar == ZGetGameClient()->GetPlayerUID());
 		pNPC->SetMyControl(bMyControl);
 
@@ -463,11 +463,11 @@ bool ZQuest::OnPeerNPCBasicInfo(MCommand* pCommand)
 
 
 /*
-	// Ä³¸¯ÅÍÀÇ ÇöÀç½Ã°£À» ¾÷µ¥ÀÌÆ®ÇÑ´Ù
-	// Ä³¸¯ÅÍÀÇ ÇöÀç½Ã°£ ÃßÁ¤Ä¡
+	// ìºë¦­í„°ì˜ í˜„ìž¬ì‹œê°„ì„ ì—…ë°ì´íŠ¸í•œë‹¤
+	// ìºë¦­í„°ì˜ í˜„ìž¬ì‹œê°„ ì¶”ì •ì¹˜
 	float fCurrentLocalTime = pActor->m_fTimeOffset + GetTime();
 
-	// Ä³¸¯ÅÍ°¡ º¸³»¿Â ½Ã°£ÀÌ ³»°¡ ÃßÁ¤ÇÑ ½Ã°£°ú 3ÃÊ ÀÌ»ó Â÷ÀÌ°¡ ³ª¸é ³»°¡ ¾Ë°íÀÖ´Â ½Ã°£À» °íÄ£´Ù.
+	// ìºë¦­í„°ê°€ ë³´ë‚´ì˜¨ ì‹œê°„ì´ ë‚´ê°€ ì¶”ì •í•œ ì‹œê°„ê³¼ 3ì´ˆ ì´ìƒ ì°¨ì´ê°€ ë‚˜ë©´ ë‚´ê°€ ì•Œê³ ìžˆëŠ” ì‹œê°„ì„ ê³ ì¹œë‹¤.
 	float fTimeError = ppbi->fTime - fCurrentLocalTime;
 	if(fabs(fTimeError)>3.f) {
 		pCharacter->m_fTimeOffset = ppbi->fTime - GetTime();
@@ -475,7 +475,7 @@ bool ZQuest::OnPeerNPCBasicInfo(MCommand* pCommand)
 		pCharacter->m_nTimeErrorCount = 0;
 	}else
 	{
-		// Â÷ÀÌ°¡ 3ÃÊ ÀÌ³»ÀÌ°í ÀÏÁ¤½Ã°£ ÇÕÇß´Ù°¡ Á¶±Ý(Â÷ÀÌÀÇ ¹Ý)¾¿ Á¶ÀýÇÑ´Ù
+		// ì°¨ì´ê°€ 3ì´ˆ ì´ë‚´ì´ê³  ì¼ì •ì‹œê°„ í•©í–ˆë‹¤ê°€ ì¡°ê¸ˆ(ì°¨ì´ì˜ ë°˜)ì”© ì¡°ì ˆí•œë‹¤
 		pCharacter->m_fAccumulatedTimeError += fTimeError;
 		pCharacter->m_nTimeErrorCount ++;
 		if(pCharacter->m_nTimeErrorCount > 10) {
@@ -485,12 +485,12 @@ bool ZQuest::OnPeerNPCBasicInfo(MCommand* pCommand)
 		}
 	}
 
-	// ÇöÀç½Ã°£À» ¸¶Áö¸· µ¥ÀÌÅÍ ¹ÞÀº½Ã°£À¸·Î ±â·Ï.
+	// í˜„ìž¬ì‹œê°„ì„ ë§ˆì§€ë§‰ ë°ì´í„° ë°›ì€ì‹œê°„ìœ¼ë¡œ ê¸°ë¡.
 	pCharacter->m_fLastReceivedTime = GetTime();
 */
 
 /*
-	// ³ªÁß¿¡ ÆÇÁ¤À» À§ÇØ histroy ¿¡ º¸°üÇÑ´Ù.
+	// ë‚˜ì¤‘ì— íŒì •ì„ ìœ„í•´ histroy ì— ë³´ê´€í•œë‹¤.
 	if(bAddHistory)
 	{
 		ZBasicInfoItem *pitem=new ZBasicInfoItem;
@@ -498,7 +498,7 @@ bool ZQuest::OnPeerNPCBasicInfo(MCommand* pCommand)
 
 		pitem->fReceivedTime=GetTime();
 
-		pitem->fSendTime= ppbi->fTime - pCharacter->m_fTimeOffset;	// ³» ±âÁØÀ¸·Î º¯È¯
+		pitem->fSendTime= ppbi->fTime - pCharacter->m_fTimeOffset;	// ë‚´ ê¸°ì¤€ìœ¼ë¡œ ë³€í™˜
 		
 		pCharacter->m_BasicHistory.push_back(pitem);
 
@@ -511,7 +511,7 @@ bool ZQuest::OnPeerNPCBasicInfo(MCommand* pCommand)
 
 	if(bUpdate)
 	{
-		// ¸®ÇÃ·¹ÀÌ¶§¸¦ Á¦¿ÜÇÏ°í ³» Ä³¸¯ÅÍ´Â ¸ð¼ÇÀÌ³ª ¼ÓµµµîµîÀ» ¾÷µ¥ÀÌÆ® ÇÒ ÇÊ¿ä°¡ ¾ø´Ù.
+		// ë¦¬í”Œë ˆì´ë•Œë¥¼ ì œì™¸í•˜ê³  ë‚´ ìºë¦­í„°ëŠ” ëª¨ì…˜ì´ë‚˜ ì†ë„ë“±ë“±ì„ ì—…ë°ì´íŠ¸ í•  í•„ìš”ê°€ ì—†ë‹¤.
 		if(!IsReplay() && pCharacter->IsHero()) return;
 
 
@@ -520,7 +520,7 @@ bool ZQuest::OnPeerNPCBasicInfo(MCommand* pCommand)
 		pCharacter->SetAnimationLower((ZC_STATE_LOWER)ppbi->lowerstate);
 		pCharacter->SetAnimationUpper((ZC_STATE_UPPER)ppbi->upperstate);
 
-		// µé°íÀÖ´Â ¹«±â°¡ ´Ù¸£¸é ¹Ù²ãÁØ´Ù
+		// ë“¤ê³ ìžˆëŠ” ë¬´ê¸°ê°€ ë‹¤ë¥´ë©´ ë°”ê¿”ì¤€ë‹¤
 		if(pCharacter->GetItems()->GetSelectedWeaponParts()!=ppbi->selweapon) {
 			pCharacter->ChangeWeapon((MMatchCharItemParts)ppbi->selweapon);
 		}
@@ -536,9 +536,9 @@ bool ZQuest::OnPeerNPCHPInfo(MCommand* pCommand)
 	return true;
 }
 
-bool ZQuest::OnPrePeerNPCAttackMelee(MCommand* pCommand)	// ½ÇÁ¦·Î Ã³¸®ÇÏ´Â°Ç ÇÑÅ¸ÀÌ¹Ö ´Ê´Ù
+bool ZQuest::OnPrePeerNPCAttackMelee(MCommand* pCommand)	// ì‹¤ì œë¡œ ì²˜ë¦¬í•˜ëŠ”ê±´ í•œíƒ€ì´ë° ëŠ¦ë‹¤
 {
-	// TODO: ÀÌ¶§ ¾Ö´Ï¸ÞÀÌ¼ÇÀ» ½ÃÀÛ
+	// TODO: ì´ë•Œ ì• ë‹ˆë©”ì´ì…˜ì„ ì‹œìž‘
 	return true;
 }
 
@@ -558,18 +558,18 @@ bool ZQuest::OnPeerNPCAttackRange(MCommand* pCommand)
 	pCommand->GetParameter(&uidOwner,	0, MPT_UID);
 
 	MCommandParameter* pParam = pCommand->GetParameter(1);
-	if(pParam->GetType()!=MPT_BLOB) return false;	// ¹®Á¦°¡ ÀÖ´Ù
+	if(pParam->GetType()!=MPT_BLOB) return false;	// ë¬¸ì œê°€ ìžˆë‹¤
 
 	ZPACKEDSHOTINFO *pinfo =(ZPACKEDSHOTINFO*)pParam->GetPointer();
 	rvector pos = rvector(pinfo->posx,pinfo->posy,pinfo->posz);
 	rvector to = rvector(pinfo->tox,pinfo->toy,pinfo->toz);
 
 
-	// rocket Å×½ºÆ®·Î ³Ö¾îºÃ´Ù.
+	// rocket í…ŒìŠ¤íŠ¸ë¡œ ë„£ì–´ë´¤ë‹¤.
 	ZObject* pOwner = ZGetGame()->m_ObjectManager.GetObject(uidOwner);
 	MMatchItemDesc* pDesc = NULL;
 
-	if(pOwner==NULL) return false; // º¸Åë Ä¡Æ®Å°¸¦ ¾µ°æ¿ì...
+	if(pOwner==NULL) return false; // ë³´í†µ ì¹˜íŠ¸í‚¤ë¥¼ ì“¸ê²½ìš°...
 
 	if( pOwner->GetItems() )
 		if( pOwner->GetItems()->GetSelectedWeapon() )
@@ -610,7 +610,7 @@ bool ZQuest::OnPeerNPCAttackRange(MCommand* pCommand)
 
 bool ZQuest::OnRefreshPlayerStatus(MCommand* pCommand)
 {
-	// ¿î¿µÀÚ hide´Â Á¦¿Ü
+	// ìš´ì˜ìž hideëŠ” ì œì™¸
 	bool bAdminHide = false;
 	if (ZGetMyInfo()->IsAdminGrade()) 
 	{
@@ -621,7 +621,7 @@ bool ZQuest::OnRefreshPlayerStatus(MCommand* pCommand)
 
 	if (!bAdminHide)
 	{
-		// ¿ÉÀú¹öÀÌ°Å³ª ¿ÉÀú¹ö ¿¹¾à»óÅÂ¸¦ Ç¬´Ù.
+		// ì˜µì €ë²„ì´ê±°ë‚˜ ì˜µì €ë²„ ì˜ˆì•½ìƒíƒœë¥¼ í‘¼ë‹¤.
 		ZGetGame()->ReleaseObserver();
 
 		// If you're dead, respawn.
@@ -632,7 +632,7 @@ bool ZQuest::OnRefreshPlayerStatus(MCommand* pCommand)
 	}
 
 
-	// ÇÇ¿Í ÃÑ¾ËÀ» Ã¤¿î´Ù
+	// í”¼ì™€ ì´ì•Œì„ ì±„ìš´ë‹¤
 	for(ZCharacterManager::iterator i = ZGetCharacterManager()->begin();i!=ZGetCharacterManager()->end();i++)
 	{
 		ZCharacter* pCharacter = i->second;
@@ -660,7 +660,7 @@ bool ZQuest::OnQuestRoundStart(MCommand* pCommand)
 
 	ZGetScreenEffectManager()->AddRoundStart(int(nRound));
 
-	// ¿ùµå¾ÆÀÌÅÛ ÃÊ±âÈ­
+	// ì›”ë“œì•„ì´í…œ ì´ˆê¸°í™”
 	ZGetWorldItemManager()->Reset();
 
 	return true;
@@ -677,7 +677,7 @@ bool ZQuest::OnQuestPlayerDead(MCommand* pCommand)
 	{
 		if (pVictim != ZGetGame()->m_pMyCharacter)
 		{
-			pVictim->Die();		// ¿©±â¼­ ½ÇÁ¦·Î Á×´Â´Ù
+			pVictim->Die();		// ì—¬ê¸°ì„œ ì‹¤ì œë¡œ ì£½ëŠ”ë‹¤
 		}
 
 		ZCharacterStatus* pVictimCS = NULL;
@@ -715,7 +715,7 @@ bool ZQuest::OnQuestCombatState(MCommand* pCommand)
 
 	MQuestCombatState nCombatState = MQuestCombatState(nState);
 
-	m_QuestCombatState = nCombatState; // º¸°ü..
+	m_QuestCombatState = nCombatState; // ë³´ê´€..
 
 	switch (nCombatState)
 	{
@@ -729,7 +729,7 @@ bool ZQuest::OnQuestCombatState(MCommand* pCommand)
 		break;
 	case MQUEST_COMBAT_COMPLETED:
 		{
-			// ¸¶Áö¸· ¼½ÅÍ´Â ´ÙÀ½ ¸µÅ©°¡ ¾ø´Ù.
+			// ë§ˆì§€ë§‰ ì„¹í„°ëŠ” ë‹¤ìŒ ë§í¬ê°€ ì—†ë‹¤.
 			if (!m_GameInfo.IsCurrSectorLastSector())
 			{
 				if (g_pGame)
@@ -763,24 +763,24 @@ bool ZQuest::OnMovetoPortal(MCommand* pCommand)
 	pCommand->GetParameter(&nCurrSectorIndex,		0, MPT_CHAR);
 	pCommand->GetParameter(&uidPlayer,				1, MPT_UID);
 
-	// Æ÷Å»·Î ÀÌµ¿ÇÑ »ç¶÷ÀÌ ÀÚ½ÅÀÌ¸é ¿©±â¼­ ½ÇÁ¦·Î ´ÙÀ½ ¼½ÅÍ·Î ÀÌµ¿
+	// í¬íƒˆë¡œ ì´ë™í•œ ì‚¬ëžŒì´ ìžì‹ ì´ë©´ ì—¬ê¸°ì„œ ì‹¤ì œë¡œ ë‹¤ìŒ ì„¹í„°ë¡œ ì´ë™
 	if (uidPlayer == ZGetGameClient()->GetPlayerUID())
 	{
 		m_bIsRoundClear = false;
 		ZGetQuest()->GetGameInfo()->ClearNPCKilled();
 
-		// ¿©±â¼­ »õ·Î¿î ¼½ÅÍ·Î ÀÌµ¿
+		// ì—¬ê¸°ì„œ ìƒˆë¡œìš´ ì„¹í„°ë¡œ ì´ë™
 		m_GameInfo.OnMovetoNewSector((int)(nCurrSectorIndex));
 
-		// ³ª »õ·Î¿î ¼½ÅÍ·Î ¿Ô´Ù°í ¸Þ½ÃÁö¸¦ º¸³½´Ù.
+		// ë‚˜ ìƒˆë¡œìš´ ì„¹í„°ë¡œ ì™”ë‹¤ê³  ë©”ì‹œì§€ë¥¼ ë³´ë‚¸ë‹¤.
 		ZPostQuestReadyToNewSector(ZGetGameClient()->GetPlayerUID());
 	}
 	else
 	{
-		// ÇØ´ç ÇÃ·¹ÀÌ¾î ÀÌµ¿
+		// í•´ë‹¹ í”Œë ˆì´ì–´ ì´ë™
 		ZCharacter *pChar = ZGetCharacterManager()->Find(uidPlayer);
 		if(pChar && m_CharactersGone.find(ZGetGameClient()->GetPlayerUID())==m_CharactersGone.end()) {
-			// ³»°¡ ¾ÆÁ÷ ÀÌµ¿ÇÏÁö ¾ÊÀº °æ¿ì ÇØ´çÇÃ·¹ÀÌ¾î¸¦ ¾Èº¸ÀÌ°Ô ¸¸µç´Ù
+			// ë‚´ê°€ ì•„ì§ ì´ë™í•˜ì§€ ì•Šì€ ê²½ìš° í•´ë‹¹í”Œë ˆì´ì–´ë¥¼ ì•ˆë³´ì´ê²Œ ë§Œë“ ë‹¤
 			pChar->SetVisible(false);
 			ZGetEffectManager()->AddReBirthEffect(pChar->GetPosition());
 		}
@@ -799,7 +799,7 @@ bool ZQuest::OnReadyToNewSector(MCommand* pCommand)
 
 	ZCharacter *pChar = ZGetCharacterManager()->Find(uidPlayer);
 
-	// ³»°¡ ¿ÉÀúºê ÇÏ°í ÀÖ´Â Ä³¸¯ÅÍ°¡ ÀÌµ¿ÇÏ¸é ´Ù¸¥ Ä³¸¯ÅÍ·Î ¹Ù²Û´Ù
+	// ë‚´ê°€ ì˜µì €ë¸Œ í•˜ê³  ìžˆëŠ” ìºë¦­í„°ê°€ ì´ë™í•˜ë©´ ë‹¤ë¥¸ ìºë¦­í„°ë¡œ ë°”ê¾¼ë‹¤
 	if(ZGetCombatInterface()->GetObserver()->GetTargetCharacter()==pChar) {
 		ZGetCombatInterface()->GetObserver()->ChangeToNextTarget();
 	}
@@ -809,15 +809,15 @@ bool ZQuest::OnReadyToNewSector(MCommand* pCommand)
 	}
 	else
 	{
-		// ÇØ´ç ÇÃ·¹ÀÌ¾î ÀÌµ¿
+		// í•´ë‹¹ í”Œë ˆì´ì–´ ì´ë™
 
 		ZCharacter *pChar = ZGetCharacterManager()->Find(uidPlayer);
 		if(pChar && m_CharactersGone.find(ZGetGameClient()->GetPlayerUID())!=m_CharactersGone.end()) {
 
-			// ³»°¡ ÀÌ¹Ì ÀÌµ¿ÇÑ °æ¿ì ÇØ´çÇÃ·¹ÀÌ¾î¸¦ º¸ÀÌ°Ô ¸¸µç´Ù
+			// ë‚´ê°€ ì´ë¯¸ ì´ë™í•œ ê²½ìš° í•´ë‹¹í”Œë ˆì´ì–´ë¥¼ ë³´ì´ê²Œ ë§Œë“ ë‹¤
 //			pChar->SetVisible(true);
 
-			// ÀÌ¹ø¿¡ ÀÌµ¿ÇÒ Ä³¸¯ÅÍÀÇ À§Ä¡
+			// ì´ë²ˆì— ì´ë™í•  ìºë¦­í„°ì˜ ìœ„ì¹˜
 			int nPosIndex = ZGetCharacterManager()->GetCharacterIndex(pChar->GetUID(), false);
 			if (nPosIndex < 0) nPosIndex=0;
 			else if (nPosIndex >= MAX_QUSET_PLAYER_COUNT) nPosIndex = MAX_QUSET_PLAYER_COUNT-1;
@@ -846,16 +846,16 @@ bool ZQuest::OnSectorStart(MCommand* pCommand)
 	m_bIsRoundClear = false;
 	ZGetQuest()->GetGameInfo()->ClearNPCKilled();
 
-	// ¸¸¾à ¼½ÅÍ°¡ Æ²¸®¸é °­Á¦·Î ÀÌµ¿ÇÑ´Ù.
+	// ë§Œì•½ ì„¹í„°ê°€ í‹€ë¦¬ë©´ ê°•ì œë¡œ ì´ë™í•œë‹¤.
 	if (m_GameInfo.GetCurrSectorIndex() != nSectorIndex)
 	{
-		// »õ·Î¿î ¼½ÅÍ·Î ÀÌµ¿
+		// ìƒˆë¡œìš´ ì„¹í„°ë¡œ ì´ë™
 		m_GameInfo.OnMovetoNewSector((int)nSectorIndex);
 		
 		MoveToNextSector();
 	}
 
-	// ¸ðµç »ç¶÷µéÀ» º¸¿©ÁØ´Ù.
+	// ëª¨ë“  ì‚¬ëžŒë“¤ì„ ë³´ì—¬ì¤€ë‹¤.
 	for(ZCharacterManager::iterator i = ZGetCharacterManager()->begin();i!=ZGetCharacterManager()->end();i++)
 	{
 		i->second->SetVisible(true);
@@ -864,7 +864,7 @@ bool ZQuest::OnSectorStart(MCommand* pCommand)
 	ZGetWorldItemManager()->Reset();
 	m_CharactersGone.clear();
 
-	// admin hide ÀÌ¸é ´Ù½Ã ¿ÉÀú¹ö¸¦ È°¼ºÈ­
+	// admin hide ì´ë©´ ë‹¤ì‹œ ì˜µì €ë²„ë¥¼ í™œì„±í™”
 	MMatchObjCache* pObjCache = ZGetGameClient()->FindObjCache(ZGetMyUID());
 	if (pObjCache && pObjCache->CheckFlag(MTD_PlayerFlags_AdminHide)) {
 		ZGetGameInterface()->GetCombatInterface()->SetObserverMode(true);
@@ -888,11 +888,11 @@ bool ZQuest::OnQuestCompleted(MCommand* pCommand)
 		MTD_QuestReward* pQuestRewardNode = (MTD_QuestReward*)MGetBlobArrayElement(pBlob, i);
 
 
-		// ¿©±â¼­ º¸»ó ³»¿ëÀ» µý °÷¿¡ ÀúÀåÇØ¼­ È­¸é¿¡ º¸¿©ÁÖ¸é µË´Ï´Ù. - bird
+		// ì—¬ê¸°ì„œ ë³´ìƒ ë‚´ìš©ì„ ë”´ ê³³ì— ì €ìž¥í•´ì„œ í™”ë©´ì— ë³´ì—¬ì£¼ë©´ ë©ë‹ˆë‹¤. - bird
 	}
 
 
-	// ¿ùµå¾ÆÀÌÅÛÀ» ¸ðµÎ ¾ø¾Ø´Ù.
+	// ì›”ë“œì•„ì´í…œì„ ëª¨ë‘ ì—†ì•¤ë‹¤.
 	//ZGetWorldItemManager()->Reset(true);
 
 	mlog("Quest Completed\n");
@@ -956,13 +956,13 @@ bool ZQuest::OnObtainZItem(MCommand* pCommand)
 void ZQuest::LoadNPCMeshes()
 {
 #ifdef _DEBUG
-	// È¥ÀÚ¼­ AI Å×½ºÆ®ÇÒ °æ¿ì
+	// í˜¼ìžì„œ AI í…ŒìŠ¤íŠ¸í•  ê²½ìš°
 	if ((ZApplication::GetInstance()->GetLaunchMode() == ZApplication::ZLAUNCH_MODE_STANDALONE_QUEST) || 
 		(ZApplication::GetInstance()->GetLaunchMode() == ZApplication::ZLAUNCH_MODE_STANDALONE_AI))
 	{
 		ZGetNpcMeshMgr()->LoadAll();
 
-		ZGetNpcMeshMgr()->ReloadAllAnimation();// ÀÐÁö ¾ÊÀº ¿¡´Ï¸ÞÀÌ¼ÇÀÌ ÀÖ´Ù¸é ·Îµù
+		ZGetNpcMeshMgr()->ReloadAllAnimation();// ì½ì§€ ì•Šì€ ì—ë‹ˆë©”ì´ì…˜ì´ ìžˆë‹¤ë©´ ë¡œë”©
 		return;
 	}
 #endif
@@ -981,7 +981,7 @@ void ZQuest::LoadNPCMeshes()
 		ZGetNpcMeshMgr()->Load(GetNPCInfo(npc)->szMeshName);
 	}
 
-	ZGetNpcMeshMgr()->ReloadAllAnimation();// ÀÐÁö ¾ÊÀº ¿¡´Ï¸ÞÀÌ¼ÇÀÌ ÀÖ´Ù¸é ·Îµù
+	ZGetNpcMeshMgr()->ReloadAllAnimation();// ì½ì§€ ì•Šì€ ì—ë‹ˆë©”ì´ì…˜ì´ ìžˆë‹¤ë©´ ë¡œë”©
 }
 	
 void ZQuest::LoadNPCSounds()
@@ -1011,13 +1011,13 @@ void ZQuest::MoveToNextSector()
 	ZCharacter *pMyChar = ZGetGame()->m_pMyCharacter;
 	pMyChar->InitStatus();
 
-	// »õ·Î¿î ¿ùµå·Î ÀÌµ¿!!
+	// ìƒˆë¡œìš´ ì›”ë“œë¡œ ì´ë™!!
 	ZGetWorldManager()->SetCurrent(m_GameInfo.GetCurrSectorIndex());
-	// ÀÌ¹ø¿¡ ÀÌµ¿ÇÒ Ä³¸¯ÅÍÀÇ À§Ä¡
+	// ì´ë²ˆì— ì´ë™í•  ìºë¦­í„°ì˜ ìœ„ì¹˜
 	int nPosIndex = ZGetCharacterManager()->GetCharacterIndex(pMyChar->GetUID(), false);
 	if (nPosIndex < 0) nPosIndex=0;
 	ZMapSpawnData* pSpawnData = ZGetWorld()->GetDesc()->GetSpawnManager()->GetSoloData(nPosIndex);
-	// »õ ÁÂÇ¥·Î ÀÌµ¿
+	// ìƒˆ ì¢Œí‘œë¡œ ì´ë™
 	if (pSpawnData!=NULL && pMyChar!=NULL)
 	{
 		pMyChar->SetPosition(pSpawnData->m_Pos);
@@ -1025,13 +1025,13 @@ void ZQuest::MoveToNextSector()
 		ZGetEffectManager()->AddReBirthEffect(pSpawnData->m_Pos);
 	}
 
-	// ¾Æ¹«µµ º¸¿©ÁÖÁö ¾Ê´Â´Ù.
+	// ì•„ë¬´ë„ ë³´ì—¬ì£¼ì§€ ì•ŠëŠ”ë‹¤.
 	for(ZCharacterManager::iterator i = ZGetCharacterManager()->begin();i!=ZGetCharacterManager()->end();i++)
 	{
 		i->second->SetVisible(false);
 	}
 
-	// ko¼ö µ¿±âÈ­
+	// koìˆ˜ ë™ê¸°í™”
 	ZModule_QuestStatus* pMod = (ZModule_QuestStatus*)pMyChar->GetModule(ZMID_QUESTSTATUS);
 	if (pMod)
 	{
@@ -1058,7 +1058,7 @@ bool ZQuest::OnRewardQuest( MCommand* pCmd )
 	return true;
 }
 
-// È¹µæ ¾ÆÀÌÅÛ ¸®½ºÆ® ¹Ú½º ¾÷µ¥ÀÌÆ®
+// íšë“ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ ì—…ë°ì´íŠ¸
 class ObtainItemListBoxItem : public MListItem
 {
 protected:
@@ -1109,14 +1109,14 @@ void ZQuest::GetMyObtainQuestItemList( int nRewardXP, int nRewardBP, void* pMyOb
 	if ( pListBox)
 		pListBox->RemoveAll();
 
-	// Äù½ºÆ® ¾ÆÀÌÅÛ -----------------
+	// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ -----------------
 	nQuestItemCount = MGetBlobArrayCount( pMyObtainQuestItemListBlob );
 
 	for( i = 0; i < nQuestItemCount; ++i )
 	{
 		pQuestItemNode = reinterpret_cast< MTD_QuestItemNode* >( MGetBlobArrayElement(pMyObtainQuestItemListBlob, i) );
 
-		// ¸®½ºÆ® ¹Ú½º ¾÷µ¥ÀÌÆ®
+		// ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ ì—…ë°ì´íŠ¸
 		if ( pListBox && (pQuestItemNode->m_nCount > 0))
 		{
 			MQuestItemDesc* pQuestItemDesc = GetQuestItemDescMgr().FindQItemDesc( pQuestItemNode->m_nItemID);
@@ -1131,21 +1131,21 @@ void ZQuest::GetMyObtainQuestItemList( int nRewardXP, int nRewardBP, void* pMyOb
 		itQItem = pMyInfo->GetItemList()->GetQuestItemMap().find( pQuestItemNode->m_nItemID );
 		if( pMyInfo->GetItemList()->GetQuestItemMap().end() != itQItem )
 		{
-			// ÄÉ¸¯ÅÍÀÇ °¡Áö°í ÀÖ´Â Äù½ºÆ® ¾ÆÀÌÅÛ¿¡ Ãß°¡.
+			// ì¼€ë¦­í„°ì˜ ê°€ì§€ê³  ìžˆëŠ” í€˜ìŠ¤íŠ¸ ì•„ì´í…œì— ì¶”ê°€.
 			if( 0 != pQuestItemNode->m_nCount )
 			{
-				// ¼ö·®ÀÌ ÃÖ´ëÄ¡¸¦ ÃÊ°úÇÏÁö ¾Ê¾Æ¼­ Á¤»óÀûÀ¸·Î Ãß°¡°¡ µÇ¾úÀ» °æ¿ì.
+				// ìˆ˜ëŸ‰ì´ ìµœëŒ€ì¹˜ë¥¼ ì´ˆê³¼í•˜ì§€ ì•Šì•„ì„œ ì •ìƒì ìœ¼ë¡œ ì¶”ê°€ê°€ ë˜ì—ˆì„ ê²½ìš°.
 				itQItem->second->Increase( pQuestItemNode->m_nCount );
 			}
 			else
 			{
-				// ¼ö·®ÀÌ ÃÖ´ëÄ¡¸¦ ÃÊ°úÇÏ¿©¼­ Ãß°¡ÇÒ °³¼ö¸¦ 0À¸·Î º¸³»ÁáÀ» °æ¿ì.
-				// ÀÌ¶§´Â Ãß°¡ÀûÀ¸·Î Å¬¶óÀÌ¾ðÆ®°¡ ÃÊ°úµÈ Á¤º¸¿Í ±×¿¡µû¸¥ Ã³¸®Á¤º¸¸¦ º¸¿© Áà¾ß ÇÔ.
+				// ìˆ˜ëŸ‰ì´ ìµœëŒ€ì¹˜ë¥¼ ì´ˆê³¼í•˜ì—¬ì„œ ì¶”ê°€í•  ê°œìˆ˜ë¥¼ 0ìœ¼ë¡œ ë³´ë‚´ì¤¬ì„ ê²½ìš°.
+				// ì´ë•ŒëŠ” ì¶”ê°€ì ìœ¼ë¡œ í´ë¼ì´ì–¸íŠ¸ê°€ ì´ˆê³¼ëœ ì •ë³´ì™€ ê·¸ì—ë”°ë¥¸ ì²˜ë¦¬ì •ë³´ë¥¼ ë³´ì—¬ ì¤˜ì•¼ í•¨.
 			}
 		}
 		else
 		{
-			// »õ·Î µî·ÏµÇ´Â ¾ÆÀÌÅÛÀº ÃÊ±âÈ­¸¦ ÇØÁÖ°í µî·ÏÀ» ÇØÁà¾ß ÇÔ.
+			// ìƒˆë¡œ ë“±ë¡ë˜ëŠ” ì•„ì´í…œì€ ì´ˆê¸°í™”ë¥¼ í•´ì£¼ê³  ë“±ë¡ì„ í•´ì¤˜ì•¼ í•¨.
 
 			pNewQuestItem = new ZMyQuestItemNode;
 			if( 0 == pNewQuestItem )
@@ -1161,13 +1161,13 @@ void ZQuest::GetMyObtainQuestItemList( int nRewardXP, int nRewardBP, void* pMyOb
 		}
 	}
 
-	// ÀÏ¹Ý ¾ÆÀÌÅÛ -----------------
+	// ì¼ë°˜ ì•„ì´í…œ -----------------
 	int nZItemCount = MGetBlobArrayCount( pMyObtainZItemListBlob );
 	for (int i = 0; i < nZItemCount; i++)
 	{
 		MTD_QuestZItemNode* pZItemNode = (MTD_QuestZItemNode*)( MGetBlobArrayElement(pMyObtainZItemListBlob, i) );
 
-		// ¸®½ºÆ® ¹Ú½º ¾÷µ¥ÀÌÆ®
+		// ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ ì—…ë°ì´íŠ¸
 		if ( pListBox )
 		{
 			MMatchItemDesc* pItemDesc = MGetMatchItemDescMgr()->GetItemDesc(pZItemNode->m_nItemID);

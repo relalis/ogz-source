@@ -1,5 +1,5 @@
 //
-//	Dib(bmp)¸¦ 24ºñÆ®·Î ÀĞ¾î ³»´Â Å¬·¡½º
+//	Dib(bmp)ë¥¼ 24ë¹„íŠ¸ë¡œ ì½ì–´ ë‚´ëŠ” í´ë˜ìŠ¤
 //
 //											written by lee jang ho
 //
@@ -10,7 +10,7 @@
 
 #include <crtdbg.h>
 
-#define WIDTHBYTES(i)	((unsigned)((i+31)&(~31))/8)						// 4¹ÙÀÌÆ® Á¤·Ä
+#define WIDTHBYTES(i)	((unsigned)((i+31)&(~31))/8)						// 4ë°”ì´íŠ¸ ì •ë ¬
 #define DibPtr(lpbi)	(LPVOID)(DibColors(lpbi) + (UINT)(lpbi)->biClrUsed)	// Data Pointer
 #define DibColors(lpbi)	((LPRGBQUAD)((LPBYTE)(lpbi) + (int)(lpbi)->biSize))	// Palette Pointer
 
@@ -49,7 +49,7 @@ BOOL CDib::Open(HWND hWnd, const char *pFileName, BOOL bOpenFromFile)
 
 	BITMAP bm;
 	BITMAPINFOHEADER bi;
-	LPBITMAPINFOHEADER lpbi;	// 24bit¶ó¼­ ÆÈ·¹Æ® Á¤º¸°¡ ¾øÀ» °ÍÀÌ¹Ç·Î ÇÊ¿ä¾øÀ¸³ª... È®ÀåÀ» À§ÇØ
+	LPBITMAPINFOHEADER lpbi;	// 24bitë¼ì„œ íŒ”ë ˆíŠ¸ ì •ë³´ê°€ ì—†ì„ ê²ƒì´ë¯€ë¡œ í•„ìš”ì—†ìœ¼ë‚˜... í™•ì¥ì„ ìœ„í•´
 
 	GetObject(m_hBitmap,sizeof(BITMAP),&bm);
 
@@ -61,7 +61,7 @@ BOOL CDib::Open(HWND hWnd, const char *pFileName, BOOL bOpenFromFile)
     bi.biHeight				= bm.bmHeight;
     bi.biPlanes				= 1;
     //bi.biBitCount           = bm.bmPlanes * bm.bmBitsPixel;
-	bi.biBitCount			= 24;			// 8bit µµ 24bit·Î ÀĞ¾î³½´Ù. µû¶ó¼­ Pal Á¤º¸°¡ ¾ø´Ù.
+	bi.biBitCount			= 24;			// 8bit ë„ 24bitë¡œ ì½ì–´ë‚¸ë‹¤. ë”°ë¼ì„œ Pal ì •ë³´ê°€ ì—†ë‹¤.
     bi.biCompression		= BI_RGB;
     bi.biSizeImage			= 0;
     bi.biXPelsPerMeter		= 0;
@@ -69,12 +69,12 @@ BOOL CDib::Open(HWND hWnd, const char *pFileName, BOOL bOpenFromFile)
     bi.biClrUsed			= 0;
     bi.biClrImportant		= 0;
 
-// ÆÈ·¹Æ® °³¼ö
+// íŒ”ë ˆíŠ¸ ê°œìˆ˜
 #define DibNumColors(lpbi)	((lpbi)->biClrUsed == 0 && (lpbi)->biBitCount <= 8 \
 								? (WORD)(1 << (int)(lpbi)->biBitCount) \
 								: (WORD)(lpbi)->biClrUsed)
 
-	// BITMAPINFO( BITMAPINFOHEADER+PAL ) ÀÇ Å©±â
+	// BITMAPINFO( BITMAPINFOHEADER+PAL ) ì˜ í¬ê¸°
 	DWORD nLen  = bi.biSize + DibNumColors(&bi) * sizeof(RGBQUAD);
 
 	lpbi=(LPBITMAPINFOHEADER)new char[nLen];
@@ -87,7 +87,7 @@ BOOL CDib::Open(HWND hWnd, const char *pFileName, BOOL bOpenFromFile)
 
 	bi=*lpbi;
 
-	// µå¶óÀÌ¹ö°¡ biSizeImage¸¦ Ã¤¿ìÁö ¾Ê´Â °æ¿ì
+	// ë“œë¼ì´ë²„ê°€ biSizeImageë¥¼ ì±„ìš°ì§€ ì•ŠëŠ” ê²½ìš°
 	if(bi.biSizeImage==0){
 		bi.biSizeImage=(DWORD)WIDTHBYTES(bm.bmWidth*bi.biBitCount)*bm.bmHeight;
 		if(bi.biCompression!=BI_RGB)

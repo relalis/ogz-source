@@ -2,8 +2,8 @@
 	MHyperText.h
 	Programming by Joongpil Cho
 
-	°£ÀÌ ÆÄÀÏ Æ÷¸ËÀ» »ç¿ëÇÏ°í ÀÖÀ½.	ÀÏ¹ÝÀûÀÎ ÅØ½ºÆ®¿Í À¯»çÇÏ³ª [[...]]¾ÈÀÇ ¸í·É¾î¸¦ ÅëÇØ¼­ ÅØ½ºÆ®ÀÇ Çü½ÄÀ» 
-	³ªÅ¸³»°Å³ª ±×¸²À» »ðÀÔÇÒ ¼ö ÀÖ´Ù.
+	ê°„ì´ íŒŒì¼ í¬ë§·ì„ ì‚¬ìš©í•˜ê³  ìžˆìŒ.	ì¼ë°˜ì ì¸ í…ìŠ¤íŠ¸ì™€ ìœ ì‚¬í•˜ë‚˜ [[...]]ì•ˆì˜ ëª…ë ¹ì–´ë¥¼ í†µí•´ì„œ í…ìŠ¤íŠ¸ì˜ í˜•ì‹ì„ 
+	ë‚˜íƒ€ë‚´ê±°ë‚˜ ê·¸ë¦¼ì„ ì‚½ìž…í•  ìˆ˜ ìžˆë‹¤.
 */
 #include <crtdbg.h>
 #include <stdio.h>
@@ -13,35 +13,35 @@
 #define __HYPERTEXT_HEADER__
 
 typedef enum {
-	MHTE_PLAINTEXT = 0,	//TAG¾ø´Â ÀÏ¹Ý ÅØ½ºÆ®. (ÅÂ±× ¾Æ´Ô)
-	MHTE_STD,			//MAIET Hyper TextÀÓÀ» Ç¥½ÃÇÏ´Â ÅÂ±×
-	MHTE_IMAGE,			//ÀÌ¹ÌÁö ÅÂ±×
-	MHTE_STYLE,			//½ºÅ¸ÀÏ ÅÂ±×
-	MHTE_LINK,			//ÇÏÀÌÆÛ ¸µÅ© ½ÃÀÛ
-	MHTE_LINKEND,		//ÇÏÀÌÆÛ ¸µÅ©ÀÇ ³¡
-	MHTE_BR,			//´ÙÀ½ ÁÙ·Î...
-	MHTE_DEFAULT,		//ÃÊ±â¼³Á¤´ë·Î
+	MHTE_PLAINTEXT = 0,	//TAGì—†ëŠ” ì¼ë°˜ í…ìŠ¤íŠ¸. (íƒœê·¸ ì•„ë‹˜)
+	MHTE_STD,			//MAIET Hyper Textìž„ì„ í‘œì‹œí•˜ëŠ” íƒœê·¸
+	MHTE_IMAGE,			//ì´ë¯¸ì§€ íƒœê·¸
+	MHTE_STYLE,			//ìŠ¤íƒ€ì¼ íƒœê·¸
+	MHTE_LINK,			//í•˜ì´í¼ ë§í¬ ì‹œìž‘
+	MHTE_LINKEND,		//í•˜ì´í¼ ë§í¬ì˜ ë
+	MHTE_BR,			//ë‹¤ìŒ ì¤„ë¡œ...
+	MHTE_DEFAULT,		//ì´ˆê¸°ì„¤ì •ëŒ€ë¡œ
 } MHT_ELEMENT;
 
 typedef enum {
-	MHTA_TEXT = 0,		//PLAINTEXT¿¡ ´ëÇÑ ÀÎÀÚ, char*¸¦ ´ã°í ÀÖ´Ù.
-	MHTA_BACKGROUND,	//STD¿¡ ´ëÇÑ ÀÎÀÚ ÄÃ·¯ °ª È¤Àº ÀÌ¹ÌÁö ÆÄÀÏÀÌ ¿Ã¼ö ÀÖ´Ù.
-	MHTA_COLOR,			//COLOR°ª, #À¸·Î ½ÃÀÛÇÏ´Â 16Áø¼ö 6ÀÚ¸®, °¢ 2ÀÚ¸®°¡ ÇÏ³ªÀÇ »ö»óÁ¤º¸¸¦ Ç¥ÇöÇÑ´Ù. (#RGB)
-	MHTA_SIZE,			//SIZE°ª, Á¤¼öÇü()
-	MHTA_ALIGN,			//ALIGN°ª, Á¤¼öÇü()
-	MHTA_TYPE,			//TYPE°ª, Á¤¼öÇü()
-	MHTA_SRC,			//SRC°ª, ¹®ÀÚ¿­
-	MHTA_BOLD,			//BOLD°ª, Á¤¼öÇü()
+	MHTA_TEXT = 0,		//PLAINTEXTì— ëŒ€í•œ ì¸ìž, char*ë¥¼ ë‹´ê³  ìžˆë‹¤.
+	MHTA_BACKGROUND,	//STDì— ëŒ€í•œ ì¸ìž ì»¬ëŸ¬ ê°’ í˜¹ì€ ì´ë¯¸ì§€ íŒŒì¼ì´ ì˜¬ìˆ˜ ìžˆë‹¤.
+	MHTA_COLOR,			//COLORê°’, #ìœ¼ë¡œ ì‹œìž‘í•˜ëŠ” 16ì§„ìˆ˜ 6ìžë¦¬, ê° 2ìžë¦¬ê°€ í•˜ë‚˜ì˜ ìƒ‰ìƒì •ë³´ë¥¼ í‘œí˜„í•œë‹¤. (#RGB)
+	MHTA_SIZE,			//SIZEê°’, ì •ìˆ˜í˜•()
+	MHTA_ALIGN,			//ALIGNê°’, ì •ìˆ˜í˜•()
+	MHTA_TYPE,			//TYPEê°’, ì •ìˆ˜í˜•()
+	MHTA_SRC,			//SRCê°’, ë¬¸ìžì—´
+	MHTA_BOLD,			//BOLDê°’, ì •ìˆ˜í˜•()
 	MHTA_HIGHLIGHT,
-	MHTA_HREF,			//¸µÅ© ¸®ÆÛ·±½º, ¹®ÀÚ¿­
-	MHTA_XMARGIN,		//±×¸²ÀÇ XÃà ¿©ºÐ
-	MHTA_YMARGIN,		//±×¸²ÀÇ YÃà ¿©ºÐ
+	MHTA_HREF,			//ë§í¬ ë¦¬í¼ëŸ°ìŠ¤, ë¬¸ìžì—´
+	MHTA_XMARGIN,		//ê·¸ë¦¼ì˜ Xì¶• ì—¬ë¶„
+	MHTA_YMARGIN,		//ê·¸ë¦¼ì˜ Yì¶• ì—¬ë¶„
 } MHT_ARGUMENT;
 
-// °¢°¢ÀÇ Text Element¿¡ ´ëÇÑ º¸Á¶¼öÄ¡µéÀÇ °ª
+// ê°ê°ì˜ Text Elementì— ëŒ€í•œ ë³´ì¡°ìˆ˜ì¹˜ë“¤ì˜ ê°’
 class MHyperTextArg {
 public:
-	MHT_ARGUMENT		uId;			// ¿¤¸®¸ÕÆ® ¾Æ±Ô¸ÕÆ®
+	MHT_ARGUMENT		uId;			// ì—˜ë¦¬ë¨¼íŠ¸ ì•„ê·œë¨¼íŠ¸
 	
 	MHyperTextArg(MHT_ARGUMENT id){
 		uId = id;
@@ -87,7 +87,7 @@ class MHTA_Background : public MHyperTextArg {
 		szPath = NULL;
 	}
 public:
-	char*				szPath;		//ÀÌ¹ÌÁö ÆÐ½º
+	char*				szPath;		//ì´ë¯¸ì§€ íŒ¨ìŠ¤
 	MCOLOR				sColor;
 
 	MHTA_Background(MCOLOR color) : MHyperTextArg(MHTA_BACKGROUND){
@@ -123,10 +123,10 @@ typedef class MHTA_StringArg<MHTA_HREF>		MHTA_HRef;
 class MHyperTextElement
 {
 public:
-	MHT_ELEMENT					nType;	// ¿¤¸®¸ÕÆ®ÀÇ Å¸ÀÔ
-	CMLinkedList<MHyperTextArg>	Args;	// ¿¤¸®¸ÕÆ®ÀÇ ÀÎÀÚ ¸®½ºÆ®
+	MHT_ELEMENT					nType;	// ì—˜ë¦¬ë¨¼íŠ¸ì˜ íƒ€ìž…
+	CMLinkedList<MHyperTextArg>	Args;	// ì—˜ë¦¬ë¨¼íŠ¸ì˜ ì¸ìž ë¦¬ìŠ¤íŠ¸
 
-	//»ý¼ºÀÚ, ÆÄ±«ÀÚ
+	//ìƒì„±ìž, íŒŒê´´ìž
 	MHyperTextElement(MHT_ELEMENT type){
 		nType		= type;
 	}
@@ -143,12 +143,12 @@ public:
 class MHyperText
 {
 private:
-	char*			m_pBuffer;			// Text Buffer, MHyperText´Â ¸Þ¸ð¸®¿¡ ÀÖ´Â ³»¿ë¸¸À» ÆÄ½ÌÇÑ´Ù.
-	int				m_nLen;				// ¹öÆÛÀÇ Å©±â
-	int				bp;					// BufferÀÇ Æ÷ÀÎÅÍ
-	int				m_nOffset;			// m_szScanÀÇ ¹öÆÛÆ÷ÀÎÅÍ
+	char*			m_pBuffer;			// Text Buffer, MHyperTextëŠ” ë©”ëª¨ë¦¬ì— ìžˆëŠ” ë‚´ìš©ë§Œì„ íŒŒì‹±í•œë‹¤.
+	int				m_nLen;				// ë²„í¼ì˜ í¬ê¸°
+	int				bp;					// Bufferì˜ í¬ì¸í„°
+	int				m_nOffset;			// m_szScanì˜ ë²„í¼í¬ì¸í„°
 	bool			m_bTagReady;
-	char			m_szScan[20480];	// ScanÇÑ °ªÀÌ ÀúÀåµÇ´Â ¹®ÀÚ¿­ Æ÷ÀÎÅÍ, yytext¿Í À¯»çÇÑ ¿ªÇÒÀ» ÇÏ´Â ³ðÀÌ´Ù.
+	char			m_szScan[20480];	// Scaní•œ ê°’ì´ ì €ìž¥ë˜ëŠ” ë¬¸ìžì—´ í¬ì¸í„°, yytextì™€ ìœ ì‚¬í•œ ì—­í• ì„ í•˜ëŠ” ë†ˆì´ë‹¤.
 
 	void			Gather(char b){ m_szScan[m_nOffset++] = b; }
 	
@@ -171,10 +171,10 @@ public:
 	virtual ~MHyperText(){ Close(); }
 
 	/*	
-		ÀÌ Å¬·¡½º´Â ¿¡·¯ ¸®Æ÷Æ®¸¦ ÇÏÁö ¾Ê´Â´Ù.
-		ÇÏÀÌÆÛ ÅØ½ºÆ®°¡ °ÔÀÓ³»¿¡ Àû¿ëµÇ¾úÀ» ¶§¿¡µµ °ÔÀÓÀº °è¼ÓµÇ¾î¾ß ÇÏ¹Ç·Î...
+		ì´ í´ëž˜ìŠ¤ëŠ” ì—ëŸ¬ ë¦¬í¬íŠ¸ë¥¼ í•˜ì§€ ì•ŠëŠ”ë‹¤.
+		í•˜ì´í¼ í…ìŠ¤íŠ¸ê°€ ê²Œìž„ë‚´ì— ì ìš©ë˜ì—ˆì„ ë•Œì—ë„ ê²Œìž„ì€ ê³„ì†ë˜ì–´ì•¼ í•˜ë¯€ë¡œ...
 
-		szTextBuffer : ÅØ½ºÆ® ¹öÆÛ
+		szTextBuffer : í…ìŠ¤íŠ¸ ë²„í¼
 	*/
 	bool Open(char *szTextBuffer);
 	void Close();

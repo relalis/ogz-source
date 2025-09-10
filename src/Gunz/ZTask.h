@@ -7,7 +7,7 @@ using namespace std;
 
 #include "ZTaskID.h"
 
-/// task °á°ú
+/// task ê²°ê³¼
 enum ZTaskResult
 {
 	ZTR_RUNNING,
@@ -17,7 +17,7 @@ enum ZTaskResult
 
 class ZBrain;
 
-/// TaskÀÇ Ãß»óÅ¬·¡½º - Task´Â command ÆĞÅÏÀ» »ç¿ëÇÑ´Ù.
+/// Taskì˜ ì¶”ìƒí´ë˜ìŠ¤ - TaskëŠ” command íŒ¨í„´ì„ ì‚¬ìš©í•œë‹¤.
 class ZTask
 {
 protected:
@@ -26,10 +26,10 @@ protected:
 	bool				m_bCancelEnable;
 
 
-	virtual void OnStart() = 0;				///< ÅÂ½ºÅ© ½ÃÀÛ½Ã
-	virtual ZTaskResult OnRun(float fDelta) = 0;		///< ÅÂ½ºÅ© ½ÇÇà
-	virtual void OnComplete() = 0;			///< Å×½ºÅ© ¿Ï·á½Ã
-	virtual bool OnCancel() = 0;			///< ÅÂ½ºÅ© Ãë¼Ò½Ã
+	virtual void OnStart() = 0;				///< íƒœìŠ¤í¬ ì‹œì‘ì‹œ
+	virtual ZTaskResult OnRun(float fDelta) = 0;		///< íƒœìŠ¤í¬ ì‹¤í–‰
+	virtual void OnComplete() = 0;			///< í…ŒìŠ¤í¬ ì™„ë£Œì‹œ
+	virtual bool OnCancel() = 0;			///< íƒœìŠ¤í¬ ì·¨ì†Œì‹œ
 public:
 	ZTask(ZActor* pParent) : m_pParent(pParent), m_bCancelEnable(true) {}
 	virtual ~ZTask() {}

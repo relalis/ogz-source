@@ -15,7 +15,7 @@
 #include "RMaterialList.h"
 #include ".\rcframeinfodlg.h"
 
-// ´ëÃæÇÏÀÚ..
+// ëŒ€ì¶©í•˜ìž..
 
 extern bool g_bmtrl_dlg;
 
@@ -49,7 +49,7 @@ void CRCFrameInfoDlg::DoDataExchange(CDataExchange* pDX)
 BOOL CRCFrameInfoDlg::OnInitDialog()
 {
 	CDHtmlDialog::OnInitDialog();
-	return TRUE;  // Æ÷Ä¿½º¸¦ ÄÁÆ®·Ñ¿¡ ¼³Á¤ÇÏÁö ¾ÊÀ¸¸é TRUE¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
+	return TRUE;  // í¬ì»¤ìŠ¤ë¥¼ ì»¨íŠ¸ë¡¤ì— ì„¤ì •í•˜ì§€ ì•Šìœ¼ë©´ TRUEë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 }
 
 BEGIN_MESSAGE_MAP(CRCFrameInfoDlg, CDHtmlDialog)
@@ -64,19 +64,19 @@ END_DHTML_EVENT_MAP()
 
 
 
-// CRCFrameInfoDlg ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CRCFrameInfoDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 HRESULT CRCFrameInfoDlg::OnButtonOK(IHTMLElement* /*pElement*/)
 {
 	g_bframeinfo_dlg = !g_bframeinfo_dlg;
 	OnOK();
-	return S_OK;  // Æ÷Ä¿½º¸¦ ÄÁÆ®·Ñ¿¡ ¼³Á¤ÇÏÁö ¾ÊÀ¸¸é TRUE¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
+	return S_OK;  // í¬ì»¤ìŠ¤ë¥¼ ì»¨íŠ¸ë¡¤ì— ì„¤ì •í•˜ì§€ ì•Šìœ¼ë©´ TRUEë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 }
 
 HRESULT CRCFrameInfoDlg::OnButtonCancel(IHTMLElement* /*pElement*/)
 {
 	OnCancel();
-	return S_OK;  // Æ÷Ä¿½º¸¦ ÄÁÆ®·Ñ¿¡ ¼³Á¤ÇÏÁö ¾ÊÀ¸¸é TRUE¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
+	return S_OK;  // í¬ì»¤ìŠ¤ë¥¼ ì»¨íŠ¸ë¡¤ì— ì„¤ì •í•˜ì§€ ì•Šìœ¼ë©´ TRUEë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 }
 
 void CRCFrameInfoDlg::ClearListBox()
@@ -98,7 +98,7 @@ void CRCFrameInfoDlg::Begin()
 
 	if(pVMesh) {
 /*
-		// ¿ø·¡ÄÚµå ¿¡´Ï¸ÞÀÌ¼Ç Á¤º¸
+		// ì›ëž˜ì½”ë“œ ì—ë‹ˆë©”ì´ì…˜ ì •ë³´
 		AniFrameInfo* pInfo = pVMesh->GetFrameInfo(ani_mode_lower);
 
 		if(pInfo) {

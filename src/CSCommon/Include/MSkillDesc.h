@@ -12,15 +12,15 @@ using namespace std;
 #define FILENAME_SKILL_DESC		"skill.xml"
 
 
-/// ½ºÅ³
-/// enumÀ» Á¦¿ÜÇÏ°í´Â ±âÈ¹¼­¿¡ ÀÖ´Â ±×´ë·Î Å¸ÀÔÀ» Àû¿ë. ½ÇÁ¦ ±â¼ú ÀÔ·Â¿¡ µû¶ó ¼öÁ¤ ÇÊ¿ä.
+/// ìŠ¤í‚¬
+/// enumì„ ì œì™¸í•˜ê³ ëŠ” ê¸°íšì„œì— ìˆëŠ” ê·¸ëŒ€ë¡œ íƒ€ì…ì„ ì ìš©. ì‹¤ì œ ê¸°ìˆ  ì…ë ¥ì— ë”°ë¼ ìˆ˜ì • í•„ìš”.
 class MSkillDesc{
 public:
-	// ½Äº°
+	// ì‹ë³„
 	int				nID;
 	char			Name[32];
 
-	// ºĞ·ù
+	// ë¶„ë¥˜
 	MSkillType			SkillType;
 	MSkillFomulaType	SkillFomulaType;
 	MPrimaSkill			PrimaSkill;
@@ -31,25 +31,25 @@ public:
 	unsigned int	OverwriteFlag1;
 	unsigned int	OverwriteFlag2;
 
-	// ºñ¿ë
+	// ë¹„ìš©
 	short int		nHP;
 	short int		nEN;
 
-	// ½Ã°£
+	// ì‹œê°„
 	short int		nActivationTime;
 	short int		nReactivationTime;
 	short int		nDuration;
 
-	// ´ë»ó
+	// ëŒ€ìƒ
 	MTargetType		TargetType;
 	MSpecies		Species;
 
-	// °Å¸®
+	// ê±°ë¦¬
 	unsigned char	nRangeMin;
 	unsigned char	nRangeMax;
 	unsigned char	nRadius;
 
-	// Á¶°Ç
+	// ì¡°ê±´
 	MCharacterClass	Class;
 	unsigned char	nLevel;
 	MWeaponType		WeaponType;
@@ -57,16 +57,16 @@ public:
 	unsigned short	PrerequisiteType;
 	int				nPrerequisiteID;
 
-	// Àû´ë°¨
+	// ì ëŒ€ê°
 	int				nHateValue;
 
 	unsigned int	MODFlags;
 
-	// °Ç°­ ¼öÁ¤Ä¡
+	// ê±´ê°• ìˆ˜ì •ì¹˜
 	unsigned short	MOD_HP;
 	unsigned short	MOD_EN;
 
-	// Æ¯¼ºÄ¡ ¼öÁ¤
+	// íŠ¹ì„±ì¹˜ ìˆ˜ì •
 	unsigned short	MOD_STR;
 	unsigned short	MOD_CON;
 	unsigned short	MOD_DEX;
@@ -74,7 +74,7 @@ public:
 	unsigned short	MOD_INT;
 	unsigned short	MOD_CHA;
 
-	// ÀúÇ×·Â ¼öÁ¤Ä¡
+	// ì €í•­ë ¥ ìˆ˜ì •ì¹˜
 	unsigned short	MOD_MR;
 	unsigned short	MOD_FR;
 	unsigned short	MOD_CR;
@@ -83,7 +83,7 @@ public:
 	unsigned char	nResist;
 	unsigned char	nResistAdjust;
 
-	// ¹æ¾î·Â ¼öÁ¤Ä¡
+	// ë°©ì–´ë ¥ ìˆ˜ì •ì¹˜
 	unsigned short	MOD_AC;
 	unsigned short	MOD_ABS;
 	unsigned short	MOD_MFlee;
@@ -92,7 +92,7 @@ public:
 	unsigned short	MOD_HPRegen;
 	unsigned short	MOD_ENRegen;
 
-	// °ø°İ·Â ¼öÁ¤Ä¡
+	// ê³µê²©ë ¥ ìˆ˜ì •ì¹˜
 	unsigned short	MOD_PriATK;
 	unsigned short	MOD_SecATK;
 	unsigned short	MOD_Aspd;
@@ -103,21 +103,21 @@ public:
 	unsigned short	MOD_RAccu;
 	float			MOD_DamageAmp;
 
-	// ÀÏ¹İ ¼öÁ¤Ä¡
+	// ì¼ë°˜ ìˆ˜ì •ì¹˜
 	unsigned short	MOD_DSight;
 	unsigned short	MOD_NSight;
 	unsigned short	MOD_Spd;
 
-	// »óÅÂ ¼öÁ¤Ä¡
+	// ìƒíƒœ ìˆ˜ì •ì¹˜
 	unsigned short	MOD_Mode;
 	unsigned short	MOD_State;
 	unsigned short	MOD_Ability;
 
-	// ¿­¼è ¼öÁ¤Ä¡
+	// ì—´ì‡  ìˆ˜ì •ì¹˜
 	unsigned short	MOD_KeyFlag;
 	unsigned short	MOD_KeySkill;
 
-	// ÇÁ¸®¸¶ ½ºÅ³ ¼öÁ¤Ä¡
+	// í”„ë¦¬ë§ˆ ìŠ¤í‚¬ ìˆ˜ì •ì¹˜
 	unsigned short	MOD_OCS;
 	unsigned short	MOD_DCS;
 	unsigned short	MOD_RCS;
@@ -128,7 +128,7 @@ public:
 	unsigned short	MOD_MCS;
 	unsigned short	MOD_SCS;
 
-	// ºñÁê¾ó
+	// ë¹„ì¥¬ì–¼
 	unsigned short	nIcon;
 	unsigned short	nActivationAni;
 	unsigned short	nUseAni;

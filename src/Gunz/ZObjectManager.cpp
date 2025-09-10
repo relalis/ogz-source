@@ -87,7 +87,7 @@ bool ZObjectManager::DrawObject(ZObject* pObject)
 }
 
 /////////////////////////////////////////////////////////////
-// ©║╥╞ ев╫╨ф╝©К..
+// Л≈░К÷╛ М┘▄Л┼╓М┼╦Л ╘..
 
 char g_upper_string[20][20] =
 {

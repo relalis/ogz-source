@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <memory.h>
 #include <stdio.h>
-#include <windows.h>		// bitmap ÀúÀå Æã¼Ç ¶§¹®.
+#include <windows.h>		// bitmap ì €ì¥ í‘ì…˜ ë•Œë¬¸.
 #include "rtexture.h"
 #include "Dib.h"
 #include "Image24.h"

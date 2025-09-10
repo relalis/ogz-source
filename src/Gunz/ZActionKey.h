@@ -11,7 +11,7 @@ typedef set<int> ActionKeyForbidSet;
 class ZActionKeyLook;
 
 /// ActionKey widget
-// ¾²ÀÌ´Â ¸ğµç key °ªÀº ZVIRTUALKEY °ªÀÌ³ª, header include ÇÏ±â ½È¾î¼­ °Á int ·Î ¾¸
+// ì“°ì´ëŠ” ëª¨ë“  key ê°’ì€ ZVIRTUALKEY ê°’ì´ë‚˜, header include í•˜ê¸° ì‹«ì–´ì„œ ê± int ë¡œ ì”€
 class ZActionKey : public MEdit{
 	friend ZActionKeyLook;
 protected:
@@ -21,7 +21,7 @@ protected:
 protected:
 	bool				m_bReadyInput;
 	int					m_nKey;
-	int					m_nAltKey;	// ÇÑ ¾×¼Ç¿¡ 2°³ÀÇ Å°¸¦ ¸ÊÇÎÇÒ¼ö ÀÖ´Ù
+	int					m_nAltKey;	// í•œ ì•¡ì…˜ì— 2ê°œì˜ í‚¤ë¥¼ ë§µí•‘í• ìˆ˜ ìˆë‹¤
 
 public:
 
@@ -51,7 +51,7 @@ public:
 	void SetActionKey(int nKey);
 	bool DeleteActionKey(int nKey);
 
-	void UpdateText();	// text ³»¿ëÀ» °»½ÅÇÑ´Ù
+	void UpdateText();	// text ë‚´ìš©ì„ ê°±ì‹ í•œë‹¤
 
 	//bool RegisterActionKey(int nActionID);
 	//bool UnregisterActionKey(void);

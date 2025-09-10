@@ -17,8 +17,8 @@ protected:
 	MBitmap*				m_pBackBitmap;
 	MMatchCharItemParts		m_nParts;
 
-	bool					m_bSelectBox;			// ¼¿·ºÆ® ¹Ú½º Ãâ·Â ¿©ºÎ
-	bool					m_bDragAndDrop;			// µå·¡±× ¾Ø µå·Ó °¡´É ¿©ºÎ
+	bool					m_bSelectBox;			// ì…€ë ‰íŠ¸ ë°•ìŠ¤ ì¶œë ¥ ì—¬ë¶€
+	bool					m_bDragAndDrop;			// ë“œëž˜ê·¸ ì•¤ ë“œë¡­ ê°€ëŠ¥ ì—¬ë¶€
 	bool					m_bKindable;
 
 	virtual void OnDraw(MDrawContext* pDC);

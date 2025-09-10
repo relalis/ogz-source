@@ -121,7 +121,7 @@ void ZWeaponMgr::AddRocket(const rvector &pos, const rvector &dir,ZObject* pC)
 {
 	ZWeaponRocket* pWeapon = new ZWeaponRocket;
 
-	// ¸ðµ¨ ÀÌ¸§Àº ½ºÅ³ Á¤º¸¿¡¼­ ¾ò°í..
+	// ëª¨ë¸ ì´ë¦„ì€ ìŠ¤í‚¬ ì •ë³´ì—ì„œ ì–»ê³ ..
 
 	RMesh* pMesh = ZGetWeaponMeshMgr()->Get("rocket");
 
@@ -154,7 +154,7 @@ void ZWeaponMgr::Update()
 {
 	float fTime=g_pGame->GetTime();
 
-	if(	m_fLastTime==0 )	// ÃÊ±âÈ­ ¾ÈµÇ¾úÀ½.
+	if(	m_fLastTime==0 )	// ì´ˆê¸°í™” ì•ˆë˜ì—ˆìŒ.
 		m_fLastTime=fTime;
 
 	float fElapsedTime=fTime-m_fLastTime;
@@ -229,7 +229,7 @@ ZMovingWeapon* ZWeaponMgr::UpdateWorldItem(int nItemID, const rvector& pos)
 				if( SamePoint(pMWeapon->m_Position,pos) ) {
 					return pMWeapon;
 				}
-				// °¡Àå °¡±î¿î ¾ÆÀÌÅÛÀÌ ÀÚ½ÅÀÇ°Í..³ªÁß¿¡ ¼­¹ö ÆÐÄ¡½Ã.. ID µîÀ» Áà¼­ ½Äº°..
+				// ê°€ìž¥ ê°€ê¹Œìš´ ì•„ì´í…œì´ ìžì‹ ì˜ê²ƒ..ë‚˜ì¤‘ì— ì„œë²„ íŒ¨ì¹˜ì‹œ.. ID ë“±ì„ ì¤˜ì„œ ì‹ë³„..
 */				
 				float fLen = Magnitude(pMWeapon->m_Position - pos);
 				

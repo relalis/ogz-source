@@ -31,7 +31,7 @@ public :
 //	FILE* fp = fopen("c:\\output.txt", "wt");
 //
 //	CCSVReader Parser;
-//	Parser.Load("c:\\±ÝÄ¢¾î.csv");
+//	Parser.Load("c:\\ê¸ˆì¹™ì–´.csv");
 //
 //	const int LEN = 256;
 //	char text[LEN] = "";

@@ -14,8 +14,8 @@ class RealSoundEffectSource;
 typedef map<string, RealSoundEffectPlay*>		SNDBufList;
 typedef SNDBufList::iterator								SNDB_Iter;
 
-/// ¼Ò¸®¸¦ ³»´Â µ¶¸³ÀûÀÎ °´Ã¼¸¦ À§ÇÑ »ç¿îµå ÇÃ·¹ÀÌ¾î
-/// ¼Ò¸®ÀÇ À§Ä¡¸¦ ÀÏ°ıÀûÀ¸·Î ¹Ù²Ü ¼ö ÀÖ´Ù.
+/// ì†Œë¦¬ë¥¼ ë‚´ëŠ” ë…ë¦½ì ì¸ ê°ì²´ë¥¼ ìœ„í•œ ì‚¬ìš´ë“œ í”Œë ˆì´ì–´
+/// ì†Œë¦¬ì˜ ìœ„ì¹˜ë¥¼ ì¼ê´„ì ìœ¼ë¡œ ë°”ê¿€ ìˆ˜ ìˆë‹¤.
 class RealSoundEffectPlayer
 {
 protected:

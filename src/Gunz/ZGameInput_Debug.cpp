@@ -109,7 +109,7 @@ bool ZGameInput::OnDebugEvent(MEvent* pEvent)
 					if (ZApplication::GetInstance()->GetLaunchMode()==ZApplication::ZLAUNCH_MODE_STANDALONE_GAME)
 					{
 
-						// È¥ÀÚÅ×½ºÆ®ÇÒ¶§ µÇ»ì¾Æ³ª±â
+						// í˜¼ìí…ŒìŠ¤íŠ¸í• ë•Œ ë˜ì‚´ì•„ë‚˜ê¸°
 						if (g_pGame->GetMatch()->IsTeamPlay())
 						{
 							ZCharacter* pCharacter = g_pGame->m_pMyCharacter;
@@ -160,9 +160,9 @@ bool ZGameInput::OnDebugEvent(MEvent* pEvent)
 						//g_pGame->m_pMyCharacter->m_bGuardTest=!g_pGame->m_pMyCharacter->m_bGuardTest;
 					   }break;
 
-				// Å×½ºÆ®¿ë..
+				// í…ŒìŠ¤íŠ¸ìš©..
 			case 'I' : g_pGame->m_pMyCharacter->AddIcon(rand()%5); return true;
-				// Å×½ºÆ®^^
+				// í…ŒìŠ¤íŠ¸^^
 
 			case 'F' : 
 				{
@@ -247,7 +247,7 @@ bool ZGameInput::OnDebugEvent(MEvent* pEvent)
 					if (ZApplication::GetInstance()->GetLaunchMode()==ZApplication::ZLAUNCH_MODE_STANDALONE_AI)
 					{
 						ZGetObjectManager()->ClearNPC();
-						// npc »ı¼º test
+						// npc ìƒì„± test
 						MUID uidNPC = MUID(0,0);
 						uidNPC.High = rand() % RAND_MAX;
 						uidNPC.Low = rand() % RAND_MAX;
@@ -278,7 +278,7 @@ bool ZGameInput::OnDebugEvent(MEvent* pEvent)
 								color.b = pNPCInfo->vColor.z;
 								color.a = 1.f;
 
-								pNewActor->m_pVMesh->SetNPCBlendColor(color);//»öÀ» ÁöÁ¤ÇÑ °æ¿ì..
+								pNewActor->m_pVMesh->SetNPCBlendColor(color);//ìƒ‰ì„ ì§€ì •í•œ ê²½ìš°..
 							}
 
 							ZGetObjectManager()->Add(pNewActor);
@@ -289,7 +289,7 @@ bool ZGameInput::OnDebugEvent(MEvent* pEvent)
 				return true;
 			case VK_F1: 
 
-				//	µµ¿ò¸»À» º¸¿©ÁØ´Ù.Å×½ºÆ®ÈÄ Á¦°Å..
+				//	ë„ì›€ë§ì„ ë³´ì—¬ì¤€ë‹¤.í…ŒìŠ¤íŠ¸í›„ ì œê±°..
 				//---------------------------------------------------------
 /*
 				if( g_pGame )

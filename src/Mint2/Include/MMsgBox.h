@@ -12,7 +12,7 @@ enum MMsgBoxType{
 	MT_OKCANCEL,
 	MT_YESNO,
 
-	MT_NOTDECIDED,	// ¹Ì¸® ¸¸µé¾î³õÁö ¾Ê±â À§ÇØ
+	MT_NOTDECIDED,	// ë¯¸ë¦¬ ë§Œë“¤ì–´ë†“ì§€ ì•Šê¸° ìœ„í•´
 };
 
 class MMsgBox : public MFrame{
@@ -50,7 +50,7 @@ public:
 	virtual const char* GetClassName(void){ return MINT_MSGBOX; }
 };
 
-// Listener¿¡°Ô Àü´ŞµÇ´Â ¸Ş¼¼Áö
+// Listenerì—ê²Œ ì „ë‹¬ë˜ëŠ” ë©”ì„¸ì§€
 #define MMSGBOX_OK		"OK"
 #define MMSGBOX_CANCEL	"Cancel"
 #define MMSGBOX_YES		"Yes"

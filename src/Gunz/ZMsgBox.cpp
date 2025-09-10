@@ -20,7 +20,7 @@ public:
 		if(MWidget::IsMsg(szMessage, MMSGBOX_OK)==true){
 			const char* pText = pWidget->GetText();
 
-			// ÀÎ¿øÀÌ ²ËÂ÷ Á¾·á
+			// ì¸ì›ì´ ê½‰ì°¨ ì¢…ë£Œ
 //			if(!_stricmp(pText, MGetErrorString(MERR_CLIENT_FULL_PLAYERS)))
 			if(!_stricmp(pText, ZErrStr(MERR_CLIENT_FULL_PLAYERS)))
 			{
@@ -45,7 +45,7 @@ MListener* ZGetMsgBoxListener(void)
 	return &g_MsgBoxListener;
 }
 
-// ZConfirmMsgBox Listener : Default Listener ÀÏ»Ó. ¹°¾îº¼¶§¸¶´Ù CustomListener ÁöÁ¤ÇØ¼­ ¾µ°Í
+// ZConfirmMsgBox Listener : Default Listener ì¼ë¿. ë¬¼ì–´ë³¼ë•Œë§ˆë‹¤ CustomListener ì§€ì •í•´ì„œ ì“¸ê²ƒ
 class ZConfirmMsgBoxListener : public MListener{
 public:
 	virtual bool OnCommand(MWidget* pWidget, const char* szMessage){

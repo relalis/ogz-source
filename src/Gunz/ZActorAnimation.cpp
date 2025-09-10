@@ -204,7 +204,7 @@ void ZActorAnimation::Init(ZActor* pBody)
 
 	InitAnimationStates();
 
-	// ±âº» ¿¡´Ï¸ŞÀÌ¼Ç ¼³Á¤
+	// ê¸°ë³¸ ì—ë‹ˆë©”ì´ì…˜ ì„¤ì •
 	m_AniFSM.SetState(ZA_ANIM_IDLE);
 }
 

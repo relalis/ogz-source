@@ -29,8 +29,8 @@ public:
 
 	void OptimizationVideoOption();
 
-	// ¸®»çÀÌÁî °ü·Ã
-	void Resize(int w, int h);		/// ¸®»çÀÌÁî¸¦ ÅëÇØ ÇØ»óµµ¿¡ ÀûÀÀÇÏ´Â ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÑ´Ù.
+	// ë¦¬ì‚¬ì´ì¦ˆ ê´€ë ¨
+	void Resize(int w, int h);		/// ë¦¬ì‚¬ì´ì¦ˆë¥¼ í†µí•´ í•´ìƒë„ì— ì ì‘í•˜ëŠ” ì¸í„°í˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•œë‹¤.
 	bool ResizeWidgetRecursive( MWidget* pWidget, int w, int h);
 	bool ResizeWidget(const char* szName, int w, int h);
 
@@ -40,19 +40,19 @@ public:
 	void GetOldScreenResolution();
 	bool SetTimer( bool b = false,  float time = 0.0f );
 
-	// ³×Æ®¿öÅ© Æ÷Æ®º¯°æ
+	// ë„¤íŠ¸ì›Œí¬ í¬íŠ¸ë³€ê²½
 	void ShowNetworkPortConfirmDialog();
 	bool IsDiffNetworkPort();
 
-	// ¾×¼ÇÅ° Áßº¹ È®ÀÎ
+	// ì•¡ì…˜í‚¤ ì¤‘ë³µ í™•ì¸
 	void OnActionKeySet(class ZActionKey* pActionKey, int key);
 };
 
 
 
-///////////////////// ÀÌÇÏ interface listener
+///////////////////// ì´í•˜ interface listener
 
-// ¿É¼Ç
+// ì˜µì…˜
 DECLARE_LISTENER(ZGetOptionGammaSliderChangeListener)
 DECLARE_LISTENER(ZGetLoadDefaultKeySettingListener)
 DECLARE_LISTENER(ZSetOptimizationListener)

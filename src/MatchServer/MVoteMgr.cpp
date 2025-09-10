@@ -82,7 +82,7 @@ bool MVoteMgr::CheckDiscuss()
 //	sprintf_safe(szLog, "VOTERESULT: Y(%f), N(%f)", (float)nYesCount, (float)m_VoterMap.size() * 0.5f);
 //	MMatchServer::GetInstance()->LOG(MMatchServer::LOG_PROG, szLog);
 
-	if ( (float)nYesCount > (float)m_VoterMap.size() * 0.66f )	// 2/3ÀÌ»ó Âù¼ºÇÏ¸é.
+	if ( (float)nYesCount > (float)m_VoterMap.size() * 0.66f )	// 2/3ì´ìƒ ì°¬ì„±í•˜ë©´.
 		return true;
 	else
 		return false;
@@ -179,14 +179,14 @@ void MVoteMgr::Tick(u64 nClock)
 		FinishDiscuss(true);
 		return;
 	} else {
-		// ÅõÇ¥°¡´ÉÀÚ°¡ ¾øÀ¸¸é ÅõÇ¥ ºÎ°á·Î Á¾·á
+		// íˆ¬í‘œê°€ëŠ¥ìê°€ ì—†ìœ¼ë©´ íˆ¬í‘œ ë¶€ê²°ë¡œ ì¢…ë£Œ
 		if (m_VoterMap.size() <= GetDiscuss()->GetYesVoterCount() + GetDiscuss()->GetNoVoterCount()) {
 			FinishDiscuss(false);
 			return;
 		}
 	}
 
-	if (nClock - GetDiscuss()->GetBeginTime() > 60000) {	// 1ºĞµ¿¾È ¹Ì°áÁ¤ÀÌ¸é Á¾·á
+	if (nClock - GetDiscuss()->GetBeginTime() > 60000) {	// 1ë¶„ë™ì•ˆ ë¯¸ê²°ì •ì´ë©´ ì¢…ë£Œ
 		FinishDiscuss(false);
 		return;
 	}

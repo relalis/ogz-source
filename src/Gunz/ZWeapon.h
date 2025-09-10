@@ -11,7 +11,7 @@ _USING_NAMESPACE_REALSPACE2
 
 class ZObject;
 
-// rtti ±îÁö´Â ÇÊ¿ä¾ø°í..´Ü¼øÈ÷ ±¸ºĞÇÒ°Íµé
+// rtti ê¹Œì§€ëŠ” í•„ìš”ì—†ê³ ..ë‹¨ìˆœíˆ êµ¬ë¶„í• ê²ƒë“¤
 
 enum ZWeaponType {
 	ZWeaponType_None = 0,
@@ -46,7 +46,7 @@ protected:
 	MUID		m_uidOwner;
 	MMatchTeam	m_nTeamID;
 	float		m_fDamage;
-	int			m_SLSid; // ½ºÅÙ½Ç ¶óÀÌÆ® ¾ÆÀÌµğ
+	int			m_SLSid; // ìŠ¤í…ì‹¤ ë¼ì´íŠ¸ ì•„ì´ë””
 	int			m_nItemUID;
 };
 

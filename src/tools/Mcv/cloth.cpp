@@ -4,13 +4,13 @@
 // 
 // MAGICBELL
 //
-// OPTI : ÆÄÆ¼Å¬ °£ÀÇ °Å¸® °è»ê¿¡¼­ Length¸¦ ÀÌ¿ëÇÏ´Â °Íº¸´Ù Length Square¸¦ ÀÌ¿ëÇÏ´Â °ÍÀÌ ´õ ºü¸¦ °ÍÀÓ
+// OPTI : íŒŒí‹°í´ ê°„ì˜ ê±°ë¦¬ ê³„ì‚°ì—ì„œ Lengthë¥¼ ì´ìš©í•˜ëŠ” ê²ƒë³´ë‹¤ Length Squareë¥¼ ì´ìš©í•˜ëŠ” ê²ƒì´ ë” ë¹ ë¥¼ ê²ƒì„
 //
 //////////////////////////////////////////////////////////////////////////
 
 // INCLUDE
 #include "stdafx.h"
-#include "mdebug.h"
+#include "MDebug.h"
 #include "RealSpace2.h"
 #include "RMeshUtil.h"
 //#include "RMesh.h"
@@ -26,7 +26,7 @@
 bool collision = true;
 
 
-// »ı¼ºÀÚ/¼Ò¸éÀÚ
+// ìƒì„±ì/ì†Œë©´ì
 CCloth::CCloth()
 :mX(0), mOldX(0), mForce(0), mConst(0), mfTimeStep(0), mpMesh(0), mHolds(0)
 {
@@ -55,7 +55,7 @@ CCloth::~CCloth()
 
 
 // XXX
-// Test Code - »èÁ¦ ¹× ¼öÁ¤¿ä±¸ »çÇ×
+// Test Code - ì‚­ì œ ë° ìˆ˜ì •ìš”êµ¬ ì‚¬í•­
 void CCloth::setColth( RealSpace2::RMeshNode* mesh_ )
 {
 	int i;
@@ -131,7 +131,7 @@ void CCloth::init()
 	// set Number of Iteration
 	miNumIter = 3;
 
-	// ÀÏÁ¤ ³ôÀÌ ÀÌ»óÀÇ Á¡µéÀº ¸ğµÎ Á¤Áö!!
+	// ì¼ì • ë†’ì´ ì´ìƒì˜ ì ë“¤ì€ ëª¨ë‘ ì •ì§€!!
 	for( int i = 0 ; i < miNumParticles; ++i )
 	{
 		if( mX[i].y > -20 )
@@ -140,7 +140,7 @@ void CCloth::init()
 		}
 	}
 
-	// Á¤ÁöµÈ vertex°¡ ¾Æ´Ï¸é ÈûÀ» Àû¿ë½ÃÅ²´Ù...
+	// ì •ì§€ëœ vertexê°€ ì•„ë‹ˆë©´ í˜ì„ ì ìš©ì‹œí‚¨ë‹¤...
 	for( i = 0 ; i < miNumParticles; ++i )
 	{
 		if( !mHolds[i] )
@@ -262,7 +262,7 @@ void CCloth::satisfyConstraints()
 			*x1 += delta * 0.5 * diff;
 			*x2 -= delta * 0.5 * diff; 
 		}
-		// TODO : À§Ä¡ °íÁ¤
+		// TODO : ìœ„ì¹˜ ê³ ì •
 		
 		for( int k = 0 ; k < miNumParticles; ++k )
 		{
@@ -323,7 +323,7 @@ void CCloth::render()
 	dev->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
 	dev->SetTransform( D3DTS_WORLD, &identity );
 
-	int point_index;		// ÇöÀç ¹öÅØ½ºÀÇ ÀÎµ¦½º
+	int point_index;		// í˜„ì¬ ë²„í…ìŠ¤ì˜ ì¸ë±ìŠ¤
 
 	calcVertexNormal();
 

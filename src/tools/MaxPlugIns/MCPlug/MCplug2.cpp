@@ -235,7 +235,7 @@ BOOL MCplug2::SupportsOptions(int ext, DWORD options) {
 
 ///////////////////////////////////////////////////
 
-#define SCENE_EXPORT_SCALE_ANI (1<<1) // ¸Ê ¿ÀºêÁ§Æ®´Â ½ºÄÉÀÏ ¿¡´Ï¸ÞÀÌ¼Ç Áö¿ø µÇ´Â°É·Î Ãâ·Â..BspExporter ¿Í µ¿±âÈ­´Â ¸ÂÃçÁØ´Ù..
+#define SCENE_EXPORT_SCALE_ANI (1<<1) // ë§µ ì˜¤ë¸Œì íŠ¸ëŠ” ìŠ¤ì¼€ì¼ ì—ë‹ˆë©”ì´ì…˜ ì§€ì› ë˜ëŠ”ê±¸ë¡œ ì¶œë ¥..BspExporter ì™€ ë™ê¸°í™”ëŠ” ë§žì¶°ì¤€ë‹¤..
 
 int MCplug2::DoExport(const TCHAR *name,ExpInterface *ei,Interface *i, BOOL suppressPrompts, DWORD options) 
 {
@@ -243,7 +243,7 @@ int MCplug2::DoExport(const TCHAR *name,ExpInterface *ei,Interface *i, BOOL supp
 
 //	BOOL tm_ani = (options & SCENE_EXPORT_SCALE_ANI) ? TRUE : FALSE;
 
-	ip = i;// 3DMAX Á¤º¸ ÀÎÅÍÆäÀÌ½º...
+	ip = i;// 3DMAX ì •ë³´ ì¸í„°íŽ˜ì´ìŠ¤...
 
 	m_is_debug_bip_mesh_out = false;
 	m_is_debug_text_out		= false;
@@ -261,7 +261,7 @@ int MCplug2::DoExport(const TCHAR *name,ExpInterface *ei,Interface *i, BOOL supp
 		if (!DialogBoxParam(hInstance, MAKEINTRESOURCE(IDD_ELU_EXPORT),ip->GetMAXHWnd(), EluDlgProc, (LPARAM)this)) 
 			return 1;
 	}
-	else { // ¸Ê¿¡¼­ ºÒ¸®´Â °æ¿ì
+	else { // ë§µì—ì„œ ë¶ˆë¦¬ëŠ” ê²½ìš°
 		m_is_tm_ani_out		= true;
 		m_is_vertex_ani_out = false;
 		m_is_ani_out		= false;
@@ -274,14 +274,14 @@ int MCplug2::DoExport(const TCHAR *name,ExpInterface *ei,Interface *i, BOOL supp
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
 
-	// options ¿¡¼­ Á¤º¸¹Þ¾Æ ¼±ÅÃµÈ object ¸¸ Ãâ·ÂÇÏ´Â..ÄÚµå.. Ãß°¡..
+	// options ì—ì„œ ì •ë³´ë°›ì•„ ì„ íƒëœ object ë§Œ ì¶œë ¥í•˜ëŠ”..ì½”ë“œ.. ì¶”ê°€..
 	
 	ip->ProgressStart( GetString(IDS_PROGRESS_MSG), TRUE, fn, NULL );
 
 	nTotalNodeCount = 0;
 	nCurNode = 0;
 
-	get_mtrl_list(ip->GetRootNode(), nTotalNodeCount); // mtrl list ¸¦ Ã¤¿î´Ù.
+	get_mtrl_list(ip->GetRootNode(), nTotalNodeCount); // mtrl list ë¥¼ ì±„ìš´ë‹¤.
 	
 	export_info();
 	export_mtrl_list();
@@ -321,7 +321,7 @@ int MCplug2::DoExport(const TCHAR *name,ExpInterface *ei,Interface *i, BOOL supp
 	strcpy(file_etc, filename);
 	strcat(file_etc,".elm");
 
-	// ºó mtrl À» Á¦°ÅÇÑ´Ù..
+	// ë¹ˆ mtrl ì„ ì œê±°í•œë‹¤..
 
 	m_mesh_list.ClearVoidMtrl();
 
@@ -392,7 +392,7 @@ BOOL MCplug2::export_all_object(INode* node)
 
 void MCplug2::export_info()
 {
-//	frame Àº 0ºÎÅÍ ½ÃÀÛÇØ¾ß ÇÑ´Ù.
+//	frame ì€ 0ë¶€í„° ì‹œìž‘í•´ì•¼ í•œë‹¤.
 
 	Interval range = ip->GetAnimRange();
 

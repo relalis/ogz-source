@@ -81,7 +81,7 @@ bool RAnimationFile::LoadAni(const char* filename)
 	m_ani_node_cnt = t_hd.model_num;
 
 	if( m_ani_node_cnt == 0 ) {
-		mlog("Å°°¡ ¾ø´Â %s ¿¡´Ï¸ŞÀÌ¼Ç »ç¿ë\n",filename);
+		mlog("í‚¤ê°€ ì—†ëŠ” %s ì—ë‹ˆë©”ì´ì…˜ ì‚¬ìš©\n",filename);
 		mzf.Close();
 		return false;
 	}

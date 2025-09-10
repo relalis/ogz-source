@@ -11,8 +11,8 @@ public:
 
 	MScalableLook() { m_bScale = false; m_nBasicWidth = DEFAULT_BASIC_WIDTH; }
 
-	bool		m_bScale;		// ÇØ»óµµ¿¡ µû¶ó (ÇÁ·¹ÀÓÀ») ½ºÄÉÀÏÇÑ´Ù
-	int			m_nBasicWidth;	// ±âÁØ ÇØ»óµµ Width
+	bool		m_bScale;		// í•´ìƒë„ì— ë”°ë¼ (í”„ë ˆì„ì„) ìŠ¤ì¼€ì¼í•œë‹¤
+	int			m_nBasicWidth;	// ê¸°ì¤€ í•´ìƒë„ Width
 
 	void SetScaleEnable(bool b) {
 		m_bScale = b;
@@ -23,7 +23,7 @@ public:
 	}
 
 
-	// ±âÁØ ÇØ»óµµ¿¡ ´ëÇÑ ÇöÀçÇØ»óµµÀÇ ºñÀ²
+	// ê¸°ì¤€ í•´ìƒë„ì— ëŒ€í•œ í˜„ì¬í•´ìƒë„ì˜ ë¹„ìœ¨
 	float GetScale() { 
 		return m_bScale ? 
 			(float)MGetWorkspaceWidth()/(float)m_nBasicWidth : 

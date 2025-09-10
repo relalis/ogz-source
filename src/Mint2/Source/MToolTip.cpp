@@ -23,7 +23,7 @@ void MToolTip::OnDraw(MDrawContext* pDC)
 	if(m_bUseParentName==true) szName = GetParent()->m_szName;
 	else szName = m_szName;
 	pDC->TextWithHighlight(r, szName, (MAM_HCENTER|MAM_VCENTER));
-	// ¶óÀÎ¼ö ¸¸Å­ ´Ã·Á ÁÖ±â..
+	// ë¼ì¸ìˆ˜ ë§Œí¼ ëŠ˜ë ¤ ì£¼ê¸°..
 	//pDC->TextWithHighlight(r.x+TOOLTIP_WIDTH_GAP/2+1, r.y+TOOLTIP_HEIGHT_GAP/2, szName);
 }
 

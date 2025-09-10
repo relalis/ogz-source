@@ -10,6 +10,6 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-// ¿©±â´Ù include
+// ì—¬ê¸°ë‹¤ include
 
 #endif

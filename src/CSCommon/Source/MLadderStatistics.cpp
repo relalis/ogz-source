@@ -61,7 +61,7 @@ void MLadderStatistics::Save()
 }
 
 
-#define MTIME_LADDER_STAT_SAVE_TICK		3600000			// (1000 * 60 * 60)	1½Ã°£
+#define MTIME_LADDER_STAT_SAVE_TICK		3600000			// (1000 * 60 * 60)	1ì‹œê°„
 
 
 void MLadderStatistics::Tick(u64 nTick)

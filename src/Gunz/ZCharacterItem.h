@@ -10,7 +10,7 @@ using namespace std;
 
 struct BulletInfo;
 
-/// Ä³¸¯ÅÍ°¡ ÀåºñÇÏ°í ÀÖ´Â ¾ÆÀÌÅÛµé
+/// ìºë¦­í„°ê°€ ì¥ë¹„í•˜ê³  ìˆëŠ” ì•„ì´í…œë“¤
 class ZCharacterItem
 {
 private:

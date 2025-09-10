@@ -17,7 +17,7 @@
 void OutputDebugString(const char* p){ mlog("%s", p); }
 #endif
 
-//	Modified by Leejangho ( 98-01-10 5:30:04 ¿ÀÀü )
+//	Modified by Leejangho ( 98-01-10 5:30:04 ì˜¤ì „ )
 //		u8* MemoryMappedFile::Open( char *lpszFileName )
 u8* MemoryMappedFile::Open( const char *lpszFileName, bool bReadOnly )
 //	Modified by ...
@@ -25,7 +25,7 @@ u8* MemoryMappedFile::Open( const char *lpszFileName, bool bReadOnly )
 	Close();
 
 #ifdef _MSC_VER
-	// Modified by Leejangho ( 98-01-30 5:58:49 ¿ÀÈÄ )
+	// Modified by Leejangho ( 98-01-30 5:58:49 ì˜¤í›„ )
 	//		m_fileHandle=CreateFile(lpszFileName,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_FLAG_RANDOM_ACCESS,NULL);
 	if(bReadOnly==TRUE)
 		m_fileHandle=CreateFileA(lpszFileName,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_FLAG_RANDOM_ACCESS,NULL);
@@ -47,7 +47,7 @@ u8* MemoryMappedFile::Open( const char *lpszFileName, bool bReadOnly )
 		return NULL;
 	}
 
-	//	Modified by Leejangho ( 98-01-10 5:30:54 ¿ÀÀü )
+	//	Modified by Leejangho ( 98-01-10 5:30:54 ì˜¤ì „ )
 	//		Support Read&Write
 	/*
 	m_mapHandle=CreateFileMapping(m_fileHandle,NULL,PAGE_READONLY,0,0,NULL);

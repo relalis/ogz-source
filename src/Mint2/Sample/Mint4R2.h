@@ -5,7 +5,7 @@
 #include "RFont.h"
 #include <D3dx8.h>
 
-#define MINT_R2_CLASS_TYPE	0x1130		// RTTI¿Í °°Àº ±â´ÉÀ» _DEBUG¸ğµå¿¡¼­ ±¸ÇöÇÏ±â À§ÇÑ ID
+#define MINT_R2_CLASS_TYPE	0x1130		// RTTIì™€ ê°™ì€ ê¸°ëŠ¥ì„ _DEBUGëª¨ë“œì—ì„œ êµ¬í˜„í•˜ê¸° ìœ„í•œ ID
 
 class MDrawContextR2 : public MDrawContext{
 protected:
@@ -33,7 +33,7 @@ public:
 };
 
 
-// Lost ¹®Á¦ ÇØ°áÇØ¾ß ÇÔ
+// Lost ë¬¸ì œ í•´ê²°í•´ì•¼ í•¨
 class MBitmapR2 : public MBitmap{
 public:
 	LPDIRECT3DDEVICE8		m_pd3dDevice;		// Local Copy

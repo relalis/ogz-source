@@ -54,7 +54,7 @@ public:
 	}
 
 	// open memory mapped file.
-	//	Modified by Leejangho ( 98-01-10 5:30:04 ¿ÀÀü )
+	//	Modified by Leejangho ( 98-01-10 5:30:04 ì˜¤ì „ )
 	//		u8* Open( char *lpszFileName )
 	u8* Open(const char *lpszFileName, bool bReadOnly = true);
 	//	Modified by ...
@@ -127,8 +127,8 @@ public:
 	+-------------+
 	|   DATAINFO  |
 	+-------------+
-	|   DATAINFO  | DATAINFO´Â Header¿¡¼­
-	+-------------+ ¸í½ÃÇÑ °¹¼ö ¸¸Å­ÀÌ ³õ¿©Áø´Ù.
+	|   DATAINFO  | DATAINFOëŠ” Headerì—ì„œ
+	+-------------+ ëª…ì‹œí•œ ê°¯ìˆ˜ ë§Œí¼ì´ ë†“ì—¬ì§„ë‹¤.
 	|    DATA     |
 	+-------------+
 	|    DATA     |
@@ -140,7 +140,7 @@ typedef struct _tagPakHeader {
 	char			szID[4];	// PAK
 	long			nVerMajor;	// Major version is 1
 	long			nVerMinor;	// Minor version is 0
-	unsigned long	nCount;		// Æ÷ÇÔµÇ¾îÁø package È­ÀÏ °¹¼ö
+	unsigned long	nCount;		// í¬í•¨ë˜ì–´ì§„ package í™”ì¼ ê°¯ìˆ˜
 } PAKFILEHEADER, *LPPAKFILEHEADER;
 
 typedef struct {
@@ -233,7 +233,7 @@ typedef PakData PAKDATA, *LPPAKDATA;
 
 class Package {
 private:
-	unsigned long m_nFiles;		// Package³»¿¡ Æ÷ÇÔµÈ ÆÄÀÏÀÇ °¹¼ö
+	unsigned long m_nFiles;		// Packageë‚´ì— í¬í•¨ëœ íŒŒì¼ì˜ ê°¯ìˆ˜
 	MemoryMappedFile m_mmf;		// Memory mapped file object
 
 public:

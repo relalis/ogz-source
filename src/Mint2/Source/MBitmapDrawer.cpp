@@ -10,8 +10,8 @@ void HLineBitmap(MDrawContext* pDC, int x, int y, int w, MBitmap* pBm, bool bStr
 	if(pBm==NULL) return;
 	int bw = pBm->GetWidth();		// width
 	int bh = pBm->GetHeight();		// height
-	int dw = (int)(fScale * bw);	// scaleÀ» °¨¾ÈÇÑ width
-	int dh = (int)(fScale * bh);	// scaleÀ» °¨¾ÈÇÑ height
+	int dw = (int)(fScale * bw);	// scaleì„ ê°ì•ˆí•œ width
+	int dh = (int)(fScale * bh);	// scaleì„ ê°ì•ˆí•œ height
 
 	pDC->SetBitmap(pBm);
 
@@ -24,7 +24,7 @@ void HLineBitmap(MDrawContext* pDC, int x, int y, int w, MBitmap* pBm, bool bStr
 			pDC->Draw(x+i*dw, y, dw, dh);
 		}
 
-		// ³²´Â ºÎºĞ
+		// ë‚¨ëŠ” ë¶€ë¶„
 		int ws = w%dw;
 		if(ws>0){
 			pDC->Draw(x+c*dw, y, ws, dh, 0, 0, bw*ws/dw , bh);
@@ -50,7 +50,7 @@ void VLineBitmap(MDrawContext* pDC, int x, int y, int h, MBitmap* pBm, bool bStr
 			pDC->Draw(x, y+i*dh, dw, dh);
 		}
 
-		// ³²´Â ºÎºĞ
+		// ë‚¨ëŠ” ë¶€ë¶„
 		int hs = h%dh;
 		if(hs>0){
 			pDC->Draw(x, y+c*dh, dw, hs, 0, 0, bw, bh*hs/dh);
@@ -67,14 +67,14 @@ bool IsNull(MBitmap** ps, int nCount)
 	return false;
 }
 
-// ºñÆ®¸Ê 2ÀåÀ¸·Î µ¹·Á Âï´Â´Ù..Áö±İÀº ÅøÆÁ¿ëÀ¸·Î ¾´´Ù..
+// ë¹„íŠ¸ë§µ 2ì¥ìœ¼ë¡œ ëŒë ¤ ì°ëŠ”ë‹¤..ì§€ê¸ˆì€ íˆ´íŒìš©ìœ¼ë¡œ ì“´ë‹¤..
 
 void DrawBitmapFrame2(MDrawContext* pDC, MRECT& r, MRECT& cr, MBitmap* Bms[9])
 {
 	if(Bms[0]&&Bms[0]) {
 
-		//ÀÚ½ÅÀÇ ¿µ¿ªÀ» µÑ·¯½Î´Â ÀÌ¹ÌÁö¸¦ ±×·ÁÁØ´Ù..
-		// 9°÷ È¸ÀüÇØ¼­ ±×¸®±â..
+		//ìì‹ ì˜ ì˜ì—­ì„ ë‘˜ëŸ¬ì‹¸ëŠ” ì´ë¯¸ì§€ë¥¼ ê·¸ë ¤ì¤€ë‹¤..
+		// 9ê³³ íšŒì „í•´ì„œ ê·¸ë¦¬ê¸°..
 		// 1 2 3 
 		// 4 5 6
 		// 7 8 9
@@ -82,7 +82,7 @@ void DrawBitmapFrame2(MDrawContext* pDC, MRECT& r, MRECT& cr, MBitmap* Bms[9])
 		Bms[0]->SetDrawMode(MBM_Normal);
 		Bms[1]->SetDrawMode(MBM_Normal);
 
-		MRECT cliprect = pDC->GetClipRect();//Àá½ÃÇ®¾îÁØ´Ù..
+		MRECT cliprect = pDC->GetClipRect();//ì ì‹œí’€ì–´ì¤€ë‹¤..
 
 		pDC->SetColor(MCOLOR(255,255,255,255));
 //		pDC->SetOpacity(255);
@@ -101,15 +101,15 @@ void DrawBitmapFrame2(MDrawContext* pDC, MRECT& r, MRECT& cr, MBitmap* Bms[9])
 		pDC->SetBitmap( Bms[0] );
 		pDC->Draw(r.x+r.w-16, r.y, 16, 16);
 
-		//±×·Á¾ßÇÒ»çÀÌÁî°¡ÀÖ´Ù¸é~ Áß°£´Ü°è
+		//ê·¸ë ¤ì•¼í• ì‚¬ì´ì¦ˆê°€ìˆë‹¤ë©´~ ì¤‘ê°„ë‹¨ê³„
 		if(r.h > 32) {
 
 			Bms[1]->SetDrawMode(MBM_RotL90);
 			pDC->SetBitmap( Bms[1] );
 			pDC->Draw(r.x, r.y+16, 16, r.h-32);
 
-			//Áß°£»öÃ¤¿ì±â
-			pDC->SetColor(MCOLOR(0xffD9D9D9));//ÀÓ½Ã
+			//ì¤‘ê°„ìƒ‰ì±„ìš°ê¸°
+			pDC->SetColor(MCOLOR(0xffD9D9D9));//ì„ì‹œ
 			pDC->FillRectangle(MRECT(r.x+16,r.y+16,r.w-32,r.h-32));
 
 			Bms[1]->SetDrawMode(MBM_RotR90);
@@ -117,7 +117,7 @@ void DrawBitmapFrame2(MDrawContext* pDC, MRECT& r, MRECT& cr, MBitmap* Bms[9])
 			pDC->Draw(r.x+r.w-16, r.y+16, 16, r.h-32);
 		}
 
-		// ¾Æ·¡ºÎºĞ~
+		// ì•„ë˜ë¶€ë¶„~
 
 		Bms[0]->SetDrawMode(MBM_FlipUD);
 		pDC->SetBitmap( Bms[0] );
@@ -149,13 +149,13 @@ void DrawBitmapFrame9(MDrawContext* pDC, MRECT& r, MBitmap* Bms[9],bool bStretch
 	0 1 2
 	*/
 
-	int add_h = 0;//¹öÆ°ÀÌ ³Ê¹« ÀÛ¾ÆÁ³À»¶§ ¹¶°³Áö´Â°Í ¿ì¼± ¶«Áú~
+	int add_h = 0;//ë²„íŠ¼ì´ ë„ˆë¬´ ì‘ì•„ì¡Œì„ë•Œ ë­‰ê°œì§€ëŠ”ê²ƒ ìš°ì„  ë•œì§ˆ~
 
 	//if(button && (r.h < 24)) add_h = 1;
 
 	int bmw[9] = {0,};
 	int bmh[9] = {0,};
-	int dtw[9] = {0,};		// scale ÀÌ °¨¾ÈµÈ Å©±â
+	int dtw[9] = {0,};		// scale ì´ ê°ì•ˆëœ í¬ê¸°
 	int dth[9] = {0,};
 	for(int i=0; i<9; i++){
 		 bmw[i] = GETWIDTH(Bms[i]);
@@ -191,7 +191,7 @@ void DrawBitmapFrame9(MDrawContext* pDC, MRECT& r, MBitmap* Bms[9],bool bStretch
 				pDC->Draw(r.x+sx+x*bdw, r.y+sy+y*bdh , bdw, bdh);
 			}
 		}
-		// Bms[4] Å©±â·Î´Â ¸ğÀÚ¸¥ ºÎºĞÀ» Â©¶ó¼­ ¸ÂÃç ÂïÀ½
+		// Bms[4] í¬ê¸°ë¡œëŠ” ëª¨ìë¥¸ ë¶€ë¶„ì„ ì§¤ë¼ì„œ ë§ì¶° ì°ìŒ
 		if(bdw>0 && (bw%bdw)>0){
 			for(int y=0; y<hc; y++){
 				//pDC->Draw(r.x+sx+bw-bdw, r.y+sy+y*bdh, true);
@@ -204,7 +204,7 @@ void DrawBitmapFrame9(MDrawContext* pDC, MRECT& r, MBitmap* Bms[9],bool bStretch
 				pDC->Draw(r.x+sx+x*bdw, r.y+sy+hc*bdh, bdw, bh%bdh, 0, 0, bdw, bh%bdh);
 			}
 		}
-		//¸ğ¼­¸®
+		//ëª¨ì„œë¦¬
 		if(bdw>0 && bdh>0 && (bw%bdw)>0 && (bh%bdh)>0){
 			pDC->Draw(r.x+sx+wc*bdw, r.y+sy+hc*bdh, bw%bdw, bh%bdh, 0, 0, bw%bdw, bh%bdh);
 			//pDC->Draw(r.x+sx+bw-bdw, r.y+sy+bh-bdh, true);
@@ -326,13 +326,13 @@ void DrawBitmapButtonCustom1( MDrawContext* pDC, MRECT& r, MBitmap* Bms[9], bool
 	}	
 
 //	pDC->SetOpacity(255);
-	//½¦µµ¿ì
+	//ì‰ë„ìš°
 	pDC->SetColor(10, 10, 10, 255);
 	pDC->FillRectangle( r.x+2, r.y+2, r.w, r.h );
-	// ¾Æ¿ô¶óÀÎ
+	// ì•„ì›ƒë¼ì¸
 	pDC->SetColor( 0, 0, 0, 255 );
 	pDC->FillRectangle( bx - 1, by - 1, r.w + 1, r.h + 1);
-	//¹öÆ° ±×¸®±â
+	//ë²„íŠ¼ ê·¸ë¦¬ê¸°
 	HLineBitmap( pDC, bx, by, r.w, Bms[4], bStretch );
 }
 

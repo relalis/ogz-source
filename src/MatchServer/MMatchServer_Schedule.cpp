@@ -3,7 +3,7 @@
 #include "MMatchConfig.h"
 #include "MBMatchServer.h"
 
-// °øÁö»çÇ×.
+// ê³µì§€ì‚¬í•­.
 void MBMatchServer::OnScheduleAnnounce( const char* pszAnnounce )
 {
 	if( 0 == pszAnnounce )
@@ -27,44 +27,44 @@ void MBMatchServer::OnScheduleAnnounce( const char* pszAnnounce )
 	RouteToAllClient( pNewCmd );
 }
 
-// Å¬·£¼­¹ö Disable.
+// í´ëœì„œë²„ Disable.
 void MBMatchServer::OnScheduleClanServerSwitchDown()
 {
-	// Å¬·£ ¼­¹öÀÏ °æ¿ì¸¸ ½ÇÇàµÉ¼ö ÀÖ°Ô.
+	// í´ëœ ì„œë²„ì¼ ê²½ìš°ë§Œ ì‹¤í–‰ë ìˆ˜ ìˆê²Œ.
 	if( ( MSM_CLAN != MGetServerConfig()->GetServerMode() ) && ( MSM_TEST != MGetServerConfig()->GetServerMode() ) )
-		return;		// ¾Æ´Ï¸é Á¾·á.
+		return;		// ì•„ë‹ˆë©´ ì¢…ë£Œ.
 
 	MGetServerConfig()->SetEnabledCreateLadderGame( false );
 
 	if( !AddClanServerSwitchUpSchedule() )
 	{
-		mlog( "MBMatchServer::OnScheduleClanServerSwitchDown - Å¬·£Àü ÀÚµ¿ È°¼ºÈ­ Ä¿¸Çµå »ı¼º ÀÛ¾÷ ½ÇÆĞ.\n" );
+		mlog( "MBMatchServer::OnScheduleClanServerSwitchDown - í´ëœì „ ìë™ í™œì„±í™” ì»¤ë§¨ë“œ ìƒì„± ì‘ì—… ì‹¤íŒ¨.\n" );
 		return;
 	}
 
-	mlog( "MBMatchServer::OnScheduleClanServerSwitchDown - Å¬·£¼­¹ö Å¬·£Àü ºñÈ°¼ºÈ­.\n" );
+	mlog( "MBMatchServer::OnScheduleClanServerSwitchDown - í´ëœì„œë²„ í´ëœì „ ë¹„í™œì„±í™”.\n" );
 }
 
 
 void MBMatchServer::OnScheduleClanServerSwitchUp()
 {
-	// Å¬·£ ¼­¹öÀÏ °æ¿ì¸¸ ½ÇÇàµÉ¼ö ÀÖ°Ô.
+	// í´ëœ ì„œë²„ì¼ ê²½ìš°ë§Œ ì‹¤í–‰ë ìˆ˜ ìˆê²Œ.
 	if ((MSM_CLAN != MGetServerConfig()->GetServerMode()) && (MSM_TEST != MGetServerConfig()->GetServerMode()))
-		return;		// ¾Æ´Ï¸é Á¾·á.
+		return;		// ì•„ë‹ˆë©´ ì¢…ë£Œ.
 
 	MGetServerConfig()->SetEnabledCreateLadderGame( true );
 
-	// Å¬·£Àü ºñÈ°¼ºÈ­ Ä¿¸Çµå »ı¼º.
+	// í´ëœì „ ë¹„í™œì„±í™” ì»¤ë§¨ë“œ ìƒì„±.
 	if( AddClanServerAnnounceSchedule() )
 	{
 		if( !AddClanServerSwitchDownSchedule() )
-			mlog( "MBMatchServer::OnScheduleClanServerSwitchUp - Å¬·£Àü ºñÈ°¼ºÈ­ ½ºÄÉÁìÀÛ¾÷ ½ÇÆĞ.\n" );
+			mlog( "MBMatchServer::OnScheduleClanServerSwitchUp - í´ëœì „ ë¹„í™œì„±í™” ìŠ¤ì¼€ì¥´ì‘ì—… ì‹¤íŒ¨.\n" );
 	}
 	else
 	{
-		mlog( "MBMatchServer::OnScheduleClanServerSwitchUp - Å¬·£Àü ºñÈ°¼ºÈ­ °øÁö Ä¿¸Çµå »ı¼º ½ºÄÉÁìÀÛ¾÷ ½ÇÆĞ.\n" );
+		mlog( "MBMatchServer::OnScheduleClanServerSwitchUp - í´ëœì „ ë¹„í™œì„±í™” ê³µì§€ ì»¤ë§¨ë“œ ìƒì„± ìŠ¤ì¼€ì¥´ì‘ì—… ì‹¤íŒ¨.\n" );
 		return;
 	}	
 
-	mlog( "MBMatchServer::OnScheduleClanServerSwitchDown - Å¬·£¼­¹ö Å¬·£Àü È°¼ºÈ­.\n" );
+	mlog( "MBMatchServer::OnScheduleClanServerSwitchDown - í´ëœì„œë²„ í´ëœì „ í™œì„±í™”.\n" );
 }

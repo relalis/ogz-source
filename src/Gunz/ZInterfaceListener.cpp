@@ -492,7 +492,7 @@ public:
 			}
 			else
 			{
-				ZApplication::GetGameInterface()->ShowMessage("¼±ÅÃÇÏ½Å ¸ÊÀÌ ¾ø½À´Ï´Ù. ¸ÊÀ» ¼±ÅÃÇØ ÁÖ¼¼¿ä.");
+				ZApplication::GetGameInterface()->ShowMessage("ì„ íƒí•˜ì‹  ë§µì´ ì—†ìŠµë‹ˆë‹¤. ë§µì„ ì„ íƒí•´ ì£¼ì„¸ìš”.");
 			}
 
 			return true;
@@ -1172,7 +1172,7 @@ BEGIN_IMPLEMENT_LISTENER(ZGetSelectCharacterButtonListener, MBTN_CLK_MSG)
 	}
 	else
 	{
-		ZApplication::GetGameInterface()->ShowMessage("ÇØ´ç ½½·Ô¿¡ Ä³¸¯ÅÍ°¡ ¾ø½À´Ï´Ù.");
+		ZApplication::GetGameInterface()->ShowMessage("í•´ë‹¹ ìŠ¬ë¡¯ì— ìºë¦­í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	}
 END_IMPLEMENT_LISTENER()
 

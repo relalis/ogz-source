@@ -48,14 +48,14 @@ int MMatchServer::ValidateCreateClan(const char* szClanName, MMatchObject* pMast
 		return MERR_CLAN_CREATING_LESS_LEVEL;
 	}
 
-	// Å¬·£»ı¼º¿¡ ÇÊ¿äÇÑ ¸¶½ºÅÍÀÇ ¹Ù¿îÆ¼°¡ ÃæºĞÇÑÁö °Ë»ç
+	// í´ëœìƒì„±ì— í•„ìš”í•œ ë§ˆìŠ¤í„°ì˜ ë°”ìš´í‹°ê°€ ì¶©ë¶„í•œì§€ ê²€ì‚¬
 	if (pMasterObject->GetCharInfo()->m_nBP < CLAN_CREATING_NEED_BOUNTY)
 	{
 		return MERR_CLAN_CREATING_LESS_BOUNTY;
 	}
 
 
-	// Å¬·£ Áßº¹ °Ë»ç - µğºñ¿¡¼­ Á÷Á¢ °Ë»çÇÑ´Ù.
+	// í´ëœ ì¤‘ë³µ ê²€ì‚¬ - ë””ë¹„ì—ì„œ ì§ì ‘ ê²€ì‚¬í•œë‹¤.
 	int nTempCLID = 0;
 	if (GetDBMgr()->GetClanIDFromName(szClanName, &nTempCLID))
 	{
@@ -65,15 +65,15 @@ int MMatchServer::ValidateCreateClan(const char* szClanName, MMatchObject* pMast
 	
 	for (int i = 0;i < CLAN_SPONSORS_COUNT; i++)
 	{
-		// Å¬·£»ı¼º¸â¹ö°¡ Å¬·£¿¡ ¼ÓÇÏÁö ¾Ê¾Ò´ÂÁö °Ë»ç
+		// í´ëœìƒì„±ë©¤ë²„ê°€ í´ëœì— ì†í•˜ì§€ ì•Šì•˜ëŠ”ì§€ ê²€ì‚¬
 		if (ppSponsorObject[i]->GetCharInfo() == NULL) return MERR_CLAN_NO_SPONSOR;
 		if (ppSponsorObject[i]->GetCharInfo()->m_ClanInfo.m_nClanID != 0) return MERR_CLAN_SPONSOR_JOINED_OTHERCLAN;
 
-		// ·Îºñ¿¡ ÀÖ´ÂÁö È®ÀÎ
+		// ë¡œë¹„ì— ìˆëŠ”ì§€ í™•ì¸
 		if (ppSponsorObject[i]->GetPlace() != MMP_LOBBY) return MERR_CLAN_SPONSOR_NOT_LOBBY;
 	}
 
-	// Å¬·£»ı¼º¸â¹öµéÀÌ Áßº¹µÇ¾ú´ÂÁö °Ë»ç
+	// í´ëœìƒì„±ë©¤ë²„ë“¤ì´ ì¤‘ë³µë˜ì—ˆëŠ”ì§€ ê²€ì‚¬
 	MUID* tempUID = new MUID[CLAN_SPONSORS_COUNT+1]; 
 
 	tempUID[0] = pMasterObject->GetUID();
@@ -105,26 +105,26 @@ int MMatchServer::ValidateCreateClan(const char* szClanName, MMatchObject* pMast
 
 int ValidateJoinClan(MMatchObject* pAdminObject, MMatchObject* pJoinerObject, const char* szClanName)
 {
-	// Å¬·£ ¾îµå¹ÎÀÌ»ó µî±ŞÀÎÁö È®ÀÎ
+	// í´ëœ ì–´ë“œë¯¼ì´ìƒ ë“±ê¸‰ì¸ì§€ í™•ì¸
 	if (! IsUpperClanGrade(pAdminObject->GetCharInfo()->m_ClanInfo.m_nGrade, MCG_ADMIN))
 	{
 		return MERR_CLAN_NOT_MASTER_OR_ADMIN;
 	}
 
-	// °¡ÀÔÀÚ°¡ Å¬·£¿¡ ÀÌ¹Ì °¡ÀÔµÇ¾îÀÖ´ÂÁö È®ÀÎ
+	// ê°€ì…ìê°€ í´ëœì— ì´ë¯¸ ê°€ì…ë˜ì–´ìˆëŠ”ì§€ í™•ì¸
 	if (pJoinerObject->GetCharInfo()->m_ClanInfo.m_nGrade != MCG_NONE)
 	{
 		return MERR_CLAN_JOINER_JOINED_ALREADY;
 	}
 
-	// °¡ÀÔÀÚ°¡ ·Îºñ¿¡ ÀÖ´ÂÁö È®ÀÎ
+	// ê°€ì…ìê°€ ë¡œë¹„ì— ìˆëŠ”ì§€ í™•ì¸
 	if (pJoinerObject->GetPlace() != MMP_LOBBY)
 	{
 		return MERR_CLAN_JOINER_NOT_LOBBY;
 	}
 
 
-	// Å¬·£ ÀÌ¸§ÀÌ ¸Â´ÂÁö È®ÀÎ
+	// í´ëœ ì´ë¦„ì´ ë§ëŠ”ì§€ í™•ì¸
 	if (_stricmp(pAdminObject->GetCharInfo()->m_ClanInfo.m_szClanName, szClanName))
 	{
 		return MERR_CLAN_WRONG_CLANNAME;
@@ -136,13 +136,13 @@ int ValidateJoinClan(MMatchObject* pAdminObject, MMatchObject* pJoinerObject, co
 
 int ValidateLeaveClan(MMatchObject* pLeaverObject)
 {
-	// Å¬·£¿¡ ¼ÓÇØÀÖ´ÂÁö È®ÀÎ
+	// í´ëœì— ì†í•´ìˆëŠ”ì§€ í™•ì¸
 	if (!pLeaverObject->GetCharInfo()->m_ClanInfo.IsJoined())
 	{
 		return MERR_CLAN_NOT_JOINED;
 	}
 
-	// ¸¶½ºÅÍ´Â Å»ÅğÇÒ ¼ö ¾ø´Ù
+	// ë§ˆìŠ¤í„°ëŠ” íƒˆí‡´í•  ìˆ˜ ì—†ë‹¤
 	if (pLeaverObject->GetCharInfo()->m_ClanInfo.m_nGrade == MCG_MASTER)
 	{
 		return MERR_CLAN_CANNOT_LEAVE;
@@ -169,13 +169,13 @@ void MMatchServer::UpdateCharClanInfo(MMatchObject* pObject, const int nCLID, co
 	bool bHasJoined = pObject->GetCharInfo()->m_ClanInfo.IsJoined();
 
 
-	// m_ClanMapÀÇ Join, Leaveµµ ¿©±â¼­ ÇØÁØ´Ù.
+	// m_ClanMapì˜ Join, Leaveë„ ì—¬ê¸°ì„œ í•´ì¤€ë‹¤.
 	if ((bHasJoined) && (nCLID == 0))
 	{
 		m_ClanMap.RemoveObject(pObject->GetUID(), pObject);
 	}
 
-	// objectÀÇ Á¤º¸ º¯°æ
+	// objectì˜ ì •ë³´ ë³€ê²½
 	strcpy_safe(pObject->GetCharInfo()->m_ClanInfo.m_szClanName, szClanName);
 	pObject->GetCharInfo()->m_ClanInfo.m_nGrade = nGrade;
 	pObject->GetCharInfo()->m_ClanInfo.m_nClanID = nCLID;
@@ -187,7 +187,7 @@ void MMatchServer::UpdateCharClanInfo(MMatchObject* pObject, const int nCLID, co
 	}
 
 
-	// route±îÁö ¿©±â¼­ ÇØÁØ´Ù.
+	// routeê¹Œì§€ ì—¬ê¸°ì„œ í•´ì¤€ë‹¤.
 	MCommand* pNewCmd = CreateCommand(MC_MATCH_CLAN_UPDATE_CHAR_CLANINFO, MUID(0,0));
 	void* pClanInfoArray = MMakeBlobArray(sizeof(MTD_CharClanInfo), 1);
 
@@ -231,10 +231,10 @@ void MMatchServer::OnClanRequestCreateClan(const MUID& uidPlayer, const int nReq
 	{
 		pSponsorObjects[i] = GetPlayerByName(szSponsorNames[i]);
 
-		// Å¬·£»ı¼º¸â¹öÁß ÇÑ¸íÀÌ¶óµµ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é ¾ÈµÈ´Ù
+		// í´ëœìƒì„±ë©¤ë²„ì¤‘ í•œëª…ì´ë¼ë„ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ì•ˆëœë‹¤
 		if (pSponsorObjects[i] == NULL)
 		{
-			// ¸Ş¼¼Áö º¸³»ÁÖ°í ³¡.
+			// ë©”ì„¸ì§€ ë³´ë‚´ì£¼ê³  ë.
 			MCommand* pNewCmd = CreateCommand(MC_MATCH_CLAN_RESPONSE_CREATE_CLAN, MUID(0,0));
 			pNewCmd->AddParameter(new MCommandParameterInt(MERR_CLAN_NO_SPONSOR));
 			pNewCmd->AddParameter(new MCommandParameterInt(nRequestID));
@@ -248,7 +248,7 @@ void MMatchServer::OnClanRequestCreateClan(const MUID& uidPlayer, const int nReq
 #endif
 
 	
-	// ¼­¹ö´Ü¿¡¼­ Å¬·£À» »ı¼ºÇÒ ¼ö ÀÖ´ÂÁö °Ë»çÇÑ´Ù.
+	// ì„œë²„ë‹¨ì—ì„œ í´ëœì„ ìƒì„±í•  ìˆ˜ ìˆëŠ”ì§€ ê²€ì‚¬í•œë‹¤.
 	int nRet = ValidateCreateClan(szClanName, pMasterObject, pSponsorObjects);
 
 	if (nRet != MOK)
@@ -260,7 +260,7 @@ void MMatchServer::OnClanRequestCreateClan(const MUID& uidPlayer, const int nReq
 		return;
 	}
 
-	// Å¬·£»ı¼º¸â¹öÁß ÃÊÃ»°ÅÀı ¸â¹ö°¡ ÀÖ´ÂÁö »ìÆìº»´Ù
+	// í´ëœìƒì„±ë©¤ë²„ì¤‘ ì´ˆì²­ê±°ì ˆ ë©¤ë²„ê°€ ìˆëŠ”ì§€ ì‚´í´ë³¸ë‹¤
 	bool bCheckRejectInvite = false;
 	for (int i = 0; i < CLAN_SPONSORS_COUNT; i++)
 	{
@@ -270,16 +270,16 @@ void MMatchServer::OnClanRequestCreateClan(const MUID& uidPlayer, const int nReq
 		}
 	}
 	if (bCheckRejectInvite == true) {
-		// ¸Ş¼¼Áö º¸³»ÁÖ°í ³¡.
+		// ë©”ì„¸ì§€ ë³´ë‚´ì£¼ê³  ë.
 		RouteResponseToListener(pMasterObject, MC_MATCH_CLAN_RESPONSE_AGREED_CREATE_CLAN, MERR_CLAN_NO_SPONSOR);
 		NotifyMessage(pMasterObject->GetUID(), MATCHNOTIFY_USER_INVITE_REJECTED);
 		return;
 	}
 
-	// Å¬·£»ı¼º¸â¹ö¿¡°Ô µ¿ÀÇ¸¦ ¹°¾îº»´Ù.
+	// í´ëœìƒì„±ë©¤ë²„ì—ê²Œ ë™ì˜ë¥¼ ë¬¼ì–´ë³¸ë‹¤.
 	for (int i = 0; i < CLAN_SPONSORS_COUNT; i++)
 	{
-		// ¸Ş¼¼Áö º¸³»Áà¾ß ÇÔ
+		// ë©”ì„¸ì§€ ë³´ë‚´ì¤˜ì•¼ í•¨
 		MCommand* pNewCmd = CreateCommand(MC_MATCH_CLAN_ASK_SPONSOR_AGREEMENT, MUID(0,0));
 		pNewCmd->AddParameter(new MCommandParameterInt(nRequestID));
 		pNewCmd->AddParameter(new MCommandParameterString((char*)szClanName));
@@ -358,17 +358,17 @@ void MMatchServer::OnClanRequestAgreedCreateClan(const MUID& uidPlayer, const ch
 	{
 		pSponsorObjects[i] = GetPlayerByName(szSponsorNames[i]);
 
-		// Å¬·£»ı¼º¸â¹öÁß ÇÑ¸íÀÌ¶óµµ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é ¾ÈµÈ´Ù
+		// í´ëœìƒì„±ë©¤ë²„ì¤‘ í•œëª…ì´ë¼ë„ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ì•ˆëœë‹¤
 		if (! IsEnabledObject(pSponsorObjects[i]))
 		{
-			// ¸Ş¼¼Áö º¸³»ÁÖ°í ³¡.
+			// ë©”ì„¸ì§€ ë³´ë‚´ì£¼ê³  ë.
 			RouteResponseToListener(pMasterObject, MC_MATCH_CLAN_RESPONSE_AGREED_CREATE_CLAN, MERR_CLAN_NO_SPONSOR);
 
 			return;
 		}
 	}
 	
-	// ¼­¹ö´Ü¿¡¼­ Å¬·£À» »ı¼ºÇÒ ¼ö ÀÖ´ÂÁö °Ë»çÇÑ´Ù.
+	// ì„œë²„ë‹¨ì—ì„œ í´ëœì„ ìƒì„±í•  ìˆ˜ ìˆëŠ”ì§€ ê²€ì‚¬í•œë‹¤.
 	int nRet = ValidateCreateClan(szClanName, pMasterObject, pSponsorObjects);
 #else
 	int nRet = ValidateCreateClan(szClanName, pMasterObject, nullptr);
@@ -393,7 +393,7 @@ void MMatchServer::OnClanRequestAgreedCreateClan(const MUID& uidPlayer, const ch
 
 	int nNewCLID = 0;
 
-	// ½ÇÁ¦·Î µğºñ¿¡ ³Ö´Â´Ù.
+	// ì‹¤ì œë¡œ ë””ë¹„ì— ë„£ëŠ”ë‹¤.
 #if CLAN_SPONSORS_COUNT == 4
 	MAsyncDBJob_CreateClan* pNewJob = new MAsyncDBJob_CreateClan();
 	pNewJob->Input(szClanName, 
@@ -423,21 +423,21 @@ void MMatchServer::ResponseCloseClan(const MUID& uidClanMaster, const char* szCl
 	MMatchObject* pMasterObject = GetObject(uidClanMaster);
 	if (! IsEnabledObject(pMasterObject)) return;
 
-	// Å¬·£¸¶½ºÅÍÀÎÁö È®ÀÎ
+	// í´ëœë§ˆìŠ¤í„°ì¸ì§€ í™•ì¸
 	if (pMasterObject->GetCharInfo()->m_ClanInfo.m_nGrade != MCG_MASTER)
 	{
 		RouteResponseToListener(pMasterObject, MC_MATCH_CLAN_RESPONSE_CLOSE_CLAN, MERR_CLAN_NOT_MASTER);
 		return;
 	}
 
-	// Å¬·£ ÀÌ¸§ÀÌ Á¦´ë·Î µÇ¾ú´ÂÁö È®ÀÎ
+	// í´ëœ ì´ë¦„ì´ ì œëŒ€ë¡œ ë˜ì—ˆëŠ”ì§€ í™•ì¸
 	if (_stricmp(pMasterObject->GetCharInfo()->m_ClanInfo.m_szClanName, szClanName))
 	{
 		RouteResponseToListener(pMasterObject, MC_MATCH_CLAN_RESPONSE_CLOSE_CLAN, MERR_CLAN_WRONG_CLANNAME);
 		return;
 	}
 
-	// ½ÇÁ¦·Î µğºñ¿¡¼­ Æó¼â ¿¹¾à
+	// ì‹¤ì œë¡œ ë””ë¹„ì—ì„œ íì‡„ ì˜ˆì•½
 	if (!GetDBMgr()->CloseClan(pMasterObject->GetCharInfo()->m_ClanInfo.m_nClanID,
 										pMasterObject->GetCharInfo()->m_ClanInfo.m_szClanName,
 										pMasterObject->GetCharInfo()->m_nCID))
@@ -449,7 +449,7 @@ void MMatchServer::ResponseCloseClan(const MUID& uidClanMaster, const char* szCl
 	UpdateCharClanInfo(pMasterObject, 0, "", MCG_NONE);
 	ResponseMySimpleCharInfo(pMasterObject->GetUID());
 
-	// Æó¼â¿¹¾àµÇ¾ú´Ù´Â ¸Ş¼¼Áö¸¦ º¸³½´Ù.
+	// íì‡„ì˜ˆì•½ë˜ì—ˆë‹¤ëŠ” ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ë‹¤.
 	RouteResponseToListener(pMasterObject, MC_MATCH_CLAN_RESPONSE_CLOSE_CLAN, MOK);
 }
 
@@ -471,7 +471,7 @@ void MMatchServer::ResponseJoinClan(const MUID& uidClanAdmin, const char* szClan
 		return;
 	}
 
-	// ´ë»óÀÌ ÃÊÃ»°ÅºÎ »óÅÂÀÌ¸é ÃÊÃ»¸øÇÑ´Ù
+	// ëŒ€ìƒì´ ì´ˆì²­ê±°ë¶€ ìƒíƒœì´ë©´ ì´ˆì²­ëª»í•œë‹¤
 	if (pJoinerObject->CheckUserOption(MBITFLAG_USEROPTION_REJECT_INVITE) == true) {
 		NotifyMessage(pAdminObject->GetUID(), MATCHNOTIFY_USER_INVITE_REJECTED);
 		return;
@@ -484,7 +484,7 @@ void MMatchServer::ResponseJoinClan(const MUID& uidClanAdmin, const char* szClan
 		return;
 	}
 
-	// °¡ÀÔÀÚ¿¡°Ô µ¿ÀÇ¸¦ ¹¯´Â´Ù.
+	// ê°€ì…ìì—ê²Œ ë™ì˜ë¥¼ ë¬»ëŠ”ë‹¤.
 	MCommand* pNewCmd = CreateCommand(MC_MATCH_CLAN_ASK_JOIN_AGREEMENT, MUID(0,0));
 	pNewCmd->AddParameter(new MCommandParameterString((char*)szClanName));
 	pNewCmd->AddParameter(new MCommandParameterUID(uidClanAdmin));
@@ -538,7 +538,7 @@ void MMatchServer::ResponseAgreedJoinClan(const MUID& uidClanAdmin, const char* 
 
 	bool bDBRet = false;
 
-	// ½ÇÁ¦ µğºñ»ó¿¡¼­ °¡ÀÔÃ³¸®
+	// ì‹¤ì œ ë””ë¹„ìƒì—ì„œ ê°€ì…ì²˜ë¦¬
 	if (!GetDBMgr()->AddClanMember(nCLID, nJoinerCID, nClanGrade, &bDBRet))
 	{
 		RouteResponseToListener(pAdminObject, MC_MATCH_CLAN_RESPONSE_AGREED_JOIN_CLAN, MERR_CLAN_DONT_JOINED);
@@ -546,7 +546,7 @@ void MMatchServer::ResponseAgreedJoinClan(const MUID& uidClanAdmin, const char* 
 		return;
 	}
 
-	// ÀÎ¿øÀÌ ÃÊ°úµÇ¸é db return °ªÀÌ falseÀÌ´Ù.
+	// ì¸ì›ì´ ì´ˆê³¼ë˜ë©´ db return ê°’ì´ falseì´ë‹¤.
 	if (!bDBRet)
 	{
 		RouteResponseToListener(pAdminObject, MC_MATCH_CLAN_RESPONSE_AGREED_JOIN_CLAN, MERR_CLAN_MEMBER_FULL);
@@ -554,7 +554,7 @@ void MMatchServer::ResponseAgreedJoinClan(const MUID& uidClanAdmin, const char* 
 		return;
 	}
 
-	// Å¬·£Á¤º¸ ¾÷µ¥ÀÌÆ®ÇÏ°í RouteÇØÁÜ
+	// í´ëœì •ë³´ ì—…ë°ì´íŠ¸í•˜ê³  Routeí•´ì¤Œ
 	UpdateCharClanInfo(pJoinerObject, pAdminObject->GetCharInfo()->m_ClanInfo.m_nClanID, szClanName, MCG_MEMBER);
 
 
@@ -588,14 +588,14 @@ void MMatchServer::ResponseLeaveClan(const MUID& uidPlayer)
 	int nCLID = pLeaverObject->GetCharInfo()->m_ClanInfo.m_nClanID;
 	int nLeaverCID = pLeaverObject->GetCharInfo()->m_nCID;
 
-	// ½ÇÁ¦·Î µğºñ»ó¿¡¼­ Å»ÅğÃ³¸®
+	// ì‹¤ì œë¡œ ë””ë¹„ìƒì—ì„œ íƒˆí‡´ì²˜ë¦¬
 	if (!GetDBMgr()->RemoveClanMember(nCLID, nLeaverCID))
 	{
 		RouteResponseToListener(pLeaverObject, MC_MATCH_CLAN_RESPONSE_LEAVE_CLAN, MERR_CLAN_CANNOT_LEAVE);
 		return;
 	}
 
-	// Å¬·£Á¤º¸ ¾÷µ¥ÀÌÆ®ÇÏ°í RouteÇØÁÜ
+	// í´ëœì •ë³´ ì—…ë°ì´íŠ¸í•˜ê³  Routeí•´ì¤Œ
 	UpdateCharClanInfo(pLeaverObject, 0, "", MCG_NONE);
 
 
@@ -609,20 +609,20 @@ void MMatchServer::OnClanRequestChangeClanGrade(const MUID& uidClanMaster, const
 
 int ValidateChangeClanGrade(MMatchObject* pMasterObject, MMatchObject* pTargetObject, int nClanGrade)
 {
-	// ¸¶½ºÅÍÀÎÁö È®ÀÎ
+	// ë§ˆìŠ¤í„°ì¸ì§€ í™•ì¸
 	if (pMasterObject->GetCharInfo()->m_ClanInfo.m_nGrade != MCG_MASTER)
 	{
 		return MERR_CLAN_NOT_MASTER;
 	}
 
-	// °°Àº Å¬·£ÀÎÁö È®ÀÎ
+	// ê°™ì€ í´ëœì¸ì§€ í™•ì¸
 	if (!IsSameClan(pMasterObject, pTargetObject))
 	{
 		return MERR_CLAN_OTHER_CLAN;
 	}
 
 
-	// ¸¶½ºÅÍ¸¦ ±ÇÇÑº¯°æÇÒ ¼ö ¾ø´Ù.
+	// ë§ˆìŠ¤í„°ë¥¼ ê¶Œí•œë³€ê²½í•  ìˆ˜ ì—†ë‹¤.
 	if (pTargetObject->GetCharInfo()->m_ClanInfo.m_nGrade == MCG_MASTER)
 	{
 		return MERR_CLAN_NOT_MASTER;
@@ -649,7 +649,7 @@ void MMatchServer::ResponseChangeClanGrade(const MUID& uidClanMaster, const char
 		return;
 	}
 
-	// ±ÇÇÑ º¯°æ °¡´ÉÇÑÁö Ã¼Å©
+	// ê¶Œí•œ ë³€ê²½ ê°€ëŠ¥í•œì§€ ì²´í¬
 	int nRet = ValidateChangeClanGrade(pMasterObject, pTargetObject, nClanGrade);
 	if (nRet != MOK)
 	{
@@ -660,14 +660,14 @@ void MMatchServer::ResponseChangeClanGrade(const MUID& uidClanMaster, const char
 	int nCLID = pMasterObject->GetCharInfo()->m_ClanInfo.m_nClanID;
 	int nMemberCID = pTargetObject->GetCharInfo()->m_nCID;
 	
-	// ½ÇÁ¦·Î µğºñ»ó¿¡¼­ ±ÇÇÑ º¯°æ
+	// ì‹¤ì œë¡œ ë””ë¹„ìƒì—ì„œ ê¶Œí•œ ë³€ê²½
 	if (!GetDBMgr()->UpdateClanGrade(nCLID, nMemberCID, nClanGrade))
 	{
 		RouteResponseToListener(pMasterObject, MC_MATCH_CLAN_MASTER_RESPONSE_CHANGE_GRADE, MERR_CLAN_CANNOT_CHANGE_GRADE);
 		return;
 	}
 
-	// Å¬·£Á¤º¸ ¾÷µ¥ÀÌÆ®ÇÏ°í RouteÇØÁÜ
+	// í´ëœì •ë³´ ì—…ë°ì´íŠ¸í•˜ê³  Routeí•´ì¤Œ
 	UpdateCharClanInfo(pTargetObject, pTargetObject->GetCharInfo()->m_ClanInfo.m_nClanID, 
 						pTargetObject->GetCharInfo()->m_ClanInfo.m_szClanName, (MMatchClanGrade)nClanGrade);
 
@@ -686,7 +686,7 @@ void MMatchServer::ResponseExpelMember(const MUID& uidClanAdmin, const char* szM
 	MMatchObject* pAdminObject = GetObject(uidClanAdmin);
 	if (! IsEnabledObject(pAdminObject)) return;
 
-	// Å»ÅğÃ³¸®ÇÒ ¼ö ÀÖ´Â ±ÇÇÑÀÎÁö °Ë»ç
+	// íƒˆí‡´ì²˜ë¦¬í•  ìˆ˜ ìˆëŠ” ê¶Œí•œì¸ì§€ ê²€ì‚¬
 	if (!IsUpperClanGrade(pAdminObject->GetCharInfo()->m_ClanInfo.m_nGrade, MCG_ADMIN))
 	{
 		RouteResponseToListener(pAdminObject, MC_MATCH_CLAN_ADMIN_RESPONSE_EXPEL_MEMBER, MERR_CLAN_NOT_MASTER_OR_ADMIN);
@@ -704,14 +704,14 @@ void MMatchServer::ResponseExpelMember(const MUID& uidClanAdmin, const char* szM
 	PostAsyncJob(pNewJob);
 
 /*
-	// µğºñ»ó¿¡¼­ Å»ÅğÃ³¸®
+	// ë””ë¹„ìƒì—ì„œ íƒˆí‡´ì²˜ë¦¬
 	int nDBRet = 0;
 	int nCLID = pAdminObject->GetCharInfo()->m_ClanInfo.m_nClanID;
 	int nClanGrade = pAdminObject->GetCharInfo()->m_ClanInfo.m_nGrade;
 	char szTarMember[256]; 
 	sprintf_safe(szTarMember, szMember);
 
-	// ½ÇÁ¦·Î µğºñ»ó¿¡¼­ ±ÇÇÑ º¯°æ
+	// ì‹¤ì œë¡œ ë””ë¹„ìƒì—ì„œ ê¶Œí•œ ë³€ê²½
 	if (!GetDBMgr()->ExpelClanMember(nCLID, nClanGrade, szTarMember, &nDBRet))
 	{
 		RouteResponseToListener(pAdminObject, MC_MATCH_CLAN_ADMIN_RESPONSE_EXPEL_MEMBER, MERR_CLAN_CANNOT_EXPEL_FOR_NO_MEMBER);
@@ -736,7 +736,7 @@ void MMatchServer::ResponseExpelMember(const MUID& uidClanAdmin, const char* szM
 	}
 
 
-	// ¸¸¾à ´ç»çÀÚ°¡ Á¢¼ÓÇØÀÖÀ¸¸é Å¬·£Å»ÅğµÇ¾ú´Ù°í ¾Ë·ÁÁà¾ßÇÑ´Ù.
+	// ë§Œì•½ ë‹¹ì‚¬ìê°€ ì ‘ì†í•´ìˆìœ¼ë©´ í´ëœíƒˆí‡´ë˜ì—ˆë‹¤ê³  ì•Œë ¤ì¤˜ì•¼í•œë‹¤.
 	MMatchObject* pMemberObject = GetPlayerByName(szMember);
 	if (IsEnabledObject(pMemberObject))
 	{
@@ -973,7 +973,7 @@ void MMatchServer::SaveClanPoint(MMatchClan* pWinnerClan, MMatchClan* pLoserClan
 	int nPoint = MMatchFormula::GetClanBattlePoint(nWinnerClanPoint, nLoserClanPoint, nOneTeamMemberCount);
 
 	nAddedWinnerPoint = nPoint; 
-	//if (nOneTeamMemberCount >= 4) nAddedWinnerPoint = nAddedWinnerPoint * 2;	// 4ÀÎÀü ÀÌ»óÀÌ¸é Æ÷ÀÎÆ®°¡ µÎ¹è
+	//if (nOneTeamMemberCount >= 4) nAddedWinnerPoint = nAddedWinnerPoint * 2;	// 4ì¸ì „ ì´ìƒì´ë©´ í¬ì¸íŠ¸ê°€ ë‘ë°°
 	nAddedWinnerPoint = int(nAddedWinnerPoint * fPointRatio);
 
 	nAddedLoserPoint = -(nPoint / 2);

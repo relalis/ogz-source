@@ -5,7 +5,7 @@
 class MDrawContext;
 class ZActor;
 
-// Äù½ºÆ®³ª ¼­¹ÙÀÌ¹ú ¸ðµå µî Äù½ºÆ® °ü·Ã ¸ðµå¿¡¼­ º¸¿©Áö´Â È­¸é
+// í€˜ìŠ¤íŠ¸ë‚˜ ì„œë°”ì´ë²Œ ëª¨ë“œ ë“± í€˜ìŠ¤íŠ¸ ê´€ë ¨ ëª¨ë“œì—ì„œ ë³´ì—¬ì§€ëŠ” í™”ë©´
 class ZCombatQuestScreen
 {
 private:

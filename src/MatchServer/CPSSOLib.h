@@ -2,7 +2,7 @@
 // FOR ONLY SERVER APPLICATIONS!!
 //
 //
-// ÀÌ ÆÄÀÏÀº ¼­¹ö¿¡¼­¸¸ »ç¿ëÇØ¾ß ÇÕ´Ï´Ù!!
+// ì´ íŒŒì¼ì€ ì„œë²„ì—ì„œë§Œ ì‚¬ìš©í•´ì•¼ í•©ë‹ˆë‹¤!!
 //
 
 #if !defined(AFX_CPSSOLIB_H__F62B26CE_60B4_4E15_947A_902D69231055__INCLUDED_)

@@ -11,17 +11,17 @@
 
 enum ZQuestCheetType
 {
-	ZQUEST_CHEET_GOD			= 0,		// ¹«Àû¸ğµå
-	ZQUEST_CHEET_WEAKNPCS		= 1,		// Àû¿¡³ÊÁö 1
-	ZQUEST_CHEET_AMMO			= 2,		// ÃÑ¾Ë¸¸¶¥
+	ZQUEST_CHEET_GOD			= 0,		// ë¬´ì ëª¨ë“œ
+	ZQUEST_CHEET_WEAKNPCS		= 1,		// ì ì—ë„ˆì§€ 1
+	ZQUEST_CHEET_AMMO			= 2,		// ì´ì•Œë§Œë•…
 	ZQUEST_CHEET_MAX
 };
 
-// Äù½ºÆ® °ü·Ã Àü¿ª Å¬·¡½º
+// í€˜ìŠ¤íŠ¸ ê´€ë ¨ ì „ì—­ í´ë˜ìŠ¤
 class ZQuest : public MBaseQuest
 {
 private:
-	set<MUID>	m_CharactersGone;	// ´ÙÀ½¼½ÅÍ·Î ÀÌµ¿ÇÑ Ä³¸¯ÅÍµé
+	set<MUID>	m_CharactersGone;	// ë‹¤ìŒì„¹í„°ë¡œ ì´ë™í•œ ìºë¦­í„°ë“¤
 
 	ZQuestGameInfo		m_GameInfo;
 	bool	m_Cheet[ZQUEST_CHEET_MAX];
@@ -29,18 +29,18 @@ private:
 	bool	m_bLoaded;
 	bool	m_bIsQuestComplete;
 	bool	m_bIsRoundClear;
-	DWORD	m_tRemainedTime;					// ¶ó¿îµå°¡ ³¡³ª°í ´ÙÀ½ ¶ó¿îµå·Î ³Ñ¾î°¡±â±îÁö ³²Àº ½Ã°£
+	DWORD	m_tRemainedTime;					// ë¼ìš´ë“œê°€ ëë‚˜ê³  ë‹¤ìŒ ë¼ìš´ë“œë¡œ ë„˜ì–´ê°€ê¸°ê¹Œì§€ ë‚¨ì€ ì‹œê°„
 	float	m_fLastWeightTime;
 
 	MQuestCombatState	m_QuestCombatState;
 
 
 #ifdef _QUEST_ITEM
-	int				m_nRewardXP;				// Äù½ºÆ®¿¡¼­ È¹µæÇÑ °æÇèÄ¡.
-	int				m_nRewardBP;				// Äù½ºÆ®¿¡¼­ È¹µæÇÑ ¹Ù¿îÆ¼.
+	int				m_nRewardXP;				// í€˜ìŠ¤íŠ¸ì—ì„œ íšë“í•œ ê²½í—˜ì¹˜.
+	int				m_nRewardBP;				// í€˜ìŠ¤íŠ¸ì—ì„œ íšë“í•œ ë°”ìš´í‹°.
 	
     bool OnRewardQuest( MCommand* pCmd );
-	bool OnNewMonsterInfo( MCommand* pCmd );	// ¸ó½ºÅÍ ¸ğ°¨¿¡ µî·ÏµÉ »õ·Î ½ÀµæÇÑ ¸ó½ºÅÍ Á¤º¸.
+	bool OnNewMonsterInfo( MCommand* pCmd );	// ëª¬ìŠ¤í„° ëª¨ê°ì— ë“±ë¡ë  ìƒˆë¡œ ìŠµë“í•œ ëª¬ìŠ¤í„° ì •ë³´.
 
 	void GetQuestTotalSpawnItemList( void* pObtainQuestItemKindListBlob );
 	void GetMyObtainQuestItemList( int nRewardXP, int nRewardBP, void* pMyObtainQuestItemListBlob, void* pMyObtainZItemListBlob );
@@ -100,8 +100,8 @@ public:
 	void OnGameCreate();
 	void OnGameDestroy();
 	void OnGameUpdate(float fElapsed);
-	bool OnCommand(MCommand* pCommand);				///< °ÔÀÓ ÀÌ¿Ü¿¡ ³¯¶ó¿À´Â Ä¿¸Çµå Ã³¸®
-	bool OnGameCommand(MCommand* pCommand);			///< °ÔÀÓÁß ³¯¶ó¿À´Â Ä¿¸Çµå Ã³¸®
+	bool OnCommand(MCommand* pCommand);				///< ê²Œì„ ì´ì™¸ì— ë‚ ë¼ì˜¤ëŠ” ì»¤ë§¨ë“œ ì²˜ë¦¬
+	bool OnGameCommand(MCommand* pCommand);			///< ê²Œì„ì¤‘ ë‚ ë¼ì˜¤ëŠ” ì»¤ë§¨ë“œ ì²˜ë¦¬
 
 	void SetCheet(ZQuestCheetType nCheetType, bool bValue);
 	bool GetCheet(ZQuestCheetType nCheetType);
@@ -113,11 +113,11 @@ public:
 	// interface
 	ZQuestGameInfo* GetGameInfo()		{ return &m_GameInfo; }
 
-	// »óÅÂ¿¡ »ó°ü¾øÀÌ »ç¿ëµÉ¼ö ÀÖ´Â Äù½ºÆ® °ü·ÃµÈ Ä¿¸Çµå.
+	// ìƒíƒœì— ìƒê´€ì—†ì´ ì‚¬ìš©ë ìˆ˜ ìˆëŠ” í€˜ìŠ¤íŠ¸ ê´€ë ¨ëœ ì»¤ë§¨ë“œ.
 	bool OnSetMonsterBibleInfo( MCommand* pCmd );
 
 
-	bool OnPrePeerNPCAttackMelee(MCommand* pCommand);	// ½ÇÁ¦·Î Ã³¸®ÇÏ´Â°Ç ÇÑÅ¸ÀÌ¹Ö ´Ê´Ù
+	bool OnPrePeerNPCAttackMelee(MCommand* pCommand);	// ì‹¤ì œë¡œ ì²˜ë¦¬í•˜ëŠ”ê±´ í•œíƒ€ì´ë° ëŠ¦ë‹¤
 	
 };
 

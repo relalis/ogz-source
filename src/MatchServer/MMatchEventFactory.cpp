@@ -100,7 +100,7 @@ bool MMatchEventFactory::MakeEventList( const EventDataVec& EvnDataVec, EventPtr
 			}
 			else
 			{
-				mlog( "MMatchEventFactory::MakeEventList - Init½ÇÆĞ. ID:%u Name:%s.\n",
+				mlog( "MMatchEventFactory::MakeEventList - Initì‹¤íŒ¨. ID:%u Name:%s.\n",
 					pEvent->GetEventID(), pEvent->GetName().c_str() );
 				delete pEvent;
 				pEvent = 0;
@@ -328,9 +328,9 @@ void MMatchEventFactoryManager::ParseLocale( MXmlElement& chrElement )
 			/*  // MBaseLocale.h // 
 			enum MCountry
 			{
-				MC_KOREA			= 82,		// ÇÑ±¹
-				MC_US				= 1,		// ¹Ì±¹(ÀÎÅÍ³×¼Å³¯)
-				MC_JAPAN			= 81,		// ÀÏº»
+				MC_KOREA			= 82,		// í•œêµ­
+				MC_US				= 1,		// ë¯¸êµ­(ì¸í„°ë„¤ì…”ë‚ )
+				MC_JAPAN			= 81,		// ì¼ë³¸
 			};
 			*/
 
@@ -374,7 +374,7 @@ void MMatchEventFactoryManager::ParseLocale( MXmlElement& chrElement )
 				break;
 			}
 
-			// ÇöÁ¦ ¼­¹ö¶û °°Àº ±¹°¡ Å¸ÀÔ¸¸ ÆÄ½ÌÇÔ. 
+			// í˜„ì œ ì„œë²„ë‘ ê°™ì€ êµ­ê°€ íƒ€ì…ë§Œ íŒŒì‹±í•¨. 
 #ifdef _DEBUG
 			if( true )
 #else
@@ -441,8 +441,8 @@ void MMatchEventFactoryManager::ParseEvent( MXmlElement& chrElement )
 			if( NULL == MMatchEventDescManager::GetInstance().Find(dwEventID) )
 			{
 				// TODO: Fix
-				//ASSERT( 0 && "Event.xml¿¡ ¾ø´Â Event IDÀÔ´Ï´Ù." );
-				mlog( "MMatchEventFactoryManager::ParseEvent - Event.xml¿¡ ¾ø´Â Event ID(%u)ÀÔ´Ï´Ù.\n",
+				//ASSERT( 0 && "Event.xmlì— ì—†ëŠ” Event IDì…ë‹ˆë‹¤." );
+				mlog( "MMatchEventFactoryManager::ParseEvent - Event.xmlì— ì—†ëŠ” Event ID(%u)ì…ë‹ˆë‹¤.\n",
 					dwEventID );
 				return;
 			}
@@ -560,14 +560,14 @@ void MMatchEventFactoryManager::ParseEvent( MXmlElement& chrElement )
 	endSvrTyp = vServerType.end();
 	for( itSvrTyp = vServerType.begin(); itSvrTyp != endSvrTyp; ++itSvrTyp )
 	{
-		// ¸ğµç ¼­¹ö¿¡ Àû¿ë.
+		// ëª¨ë“  ì„œë²„ì— ì ìš©.
 		if( MSM_ALL == itSvrTyp->ServerType )
 		{
 			bUseEvent = true;
 			continue;
 		}
 
-		// ÇöÁ¦ ¼­¹ö Å¸ÀÔ¿¡¸¸ Àû¿ë.
+		// í˜„ì œ ì„œë²„ íƒ€ì…ì—ë§Œ ì ìš©.
 		if( MGetServerConfig()->GetServerMode() == itSvrTyp->ServerType )
 		{
 			bUseEvent = true;
@@ -737,7 +737,7 @@ void MMatchEventFactoryManager::ParseEventPartTime( MXmlElement& chrElement, vec
 	}
 
 #ifdef _DEBUG
-	// Áßº¹µÇ´Â ¹üÀ§°¡ ÀÖ´ÂÁö °Ë»ç.
+	// ì¤‘ë³µë˜ëŠ” ë²”ìœ„ê°€ ìˆëŠ”ì§€ ê²€ì‚¬.
 	vector< EventPartTime >::iterator it, end;
 	end = EventPartTimeVec.end();
 	for( it = EventPartTimeVec.begin(); it != end; ++it )
@@ -791,7 +791,7 @@ bool MMatchEventFactoryManager::GetEventList( const MMATCH_GAMETYPE GameType, co
 
 	default :
 		{
-			ASSERT( 0 && "Á¤ÀÇµÇÁö ¾ÊÀº ÀÌº¥Æ® Å¸ÀÔ." );
+			ASSERT( 0 && "ì •ì˜ë˜ì§€ ì•Šì€ ì´ë²¤íŠ¸ íƒ€ì…." );
 			return false;
 		}
 		break;
@@ -830,7 +830,7 @@ bool MMatchEventFactoryManager::InsertEvent( const EventData& EvnData )
 
 	default :
 		{
-			ASSERT( 0 && "Á¤ÀÇµÇÁö ¾ÊÀº ÀÌº¥Æ® Å¸ÀÔ." );
+			ASSERT( 0 && "ì •ì˜ë˜ì§€ ì•Šì€ ì´ë²¤íŠ¸ íƒ€ì…." );
 			return false;
 		}
 		break;

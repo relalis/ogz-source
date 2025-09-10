@@ -22,12 +22,12 @@ void MMatchRuleDuel::OnBegin()
 
 	MMatchStage* pStage = GetStage();
 
-	WaitQueue.clear();	// ´ë±â Å¥¸¦ ºñ¿ì°í
+	WaitQueue.clear();	// ëŒ€ê¸° íë¥¼ ë¹„ìš°ê³ 
 
 	if (pStage != NULL)
 	{
 		for(auto itor=pStage->GetObjBegin(); itor!=pStage->GetObjEnd(); itor++)
-			WaitQueue.push_back(itor->first);			// ÇÃ·¹ÀÌ¾îµé ±×³É ¸ù¶¥ ´ë±â Å¥¿¡ ³Ö´Â´Ù.
+			WaitQueue.push_back(itor->first);			// í”Œë ˆì´ì–´ë“¤ ê·¸ëƒ¥ ëª½ë•… ëŒ€ê¸° íì— ë„£ëŠ”ë‹¤.
 
 //		SpawnPlayers();
 	}
@@ -49,8 +49,8 @@ void MMatchRuleDuel::OnRoundBegin()
 
 	SpawnPlayers();
 	SendQueueInfo(true);
-	// ¿Ö±×·±Áö ¸ô¶óµµ ¿ÉÀú¹ö ÇØ¾ß ÇÒ ³ðÀÌ ½ºÆùµÈ°É ºÁ¼­ -_- Á×¿©¹ö¸°´Ù. ¼­¹ö¿¡¼± ½ºÆù¾ÈµÆÀ¸´Ï ´õÀÌ»óÀÇ Ã³¸®´Â ÇÊ¿ä¾øÀ»µí.
-	// ÀÌ°Å ÇÑ ÈÄ¿¡ ½ºÆùµÇ´Â°Å¸é ³¶ÆÒµ¥;
+	// ì™œê·¸ëŸ°ì§€ ëª°ë¼ë„ ì˜µì €ë²„ í•´ì•¼ í•  ë†ˆì´ ìŠ¤í°ëœê±¸ ë´ì„œ -_- ì£½ì—¬ë²„ë¦°ë‹¤. ì„œë²„ì—ì„  ìŠ¤í°ì•ˆëìœ¼ë‹ˆ ë”ì´ìƒì˜ ì²˜ë¦¬ëŠ” í•„ìš”ì—†ì„ë“¯.
+	// ì´ê±° í•œ í›„ì— ìŠ¤í°ë˜ëŠ”ê±°ë©´ ë‚­íŒ¬ë°;
 	for (list<MUID>::iterator i = WaitQueue.begin(); i!=WaitQueue.end();  ++i)
 		MMatchServer::GetInstance()->OnDuelSetObserver(*i);							
 
@@ -68,7 +68,7 @@ void MMatchRuleDuel::OnRoundEnd()
 	}
 	else
 	{
-		if (isChangeChampion || uidChampion == MUID(0, 0))				// Ã¨ÇÇ¿ÂÀÌ ¹Ù²î¾î¾ß ÇÏ¸é ÀÏ´Ü Ã¨ÇÇ¿Â°ú µµÀüÀÚ¸¦ ½º¿Ò
+		if (isChangeChampion || uidChampion == MUID(0, 0))				// ì±”í”¼ì˜¨ì´ ë°”ë€Œì–´ì•¼ í•˜ë©´ ì¼ë‹¨ ì±”í”¼ì˜¨ê³¼ ë„ì „ìžë¥¼ ìŠ¤ì™‘
 		{
 			MUID uidTemp;
 			uidTemp = uidChampion;
@@ -78,8 +78,8 @@ void MMatchRuleDuel::OnRoundEnd()
 
 		if (uidChallenger != MUID(0, 0))
 		{
-			WaitQueue.push_back(uidChallenger);	// µµÀüÀÚ´Â Å¥ÀÇ ¸Ç µÚ·Î ¹Ð¾î³Ö°í
-			uidChallenger = MUID(0, 0);			// µµÀüÀÚÀÇ id¸¦ ¹«È¿È­
+			WaitQueue.push_back(uidChallenger);	// ë„ì „ìžëŠ” íì˜ ë§¨ ë’¤ë¡œ ë°€ì–´ë„£ê³ 
+			uidChallenger = MUID(0, 0);			// ë„ì „ìžì˜ idë¥¼ ë¬´íš¨í™”
 		}
 	}
 
@@ -133,15 +133,15 @@ void MMatchRuleDuel::OnGameKill(const MUID& uidAttacker, const MUID& uidVictim)
 
 	MUID chanID = MMatchServer::GetInstance()->GetChannelMap()->Find(m_pStage->GetOwnerChannel())->GetUID();
 
-	if (uidVictim == uidChallenger)		// Ã¨ÇÇ¿ÂÀÌ Àâ¾ÒÀ¸¸é Ã¨ÇÇ¿Â À¯Áö
+	if (uidVictim == uidChallenger)		// ì±”í”¼ì˜¨ì´ ìž¡ì•˜ìœ¼ë©´ ì±”í”¼ì˜¨ ìœ ì§€
 	{
 		isChangeChampion = false;
 		nVictory++;
 
 		if (m_pStage == NULL) return;
-		if (m_pStage->IsPrivate()) return;		// ºñ¹Ð¹æÀÌ¸é ¹æ¼Û ÆÐ½º
+		if (m_pStage->IsPrivate()) return;		// ë¹„ë°€ë°©ì´ë©´ ë°©ì†¡ íŒ¨ìŠ¤
 
-		if (nVictory % 10 != 0) return;			// ¿¬½Â¼ö°¡ 10ÀÇ ¹è¼öÀÏ¶§¸¸
+		if (nVictory % 10 != 0) return;			// ì—°ìŠ¹ìˆ˜ê°€ 10ì˜ ë°°ìˆ˜ì¼ë•Œë§Œ
 
 		MMatchObject* pChamp;
 		pChamp = m_pStage->GetObj(uidChampion);
@@ -164,9 +164,9 @@ void MMatchRuleDuel::OnGameKill(const MUID& uidAttacker, const MUID& uidVictim)
 
 		nVictory = 1;
 
-		if (nowVictory < 10) return;				// 10¿¬½Â ÀÌ»óÀ» ÀúÁöÇßÀ»¶§¸¸
+		if (nowVictory < 10) return;				// 10ì—°ìŠ¹ ì´ìƒì„ ì €ì§€í–ˆì„ë•Œë§Œ
 		if (m_pStage == NULL) return;
-		if (m_pStage->IsPrivate()) return;		// ºñ¹Ð¹æÀÌ¸é ¹æ¼Û ÆÐ½º
+		if (m_pStage->IsPrivate()) return;		// ë¹„ë°€ë°©ì´ë©´ ë°©ì†¡ íŒ¨ìŠ¤
 	
 		MMatchObject* pChamp, *pChallenger;
 		pChamp = m_pStage->GetObj(uidChampion);

@@ -90,7 +90,7 @@ void ZTaskManager::Run(float fDelta)
 {
 	if (m_pCurrTask)
 	{
-		// ÇöÀç ÅÂ½ºÅ©°¡ ÀÖÀ¸¸é ½ÇÇà
+		// í˜„ì¬ íƒœìŠ¤í¬ê°€ ìˆìœ¼ë©´ ì‹¤í–‰
 		ZTaskResult ret = m_pCurrTask->Run(fDelta);
 
 		switch (ret)
@@ -116,7 +116,7 @@ void ZTaskManager::Run(float fDelta)
 	{
 		if (PopTask())
 		{
-			// ÇöÀç ÅÂ½ºÅ©°¡ ¾øÀ¸¸é »õ·Î¿î ÅÂ½ºÅ©¸¦ ²¨³»¼­ ½ÃÀÛÇÑ´Ù.
+			// í˜„ì¬ íƒœìŠ¤í¬ê°€ ì—†ìœ¼ë©´ ìƒˆë¡œìš´ íƒœìŠ¤í¬ë¥¼ êº¼ë‚´ì„œ ì‹œì‘í•œë‹¤.
 			m_pCurrTask->Start();
 		}
 	}

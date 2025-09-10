@@ -2,8 +2,8 @@
 //		Global Resource Manager
 //
 //		MBitmapManager, MFontManager, MCursorSystem
-//		MINT¿¡¼­ »ç¿ëµÇ´Â Bitmap, Font, Cursor Resource¸¦ Àü¿ªÀûÀ¸·Î °ü¸®ÇÏ´Â Å¬·¡½ºµé
-//		Application¿¡¼­ µ¶ÀÚÀûÀ¸·Î ¸®¼Ò½º¸¦ °ü¸®ÇÑ´Ù¸é ±»ÀÌ ÀÌ Å¬·¡½ºµéÀ» ¾µ ÇÊ¿ä´Â ¾ø´Ù.
+//		MINTì—ì„œ ì‚¬ìš©ë˜ëŠ” Bitmap, Font, Cursor Resourceë¥¼ ì „ì—­ì ìœ¼ë¡œ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤ë“¤
+//		Applicationì—ì„œ ë…ìì ìœ¼ë¡œ ë¦¬ì†ŒìŠ¤ë¥¼ ê´€ë¦¬í•œë‹¤ë©´ êµ³ì´ ì´ í´ë˜ìŠ¤ë“¤ì„ ì“¸ í•„ìš”ëŠ” ì—†ë‹¤.
 //
 #ifndef MRESOURCEMANAGER_H
 #define MRESOURCEMANAGER_H
@@ -56,16 +56,16 @@ public:
 #define MF_SMALL_BOLD	"smallbold"
 #define MF_MEDIUM_BOLD	"mediumbold"
 
-// ±âº»ÀûÀ¸·Î »ç¿ëµÇ´Â Ä¿¼­ ÀÌ¸§
-// ÃÖ¼ÒÇÑ ÀÌ ¼¼°³ÀÇ ÀÌ¸§À» °°´Â Ä¿¼­´Â Á¤ÀÇ µÇ¾îÁ®¾ß ÇÑ´Ù.
+// ê¸°ë³¸ì ìœ¼ë¡œ ì‚¬ìš©ë˜ëŠ” ì»¤ì„œ ì´ë¦„
+// ìµœì†Œí•œ ì´ ì„¸ê°œì˜ ì´ë¦„ì„ ê°™ëŠ” ì»¤ì„œëŠ” ì •ì˜ ë˜ì–´ì ¸ì•¼ í•œë‹¤.
 #define MCURSOR_ARROW	"arrow"
 #define MCURSOR_WAIT	"wait"
 #define MCURSOR_INPUT	"input"
 
 // Cursor System static class
 class MCursorSystem{
-	static MCursor*					m_pCursor;		// ÇöÀç Ä¿¼­
-	static CMLinkedList<MCursor>	m_Cursors;		// ³»ºÎ¿¡ °ü¸®µÇ´Â Ä¿¼­
+	static MCursor*					m_pCursor;		// í˜„ì¬ ì»¤ì„œ
+	static CMLinkedList<MCursor>	m_Cursors;		// ë‚´ë¶€ì— ê´€ë¦¬ë˜ëŠ” ì»¤ì„œ
 	static bool						m_bShow;
 public:
 	static void Destroy(void);

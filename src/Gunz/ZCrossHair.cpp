@@ -99,7 +99,7 @@ void ZCrossHair::Change(ZCrossHairPreset nPreset)
 
 void ZCrossHair::ChangeFromOption()
 {
-	// crosshair ¼³Á¤
+	// crosshair ì„¤ì •
 	MComboBox* pComboBox = (MComboBox*)ZApplication::GetGameInterface()->GetIDLResource()->FindWidget("CrossHairComboBox");
 	if (pComboBox)
 	{
@@ -120,7 +120,7 @@ void ZCrossHair::DrawCrossHair(MDrawContext* pDC, MBitmap** ppBitmaps, MPOINT& c
 
 	if(ppBitmaps[CH_CENTER]) 
 	{
-		// crosshair ´Â 800x600 ±âÁØÀ¸·Î ¸¸µé¾îÁ®ÀÖ´Ù
+		// crosshair ëŠ” 800x600 ê¸°ì¤€ìœ¼ë¡œ ë§Œë“¤ì–´ì ¸ìžˆë‹¤
 		sizex = ppBitmaps[CH_CENTER]->GetWidth() * fSizeFactor ;
 		sizey = ppBitmaps[CH_CENTER]->GetHeight() * fSizeFactor ;
 

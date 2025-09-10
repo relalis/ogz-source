@@ -261,7 +261,7 @@ int MDrawContextR2::Text(int x, int y, const char* szText)
 	/*
 	bool bShadow = false;
 
-	if (pFont->m_nOutlineStyle <= 0) {	// ¾Æ¿ô¶óÀÎÆùÆ® ¾Æ´Ï¸é ±×¸²ÀÚµ¡´ë±â
+	if (pFont->m_nOutlineStyle <= 0) {	// ì•„ì›ƒë¼ì¸í°íŠ¸ ì•„ë‹ˆë©´ ê·¸ë¦¼ìë§ëŒ€ê¸°
 		if (m_Color.r+m_Color.g+m_Color.b > 300) {
 			bShadow = true;
 //			pFont->m_Font.DrawText((float)x+1.0f, (float)y+1.0f, szText, MINT_ARGB(m_Color.a,0,0,0), pFont->m_fScale);
@@ -282,7 +282,7 @@ void MDrawContextR2::SetClipRect(MRECT& r)
 {
 	MDrawContext::SetClipRect(r);
 
-	// DX ClippingÀÌ ÇÑÇÈ¼¿ »à»ç¸®°¡ ³ª¼­ º¸Á¤
+	// DX Clippingì´ í•œí”½ì…€ ì‚‘ì‚¬ë¦¬ê°€ ë‚˜ì„œ ë³´ì •
 	r.w+=1;
 	r.h+=1;
 
@@ -411,7 +411,7 @@ struct CUSTOMVERTEX{
 
 DWORD MBitmapR2::m_dwStateBlock;
 
-// ÇöÀç´Â state blockÀ» »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+// í˜„ì¬ëŠ” state blockì„ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 //#define USE_STATEBLOCK
 
 void MBitmapR2::BeginState(MDrawEffect effect)
@@ -526,13 +526,13 @@ void MBitmapR2::CheckDrawMode(float* fuv)
 
 		float temp[2];
 
-		if(m_DrawMode & MBM_FlipLR)	{//ÁÂ¿ì ¹Ù²Ù±â
+		if(m_DrawMode & MBM_FlipLR)	{//ì¢Œìš° ë°”ê¾¸ê¸°
 			_swap(fuv[0],fuv[2]);
 			_swap(fuv[1],fuv[3]);
 			_swap(fuv[4],fuv[6]);
 			_swap(fuv[5],fuv[7]);
 		}
-		if(m_DrawMode & MBM_FlipUD) {//»óÇÏ ¹Ù²Ù±â
+		if(m_DrawMode & MBM_FlipUD) {//ìƒí•˜ ë°”ê¾¸ê¸°
 			_swap(fuv[0],fuv[6]);
 			_swap(fuv[1],fuv[7]);
 			_swap(fuv[2],fuv[4]);

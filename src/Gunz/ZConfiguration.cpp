@@ -839,7 +839,7 @@ void ZConfiguration::LoadDefaultKeySetting()
 		{"VoiceChat", 37, -1 },	// 'k'
 		{"Chat", DIK_RETURN, -1},	// 'enter'
 		{"TeamChat", DIK_APOSTROPHE, -1},	// '''
-		// √ﬂ∞° by ¡§µøº∑ @ 2006/3/16
+		// Ï∂îÍ∞Ä by Ï†ïÎèôÏÑ≠ @ 2006/3/16
 	};
 
 	_ASSERT(ZACTION_COUNT==sizeof(DefaultActionKeys)/sizeof(ZACTIONKEYDESCRIPTION));

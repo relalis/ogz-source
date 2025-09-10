@@ -29,7 +29,7 @@ enum AnimationType{
 	RAniType_Tm,
 };
 
-// ÀÌÀü¹öÁ¯°úÀÇ È£È¯¼º ¶§¹®.. ³ªÁß¿¡ ÇÏ³ª·Î Á¤¸®
+// ì´ì „ë²„ì ¼ê³¼ì˜ í˜¸í™˜ì„± ë•Œë¬¸.. ë‚˜ì¤‘ì— í•˜ë‚˜ë¡œ ì •ë¦¬
 
 class el_mesh;
 
@@ -83,10 +83,10 @@ public:
 
 	RFaceNormalInfo* m_face_normal_list;
 
-	int				m_point_color_num;	// m_point_num °ú °°´Ù~
+	int				m_point_color_num;	// m_point_num ê³¼ ê°™ë‹¤~
 	D3DXVECTOR3*	m_point_color_list;
 
-//	int				m_point_normal_num;	// m_point_num °ú °°´Ù~
+//	int				m_point_normal_num;	// m_point_num ê³¼ ê°™ë‹¤~
 //	D3DXVECTOR3*	m_point_normal_list;
 
 	////////////////////////////////////////////////////

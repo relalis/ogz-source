@@ -79,7 +79,7 @@ bool MMatchAdmin::MakeArgv(char* szStr, MAdminArgvInfo* pAi)
 		for ( ; ; scp++)
 		{
 			c = *scp;
-			if (!isascii(c)) continue;	// ÇÑ±ÛÃ³¸®
+			if (!isascii(c)) continue;	// í•œê¸€ì²˜ë¦¬
 			if (isspace(c)) continue;
 
 			if ( (c == '\0') || (c == ';') || (c == '\n') )
@@ -126,7 +126,7 @@ bool MMatchServer::OnAdminExecute(MAdminArgvInfo* pAI, char* szOut, int maxlen)
 	{
 		if (pAI->cargc < 3)
 		{
-			sprintf_safe(szOut, maxlen, "ÀÎÀÚ°¡ ºÎÁ·ÇÕ´Ï´Ù.");
+			sprintf_safe(szOut, maxlen, "ì¸ìžê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 			return true;
 		}
 
@@ -158,7 +158,7 @@ void MMatchServer::AdminTerminalOutput(const MUID& uidAdmin, const char* szText)
 	MMatchObject* pObj = GetObject(uidAdmin);
 	if (pObj == NULL) return;
 
-	// °ü¸®ÀÚ ±ÇÇÑÀ» °¡Áø »ç¶÷ÀÌ ¾Æ´Ï¸é ¿¬°áÀ» ²÷´Â´Ù.
+	// ê´€ë¦¬ìž ê¶Œí•œì„ ê°€ì§„ ì‚¬ëžŒì´ ì•„ë‹ˆë©´ ì—°ê²°ì„ ëŠëŠ”ë‹¤.
 	if (pObj->GetAccountInfo()->m_nUGrade != MMUG_ADMIN)
 	{
 //		DisconnectObject(uidAdmin);		

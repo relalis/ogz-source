@@ -111,12 +111,12 @@ void ZBirdDummyAIMakeRoomFlood::OnCommand(MCommand* pCmd)
 			int nResult;
 			pCmd->GetParameter(&nResult, 0, MPT_INT);
 
-			// ¹æ»ý¼º ½ÇÆÐ¸é ´Ù½Ã ¸¸µç´Ù
+			// ë°©ìƒì„± ì‹¤íŒ¨ë©´ ë‹¤ì‹œ ë§Œë“ ë‹¤
 			if (nResult != MOK)
 			{
 				int nRandNum = rand() % 100000;
 				char szStageName[256];
-				sprintf_safe(szStageName, "%s_stage%d", "²¿ºØÁñ", nRandNum);
+				sprintf_safe(szStageName, "%s_stage%d", "ê¼¬ë¶•ì¦", nRandNum);
 
 
 				ZBIRDPOSTCMD4(m_pClient, MC_MATCH_STAGE_CREATE, 
@@ -164,7 +164,7 @@ void ZBirdDummyAIMakeRoomFlood::OnCommand(MCommand* pCmd)
 				MCommandParameterUID(m_pClient->GetPlayerUID()), 
 				MCmdParamInt(100));
 
-			// °ÔÀÓ¿¡ µé¾î°¬´Ù°í ¾Ë¸²
+			// ê²Œìž„ì— ë“¤ì–´ê°”ë‹¤ê³  ì•Œë¦¼
 			ZBIRDPOSTCMD2(m_pClient, MC_MATCH_STAGE_REQUEST_ENTERBATTLE, 
 				MCommandParameterUID(m_pClient->GetPlayerUID()), 
 				MCommandParameterUID(m_pClient->GetStageUID()));

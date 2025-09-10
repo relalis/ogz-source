@@ -28,7 +28,7 @@ RParticleSystem			g_ParticleSystem;
 HMODULE					g_hD3DLibrary=NULL;
 //bool g_bStencilBuffer;
 
-// FIXED RESOLUTION °ü·Ã ...
+// FIXED RESOLUTION ê´€ë ¨ ...
 //LPDIRECT3DTEXTURE9 g_lpTexture = 0;
 //LPDIRECT3DSURFACE9 g_lpSurface = 0;
 //LPDIRECT3DSURFACE9 g_lpStencil = 0;
@@ -164,7 +164,7 @@ void RSetFileSystem(MZFileSystem *pFileSystem) { g_pFileSystem=pFileSystem; }
 
 RParticleSystem *RGetParticleSystem() { return &g_ParticleSystem; }
 
-// ÃÊ±âÈ­ & Á¾·á
+// ì´ˆê¸°í™” & ì¢…ë£Œ
 
 /*
 #include <ddraw.h>
@@ -278,7 +278,7 @@ bool RInitDisplay(HWND hWnd, const RMODEPARAMS *params)
 		return false;
 	}
 
-	// °¡´ÉÇÑ ±×·¡ÇÈÄ«µå µğ¹ÙÀÌ½º Ã¼Å©
+	// ê°€ëŠ¥í•œ ê·¸ë˜í”½ì¹´ë“œ ë””ë°”ì´ìŠ¤ ì²´í¬
 	if (CheckVideoAdapterSupported()==false)
 	{
 		if (RError(RERROR_INVALID_DEVICE) != R_OK) return false;
@@ -286,7 +286,7 @@ bool RInitDisplay(HWND hWnd, const RMODEPARAMS *params)
 
 	D3DCAPS9 d3dcaps;
 	g_pD3D->GetDeviceCaps(D3DADAPTER_DEFAULT , D3DDEVTYPE_HAL , &d3dcaps );
-	g_pD3D->GetDeviceCaps(D3DADAPTER_DEFAULT , D3DDEVTYPE_HAL , &g_d3dcaps );	// Ä³ÆÛ Àü¿ªº¯¼ö·Î ÀúÀå
+	g_pD3D->GetDeviceCaps(D3DADAPTER_DEFAULT , D3DDEVTYPE_HAL , &g_d3dcaps );	// ìºí¼ ì „ì—­ë³€ìˆ˜ë¡œ ì €ì¥
 	
 	g_bHardwareTNL = (d3dcaps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT ) != 0;
 
@@ -365,11 +365,11 @@ bool RInitDisplay(HWND hWnd, const RMODEPARAMS *params)
 		return false;
 	}
 #else
-	// µğÆúÆ® ¼¼ÆÃ
+	// ë””í´íŠ¸ ì„¸íŒ…
 	UINT AdapterToUse = D3DADAPTER_DEFAULT;
 	D3DDEVTYPE DeviceType = D3DDEVTYPE_HAL;
 
-	// 'NVIDIA NVPerfHUD' ¾î´ğÅÍ¸¦ Ã£¾Æº¸°í, ÀÖÀ¸¸é µğÆúÆ® ¼¼ÆÃ ´ë½Å ±×°ÍÀ» »ç¿ëÇÑ´Ù.
+	// 'NVIDIA NVPerfHUD' ì–´ëŒ‘í„°ë¥¼ ì°¾ì•„ë³´ê³ , ìˆìœ¼ë©´ ë””í´íŠ¸ ì„¸íŒ… ëŒ€ì‹  ê·¸ê²ƒì„ ì‚¬ìš©í•œë‹¤.
 	for( UINT Adapter = 0; Adapter < g_pD3D->GetAdapterCount(); Adapter++ ) 
 	{    
 		D3DADAPTER_IDENTIFIER9 Identifier;    
@@ -462,7 +462,7 @@ void RAdjustWindow(const RMODEPARAMS *pModeParams)
 		winrt.bottom-winrt.top+(pModeParams->nHeight-(rt.bottom-rt.top)),FALSE);
 }
 
-// ¸ğµåÀüÈ¯ & ÇÃ¸®ÇÎ°ü·Ã
+// ëª¨ë“œì „í™˜ & í”Œë¦¬í•‘ê´€ë ¨
 
 //void ResetFont();
 
@@ -474,7 +474,7 @@ void RResetDevice(const RMODEPARAMS *params)
 	g_bFullScreen=params->bFullScreen;
 	g_nScreenWidth=params->nWidth;
 	g_nScreenHeight=params->nHeight;
-	g_PixelFormat= params->bFullScreen ? params->PixelFormat : g_d3ddm.Format;		// À©µµ¿ì ¸ğµå´Â ¿ø·¡ Æ÷¸ËÀ¸·Î
+	g_PixelFormat= params->bFullScreen ? params->PixelFormat : g_d3ddm.Format;		// ìœˆë„ìš° ëª¨ë“œëŠ” ì›ë˜ í¬ë§·ìœ¼ë¡œ
 
 	g_d3dpp.Windowed   = !params->bFullScreen;
  	g_d3dpp.BackBufferWidth = g_nScreenWidth;
@@ -646,7 +646,7 @@ rvector RGetTransformCoord(rvector &coord)
 	return ret;
 }
 
-// ¸Ş¸ğ¸®¸¦ »õ·Î ÇÒ´çÇÏ¹Ç·Î ´Ù ¾²¸é Áö¿öÁà¾ßÇÑ´Ù.
+// ë©”ëª¨ë¦¬ë¥¼ ìƒˆë¡œ í• ë‹¹í•˜ë¯€ë¡œ ë‹¤ ì“°ë©´ ì§€ì›Œì¤˜ì•¼í•œë‹¤.
 bool SaveMemoryBmp(int x,int y,void *data,void **retmemory,int *nsize)
 {
 	unsigned char *memory=NULL,*dest=NULL;
@@ -751,7 +751,7 @@ bool SaveMemoryBmp(int x,int y,void *data,void **retmemory,int *nsize)
 		return -1;  // Failure
 	} // GetCodecClsid
 
-	// data ´Â ARGB 32bit Æ÷¸Ë
+	// data ëŠ” ARGB 32bit í¬ë§·
 	bool RSaveAsJpeg(int x,int y,void *data,const char *szFilename)
 	{
 		// Setting up RAW Data
@@ -785,7 +785,7 @@ bool SaveMemoryBmp(int x,int y,void *data,void **retmemory,int *nsize)
 	}
 #endif	// _USE_GDIPLUS
 
-// data ´Â ARGB 32bit Æ÷¸Ë
+// data ëŠ” ARGB 32bit í¬ë§·
 bool RSaveAsBmp(int x,int y,void *data,const char *szFilename)
 {
 	void *memory;
@@ -806,7 +806,7 @@ bool RSaveAsBmp(int x,int y,void *data,const char *szFilename)
 	return true;
 }
 
-// data ´Â ARGB 32bit Æ÷¸Ë
+// data ëŠ” ARGB 32bit í¬ë§·
 bool RScreenShot(int x,int y,void *data,const char *szFilename)
 {
 	char szFullFileName[_MAX_DIR];
@@ -916,7 +916,7 @@ LPDIRECT3DSURFACE9 RCreateImageSurface(const char *filename)
 	return pSurface;
 }
 
-// °¨¸¶°ª Á¶Àı - ±âº»°ª = 255
+// ê°ë§ˆê°’ ì¡°ì ˆ - ê¸°ë³¸ê°’ = 255
 void RSetGammaRamp(unsigned short nGammaValue)
 {
 	D3DCAPS9 caps; 
@@ -982,8 +982,8 @@ void RDrawCorn(rvector center,rvector pole,float fRadius,int nSegment)
 		rvector a=fRadius*(x*cos(fAngle)+y*sin(fAngle))+center;
 		rvector b=fRadius*(x*cos(fAngle2)+y*sin(fAngle2))+center;
 
-		RDrawLine(a,pole,0xffff0000);	// ¿·¸é
-		RDrawLine(a,b,0xffff0000);	// ¹Ø¸é
+		RDrawLine(a,pole,0xffff0000);	// ì˜†ë©´
+		RDrawLine(a,b,0xffff0000);	// ë°‘ë©´
 	}
 }
 
@@ -1014,7 +1014,7 @@ void RDrawSphere(rvector origin,float fRadius,int nSegment)
 	}
 }
 
-// ³ªÁß¿¡ È­»ìÇ¥³ª ±×·ÁÁÖ¸é ÁÁ°Ú´Ù -_-;
+// ë‚˜ì¤‘ì— í™”ì‚´í‘œë‚˜ ê·¸ë ¤ì£¼ë©´ ì¢‹ê² ë‹¤ -_-;
 void RDrawAxis(rvector origin,float fSize)
 {
 	RGetDevice()->SetTexture(0,NULL);
@@ -1169,12 +1169,12 @@ bool CheckVideoAdapterSupported()
 		if(ai->DeviceId==0x7125)	// 82810E
 			bSupported=false;
 
-		// intel 810 , 815  ½Ã¸®Áî
+		// intel 810 , 815  ì‹œë¦¬ì¦ˆ
 		//if(ai->DeviceId==0x7800 || ai->DeviceId==0x7121 || ai->DeviceId==0x7123 || ai->DeviceId==0x7125 || ai->DeviceId==0x1132)
 		//	bSupported=false;
 	}
 /*
-	if(ai->VendorId==0x1039)	// SiS Ä¨¼Â
+	if(ai->VendorId==0x1039)	// SiS ì¹©ì…‹
 	{
 		bSupported=false;
 	}
@@ -1182,12 +1182,12 @@ bool CheckVideoAdapterSupported()
 		if(ai->DeviceId==0x8a22)
 			bSupported=false;
 	}
-	if(ai->VendorId==0x10de) {	// NVidia Ä«µåµé
+	if(ai->VendorId==0x10de) {	// NVidia ì¹´ë“œë“¤
 		if(ai->DeviceId==0x2c || ai->DeviceId==0x2d)
 			bSupported=false;
 	}
 */
-	if(ai->VendorId==0x121a) {	// 3dfx Ä«µåµé
+	if(ai->VendorId==0x121a) {	// 3dfx ì¹´ë“œë“¤
 		bSupported=false;
 	}
 

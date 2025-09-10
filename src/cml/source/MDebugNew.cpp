@@ -6,7 +6,7 @@
 #define MAX_CALL_STACK	4
 
 struct MNEWINFO {
-	DWORD callStack[MAX_CALL_STACK];	// Äİ½ºÅÃ 4°³¸¸ ±â·ÏÇÑ´Ù
+	DWORD callStack[MAX_CALL_STACK];	// ì½œìŠ¤íƒ 4ê°œë§Œ ê¸°ë¡í•œë‹¤
 };
 
 /////////////////////////////////////////////////////////////////////////
@@ -194,7 +194,7 @@ bool MNewMemories::OnDelete(void* pPointer)
 	if(itr==m_Pointers.end()) {
 //		assert(0);
 		bDontCheck=false;
-		return false;		// ¿©±â¼­ ÇÒ´çµÈ ¸Ş¸ğ¸®°¡ ¾Æ´Ï´Ù
+		return false;		// ì—¬ê¸°ì„œ í• ë‹¹ëœ ë©”ëª¨ë¦¬ê°€ ì•„ë‹ˆë‹¤
 	}else{
 
 		m_List.erase(itr->second);
@@ -223,7 +223,7 @@ public:
 			if(n1.callStack[i]<n2.callStack[i]) return true;
 			if(n1.callStack[i]>n2.callStack[i]) return false;
 		}
-		return false;	// °°´Ù
+		return false;	// ê°™ë‹¤
 	}
 };
 
@@ -341,9 +341,9 @@ void* operator new(size_t _size)
 		ZeroMemory(&stk, sizeof(stk));
 
 		_asm {
-			call next							// ÀÌ·¸°Ô ÇÏ¸é eip ¸¦ stack ¿¡ push ÇÑ´Ù
+			call next							// ì´ë ‡ê²Œ í•˜ë©´ eip ë¥¼ stack ì— push í•œë‹¤
 			next:
-			pop eax								// pushµÈ eipÀÇ ³»¿ëÀ» eax ·Î pop ÇÑ´Ù
+			pop eax								// pushëœ eipì˜ ë‚´ìš©ì„ eax ë¡œ pop í•œë‹¤
 			mov stk.AddrPC.Offset , eax
 			mov stk.AddrStack.Offset , esp
 			mov stk.AddrFrame.Offset , ebp
@@ -382,7 +382,7 @@ void* operator new(size_t _size)
 
 void * operator new[]( size_t _size )
 {
-	// ¾µµ¥¾øÀÌ stack ÇÑÄ­ Â÷ÁöÇÏ´Â°É ¾ø¾Ö·Á¸é copy & paste ÇÏÀÚ (inlineÀº ½ÇÆĞÇß´Ù)
+	// ì“¸ë°ì—†ì´ stack í•œì¹¸ ì°¨ì§€í•˜ëŠ”ê±¸ ì—†ì• ë ¤ë©´ copy & paste í•˜ì (inlineì€ ì‹¤íŒ¨í–ˆë‹¤)
 	return operator new(_size);			
 }
 

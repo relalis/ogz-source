@@ -9,8 +9,8 @@
 struct ZCLANINFO {
 	int nClanEmblemID;
 	char szClanName[CLAN_NAME_LENGTH];
-	int nPlayers;		// ´ë±âÁßÀÎ »ç¶÷¼ö
-	bool bEmpty;		// ºñ¾îÀÖ´Â¹æÀÎÁö
+	int nPlayers;		// ëŒ€ê¸°ì¤‘ì¸ ì‚¬ëŒìˆ˜
+	bool bEmpty;		// ë¹„ì–´ìˆëŠ”ë°©ì¸ì§€
 };
 
 class ZClanListBox : public MWidget {

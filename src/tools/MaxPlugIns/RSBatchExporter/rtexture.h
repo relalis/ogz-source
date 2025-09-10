@@ -46,16 +46,16 @@ public:
 	int GetBytesPerPixel();
 	int GetDataSize();
 
-	// ÀüÃ¼¸¦ ÇÑ»öÀ¸·Î.
+	// ì „ì²´ë¥¼ í•œìƒ‰ìœ¼ë¡œ.
 	void Fill(DWORD color);
 	
-	// °æ°è¼± Ä¥ÇÏ±â
+	// ê²½ê³„ì„  ì¹ í•˜ê¸°
 	void FillBoundary(DWORD color);
 
-	// source¸¦ ÀĞ¾î¼­ Ä¥ÇÏ´Â Æã¼Ç. Å¬¸®ÇÎµûÀ©¾øÀ¸´Ï Á¶½É.
+	// sourceë¥¼ ì½ì–´ì„œ ì¹ í•˜ëŠ” í‘ì…˜. í´ë¦¬í•‘ë”°ìœˆì—†ìœ¼ë‹ˆ ì¡°ì‹¬.
 	void Fill(int dx,int dy,int nDir,rtexture *source);
 	
-	// Æ¯º°È÷ ±×¸²ÀÚ ÅØ½ºÃÄ ·»´õ¸µÀ» À§ÇÑ.
+	// íŠ¹ë³„íˆ ê·¸ë¦¼ì í…ìŠ¤ì³ ë Œë”ë§ì„ ìœ„í•œ.
 	void FillTriangle(float sx0,float sy0,float sx1,float sy1,float sx2,float sy2,DWORD color);
 
 	void SetPixel(int x,int y,DWORD color);

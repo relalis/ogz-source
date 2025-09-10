@@ -171,7 +171,7 @@ void MMatchServer::OnAdminRequestSwitchLadderGame(const MUID& uidAdmin, const bo
 	MGetServerConfig()->SetEnabledCreateLadderGame(bEnabled);
 
 
-	char szMsg[256] = "¼³Á¤µÇ¾ú½À´Ï´Ù.";
+	char szMsg[256] = "ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤.";
 	Announce(pObj, szMsg);
 }
 

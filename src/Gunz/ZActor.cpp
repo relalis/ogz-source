@@ -254,12 +254,12 @@ void ZActor::InitMesh(char* szMeshName, MQUEST_NPC nNPCType)
 	if(!pMesh) 
 	{
 		_ASSERT(0);
-		mlog("ZActor::InitMesh() -  ¿øÇÏ´Â ¸ðµ¨À» Ã£À»¼ö ¾øÀ½\n");
+		mlog("ZActor::InitMesh() -  ì›í•˜ëŠ” ëª¨ë¸ì„ ì°¾ì„ìˆ˜ ì—†ìŒ\n");
 		return;
 	}
 
 	int nVMID = g_pGame->m_VisualMeshMgr.Add(pMesh);
-	if(nVMID==-1) mlog("ZActor::InitMesh() - Ä³¸¯ÅÍ »ý¼º ½ÇÆÐ\n");
+	if(nVMID==-1) mlog("ZActor::InitMesh() - ìºë¦­í„° ìƒì„± ì‹¤íŒ¨\n");
 
 	RVisualMesh* pVMesh = g_pGame->m_VisualMeshMgr.GetFast(nVMID);
 

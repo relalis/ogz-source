@@ -112,8 +112,8 @@ struct rpolygon
 	bool	bPlaneUsed;
 	int		nID;
 
-	int		*vi;	// vertex index ( solid bsp ¸¸µé¶§ ÀÓ½Ã·Î ¾´´Ù )
-//	dpoint *en;	// edge normal ( solid bsp ¸¸µé¶§ ÀÓ½Ã·Î ¾´´Ù )
+	int		*vi;	// vertex index ( solid bsp ë§Œë“¤ë•Œ ì„ì‹œë¡œ ì“´ë‹¤ )
+//	dpoint *en;	// edge normal ( solid bsp ë§Œë“¤ë•Œ ì„ì‹œë¡œ ì“´ë‹¤ )
 };
 
 typedef CMLinkedList<rvertex> RSVertexList;
@@ -266,18 +266,18 @@ struct RConvexPolygon {
 	int				nMaterial;
 	list<int>		RefIDs;
 	double			fArea;
-//	vector<rpolygon*>	faces;		// ¿øº» Æú¸®°ï.. normal & uv ¸¦ À§ÇØ º¸°üÇÑ´Ù..
+//	vector<rpolygon*>	faces;		// ì›ë³¸ í´ë¦¬ê³¤.. normal & uv ë¥¼ ìœ„í•´ ë³´ê´€í•œë‹¤..
 	DWORD			dwFlags;
 };
 */
 
-// Æò¸é°ú Æú¸®°ïÀÇ °ü°è..
+// í‰ë©´ê³¼ í´ë¦¬ê³¤ì˜ ê´€ê³„..
 enum RSIDE {
-	RSIDE_POSITIVE	=0,		// ¾ÕÂÊ
-	RSIDE_NEGATIVE	=1,		// µŞÂÊ
-	RSIDE_BOTH		=2,		// °ÉÄ£°æ¿ì
-	RSIDE_COPLANAR_POS	=3,		// °°ÀºÆò¸é¿¡ ÀÖ´Â °æ¿ì ¾ÕÂÊ
-	RSIDE_COPLANAR_NEG	=4		// °°ÀºÆò¸é¿¡ ÀÖ´Â °æ¿ì µŞÂÊ
+	RSIDE_POSITIVE	=0,		// ì•ìª½
+	RSIDE_NEGATIVE	=1,		// ë’·ìª½
+	RSIDE_BOTH		=2,		// ê±¸ì¹œê²½ìš°
+	RSIDE_COPLANAR_POS	=3,		// ê°™ì€í‰ë©´ì— ìˆëŠ” ê²½ìš° ì•ìª½
+	RSIDE_COPLANAR_NEG	=4		// ê°™ì€í‰ë©´ì— ìˆëŠ” ê²½ìš° ë’·ìª½
 };
 
 class RCSGObject {
@@ -290,7 +290,7 @@ public:
 	RSBspNode		*m_pTree;
 };
 
-// ³×ºñ°ÔÀÌ¼Ç ¸Ş½¬
+// ë„¤ë¹„ê²Œì´ì…˜ ë©”ì‰¬
 struct RSNavigationMesh
 {
 	int			nVertCount;
@@ -343,7 +343,7 @@ public:
 
 	int			nMesh;
 
-	void Preprocessing();				// ¼¼ÀÌºêÇÏ±â Àü¿¡ ÇØ¾ß ÇÒ°Íµé..
+	void Preprocessing();				// ì„¸ì´ë¸Œí•˜ê¸° ì „ì— í•´ì•¼ í• ê²ƒë“¤..
 
 	bool SaveRS(const char* name);
 	bool SaveBSP(const char* name);
@@ -366,21 +366,21 @@ public:
 	RSPolygonList face,faceOc,faceCol;
 	RSPolygonList faceNavigation;
 
-	// navigation ¿ë
+	// navigation ìš©
 	RSNavigationMesh		m_Navigation;
 
 
-	dboundingbox m_bb;					// ÀüÃ¼ÀÇ ¹Ù¿îµù¹Ú½º
+	dboundingbox m_bb;					// ì „ì²´ì˜ ë°”ìš´ë”©ë°•ìŠ¤
 
 private:
-	// csgunion À» À§ÇØ ÇÊ¿äÇÑ Æã¼Çµé
+	// csgunion ì„ ìœ„í•´ í•„ìš”í•œ í‘ì…˜ë“¤
 	void CutPolygon(rpolygon *ppolygon);
 	void CheckPolygonInSolid(rpolygon *ppolygon,RSBspNode *pNode);
 	bool CSGUnion(RSPolygonList *pOutputPolygons, RSPolygonList* pOutputPolygonList, list<RCSGObject*>& Objects);
 
-	bool SaveSource(FILE *file);		// bsp »ı¼º ÀüÀÇ mesh ¸¦ ÀúÀåÇØµĞ´Ù.
+	bool SaveSource(FILE *file);		// bsp ìƒì„± ì „ì˜ mesh ë¥¼ ì €ì¥í•´ë‘”ë‹¤.
 	bool ConstructBspTree();
-	void ConstructBoundingBox();	// ¸»´Ü ³ëµå¼­ºÎÅÍ °è»êÇÏ¿© root±îÁö ¿Ã¶ó°¨
+	void ConstructBoundingBox();	// ë§ë‹¨ ë…¸ë“œì„œë¶€í„° ê³„ì‚°í•˜ì—¬ rootê¹Œì§€ ì˜¬ë¼ê°
 	bool Save(FILE *file);
 
 	RSBspNode *ConstructOctree(RSPolygonList *FaceList,int depth,dboundingbox *bb);
@@ -421,7 +421,7 @@ private:
 #define FLOAT2RGB24(r, g, b) ( ( ((long)((r) * 255)) << 16) | \
 								(((long)((g) * 255)) << 8) | (long)((b) * 255))
 
-// TOLER ¿¡ ºñÇØ Áö³ªÄ¡°Ô Å« ¸ÊÀ» Ã³¸®ÇÏ´Ùº¸¸é ¹«ÇÑ·çÇÁ¿¡ ºüÁú¼öÀÖ¾¸ ¤Ì.¤Ñ
+// TOLER ì— ë¹„í•´ ì§€ë‚˜ì¹˜ê²Œ í° ë§µì„ ì²˜ë¦¬í•˜ë‹¤ë³´ë©´ ë¬´í•œë£¨í”„ì— ë¹ ì§ˆìˆ˜ìˆì”€ ã…œ.ã…¡
 #define BSPTOLER	0.01
 #define BSPEQ(a,b)	((fabs(double(a)-(b)) >= BSPTOLER) ? 0 : 1)
 #define BSPEQ3(a,b)	(BSPEQ((a).x,(b).x) && BSPEQ((a).y,(b).y) && BSPEQ((a).z,(b).z) )

@@ -9,13 +9,13 @@ class MQuestSacrificeSlot;
 
 #define SACRIFICE_TABLE_XML "SacrificeTable.xml"
 
-/* MQuestConst.h·Î ÀÌµ¿.
-#define MSQITRES_NOR  1	// Æ¯º°½Ã³ª¸®¿À¿¡ ÇØ´çÇÏ´Â Èñ»ý¾ÆÀÌÅÛ¸¸ ¾ø°í, ÀÏ¹Ý½Ã³ª¸®¿À¿¡ ´ëÇÑ Èñ»ý ¾ÆÀÌÅÛ¸¸ ÀÖ´Â »óÈ².
-#define MSQITRES_SPC  2	// Ÿß³ª ½Ã³ª¸®¿À ¾ÆÀÌÅÛ°ú Æ¯º°½Ã³ª¸®¿À¿¡ ÇØ´çÇÏ´Â Èñ»ý¾ÆÀÌÅÛÀÌ ÀÖÀ½.
-#define MSQITRES_INV  3	// ÇØ´ç QL¿¡´ëÇÑ Èñ»ý¾ÆÀÌÅÛ Á¤º¸ Å×ÀÌºíÀÌ ¾øÀ½. ÀÌ°æ¿ì´Â ¸ÂÁö ¾Ê´Â Èñ»ý ¾ÆÀÌÅÛÀÌ ¿Ã·ÁÁ® ÀÖÀ»°æ¿ì.
-#define MSQITRES_DUP  4 // ¾çÂÊ ½½·Ô¿¡ Æ¯º° ½Ã³ª¸®¿À¿ë Èñ»ý ¾ÆÀÌÅÛÀÌ ¿Ã·ÁÁ® ÀÖÀ½.
-#define MSQITRES_EMP  5 // ¾çÂÊ ½½·ÔÀÌ ¸ðµÎ ºñ¾î ÀÖÀ½. ÀÌ »óÅÂ´Â QL°ªÀ»1·Î ÇØÁà¾ß ÇÔ.
-#define MSQITRES_ERR -1	// ¿¡·¯... Å×ÀÌºí¿¡¼­ ÇØ´ç QLÀ» Ã£À»¼ö ¾øÀ½. QL = 0 or QL°ªÀÌ ÇöÁ¦ ±¸¼ºµÈ MAX QLº¸´Ù Å¬°æ¿ì.
+/* MQuestConst.hë¡œ ì´ë™.
+#define MSQITRES_NOR  1	// íŠ¹ë³„ì‹œë‚˜ë¦¬ì˜¤ì— í•´ë‹¹í•˜ëŠ” í¬ìƒì•„ì´í…œë§Œ ì—†ê³ , ì¼ë°˜ì‹œë‚˜ë¦¬ì˜¤ì— ëŒ€í•œ í¬ìƒ ì•„ì´í…œë§Œ ìžˆëŠ” ìƒí™©.
+#define MSQITRES_SPC  2	// ì¿ë‚˜ ì‹œë‚˜ë¦¬ì˜¤ ì•„ì´í…œê³¼ íŠ¹ë³„ì‹œë‚˜ë¦¬ì˜¤ì— í•´ë‹¹í•˜ëŠ” í¬ìƒì•„ì´í…œì´ ìžˆìŒ.
+#define MSQITRES_INV  3	// í•´ë‹¹ QLì—ëŒ€í•œ í¬ìƒì•„ì´í…œ ì •ë³´ í…Œì´ë¸”ì´ ì—†ìŒ. ì´ê²½ìš°ëŠ” ë§žì§€ ì•ŠëŠ” í¬ìƒ ì•„ì´í…œì´ ì˜¬ë ¤ì ¸ ìžˆì„ê²½ìš°.
+#define MSQITRES_DUP  4 // ì–‘ìª½ ìŠ¬ë¡¯ì— íŠ¹ë³„ ì‹œë‚˜ë¦¬ì˜¤ìš© í¬ìƒ ì•„ì´í…œì´ ì˜¬ë ¤ì ¸ ìžˆìŒ.
+#define MSQITRES_EMP  5 // ì–‘ìª½ ìŠ¬ë¡¯ì´ ëª¨ë‘ ë¹„ì–´ ìžˆìŒ. ì´ ìƒíƒœëŠ” QLê°’ì„1ë¡œ í•´ì¤˜ì•¼ í•¨.
+#define MSQITRES_ERR -1	// ì—ëŸ¬... í…Œì´ë¸”ì—ì„œ í•´ë‹¹ QLì„ ì°¾ì„ìˆ˜ ì—†ìŒ. QL = 0 or QLê°’ì´ í˜„ì œ êµ¬ì„±ëœ MAX QLë³´ë‹¤ í´ê²½ìš°.
 */
 
 
@@ -62,7 +62,7 @@ private :
 };
 
 
-// °¢·¹º§¿¡ ÇÊ¿äÇÑ Èñ»ý ¾ÆÀÌÅÛ Å×ÀÌºí.
+// ê°ë ˆë²¨ì— í•„ìš”í•œ í¬ìƒ ì•„ì´í…œ í…Œì´ë¸”.
 class MSacrificeQItemTable : private multimap< int, MSacrificeQItemInfo >
 {
 public :
@@ -86,7 +86,7 @@ public :
 private :
 	void ParseTable( MXmlElement& element );
 
-	MSacrificeQItemInfo* m_pResultTable;	// CheckInvalidSlot¿¡ÀÇÇØ ÇØ´çÇÏ´Â Å×ÀÌºíÀÌ °Ë»öµÇ¸é ¿©±â¿¡ ¼ÂÆÃµÊ.
+	MSacrificeQItemInfo* m_pResultTable;	// CheckInvalidSlotì—ì˜í•´ í•´ë‹¹í•˜ëŠ” í…Œì´ë¸”ì´ ê²€ìƒ‰ë˜ë©´ ì—¬ê¸°ì— ì…‹íŒ…ë¨.
 };
 
 

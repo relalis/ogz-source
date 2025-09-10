@@ -12,7 +12,7 @@
 #define CYCLE_MATCHCHANNELPLAYERLISTUPDATE	1000
 #define CYCLE_MATCHCHANNELCLANMEMBER		1000
 
-#define CYCLE_MATCH_STANDBY_CLANLIST_UPDATE	1000		// Å¬·£Àü ´ë±â Å¬·£ ¸®½ºÆ® ¾÷µ¥ÀÌÆ® ½Ã°£Àº 10ÃÊÀÌ´Ù.
+#define CYCLE_MATCH_STANDBY_CLANLIST_UPDATE	1000		// í´ëžœì „ ëŒ€ê¸° í´ëžœ ë¦¬ìŠ¤íŠ¸ ì—…ë°ì´íŠ¸ ì‹œê°„ì€ 10ì´ˆì´ë‹¤.
 
 
 const u32 MMatchDisconnStatusInfo::MINTERVAL_DISCONNECT_STATUS_MIN = (5 * 1000);
@@ -405,7 +405,7 @@ bool MMatchObject::CheckEnableAction(MMO_ACTION nAction)
 {
 	switch (nAction)
 	{
-	case MMOA_STAGE_FOLLOW:		// µû¶ó°¡±â°¡ °¡´ÉÇÑ »óÅÂÀÎÁö ¿©ºÎ
+	case MMOA_STAGE_FOLLOW:		// ë”°ë¼ê°€ê¸°ê°€ ê°€ëŠ¥í•œ ìƒíƒœì¸ì§€ ì—¬ë¶€
 		{
 			if (GetPlace() != MMP_LOBBY) return false;
 			if (IsLadderChallenging()) return false;
@@ -422,7 +422,7 @@ bool MMatchObject::CheckEnableAction(MMO_ACTION nAction)
 
 void MMatchObject::CheckNewbie(int nCharMaxLevel)
 {
-#define NEWBIE_LEVEL_CUTLINE		20		// °¡Áö°í ÀÖ´Â Ä³¸¯ÅÍµéÀÇ ÃÖ°í·¹º§ÀÌ 21·¹º§ÀÌ»óÀÌ¸é ´ººñ°¡ ¾Æ´Ï´Ù.
+#define NEWBIE_LEVEL_CUTLINE		20		// ê°€ì§€ê³  ìžˆëŠ” ìºë¦­í„°ë“¤ì˜ ìµœê³ ë ˆë²¨ì´ 21ë ˆë²¨ì´ìƒì´ë©´ ë‰´ë¹„ê°€ ì•„ë‹ˆë‹¤.
 
 	if (nCharMaxLevel > NEWBIE_LEVEL_CUTLINE) m_bNewbie = false;
 	else m_bNewbie = true;
@@ -513,14 +513,14 @@ bool IsEquipableItem(u32 nItemID, int nPlayerLevel, MMatchSex nPlayerSex)
 	MMatchItemDesc* pItemDesc = MGetMatchItemDescMgr()->GetItemDesc(nItemID);
 	if (pItemDesc == NULL) return false;
 
-	// ¼ºº° Á¦ÇÑ Á¶°Ç
+	// ì„±ë³„ ì œí•œ ì¡°ê±´
 	if (pItemDesc->m_nResSex != -1)
 	{
 		if (pItemDesc->m_nResSex != int(nPlayerSex)) return false;
 	}
 
-	if (MGetServerConfig()->GetServerMode() != MSM_EVENT) {	// EVENT¶§ ·¹º§Á¦ÇÑ ¾øÀÌ ÀåÂøÇÑ´Ù
-		// ·¹º§ Á¦ÇÑ Á¶°Ç
+	if (MGetServerConfig()->GetServerMode() != MSM_EVENT) {	// EVENTë•Œ ë ˆë²¨ì œí•œ ì—†ì´ ìž¥ì°©í•œë‹¤
+		// ë ˆë²¨ ì œí•œ ì¡°ê±´
 		if (pItemDesc->m_nResLevel > nPlayerLevel) return false;
 	}
 

@@ -508,8 +508,8 @@ void RSMObject::OptimizeMesh(RSMMesh *pMesh)
 	for(i=0;i<mesh->nF;i++)
 	{
 		face->nMaterial= !mat ? -1 :
-							(mat->nSubMaterial==0) ? -1 :					// ¾øÀ¸¸é NULL
-							(mat->nSubMaterial==1) ? mat->SubMaterials[0] :					// standard material ÀÌ¸é 
+							(mat->nSubMaterial==0) ? -1 :					// ì—†ìœ¼ë©´ NULL
+							(mat->nSubMaterial==1) ? mat->SubMaterials[0] :					// standard material ì´ë©´ 
 							(face->nMaterial<mat->nSubMaterial) ? mat->SubMaterials[face->nMaterial] : -1;	// multi-sub
 		if(face->nMaterial!=-1)
 		{
@@ -636,7 +636,7 @@ bool RSMObject::SaveShadowTexture(FILE *stream)
 	int i,j,k;
 	float maxx=0,maxy=0;
 
-	// Àû´çÇÑ ½ºÄÉÀÏ °ªÀ» ¾ò±âÀ§ÇØ ÃÖ´ë ÃÖ¼Ò¸¦ Ã£´Â´Ù.
+	// ì ë‹¹í•œ ìŠ¤ì¼€ì¼ ê°’ì„ ì–»ê¸°ìœ„í•´ ìµœëŒ€ ìµœì†Œë¥¼ ì°¾ëŠ”ë‹¤.
 	for(i=0;i<MeshList.GetCount();i++)
 	{
 		RSMMesh *mesh=MeshList.Get(i);
@@ -651,7 +651,7 @@ bool RSMObject::SaveShadowTexture(FILE *stream)
 	}
 
 
-	// º¯È¯Çà·ÄÀ» ¼¼ÆÃÇÏ°í.
+	// ë³€í™˜í–‰ë ¬ì„ ì„¸íŒ…í•˜ê³ .
 
 	rmatrix invx=IdentityMatrix44();invx._11=-1;
 

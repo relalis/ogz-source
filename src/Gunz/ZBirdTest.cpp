@@ -17,7 +17,7 @@
 #include "time.h"
 #include "ZSecurity.h"
 
-// ¿©±â¼­ºÎÅÍ Å×½ºÆ®¸¦ À§ÇÑ ÄÚµå - Bird ////////////////////////////////////////////////
+// ì—¬ê¸°ì„œë¶€í„° í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•œ ì½”ë“œ - Bird ////////////////////////////////////////////////
 #ifdef _BIRDTEST
 
 #include "ZBirdDummyClient.h"
@@ -42,7 +42,7 @@ char g_szBT_ID[256] = "";
 ZGameInterface* g_pGIBirdTest = NULL;
 
 
-// ¹«ÇÑ ´õ¹Ì Å¬¶óÀÌ¾ğÆ® ÇÃ·¯µù
+// ë¬´í•œ ë”ë¯¸ í´ë¼ì´ì–¸íŠ¸ í”ŒëŸ¬ë”©
 void OnBTDummyTest(MCommand* pCmd);
 void InitBTDummyClient();
 void UpdateBTDummyClient();
@@ -53,7 +53,7 @@ void OnBTDummyChannelChatFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCm
 void OnBTDummyEchoFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd);
 void OnBTDummyChannelChangeOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd);
 
-// ÇöÀç Å×½ºÆ®ÇÏ°í ÀÖ´Â Ç×¸ñ ¼³Á¤
+// í˜„ì¬ í…ŒìŠ¤íŠ¸í•˜ê³  ìˆëŠ” í•­ëª© ì„¤ì •
 ZBT_ONCommand g_pBTCommandCallBack = NULL;
 
 void ZGameInterface::OnBirdTestCreate()
@@ -135,7 +135,7 @@ void InitBTDummyClient()
 				g_DummyAI[nCaseCounter].Create(&g_DummyClient[nCaseCounter]);
 			}
 
-			// ¼­¹ö¿¡ ¿¬°áÇÑ´Ù
+			// ì„œë²„ì— ì—°ê²°í•œë‹¤
 			char szCmd[256];
 			sprintf_safe(szCmd, "%s:%u", pAddr->GetText(), atoi(pPort->GetText()));
 			ZBIRDPOSTCMD1(&g_DummyClient[nCaseCounter], MC_NET_CONNECT, MCmdParamStr(szCmd));
@@ -154,7 +154,7 @@ void UpdateBTDummyClient()
 	}
 }
 
-// ¹«ÇÑ ´õ¹Ì Å¬¶óÀÌ¾ğÆ® ÇÃ·¯µù - ¸ŞÀÎ¾²·¹µå
+// ë¬´í•œ ë”ë¯¸ í´ë¼ì´ì–¸íŠ¸ í”ŒëŸ¬ë”© - ë©”ì¸ì“°ë ˆë“œ
 void OnBTDummyTest(MCommand* pCmd)
 {
 	switch(pCmd->GetID())
@@ -242,9 +242,9 @@ bool OnCommonLogin(ZBirdDummyClient* pClient, MCommand* pCmd)
 
 			if (!bExistChar)
 			{
-				// Ä³¸¯ÀÌ ¾øÀ¸¸é »õ·Î »ı¼º
+				// ìºë¦­ì´ ì—†ìœ¼ë©´ ìƒˆë¡œ ìƒì„±
 				char szCharName[256];
-				sprintf_safe(szCharName, "¹öµå²¿ºØ%d", pClient->GetDummyID());
+				sprintf_safe(szCharName, "ë²„ë“œê¼¬ë¶•%d", pClient->GetDummyID());
 
 				ZBIRDPOSTCMD7(pClient, MC_MATCH_REQUEST_CREATE_CHAR, 
 					MCommandParameterUID(pClient->GetPlayerUID()), 
@@ -274,7 +274,7 @@ bool OnCommonLogin(ZBirdDummyClient* pClient, MCommand* pCmd)
 				void* pCharBlob = pParam->GetPointer();
 				MTD_CharInfo* pCharInfo = (MTD_CharInfo*)MGetBlobArrayElement(pCharBlob, 0);
 
-				// ³»Á¤º¸ ÀúÀå
+				// ë‚´ì •ë³´ ì €ì¥
 				pClient->SetPlayerName(pCharInfo->szName);
 
 
@@ -305,7 +305,7 @@ bool OnCommonLogin(ZBirdDummyClient* pClient, MCommand* pCmd)
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// ·Î±×ÀÎ, ·Î±×¾Æ¿ô ¹İº¹
+// ë¡œê·¸ì¸, ë¡œê·¸ì•„ì›ƒ ë°˜ë³µ
 void OnBTDummyConnFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd)
 {
 	switch (pCmd->GetID())
@@ -359,7 +359,7 @@ void OnBTDummyConnFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd)
 	if (OnCommonLogin(pClient, pCmd)) return;
 }
 
-// ¹æ µé¾î°¬´Ù ³ª¿Ô´Ù ÇÏ±â
+// ë°© ë“¤ì–´ê°”ë‹¤ ë‚˜ì™”ë‹¤ í•˜ê¸°
 void OnBTDummyJoinRoomFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd)
 {
 	if (OnCommonLogin(pClient, pCmd)) return;
@@ -367,7 +367,7 @@ void OnBTDummyJoinRoomFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd)
 	g_DummyAI[pClient->GetDummyID()].OnCommand(pCmd);
 }
 
-// °ÔÀÓ ¿­½ÉÈ÷ ÇÃ·¹ÀÌ ÇÏÀÚ
+// ê²Œì„ ì—´ì‹¬íˆ í”Œë ˆì´ í•˜ì
 void OnBTDummyGameFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd)
 {
 
@@ -375,19 +375,19 @@ void OnBTDummyGameFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd)
 
 char g_szDummyChattingMsg[10][256] =
 { 
-"´Ô Áñ ÇÏ¼À..Ä¼Ä¼Ä¼",
-"³ª ¹öµå ²¿ºØÀÌ´ç...¹öµå´ë¸¶¿Õ´Ô ¸¸½¦..~(-_-)~",
-"ÀÌ¹ø °ÇÁî ¿î¿µÀÚ´Ôµé Èûµå¼Ì°Ú¾î¿ä. °ÇÁî ÀÎ±â¸¦ ¹İ¿µÇÑ´Ù°í ÇÏÁö¸¸...",
-"Ç¥Çö¹æ¹ıÀÌ Àß¸øµÆ´Ù°í ¸»ÇÏ°í ½ÍÀº°Ì´Ï´Ù. Ãæ°İÀ» ÁØ´ä½Ã°í ¿åÀ» ÇØ´ë´Â°ÍÀº Àß¸øµÆ´Ù°í »ı°¢ÇÕ´Ï´Ù¸¸..",
-"¿ÀÇÂÀÌ µÈ°Å¿¹¿©? Ã³À½ÀÌ¶ó...",
-"±¦ÂúÀº Å¬·£À» Ã£°í ÀÖ½À´Ï´Ù.",
-"°è¼Ó ³¯¶ó ´ó±â´Â ¹ö±×¿ä... ±×°Å °íÃÄ ÁÖ¼¼¿ä.Â¥Áõ³²...",
-"ÀÌ°ÔÀÓ¹«·á¿¹¿ä?",
-"°ÇÁî Á¦´ë·Î ÇÒ·Á°í 256·¥ »ñ´Ù -_-¤»",
-"·ºÀÌ¸¹ÀÌ°É·Á¿©ÆĞÄ¡Á»ÇØÁÖ»õ¿ä"
+"ë‹˜ ì¦ í•˜ì…ˆ..ìº¬ìº¬ìº¬",
+"ë‚˜ ë²„ë“œ ê¼¬ë¶•ì´ë‹¹...ë²„ë“œëŒ€ë§ˆì™•ë‹˜ ë§Œì‰..~(-_-)~",
+"ì´ë²ˆ ê±´ì¦ˆ ìš´ì˜ìë‹˜ë“¤ í˜ë“œì…¨ê² ì–´ìš”. ê±´ì¦ˆ ì¸ê¸°ë¥¼ ë°˜ì˜í•œë‹¤ê³  í•˜ì§€ë§Œ...",
+"í‘œí˜„ë°©ë²•ì´ ì˜ëª»ëë‹¤ê³  ë§í•˜ê³  ì‹¶ì€ê²ë‹ˆë‹¤. ì¶©ê²©ì„ ì¤€ë‹µì‹œê³  ìš•ì„ í•´ëŒ€ëŠ”ê²ƒì€ ì˜ëª»ëë‹¤ê³  ìƒê°í•©ë‹ˆë‹¤ë§Œ..",
+"ì˜¤í”ˆì´ ëœê±°ì˜ˆì—¬? ì²˜ìŒì´ë¼...",
+"ê´œì°®ì€ í´ëœì„ ì°¾ê³  ìˆìŠµë‹ˆë‹¤.",
+"ê³„ì† ë‚ ë¼ ëŒ•ê¸°ëŠ” ë²„ê·¸ìš”... ê·¸ê±° ê³ ì³ ì£¼ì„¸ìš”.ì§œì¦ë‚¨...",
+"ì´ê²Œì„ë¬´ë£Œì˜ˆìš”?",
+"ê±´ì¦ˆ ì œëŒ€ë¡œ í• ë ¤ê³  256ë¨ ì‚¿ë‹¤ -_-ã…‹",
+"ë ‰ì´ë§ì´ê±¸ë ¤ì—¬íŒ¨ì¹˜ì¢€í•´ì£¼ìƒˆìš”"
 };
 
-// Ã¤³Î¿¡¼­ Á×¾î¶ó Ã¤ÆÃÇÏÀÚ
+// ì±„ë„ì—ì„œ ì£½ì–´ë¼ ì±„íŒ…í•˜ì
 void OnBTDummyChannelChatFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd)
 {
 	if (OnCommonLogin(pClient, pCmd)) return;
@@ -410,7 +410,7 @@ void OnBTDummyChannelChatFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCm
 			pCmd->GetParameter(&uidChannel,		0, MPT_UID);
 			pCmd->GetParameter(szPlayerName,	1, MPT_STR, sizeof(szPlayerName) );
 
-			// ³» Ã¤ÆÃ ¸Ş¼¼ÁöÀÌ¸é ¶Ç º¸³½´Ù
+			// ë‚´ ì±„íŒ… ë©”ì„¸ì§€ì´ë©´ ë˜ ë³´ë‚¸ë‹¤
 			
 			if (!_stricmp(szPlayerName, pClient->GetPlayerName()))
 			{
@@ -434,14 +434,14 @@ void OnBTDummyChannelChatFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCm
 	}
 }
 
-// Á×¾î¶ó Echo ÇÏ±â
+// ì£½ì–´ë¼ Echo í•˜ê¸°
 void OnBTDummyEchoFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd)
 {
 	switch (pCmd->GetID())
 	{
 	case MC_NET_ONCONNECT:
 		{
-			ZBIRDPOSTCMD1(pClient, MC_NET_ECHO, MCmdParamStr("¹«±ÃÈ­ ²ÉÀÌ ÇÇ¾ú½À´Ï´Ù.¹«±ÃÈ­ ²ÉÀÌ ÇÇ¾ú½À´Ï´Ù.¹«±ÃÈ­ ²ÉÀÌ ÇÇ¾ú½À´Ï´Ù."));
+			ZBIRDPOSTCMD1(pClient, MC_NET_ECHO, MCmdParamStr("ë¬´ê¶í™” ê½ƒì´ í”¼ì—ˆìŠµë‹ˆë‹¤.ë¬´ê¶í™” ê½ƒì´ í”¼ì—ˆìŠµë‹ˆë‹¤.ë¬´ê¶í™” ê½ƒì´ í”¼ì—ˆìŠµë‹ˆë‹¤."));
 		}
 		break;
 	case MC_NET_ONDISCONNECT:
@@ -465,13 +465,13 @@ void OnBTDummyEchoFloodOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd)
 				AddToLogFrame(pClient->GetDummyID(), szTemp);
 			}
 
-			ZBIRDPOSTCMD1(pClient, MC_NET_ECHO, MCmdParamStr("¹«±ÃÈ­ ²ÉÀÌ ÇÇ¾ú½À´Ï´Ù.¹«±ÃÈ­ ²ÉÀÌ ÇÇ¾ú½À´Ï´Ù.¹«±ÃÈ­ ²ÉÀÌ ÇÇ¾ú½À´Ï´Ù."));
+			ZBIRDPOSTCMD1(pClient, MC_NET_ECHO, MCmdParamStr("ë¬´ê¶í™” ê½ƒì´ í”¼ì—ˆìŠµë‹ˆë‹¤.ë¬´ê¶í™” ê½ƒì´ í”¼ì—ˆìŠµë‹ˆë‹¤.ë¬´ê¶í™” ê½ƒì´ í”¼ì—ˆìŠµë‹ˆë‹¤."));
 		}
 		break;
 	}
 }
 
-// Ã¤³Îº¯°æ Å×½ºÆ®
+// ì±„ë„ë³€ê²½ í…ŒìŠ¤íŠ¸
 void OnBTDummyChannelChangeOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd)
 {
 	if (OnCommonLogin(pClient, pCmd)) return;
@@ -523,6 +523,6 @@ void OnBTDummyChannelChangeOnCommand(ZBirdDummyClient* pClient, MCommand* pCmd)
 
 }
 
-// ¿©±â±îÁö Å×½ºÆ®¸¦ À§ÇÑ ÄÚµå - Bird //////////////////////////////////////////////////
+// ì—¬ê¸°ê¹Œì§€ í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•œ ì½”ë“œ - Bird //////////////////////////////////////////////////
 
 #endif		// #ifdef _BIRDTEST
