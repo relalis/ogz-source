@@ -89,6 +89,8 @@ if [[ -z "${WINDOWS_TOOLCHAIN_PATH:-}" ]]; then
             echo "Toolchain not found, installing. This will take some time."
             fetch_toolchain
         fi
+    else
+        export WINDOWS_TOOLCHAIN_PATH="${CWD}/build/windows_toolchain"
     fi
 else
     echo "[INFO] Using toolchain at ${WINDOWS_TOOLCHAIN_PATH}"
