@@ -5,7 +5,7 @@
 
 #include "RMeshNode.h"
 #include "RAnimationMgr.h"
-#include "mempool.h"
+#include "MemPool.h"
 
 class MXmlElement;
 

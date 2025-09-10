@@ -250,7 +250,7 @@ void RBspObject::SetDiffuseMap(int nMaterial)
 
 // TODO: This whole setup seems like an awful way of drawing anything. Fix.
 template <typename T>
-static void DrawImpl(RSBspNode& Node, int Material, T& DrawFunc)
+static void DrawImpl(RSBspNode& Node, int Material, T&& DrawFunc)
 {
 	// nFrameCount is updated to the current frame number
 	// only for nodes that aren't occluded.
@@ -2321,7 +2321,7 @@ bool RBspObject::CheckWall(const rvector &origin, rvector &targetpos, float Radi
 #ifdef _WIN32
 	if (Collision)
 	{
-		auto CheckPrimitive = [&](auto& func) {
+		auto CheckPrimitive = [&](auto&& func) {
 			v3 normal;
 			auto ret = func(normal);
 			if (!ret)

@@ -17,8 +17,10 @@ void MShutdownTraceMemory()	{ }
 #pragma warning(pop)
 #endif
 #include "crtdbg.h"
-#include "Tlhelp32.h"
+#include "tlhelp32.h"
 #include <vector>
+
+#pragma comment(lib, "ucrtd.lib")
 
 using namespace std;
 
@@ -153,7 +155,7 @@ int MyReportHook( int reportType, char *message, int *returnValue )
 {
 //	mlog("test : %s\n",message);
 
-	// {1234} ¿Í °°ÀºÇü½ÄÀÇ memory leak ¸®Æ÷Æ®¸¦ °¡·ÎÃ¤¼­ Äİ½ºÅÃÀ» ´ıÇÁÇÑ´Ù
+	// {1234} ì™€ ê°™ì€í˜•ì‹ì˜ memory leak ë¦¬í¬íŠ¸ë¥¼ ê°€ë¡œì±„ì„œ ì½œìŠ¤íƒì„ ë¤í”„í•œë‹¤
 	if(message[0]=='{' && message[strlen(message)-2]=='}' && message[strlen(message)-1]==' ') {
 		MDumpCallStack(atoi(message+1));
 	}
@@ -183,7 +185,7 @@ void MShutdownTraceMemory()
 //	DeleteCriticalSection(&csNewMemoryDumpLock);
 	fclose(file);
 
-	// Àü¿ªº¯¼ö·Î µÎ¸é Áö¿öÁú¼ö ÀÖ´Ù. ÀÇµµÀûÀ¸·Î leakÀ» ³½´Ù
+	// ì „ì—­ë³€ìˆ˜ë¡œ ë‘ë©´ ì§€ì›Œì§ˆìˆ˜ ìˆë‹¤. ì˜ë„ì ìœ¼ë¡œ leakì„ ë‚¸ë‹¤
 	memories = new vector<MCallStackInfo*>;
 
 	char szFileName[_MAX_PATH];

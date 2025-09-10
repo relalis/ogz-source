@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "ZLocatorList.h"
 #include "MZFileSystem.h"
 #include "Config.h"

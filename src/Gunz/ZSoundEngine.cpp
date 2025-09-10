@@ -8,7 +8,7 @@
 #include "MMatchItem.h"
 #include "ZConfiguration.h"
 #include "Physics.h"
-#include "Fileinfo.h"
+#include "FileInfo.h"
 #include "ZApplication.h"
 #include "ZSoundFMod.h"
 #include "MMath.h"
@@ -163,7 +163,7 @@ bool ZSoundEngine::OpenMusic(int nBgmIndex)
 {
 //	if( !m_bSoundEnable ) return false;
 
-	// °¡Â¥
+	// ê°€ì§œ
 	static char m_stSndFileName[MAX_BGM][64] = {"Intro Retake2(D-R).ogg", 
 												"Theme Rock(D).ogg", 
 												"HardBgm3 Vanessa Retake(D).ogg", 
@@ -234,7 +234,7 @@ int ZSoundEngine::PlaySound(const char* szSoundName, rvector& pos, int nPriority
 	return RealSound2::PlaySound(szSoundName, p, NULL, nPriority);
 }
 */
-// ÀÌ°Ç ³ªÁß¿¡ »èÁ¦µÉ °Í
+// ì´ê±´ ë‚˜ì¤‘ì— ì‚­ì œë  ê²ƒ
 void ZSoundEngine::PlaySound(char* Name,rvector& pos,bool bHero, bool bLoop, DWORD dwDelay)
 {
 //	if( !m_bSoundEnable )	return;
@@ -358,7 +358,7 @@ void ZSoundEngine::PlaySEFire(MMatchItemDesc *pDesc, float x, float y, float z, 
 		PlaySoundCharacter(szSndName, pos, bHero, 200);
 		return;
 
-		// ÀÚ±â ÀÚ½ÅÀÌ¸é ÃÑ¼Ò¸®´Â 2d·Î ³½´Ù.
+		// ìžê¸° ìžì‹ ì´ë©´ ì´ì†Œë¦¬ëŠ” 2dë¡œ ë‚¸ë‹¤.
 		if (bHero)
 		{
 			char szFireSndName[256];
@@ -688,7 +688,7 @@ void ZSoundEngine::PlayMusic(bool bLoop)
 
 	if (m_bBattleMusic)
 	{
-		// ÀüÅõÁß¿¡´Â ¹è°æÀ½¾ÇÀÌ ·çÇÎµÇÁö ¾Ê°í ´ÙÀ½³ë·¡·Î ³Ñ¾î°£´Ù.
+		// ì „íˆ¬ì¤‘ì—ëŠ” ë°°ê²½ìŒì•…ì´ ë£¨í•‘ë˜ì§€ ì•Šê³  ë‹¤ìŒë…¸ëž˜ë¡œ ë„˜ì–´ê°„ë‹¤.
 		ZGetSoundFMod()->PlayMusic( false );
 	}
 	else
@@ -769,7 +769,7 @@ void ZSoundEngine::PlaySEHitObject( float x, float y, float z, RBSPPICKINFO& inf
 	static char	buffer[256];
 
 	if( info_.pNode==NULL ) {
-		OutputDebugString("ZSoundEngine::PlaySEHitObject ¾û¶×ÇÑ°÷ÀÌ picking ?\n");
+		OutputDebugString("ZSoundEngine::PlaySEHitObject ì—‰ëš±í•œê³³ì´ picking ?\n");
 		return;
 	}
 	RMATERIAL*	material_info = ZGetGame()->GetWorld()->GetBsp()->GetMaterial( info_.pNode, info_.nIndex );
@@ -1359,7 +1359,7 @@ void ZSoundEngine::ClearAmbientSound()
 
 void ZSoundEngine::UpdateAmbSound(rvector& Pos,	rvector& Ori)
 {
-	// È¯°æ »ç¿îµå Ã³¸®
+	// í™˜ê²½ ì‚¬ìš´ë“œ ì²˜ë¦¬
 	for( ASLIST::iterator iter = m_AmbientSoundList.begin(); iter != m_AmbientSoundList.end(); ++iter )
 	{
  		AmbSound* AS = &(*iter);
@@ -1552,7 +1552,7 @@ bool ZSoundEngine::CheckCulling(const char* szName, SoundSource* pSS, const rvec
 		if (strncmp("fx_dash", szName, 7))
 		{
 #ifdef _DEBUG
-			mlog("--------- º¹¼ö sound Ãâ·Â(%s, %u)\n", szName, nNowTime - pSS->nLastPlayedTime);
+			mlog("--------- ë³µìˆ˜ sound ì¶œë ¥(%s, %u)\n", szName, nNowTime - pSS->nLastPlayedTime);
 #endif
 			return false;
 		}

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "ZOptionInterface.h"
 #include "MSlider.h"
 #include "ZConfiguration.h"
@@ -424,7 +424,7 @@ void ZOptionInterface::InitInterfaceOption(void)
 		{
 			pComboBox->RemoveAll();
 
-			// ±âº» Å©·Î½º Çì¾î ÇÏµåÄÚµùÀ¸·Î ÀÔ·Â
+			// ê¸°ë³¸ í¬ë¡œìŠ¤ í—¤ì–´ í•˜ë“œì½”ë”©ìœ¼ë¡œ ì…ë ¥
 
 			for (int i = 0; i < ZCSP_CUSTOM; i++)
 			{
@@ -436,7 +436,7 @@ void ZOptionInterface::InitInterfaceOption(void)
 			sprintf_safe(szCustomFile, "%s%s%s", PATH_CUSTOM_CROSSHAIR, FN_CROSSHAIR_HEADER, FN_CROSSHAIR_TAILER);
 			if (IsExist(szCustomFile)) pComboBox->Add("Custom");
 
-			if (Z_ETC_CROSSHAIR >= pComboBox->GetCount())	// »ç¿ëÀÚÁöÁ¤ÀÌ¿´´Âµ¥ »ç¿ëÀÚÁöÁ¤ÀÌ ¾ø¾îÁ³À» °æ¿ì
+			if (Z_ETC_CROSSHAIR >= pComboBox->GetCount())	// ì‚¬ìš©ìì§€ì •ì´ì˜€ëŠ”ë° ì‚¬ìš©ìì§€ì •ì´ ì—†ì–´ì¡Œì„ ê²½ìš°
 			{
 				Z_ETC_CROSSHAIR = 0;
 			}
@@ -559,7 +559,7 @@ bool ZOptionInterface::SaveInterfaceOption(void)
 {
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 
-	{ // ½½¶óÀÌ´õ
+	{ // ìŠ¬ë¼ì´ë”
 		Z_MOUSE_SENSITIVITY = float(Sensitivity) / DEFAULT_SLIDER_MAX;;
 
 		auto&& pWidget = (MSlider*)pResource->FindWidget("JoystickSensitivitySlider");
@@ -588,7 +588,7 @@ bool ZOptionInterface::SaveInterfaceOption(void)
 	//	ZGetInput()->UnregisterActionKey(i);
 	//}
 
-	// ¸ğµÎ Å¬¸®¾îÈÄ Àçµî·Ï
+	// ëª¨ë‘ í´ë¦¬ì–´í›„ ì¬ë“±ë¡
 	ZGetInput()->ClearActionKey();
 
 	for(i=0; i<ZACTION_COUNT; i++){
@@ -599,7 +599,7 @@ bool ZOptionInterface::SaveInterfaceOption(void)
 		int nKey = 0;
 		pWidget->GetActionKey(&nKey);
 		//		Mint::GetInstance()->UnregisterActionKey(i);
-		//		Mint::GetInstance()->RegisterActionKey(i, nKey);	// Å° µî·Ï
+		//		Mint::GetInstance()->RegisterActionKey(i, nKey);	// í‚¤ ë“±ë¡
 
 //		ZGetInput()->UnregisterActionKey(i);
 		ZGetInput()->RegisterActionKey(i,nKey);
@@ -1052,7 +1052,7 @@ bool ZOptionInterface::SaveInterfaceOption(void)
 
 	}
 
-	// °¨¸¶°ª ÀúÀå
+	// ê°ë§ˆê°’ ì €ì¥
 	MSlider* pSlider = (MSlider*)pResource->FindWidget("VideoGamma");
 	if (pSlider != NULL) 
 	{
@@ -1181,11 +1181,11 @@ void ZOptionInterface::OptimizationVideoOption()
 	if(!RIsHardwareTNL())
 	{	
 		pCombo = (MComboBox*)pResource->FindWidget("CharTexLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(2); // ³ª»İ
+		if(pCombo!=0) pCombo->SetSelIndex(2); // ë‚˜ì¨
 		pCombo = (MComboBox*)pResource->FindWidget("MapTexLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(2); // ³ª»İ
+		if(pCombo!=0) pCombo->SetSelIndex(2); // ë‚˜ì¨
 		pCombo = (MComboBox*)pResource->FindWidget("EffectLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(2); // ³ª»İ
+		if(pCombo!=0) pCombo->SetSelIndex(2); // ë‚˜ì¨
 		pCombo = (MComboBox*)pResource->FindWidget("TextureFormat");
 		if(pCombo!=0) pCombo->SetSelIndex(0); // 16 bit
 
@@ -1222,11 +1222,11 @@ void ZOptionInterface::OptimizationVideoOption()
 	if( nVMem < 32 )
 	{		
 		pCombo = (MComboBox*)pResource->FindWidget("CharTexLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(2); // ³ª»İ
+		if(pCombo!=0) pCombo->SetSelIndex(2); // ë‚˜ì¨
 		pCombo = (MComboBox*)pResource->FindWidget("MapTexLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(2); // ³ª»İ
+		if(pCombo!=0) pCombo->SetSelIndex(2); // ë‚˜ì¨
 		pCombo = (MComboBox*)pResource->FindWidget("EffectLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(2); // ³ª»İ
+		if(pCombo!=0) pCombo->SetSelIndex(2); // ë‚˜ì¨
 		pCombo = (MComboBox*)pResource->FindWidget("TextureFormat");
 		if(pCombo!=0) pCombo->SetSelIndex(0); // 16 bit
 
@@ -1238,11 +1238,11 @@ void ZOptionInterface::OptimizationVideoOption()
 	else if( nVMem < 64 )
 	{
 		pCombo = (MComboBox*)pResource->FindWidget("CharTexLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(1); // º¸Åë
+		if(pCombo!=0) pCombo->SetSelIndex(1); // ë³´í†µ
 		pCombo = (MComboBox*)pResource->FindWidget("MapTexLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(2); // ³ª»İ
+		if(pCombo!=0) pCombo->SetSelIndex(2); // ë‚˜ì¨
 		pCombo = (MComboBox*)pResource->FindWidget("EffectLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(1); // º¸Åë
+		if(pCombo!=0) pCombo->SetSelIndex(1); // ë³´í†µ
 		pCombo = (MComboBox*)pResource->FindWidget("TextureFormat");
 		if(pCombo!=0) pCombo->SetSelIndex(0); // 16 bit
 
@@ -1254,11 +1254,11 @@ void ZOptionInterface::OptimizationVideoOption()
 	else // nVMem > 64
 	{
 		pCombo = (MComboBox*)pResource->FindWidget("CharTexLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(1); // º¸Åë
+		if(pCombo!=0) pCombo->SetSelIndex(1); // ë³´í†µ
 		pCombo = (MComboBox*)pResource->FindWidget("MapTexLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(1); // º¸Åë
+		if(pCombo!=0) pCombo->SetSelIndex(1); // ë³´í†µ
 		pCombo = (MComboBox*)pResource->FindWidget("EffectLevel");
-		if(pCombo!=0) pCombo->SetSelIndex(0); // ÁÁÀ½
+		if(pCombo!=0) pCombo->SetSelIndex(0); // ì¢‹ìŒ
 		pCombo = (MComboBox*)pResource->FindWidget("TextureFormat");
 		if(pCombo!=0) pCombo->SetSelIndex(1); // 32 bit
 
@@ -1301,10 +1301,10 @@ bool ZOptionInterface::ResizeWidgetRecursive( MWidget* pWidget, int w, int h)
 		ResizeWidgetRecursive( pChildWidget, w, h );
 	}
 
-	// idl¿¡¼­ ÀĞ¾î¼­ ÀûÀıÇÑ °ªÀ» °¡Áö°í ÀÖ´Â À§Á¬ÀÌ¶ó¸é ±×°ªÀ¸·Î ¸®»çÀÌÁîÇÑ´Ù
+	// idlì—ì„œ ì½ì–´ì„œ ì ì ˆí•œ ê°’ì„ ê°€ì§€ê³  ìˆëŠ” ìœ„ì ¯ì´ë¼ë©´ ê·¸ê°’ìœ¼ë¡œ ë¦¬ì‚¬ì´ì¦ˆí•œë‹¤
 	if(pWidget->GetIDLRect().w>0 && pWidget->GetIDLRect().h>0)	
 	{
-		// idl ¿¡¼­´Â 800x600 ±âÁØÀ¸·Î ±â¼úµÇ¾îÀÖ´Ù
+		// idl ì—ì„œëŠ” 800x600 ê¸°ì¤€ìœ¼ë¡œ ê¸°ìˆ ë˜ì–´ìˆë‹¤
 		const float tempWidth = ((float)RGetScreenWidth()) / 800;
 		const float tempHeight = ((float)RGetScreenHeight()) / 600;
 
@@ -1645,7 +1645,7 @@ bool ZOptionInterface::TestScreenResolution()
 		map<int, D3DDISPLAYMODE>::iterator iter = gDisplayMode.find( pWidget->GetSelIndex() );
 		if( iter == gDisplayMode.end() )
 		{
-			mlog("¼±ÅÃÇÑ ÇØ»óµµ°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ¼­ ÇØ»óµµ º¯°æ¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù..\n" );
+			mlog("ì„ íƒí•œ í•´ìƒë„ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ì„œ í•´ìƒë„ ë³€ê²½ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤..\n" );
 			return false;
 		}
 
@@ -1705,9 +1705,9 @@ void ZOptionInterface::OnActionKeySet(ZActionKey* pActionKey, ZVIRTUALKEY key)
 
 
 
-///////////////////// ÀÌÇÏ interface listener
+///////////////////// ì´í•˜ interface listener
 BEGIN_IMPLEMENT_LISTENER(ZGetOptionFrameButtonListener, MBTN_CLK_MSG)
-	// ¿É¼Ç ÇÁ·¹ÀÓ º¸¿©ÁÖ±â
+	// ì˜µì…˜ í”„ë ˆì„ ë³´ì—¬ì£¼ê¸°
 	ZGetOptionInterface()->InitInterfaceOption();
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 	MWidget* pWidget = pResource->FindWidget("Option");
@@ -1730,8 +1730,8 @@ BEGIN_IMPLEMENT_LISTENER(ZGetSaveOptionButtonListener, MBTN_CLK_MSG)
 
 		MTabCtrl* pTab = (MTabCtrl*)pResource->FindWidget("OptionTabControl");
 
-		if(pTab) {//Å°º¸µå ¿É¼ÇÀº Å°ÀÔ·ÂÀ» ¸·¾ÆÁØ´Ù.
-			if(pTab->GetSelIndex()==3)//ÀÌ¸§À» Ã£¾Æ Á¶»ç
+		if(pTab) {//í‚¤ë³´ë“œ ì˜µì…˜ì€ í‚¤ì…ë ¥ì„ ë§‰ì•„ì¤€ë‹¤.
+			if(pTab->GetSelIndex()==3)//ì´ë¦„ì„ ì°¾ì•„ ì¡°ì‚¬
 				return true;
 		}
 	}
@@ -1772,13 +1772,13 @@ BEGIN_IMPLEMENT_LISTENER(ZGetCancelOptionButtonListener, MBTN_CLK_MSG)
 //	ZApplication::GetGameInterface()->SaveInterfaceOption();
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 
-	// TODO: ÀÌ°Ô ÇÊ¿äÇÑ°¡ ? Å×½ºÆ® ¿ä¸Á
+	// TODO: ì´ê²Œ í•„ìš”í•œê°€ ? í…ŒìŠ¤íŠ¸ ìš”ë§
 	if( pWidget->m_bEventAcceleratorCall ) {
 
 		MTabCtrl* pTab = (MTabCtrl*)pResource->FindWidget("OptionTabControl");
 
-		if(pTab) {//Å°º¸µå ¿É¼ÇÀº Å°ÀÔ·ÂÀ» ¸·¾ÆÁØ´Ù.
-			if(pTab->GetSelIndex()==3)//ÀÌ¸§À» Ã£¾Æ Á¶»ç
+		if(pTab) {//í‚¤ë³´ë“œ ì˜µì…˜ì€ í‚¤ì…ë ¥ì„ ë§‰ì•„ì¤€ë‹¤.
+			if(pTab->GetSelIndex()==3)//ì´ë¦„ì„ ì°¾ì•„ ì¡°ì‚¬
 				return true;
 		}
 	}
@@ -1787,7 +1787,7 @@ BEGIN_IMPLEMENT_LISTENER(ZGetCancelOptionButtonListener, MBTN_CLK_MSG)
 	
 	if(pWidget!=NULL) pWidget->Show(false);
 
-	// ¿ø·¡ °¨¸¶°ªÀ¸·Î µ¹¸®±â
+	// ì›ë˜ ê°ë§ˆê°’ìœ¼ë¡œ ëŒë¦¬ê¸°
 	MSlider* pSlider = (MSlider*)pResource->FindWidget("VideoGamma");
 	if (pSlider != NULL) 
 	{
@@ -1816,8 +1816,8 @@ BEGIN_IMPLEMENT_LISTENER( ZGetLoadDefaultKeySettingListener, MBTN_CLK_MSG)
 		//unsigned int nKey = 0;
 		//pWidget->GetActionKey(&nKey);
 		//Mint::GetInstance()->UnregisterActionKey(i);
-		//Mint::GetInstance()->RegisterActionKey(i, nKey);	// Å° µî·Ï
-		//m_Keyboard.ActionKeys[i].nScanCode = nKey;	// ¿É¼Ç ÀúÀå
+		//Mint::GetInstance()->RegisterActionKey(i, nKey);	// í‚¤ ë“±ë¡
+		//m_Keyboard.ActionKeys[i].nScanCode = nKey;	// ì˜µì…˜ ì €ì¥
 		pWidget->ClearActionKey();
 		pWidget->SetActionKey(ZGetConfiguration()->GetKeyboard()->ActionKeys[i].nVirtualKey);
 		pWidget->SetActionKey(ZGetConfiguration()->GetKeyboard()->ActionKeys[i].nVirtualKeyAlt);
@@ -1843,7 +1843,7 @@ BEGIN_IMPLEMENT_LISTENER( ZGetRequestResizeListener, MBTN_CLK_MSG )
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 	MWidget* pWidget = pResource->FindWidget("ResizeConfirm");
 	if(pWidget!= 0) pWidget->Show( false );
-	//ÇØ»óµµ º¯°æÈÄ
+	//í•´ìƒë„ ë³€ê²½í›„
 	ZGetOptionInterface()->TestScreenResolution();
 	ZGetOptionInterface()->SetTimer( true, 10 );
 	ZGetOptionInterface()->ShowResizeConfirmDialog( true );
@@ -1853,7 +1853,7 @@ BEGIN_IMPLEMENT_LISTENER( ZGetViewConfirmCancelListener, MBTN_CLK_MSG )
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 	MWidget* pWidget = pResource->FindWidget("ViewConfirm");
 	if(pWidget!= 0) pWidget->Show( false );
-	// ÇØ»óµµ ¿ø·¡´ë·Î º¯°æ
+	// í•´ìƒë„ ì›ë˜ëŒ€ë¡œ ë³€ê²½
  	ZGetOptionInterface()->SetTimer( false );
 	ZGetOptionInterface()->GetOldScreenResolution();
 END_IMPLEMENT_LISTENER()

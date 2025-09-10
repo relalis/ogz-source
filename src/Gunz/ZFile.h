@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdio.h>
-#include "zlib.h"
+#include "zip/zlib.h"
 
 #define BUFFER_SIZE	1024
 

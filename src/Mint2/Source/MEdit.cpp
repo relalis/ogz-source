@@ -480,13 +480,23 @@ bool MEdit::GetClipboard(char* szText, int nSize)
 {
 	if (m_bPassword)
 		return false;
-
+	// Clang and WinMain aren't playing along well, so we don't have GetHWND() properly
+	// for now, disable clipboard (probably for the best anyway)
+	// @todo: fix clipboard under clang
+#if !defined(__clang__)
 	return MClipboard::Get(Mint::GetInstance()->GetHWND(), szText, static_cast<size_t>(nSize));
+#else
+	return false;
+#endif
 }
 
 bool MEdit::SetClipboard(const char* szText)
 {
+#if !defined(__clang__)
 	return MClipboard::Set(Mint::GetInstance()->GetHWND(), szText);
+#else
+	return false;
+#endif
 }
 
 void MEdit::AddHistory(const char* szText)
@@ -619,7 +629,8 @@ void MEditLook::OnTextDraw(MEdit* pEdit, MDrawContext* pDC, bool bShowLanguageTa
 	if(pEdit->IsFocus()==true){
 		if(bShowLanguageTab){
 			Mint* pMint = Mint::GetInstance();
-			pMint->DrawIndicator(pDC, pEdit->GetClientRect());
+			MRECT curRect = pEdit->GetClientRect();
+			pMint->DrawIndicator(pDC, curRect);
 		}
 	}
 }

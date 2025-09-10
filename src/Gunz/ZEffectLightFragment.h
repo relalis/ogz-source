@@ -3,7 +3,7 @@
 #include "ZEffectBillboard.h"
 #include "RTypes.h"
 
-#include "mempool.h"
+#include "MemPool.h"
 
 class ZEffectLightFragment : public ZEffectBillboard , public CMemPoolSm<ZEffectLightFragment>
 {

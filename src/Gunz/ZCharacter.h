@@ -14,7 +14,7 @@
 #include "ZCharacterItem.h"
 #include "RCharCloth.h"
 #include "ZFile.h"
-#include "Mempool.h"
+#include "MemPool.h"
 
 #include "ZModule_HPAP.h"
 

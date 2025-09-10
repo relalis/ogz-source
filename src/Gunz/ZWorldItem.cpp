@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #include "ZApplication.h"
-#include "MXML.h"
+#include "MXml.h"
 #include "MZFileSystem.h"
 #include "RealSpace2.h"
 #include "ZWorldItem.h"
@@ -16,7 +16,7 @@
 using namespace RealSpace2;
 
 #define BASE_EFFECT_MODEL "baseEffect"
-#define USER_WORLDITEM_FIRST		100			// 100 ¹øºÎÅÍ´Â À¯Àú°¡ ½ºÆù½ÃÅ°´Â ¾ÆÀÌÅÛ - ÀÇ·áÅ¶ µî
+#define USER_WORLDITEM_FIRST		100			// 100 ë²ˆë¶€í„°ëŠ” ìœ ì €ê°€ ìŠ¤í°ì‹œí‚¤ëŠ” ì•„ì´í…œ - ì˜ë£Œí‚· ë“±
 
 
 ZWorldItemManager ZWorldItemManager::msInstance;
@@ -73,11 +73,11 @@ bool ZWorldItem::ApplyWorldItem( ZCharacter* pCharacter )
 
 		if( pSeletedWeapon )
 		{
-			currentBullet	= pSeletedWeapon->GetBulletAMagazine();		// ÇöÀç Âø¿ëÇÑ ÅºÃ¢¾ÈÀÇ ÃÑ¾Ë¼ö
-			currentMagazine	= pSeletedWeapon->GetBullet();				// ÇöÀç Âø¿ëÇÏÁö ¾ÊÀº ÅºÃ¢¾ÈÀÇ ÃÑ¾Ë¼ö
+			currentBullet	= pSeletedWeapon->GetBulletAMagazine();		// í˜„ì¬ ì°©ìš©í•œ íƒ„ì°½ì•ˆì˜ ì´ì•Œìˆ˜
+			currentMagazine	= pSeletedWeapon->GetBullet();				// í˜„ì¬ ì°©ìš©í•˜ì§€ ì•Šì€ íƒ„ì°½ì•ˆì˜ ì´ì•Œìˆ˜
 			
-			inc = pSeletedWeapon->GetDesc()->m_nMagazine;		// ÃÑ¾Ë Áõ°¡ºĞ
-			max = pSeletedWeapon->GetDesc()->m_nMaxBullet;		// ÀüÃ¼ Ã¤¿öÁú¼ö ÀÖ´Â ÃÑ¾ËÀÇ °¹¼ö
+			inc = pSeletedWeapon->GetDesc()->m_nMagazine;		// ì´ì•Œ ì¦ê°€ë¶„
+			max = pSeletedWeapon->GetDesc()->m_nMaxBullet;		// ì „ì²´ ì±„ì›Œì§ˆìˆ˜ ìˆëŠ” ì´ì•Œì˜ ê°¯ìˆ˜
 
 			maxBullet = min((max - currentMagazine),inc);
 			maxMagazine = max - maxBullet;
@@ -85,14 +85,14 @@ bool ZWorldItem::ApplyWorldItem( ZCharacter* pCharacter )
 			int nBullet = (int)m_fAmount;
 			if( currentBullet < inc ) 
 			{
-				pSeletedWeapon->SetBulletAMagazine( maxBullet );				// ÇöÀç ÅºÃ¢ÀÇ ÃÑ¾Ë¼ö Ã¤¿ì±â			
+				pSeletedWeapon->SetBulletAMagazine( maxBullet );				// í˜„ì¬ íƒ„ì°½ì˜ ì´ì•Œìˆ˜ ì±„ìš°ê¸°			
 				--nBullet;
 			}
 
 			if( nBullet > 0 )
 				pSeletedWeapon->SetBullet( min( ( nBullet*inc + currentMagazine ), maxMagazine));
 
-			//// MEMORYHACK ¹æÁö¿£Áø¿¡ ¾Ë·ÁÁØ´Ù.
+			//// MEMORYHACK ë°©ì§€ì—”ì§„ì— ì•Œë ¤ì¤€ë‹¤.
 			if (pCharacter->GetUID() == ZGetMyUID()) {
 				MDataChecker* pChecker = ZApplication::GetGame()->GetDataChecker();
 				pChecker->RenewCheck((BYTE*)pSeletedWeapon->GetBulletPointer(), sizeof(int));
@@ -102,7 +102,7 @@ bool ZWorldItem::ApplyWorldItem( ZCharacter* pCharacter )
 		break;
 	
 	default:
-		mlog("Á¤ÀÇ µÇÁö ¾ÊÀº ¾ÆÀÌÅÛ Å¸ÀÔÀÔ´Ï´Ù\n");
+		mlog("ì •ì˜ ë˜ì§€ ì•Šì€ ì•„ì´í…œ íƒ€ì…ì…ë‹ˆë‹¤\n");
 		return false;
 	}
 
@@ -153,7 +153,7 @@ void ZWorldItem::CreateVisualMesh()
 //////////////////////////////////////////////////////////////////////////
 ZWorldItemManager::ZWorldItemManager()
 {
-	m_nStandAloneIDGen = 10000000;		// worlditemÀÌ Ãµ¸¸°³ ÀÌ»óÀº ³ª¿ÀÁö ¾Ê´Â´Ù.
+	m_nStandAloneIDGen = 10000000;		// worlditemì´ ì²œë§Œê°œ ì´ìƒì€ ë‚˜ì˜¤ì§€ ì•ŠëŠ”ë‹¤.
 
 }
 
@@ -175,14 +175,14 @@ bool ZWorldItemManager::ApplyWorldItem( WIL_Iterator& iter, ZCharacter* pCharact
 	ZWorldItem* pWorldItem = iter->second;
 	if( !pWorldItem->ApplyWorldItem( pCharacter ) )	
 	{
-		mlog("ApplyItem FunctionÀÇ ÀÎÀÚ¿¡ Á¤È®ÇÏÁö ¾Ê½À´Ï´Ù.(¾ÆÀÌÅÛÀÇ state¿¡ ¹®Á¦°¡ ÀÖ´Â°Í °°½À´Ï´Ù)\n" );
+		mlog("ApplyItem Functionì˜ ì¸ìì— ì •í™•í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.(ì•„ì´í…œì˜ stateì— ë¬¸ì œê°€ ìˆëŠ”ê²ƒ ê°™ìŠµë‹ˆë‹¤)\n" );
 		return false;	
 	}
 
-	// Äù½ºÆ®¿¡¼­ ´Ù¸¥ ÆÀÀ» ±â´Ù¸®´Â ´ë±â »óÅÂÀÎ °æ¿ì..
+	// í€˜ìŠ¤íŠ¸ì—ì„œ ë‹¤ë¥¸ íŒ€ì„ ê¸°ë‹¤ë¦¬ëŠ” ëŒ€ê¸° ìƒíƒœì¸ ê²½ìš°..
 
 	if( ZGetQuest() && ZGetQuest()->GetQuestState() == MQUEST_COMBAT_PREPARE )
-		if( g_pGame->m_pMyCharacter->IsObserverTarget() )// ´ÙÀ½½ºÅ×ÀÌÁö·Î ³Ñ¾î°¡¼­ ±â´Ù¸®´Â °æ¿ì
+		if( g_pGame->m_pMyCharacter->IsObserverTarget() )// ë‹¤ìŒìŠ¤í…Œì´ì§€ë¡œ ë„˜ì–´ê°€ì„œ ê¸°ë‹¤ë¦¬ëŠ” ê²½ìš°
 			return true;
 
 	switch(pWorldItem->GetType())
@@ -219,7 +219,7 @@ ZWorldItem *ZWorldItemManager::AddWorldItem( int nID, short nItemID,MTD_WorldIte
 		map<short, MMatchWorldItemDesc*>::iterator iter = MGetMatchWorldItemDescMgr()->find( nItemID );
 		if( iter == MGetMatchWorldItemDescMgr()->end() ) 
 		{
-			mlog("Ãß°¡ÇÏ·Á´Â ¿ùµå¾ÆÀÌÅÛÀÌ Á¤ÀÇ µÇÁö ¾ÊÀº ÀÌ¸§ÀÔ´Ï´Ù\n" );
+			mlog("ì¶”ê°€í•˜ë ¤ëŠ” ì›”ë“œì•„ì´í…œì´ ì •ì˜ ë˜ì§€ ì•Šì€ ì´ë¦„ì…ë‹ˆë‹¤\n" );
 			return NULL;
 		}
 		MMatchWorldItemDesc* pDesc = iter->second;
@@ -317,7 +317,7 @@ void ZWorldItemManager::DeleteWorldItem( WIL_Iterator& iter , bool bDrawRemoveEf
 	mItemList.erase( iter );
 }
 
-void ZWorldItemManager::Draw(int mode,float height,bool bWaterMap)//ÀÓ½Ã..
+void ZWorldItemManager::Draw(int mode,float height,bool bWaterMap)//ì„ì‹œ..
 {
 	ZWorldItem* pWorldItem	= 0;
 
@@ -335,10 +335,10 @@ void ZWorldItemManager::Draw(int mode,float height,bool bWaterMap)//ÀÓ½Ã..
 
 			bool bDraw = false;
 
-			if(mode==0) {			// ¸ÕÀú±×¸®±â
+			if(mode==0) {			// ë¨¼ì €ê·¸ë¦¬ê¸°
 
 				if( bWaterMap ) {
-					if( _h <= height)	// ¹°¼Ó
+					if( _h <= height)	// ë¬¼ì†
 						bDraw = true;
 				}
 				else {
@@ -348,10 +348,10 @@ void ZWorldItemManager::Draw(int mode,float height,bool bWaterMap)//ÀÓ½Ã..
 				if( pWorldItem->GetType()==WIT_QUEST ) 
 					bDraw = true;
 				
-			} else if(mode==1) {	// ³ªÁß±×¸®±â
+			} else if(mode==1) {	// ë‚˜ì¤‘ê·¸ë¦¬ê¸°
 
 				if( bWaterMap )  {
-					if(bWaterMap && _h > height)	// ¹°¹Û
+					if(bWaterMap && _h > height)	// ë¬¼ë°–
 						bDraw = true;
 				}
 				else {
@@ -440,12 +440,12 @@ void ZWorldItemDrawer::DrawWorldItem( ZWorldItem* pWorldItem, bool Rotate )
 	_ASSERT( pWorldItem != 0 );
 
 	if( pWorldItem->m_bisDraw==false )
-		return; //weapon ¿¡¼­ ±×·ÁÁÖ´Â ¸ğµ¨ÀÇ °æ¿ì..
+		return; //weapon ì—ì„œ ê·¸ë ¤ì£¼ëŠ” ëª¨ë¸ì˜ ê²½ìš°..
 
 	WIVMM_iterator iter = mVMeshList.find( string( pWorldItem->GetModelName()) );
 	RVisualMesh* pVMesh = 0;
 
-	if(pWorldItem->m_pVMesh) {// ÀÚ½Å¸¸ÀÇ visual mesh ¸¦ »ç¿ëÇÑ´Ù¸é~
+	if(pWorldItem->m_pVMesh) {// ìì‹ ë§Œì˜ visual mesh ë¥¼ ì‚¬ìš©í•œë‹¤ë©´~
 		pVMesh = pWorldItem->m_pVMesh;
 
 		if(pWorldItem->GetType()==WIT_QUEST)
@@ -475,7 +475,7 @@ void ZWorldItemDrawer::DrawWorldItem( ZWorldItem* pWorldItem, bool Rotate )
 	if( (pWorldItem->GetType()!=WIT_CLIENT)
 		&& (pWorldItem->GetSubType() != MTD_Static) )
 	{
-		if( thistime > pWorldItem->m_dwStartTime + 6000) // 6ÃÊ ÀÌÈÄ
+		if( thistime > pWorldItem->m_dwStartTime + 6000) // 6ì´ˆ ì´í›„
 		{
 			if(pWorldItem->m_dwToggleBackupTime < thistime  ) {
 				pWorldItem->m_bToggle = !pWorldItem->m_bToggle;
@@ -575,14 +575,14 @@ int ZWorldItemManager::GetLinkedWorldItemID(MMatchItemDesc* pItemDesc)
 	{
 		MMatchWorldItemDesc* pWorldItemDesc = itor->second;
 
-		// worlditem.xmlÀÇ ¸ğµ¨ÀÌ¸§°ú zitem.xmlÀÇ ¸Ş½¬ÀÌ¸§ÀÌ °°¾Æ¾ß¸¸ µÈ´Ù.
+		// worlditem.xmlì˜ ëª¨ë¸ì´ë¦„ê³¼ zitem.xmlì˜ ë©”ì‰¬ì´ë¦„ì´ ê°™ì•„ì•¼ë§Œ ëœë‹¤.
 		if(strcmp(pItemDesc->m_szMeshName, pWorldItemDesc->m_szModelName)==0)
 		{
 			return pWorldItemDesc->m_nID;
 		}
 	}
 
-	_ASSERT(0);	// ¸Â´Â ¿ùµå¾ÆÀÌÅÛÀÌ ¾ø´Ù.
+	_ASSERT(0);	// ë§ëŠ” ì›”ë“œì•„ì´í…œì´ ì—†ë‹¤.
 	return 0;
 
 }

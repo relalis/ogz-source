@@ -8,7 +8,7 @@
 #include "RealSound.h"
 #include "MMTimer.h"
 #include <dsound.h>
-#include <vorbis/vorbisfile.h>
+#include <VORBIS/vorbisfile.h>
 
 
 #ifdef _DEBUG

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MButton.h"
 #include "MColorTable.h"
-#include "MTooltip.h"
+#include "MToolTip.h"
 #include "MMsgBox.h"
 #include "Mint.h"
 
@@ -291,19 +291,21 @@ void MButtonLook::OnDrawText(MButton* pButton, MRECT& r, MDrawContext* pDC)
 void MButtonLook::OnDownDraw(MButton* pButton, MDrawContext* pDC)
 {
 	MRECT r = pButton->GetInitialClientRect();
+	MRECT curRect = pButton->GetClientRect();
 	pDC->SetColor(MCOLOR(DEFCOLOR_MBUTTON_DARKPLANE));
 	pDC->FillRectangle(r);
 
-	OnDrawText(pButton, pButton->GetClientRect(), pDC);
+	OnDrawText(pButton, curRect, pDC);
 }
 
 void MButtonLook::OnUpDraw(MButton* pButton, MDrawContext* pDC)
 {
 	MRECT r = pButton->GetInitialClientRect();
+	MRECT curRect = pButton->GetClientRect();
 	pDC->SetColor(MCOLOR(DEFCOLOR_MBUTTON_PLANE));
 	pDC->FillRectangle(r);
 
-	OnDrawText(pButton, pButton->GetClientRect(), pDC);
+	OnDrawText(pButton, curRect, pDC);
 }
 
 void MButtonLook::OnOverDraw(MButton* pButton, MDrawContext* pDC)
@@ -313,20 +315,22 @@ void MButtonLook::OnOverDraw(MButton* pButton, MDrawContext* pDC)
 	}
 	else{
 		MRECT r = pButton->GetInitialClientRect();
+		MRECT curRect = pButton->GetClientRect();
 		pDC->SetColor(MCOLOR(DEFCOLOR_MBUTTON_PLANE));
 		pDC->FillRectangle(r);
 
-		OnDrawText(pButton, pButton->GetClientRect(), pDC);
+		OnDrawText(pButton, curRect, pDC);
 	}
 }
 
 void MButtonLook::OnDisableDraw(MButton* pButton, MDrawContext* pDC)
 {
 	MRECT r = pButton->GetInitialClientRect();
+	MRECT curRect = pButton->GetClientRect();
 	pDC->SetColor(MCOLOR(DEFCOLOR_MBUTTON_PLANE));
 	pDC->FillRectangle(r);
 
-	OnDrawText(pButton, pButton->GetClientRect(), pDC);
+	OnDrawText(pButton, curRect, pDC);
 }
 
 void MButtonLook::OnDraw(MButton* pButton, MDrawContext* pDC)

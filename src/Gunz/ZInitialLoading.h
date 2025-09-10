@@ -1,7 +1,7 @@
 #pragma once
 
 class MBitmapR2;
-#include "Mint4r2.h"
+#include "Mint4R2.h"
 #include "MThread.h"
 
 enum LOADING_SCENE_MODE
@@ -69,15 +69,15 @@ ZInitialLoading*	ZGetInitialLoading();
 
 
 class ZLoadingProgress {
-	char	m_szName[64];			// ÀÌ¸§
+	char	m_szName[64];			// ì´ë¦„
 	ZLoadingProgress *m_pParent;
-	float m_fTotalProgressStart;	// ÇöÀç progress ½ÃÀÛÁöÁ¡ (ÀüÃ¼±âÁØ)
-	float m_fProgressStart;			// progress ½ÃÀÛÁöÁ¡ (ºÎ¸ğ±âÁØ)
-	float m_fThisAmount;			// ÀüÃ¼Áß¿¡ ÇöÀç ½ºÅÜÀÌ Â÷ÁöÇÏ´Â ºñÀ²
-	float m_fCurrentProgress;		// ÇöÀç ÁøÇàÀ²
+	float m_fTotalProgressStart;	// í˜„ì¬ progress ì‹œì‘ì§€ì  (ì „ì²´ê¸°ì¤€)
+	float m_fProgressStart;			// progress ì‹œì‘ì§€ì  (ë¶€ëª¨ê¸°ì¤€)
+	float m_fThisAmount;			// ì „ì²´ì¤‘ì— í˜„ì¬ ìŠ¤í…ì´ ì°¨ì§€í•˜ëŠ” ë¹„ìœ¨
+	float m_fCurrentProgress;		// í˜„ì¬ ì§„í–‰ìœ¨
 	
 #ifdef _DEBUG
-	static float ZLoadingProgress::m_fLastProgress;	// µÇµ¹¾Æ°¡´Â°æ¿ì°¡ ÀÖ³ª Ã¼Å©
+	static float ZLoadingProgress::m_fLastProgress;	// ë˜ëŒì•„ê°€ëŠ”ê²½ìš°ê°€ ìˆë‚˜ ì²´í¬
 #endif
 
 public:

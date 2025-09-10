@@ -83,8 +83,10 @@ void MBmButton::OnDraw(MDrawContext* pDC)
 		pDC->SetColor( m_BmTextColor );
 		pDC->Text(GetClientRect(), m_szName, GetAlignment());
 	}
-	else
-        GetLook()->OnDrawText( this, this->GetClientRect(), pDC );
+	else {
+		MRECT curRect = this->GetClientRect();
+        GetLook()->OnDrawText( this, curRect, pDC );
+	}
 }
 
 MBmButton::MBmButton(const char* szName, MWidget* pParent, MListener* pListener)

@@ -114,14 +114,18 @@ void MBButtonLook::OnUpDraw(MButton* pButton, MDrawContext* pDC)
 		return;
 	}
 
+	// This workaround for DrawText() might be related to a graphical bug
+	// under wine 10.14-macOS
+	// todo: look into it (or don't, who cares?)
 	MRECT r = pButton->GetInitialClientRect();
+	MRECT curRect = pButton->GetClientRect();
 	if( GetCustomLook() )
 		DrawBitmapButtonCustom1( pDC, r, m_pUpBitmaps, false, m_bStretch );
 	else
 		DrawBitmapFrame9(pDC, r, m_pUpBitmaps, m_bStretch, GetScale() );
 	if(pButton->IsFocus()==true) DrawFocus(pDC, r);
 
-	DrawText(pButton, pDC, pButton->GetClientRect(), pButton->m_szName, pButton->GetAlignment());
+	DrawText(pButton, pDC, curRect, pButton->m_szName, pButton->GetAlignment());
 }
 
 void MBButtonLook::OnOverDraw(MButton* pButton, MDrawContext* pDC)
@@ -134,13 +138,14 @@ void MBButtonLook::OnOverDraw(MButton* pButton, MDrawContext* pDC)
 	}
 	
 	MRECT r = pButton->GetInitialClientRect();
+	MRECT curRect = pButton->GetClientRect();
 	if( GetCustomLook() )
 		DrawBitmapButtonCustom1( pDC, r, m_pOverBitmaps, false, m_bStretch );
 	else
 		DrawBitmapFrame9(pDC, r, m_pOverBitmaps, m_bStretch, GetScale());
 	if(pButton->IsFocus()==true) DrawFocus(pDC, r);
 
-	DrawText(pButton, pDC, pButton->GetClientRect(), pButton->m_szName, pButton->GetAlignment());
+	DrawText(pButton, pDC, curRect, pButton->m_szName, pButton->GetAlignment());
 }
 
 void MBButtonLook::OnDisableDraw(MButton* pButton, MDrawContext* pDC)
@@ -150,24 +155,24 @@ void MBButtonLook::OnDisableDraw(MButton* pButton, MDrawContext* pDC)
 
 void MBButtonLook::OnDraw( MButton* pButton, MDrawContext* pDC )
 {
-	if(GetWireLook())		// À§Á¬ÀÇ ¿À¸¥ÂÊ¿¡ ºÙ´Â ¹æ½ÄÀÏ °æ¿ì¿¡...
+	if(GetWireLook())		// ìœ„ì ¯ì˜ ì˜¤ë¥¸ìª½ì— ë¶™ëŠ” ë°©ì‹ì¼ ê²½ìš°ì—...
 	{
 		MRECT rect = pButton->GetInitialClientRect();
 
-		// ¹è°æ ±×¸®°í...
+		// ë°°ê²½ ê·¸ë¦¬ê³ ...
 		pDC->SetColor(19,19,19,255);
 		pDC->FillRectangle( rect);
 
 
-		// ¹öÆ°ÀÌ ±×·ÁÁú Å©±â¸¦ ±¸ÇÑ´Ù.
+		// ë²„íŠ¼ì´ ê·¸ë ¤ì§ˆ í¬ê¸°ë¥¼ êµ¬í•œë‹¤.
 		MRECT rectButtonBmp;
-		rectButtonBmp.x = rect.x + rect.w - rect.h + 1;		// ¹öÆ°ÀÌ ±×·ÁÁú ½ÃÀÛ À§Ä¡¸¦ ±¸ÇÑ´Ù.
-        rectButtonBmp.y = rect.y + 1;						// Å×µÎ¸® µÎ²²(1 pixel)¶§¹®¿¡ 1 pixel ¾Æ·¡·Î ³»·Á¼­ ±×¸°´Ù.
-		rectButtonBmp.w = rect.h - 2;						// À§Á¬ÀÇ ³ôÀÌ¸¦ ±âÁØÀ¸·Î Æø°ú ³ôÀÌ¸¦ ¸ÂÃá´Ù.
-		rectButtonBmp.h = rect.h - 2;						// À§Á¬ÀÇ ³ôÀÌ¸¦ ±âÁØÀ¸·Î Æø°ú ³ôÀÌ¸¦ ¸ÂÃá´Ù.
+		rectButtonBmp.x = rect.x + rect.w - rect.h + 1;		// ë²„íŠ¼ì´ ê·¸ë ¤ì§ˆ ì‹œìž‘ ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
+        rectButtonBmp.y = rect.y + 1;						// í…Œë‘ë¦¬ ë‘ê»˜(1 pixel)ë•Œë¬¸ì— 1 pixel ì•„ëž˜ë¡œ ë‚´ë ¤ì„œ ê·¸ë¦°ë‹¤.
+		rectButtonBmp.w = rect.h - 2;						// ìœ„ì ¯ì˜ ë†’ì´ë¥¼ ê¸°ì¤€ìœ¼ë¡œ í­ê³¼ ë†’ì´ë¥¼ ë§žì¶˜ë‹¤.
+		rectButtonBmp.h = rect.h - 2;						// ìœ„ì ¯ì˜ ë†’ì´ë¥¼ ê¸°ì¤€ìœ¼ë¡œ í­ê³¼ ë†’ì´ë¥¼ ë§žì¶˜ë‹¤.
 		float fScale = (float)(rect.h - 2) / (float)m_pDownBitmaps[1]->GetHeight();
 
-		// ¹öÆ°ÀÇ ºñÆ®¸ÊÀ» ±×¸°´Ù
+		// ë²„íŠ¼ì˜ ë¹„íŠ¸ë§µì„ ê·¸ë¦°ë‹¤
 		if( pButton->GetComboDropped() )
 		{
 			HLineBitmap( pDC, rectButtonBmp.x, rectButtonBmp.y, rectButtonBmp.w, m_pDownBitmaps[2], false, fScale);
@@ -185,7 +190,7 @@ void MBButtonLook::OnDraw( MButton* pButton, MDrawContext* pDC )
 		pDC->SetColor(205,205,205,255);
 	 	pDC->Text(rectText, pButton->m_szName, pButton->GetAlignment() );
 
-		// Å×µÎ¸® ±×¸®°í...
+		// í…Œë‘ë¦¬ ê·¸ë¦¬ê³ ...
 		pDC->SetColor(205,205,205,255);
 		pDC->Rectangle( rect);
 
@@ -197,22 +202,22 @@ void MBButtonLook::OnDraw( MButton* pButton, MDrawContext* pDC )
 #define CHECKBOX_SIZE  12
 void MBButtonLook::OnCheckBoxDraw( MButton* pButton, MDrawContext* pDC, bool bPushed )
 {
-	// Ã¼Å©¹Ú½º ±×¸®±â
+	// ì²´í¬ë°•ìŠ¤ ê·¸ë¦¬ê¸°
 	MRECT r = pButton->GetInitialClientRect();
-	int x = r.x + CHECKBOX_SIZE;	// ¾à°£ÀÇ ¿©À¯ºÐ
+	int x = r.x + CHECKBOX_SIZE;	// ì•½ê°„ì˜ ì—¬ìœ ë¶„
 	int y = r.y + (int)(r.h*0.5) -(int)(CHECKBOX_SIZE*0.5);
 	pDC->SetColor( 128, 128, 128, 255 );
     pDC->Rectangle( x, y, CHECKBOX_SIZE, CHECKBOX_SIZE );
-	//Ã¼Å©¹öÆ° ±×¸®±â
+	//ì²´í¬ë²„íŠ¼ ê·¸ë¦¬ê¸°
     if(bPushed)
 	{
 		pDC->SetBitmap(m_pUpBitmaps[0]);
 		pDC->Draw(x-(int)(CHECKBOX_SIZE*0.5), y-(int)(CHECKBOX_SIZE*0.5));
 	}
-	// ±Û¾¾¾²±â
+	// ê¸€ì”¨ì“°ê¸°
 	r = pButton->GetClientRect();
 //	r.x += 2*CHECKBOX_SIZE;
-	r.x += CHECKBOX_SIZE;			// µ¿È¯ÀÌ°¡ ¼öÁ¤
+	r.x += CHECKBOX_SIZE;			// ë™í™˜ì´ê°€ ìˆ˜ì •
 	DrawText( pButton, pDC, r, pButton->m_szName, pButton->GetAlignment());
 }
 

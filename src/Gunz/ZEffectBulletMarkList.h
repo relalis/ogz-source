@@ -6,7 +6,7 @@
 #include "ZEffectBase.h"
 #include "ZEffectBillboardList.h"
 
-#include "mempool.h"
+#include "MemPool.h"
 
 struct ZEFFECTBULLETMARKITEM : public ZEFFECTITEM , public CMemPoolSm<ZEFFECTBULLETMARKITEM>{
 	ZEFFECTCUSTOMVERTEX v[4];

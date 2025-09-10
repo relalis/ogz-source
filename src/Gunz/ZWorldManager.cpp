@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "ZMap.h"
 #include "ZWorld.h"
 #include "ZWorldManager.h"
@@ -37,7 +37,7 @@ void ZWorldManager::AddWorld(const char* szMapName)
 	for (iterator i = begin(); i!=end(); i++) {
 		ZWorld *pWorld = *i;
 		if(strcmp(pWorld->m_szName,szMapName)==0) {
-			// ÀÌ¹Ì ÀÖ´Ù
+			// ì´ë¯¸ ìžˆë‹¤
 			pWorld->m_nRefCount++;
 			push_back(pWorld);
 			return;

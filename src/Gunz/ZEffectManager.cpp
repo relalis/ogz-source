@@ -16,7 +16,7 @@
 #include "RMeshMgr.h"
 #include <crtdbg.h>
 #include "MDebug.h"
-#include "dxerr.h"
+#include "DxErr.h"
 #include "RGMain.h"
 #include "RBspObject.h"
 #include "hsv.h"
@@ -752,7 +752,7 @@ void ZEffectManager::Draw(u32 nTime,int mode,float height)
 
 			if(pEffect==NULL) {
 				int _size = (int)m_Effects[d].size();
-				mlog("哆酒.. EffectManager NULL 巩力 惯积 ( %d list 夸家) : size : %d \n",d,_size);
+				mlog("霚晞.. EffectManager NULL 氍胳牅 氚滌儩 ( %d list 鞖旍唽) : size : %d \n",d,_size);
 				++node;
 			} else {
 				if(!pEffect->m_bWaterSkip) {
@@ -907,7 +907,7 @@ void ZEffectManager::Draw(u32 nTime)
 			if(pEffect==NULL) {
 
 				int _size = (int)m_Effects[d].size();
-				mlog("哆酒.. EffectManager NULL 巩力 惯积 ( %d list 夸家) : size : %d \n",d,_size);
+				mlog("霚晞.. EffectManager NULL 氍胳牅 氚滌儩 ( %d list 鞖旍唽) : size : %d \n",d,_size);
 				++node;
 
 			} else {

@@ -4,7 +4,7 @@
 #include <string>
 
 #ifdef WIN32
-#pragma comment(lib, "Shlwapi.lib")
+#pragma comment(lib, "shlwapi.lib")
 #endif
 
 using HANDLE = void*;

@@ -2,7 +2,7 @@
 
 #include "GlobalTypes.h"
 #include "ZEffectBillboard.h"
-#include "mempool.h"
+#include "MemPool.h"
 
 class ZEffectLightTracer : public ZEffectBillboard , public CMemPoolSm<ZEffectLightTracer>
 {

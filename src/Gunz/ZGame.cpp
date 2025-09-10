@@ -28,7 +28,7 @@
 #include "ZConfiguration.h"
 #include "ZLoading.h"
 #include "Physics.h"
-#include "zeffectflashbang.h"
+#include "ZEffectFlashBang.h"
 #include "ZInitialLoading.h"
 #include "RealSoundEffect.h"
 #include "RLenzFlare.h"
@@ -3420,7 +3420,7 @@ void ZGame::OnPeerDieMessage(ZCharacter* pVictim, ZCharacter* pAttacker)
 				MMatchObjCache* pCache = ZGetGameClient()->FindObjCache(ZGetMyUID());
 				if (pCache && pCache->CheckFlag(MTD_PlayerFlags_AdminHide))
 				{
-					sprintf_safe( szMsg, "^%d%s^9 ½º½º·Î ÆÐ¹è",
+					sprintf_safe( szMsg, "^%d%s^9 쩍쨘쩍쨘쨌횓 횈횖쨔챔",
 									(pAttacker->GetTeamID() == MMT_BLUE) ? 3 : 1,
 									pAttacker->GetProperty()->szName);
 					ZGetGameInterface()->GetCombatInterface()->m_AdminMsg.OutputChatMsg( szMsg);
@@ -3449,7 +3449,7 @@ void ZGame::OnPeerDieMessage(ZCharacter* pVictim, ZCharacter* pAttacker)
 			MMatchObjCache* pCache = ZGetGameClient()->FindObjCache(ZGetMyUID());
 			if (pCache && pCache->CheckFlag(MTD_PlayerFlags_AdminHide))
 			{
-				sprintf_safe( szMsg, "^%d%s^9 ½Â¸®,  ^%d%s^9 ÆÐ¹è",
+				sprintf_safe( szMsg, "^%d%s^9 쩍횂쨍짰,  ^%d%s^9 횈횖쨔챔",
 							(pAttacker->GetTeamID() == MMT_BLUE) ? 3 : 1, pAttacker->GetProperty()->szName,
 							(pVictim->GetTeamID() == MMT_BLUE) ? 3 : 1,   pVictim->GetProperty()->szName);
 				ZGetGameInterface()->GetCombatInterface()->m_AdminMsg.OutputChatMsg( szMsg);

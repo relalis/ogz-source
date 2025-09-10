@@ -7,7 +7,7 @@
 #include "MMatchObjCache.h"
 #include "ZMyInfo.h"
 #include "ZGameClient.h"
-#include "zpost.h"
+#include "ZPost.h"
 
 ZCharacterViewList* ZGetCharacterViewList(GunzState nState)
 {
@@ -75,7 +75,7 @@ bool ZCharacterViewList::OnCommand(MWidget* pWidget, const char* szMessage)
 			return true;
 		}
 		else if(strcmp(szMessage, MBTN_RCLK_MSG)==0) {
-			// Â÷ÈÄ ¸Ş´º·Î ¼öÁ¤~
+			// ì°¨í›„ ë©”ë‰´ë¡œ ìˆ˜ì •~
 			if((GetKeyState(VK_MENU)&0x8000)!=0) {
 
 				ZCharacterView* pCharView = (ZCharacterView*) pWidget;
@@ -175,7 +175,7 @@ void ZCharacterViewList::ChangeCharacterInfo()
 	else if(pCV==pMyCV) {
 		SetSelectCharacter(pMyCV);
 	}
-	else {//´Ù¸¥»ç¶÷Àº?
+	else {//ë‹¤ë¥¸ì‚¬ëŒì€?
 	}
 }
 
@@ -351,8 +351,8 @@ void ZCharacterViewList::OnDraw(MDrawContext* pDC)
 {
  	ZMeshViewList::OnDraw(pDC);
 
-	// ½ºÅ×ÀÌÁö¿¡¼­ ÆÀÇÃÀÎ°æ¿ì Å¸ÀÌÆ²¹Ù¿¡ ·¹µå,ºí·çÆÀ ¼öÄ¡Ç¥½Ã...
-	// »ç¶÷ÀÌ ¸¹Àº°æ¿ì ¸î´ë¸îÀÎÁö ±¸ºĞÀÌ ¾ÈµÊ~
+	// ìŠ¤í…Œì´ì§€ì—ì„œ íŒ€í”Œì¸ê²½ìš° íƒ€ì´í‹€ë°”ì— ë ˆë“œ,ë¸”ë£¨íŒ€ ìˆ˜ì¹˜í‘œì‹œ...
+	// ì‚¬ëŒì´ ë§ì€ê²½ìš° ëª‡ëŒ€ëª‡ì¸ì§€ êµ¬ë¶„ì´ ì•ˆë¨~
 
 	if (ZApplication::GetGameInterface()->GetState() == GUNZ_STAGE) {
 
@@ -376,7 +376,7 @@ void ZCharacterViewList::OnDraw(MDrawContext* pDC)
 				}
 			}
 
-			// Å¸ÀÌÆ²¹ÙÀ§¿¡ ±×·ÁÁÖÀÚ~
+			// íƒ€ì´í‹€ë°”ìœ„ì— ê·¸ë ¤ì£¼ì~
 /*
 			char temp[10];
 

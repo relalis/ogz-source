@@ -60,14 +60,14 @@ struct PatchInternalState
 	template <typename T>
 	using A = relaxed_atomic<T>;
 
-	A<PatchStatus> Status = PatchStatus::DownloadingPatchInfo;
-	A<StringView> TargetFile = "";
-	A<u32> FileIndex = 0;
-	A<u32> FileCount = 0;
-	A<u64> BytesMissing = 0;
-	A<u64> BytesDone = 0;
-	A<double> BytesPerSecond = 0;
-	A<StringView> ErrorMessage = "";
+	A<PatchStatus> Status{PatchStatus::DownloadingPatchInfo};
+	A<StringView> TargetFile{""};
+	A<u32> FileIndex{0};
+	A<u32> FileCount{0};
+	A<u64> BytesMissing{0};
+	A<u64> BytesDone{0};
+	A<double> BytesPerSecond{0};
+	A<StringView> ErrorMessage{""};
 
 	XMLFile PatchXML;
 	static constexpr auto DownloadSpeedSampleTime = std::chrono::milliseconds(100);

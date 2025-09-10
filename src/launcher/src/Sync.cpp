@@ -317,7 +317,7 @@ static bool CalculateBlocks(Memory& memory, RemoteFile& Remote, BlockCounts& Cou
 		return mod(a, FileBufferSize);
 	};
 
-	const auto InitialReadSize = size_t(std::min(LocalFileSize, u64(FileBufferSize)));
+	const auto InitialReadSize = size_t((std::min)(LocalFileSize, u64(FileBufferSize)));
 	const auto BytesRead = LocalFile.read(FileBuffer, InitialReadSize);
 	if (BytesRead != InitialReadSize)
 	{

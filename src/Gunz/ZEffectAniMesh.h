@@ -4,7 +4,7 @@
 #include "ZEffectManager.h"
 #include "RVisualMeshMgr.h"
 
-#include "mempool.h"
+#include "MemPool.h"
 
 class ZEffectAniMesh : public ZEffect{
 protected:

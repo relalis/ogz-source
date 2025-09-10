@@ -547,8 +547,8 @@ bool MTextArea::InputFilterKey(int nKey,bool bCtrl)
 
 	case VK_RETURN :
 		if(GetLength()<GetMaxLen()){
-			MLineItem newline(m_CurrentLine->color,
-				string(m_CurrentLine->text.begin() + m_CaretPos.x, m_CurrentLine->text.end()));
+			string t_text = string(m_CurrentLine->text.begin() + m_CaretPos.x, m_CurrentLine->text.end());
+			MLineItem newline(m_CurrentLine->color, t_text);
 			m_CurrentLine->text.erase(m_CaretPos.x,m_CurrentLine->text.size());
 			m_CurrentLine++;
 			m_CurrentLine=m_Lines.insert(m_CurrentLine,newline);
@@ -601,7 +601,8 @@ void MTextArea::SetMaxLen(int nMaxLen)
 
 	m_CaretPos=MPOINT(0,0);
 
-	m_Lines.push_back(MLineItem(MTEXTAREA_DEFAULT_TEXT_COLOR,string()));
+	string t_text;
+	m_Lines.push_back(MLineItem(MTEXTAREA_DEFAULT_TEXT_COLOR,t_text));
 	m_CurrentLine=m_Lines.begin();
 }
 
@@ -703,7 +704,8 @@ void MTextArea::SetText(const char *szText)
 	{
 		nNext=text.find(10,nStart);
 		if(nNext==-1) nNext=nLength;
-		m_Lines.push_back(MLineItem(m_TextColor,text.substr(nStart,nNext-nStart)));
+		string t_text = text.substr(nStart,nNext-nStart);
+		m_Lines.push_back(MLineItem(m_TextColor,t_text));
 		m_nCurrentSize+=nNext-nStart;
 		nStart=nNext+1;
 	}
@@ -712,8 +714,10 @@ void MTextArea::SetText(const char *szText)
 	m_nStartLineSkipLine=0;
 	m_CaretPos=MPOINT(0,0);
 
-	if(!m_Lines.size())
-		m_Lines.push_back(MLineItem(m_TextColor,string()));
+	if(!m_Lines.size()) {
+		string t_text;
+		m_Lines.push_back(MLineItem(m_TextColor,t_text));
+	}
 	m_CurrentLine=m_Lines.begin();
 
 	UpdateScrollBar();
@@ -726,12 +730,12 @@ void MTextArea::Clear()
 
 void MTextArea::OnSize(int w, int h)
 {
-	// TODO: ÇÑ±ÛÀÚ ÂïÀ» Æø ÀÌÇÏ·Î ¸®»çÀÌÁîµÇ¸é °ï¶õÇÏ´Ù. ÀÏ¹İÀû application µéÀº ¸øÁÙÀÌ°Ô µÇ¾îÀÖÀ½.
+	// TODO: í•œê¸€ì ì°ì„ í­ ì´í•˜ë¡œ ë¦¬ì‚¬ì´ì¦ˆë˜ë©´ ê³¤ë€í•˜ë‹¤. ì¼ë°˜ì  application ë“¤ì€ ëª»ì¤„ì´ê²Œ ë˜ì–´ìˆìŒ.
 
 	MRECT cr = GetClientRect();
 	if(m_pScrollBar->IsVisible()==true)
 		m_pScrollBar->SetBounds(MRECT(cr.x+cr.w-m_pScrollBar->GetDefaultBreadth(), cr.y+1, m_pScrollBar->GetDefaultBreadth(), cr.h-1));
-	else	// ¾Èº¸ÀÌ´Â °æ¿ì Å¬¶óÀÌ¾ğÆ® ¿µ¿ªÀÌ ½ºÅ©·Ñ¹Ù ¿µ¿ª±îÁö ÀÖÀ¸¹Ç·Î, °¨¾ÈÇØ¼­ °è»ê
+	else	// ì•ˆë³´ì´ëŠ” ê²½ìš° í´ë¼ì´ì–¸íŠ¸ ì˜ì—­ì´ ìŠ¤í¬ë¡¤ë°” ì˜ì—­ê¹Œì§€ ìˆìœ¼ë¯€ë¡œ, ê°ì•ˆí•´ì„œ ê³„ì‚°
 		m_pScrollBar->SetBounds(MRECT(cr.x+cr.w-m_pScrollBar->GetDefaultBreadth(), cr.y+1, m_pScrollBar->GetDefaultBreadth(), cr.h-1));
 	
 	if(m_bWordWrap)
@@ -758,7 +762,7 @@ int MTextArea::GetClientWidth()
 }
 
 
-// TODO µğ¹ö±ë ÁßÀÌ´Ù
+// TODO ë””ë²„ê¹… ì¤‘ì´ë‹¤
 #pragma optimize( "", off )
 
 void MTextAreaLook::OnTextDraw_WordWrap(MTextArea* pTextArea, MDrawContext* pDC)
@@ -769,10 +773,11 @@ void MTextAreaLook::OnTextDraw_WordWrap(MTextArea* pTextArea, MDrawContext* pDC)
 
 	MRECT r = pTextArea->GetClientRect();
 
-	// ÆøÀÌ 0ÇÈ¼¿ÀÌÇÏ¶ó¸é ±×¸±ÇÊ¿ä°¡ ¾ø´Ù.
+	// í­ì´ 0í”½ì…€ì´í•˜ë¼ë©´ ê·¸ë¦´í•„ìš”ê°€ ì—†ë‹¤.
 	if(r.w<1 || r.h<1) return;
 
-	pDC->SetClipRect(MClientToScreen(pTextArea,r));
+	MRECT t_rect = MClientToScreen(pTextArea,r);
+	pDC->SetClipRect(t_rect);
 
 	MRECT textrt=r;
 	textrt.x+=2;	// default margin
@@ -792,7 +797,7 @@ void MTextAreaLook::OnTextDraw_WordWrap(MTextArea* pTextArea, MDrawContext* pDC)
 
 	int i = nStartLine;
 
-	// µğ¹ö±×¿ë
+	// ë””ë²„ê·¸ìš©
 	char szText[1024]="";
 	int nStartLineSkipLine = pTextArea->m_nStartLineSkipLine;
 	int nIndentation = pTextArea->m_nIndentation;
@@ -813,7 +818,7 @@ void MTextAreaLook::OnTextDraw_WordWrap(MTextArea* pTextArea, MDrawContext* pDC)
 
 		bCurrentLine = (i==pTextArea->GetCaretPos().y);
 
-		// ÇöÀç Á¶ÇÕÇÏ°íÀÖ´Â (ÇÑ±Û) ¹®ÀÚ¸¦ Ä³·µµÚ¿¡ ³¢¿ö³Ö¾î º¸¿©ÁØ´Ù
+		// í˜„ì¬ ì¡°í•©í•˜ê³ ìˆëŠ” (í•œê¸€) ë¬¸ìë¥¼ ìºëŸ¿ë’¤ì— ë¼ì›Œë„£ì–´ ë³´ì—¬ì¤€ë‹¤
 		if(bCurrentLine)
 		{
 			text=string(pTextArea->GetTextLine(i));
@@ -825,22 +830,22 @@ void MTextAreaLook::OnTextDraw_WordWrap(MTextArea* pTextArea, MDrawContext* pDC)
 			strcpy_safe(szText,itor->text.c_str());
 		}
 
-		// Ã¹ÁÙÀÌ¸é skip count ¸¸Å­ ³Ñ°ÜÁØ´Ù
+		// ì²«ì¤„ì´ë©´ skip count ë§Œí¼ ë„˜ê²¨ì¤€ë‹¤
 		int nSkipLine = (i==pTextArea->GetStartLine()) ? pTextArea->m_nStartLineSkipLine : 0;
 
 		int nTextLen = strlen(szText);
 		if(nTextLen>0){
 			//nLine = pDC->TextMultiLine(textrt, szText, 0, true, nIndentation, nSkipLine);
 
-			// ÄÄÆ÷Áö¼ÇµÇ´Â À§Ä¡¸¦ ¾ò±âÀ§ÇØ ¾îÂ¿ ¼ö ¾øÀÌ TextMultiLine¿¡ Æ÷Áö¼Ç Á¤º¸¸¦ ¾ò¾î¿Â´Ù.
-			// ¸Å¿ì ºñÈ¿À²ÀûÀÌ¹Ç·Î Â÷±â ¹öÀü¿¡¼­´Â °³¼±µÇ¾î¾ß ÇÑ´Ù.
-			// TextMultiLine»Ó¸¸ ¾Æ´Ï¶ó TextArea ÀüÃ¼¸¦ °³¼±ÇØ¾ß ÇÑ´Ù. Æ÷¸ÅÆÃ Á¤º¸¸¦ µå·Î¿ì Å¸ÀÓ¿¡ °áÁ¤ÇÏÁö ¾Ê°í ¹Ì¸® ÀúÀåÇÏµµ·Ï.
+			// ì»´í¬ì§€ì…˜ë˜ëŠ” ìœ„ì¹˜ë¥¼ ì–»ê¸°ìœ„í•´ ì–´ì©” ìˆ˜ ì—†ì´ TextMultiLineì— í¬ì§€ì…˜ ì •ë³´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
+			// ë§¤ìš° ë¹„íš¨ìœ¨ì ì´ë¯€ë¡œ ì°¨ê¸° ë²„ì „ì—ì„œëŠ” ê°œì„ ë˜ì–´ì•¼ í•œë‹¤.
+			// TextMultiLineë¿ë§Œ ì•„ë‹ˆë¼ TextArea ì „ì²´ë¥¼ ê°œì„ í•´ì•¼ í•œë‹¤. í¬ë§¤íŒ… ì •ë³´ë¥¼ ë“œë¡œìš° íƒ€ì„ì— ê²°ì •í•˜ì§€ ì•Šê³  ë¯¸ë¦¬ ì €ì¥í•˜ë„ë¡.
 			MPOINT* pPositions = NULL;
 			if(bCurrentLine==true) pPositions = new MPOINT[nTextLen];
 			nLine = pDC->TextMultiLine(textrt, szText, 0, true, nIndentation, nSkipLine, pPositions);
 
-			// ÄÄÆ÷Áö¼Ç ¼Ó¼º(¾ğ´õ¹Ù)À» ±×¸°´Ù.
-			// TextMulitLine() È£ÃâÇØ¾ß À§Ä¡ °ªµéÀ» ¾Ë ¼ö ÀÖ±â ¶§¹®¿¡ ¾ËÆÄ°ªÀ» °¡Áö°í ÅØ½ºÆ® ´ÙÀ½¿¡ ±×·ÁÁØ´Ù. 
+			// ì»´í¬ì§€ì…˜ ì†ì„±(ì–¸ë”ë°”)ì„ ê·¸ë¦°ë‹¤.
+			// TextMulitLine() í˜¸ì¶œí•´ì•¼ ìœ„ì¹˜ ê°’ë“¤ì„ ì•Œ ìˆ˜ ìˆê¸° ë•Œë¬¸ì— ì•ŒíŒŒê°’ì„ ê°€ì§€ê³  í…ìŠ¤íŠ¸ ë‹¤ìŒì— ê·¸ë ¤ì¤€ë‹¤. 
 			if(pTextArea->IsFocus() && bCurrentLine==true){
 				Mint* pMint = Mint::GetInstance();
 				const char* szComposition = pTextArea->GetCompositionString();
@@ -849,7 +854,7 @@ void MTextAreaLook::OnTextDraw_WordWrap(MTextArea* pTextArea, MDrawContext* pDC)
 					pMint->DrawCompositionAttribute(pDC, pPositions[pTextArea->GetCaretPos().x+i], pTextArea->GetCompositionString(), i);
 			}
 
-			// Ãâ·ÂµÉ Candidate List À§Ä¡ ÁöÁ¤ÇÏ±â
+			// ì¶œë ¥ë  Candidate List ìœ„ì¹˜ ì§€ì •í•˜ê¸°
 			if(pTextArea->IsFocus()){
 				if (pPositions)
 				{
@@ -867,8 +872,8 @@ void MTextAreaLook::OnTextDraw_WordWrap(MTextArea* pTextArea, MDrawContext* pDC)
 		textrt.y+=nLine*pTextArea->GetLineHeight();
 		if(textrt.y>=r.y+r.h) break;
 		
-		// Ä³·µÀ» ±×¸°´Ù.
-		// Ä³·µÀÌ Composition String¾È¿¡¼­ ¿òÁ÷ÀÏ ¼ö ÀÖÀ¸¹Ç·Î, Composition StringÀÌ Á¶ÇÕµÈ ¹®ÀÚ¿­À» ±âÁØÀ¸·Î À§Ä¡¸¦ ¾ò¾î³½´Ù.
+		// ìºëŸ¿ì„ ê·¸ë¦°ë‹¤.
+		// ìºëŸ¿ì´ Composition Stringì•ˆì—ì„œ ì›€ì§ì¼ ìˆ˜ ìˆìœ¼ë¯€ë¡œ, Composition Stringì´ ì¡°í•©ëœ ë¬¸ìì—´ì„ ê¸°ì¤€ìœ¼ë¡œ ìœ„ì¹˜ë¥¼ ì–»ì–´ë‚¸ë‹¤.
 		MPOINT carpos;
 		Mint* pMint = Mint::GetInstance();
 		if(bCurrentLine==true && nCarY>=0 && pTextArea->GetCaretPosition(&carpos, 1, szText, pTextArea->GetCaretPos().x+pMint->m_nCompositionCaretPosition, pTextArea->m_bCaretFirst))
@@ -898,7 +903,8 @@ void MTextAreaLook::OnTextDraw(MTextArea* pTextArea, MDrawContext* pDC)
 
 	MRECT r = pTextArea->GetClientRect();
 	r.w -= pTextArea->IsScrollBarVisible() ? pTextArea->GetScrollBarWidth() : 0;
-	pDC->SetClipRect(MClientToScreen(pTextArea,r));
+	MRECT t_rect = MClientToScreen(pTextArea,r);
+	pDC->SetClipRect(t_rect);
 
 	MRECT textrt=r;
 	textrt.h=pTextArea->GetLineHeight();
@@ -929,7 +935,7 @@ void MTextAreaLook::OnTextDraw(MTextArea* pTextArea, MDrawContext* pDC)
 		textrt.y+=pTextArea->GetLineHeight();
 	}
 
-	// Ä³·µ ±×¸®±â
+	// ìºëŸ¿ ê·¸ë¦¬ê¸°
 	if(pTextArea->IsFocus() && pTextArea->GetEditable() 
 		&& GetGlobalTimeMS()%(MEDIT_BLINK_TIME*2)>MEDIT_BLINK_TIME)
 	{
@@ -961,11 +967,11 @@ MRECT MTextAreaLook::GetClientRect(MTextArea* pTextArea, const MRECT& r)
 
 void MTextArea::AddText(const char *szText,MCOLOR color)
 {
-	// ¸Ç µŞÁÙ¿¡ Ãß°¡ÇÑ´Ù
+	// ë§¨ ë’·ì¤„ì— ì¶”ê°€í•œë‹¤
 	m_CurrentLine = m_Lines.end();
 	m_CurrentLine--;
 
-	// ÅØ½ºÆ® ¾È¿¡ \n ÀÌ Æ÷ÇÔµÈ°æ¿ì¸¦ Ã³¸®ÇØ¾ßÇÑ´Ù
+	// í…ìŠ¤íŠ¸ ì•ˆì— \n ì´ í¬í•¨ëœê²½ìš°ë¥¼ ì²˜ë¦¬í•´ì•¼í•œë‹¤
 	int nLineCount = MMGetLineCount(NULL,szText,0,false,m_bColorSupport);
 	
 	const char *szCurrent=szText;
@@ -976,14 +982,15 @@ void MTextArea::AddText(const char *szText,MCOLOR color)
 		m_CurrentLine->color=color;
 		m_CurrentLine->text.append(string(szCurrent,nCharCount));
 		
-		m_Lines.push_back(MLineItem(color,string()));
+		string t_string;
+		m_Lines.push_back(MLineItem(color,t_string));
 		m_CurrentLine = m_Lines.end();
 		m_CurrentLine--;
 		
 		szCurrent+=nCharCount;
 	}
 
-	// Ä³·µ À§Ä¡¸¦ ´Ù½Ã ¸Ç µÚ·Î
+	// ìºëŸ¿ ìœ„ì¹˜ë¥¼ ë‹¤ì‹œ ë§¨ ë’¤ë¡œ
 	m_CaretPos.x=0;
 	m_CaretPos.y=GetLineCount()-1;
 
@@ -995,7 +1002,7 @@ void MTextArea::AddText(const char *szText,MCOLOR color)
 
 void MTextArea::AddText(const char *szText)
 {
-	// ¸Ç µŞÁÙ»ö±òÀ» ¾ò¾î¼­ ´õÇÑ´Ù
+	// ë§¨ ë’·ì¤„ìƒ‰ê¹”ì„ ì–»ì–´ì„œ ë”í•œë‹¤
 	m_CurrentLine = m_Lines.end();
 	m_CurrentLine--;
 

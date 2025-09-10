@@ -12,10 +12,10 @@
 #include "MDebug.h"
 
 #include "RAnimationMgr.h"
-#include "RVisualmeshMgr.h"
+#include "RVisualMeshMgr.h"
 
 #include "MZFileSystem.h"
-#include "fileinfo.h"
+#include "FileInfo.h"
 
 #include "RShaderMgr.h"
 #include "vector"
@@ -715,7 +715,7 @@ void RMeshRenderS(bool lit,int Rmode,rmatrix m,RMeshNode* pMNode,RMtrl* pMtrl,in
 bool RMeshRenderSBegin()
 {
 	if(g_rmesh_render_start_begin) {
-		mlog("RMeshRenderSEnd() À» ¸ÕÀú ÇÑ ÈÄ »ç¿ë\n");
+		mlog("RMeshRenderSEnd() ì„ ë¨¼ì € í•œ í›„ ì‚¬ìš©\n");
 		return false;
 	}
 

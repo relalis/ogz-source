@@ -758,17 +758,6 @@ bool MTCPSocket<T>::OpenSocket()
 	return true;
 }
 
-template <typename T>
-void MTCPSocket<T>::CloseSocket()
-{
-	DMLog("MTCPSocket::CloseSocket, active %d, thread %p\n", IsActive(), &Derived().Thread);
-	if (IsActive())
-	{
-		Derived().Thread.Destroy();
-		MSocket::closesocket(m_Socket);
-	}
-}
-
 bool MClientSocket::Connect(SOCKET* pSocket, const char *szIP, int nPort)
 {
 	if (GetSocket() != MSocket::InvalidSocket)

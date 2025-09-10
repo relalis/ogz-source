@@ -8,7 +8,7 @@ struct RSEDSSET;
 class CWaveFile;
 
 #include "RealSoundDef.h"
-//#include "mempool.h"
+//#include "MemPool.h"
 #include "dsound.h"
 
 //#define WAVEFILECLASS	RSMemWaveFile
@@ -40,7 +40,7 @@ protected:
 	bool IsLost(void);
 	void Restore(void);
 
-	// RealSoundEffectSource¿¡ ÀÇÇØ¼­¸¸ »ı¼º °¡´É
+	// RealSoundEffectSourceì— ì˜í•´ì„œë§Œ ìƒì„± ê°€ëŠ¥
 	RealSoundEffect(void);
 	virtual ~RealSoundEffect(void);
 
@@ -68,15 +68,15 @@ class Package;
 class RealSoundEffectSource{
 protected:
 	RealSound*			m_pRealSound;
-	WAVEFILECLASS*		m_pWaveFile;					// ¸Ş¸ğ¸®¿¡ ¿Ã·ÁÁö´Â ¿şÀÌºê ÆÄÀÏ
-	char				m_szFileName[256];				// ÆÄÀÏ ÀÌ¸§
-	bool				m_bDynamicLoadable;				// Ref. Count¿¡ µû¶ó ¸Ş¸ğ¸®¿¡ ¿Ã·È´Ù ³»¸²
+	WAVEFILECLASS*		m_pWaveFile;					// ë©”ëª¨ë¦¬ì— ì˜¬ë ¤ì§€ëŠ” ì›¨ì´ë¸Œ íŒŒì¼
+	char				m_szFileName[256];				// íŒŒì¼ ì´ë¦„
+	bool				m_bDynamicLoadable;				// Ref. Countì— ë”°ë¼ ë©”ëª¨ë¦¬ì— ì˜¬ë ¸ë‹¤ ë‚´ë¦¼
 	int					m_nRefCount;					// Reference Count
-	RealSoundEffect*	m_pOriginalRealSoundEffect;		// Duplicate°¡ ¾Æ´Ñ ½ÇÁ¦ ¹öÆÛ
-	RealSoundEffect*	m_pPreserveRealSoundEffect;		// OriginalRealSoundEffect °¡ ¾ø¾îÁöÁö ¾Ê°Ô ÇÏ±â À§ÇØ ÀÓ½Ã º¸Á¸ÇÏ´Â RealSoundEffect
+	RealSoundEffect*	m_pOriginalRealSoundEffect;		// Duplicateê°€ ì•„ë‹Œ ì‹¤ì œ ë²„í¼
+	RealSoundEffect*	m_pPreserveRealSoundEffect;		// OriginalRealSoundEffect ê°€ ì—†ì–´ì§€ì§€ ì•Šê²Œ í•˜ê¸° ìœ„í•´ ì„ì‹œ ë³´ì¡´í•˜ëŠ” RealSoundEffect
 
-	float				m_fMinDistance;					// ÃÖ¼Ò °Å¸®,  ÀÌ °Å¸®±îÁö´Â ¼Ò¸®ÀÇ °¨¼è°¡ ¾ø´Ù
-	float				m_fMaxDistance;					// ÃÖ´ë °Å¸®, ÃÖ¼Ò°Å¸®¿¡¼­ ÃÖ´ë°Å¸® ±îÁö °¨¼è°¡ ÀÏ¾î³², ÀÌ °Å¸®°¡ Áö³ª°¡¸é ¼Ò¸®°¡ µé¸®Áö ¾Ê°Ô µÈ´Ù
+	float				m_fMinDistance;					// ìµœì†Œ ê±°ë¦¬,  ì´ ê±°ë¦¬ê¹Œì§€ëŠ” ì†Œë¦¬ì˜ ê°ì‡ ê°€ ì—†ë‹¤
+	float				m_fMaxDistance;					// ìµœëŒ€ ê±°ë¦¬, ìµœì†Œê±°ë¦¬ì—ì„œ ìµœëŒ€ê±°ë¦¬ ê¹Œì§€ ê°ì‡ ê°€ ì¼ì–´ë‚¨, ì´ ê±°ë¦¬ê°€ ì§€ë‚˜ê°€ë©´ ì†Œë¦¬ê°€ ë“¤ë¦¬ì§€ ì•Šê²Œ ëœë‹¤
 
 	Package*			m_pPackage;
 	bool				m_bIsPakFile;
@@ -116,7 +116,7 @@ public:
 };
 
 
-// RealSoundEffectSourceÀÇ ÀÎ½ºÅÏ½º¸¦ ³»ºÎ¿¡ °¡Áö°í ÀÖ¾î µ¶¸³ÀûÀ¸·Î »èÁ¦µÉ ¼ö ÀÖ´Â Å¬·¡½º
+// RealSoundEffectSourceì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë‚´ë¶€ì— ê°€ì§€ê³  ìˆì–´ ë…ë¦½ì ìœ¼ë¡œ ì‚­ì œë  ìˆ˜ ìˆëŠ” í´ë˜ìŠ¤
 class RealSoundEffectPlay// : public CMemPool<RealSoundEffectPlay>
 {
 public:
@@ -130,11 +130,11 @@ public:
 	RealSoundEffectPlay(RealSoundEffectSource* pSES, bool b3D, float fMinDistance, float fMaxDistance, RealSoundEffectMode nMode, E_FX_SOUND_TYPE type_ = FX_NONE );
 	virtual ~RealSoundEffectPlay(void);
 
-	void Play(float x, float y, float z, bool bLoop);	// ÇÃ·¹ÀÌ
+	void Play(float x, float y, float z, bool bLoop);	// í”Œë ˆì´
 	void Play();
-	void Stop(void);				// ½ºÅ¾
-	bool IsPlaying(void);			// ÇÃ·¹ÀÌ ÇÏ´Â°¡?
-	bool IsPlayingLoop(void);		// Loop·Î ÇÃ·¹ÀÌ ÇÏ´Â°¡?
+	void Stop(void);				// ìŠ¤íƒ‘
+	bool IsPlaying(void);			// í”Œë ˆì´ í•˜ëŠ”ê°€?
+	bool IsPlayingLoop(void);		// Loopë¡œ í”Œë ˆì´ í•˜ëŠ”ê°€?
 
 	void SetPos(float x, float y, float z);
 	void SetLoop(bool b) { m_bLoop = b; }
@@ -151,7 +151,7 @@ protected:
 	DSFXWavesReverb				m_paramReverb;
 
 	int							m_iNumEffect;
-	int							m_EffectIndex[FX_NUM]; // ÀÌÆåÆ® ÀÎÅÍÆäÀÌ½º ¾ò¾î¿Ã¶§ ¾²ÀÓ
+	int							m_EffectIndex[FX_NUM]; // ì´í™íŠ¸ ì¸í„°í˜ì´ìŠ¤ ì–»ì–´ì˜¬ë•Œ ì“°ì„
 
 protected:
 	bool	SetFX( E_FX_SOUND_TYPE type_ = FX_NONE );
@@ -159,9 +159,9 @@ protected:
 	//////////////////////////////////////////////////////////////////////////
 	//
 	//	fInGain : (dB) DSFX_WAVESREVERB_INGAIN_MIN(-96.f) ~ DSFX_WAVESREVERB_INGAIN_MAX(0,0f) DSFX_WAVESREVERB_INGAIN_DEFAULT (Defulat,0.0f)
-	//	fReverbMix : (dB) ¸®¹öºêÀÇ ¹Í½Ì·®
+	//	fReverbMix : (dB) ë¦¬ë²„ë¸Œì˜ ë¯¹ì‹±ëŸ‰
 	//	fReverbTime : (milisecond) 0.001 ~ 3000 , default : 1000
-	//  fHighFreqRTRatio : °íÁÖÆÄ¼ö ¸®¹öºê ½Ã°£ºñ , 0.001~0.999, default : 0.001
+	//  fHighFreqRTRatio : ê³ ì£¼íŒŒìˆ˜ ë¦¬ë²„ë¸Œ ì‹œê°„ë¹„ , 0.001~0.999, default : 0.001
 	//
 	bool	SetReverbParam( float fInGain_	= DSFX_WAVESREVERB_INGAIN_DEFAULT, 
 							float fReverbMix_	= DSFX_WAVESREVERB_REVERBMIX_DEFAULT, 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "MDebug.h"
 #include "d3d9.h"
 

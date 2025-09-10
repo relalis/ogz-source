@@ -1,10 +1,9 @@
-
 #ifndef sodium_version_H
 #define sodium_version_H
 
 #include "export.h"
 
-#define SODIUM_VERSION_STRING "1.0.15"
+#define SODIUM_VERSION_STRING "1.0.20"
 
 #define SODIUM_LIBRARY_VERSION_MAJOR 10
 #define SODIUM_LIBRARY_VERSION_MINOR 0

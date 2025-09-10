@@ -1354,7 +1354,8 @@ void Chat::DrawChatLines(MDrawContext* pDC, TimeType Time, int Limit, bool ShowA
 		auto ClipRect = GetOutputRect();
 		if (ShowAll)
 			ClipRect.y1 = 0;
-		pDC->SetClipRect(MakeMRECT(ClipRect));
+		MRECT trect = MakeMRECT(ClipRect);
+		pDC->SetClipRect(trect);
 	}
 
 	if (ChatLinesPixelOffsetY > 0)

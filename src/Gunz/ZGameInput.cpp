@@ -14,7 +14,7 @@
 #include "ZPost.h"
 #include "ZScreenEffectManager.h"
 #include "ZMyInfo.h"
-#include "ZMinimap.h"
+#include "ZMiniMap.h"
 #include "ZInput.h"
 #include "RGMain.h"
 #include "RBspObject.h"

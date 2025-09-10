@@ -8,12 +8,12 @@
 typedef signed __int64		int64;
 typedef unsigned __int64	uint64;
 #endif
-#elif defined _LINUX
+#elif defined(_LINUX)
 typedef long long			int64;
 typedef unsigned long long	uint64;
 #endif
 
 
-typedef MVector3			MVector;
+typedef MVector3 MVector;
 
 #endif

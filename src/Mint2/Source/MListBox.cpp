@@ -4,6 +4,16 @@
 #include "Mint.h"
 #include <algorithm>
 
+// std::min and std::max fix
+#if defined(__clang__)
+#if defined(min)
+#undef min
+#endif
+#if defined(max)
+#undef max
+#endif
+#endif // __clang__
+
 #define MLISTBOX_MARGIN_X	2
 #define MLISTBOX_MARGIN_Y	2
 

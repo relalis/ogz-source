@@ -4,7 +4,7 @@
 #include "ZConfiguration.h"
 #include "ZGameClient.h"
 
-#include "dxerr.h"
+#include "DxErr.h"
 
 #include "resource.h"
 #include "VersionNo.h"
@@ -328,11 +328,11 @@ constexpr auto MakeFPSLimiter(T&& Action)
 }
 
 auto VisualFPSLimiter = MakeFPSLimiter<&ZConfiguration::GetVisualFPSLimit>(
-	[&](auto nSleep) {
+	[](auto nSleep) {
 	return nSleep <= 0;
 });
 auto LogicalFPSLimiter = MakeFPSLimiter<&ZConfiguration::GetLogicalFPSLimit>(
-	[&](auto nSleep) {
+	[](auto nSleep) {
 	if (nSleep <= 0)
 		return true;
 
@@ -633,7 +633,7 @@ int PASCAL GunzMain(HINSTANCE this_inst, HINSTANCE prev_inst, LPSTR cmdline, int
 
 	std::string sMlogPath = GetMyDocumentsPath();
 	sMlogPath += GUNZ_FOLDER;
-	sMlogPath += strprintf(MPATH_MLOG, MGetStrLocalTime());
+	sMlogPath += strprintf(MPATH_MLOG, MGetStrLocalTime().c_str());
 	MakePath(sMlogPath.c_str());
 	InitLog(MLOGSTYLE_DEBUGSTRING | MLOGSTYLE_FILE, sMlogPath.c_str());
 

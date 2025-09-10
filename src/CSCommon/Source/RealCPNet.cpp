@@ -12,7 +12,7 @@
 #include <WinSock2.h>
 #include "MWindows.h"
 #include <MSWSock.h>
-#pragma comment(lib, "Mswsock.lib")
+#pragma comment(lib, "mswsock.lib")
 
 #include "MSocket.h"
 #include "RealCPNet.h"

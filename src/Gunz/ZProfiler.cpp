@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "ZProfiler.h"
 
 #include "mmsystem.h"

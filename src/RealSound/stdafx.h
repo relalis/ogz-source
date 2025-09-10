@@ -10,7 +10,9 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#if !defined(__clang__)
 #include "targetver.h"
+#endif //__clang__
 
 #define POINTER_64 __ptr64
 

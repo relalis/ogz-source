@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mwidget.h"
+#include "MWidget.h"
 #include "map"
 
 class MButton;

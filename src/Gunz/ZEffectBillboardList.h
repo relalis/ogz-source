@@ -6,7 +6,7 @@
 #include "ZEffectBase.h"
 #include "ZEffectBulletMarkList.h"
 
-#include "mempool.h"
+#include "MemPool.h"
 #include "RMeshUtil.h"
 
 struct ZEFFECTBILLBOARDITEM : public ZEFFECTITEM , public CMemPoolSm<ZEFFECTBILLBOARDITEM>{

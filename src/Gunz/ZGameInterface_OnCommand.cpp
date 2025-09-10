@@ -37,9 +37,9 @@
 #include "RealSoundEffect.h"
 #include "ZInitialLoading.h"
 #include "RShaderMgr.h"
-#include "zeffectflashbang.h"
+#include "ZEffectFlashBang.h"
 #include "MToolTip.h"
-#include "ZRoomListbox.h"
+#include "ZRoomListBox.h"
 #include "ZPlayerListBox.h"
 #include "MMatchNotify.h"
 #include "ZMapListBox.h"
@@ -86,23 +86,23 @@ bool ZGameInterface::OnCommand(MCommand* pCommand)
 			void* pCharListBlob = pParam->GetPointer();
 			int nCount = MGetBlobArrayCount(pCharListBlob);
 
-			// Ä³¸¯ÅÍ Á¤º¸ °¡Á®¿À±â
+			// ìºë¦­í„° ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 			ZCharacterSelectView::OnReceivedAccountCharInfo(pCharListBlob);
 			
-			// Ä³¸¯ÅÍ°¡ ÇÑ¸íµµ ¾øÀ¸¸é ¸Ş½ÃÁö Ãâ·Â
+			// ìºë¦­í„°ê°€ í•œëª…ë„ ì—†ìœ¼ë©´ ë©”ì‹œì§€ ì¶œë ¥
 			if (ZCharacterSelectView::GetNumOfCharacter() <= 0)
 			{
 				ZApplication::GetGameInterface()->ShowMessage( MSG_GAME_NOCHARACTER);
 			}
 
-			// Ä³¸¯ÅÍ ÇÏ³ª ¼±ÅÃ
+			// ìºë¦­í„° í•˜ë‚˜ ì„ íƒ
 			if ( ZCharacterSelectView::GetNumOfCharacter() > 0)
 			{
 				ZCharacterSelectView::SetSelectedCharacterFromLastChar();
 				ZApplication::GetGameInterface()->ChangeSelectedChar( ZCharacterSelectView::GetSelectedCharacter() );
 			}
 
-			// Ä³¸¯ÅÍ ¸®½ºÆ®°¡ ³¯¶ó¿À¸é CHARSELECTIONÀ¸·Î STATEº¯È¯
+			// ìºë¦­í„° ë¦¬ìŠ¤íŠ¸ê°€ ë‚ ë¼ì˜¤ë©´ CHARSELECTIONìœ¼ë¡œ STATEë³€í™˜
 			ZApplication::GetGameInterface()->SetState(GUNZ_CHARSELECTION);
 		}
 		break;
@@ -118,7 +118,7 @@ bool ZGameInterface::OnCommand(MCommand* pCommand)
 
 			ZCharacterSelectView::OnReceivedCharInfo(nCharNum, pCharInfoBlob);
 
-			// Ä³¸¯ÅÍ º¸ÀÌ±â
+			// ìºë¦­í„° ë³´ì´ê¸°
 			if ( ZApplication::GetGameInterface()->GetCharacterSelectView() != NULL)
 			{
 				ZApplication::GetGameInterface()->GetCharacterSelectView()->SelectChar(nCharNum);

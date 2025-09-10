@@ -5,7 +5,7 @@
 
 #if defined(_MSC_VER)
 # define POLY1305_NOINLINE __declspec(noinline)
-#elif defined(__GNUC__)
+#elif defined(__clang__) || defined(__GNUC__)
 # define POLY1305_NOINLINE __attribute__((noinline))
 #else
 # define POLY1305_NOINLINE
@@ -122,7 +122,7 @@ poly1305_blocks(poly1305_state_internal_t *st, const unsigned char *m,
         h4 = (unsigned long) d4 & 0x3ffffff;
         h0 += c * 5;
         c  = (h0 >> 26);
-        h0 = h0 & 0x3ffffff;
+        h0 &= 0x3ffffff;
         h1 += c;
 
         m += poly1305_block_size;

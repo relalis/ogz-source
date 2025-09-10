@@ -6,7 +6,7 @@
 #include <crtdbg.h>
 #include <math.h>
 #include "MDebug.h"
-#include "dxerr.h"
+#include "DxErr.h"
 
 #define OutputDebugStr(a) __noop
 
@@ -56,7 +56,7 @@ bool RealSoundEffect::Create(RealSound* pRealSound, WAVEFILECLASS* pWaveFile, bo
 	dsbd.dwSize = sizeof(DSBUFFERDESC);
 
 	//dsbd.dwFlags = DSBCAPS_CTRLPAN|DSBCAPS_CTRLVOLUME|DSBCAPS_CTRLFREQUENCY|DSBCAPS_STATIC;
-	// ¹Í½ÌÇÒ¶§ ¼Ò¸® ¿Ö°îÀÌ »ı°Ü¼­ DSBCAPS_LOCSOFTWARE·Î ¿ì¼± Ã³¸®
+	// ë¯¹ì‹±í• ë•Œ ì†Œë¦¬ ì™œê³¡ì´ ìƒê²¨ì„œ DSBCAPS_LOCSOFTWAREë¡œ ìš°ì„  ì²˜ë¦¬
 	if(b3D==true) 
 	{
 		dsbd.dwFlags = DSBCAPS_CTRL3D | DSBCAPS_CTRLVOLUME | DSBCAPS_LOCSOFTWARE | DSBCAPS_MUTE3DATMAXDISTANCE;
@@ -548,7 +548,7 @@ void RealSoundEffectSource::DestroyRealSoundEffect(RealSoundEffect* pRealSoundEf
 {
 	_ASSERT(m_pPreserveRealSoundEffect!=pRealSoundEffect);
 	_ASSERT(m_pOriginalRealSoundEffect!=NULL);
-	if(m_pOriginalRealSoundEffect==pRealSoundEffect && m_nRefCount>1){	// Original RealSoundEffect¸¦ º¸Á¸ÇØ¾ß ÇÏ´Â °æ¿ì
+	if(m_pOriginalRealSoundEffect==pRealSoundEffect && m_nRefCount>1){	// Original RealSoundEffectë¥¼ ë³´ì¡´í•´ì•¼ í•˜ëŠ” ê²½ìš°
 		_ASSERT(m_pPreserveRealSoundEffect==NULL);
 		m_pPreserveRealSoundEffect = pRealSoundEffect;
 	}
@@ -558,7 +558,7 @@ void RealSoundEffectSource::DestroyRealSoundEffect(RealSoundEffect* pRealSoundEf
 	else if(m_pOriginalRealSoundEffect!=pRealSoundEffect && m_nRefCount==1){
 		DelRealSoundEffect(pRealSoundEffect);
 
-		_ASSERT(m_pOriginalRealSoundEffect==m_pPreserveRealSoundEffect);	// º¸Á¸µÇ¾î ÀÖ´Â °Í°ú °°¾Æ¾ß ÇÑ´Ù.
+		_ASSERT(m_pOriginalRealSoundEffect==m_pPreserveRealSoundEffect);	// ë³´ì¡´ë˜ì–´ ìˆëŠ” ê²ƒê³¼ ê°™ì•„ì•¼ í•œë‹¤.
 		DelRealSoundEffect(m_pOriginalRealSoundEffect);
 		m_pOriginalRealSoundEffect = NULL;
 		m_pPreserveRealSoundEffect = NULL;
@@ -573,9 +573,9 @@ void RealSoundEffectSource::DestroyRealSoundEffect(RealSoundEffect* pRealSoundEf
 	else{
 		DelRealSoundEffect(pRealSoundEffect);
 		if(m_pOriginalRealSoundEffect==pRealSoundEffect) m_pOriginalRealSoundEffect = NULL;
-		if(m_nRefCount==1){							// ¸¶Áö¸· RealSoundEffectÀÎ °æ¿ì
-			if(m_pOriginalRealSoundEffect!=pRealSoundEffect){				// ¸¶Áö¸·ÀÌÁö¸¸ OriginalÀÌ ¾Æ´Ñ °æ¿ì
-				_ASSERT(m_pOriginalRealSoundEffect==m_pPreserveRealSoundEffect);	// º¸Á¸µÇ¾î ÀÖ´Â °Í°ú °°¾Æ¾ß ÇÑ´Ù.
+		if(m_nRefCount==1){							// ë§ˆì§€ë§‰ RealSoundEffectì¸ ê²½ìš°
+			if(m_pOriginalRealSoundEffect!=pRealSoundEffect){				// ë§ˆì§€ë§‰ì´ì§€ë§Œ Originalì´ ì•„ë‹Œ ê²½ìš°
+				_ASSERT(m_pOriginalRealSoundEffect==m_pPreserveRealSoundEffect);	// ë³´ì¡´ë˜ì–´ ìˆëŠ” ê²ƒê³¼ ê°™ì•„ì•¼ í•œë‹¤.
 				DelRealSoundEffect(m_pOriginalRealSoundEffect);
 			}
 			m_pOriginalRealSoundEffect = NULL;

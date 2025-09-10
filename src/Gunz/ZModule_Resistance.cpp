@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "ZModule_Resistance.h"
 
 ZModule_Resistance::ZModule_Resistance()
@@ -14,7 +14,7 @@ void ZModule_Resistance::OnAdd(void)
 	_ASSERT(MIsDerivedFromClass(ZObject,m_pContainer));
 }
 
-// ÃÊ±âÈ­ ÇÒ¶§ ÀúÇ×Ä¡¸¦ °è»êÇØ µÐ´Ù
+// ì´ˆê¸°í™” í• ë•Œ ì €í•­ì¹˜ë¥¼ ê³„ì‚°í•´ ë‘”ë‹¤
 void ZModule_Resistance::InitStatus()
 {
 	m_nFR = 0;
@@ -22,7 +22,7 @@ void ZModule_Resistance::InitStatus()
 	m_nPR = 0;
 	m_nLR = 0;
 
-	// Ä³¸¯ÅÍ°¡ ¾Æ´Ï¶ó¸é ÀûÀýÇÑ¹æ¹ýÀ¸·Î ±¸ÇØ³õ´Â´Ù
+	// ìºë¦­í„°ê°€ ì•„ë‹ˆë¼ë©´ ì ì ˆí•œë°©ë²•ìœ¼ë¡œ êµ¬í•´ë†“ëŠ”ë‹¤
 	ZObject *pThisObj = MStaticCast(ZObject,m_pContainer);
 	ZCharacterItem *pItems = pThisObj->GetItems();
 	for(int i=0;i<MMCIP_END;i++)

@@ -8,9 +8,9 @@
 #include "RMeshMgr.h"
 #include "MDebug.h"
 #include "RAnimationMgr.h"
-#include "RVisualmeshMgr.h"
+#include "RVisualMeshMgr.h"
 #include "MZFileSystem.h"
-#include "fileinfo.h"
+#include "FileInfo.h"
 #include "RShaderMgr.h"
 #include "LogMatrix.h"
 
@@ -208,7 +208,7 @@ bool RMeshNode::ConnectMtrl()
 		}
 	}
 
-	mlog( "%s MeshNode mtrl ¿¬°á½ÇÆĞ\n" , m_Name.c_str() );
+	mlog( "%s MeshNode mtrl ì—°ê²°ì‹¤íŒ¨\n" , m_Name.c_str() );
 
 	return false;
 }
@@ -246,7 +246,7 @@ bool RMeshNode::SetBVertData(RBlendVertex* pBVert,int i,int j,int pv_index,int* 
 	}
 
 	if( pPhysique->m_num > 3 || pPhysique->m_num <= 0 ) {
-		mlog("%s mesh %s node %d face %d point -> physique 3 °³ ÀÌ»ó\n",m_pParentMesh->GetFileName() ,m_Name.c_str(),i,j);
+		mlog("%s mesh %s node %d face %d point -> physique 3 ê°œ ì´ìƒ\n",m_pParentMesh->GetFileName() ,m_Name.c_str(),i,j);
 		return false;
 	}
 
@@ -490,7 +490,7 @@ void RMeshNode::ConnectToNameID()
 	int id = RGetMeshNodeStringTable()->Get( m_Name );
 	
 	if(id==-1) {
-		mlog("µî·ÏºÒ°¡ ÆÄÃ÷ %s \n",m_Name.c_str());
+		mlog("ë“±ë¡ë¶ˆê°€ íŒŒì¸  %s \n",m_Name.c_str());
 	}
 
 	m_NameID = id;
@@ -1239,7 +1239,7 @@ int RMeshNode::CalcVertexBuffer_VertexAni(int frame)
 			int nCnt = pANode->GetVecValue(frame,m_point_list);
 		}
 		else {
-			mlog("vertex ani ¿¡¼­ ¹öÅØ½º °¹¼ö°¡ Æ²¸²\n");
+			mlog("vertex ani ì—ì„œ ë²„í…ìŠ¤ ê°¯ìˆ˜ê°€ í‹€ë¦¼\n");
 		}
 	}
 
@@ -1421,7 +1421,7 @@ void RMeshNode::CalcVertexBuffer(const rmatrix& world_mat, bool box)
 
 	rmatrix	ModelWorldMatrix;
 
-	auto SetModelWorldMatrix = [&](auto& mat)
+	auto SetModelWorldMatrix = [&](auto&& mat)
 	{
 		if (Scale)
 			ModelWorldMatrix = scale_mat * mat;

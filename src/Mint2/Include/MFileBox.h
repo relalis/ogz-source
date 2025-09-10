@@ -4,23 +4,23 @@
 #include "MListBox.h"
 
 #ifdef WIN32
-	#pragma comment(lib, "Shlwapi.lib")
+	#pragma comment(lib, "shlwapi.lib")
 #endif
 
-/// ÆÄÀÏ ¸®½ºÆ® ¹Ú½º
+/// íŒŒì¼ ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤
 class MFileBox : public MListBox{
 	char	m_szFilter[256];
 	char	m_szBaseDir[256];
 public:
-	/// @param	szFilter	ÆÄÀÏ ÇÊÅÍ ( ¿¹: *.exe )
+	/// @param	szFilter	íŒŒì¼ í•„í„° ( ì˜ˆ: *.exe )
 	MFileBox(const char* szFilter, MWidget* pParent=NULL, MListener* pListener=NULL);
 	virtual ~MFileBox(void);
 
-	/// ÇÊÅÍ°ªÀ¸·Î ¸ñ·Ï ¸®ÇÁ·¹½¬
-	/// @param	szFilter	ÆÄÀÏ ÇÊÅÍ ( ¿¹: *.exe )
+	/// í•„í„°ê°’ìœ¼ë¡œ ëª©ë¡ ë¦¬í”„ë ˆì‰¬
+	/// @param	szFilter	íŒŒì¼ í•„í„° ( ì˜ˆ: *.exe )
 	void Refresh(const char* szFilter=NULL);
 
-	/// ÆÄÀÏ¸®½ºÆÃÀÇ º£ÀÌ½º µğ·ºÅä¸®
+	/// íŒŒì¼ë¦¬ìŠ¤íŒ…ì˜ ë² ì´ìŠ¤ ë””ë ‰í† ë¦¬
 	const char* GetBaseDir(void);
 
 #define MINT_FILEBOX	"FileBox"

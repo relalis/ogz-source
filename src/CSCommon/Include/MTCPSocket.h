@@ -191,13 +191,21 @@ public:
 
 protected:
 	bool OpenSocket();
-	void CloseSocket();
+	//void CloseSocket();
 	
 	int							m_nPort{};
 	SOCKET						m_Socket = MSocket::InvalidSocket;
 
 	T& Derived() { return *static_cast<T*>(this); }
 	const T& Derived() const { return *static_cast<const T*>(this); }
+
+	void CloseSocket() {
+		DMLog("MTCPSocket::CloseSocket, active %d, thread %p\n", IsActive(), &Derived().Thread);
+		if (IsActive()) {
+			Derived().Thread.Destroy();
+			MSocket::closesocket(m_Socket);
+		}
+	}
 };
 
 class MServerSocket : public MTCPSocket<MServerSocket>

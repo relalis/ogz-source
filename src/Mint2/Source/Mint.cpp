@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Mint.h"
 #include "MWidget.h"
-#include "TChar.h"
+#include "tchar.h"
 #include "MFileDialog.h"
 #include "MPopupMenu.h"
 #include "MListBox.h"
@@ -93,7 +93,7 @@ Mint::Mint()
 	m_pInstance = this;
 	m_pMainFrame = NULL;
 	m_pDC = NULL;
-	m_hImc = NULL;
+//	m_hImc = NULL;
 
 	m_szDragObjectString[0] = 0;
 	m_szDragObjectItemString[0] = 0;
@@ -226,7 +226,8 @@ void Mint::Draw()
 	m_pMainFrame->Draw(pDC);
 
 	MRECT sr = m_pMainFrame->GetScreenRect();
-	pDC->SetOrigin(MPOINT(sr.x, sr.y));
+	MPOINT t_p = MPOINT(sr.x, sr.y);
+	pDC->SetOrigin(t_p);
 	pDC->SetClipRect(sr);
 
 	DrawCandidateList(pDC, m_CandidateListPos);
@@ -441,10 +442,10 @@ const char* Mint::GetDefaultFontName() const
 {
 	static char* szFontName[] = {
 		"Tahoma",		// Default
-		"Gulim",		// ÇÑ±Û
-		"MS PGothic",	// ÀÏº»
-		"MingLiU",		// ¹øÃ¼
-		"NSimSun"		// °£Ã¼
+		"Gulim",		// í•œê¸€
+		"MS PGothic",	// ì¼ë³¸
+		"MingLiU",		// ë²ˆì²´
+		"NSimSun"		// ê°„ì²´
 	};
 
 	int nFont = 0;
@@ -485,7 +486,7 @@ int Mint::GetSubLanguageIdentifier() const
 const char* Mint::GetLanguageIndicatorString() const
 {
 	static char* szIndicator[] = {
-		"?", "EN", "ÇÑ", "‚ ", "ñé", "PT"
+		"?", "EN", "í•œ", "ê¶‡", "ä¸­", "PT"
 	};
 	switch(GetPrimaryLanguageIdentifier()){
 	case LANG_ENGLISH:
@@ -670,8 +671,8 @@ void Mint::DrawCompositionAttributes(MDrawContext* pDC, MPOINT& p, const char* s
 
 	for(int i=0; szComposition[i]!=NULL; i++){
 		bool bTwoByteChar = IsHangul(szComposition[i]);
-
-		nWidth += DrawCompositionAttribute(pDC, MPOINT(p.x+nWidth, p.y), szComposition, i);
+		MPOINT tpoint = MPOINT(p.x+nWidth, p.y);
+		nWidth += DrawCompositionAttribute(pDC, tpoint, szComposition, i);
 
 		if(bTwoByteChar) i++;
 	}
@@ -705,40 +706,40 @@ void Mint::DrawIndicator(MDrawContext* pDC, MRECT& r)
 
 
 TCHAR* szStar[] = {
-	_T("°èÀýÀÌ Áö³ª°¡´Â ÇÏ´Ã¿¡´Â"),
-	_T("°¡À»·Î °¡µæ Â÷ ÀÖ½À´Ï´Ù."),
-	_T("³ª´Â ¾Æ¹« °ÆÁ¤µµ ¾øÀÌ"),
-	_T("°¡À» ¼ÓÀÇ º°µéÀ» ´Ù ÇìÀÏ µíÇÕ´Ï´Ù. "),
-	_T("°¡½¿ ¼Ó¿¡ ÇÏ³ª µÑ »õ°ÜÁö´Â º°À»  "),
-	_T("ÀÌÁ¦ ´Ù ¸øÇì´Â °ÍÀº"),
-	_T("½¬ÀÌ ¾ÆÄ§ÀÌ ¿À´Â ±î´ßÀÌ¿À, "),
-	_T("³»ÀÏ¹ãÀÌ ³²Àº ±î´ßÀÌ¿À,"),
-	_T("¾ÆÁ÷ ³ªÀÇ Ã»ÃáÀÌ ´ÙÇÏÁö ¾ÊÀº ±î´ßÀÔ´Ï´Ù. "),
-	_T("º° ÇÏ³ª¿¡ Ãß¾ï°ú"),
-	_T("º° ÇÏ³ª¿¡ »ç¶û°ú"),
-	_T("º° ÇÏ³ª¿¡  ¾µ¾µÇÔ°ú"),
-	_T("º° ÇÏ³ª¿¡ µ¿°æ°ú"),
-	_T("º° ÇÏ³ª¿¡ ½Ã¿Í"),
-	_T("º° ÇÏ ³ª¿¡ ¾î¸Ó´Ï, ¾î¸Ó´Ï"),
-	_T("¾î¸Ó´Ï, ³ª´Â º° ÇÏ³ª¿¡ ¾Æ¸§ ´Ù¿î ¸» ÇÑ ¸¶µð¾¿ ºÒ·¯ º¾´Ï´Ù. ¼ÒÇÐ±³ ¶§ Ã¥»óÀ» "),
-	_T("°°ÀÌÇß´ø ¾ÆÀÌµéÀÇ ÀÌ¸§°ú, ÆÐ, °æ, ¿Á, ÀÌ·± ÀÌ±¹ ¼Ò³àµéÀÇ ÀÌ¸§°ú,"),
-	_T("¹ú½á ¾Æ±â ¾î¸Ó´Ï µÈ °èÁý¾ÖµéÀÇ ÀÌ¸§°ú, °¡³­ÇÑ ÀÌ¿ô »ç¶÷µéÀÇ ÀÌ¸§°ú,"),
-	_T("ºñµÑ±â, °­¾ÆÁö, Åä³¢, ³ë»õ,  ³ë·ç, ÇÁ¶û½Ã½º Àë, ¶óÀÌ³Ê ¸¶¸®¾Æ ¸±ÄÉ,"),
-	_T("ÀÌ·± ½ÃÀÎÀÇ ÀÌ¸§À» ºÒ·¯ º¾´Ï´Ù."),
-	_T("ÀÌ³×µéÀº ³Ê¹«³ª ¸Ö¸® ÀÖ½À´Ï´Ù."),
-	_T("º°ÀÌ ¾Æ½º¶óÀÌ ¸Ö µíÀÌ,"),
-	_T("¾î¸Ó´Ô,"),
-	_T("±×¸®°í ´ç½ÅÀº ¸Ö¸® ºÏ°£µµ¿¡ °è½Ê´Ï´Ù."),
-	_T("³ª´Â ¹«¾ùÀÎÁö ±×¸®¿ö"),
-	_T("ÀÌ ¸¹Àº º°ºûÀÌ ³»¸° ¾ð´ö À§¿¡"),
-	_T("³» ÀÌ¸§ÀÚ¸¦ ½á º¸°í,"),
-	_T("ÈëÀ¸·Î µ¤¾î ¹ö¸®¾ú½À´Ï´Ù."),
-	_T("µýÀº, ¹ãÀ» »õ¿ö ¿ì´Â ¹ú·¹´Â"),
-	_T("ºÎ²ô·¯¿î ÀÌ¸§À» ½½ÆÛÇÏ´Â ±î´ßÀÔ´Ï´Ù."),
-	_T("±×·¯³ª °Ü¿ïÀÌ Áö³ª°í ³ªÀÇ º°¿¡µµ º½ÀÌ ¿À¸é,"),
-	_T("¹«¾ö À§¿¡ ÆÄ¶õ ÀÜµð°¡ ÇÇ¾î³ªµíÀÌ"),
-	_T("³» ÀÌ¸§ÀÚ ¹¯Èù ¾ð´ö À§¿¡µµ,"),
-	_T("ÀÚ¶ûÃ³·³ Ç®ÀÌ ¹«¼ºÇÒ °Å¿Ü´Ù. "),
+	_T("ê³„ì ˆì´ ì§€ë‚˜ê°€ëŠ” í•˜ëŠ˜ì—ëŠ”"),
+	_T("ê°€ì„ë¡œ ê°€ë“ ì°¨ ìžˆìŠµë‹ˆë‹¤."),
+	_T("ë‚˜ëŠ” ì•„ë¬´ ê±±ì •ë„ ì—†ì´"),
+	_T("ê°€ì„ ì†ì˜ ë³„ë“¤ì„ ë‹¤ í—¤ì¼ ë“¯í•©ë‹ˆë‹¤. "),
+	_T("ê°€ìŠ´ ì†ì— í•˜ë‚˜ ë‘˜ ìƒˆê²¨ì§€ëŠ” ë³„ì„  "),
+	_T("ì´ì œ ë‹¤ ëª»í—¤ëŠ” ê²ƒì€"),
+	_T("ì‰¬ì´ ì•„ì¹¨ì´ ì˜¤ëŠ” ê¹Œë‹­ì´ì˜¤, "),
+	_T("ë‚´ì¼ë°¤ì´ ë‚¨ì€ ê¹Œë‹­ì´ì˜¤,"),
+	_T("ì•„ì§ ë‚˜ì˜ ì²­ì¶˜ì´ ë‹¤í•˜ì§€ ì•Šì€ ê¹Œë‹­ìž…ë‹ˆë‹¤. "),
+	_T("ë³„ í•˜ë‚˜ì— ì¶”ì–µê³¼"),
+	_T("ë³„ í•˜ë‚˜ì— ì‚¬ëž‘ê³¼"),
+	_T("ë³„ í•˜ë‚˜ì—  ì“¸ì“¸í•¨ê³¼"),
+	_T("ë³„ í•˜ë‚˜ì— ë™ê²½ê³¼"),
+	_T("ë³„ í•˜ë‚˜ì— ì‹œì™€"),
+	_T("ë³„ í•˜ ë‚˜ì— ì–´ë¨¸ë‹ˆ, ì–´ë¨¸ë‹ˆ"),
+	_T("ì–´ë¨¸ë‹ˆ, ë‚˜ëŠ” ë³„ í•˜ë‚˜ì— ì•„ë¦„ ë‹¤ìš´ ë§ í•œ ë§ˆë””ì”© ë¶ˆëŸ¬ ë´…ë‹ˆë‹¤. ì†Œí•™êµ ë•Œ ì±…ìƒì„ "),
+	_T("ê°™ì´í–ˆë˜ ì•„ì´ë“¤ì˜ ì´ë¦„ê³¼, íŒ¨, ê²½, ì˜¥, ì´ëŸ° ì´êµ­ ì†Œë…€ë“¤ì˜ ì´ë¦„ê³¼,"),
+	_T("ë²Œì¨ ì•„ê¸° ì–´ë¨¸ë‹ˆ ëœ ê³„ì§‘ì• ë“¤ì˜ ì´ë¦„ê³¼, ê°€ë‚œí•œ ì´ì›ƒ ì‚¬ëžŒë“¤ì˜ ì´ë¦„ê³¼,"),
+	_T("ë¹„ë‘˜ê¸°, ê°•ì•„ì§€, í† ë¼, ë…¸ìƒˆ,  ë…¸ë£¨, í”„ëž‘ì‹œìŠ¤ ìž¼, ë¼ì´ë„ˆ ë§ˆë¦¬ì•„ ë¦´ì¼€,"),
+	_T("ì´ëŸ° ì‹œì¸ì˜ ì´ë¦„ì„ ë¶ˆëŸ¬ ë´…ë‹ˆë‹¤."),
+	_T("ì´ë„¤ë“¤ì€ ë„ˆë¬´ë‚˜ ë©€ë¦¬ ìžˆìŠµë‹ˆë‹¤."),
+	_T("ë³„ì´ ì•„ìŠ¤ë¼ì´ ë©€ ë“¯ì´,"),
+	_T("ì–´ë¨¸ë‹˜,"),
+	_T("ê·¸ë¦¬ê³  ë‹¹ì‹ ì€ ë©€ë¦¬ ë¶ê°„ë„ì— ê³„ì‹­ë‹ˆë‹¤."),
+	_T("ë‚˜ëŠ” ë¬´ì—‡ì¸ì§€ ê·¸ë¦¬ì›Œ"),
+	_T("ì´ ë§Žì€ ë³„ë¹›ì´ ë‚´ë¦° ì–¸ë• ìœ„ì—"),
+	_T("ë‚´ ì´ë¦„ìžë¥¼ ì¨ ë³´ê³ ,"),
+	_T("í™ìœ¼ë¡œ ë®ì–´ ë²„ë¦¬ì—ˆìŠµë‹ˆë‹¤."),
+	_T("ë”´ì€, ë°¤ì„ ìƒˆì›Œ ìš°ëŠ” ë²Œë ˆëŠ”"),
+	_T("ë¶€ë„ëŸ¬ìš´ ì´ë¦„ì„ ìŠ¬í¼í•˜ëŠ” ê¹Œë‹­ìž…ë‹ˆë‹¤."),
+	_T("ê·¸ëŸ¬ë‚˜ ê²¨ìš¸ì´ ì§€ë‚˜ê³  ë‚˜ì˜ ë³„ì—ë„ ë´„ì´ ì˜¤ë©´,"),
+	_T("ë¬´ì—„ ìœ„ì— íŒŒëž€ ìž”ë””ê°€ í”¼ì–´ë‚˜ë“¯ì´"),
+	_T("ë‚´ ì´ë¦„ìž ë¬»ížŒ ì–¸ë• ìœ„ì—ë„,"),
+	_T("ìžëž‘ì²˜ëŸ¼ í’€ì´ ë¬´ì„±í•  ê±°ì™¸ë‹¤. "),
 };
 
 
@@ -816,7 +817,7 @@ void MCreateSample()
 		}
 	};
 
-	MWidget* pNewCursorInfo = new MFrameInfo("Á¤º¸", pMainFrame, pMainFrame);
+	MWidget* pNewCursorInfo = new MFrameInfo("ì •ë³´", pMainFrame, pMainFrame);
 	pNewCursorInfo->SetBounds(400, 0, 200, 200);
 	pNewCursorInfo->Show(true);
 
@@ -846,7 +847,7 @@ void MCreateSample()
 		}
 	};
 
-	MWidget* pNewStar = new MFrameStar("º° Çì´Â ¹ã", pMainFrame, pMainFrame);
+	MWidget* pNewStar = new MFrameStar("ë³„ í—¤ëŠ” ë°¤", pMainFrame, pMainFrame);
 	pNewStar->SetBounds(30, 250, 500, 200);
 	pNewStar->Show(true);
 
@@ -858,7 +859,7 @@ void MCreateSample()
 	pFileMenu->AddMenuItem("Open");
 	pFileMenu->AddMenuItem("Exit");
 	pWidgetMenu->AddMenuItem("Info");
-	pWidgetMenu->AddMenuItem("º°Çì´Â¹ã");
+	pWidgetMenu->AddMenuItem("ë³„í—¤ëŠ”ë°¤");
 
 	pNewMenu->SetBounds(0, 0, MGetWorkspaceWidth(), 16);
 	pNewMenu->Show(0, 0, true);

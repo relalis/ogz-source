@@ -3,7 +3,7 @@
 #include "MTypes.h"
 
 #ifdef WIN32
-#pragma comment(lib, "Imm32.lib")
+#pragma comment(lib, "imm32.lib")
 #endif
 
 //////////////////////////////////

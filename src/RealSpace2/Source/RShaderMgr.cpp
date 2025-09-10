@@ -2,8 +2,8 @@
 #include <d3d9.h>
 #include "RShaderMgr.h"
 #include "RealSpace2.h"
-#include "rmtrl.h"
-#include "rmeshutil.h"
+#include "RMtrl.h"
+#include "RMeshUtil.h"
 #include "MDebug.h"
 #include "ShaderUtil.h"
 
@@ -187,7 +187,7 @@ void RShaderMgr::Update()
 	// Update lights
 	for (size_t i{}; i < 2; ++i)
 	{
-		auto SetShaderConstant = [&](UINT Register, auto& Val) {
+		auto SetShaderConstant = [&](UINT Register, auto&& Val) {
 			dev->SetVertexShaderConstantF(Register, reinterpret_cast<float*>(&Val), 1);
 		};
 

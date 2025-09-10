@@ -14,7 +14,7 @@
 #include <cstdint>
 #include "MeshManager.h"
 #include "hsv.h"
-#include "dxerr.h"
+#include "DxErr.h"
 #include "defer.h"
 #include "RS2.h"
 #include "ZMyBotCharacter.h"

@@ -636,7 +636,8 @@ ZBmNumLabel* ZIDLResource::GetBmNumLabel(MXmlElement& element)
 		if (GetCommonWidgetProperty(pBmLabel, childElement, szBuf)) continue;
 		else if (!strcmp(szBuf, "FONTSIZE"))
 		{
-			pBmLabel->SetCharSize(GetSize(childElement));
+			MSIZE tz = GetSize(childElement);
+			pBmLabel->SetCharSize(tz);
 		}
 		else if (!strcmp(szBuf, "BITMAP"))
 		{

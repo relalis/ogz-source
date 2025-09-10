@@ -4,7 +4,7 @@
 #include "RealSpace2.h"
 #include "RShaderMgr.h"
 #include "MColorTable.h"
-#include "mdebug.h"
+#include "MDebug.h"
 #include "VertexTypes.h"
 
 std::list<ZMeshView*> ZMeshView::msMeshViewList;

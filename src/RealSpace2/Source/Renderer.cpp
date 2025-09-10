@@ -287,7 +287,7 @@ void Renderer::DrawLighting(const std::vector<RLIGHT>& Lights)
 		if (!isInViewFrustum(Light.Position, Light.fAttnEnd, RViewFrustum))
 			continue;
 
-		auto& pos = Light.Position * RView;
+		const auto& pos = Light.Position * RView;
 		SetShaderVector4(LightingShaderConstant::Light, { EXPAND_VECTOR(pos), Light.fAttnEnd });
 		SetShaderVector3(LightingShaderConstant::LightColor, Light.Color);
 

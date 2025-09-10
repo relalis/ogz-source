@@ -37,7 +37,7 @@
 #include "ZChannelListItem.h"
 #include "ZCombatInterface.h"
 #include "ZMap.h"
-#include "UPnP.h"
+#include "upnp.h"
 #include "MMatchNotify.h"
 #include "MListBox.h"
 #include "ZMsgBox.h"
@@ -351,7 +351,7 @@ void ZGameClient::OnChannelResponseJoin(const MUID& uidChannel, MCHANNEL_TYPE nC
 	ZGetGameInterface()->InitClanLobbyUI(bClanBattleUI);
 
 #ifdef LIMIT_ACTIONLEAGUE
-	bool bActionLeague = (strstr(szChannelName, "¾×¼Ç") != NULL) || (nChannelType == MCHANNEL_TYPE_USER);
+	bool bActionLeague = (strstr(szChannelName, "ì•¡ì…˜") != NULL) || (nChannelType == MCHANNEL_TYPE_USER);
 
 	ZGetGameInterface()->InitLadderUI(bActionLeague);
 #endif

@@ -29,8 +29,8 @@ target_include_directories(RealSpace2 PUBLIC
 target_link_libraries(RealSpace2 PUBLIC cml rapidxml)
 
 if (MSVC)
-	target_include_directories(RealSpace2 PUBLIC ../sdk/dx9/include)
-	find_library(dxerr_path NAMES dxerr PATHS ../sdk/dx9/lib/x86)
+	target_include_directories(RealSpace2 PUBLIC ../sdk/dx9/Include)
+	find_library(dxerr_path NAMES DxErr PATHS ../sdk/dx9/Lib/x86)
 
 	target_link_libraries(RealSpace2 PUBLIC
 		${dxerr_path}

@@ -269,7 +269,8 @@ void MWidget::Draw(MDrawContext* pDC)
 	nLastOpacity = pDC->GetOpacity();
 
 	MRECT sr = GetScreenRect();
-	pDC->SetOrigin(MPOINT(sr.x, sr.y));
+	MPOINT t_p = MPOINT(sr.x, sr.y);
+	pDC->SetOrigin(t_p);
 
 	if(m_pFont!=NULL) pDC->SetFont(m_pFont);
 	else pDC->SetFont(MFontManager::Get(NULL));

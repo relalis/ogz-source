@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 
 #include "ZGameClient.h"
-#include ".\zroomlistbox.h"
+#include "ZRoomListBox.h"
 #include "MButton.h"
 #include "MBitmap.h"
 #include "RTypes.h"

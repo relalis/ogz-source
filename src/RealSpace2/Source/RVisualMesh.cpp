@@ -204,7 +204,7 @@ void AniFrameInfo::Frame(RAniMode amode,RVisualMesh* pVMesh)
 		auto e = m_pAniNameEventSet->AniNameEventSet.size();
 		for (size_t i = 0; i < e; ++i)
 		{
-			auto& Fired = AniEventFired[i];
+			auto Fired = AniEventFired[i];
 			auto& Info = m_pAniNameEventSet->AniNameEventSet[i];
 			if (Fired || Info.BeginFrame > m_nFrame)
 				continue;
@@ -1458,7 +1458,7 @@ void RVisualMesh::SetWorldMatrix(const rmatrix& mat) {
 void RVisualMesh::AddWeapon(RWeaponMotionType type, RMesh* pMesh, RAnimation* pAni)
 {
 	if((type < eq_weapon_etc)||(type > eq_weapon_end-1)) {
-		mlog("RVisualMesh::AddWeapon �ϰ� RVisualMesh �� ���Դ±���~~~\n");
+		mlog("RVisualMesh::AddWeapon 占싹곤옙 RVisualMesh 占쏙옙 占쏙옙占쌉는깍옙占쏙옙~~~\n");
 	}
 
 	RemoveWeapon(type);

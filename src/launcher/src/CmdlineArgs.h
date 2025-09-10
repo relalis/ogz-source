@@ -22,7 +22,7 @@ HandleArgumentsResult HandleArguments(Options& Opt, const T& Args)
 		static const StringView VerbosityOpt = "--verbosity=";
 		static const StringView IgnoreSelfUpdateOpt = "--ignore-self-update";
 
-		auto& Arg = Args[i];
+		const auto& Arg = Args[i];
 
 		auto Check = [&](auto&& String) {
 			return iequals(Arg, String);

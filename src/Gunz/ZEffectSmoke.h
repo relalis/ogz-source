@@ -3,7 +3,7 @@
 #include "ZEffectBillboard.h"
 #include "RTypes.h"
 
-#include "mempool.h"
+#include "MemPool.h"
 
 class ZEffectSmoke : public ZEffectBillboard , public CMemPoolSm<ZEffectSmoke>
 {

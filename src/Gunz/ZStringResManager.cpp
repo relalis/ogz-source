@@ -18,7 +18,7 @@ bool ZStringResManager::OnInit()
 	if (!m_Messages.Initialize(strFileName.c_str(), 0, m_pFS))
 	{
 		_ASSERT(0);
-		mlog("Error! -- Initialization of ZStringResManager from file \"%s\" failed\n", strFileName);
+		mlog("Error! -- Initialization of ZStringResManager from file \"%s\" failed\n", strFileName.c_str());
 		return false;
 	}
 

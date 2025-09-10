@@ -3,8 +3,8 @@
 #include <crtdbg.h>
 #include <mbstring.h>
 #include <tchar.h>
-#include "mDebug.h"
-#include "mprofiler.h"
+#include "MDebug.h"
+#include "MProfiler.h"
 #include "VertexTypes.h"
 
 #ifdef _USE_GDIPLUS

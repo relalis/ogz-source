@@ -12,10 +12,10 @@
 #include "MDebug.h"
 
 #include "RAnimationMgr.h"
-#include "RVisualmeshMgr.h"
+#include "RVisualMeshMgr.h"
 
 #include "MZFileSystem.h"
-#include "fileinfo.h"
+#include "FileInfo.h"
 
 #include "RShaderMgr.h"
 
@@ -500,7 +500,7 @@ void RMesh::CheckNameToType(RMeshNode* pMeshNode)
 
 	if(NCMPNAME("Bip",3)) {
 
-		// ÇÏÃ¼³ëµå Ç¥½Ã..
+		// í•˜ì²´ë…¸ë“œ í‘œì‹œ..
 
 		if(NCMPNAME("Bip01 L",7)) {
 
@@ -880,11 +880,11 @@ bool RMesh::ReadElu(const char* fname)
 				MZF_READ(pMeshNode->m_face_normal_list,sizeof(RFaceNormalInfo)*pMeshNode->m_face_num);
 
 			}
-			else if(t_hd.ver > EXPORTER_MESH_VER2) {//ver3 ºÎÅÍ
+			else if(t_hd.ver > EXPORTER_MESH_VER2) {//ver3 ë¶€í„°
 
 				MZF_READ(pMeshNode->m_face_list,sizeof(RFaceInfo)*pMeshNode->m_face_num);
 			}
-			else {									//ver3 ÀÌÇÏ
+			else {									//ver3 ì´í•˜
 
 				RFaceInfoOld* pInfo = new RFaceInfoOld[pMeshNode->m_face_num];
 				MZF_READ(pInfo,sizeof(RFaceInfoOld)*pMeshNode->m_face_num);
@@ -1129,7 +1129,7 @@ void RMesh::MakeAllNodeVertexBuffer()
 			if(RIsHardwareTNL())	flag = USE_VERTEX_HW | USE_VERTEX_SW;
 			else 					flag = USE_VERTEX_SW;
 					
-			pMeshNode->MakeNodeBuffer( flag ); // vertex ani ÀÎ°æ¿ì¸¸ soft ¹öÆÛ »ı¼º..
+			pMeshNode->MakeNodeBuffer( flag ); // vertex ani ì¸ê²½ìš°ë§Œ soft ë²„í¼ ìƒì„±..
 		}
 	}
 }
@@ -1258,8 +1258,8 @@ bool RMesh::ConnectPhysiqueParent(RMeshNode* pNode)
 }
 
 
-//ÆÄÃ÷±³È¯¶§¹®¿¡ ¹Ì¸®¿¬»êÇÏ´Â°ÍÀÌ ÀÇ¹Ì°¡ ¾øÀ½..
-// ·Îµù½ÃÁ¡¿¡ ÀÚ½ÅÀÇ ¸ÓÅÍ¸®¾ó¿¡ ´ëÇØ¼­ ¾ËÆÄÀÎ°¡ Á¶»ç..
+//íŒŒì¸ êµí™˜ë•Œë¬¸ì— ë¯¸ë¦¬ì—°ì‚°í•˜ëŠ”ê²ƒì´ ì˜ë¯¸ê°€ ì—†ìŒ..
+// ë¡œë”©ì‹œì ì— ìì‹ ì˜ ë¨¸í„°ë¦¬ì–¼ì— ëŒ€í•´ì„œ ì•ŒíŒŒì¸ê°€ ì¡°ì‚¬..
 void RMesh::CheckNodeAlphaMtrl() {
 
 	RMeshNodeHashList_Iter it_obj =  m_list.begin();

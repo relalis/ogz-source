@@ -1,5 +1,5 @@
-#include "StdAfx.h"
-#include "ZSKill.h"
+#include "stdafx.h"
+#include "ZSkill.h"
 #include "MXml.h"
 #include "MZFileSystem.h"
 #include "ZGame.h"

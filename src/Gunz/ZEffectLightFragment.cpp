@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include <MMSystem.h>
+#include <mmsystem.h>
 #include "ZEffectLightFragment.h"
 #include "RealSpace2.h"
 #include "Physics.h"

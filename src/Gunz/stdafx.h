@@ -38,6 +38,7 @@
 #include "MRTTI.h"
 #include "MUID.h"
 #include "MemPool.h"
+#include "MVector3.h"
 
 #ifdef GetClassName
 #undef GetClassName

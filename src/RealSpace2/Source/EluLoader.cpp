@@ -257,6 +257,19 @@ static bool TryForEachPath(const std::vector<std::string>& Paths,
 	return false;
 }
 
+// TryForEachPath() was failing as a template under clang, but creating a
+// static function was a quick workaround.
+// @todo: cleanup how paths are searched, and rewrite this shitty method
+static bool TryForEachPathZ(const std::vector<std::string>& Paths,
+	const std::string& Filename,
+	const std::function<bool(const std::string&)>& func)
+{
+	for (auto& Path : Paths)
+		if (func(Path + Filename))
+			return true;
+	return false;
+}
+
 static bool FileExists(const char *filename)
 {
 	return g_pFileSystem->GetFileDesc(filename) != nullptr;
@@ -266,8 +279,8 @@ bool loadMaterial(LoaderState& State, const char* name)
 {
 	XMLMaterialVector xMats;
 
-	auto found = TryForEachPath(State.Paths, name, [&](auto& path) {
-		return XMLParser::parseXMLMaterial(path.c_str(), xMats);	
+	auto found = TryForEachPathZ(State.Paths, name, [&](auto& path) {
+		return XMLParser::parseXMLMaterial(path.c_str(), xMats);
 	});
 	if (!found)
 	{
@@ -294,7 +307,7 @@ bool loadMaterial(LoaderState& State, const char* name)
 			if (Filename.empty())
 				return false;
 
-			auto fn = [&](auto& Path) {
+			auto fn = [&](const auto& Path) {
 				if (!FileExists(Path.c_str()))
 					return false;
 				Texture = Path;
@@ -334,7 +347,7 @@ static bool LoadElu(LoaderState& State, const char* name)
 
 	MZFile File;
 
-	auto success = TryForEachPath(State.Paths, name, [&](auto& Path) {
+	auto success = TryForEachPathZ(State.Paths, name, [&](auto& Path) {
 		return File.Open(Path.c_str(), RealSpace2::g_pFileSystem);
 	});
 	if (!success)
@@ -487,7 +500,7 @@ static bool loadObjectTree(LoaderState& State, const XMLObject& xmlObject, XMLOb
 {
 	XMLActor actor;
 
-	auto found = TryForEachPath(State.Paths, xmlObject.SceneXMLFile, [&](auto& Path) {
+	auto found = TryForEachPathZ(State.Paths, xmlObject.SceneXMLFile, [&](auto& Path) {
 		return XMLParser::parseScene(Path.c_str(), actor, ret);
 	});
 	if (!found)
@@ -530,7 +543,7 @@ bool loadTree(LoaderState& State, const char * sceneName, std::vector<RLIGHT>& L
 	XMLObjectVector ret;
 	XMLLightVector lights;
 
-	auto found = TryForEachPath(State.Paths, sceneName, [&](auto& Path) {
+	auto found = TryForEachPathZ(State.Paths, sceneName, [&](auto Path) {
 		return XMLParser::parseScene(Path.c_str(), actor, ret, &lights);
 	});
 	if (!found)
@@ -573,7 +586,7 @@ bool loadPropTree(LoaderState& State, const char * propName)
 
 	XMLObjectVector ret;
 
-	auto found = TryForEachPath(State.Paths, propName, [&](auto& Path) {
+	auto found = TryForEachPathZ(State.Paths, propName, [&](auto& Path) {
 		return XMLParser::parseProp(Path.c_str(), ret);
 	});
 	if (!found)

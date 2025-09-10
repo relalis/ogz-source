@@ -5,10 +5,10 @@
 #include "MAsyncHttp.h"
 #include <crtdbg.h>
 #include <shlwapi.h>
-#include <WinInet.h>
+#include <wininet.h>
 
 #pragma comment(lib, "shlwapi.lib")
-#pragma comment(lib, "Wininet.lib")
+#pragma comment(lib, "wininet.lib")
 
 #define MSEC_SENDCOMPLETE_TIMEOUT	5000
 
@@ -177,7 +177,7 @@ bool MAsyncHttp::Get(const char* pszURL)
 		// GetLastError()
 		return false;
 	}
-	//// HTTP_QUERY_DATE ////////////////////////////////////////	Á¦´ë·Î ¾È³Ñ¾î¿È
+	//// HTTP_QUERY_DATE ////////////////////////////////////////	ì œëŒ€ë¡œ ì•ˆë„˜ì–´ì˜´
 	FILETIME ftDate; ZeroMemory(&ftDate, sizeof(ftDate));
 	SYSTEMTIME tmDate;
 	DWORD dwDateLength = sizeof(tmDate);

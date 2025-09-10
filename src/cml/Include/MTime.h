@@ -7,7 +7,7 @@ float GetGlobalTime();
 
 #ifdef _MSC_VER
 // Link Winmm since timeGetTime depends on it
-#pragma comment(lib, "Winmm.lib")
+#pragma comment(lib, "winmm.lib")
 #endif
 
 class MTime {

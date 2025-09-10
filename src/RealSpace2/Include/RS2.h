@@ -3,7 +3,7 @@
 #include <string>
 #include "Renderer.h"
 #include "variant.h"
-#include "RS2D3D9.H"
+#include "RS2D3D9.h"
 #include "RS2Vulkan.h"
 #include "VariantPolymorphism.h"
 

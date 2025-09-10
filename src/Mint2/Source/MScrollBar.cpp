@@ -400,18 +400,19 @@ void MArrowLook::OnDraw(MArrow* pArrow, MDrawContext* pDC)
 	if(pArrow->IsButtonDown()==true || (pArrow->GetType()==MBT_PUSH && pArrow->GetCheck()==true)) bPressed = true;
 	MRECT r = pArrow->GetRect();
 	r.x = r.y = 0;
+	MRECT draw_rect = MRECT(r.x+x, r.y+y, r.w, r.h);
 	switch(pArrow->m_nDirection){
 	case 0:
-		OnDrawUpArrow(pDC, MRECT(r.x+x, r.y+y, r.w, r.h), bPressed);
+		OnDrawUpArrow(pDC, draw_rect, bPressed);
 		break;
 	case 1:
-		OnDrawDownArrow(pDC, MRECT(r.x+x, r.y+y, r.w, r.h), bPressed);
+		OnDrawDownArrow(pDC, draw_rect, bPressed);
 		break;
 	case 3:
-		OnDrawLeftArrow(pDC, MRECT(r.x+x, r.y+y, r.w, r.h), bPressed);
+		OnDrawLeftArrow(pDC, draw_rect, bPressed);
 		break;
 	case 4:
-		OnDrawRightArrow(pDC, MRECT(r.x+x, r.y+y, r.w, r.h), bPressed);
+		OnDrawRightArrow(pDC, draw_rect, bPressed);
 		break;
 	default:
 		pDC->FillRectangle(r.x+x, r.y+y, r.w, r.h);

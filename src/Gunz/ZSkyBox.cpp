@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "ZSkybox.h"
+#include "ZSkyBox.h"
 #include "MDebug.h"
 
 using namespace RealSpace2;

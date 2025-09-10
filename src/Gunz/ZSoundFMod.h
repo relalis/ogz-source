@@ -1,7 +1,7 @@
 #pragma once
 
-#include "FMod.h"
-#include "rtypes.h"
+#include "fmod.h"
+#include "RTypes.h"
 
 struct FSOUND_SAMPLE;
 

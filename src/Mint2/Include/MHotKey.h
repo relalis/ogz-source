@@ -3,10 +3,18 @@
 
 #include "MEdit.h"
 
+// GetClassName() override for Mint2 seems to break under clang, this is
+// a temporary workaround
+#if defined (__clang__)
+	#ifdef GetClassName
+		#undef GetClassName
+	#endif
+#endif // __clang__
+
 /// HotKey
 class MHotKey : public MEdit{
 protected:
-	DECLARE_LOOK(MEditLook)	// Edit LookÀ» ±×´ë·Î ¾´´Ù.
+	DECLARE_LOOK(MEditLook)	// Edit Lookì„ ê·¸ëŒ€ë¡œ ì“´ë‹¤.
 	DECLARE_LOOK_CLIENT()
 
 protected:

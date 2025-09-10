@@ -4,10 +4,10 @@
 #include "RSphere.h"
 #include "RCylinder.h"
 #include "MDebug.h"
-#include "Realspace2.h"
+#include "RealSpace2.h"
 #include "MProfiler.h"
 #include "RShaderMgr.h"
-#include "D3D9Types.h"
+#include "d3d9types.h"
 #include "RVisualMesh.h"
 
 #define NUM_SPHERE_BET_BONE		3
@@ -30,7 +30,7 @@ bool IsIntersect( rvector& o, rvector& d, rvector& dir, rvector& c, float r, rve
 	rvector ddir = c-d;
 	float d_sq = MagnitudeSq(ddir);
 	float r_sq = r * r;
-	if( d_sq > r_sq ) return false;	// ÃÖÁ¾ ¸ñÀûÁö°¡ ¿øÀÇ ¹Ù±ùÂÊÀÌ¸é »ó°ü¾øÀ½
+	if( d_sq > r_sq ) return false;	// ìµœì¢… ëª©ì ì§€ê°€ ì›ì˜ ë°”ê¹¥ìª½ì´ë©´ ìƒê´€ì—†ìŒ
 
 	rvector ldir = c-o;
 	float s = DotProduct(ldir, dir);
@@ -38,7 +38,7 @@ bool IsIntersect( rvector& o, rvector& d, rvector& dir, rvector& c, float r, rve
 
 	float m_sq = l_sq - s*s;
 	if( m_sq > r_sq ) 
-		return false; // ÀÌ°Ç Ãæµ¹ÀÌ ¾Æ´Ô... ÀÌ·± °æ¿ì°¡ ¿Ö »ı±æ±î?
+		return false; // ì´ê±´ ì¶©ëŒì´ ì•„ë‹˜... ì´ëŸ° ê²½ìš°ê°€ ì™œ ìƒê¸¸ê¹Œ?
 
 	float q = sqrt( r_sq - m_sq );
 
@@ -51,7 +51,7 @@ bool IsIntersect( rvector& o, rvector& d, rvector& dir, rvector& c, float r, rve
 }
 
 //////////////////////////////////////////////////////////////////////////
-// »ı¼ºÀÚ
+// ìƒì„±ì
 //////////////////////////////////////////////////////////////////////////
 RCharCloth::RCharCloth(void)
 {
@@ -67,7 +67,7 @@ RCharCloth::RCharCloth(void)
 
 
 //////////////////////////////////////////////////////////////////////////
-// ¼Ò¸êÀÚ
+// ì†Œë©¸ì
 //////////////////////////////////////////////////////////////////////////
 RCharCloth::~RCharCloth(void)
 {

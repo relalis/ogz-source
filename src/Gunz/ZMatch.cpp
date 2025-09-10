@@ -150,8 +150,11 @@ void ZMatch::SoloSpawn()
 		
 	if (!pSpawnData)
 	{
-		if (ZGetApplication()->IsDeveloperMode())
-			ZPostSpawn(v3{ 0, 0, 100 }, v3{ 1, 0, 0 });
+		if (ZGetApplication()->IsDeveloperMode()) {
+			v3 v_vert = { 0, 0, 100 };
+			v3 v_dir = { 1, 0, 0 };
+			ZPostSpawn(v_vert, v_dir);
+		}
 		else
 			assert(false);
 	}
@@ -321,7 +324,7 @@ void ZMatch::SetRoundState(MMATCH_ROUNDSTATE nRoundState, int nArg)
 
 #ifndef _PUBLISH
 	char szLog[128];
-	sprintf_safe(szLog, "RoundState:%d À¸·Î ¹Ù²ñ\n", m_nRoundState);
+	sprintf_safe(szLog, "RoundState:%d ìœ¼ë¡œ ë°”ë€œ\n", m_nRoundState);
 	OutputDebugString(szLog);
 #endif
 

@@ -327,7 +327,7 @@ void RBspObjectDrawD3D9::CreateBatches()
 	auto NumMaterials = MaterialBatches.size();
 	NormalMaterialsEnd = OpacityMaterialsEnd = AlphaTestMaterialsEnd = NumMaterials;
 
-	auto SortMaterials = [&](auto Start, auto& End, auto& Pred)
+	auto SortMaterials = [&](auto Start, auto& End, auto&& Pred)
 	{
 		for (auto i = Start; i < End; ++i)
 		{

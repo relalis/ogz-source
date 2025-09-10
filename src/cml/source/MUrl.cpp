@@ -4,7 +4,7 @@
 #ifdef WIN32
 
 #include <Windows.h>
-#include <WinInet.h>
+#include <wininet.h>
 #include <Shlwapi.h>
 
 bool MUrl::GetPath(char * Output, size_t OutputSize, const char * URL)

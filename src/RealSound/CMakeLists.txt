@@ -8,9 +8,9 @@ add_target(NAME RealSound TYPE STATIC SOURCES "${src}")
 target_include_directories(RealSound PUBLIC
 	.
 	Include
-	../CML/Include
+	../cml/Include
 	../RealSpace2/Include
-	../sdk/dx9/include
+	../sdk/dx9/Include
 	../sdk/rapidxml/include
 	../sdk/rapidjson/include
 	../sdk/curl/include

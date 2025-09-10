@@ -83,8 +83,8 @@ struct MQuestNPCInfo
 	float				fCollRadius;
 	float				fCollHeight;
 	bool				bColPick;
-	MVector				vScale;
-	MVector				vColor;
+	MVector3				vScale;
+	MVector3				vColor;
 	unsigned char		nSpawnWeight;
 	u32	nWeaponItemID;
 	float				fDyingTime;
@@ -135,8 +135,8 @@ struct MQuestNPCInfo
 		fCollRadius			= 35.0f;
 		fCollHeight			= 180.0f;
 		bColPick			= false;
-		vScale				= MVector(1.0f,1.0f,1.0f);
-		vColor				= MVector(0.6f,0.6f,0.6f);
+		vScale				= MVector3(1.0f,1.0f,1.0f);
+		vColor				= MVector3(0.6f,0.6f,0.6f);
 		nSpawnWeight		= 100;
 		nWeaponItemID		= 300000;
 		fTremble			= 30.0f;

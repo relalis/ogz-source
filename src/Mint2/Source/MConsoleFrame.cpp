@@ -137,8 +137,8 @@ MConsoleFrame::MConsoleFrame(const char* szName, MWidget* pParent, MListener* pL
 	m_pInputEdit->m_Anchors.m_bRight = true;
 	m_pInputEdit->m_Anchors.m_bTop = false;
 	m_pInputEdit->m_Anchors.m_bBottom = true;
-	
-	SetBounds(MRECT(FRAME_CONSOLE_X, FRAME_CONSOLE_Y, FRAME_CONSOLE_WIDTH, FRAME_CONSOLE_HEIGHT));
+	MRECT curBounds = MRECT(FRAME_CONSOLE_X, FRAME_CONSOLE_Y, FRAME_CONSOLE_WIDTH, FRAME_CONSOLE_HEIGHT);
+	SetBounds(curBounds);
 }
 
 MConsoleFrame::~MConsoleFrame()
