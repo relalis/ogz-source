@@ -879,7 +879,11 @@ void Mint::SetHWND(struct HWND__* hWnd)
 	auto imehwnd = ImmGetDefaultIMEWnd(Mint::GetInstance()->GetHWND());
 
 	LRESULT lr = SendMessage(imehwnd, WM_IME_CONTROL, IMC_CLOSESTATUSWINDOW, 0);
-	_ASSERT(lr == 0);
+//	
+	if(!running_under_wine()) {
+		// assert breaks under wine
+		_ASSERT(lr == 0);
+	}
 
 	HIMC	hImc;
 	hImc = ImmGetContext(Mint::GetInstance()->GetHWND());

@@ -653,6 +653,10 @@ int PASCAL GunzMain(HINSTANCE this_inst, HINSTANCE prev_inst, LPSTR cmdline, int
 	mlog("cmdline = %s\n", cmdline);
 #endif
 
+	if(running_under_wine()) {
+		mlog("wine_get_version() was detected. We are running in a compatibility layer, and results may be unpredictable.\n");
+	}
+
 	MSysInfoLog();
 
 	// Initialize MZFileSystem - MUpdate

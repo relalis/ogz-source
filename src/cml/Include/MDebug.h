@@ -15,6 +15,7 @@
 
 #define MLOG_DEFAULT_HISTORY_COUNT	10
 
+bool running_under_wine();
 bool IsLogAvailable();
 
 void InitLog(int logmethodflags = MLOGSTYLE_DEBUGSTRING, const char* pszLogFileName = "mlog.txt");

@@ -17,6 +17,16 @@ static int g_nLogMethod=MLOGSTYLE_DEBUGSTRING;
 
 static bool g_bLogInitialized = false;
 
+bool running_under_wine() {
+#ifdef WIN32
+	HMODULE ntdll = GetModuleHandleA("ntdll.dll");
+    if (!ntdll) return false;
+    return GetProcAddress(ntdll, "wine_get_version") != nullptr;
+#else
+	return false;
+#endif
+}
+
 bool IsLogAvailable()
 {
 	return g_bLogInitialized;
